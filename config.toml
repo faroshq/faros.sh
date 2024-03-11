@@ -1,0 +1,7 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'coming-soon'
+[params]
+  release = '2024-06-01'
+  description = 'faros.sh is distributed kubernetes management platform'
