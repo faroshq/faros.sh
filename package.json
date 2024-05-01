@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/forms": "^0.3.3",
-    "alpinejs": "^3.2.1",
+    "alpinejs": "^3.13.10",
     "aos": "3.0.0-beta.6",
     "autoprefixer": "^10.3.0",
     "cruip-js-toolkit": "^1.1.2",
