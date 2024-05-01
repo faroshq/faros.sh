@@ -20,10 +20,12 @@ pygmentsOptions = "linenos=table"
   tag = "tags"
 
 [[menu.main]]
-    name = "Tags"
-    identifier = "tags"
-    weight = 300
-    url = "/tags/"
+    name = "documentation"
+    pre = "<i class='fa fa-road'></i>"
+    weight = -100
+    url = "/docs/"
+
+SectionPagesMenu = "main"
 
 [markup]
 defaultMarkdownHandler = 'goldmark'
