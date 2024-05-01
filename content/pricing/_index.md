@@ -1,0 +1,2 @@
+title: "Pricing"
+menu: "pricing"

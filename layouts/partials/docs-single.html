@@ -1,0 +1,76 @@
+<section class="relative">
+    <!-- Background image -->
+    <div class="absolute inset-0 h-128 pt-16 box-content">
+     <!-- <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="/hero-bg.jpg" width="1440" height="577" alt="About" /> -->
+      <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-gray-900" aria-hidden="true"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="pt-32 pb-12 md:pt-40 md:pb-20">
+        <div class="max-w-3xl mx-auto">
+
+          <article>
+
+            <!-- Article header -->
+            <header class="mb-8">
+              <!-- Title and excerpt -->
+              <div class="text-center md:text-left">
+                <h1 class="h3 font-red-hat-display mb-4" data-aos="fade-down">{{ .Title }}</h1>
+                {{/*  <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-down" data-aos-delay="150"> {{ .Description }}</p>  */}}
+              </div>
+              <!-- Article meta -->
+              <div class="md:flex md:items-center md:justify-between mt-5">
+                <!-- Author meta -->
+                <div class="">
+                {{- range .Params.authors }}
+                  {{- with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+                  <div class="flex items-center justify-start mb-2" data-aos="fade-down" data-aos-delay="300">
+                      <a href="{{ .Permalink }}">
+                          <img class="rounded-full flex-shrink-0 mr-3" src="{{ .Params.Photo }}" width="32" height="32" alt="{{ .Params.Name }} author pic"/>
+                      </a>
+                      <div class="text-sm text-gray-500">
+                        <a class="font-medium text-gray-800 dark:text-gray-400 hover:underline" href="{{ .Permalink }}">{{ .Params.Name }}</a>
+                      </div>
+                    </div>
+                  {{ end }}
+                {{ end }}
+                <span class="text-gray-500"  data-aos="fade-down" data-aos-delay="450">Published on {{ .Date.Format "January 2, 06" }}</span>
+              </div>
+              </div>
+            </header>
+
+            <!-- Common intro -->
+            <blockquote data-aos="fade-down" data-aos-delay="450">
+              <p>Faros is Kubernetes management and aggregation platform that helps you manage your Kubernetes clusters. It works consistently across
+                all major cloud providers or onpremise and is based on open source technologies like Kubernetes and kcp.</p>
+            </blockquote>
+
+            <hr class="w-5 h-px pt-px bg-gray-400 dark:bg-gray-500 border-0 mb-8" data-aos="fade-down" data-aos-delay="450" />
+
+            {{ if .Params.showContent }}
+            {{ .TableOfContents }}
+            {{ end }}
+
+            <!-- Article content -->
+            <div class="article-content text-base text-gray-600 dark:text-gray-200" data-aos="fade-up" data-aos-delay="450">
+              {{ .Content }}
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{{ $sass := resources.Get "css/single.scss" }}
+{{ $styles := $sass | resources.ToCSS | postCSS }}
+
+{{ if .Site.IsServer }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
+{{ else }}
+  {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"/>
+{{ end }}
+
+

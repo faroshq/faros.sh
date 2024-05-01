@@ -1,0 +1,8 @@
+
+
+<h{{ .Level }} 
+  id="{{ .Anchor | safeURL }}" 
+  class="h{{ add .Level 1 }}  font-red-hat-display mb-4 mt-4">
+  <a href="{{ .Page.Permalink }}#{{ .Anchor | safeURL }}" class="dark:text-gray-100">{{ .Text | safeHTML }}</a> 
+</h{{ .Level }}>
+

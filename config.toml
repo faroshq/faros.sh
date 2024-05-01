@@ -1,8 +1,117 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'faros.sh'
-theme = 'coming-soon'
-[params]
-  release = '2024-06-01'
-  description = 'faros.sh is distributed kubernetes management platform'
-  title = 'faros.sh'
+baseURL = "https://faros.sh/"
+languageCode = "en-us"
+title = "Faros platform"
+
+googleAnalytics='G-L898503L5T'
+
+pygmentsUseClasses=true
+pygmentsCodefences = true
+pygmentsStyle = "rrt"
+# decent white ones bellow
+#pygmentsStyle = "arduino"
+#pygmentsStyle = "xcode"
+pygmentsOptions = "linenos=table"
+
+[permalinks]
+    posts = "/blog/:slug"
+    docs = "/docs/:slug"
+[taxonomies]
+  author = "authors"
+  tag = "tags"
+
+[[menu.main]]
+    name = "Tags"
+    identifier = "tags"
+    weight = 300
+    url = "/tags/"
+
+[markup]
+defaultMarkdownHandler = 'goldmark'
+[markup.asciidocExt]
+backend = 'html5'
+extensions = []
+failureLevel = 'fatal'
+noHeaderOrFooter = true
+preserveTOC = false
+safeMode = 'unsafe'
+sectionNumbers = false
+trace = false
+verbose = false
+workingFolderCurrent = false
+[markup.asciidocExt.attributes]
+
+[markup.goldmark]
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+attribute = true
+
+[markup.goldmark.parser]
+autoHeadingID = true
+autoHeadingIDType = 'github'
+[markup.goldmark.parser.attribute]
+block = false
+title = true
+
+
+[markup.goldmark.renderer]
+hardWraps = false
+unsafe = true
+xhtml = false
+
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ''
+lineAnchors = ''
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+# style = 'monokai'
+style = 'dracula'
+tabWidth = 4
+
+
+[caches]
+[caches.getjson]
+dir = ":cacheDir/:project"
+maxAge = "10s"
+
+# [markup]
+# defaultMarkdownHandler = 'blackFriday'
+# [markup.asciidocExt]
+# backend = 'html5'
+# extensions = []
+# failureLevel = 'fatal'
+# noHeaderOrFooter = true
+# preserveTOC = false
+# safeMode = 'unsafe'
+# sectionNumbers = false
+# trace = false
+# verbose = false
+# workingFolderCurrent = false
+# [markup.asciidocExt.attributes]
+
+
+# [markup.blackFriday]
+# angledQuotes = false
+# footnoteAnchorPrefix = ''
+# footnoteReturnLinkContents = ''
+# fractions = true
+# hrefTargetBlank = false
+# latexDashes = true
+# nofollowLinks = false
+# noreferrerLinks = false
+# plainIDAnchors = true
+# skipHTML = false
+# smartDashes = true
+# smartypants = true
+# smartypantsQuotesNBSP = false
+# taskLists = true

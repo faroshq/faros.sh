@@ -1,0 +1,83 @@
+<section>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="pt-32 pb-10 md:pt-40 md:pb-16">
+
+             <!-- Page header -->
+             <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
+                <h1 class="h1 lg:text-5xl font-red-hat-display mb-4">We want to talk to you!</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Don't find what you were looking for? Want a demo or interested in Enterprise offerings?</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16 ">
+                <h4 class="h4 font-red-hat-display mb-4">Fastest way to get in touch is via
+                    <a href="https://discord.gg/dkgN4vVNdm" rel="noopener" class="text-gray-600 dark:text-gray-400 hover:underline transition duration-150 ease-in-out" >Discord</a>
+                     chat or
+                     <a href="https://twitter.com/SynpseH" rel="noopener" class="text-gray-600 dark:text-gray-400 hover:underline transition duration-150 ease-in-out" >Twitter</a>,
+                     <a href="mailto:hello@synpse.net" rel="noopener" class="text-gray-600 dark:text-gray-400 hover:underline transition duration-150 ease-in-out" >Email</a>
+                    , or just booking a
+                    <!-- Calendar link widget begin -->
+                    <a class="text-gray-600 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"  href="https://calendar.synpse.net/mangirdas/synpse-demo">meeting</a>
+                    <!-- Calendar link widget end -->
+                    with us. Or you can always leave us a message!
+
+                </h3>
+
+            </div>
+
+
+                <!-- Contact form -->
+                <form class="max-w-xl mx-auto"
+                    data-aos="fade-down"
+                    data-aos-delay="300"
+                    action="https://hooks.synpse.net/subscribe"
+                    method="post"
+                >
+                    <div class="flex flex-wrap -mx-3 mb-5">
+                        <div class="w-full px-3 mb-4 md:mb-0">
+                            <label class="block text-gray-800 dark:text-gray-300 text-sm font-medium mb-1" for="first-name">Name <span class="text-red-600">*</span></label>
+                            <input id="beta" name="name" type="name" class="form-input w-full" placeholder="Enter your name" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-5">
+                        <div class="w-full px-3 mb-4 md:mb-0">
+                            <label class="block text-gray-800 dark:text-gray-300 text-sm font-medium mb-1" for="first-name">Email <span class="text-red-600">*</span></label>
+                            <input id="beta" name="email" type="email" class="form-input w-full" placeholder="Enter your email" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-5">
+                        <div class="w-full px-3">
+                            <label class="block text-gray-800 dark:text-gray-300 text-sm font-medium mb-1" for="company">Company </label>
+                            <input id="beta" name="company" type="company" class="form-input w-full" placeholder="Enter your company name" />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-5">
+                        <div class="w-full px-3">
+                            <label class="block text-gray-800 dark:text-gray-300 text-sm font-medium mb-1" for="phone">Phone Number </label>
+                            <input id="beta" name="tel" type="tel" class="form-input w-full" placeholder="Enter your phone number" />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-5">
+                        <div class="w-full px-3">
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="block text-gray-800 dark:text-gray-300 text-sm font-medium" for="message">Details<span class="text-red-600">*</span></label>
+                                <span class="text-sm text-gray-500">The more details the merrier</span>
+                            </div>
+                            <textarea id="beta" name="message" rows="4" class="form-textarea w-full" placeholder="How can we help you?" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap -mx-3 mt-6">
+                        <div class="w-full px-3">
+                            <button id="contact-submit-button" style="display: none;" class="btn text-white bg-teal-500 hover:bg-teal-400 w-full flex items-center" disabled>
+                                <span>Leave a message!</span>
+                            </button>
+                            <div id="contact-recaptcha" class="g-recaptcha" data-sitekey="6LdjHy0cAAAAAJFIh9Avj8MRGGkLrJQyraVnb2PQ" data-callback="contact_callback"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,204 @@
+<section class="relative border-t border-transparent dark:border-gray-800">
+  <!-- Background gradient -->
+  <div
+    class="absolute inset-0 h-128 dark:opacity-25 bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 pointer-events-none"
+    aria-hidden="true"
+  ></div>
+  <!-- End background gradient -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="py-12 md:py-20">
+      <!-- Section header -->
+      <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
+        {{/*  <h2 class="h2 font-red-hat-display mb-4">Synpse is for...</h2>  */}}
+        {{/* */}}
+      </div>
+
+      <!-- Section content -->
+      <div x-data="{ category: '1' }">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-6">
+          <!-- Category buttons -->
+          <div
+            class="lg:col-span-1 lg:pr-16 flex flex-wrap justify-center lg:flex-col lg:justify-start -m-1 lg:mx-0"
+          >
+            <button
+              class="lg:w-full font-medium px-3 py-2 bg-white hover:bg-gray-50 shadow dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-150 ease-in-out rounded flex items-center justify-center lg:justify-start m-1 lg:mx-0"
+              :class="{ 'bg-teal-500 hover:bg-teal-500 dark:bg-teal-600 dark:hover:bg-teal-600 dark:bg-opacity-25 dark:hover:bg-opacity-25': category === '1' }"
+              @click="category = '1'"
+            >
+            
+              <span
+                :class="category === '1' ? 'text-white dark:text-teal-400' : 'text-gray-600 dark:text-gray-300'"
+                >For Developers</span
+              >
+            </button>
+            <button
+              class="lg:w-full font-medium px-3 py-2 bg-white hover:bg-gray-50 shadow dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-150 ease-in-out rounded flex items-center justify-center lg:justify-start m-1 lg:mx-0"
+              :class="{ 'bg-teal-500 hover:bg-teal-500 dark:bg-teal-600 dark:hover:bg-teal-600 dark:bg-opacity-25 dark:hover:bg-opacity-25': category === '2' }"
+              @click="category = '2'"
+            >             
+              <span
+                :class="category === '2' ? 'text-white dark:text-teal-400' : 'text-gray-600 dark:text-gray-300'"
+                >For DevOps / SREs</span
+              >
+            </button>
+            <button
+              class="lg:w-full font-medium px-3 py-2 bg-white hover:bg-gray-50 shadow dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-150 ease-in-out rounded flex items-center justify-center lg:justify-start m-1 lg:mx-0"
+              :class="{ 'bg-teal-500 hover:bg-teal-500 dark:bg-teal-600 dark:hover:bg-teal-600 dark:bg-opacity-25 dark:hover:bg-opacity-25': category === '3' }"
+              @click="category = '3'"
+            >             
+              <span
+                :class="category === '3' ? 'text-white dark:text-teal-400' : 'text-gray-600 dark:text-gray-300'"
+                >For Large Fleet Operators</span
+              >
+            </button>
+            <button
+              class="lg:w-full font-medium px-3 py-2 bg-white hover:bg-gray-50 shadow dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-150 ease-in-out rounded flex items-center justify-center lg:justify-start m-1 lg:mx-0"
+              :class="{ 'bg-teal-500 hover:bg-teal-500 dark:bg-teal-600 dark:hover:bg-teal-600 dark:bg-opacity-25 dark:hover:bg-opacity-25': category === '4' }"
+              @click="category = '4'"
+            >
+              <span
+                :class="category === '4' ? 'text-white dark:text-teal-400' : 'text-gray-600 dark:text-gray-300'"
+                >For ML/AI Researchers</span
+              >
+            </button>
+            <button
+              class="lg:w-full font-medium px-3 py-2 bg-white hover:bg-gray-50 shadow dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-150 ease-in-out rounded flex items-center justify-center lg:justify-start m-1 lg:mx-0"
+              :class="{ 'bg-teal-500 hover:bg-teal-500 dark:bg-teal-600 dark:hover:bg-teal-600 dark:bg-opacity-25 dark:hover:bg-opacity-25': category === '5' }"
+              @click="category = '5'"
+            >
+              <span
+                :class="category === '5' ? 'text-white dark:text-teal-400' : 'text-gray-600 dark:text-gray-300'"
+                >For Indie Hackers</span
+              >
+            </button>
+          </div>
+
+          <!-- Videos -->
+          <div
+            class="lg:col-span-2 max-w-sm mx-auto md:max-w-3xl lg:max-w-none"
+          >
+            <div class="grid md:grid-cols-1 gap-6">
+              <div x-show="['1'].includes(category)">
+                <div class="relative">
+                  <div
+                    class="flex flex-col p-5 group text-white bg-gradient-to-tr from-coolGray-50 to-coolGray-300 dark:to-teal-600 shadow-2xl"
+                  >
+                    <div
+                      class="font-red-hat-display text-xl font-extrabold tracking-tighter mb-1"
+                    >
+                      Run containerized applications
+                    </div>
+                    <div class="flex-grow opacity-80 mb-4">
+                      <p>
+                        Use Docker containers just like you are already used to.
+                        No need to learn new tools. Reproducible builds, safe
+                        deployments. Test your apps locally and then push to
+                        production.
+                      </p>
+                      <p class="mt-2">
+                        Iterate, iterate, iterate. Synpse makes it easy to quickly deploy
+                        new versions of your apps to different machines and devices.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div x-show="['2'].includes(category)">
+                <div class="relative flex justify-center items-center">
+                  <div
+                    class="flex flex-col p-5 group text-white bg-gradient-to-tr from-coolGray-50 to-coolGray-300 dark:to-teal-600 shadow-2xl"
+                  >
+                    <div
+                      class="font-red-hat-display text-xl font-extrabold tracking-tighter mb-1"
+                    >
+                      Manage infrastructure
+                    </div>
+                    <div class="flex-grow opacity-80 mb-4">
+                      <p>
+                        If your job is to manage infrastructure, you can use
+                        Synpse to easily track all your inventory. View resource
+                        utilization, get alerts when machines go down and come
+                        back up. SSH any of your devices whenever you need.
+                      </p>
+                      <p class="mt-2">
+                        Group your devices, control their naming. Synpse makes it easy.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div x-show="['3'].includes(category)">
+                <div class="relative flex justify-center items-center shadow">
+                  <div
+                    class="flex flex-col p-5 group text-white bg-gradient-to-tr from-coolGray-50 to-coolGray-300 dark:to-teal-600 shadow-2xl"
+                  >
+                    <div
+                      class="font-red-hat-display text-xl font-extrabold tracking-tighter mb-1"
+                    >
+                      Control thousands of devices
+                    </div>
+                    <div class="flex-grow opacity-80 mb-4">
+                      Things change a lot when you move from a dozen of devices
+                      to thousands. Synpse employs multiple techniques to
+                      effectively schedule applications at scale as well as
+                      gives you ability to find failing devices, get alerts and
+                      control them remotely.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div x-show="['4'].includes(category)">
+                <div class="relative flex justify-center items-center shadow">
+                  <div
+                    class="flex flex-col p-5 group text-white bg-gradient-to-tr from-coolGray-50 to-coolGray-300 dark:to-teal-600 shadow-2xl"
+                  >
+                    <div
+                      class="font-red-hat-display text-xl font-extrabold tracking-tighter mb-1"
+                    >
+                      Access your beefy GPU from anywhere
+                    </div>
+                    <div class="flex-grow opacity-80 mb-4">
+                      <p>
+                        Many companies that work in AI research tend to invest
+                        into hardware. However, this hardware can sometimes sit in
+                        an office or a private data-center and not be used to its
+                        full potential. Synpse allows you to access your GPU from
+                        anywhere.
+                      </p>
+                      <p class="mt-2">
+                        Run Jupyter notebooks, connect Collab notebooks or serve models. Check out few blog posts:
+                      </p>
+                      <ul>
+                        <li>- <a href="/blog/collab/cloud-gpu-on-collab/" class="text-teal-500 hover:underline">Using Cloud GPU machines for Google Collab</a></li>
+                        <li>- <a href="/blog/ml/pytorch-flash-serving/" class="text-teal-500 hover:underline">Serving Lightning Flash models</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div x-show="['5'].includes(category)">
+                <div class="relative flex justify-center items-center shadow">
+                    <div
+                    class="flex flex-col p-5 group text-white bg-gradient-to-tr from-coolGray-50 to-coolGray-300 dark:to-teal-600 shadow-2xl"
+                  >
+                    <div
+                      class="font-red-hat-display text-xl font-extrabold tracking-tighter mb-1"
+                    >
+                      Looking to run your startup on a budget?
+                    </div>
+                    <div class="flex-grow opacity-80 mb-4">
+                      There's probably nothing cheaper and more powerful than a medium/large size VPS. You can get one
+                      from <a href="https://www.hetzner.com/cloud" class="text-teal-500 hover:underline" target="_blank" rel="noopener">Hetzner</a> 
+                      or a <a href="https://www.ovhcloud.com/en-gb/vps/" class="text-teal-500 hover:underline" target="_blank" rel="noopener">OVH</a>
+                        for as little as $5/month. You can then use Synpse to run your apps on it.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

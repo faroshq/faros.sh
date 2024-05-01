@@ -1,0 +1,48 @@
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta charset="utf-8">
+
+<base href="{{ .Site.BaseURL }}">
+
+{{ if .Title }}
+  <title> {{ .Title }} : faros.sh </title>
+{{ else }}
+  <title> faros.sh </title>
+{{ end }}
+
+{{ with .Description }}
+<meta name="description" content="{{ . }}"> {{ end }}
+<!-- noindex meta -->
+{{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
+{{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}
+{{ $is_noindex_true := and (isset .Params "noindex") .Params.noindex }}
+{{ if or (in $noindex_kinds .Kind) ($is_noindex_true) }}
+<meta name="robots" content="noindex">
+{{ end }}
+
+{{ template "_internal/google_analytics.html" . }}
+{{ template "_internal/google_captacha.html" . }}
+
+{{ $sass := resources.Get "css/style.scss" }}
+{{ $styles := $sass | resources.ToCSS | postCSS }}
+
+{{ if .Site.IsServer }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
+{{ else }}
+  {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
+{{ end }}
+
+
+
+<script>
+  document.querySelector('html').classList.add('dark');
+
+  // if (localStorage.getItem('dark-mode') == 'true' || !('dark-mode' in localStorage)) {
+  //    document.querySelector('html').classList.add('dark');
+  //} else {
+  //    document.querySelector('html').classList.remove('dark');
+  // }
+</script>
