@@ -129,7 +129,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundOpacity: ['light'],
+      backgroundOpacity: ['dark'],
       display: ['dark'],
       opacity: ['dark'],
       rotate: ['group-hover'],
