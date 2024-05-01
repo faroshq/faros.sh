@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/forms": "^0.3.4",
     "alpinejs": "^3.2.1",
     "aos": "3.0.0-beta.6",
     "autoprefixer": "^10.3.0",
