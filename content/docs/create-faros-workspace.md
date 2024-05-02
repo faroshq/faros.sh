@@ -1,7 +1,7 @@
 ---
 title: "How to create Faros workspace"
 date: 2024-05-01T00:02:00+01:00
-image: /images/front.webp
+image: /images/workspace.webp
 description: "First steps to create a Faros workspace and nest them to create hierarchy"
 authors:
 - Mangirdas Judeikis

@@ -1,7 +1,7 @@
 ---
 title: "How to create Faros account"
 date: 2024-05-01T00:01:00+01:00
-image: /images/front.webp
+image: /images/account.webp
 description: "How to install faros cli plugins and create faros account"
 authors:
 - Mangirdas Judeikis

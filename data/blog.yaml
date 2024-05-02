@@ -1,5 +1,5 @@
 featuredMain:
-  title: Faros is distributed Kubernetes control plane
+  title: Faros - distributed control plane for Kubernetes
   excerpt: |
     Connect hundreds of Kubernetes clusters into a single control plane, create custom
     Kubernetes-like APIs, and manage them all from a single pane of glass.

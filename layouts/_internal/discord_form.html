@@ -1,0 +1,49 @@
+<script>
+    async function sendContact(ev) {
+      ev.preventDefault();
+      const senderEmail = document
+        .getElementById('emailInput').value;
+      const senderMessage = document
+        .getElementById('messageInput').value;
+      const senderName = document
+        .getElementById('nameInput').value;
+      const senderCompany = document
+        .getElementById('companyInput').value;
+
+      const webhookBody = {
+        embeds: [{
+          title: 'Contact Form Submitted',
+          fields: [{
+              name: 'Sender',
+              value: senderEmail
+            },
+            {
+              name: 'Message',
+              value: senderMessage
+            },
+            {
+              name: 'Name',
+              value: senderName
+            },
+            {
+              name: 'Company',
+              value: senderCompany
+            }
+          ]
+        }],
+      };
+      const webhookUrl = 'https://discord.com/api/webhooks/1235608523128180829/BKqcigXegS5_WoSLV_fEz89y-JzSGj77qhT5rVeU2Dk9TNlwXDADUaqPfZGklYQP0xSl';
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookBody),
+      });
+      if (response.ok) {
+
+      } else {
+        alert('There was an error! Try again later!');
+      }
+    }
+  </script>
