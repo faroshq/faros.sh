@@ -104345,6 +104345,35 @@ body[data-aos-easing="ease-in-out-quart"] [data-aos], [data-aos][data-aos][data-
   list-style-type: decimal;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+path {
+  stroke-dasharray: 15;
+  animation: move 35s linear infinite;
+}
+
+@keyframes move {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;

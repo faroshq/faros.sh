@@ -39,8 +39,39 @@ $aos-distance: 16px;
     ul {
         @apply list-disc list-inside mb-8;
     }
-    
+
     ol {
         @apply list-decimal list-inside mb-8;
     }
 }
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+path {
+    stroke-dasharray: 15;
+    animation: move 35s linear infinite;
+}
+
+@keyframes move {
+    to {
+        stroke-dashoffset: 1000;
+    }
+}
+
