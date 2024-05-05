@@ -8,43 +8,42 @@ authors:
 tags: [faros,install,cloud,kubernetes,kcp]
 ---
 
-Faros cloud access is required to manage your Kubernetes clusters and workspaces. In this guide, we will show you how to install Faros CLI plugins and create a Faros account.
+# Accessing Faros Cloud for Kubernetes Management
 
-### Join the Faros cloud
+To effectively manage your Kubernetes clusters and workspaces, access to Faros cloud is essential. This guide will walk you through the steps to install Faros CLI plugins and set up a Faros account.
 
-Faros CLI can be used as standalone tool or as a plugin for kubectl. In this guide, we will show you how to install Faros CLI plugins for kubectl.
+## Join the Faros Cloud
 
-To install Faros CLI plugins, you need to have kubectl installed. If you don't have kubectl installed, you can follow the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/) to install it. In addition, you need to have krew installed. If you don't have krew installed, you can follow the [official krew documentation](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
+The Faros CLI can function as a standalone tool or as a plugin for kubectl. Follow these instructions to install Faros CLI plugins for kubectl:
 
-To install Faros CLI plugins, run the following command:
 
+### Prerequisites:
+- Ensure `kubectl` is installed. If not, refer to the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/) for installation guidance.
+- Install `krew`, the kubectl plugin manager, following the [official krew documentation](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
+
+
+### Plugin Installation:
+Execute the commands below to add the Faros plugin and install it:
 ```bash
 kubectl krew index add faros https://github.com/faroshq/krew-index.git
 kubectl krew install faros/faros
 ```
 
-**Workspaces** in Faros are like namespaces in Kubernetes with steroids. They act and feel like standalone virtual clusters, but they are not. They are just a way to group resources together and provide a way to manage them in a more structured way. Each workspace has its own set of resources, such as namespaces, service-accounts, roles and roleBindings, secrets and configMaps.
+### Understanding Workspaces
 
-Login into Faros cloud with the following command and use your GitHub to login.
+Workspaces in Faros are akin to Kubernetes namespaces, but with enhanced functionality. They are designed to group resources together under a virtual cluster-like environment, without being actual clusters. Each workspace contains its own resources, such as namespaces, service accounts, roles, roleBindings, secrets, and configMaps.
+
+
+
+### Setting Up and Managing Workspaces
 
 ```bash
 kubectl faros login
 ```
 
-Once you are logged in, you can create a new workspace, explore kubernetes apis:
+Once logged in, create and manage new workspaces similarly to how you would manage a regular Kubernetes cluster.
 
-Check supported APIs:
-```bash
-kubectl api-resources
-```
-
-Now you are cluster/workspace admin for your cluster/workspace. You can create new workspaces, invite users, and manage resources
-as you would do in a regular Kubernetes cluster.
-
-All sso users are identified by their emails, associated with their GitHub accounts. You can invite users to your workspace by their email
-with prefix `faros-sso-{email}` by creating a new role binding:
-
-Example:
+Users can be invited via their email, associated with their GitHub accounts, using the following role binding template:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -58,13 +57,20 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
-  name: faros-sso-mangirdas@judeikis.lt
+  name: faros-sso-{email}
 ```
 
-You now can share your workspace with your team members and start managing your
-Kubernetes resources in a more structured way.
+### Explore Kubernetes APIs
 
-To see your current "logical cluster", run the following command:
+Check the supported APIs using the command:
+
+```bash
+kubectl api-resources
+```
+
+### View Logical Clusters:
+
+To view your current logical cluster, use:
 
 ```bash
 $ k get logicalcluster
