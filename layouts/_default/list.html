@@ -1,0 +1,11 @@
+{{ define "main" }}
+<main class="flex-grow">
+  <!-- Page illustration -->
+  <div class="relative max-w-6xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
+     {{ partial "page-illustration.html" . }}
+  </div>
+  {{ partial "hero-blog.html" . }}
+  {{/*  {{ partial "featured-posts.html" . }}  */}}
+  {{ partial "blog-list.html" . }}
+</main>
+{{ end }}

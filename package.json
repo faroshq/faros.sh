@@ -6,6 +6,7 @@
   "repository": "github:faroshq/faros",
   "homepage": "https://faros.sh",
   "author": "Mangirdas Judeikis",
+  "main": "index.js",
   "bugs": "https://github.com/faroshq/faros/issues",
   "spelling": "cSpell:ignore HTMLTEST precheck postbuild -",
   "scripts": {
@@ -37,5 +38,17 @@
     "cross-env": "^7.0.3",
     "hugo-extended": "0.125.4",
     "postcss-cli": "^11.0.0"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.3",
+    "alpinejs": "^3.2.1",
+    "aos": "3.0.0-beta.6",
+    "autoprefixer": "^10.3.0",
+    "cruip-js-toolkit": "^1.1.2",
+    "medium-zoom": "^1.0.6",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1",
+    "swiper": "^6.7.5",
+    "tailwindcss": "^2.2.4"
   }
 }

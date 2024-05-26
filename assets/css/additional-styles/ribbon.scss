@@ -1,0 +1,29 @@
+
+  
+  /* CORNER RIBBON STYLING */
+  .corner-ribbon{
+    width: 200px;
+    background: #2f2f2f;
+    color: rgb(233, 37, 37);
+    position: fixed;
+    text-align: center;
+    top: 30px;
+    line-height: 30px;
+  }
+  
+  .corner-ribbon.left{
+    left: -50px;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  
+  .corner-ribbon.right{
+    right: -50px;
+    left: auto;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  

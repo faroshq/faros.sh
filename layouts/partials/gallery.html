@@ -1,0 +1,115 @@
+<!-- Inspiration -->
+<section>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="py-12 md:pt-32 md:pb-20">
+      <!-- Section header -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <!-- Section header -->
+        <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
+          <h1 class="h2 font-red-hat-display mb-4">One-click deployments</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Explore our growing collection of curated applications
+          </p>
+        </div>
+      </div>
+      <!-- Content -->
+      <div x-data="{ category: '0' }">
+        <!-- Gallery -->
+        <div class="relative">
+          <!-- Images grid -->
+          <div
+            class="max-w-sm mx-auto sm:max-w-none grid gap-6 sm:grid-cols-2 md:grid-cols-3 items-start"
+            data-aos-id-inspiration
+          >
+            {{ $templates := getJSON "https://cloud.synpse.net/api/templates" }}
+            {{ range $templates }}
+            <div
+              class="relative group hover:shadow-xl transition duration-150 ease-in-out"
+              target="_blank"
+              x-show="['0', '1', '3'].includes(category)"
+              data-aos="fade-down"
+              data-aos-anchor="[data-aos-id-inspiration]"              
+            >
+              {{/*
+              <img
+                class="w-full aspect-square object-cover"
+                src="{{ .imageUrl }}"
+                width="352"
+                height="180"
+                alt="{{ .name }}"
+              />
+              */}}
+
+              <img
+                class="object-cover"
+                src="{{ .imageUrl }}"
+                height="180px"
+                alt="{{ .name }}"
+                style="height: 200px; max-height: 200px;"
+              />
+              
+              <!-- Content on hover -->
+              <div class="absolute bottom-0 left-0 right-0 p-4">
+                <!-- Backdrop -->
+                <div
+                  class="absolute inset-0 -mt-4 bg-gradient-to-t from-gray-800 to-transparent opacity-80 pointer-events-none"
+                  aria-hidden="true"
+                ></div>
+                <!-- Content -->
+                <div class="relative flex justify-between">
+                  <!-- Left side -->
+                  <div class="flex items-center">
+                    {{/*
+                    <img
+                      class="shrink-0 w-9 h-9 rounded-full mr-4"
+                      src="./images/author-01.jpg"
+                      width="36"
+                      height="36"
+                      alt="Author 01"
+                    />
+                    */}}
+                    <div class="truncate">
+                      {{/*
+                      <div class="font-bold text-white truncate">
+                        {{ .name }}
+                      </div>
+                      */}}
+                      <div class="text-xs text-white truncate">
+                        {{ .organization }} / {{ .name }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Right side -->
+                  <div class="flex flex-nowrap items-center ml-2">
+                    <a
+                      class="text-xs font-medium text-center text-white py-2 px-3 rounded-full bg-gray-900 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out"
+                      href="https://cloud.synpse.net/templates?id={{ .id }}"
+                      target="_blank"
+                    >
+                      Deploy
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+
+          <!-- CTA -->
+          {{/*
+          <div class="absolute bottom-0 left-0 right-0 h-[352px]">
+            <div class="flex h-full items-end justify-center">
+              <a
+                class="btn text-white bg-teal-500 hover:bg-teal-400 shadow-sm mb-6"
+                target="_blank"
+                href="https://cloud.synpse.net"
+                >Sign up</a
+              >
+            </div>
+          </div>
+          */}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

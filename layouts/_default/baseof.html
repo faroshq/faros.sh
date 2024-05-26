@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+<head>
+    {{ partial "head_custom.html" . }}
+</head>
+<body class="font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
+    {{ partial "header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer_custom.html" . }}
+
+    {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
+    <script src="{{ $js.RelPermalink }}"></script>
+
+    {{ $alpineJs := resources.Get "js/alpine.min.js" | js.Build (dict "minify" false "params" (dict "myparam" "Alpine")) }}
+    <script src="{{ $alpineJs.RelPermalink }}"></script>
+</body>
+</html>
+

@@ -1,5 +1,5 @@
-baseURL = "https://docs.faros.sh"
-title = "Faros Docs"
+baseURL = "https://faros.sh"
+#title = "Faros"
 
 # Language settings
 contentDir = "content/en"
@@ -42,8 +42,8 @@ pygmentsUseClassic = false
 pygmentsStyle = "tango"
 
 # Configure how URLs look like per section.
-[permalinks]
-blog = "/:section/:year/:month/:day/:slug/"
+#[permalinks]
+#blog = "/:section/:year/:month/:day/:slug/"
 
 # Image processing configuration.
 [imaging]
@@ -59,9 +59,8 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 [languages.en.params]
-title = "Faros Docs"
-description = "Faros Documentation"
-#
+title = "Faros"
+description = "Faros Platform as a Service"
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"
@@ -102,7 +101,7 @@ section = ["HTML", "print", "RSS"]
 #privacy_policy = "https://policies.google.com/privacy"
 
 # First one is picked as the Twitter card image if not set on page.
-# images = ["images/project-illustration.png"]
+# images = ["static/logo.png"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
@@ -154,9 +153,9 @@ breadcrumb_disable = false
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
 navbar_logo = true
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
-navbar_translucent_over_cover_disable = false
+navbar_translucent_over_cover_disable = true
 # Enable to show the side bar menu in its compact state.
-sidebar_menu_compact = false
+sidebar_menu_compact = true
 # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
 sidebar_search_disable = false
 
@@ -167,8 +166,8 @@ sidebar_search_disable = false
 [params.ui.feedback]
 enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/faroshq/faros/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/faroshq/faros/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page,

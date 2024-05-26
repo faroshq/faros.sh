@@ -1,0 +1,6 @@
+<figure class="mt-8 mb-8">
+  <img class="w-full data-zoomable" src="{{ .Destination | safeURL }}" width="768" height="432" alt="{{ .Text }}" />
+  {{ with .Text}}
+  <figcaption class="text-sm text-center text-gray-500 mt-3">{{ . }}</figcaption>
+  {{ end }}
+</figure>
