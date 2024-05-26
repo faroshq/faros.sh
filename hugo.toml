@@ -65,8 +65,8 @@ description = "Faros Platform as a Service"
 ##languageName ="Norsk"
 #contentDir = "content/no"
 #[languages.no.params]
-#title = "Goldydocs"
-#description = "Docsy er operativsystem for skyen"
+title = "Faros"
+description = "Faros Platform as a Service"
 #time_format_default = "02.01.2006"
 #time_format_blog = "02.01.2006"
 
