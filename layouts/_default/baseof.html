@@ -6,7 +6,10 @@
 <body class="font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
     {{ partial "header.html" . }}
     {{ block "main" . }}{{ end }}
+
+    {{ if ne .Section "docs" }}
     {{ partial "footer_custom.html" . }}
+    {{ end }}
 
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
