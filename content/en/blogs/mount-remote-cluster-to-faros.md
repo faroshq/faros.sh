@@ -1,6 +1,6 @@
 ---
 title: "How to Mount a Remote Kubernetes Cluster"
-date: 2024-05-01T00:03:00+01:00
+date: 2024-05-03T00:03:00+01:00
 image: /images/mount.webp
 description: "How to mount a remote cluster to a Faros cluster for remote access and management."
 authors:
@@ -16,20 +16,20 @@ This article assumes you have CLI access to your Faros cloud and a workspace rea
 
 **Access Your Workspace**:
 Navigate to the `clusters` workspace created in the previous article:
-```bash
+```yaml
 kubectl faros ws use clusters
 ```
 
 **Create a New Workspace:**
 For this example, we'll create a new workspace named mini to correspond with our remote cluster running `k3s`:
-```bash
+```yaml
 kubectl faros ws create mini
 ```
 
 **Mount the Remote Cluster Locally:**
 If you have access to the remote cluster from your local machine:
 
-```bash
+```yaml
 kubectl faros mount mini -w mini --remote-kubeconfig=kind.kubeconfig
 ```
 
@@ -38,13 +38,13 @@ After mounting, using `kubectl faros ws use mini` will give you access to the re
 **Mount the Remote Cluster from a Remote Machine:**
 If the remote cluster is not accessible from your local machine:
 
-```bash
+```yaml
 kubectl faros mount mini -w mini
 ```
 
 You'll need to deploy resources manually to the remote cluster:
 
-```bash
+```yaml
 # Get resources to deploy
 kubectl get configmap mini-resources -o jsonpath='{.data.resources}' > mini-resources.yaml
 
@@ -56,7 +56,7 @@ kubectl get KubeCluster -w
 ```
 
 **Verify All Mounted Clusters:**
-```bash
+```yaml
 kubectl faros ws tree -f
 .
 └── ixn3tjgtr9bb

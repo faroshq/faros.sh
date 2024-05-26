@@ -65,8 +65,7 @@ description = "Faros Platform as a Service"
 ##languageName ="Norsk"
 #contentDir = "content/no"
 #[languages.no.params]
-title = "Faros"
-description = "Faros Platform as a Service"
+#title = "Faros"
 #time_format_default = "02.01.2006"
 #time_format_blog = "02.01.2006"
 

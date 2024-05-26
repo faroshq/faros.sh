@@ -24,7 +24,8 @@ The Faros CLI can function as a standalone tool or as a plugin for kubectl. Foll
 
 ### Plugin Installation:
 Execute the commands below to add the Faros plugin and install it:
-```bash
+
+```yaml
 kubectl krew index add faros https://github.com/faroshq/krew-index.git
 kubectl krew install faros/faros
 ```
@@ -37,7 +38,7 @@ Workspaces in Faros are akin to Kubernetes namespaces, but with enhanced functio
 
 ### Setting Up and Managing Workspaces
 
-```bash
+```yaml
 kubectl faros login
 ```
 
@@ -64,7 +65,7 @@ subjects:
 
 Check the supported APIs using the command:
 
-```bash
+```yaml
 kubectl api-resources
 ```
 
@@ -72,7 +73,7 @@ kubectl api-resources
 
 To view your current logical cluster, use:
 
-```bash
+```yaml
 $ k get logicalcluster
 NAME      PHASE   URL                                              AGE
 cluster   Ready   https://kcp.faros.sh:443/clusters/ixn3tjgtr9bb   10d

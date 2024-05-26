@@ -1,0 +1,60 @@
+<section>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="pb-12 md:pb-20">
+            <div class="lg:flex lg:justify-between">
+
+                <!-- Main content -->
+                <div class="lg:flex-grow" data-aos="fade-down" data-aos-delay="200">
+
+                    <!-- Section title -->
+                    <h4 class="h3 font-red-hat-display mb-8">Latest</h4>
+
+                    <!-- Articles container -->
+                    <div class="grid gap-12 sm:grid-cols-2 sm:gap-x-6 md:gap-y-8 items-start">
+                        {{ range .Pages.ByDate.Reverse }}
+                        {{ if not .Params.hidden }}
+
+                        <!-- article -->
+                        <article class="flex flex-col h-full">
+                            <header>
+                                <a class="block mb-4" href="{{ .RelPermalink }}">
+                                    <figure class="relative h-0 pb-9/16">
+                                        <img class="absolute inset-0 w-full h-full object-cover" src="{{ .Params.image }}" width="352" height="198" alt="News 01" />
+                                    </figure>
+                                </a>
+                                <a class="hover:underline" href="{{ .RelPermalink }}">
+                                    <h3 class="h4 font-red-hat-display mb-2">
+                                        {{ .Title }}
+                                    </h3>
+                                </a>
+                            </header>
+
+                            <a href="{{ .RelPermalink }}">
+                                <p class="text-gray-600 dark:text-gray-400 flex-grow">{{ .Description }}</p>
+                            </a>
+                            <!-- Author meta -->
+
+                            <footer class="flex items-center mt-4 mb-4">
+                                    <!-- tags meta -->
+                                    <div>
+                                        <div class="tags is-pulled-right">
+                                            {{ range .Params.tags }}
+                                            <a href="/tags/{{ . | urlize}}">
+                                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
+                                                    {{ . }}
+                                                </span>
+                                            </a>
+                                            {{ end }}
+                                        </div>
+                                    </div>
+                            </footer>
+                        </article>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                </div>
+                {{ partial "docs-sidemenu.html" . }}
+            </div>
+        </div>
+    </div>
+</section>

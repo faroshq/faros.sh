@@ -1,0 +1,2 @@
+aliases = ["/docs/"]
+type = "docs"

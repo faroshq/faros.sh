@@ -1,0 +1,48 @@
+<section class="relative">
+
+    <!-- Background image -->
+    <div class="absolute inset-0 h-128 pt-16 box-content -z-1">
+       <!-- <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="/hero-bg.jpg" width="1440" height="577" alt="About" /> -->
+        <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-gray-900" aria-hidden="true"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="pt-32 pb-12 md:pt-40 md:pb-16">
+
+            <!-- Featured article -->
+            <div class="max-w-3xl" data-aos="fade-down">
+                <article>
+                    <header>
+                        <!-- Title and excerpt -->
+                        <div class="text-center md:text-left">
+                            <a href="{{ $.Site.Data.blog.featuredMain.post }}">
+                                <h1 class="h2 font-red-hat-display mb-4">{{ $.Site.Data.blog.featuredMain.title }}</h1>
+
+                            <p class="text-xl text-gray-600 dark:text-gray-400">
+                                {{ $.Site.Data.blog.featuredMain.excerpt }}
+                            </p>
+                        </a>
+                        </div>
+                        <!-- Article meta -->
+                        <div class="md:flex md:items-center md:justify-between mt-5">
+                            <!-- Author meta -->
+                            {{/*  <div class="flex items-center justify-center">
+                                {{- range $.Site.Data.blog.featuredMain.authors }}
+                                {{- with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+                                  <a href="{{ .Permalink }}"></a>
+                                     <img class="rounded-full flex-shrink-0 mr-3" src="{{ .Params.Photo }}" width="32" height="32" />
+                                  </a>
+                                  <div class="text-sm text-gray-500">
+                                      By <a class="font-medium text-gray-800 dark:text-gray-400 hover:underline" href="{{ .Permalink }}">{{ .Params.Name }}</a> · <span class="text-gray-500">{{ .Date.Format "Mon Jan 2, 2006" }}</span>
+                                  </div>
+                                {{ end }}
+                              {{ end }}
+                            </div>  */}}
+                        </div>
+                    </header>
+                </article>
+            </div>
+        </div>
+    </div>
+
+</section>
