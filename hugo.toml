@@ -86,9 +86,9 @@ description = "Faros platform as a service"
       unsafe = true
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style = "tango"
+    # style = "xcode"
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
-    # guessSyntax = "true"
+    guessSyntax = "true"
 
 # Everything below this are Site Params
 
