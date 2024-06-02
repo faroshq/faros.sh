@@ -1,12 +1,14 @@
 ---
 title: API
+type: swagger
 weight: 5
 description: >
   Faros API documentation.
 ---
 
-Faros API documentation is hosted as Swagger UI at [https://api.faros.sh/swagger/](https://api.faros.sh/swagger/).
+{{% pageinfo %}}
+ClientID: faros
+{{% /pageinfo %}}
 
-To authenticate using swagger UI use the following client_id `faros` and mark all the scopes.
 
-![Faros API](/images/swagger/auth.png)
+{{< swaggerui src="https://api.faros.sh/swagger/swagger.json" >}}
