@@ -7,7 +7,7 @@ description: >
 ---
 
 {{% pageinfo %}}
-ClientID: faros
+When authenticating, use ClientID: `faros` and mark all scopes.
 {{% /pageinfo %}}
 
 
