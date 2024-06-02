@@ -60,7 +60,7 @@ languageName ="English"
 weight = 1
 [languages.en.params]
 title = "Faros"
-description = "Faros Platform as a Service"
+description = "Faros platform as a service"
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"
@@ -199,3 +199,10 @@ enable = false
   [[module.imports]]
     path = "github.com/google/docsy"
     disable = false
+
+[menu]
+  [[menu.main]]
+    identifier = "main"
+    name = "Main"
+    url = "/"
+    weight = 10

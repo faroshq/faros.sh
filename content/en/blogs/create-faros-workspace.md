@@ -19,7 +19,7 @@ Workspaces in Faros function like enhanced Kubernetes namespaces. They simulate 
 **Check Current Hierarchy Level Workspaces**:
 
 ```yaml
-kuectl get ws
+kubectl get ws
 ```
 
 **View Full Hierarchy Tree:**
