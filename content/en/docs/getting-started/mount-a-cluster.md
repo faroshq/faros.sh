@@ -74,3 +74,50 @@ kubectl ws tree
 ```
 
 How each workspace is structured and managed is up to you. You can create as many workspaces as you need, and nest them as required.
+
+
+**Mount the Remote Cluster Locally:**
+If you have access to the remote cluster from your local machine:
+
+```yaml
+kubectl faros mount prod --remote-kubeconfig=kind.kubeconfig
+```
+
+After mounting, using `kubectl faros ws use prod` will give you access to the remote cluster.
+
+**Mount the Remote Cluster from a Remote Machine:**
+If the remote cluster is not accessible from your local machine:
+
+```yaml
+kubectl faros mount prod -w prod
+```
+
+You'll need to deploy resources manually to the remote cluster:
+
+```yaml
+# Get resources to deploy
+kubectl get configmap prod-resources -o jsonpath='{.data.resources}' > prod-resources.yaml
+
+# Deploy resources
+kubectl apply -f prod-resources.yaml --kubeconfig <your-kubeconfig>
+
+# Wait for the cluster to accept the mount
+kubectl get KubeCluster -w
+```
+
+**Verify All Mounted Clusters:**
+```yaml
+kubectl faros ws tree -f
+.
+└── ixn3tjgtr9bb
+    └── ixn3tjgtr9bb:clusters
+        └── ixn3tjgtr9bb:clusters:prod
+```
+
+With these steps, you can mount any remote cluster to your Faros workspace, allowing for
+streamlined management and access through a
+single command like
+
+ `kubectl faros ws use ixn3tjgtr9bb:clusters:prod`
+
+ or by navigating the workspace hierarchy.

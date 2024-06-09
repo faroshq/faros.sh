@@ -29,7 +29,7 @@ kubectl krew install faros/faros
 To update the plugin, run:
 
 ```bash
-kubectl krew update
+kubectl krew upgrade
 ```
 
 
