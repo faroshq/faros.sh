@@ -48,7 +48,7 @@
     "medium-zoom": "^1.0.6",
     "postcss": "^8.3.5",
     "postcss-cli": "^8.3.1",
-    "swiper": "^6.7.5",
+    "swiper": "^11.1.10",
     "tailwindcss": "^2.2.4"
   }
 }
