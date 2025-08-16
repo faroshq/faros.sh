@@ -41,7 +41,12 @@
         body: JSON.stringify(webhookBody),
       });
       if (response.ok) {
-
+        // Show success message
+        document.getElementById('contact-success-message').classList.remove('hidden');
+        // Hide the form
+        document.getElementById('contact-form').style.display = 'none';
+        // Scroll to success message
+        document.getElementById('contact-success-message').scrollIntoView({ behavior: 'smooth' });
       } else {
         alert('There was an error! Try again later!');
       }
