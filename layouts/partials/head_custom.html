@@ -27,9 +27,9 @@
 {{ template "_internal/discord_form.html" . }}
 
 {{ $sass := resources.Get "css/style.scss" }}
-{{ $styles := $sass | resources.ToCSS | postCSS }}
+{{ $styles := $sass | css.Sass | postCSS }}
 
-{{ if .Site.IsServer }}
+{{ if hugo.IsServer }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
 {{ else }}
   {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
