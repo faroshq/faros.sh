@@ -180,3 +180,543 @@ code, pre {
     }
 }
 
+// AI-focused styling enhancements
+.ai-terminal {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #0f4c75;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(ellipse at center, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+        border-radius: inherit;
+    }
+}
+
+// Step number circles with AI glow
+.step-number {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    box-shadow: 0 0 20px rgba(30, 58, 138, 0.4);
+    
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(30, 58, 138, 0.6);
+    }
+}
+
+// AI brain icon animation
+@keyframes brainPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.fa-brain {
+    animation: brainPulse 2s ease-in-out infinite;
+}
+
+// Magic wand animation
+@keyframes magicSparkle {
+    0%, 100% { 
+        transform: rotate(0deg);
+    }
+    25% { 
+        transform: rotate(-10deg);
+    }
+    75% { 
+        transform: rotate(10deg);
+    }
+}
+
+.fa-magic {
+    animation: magicSparkle 3s ease-in-out infinite;
+}
+
+// Security features
+.security-badge {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+// AI-Native Hero Animations
+@keyframes neuralPulse {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes dataFlow {
+    0% {
+        stroke-dasharray: 0 100;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 50 50;
+        stroke-dashoffset: -25;
+    }
+    100% {
+        stroke-dasharray: 100 0;
+        stroke-dashoffset: -100;
+    }
+}
+
+@keyframes aiClusterBreathe {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes starRotate {
+    0% { 
+        transform: rotate(0deg);
+    }
+    100% { 
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes typewriter {
+    0% { 
+        width: 0;
+    }
+    100% { 
+        width: 100%;
+    }
+}
+
+@keyframes rocketLaunch {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-2px) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-1px) rotate(5deg);
+    }
+}
+
+@keyframes playBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+// Neural Network SVG Elements
+.neural-node {
+    animation: neuralPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.data-flow {
+    animation: dataFlow 4s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.ai-cluster {
+    animation: aiClusterBreathe 6s ease-in-out infinite;
+}
+
+// AI Badge and Title Styling
+.ai-badge {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.ai-star {
+    animation: starRotate 8s linear infinite;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.ai-title {
+    background-size: 300% 300%;
+    animation: gradientShift 4s ease infinite;
+    text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+}
+
+// Button Animations
+.rocket-icon {
+    animation: rocketLaunch 2s ease-in-out infinite;
+}
+
+.play-icon {
+    animation: playBounce 2s ease-in-out infinite;
+}
+
+// Enhanced AI Terminal
+.ai-terminal {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #581c87 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 
+        0 0 50px rgba(59, 130, 246, 0.2),
+        inset 0 0 50px rgba(139, 92, 246, 0.1);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(59, 130, 246, 0.1),
+            transparent
+        );
+        animation: scanLine 3s linear infinite;
+    }
+}
+
+@keyframes scanLine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.typing-animation {
+    position: relative;
+    
+    &::after {
+        content: '▋';
+        color: #06B6D4;
+        animation: blink 1s ease-in-out infinite;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+// Enhanced hover effects
+.btn {
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s;
+    }
+    
+    &:hover::before {
+        left: 100%;
+    }
+}
+
+// Responsive adjustments for AI elements
+@media (max-width: 768px) {
+    .ai-nodes {
+        display: none;
+    }
+    
+    .data-connections {
+        opacity: 0.3;
+    }
+    
+    .ai-clusters {
+        opacity: 0.1;
+    }
+    
+    .ai-title {
+        font-size: 2.5rem !important;
+    }
+}
+
+// Dark mode enhancements for AI theme
+@media (prefers-color-scheme: dark) {
+    .ai-terminal {
+        background: linear-gradient(135deg, #0c0a1f 0%, #1e1b4b 50%, #581c87 100%);
+        box-shadow: 
+            0 0 60px rgba(139, 92, 246, 0.3),
+            inset 0 0 60px rgba(59, 130, 246, 0.1);
+    }
+    
+    .neural-node {
+        filter: drop-shadow(0 0 6px currentColor);
+    }
+    
+    .ai-badge {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        border-color: rgba(139, 92, 246, 0.3);
+    }
+    
+    // Fix dark mode background gradient for multi-cluster section
+    .bg-gradient-to-r.from-blue-50.via-purple-50.to-cyan-50 {
+        background: linear-gradient(to right, 
+            rgba(30, 58, 138, 0.15) 0%, 
+            rgba(91, 33, 182, 0.15) 50%, 
+            rgba(8, 145, 178, 0.15) 100%) !important;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    // Enhanced glassmorphism for dark mode
+    .bg-white\/90,
+    .bg-white\/80 {
+        background: rgba(17, 24, 39, 0.85) !important;
+        border: 1px solid rgba(75, 85, 99, 0.4) !important;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    // Ensure proper text contrast in dark mode cards
+    .bg-white\/90 h3,
+    .bg-white\/80 h3 {
+        color: rgb(243, 244, 246) !important;
+    }
+    
+    .bg-white\/90 p,
+    .bg-white\/80 p {
+        color: rgb(209, 213, 219) !important;
+    }
+}
+
+// Multi-Cluster Control Plane Animations
+@keyframes clusterPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+    }
+}
+
+@keyframes controlPlaneFlow {
+    0% {
+        stroke-dasharray: 0 100;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 50 50;
+        stroke-dashoffset: -25;
+    }
+    100% {
+        stroke-dasharray: 100 0;
+        stroke-dashoffset: -100;
+    }
+}
+
+@keyframes spinSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinReverseSlow {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes brainThink {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+    }
+    25% {
+        transform: scale(1.02) rotate(1deg);
+        box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+    }
+    75% {
+        transform: scale(1.02) rotate(-1deg);
+        box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+    }
+}
+
+@keyframes insightFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-4px) scale(1.1);
+    }
+}
+
+// Cluster and Control Plane Elements
+.cluster-node {
+    animation: clusterPulse 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.1) !important;
+        box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4) !important;
+    }
+}
+
+.control-flow {
+    animation: controlPlaneFlow 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.control-plane-hub {
+    animation: brainThink 4s ease-in-out infinite;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0.3;
+        filter: blur(8px);
+        animation: gradientShift 3s ease infinite;
+    }
+}
+
+.ai-brain {
+    animation: brainThink 5s ease-in-out infinite;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        background: linear-gradient(45deg, #10b981, #14b8a6, #06b6d4);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0.4;
+        filter: blur(12px);
+        animation: gradientShift 4s ease infinite;
+    }
+}
+
+.insight-badge {
+    animation: insightFloat 2s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+// Utility animations for orbital elements
+.animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+    animation: spinReverseSlow 15s linear infinite;
+}
+
+// Enhanced group hover effects for the new section
+.group:hover .cluster-node {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.group:hover .control-plane-hub {
+    transform: scale(1.08);
+}
+
+.group:hover .ai-brain {
+    transform: scale(1.08);
+}
+
+.group:hover .control-flow {
+    opacity: 1;
+    stroke-width: 4;
+}
+
+// Glassmorphism cards for the new section
+.bg-white\/80 {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .bg-gray-800\/80 {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+// Responsive adjustments for the new multi-cluster section
+@media (max-width: 768px) {
+    .cluster-connection-visual {
+        .cluster-node {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        svg {
+            width: 16rem;
+            height: 3rem;
+        }
+    }
+    
+    .control-plane-hub,
+    .ai-brain {
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .animate-spin-slow,
+    .animate-spin-reverse-slow {
+        animation: none;
+    }
+}
+
