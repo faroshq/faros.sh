@@ -1,184 +1,200 @@
-# Docsy Example
+# Faros Platform Documentation
 
-[Docsy][] is a [Hugo theme module][] for technical documentation sites, providing easy
-site navigation, structure, and more. This **Docsy Example Project** uses the Docsy
-theme component as a hugo module and provides a skeleton documentation structure for you to use.
-You can clone/copy this project and edit it with your own content, or use it as an example.
+Documentation website for [Faros](https://faros.sh) - a unified platform for managing distributed Kubernetes clusters at the edge.
 
-In this project, the Docsy theme is pulled in as a Hugo module, together with
-its dependencies:
+## About Faros
 
-```console
-$ hugo mod graph
-...
-```
+Faros provides a centralized platform for managing multiple Kubernetes clusters through a modern CLI interface. Key features:
 
-For Docsy documentation, see [Docsy user guide][].
+- **Edge Cluster Registration**: Register remote clusters with outbound-only connections
+- **Multi-Mode Access**: CLI, WebSocket SSH, or RESTful API
+- **AI Agent Integration**: Deploy LLM-powered agents for intelligent cluster analysis
+- **Secure by Default**: No inbound connections, JWT authentication, TLS encryption
+- **Team Collaboration**: GitHub SSO with Kubernetes-native RBAC
 
-This Docsy Example Project is hosted on [Netlify][] at [example.docsy.dev][].
-You can view deploy logs from the [deploy section of the project's Netlify
-dashboard][deploys], or this [alternate dashboard][].
+## Documentation Structure
 
-This is not an officially supported Google product. This project is currently maintained.
+This site provides comprehensive documentation for:
 
-## Using the Docsy Example Project as a template
+- **CLI Installation & Usage**: kubectl plugin for cluster and AI agent management
+- **Cluster Management**: Registering, accessing, and monitoring Kubernetes clusters
+- **AI Agents**: Deploying and configuring intelligent agents for cluster analysis
+- **Concepts**: Core architecture and security model
 
-A simple way to get started is to use this project as a template, which gives you a site project that is set up and ready to use. To do this:
+## Technology Stack
 
-1. Use the dropdown for switching branches/tags to change to the **latest** released tag.
+This documentation site is built with:
 
-2. Click **Use this template**.
+- **Hugo**: Static site generator (v0.110.0+)
+- **Docsy Theme**: Google's documentation theme
+- **Tailwind CSS**: Utility-first CSS framework
+- **Alpine.js**: Lightweight JavaScript framework
 
-3. Select a name for your new project and click **Create repository from template**.
+The site uses Hugo modules for theme management and dependencies.
 
-4. Make your own local working copy of your new repo using git clone, replacing https://github.com/me/example.git with your repo’s web URL:
+## Getting Started with Faros
+
+### Prerequisites
+
+- `kubectl` installed
+- `krew` (kubectl plugin manager)
+
+### Quick Start
 
 ```bash
-git clone --depth 1 https://github.com/me/example.git
+# Install Faros CLI
+kubectl krew index add faros https://github.com/faroshq/krew-index.git
+kubectl krew install faros/faros
+
+# Authenticate
+kubectl faros login
+
+# Register a cluster
+kubectl faros clusters init production
+
+# List clusters
+kubectl faros clusters list
+
+# Access cluster via SSH
+kubectl faros clusters ssh production
+
+# Deploy an AI agent
+kubectl faros ai-agents init \
+  --name prod-analyzer \
+  --backend openai \
+  --model gpt-4 \
+  --api-key <your-key>
 ```
 
-You can now edit your own versions of the site’s source files.
+## Development Setup
 
-If you want to do SCSS edits and want to publish these, you need to install `PostCSS`
+### Prerequisites
+
+- Hugo extended v0.110.0 or higher
+- Node.js and npm (for PostCSS and Tailwind)
+- Go 1.18 or higher
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+hugo server
+```
+
+The site will be available at `http://localhost:1313`.
+
+## Building for Production
+
+```bash
+# Build static site
+hugo
+
+# Build with npm scripts
+npm run build
+```
+
+The generated site will be in the `public/` directory.
+
+## Docker Development
+
+Run the documentation site in a Docker container:
+
+```bash
+# Build and run
+docker-compose up --build
+
+# Access at http://localhost:1313
+```
+
+To stop and cleanup:
+
+```bash
+# Stop (Ctrl + C)
+# Remove containers
+docker-compose rm
+```
+
+## Advanced Development
+
+### Using a Local Docsy Theme
+
+For theme development, clone Docsy locally:
+
+```bash
+cd /path/to/faros.sh
+git clone --branch v0.7.2 https://github.com/google/docsy.git ../docsy
+
+# Run with local theme
+HUGO_MODULE_WORKSPACE=docsy.work hugo server --ignoreVendorPaths "**"
+
+# Or with npm
+npm run local serve
+```
+
+This enables hot-reloading of theme changes.
+
+## Troubleshooting
+
+### Hugo Version Errors
+
+**Error**: `template for shortcode "blocks/cover" not found`
+
+**Solution**: Upgrade to Hugo extended v0.110.0 or higher:
+
+```bash
+# Check version
+hugo version
+
+# Install latest extended version
+# See: https://gohugo.io/installation/
+```
+
+### SCSS Build Errors
+
+**Error**: `TOCSS: failed to transform "scss/main.scss"`
+
+**Solution**: Ensure you're using Hugo **extended** edition, not the standard version.
+
+### Module Download Errors
+
+**Error**: `binary with name "go" not found`
+
+**Solution**: Install Go 1.18 or higher:
+
+```bash
+# Verify installation
+go version
+```
+
+### PostCSS/Tailwind Errors
+
+**Solution**: Install Node dependencies:
 
 ```bash
 npm install
 ```
 
-## Running the website locally
+## Contributing
 
-Building and running the site locally requires a recent `extended` version of [Hugo](https://gohugo.io).
-You can find out more about how to install Hugo for your environment in our
-[Getting started](https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation) guide.
+Contributions to improve the documentation are welcome! Please:
 
-Once you've made your working copy of the site repo, from the repo root folder, run:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally with `hugo server`
+5. Submit a pull request
 
-```bash
-hugo server
-```
+## Resources
 
-## Running a container locally
+- **Faros Platform**: [https://faros.sh](https://faros.sh)
+- **Documentation**: [https://faros.sh/docs](https://faros.sh/docs)
+- **GitHub**: [https://github.com/faroshq](https://github.com/faroshq)
+- **Docsy Theme**: [https://www.docsy.dev](https://www.docsy.dev)
+- **Hugo Documentation**: [https://gohugo.io/documentation](https://gohugo.io/documentation)
 
-You can run docsy-example inside a [Docker](https://docs.docker.com/)
-container, the container runs with a volume bound to the `docsy-example`
-folder. This approach doesn't require you to install any dependencies other
-than [Docker Desktop](https://www.docker.com/products/docker-desktop) on
-Windows and Mac, and [Docker Compose](https://docs.docker.com/compose/install/)
-on Linux.
+## License
 
-1. Build the docker image
-
-   ```bash
-   docker-compose build
-   ```
-
-1. Run the built image
-
-   ```bash
-   docker-compose up
-   ```
-
-   > NOTE: You can run both commands at once with `docker-compose up --build`.
-
-1. Verify that the service is working.
-
-   Open your web browser and type `http://localhost:1313` in your navigation bar,
-   This opens a local instance of the docsy-example homepage. You can now make
-   changes to the docsy example and those changes will immediately show up in your
-   browser after you save.
-
-### Cleanup
-
-To stop Docker Compose, on your terminal window, press **Ctrl + C**.
-
-To remove the produced images run:
-
-```bash
-docker-compose rm
-```
-For more information see the [Docker Compose documentation][].
-
-## Using a local Docsy clone
-
-Make sure your installed go version is `1.18` or higher.
-
-Clone the latest version of the docsy theme into the parent folder of your project. The newly created repo should now reside in a sibling folder of your site's root folder.
-
-```shell
-cd root-of-your-site
-git clone --branch v0.7.2 https://github.com/google/docsy.git ../docsy
-```
-
-Now run:
-
-```shell
-HUGO_MODULE_WORKSPACE=docsy.work hugo server --ignoreVendorPaths "**"
-```
-
-or, when using npm, prepend `local` to the script you want to invoke, e.g.:
-
-```shell
-npm run local serve
-```
-
-By using the `HUGO_MODULE_WORKSPACE` directive (either directly or via prefix `local` when using npm), the server now watches all files and directories inside the sibling directory `../docsy` , too. Any changes inside the local `docsy` theme clone are  now immediately picked up (hot reload), you can instantly see the effect of your local edits.
-
-In the command above, we used the environment variable `HUGO_MODULE_WORKSPACE` to tell hugo about the local workspace file `docsy.work`. Alternatively, you can declare the workspace file inside your settings file `hugo.toml`:
-
-```toml
-[module]
-  workspace = "docsy.work"
-```
-
-Your project's `hugo.toml` file already contains these lines, the directive for workspace assignment is commented out, however. Remove the two trailing comment characters '//' so that this line takes effect.
-
-## Troubleshooting
-
-As you run the website locally, you may run into the following error:
-
-```console
-$ hugo server
-WARN 2023/06/27 16:59:06 Module "project" is not compatible with this Hugo version; run "hugo mod graph" for more information.
-Start building sites …
-hugo v0.101.0-466fa43c16709b4483689930a4f9ac8add5c9f66+extended windows/amd64 BuildDate=2022-06-16T07:09:16Z VendorInfo=gohugoio
-Error: Error building site: "C:\Users\foo\path\to\docsy-example\content\en\_index.md:5:1": failed to extract shortcode: template for shortcode "blocks/cover" not found
-Built in 27 ms
-```
-
-This error occurs if you are running an outdated version of Hugo. As of docsy theme version `v0.7.0`, hugo version `0.110.0` or higher is required.
-See this [section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-hugo) of the user guide for instructions on how to install Hugo.
-
-Or you may be confronted with the following error:
-
-```console
-$ hugo server
-
-INFO 2021/01/21 21:07:55 Using config file:
-Building sites … INFO 2021/01/21 21:07:55 syncing static files to /
-Built in 288 ms
-Error: Error building site: TOCSS: failed to transform "scss/main.scss" (text/x-scss): resource "scss/scss/main.scss_9fadf33d895a46083cdd64396b57ef68" not found in file cache
-```
-
-This error occurs if you have not installed the extended version of Hugo.
-See this [section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-hugo) of the user guide for instructions on how to install Hugo.
-
-Or you may encounter the following error:
-
-```console
-$ hugo server
-
-Error: failed to download modules: binary with name "go" not found
-```
-
-This error occurs if you have not installed the `go` programming language on your system.
-See this [section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-go-language) of the user guide for instructions on how to install `go`.
-
-
-[alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
-[deploys]: https://app.netlify.com/sites/docsy-example/deploys
-[Docsy user guide]: https://docsy.dev/docs
-[Docsy]: https://github.com/google/docsy
-[example.docsy.dev]: https://example.docsy.dev
-[Hugo theme module]: https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme
-[Netlify]: https://netlify.com
-[Docker Compose documentation]: https://docs.docker.com/compose/gettingstarted/
+This documentation is part of the Faros platform project.
