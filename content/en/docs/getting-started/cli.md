@@ -9,16 +9,18 @@ weight: 1
 ---
 
 {{% pageinfo %}}
-Faros CLI can be used as standalone or kubectl plugin. It is a tool that allows you to interact with Faros API.
+Faros CLI is a kubectl plugin that provides a modern, user-friendly interface for managing Kubernetes clusters and AI agents through the Faros platform.
 {{% /pageinfo %}}
 
 
-### Prerequisites:
+## Prerequisites
+
 - Ensure `kubectl` is installed. If not, refer to the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/) for installation guidance.
 - Install `krew`, the kubectl plugin manager, following the [official krew documentation](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
 
 
-### Plugin Installation:
+## Plugin Installation
+
 Execute the commands below to add the Faros plugin and install it:
 
 ```bash
@@ -33,22 +35,68 @@ kubectl krew upgrade
 ```
 
 
-### Understanding Workspaces
+## Authentication
 
-Workspaces in Faros are akin to Kubernetes namespaces, but with enhanced functionality. They are designed to group resources together under a virtual cluster-like environment, without being actual clusters. Each workspace contains its own resources, such as namespaces, service accounts, roles, roleBindings, secrets, and configMaps.
-
-More information about workspaces can be found [here](/docs/concepts/workspaces/).
-
-
-### Setting Up and Managing Workspaces
+Before using any Faros commands, authenticate with the Faros platform:
 
 ```bash
 kubectl faros login
 ```
 
-Once logged in, create and manage new workspaces similarly to how you would manage a regular Kubernetes cluster.
+This command will:
+1. Start a local authentication server
+2. Open your browser to complete OAuth authentication
+3. Save your credentials to `~/.kube/config-faros`
+4. Display next steps for getting started
 
-Users can be invited via their email, associated with their GitHub accounts, using the following role binding template:
+
+## Available Commands
+
+The Faros CLI provides the following command groups:
+
+### Cluster Management
+
+Manage your Kubernetes clusters through Faros:
+
+```bash
+# List all clusters
+kubectl faros clusters
+kubectl faros clusters list
+
+# Create a new cluster
+kubectl faros clusters init <cluster-name>
+
+# Delete a cluster
+kubectl faros clusters delete <cluster-name>
+
+# Get MCP server details for a cluster
+kubectl faros clusters mcp <cluster-name>
+
+# Open SSH session to a cluster
+kubectl faros clusters ssh <cluster-name>
+```
+
+### AI Agent Management
+
+Manage AI agents for cluster analysis and automation:
+
+```bash
+# List all AI agents
+kubectl faros ai-agents
+kubectl faros ai-agents list
+
+# Create a new AI agent
+kubectl faros ai-agents init \
+  --name <agent-name> \
+  --backend openai \
+  --model gpt-4 \
+  --api-key <your-api-key>
+```
+
+
+## User Management
+
+Users can be invited and granted access via Kubernetes RBAC. Use the following role binding template with GitHub-authenticated emails:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -65,15 +113,12 @@ subjects:
   name: faros-sso-{email}
 ```
 
-> We are working on a feature to expose workspaces, you have access to, via the Faros CLI. This will allow you to manage workspace access and interact with them via the CLI.
->
-> For now if you shared a workspace with someone, they will have to access by changing the context in their kubectl configuration.
 
-### Explore Kubernetes APIs
+## Explore Kubernetes APIs
 
-Check the supported APIs using the command:
+The Faros platform extends Kubernetes with custom APIs. Check the supported APIs using:
 
-```yaml
+```bash
 kubectl api-resources
 ```
 

@@ -1,76 +1,105 @@
 ---
-title: Create a Workspace
+title: Manage Clusters
 date: 2024-06-02
 description: >
-  How to create a workspace in Faros.
-categories: [cli, workspaces, docs]
-tags: [cli, workspaces, docs]
+  How to create and manage Kubernetes clusters in Faros.
+categories: [cli, clusters, docs]
+tags: [cli, clusters, docs]
 weight: 2
 ---
 
 {{% pageinfo %}}
-Once you have installed the Faros CLI, you can create a workspace to group resources together under a virtual cluster-like environment. Each workspace contains its own resources, such as namespaces, service accounts, roles, roleBindings, secrets, and configMaps.
+Faros allows you to register and manage Kubernetes clusters through a simple CLI interface. Once registered, clusters can be accessed remotely via SSH, monitored by AI agents, and integrated with the Faros platform.
 {{% /pageinfo %}}
 
 
-### Prerequisites:
-- Ensure you have installed the Faros CLI. If not, refer to the [official Faros documentation](/docs/getting-started/install-cli/).
+## Prerequisites
 
-### Step-by-Step Workspace Creation
+- Ensure you have installed the Faros CLI. If not, refer to the [CLI installation guide](/docs/getting-started/cli/).
+- Authenticate with Faros: `kubectl faros login`
 
-#### Check Current Hierarchy Level Workspaces:
 
-```yaml
-kubectl get ws
+## Listing Clusters
+
+View all clusters registered with Faros:
+
+```bash
+kubectl faros clusters list
+# or simply
+kubectl faros clusters
 ```
 
-#### View Full Hierarchy Tree:
+This displays:
+- **NAME**: Cluster name
+- **PHASE**: Current status (Pending, Initializing, Ready, Failed)
+- **AGE**: Time since cluster creation
 
 
-```yaml
-kubectl faros ws tree
+## Creating a New Cluster
+
+Initialize a new cluster in the Faros platform:
+
+```bash
+kubectl faros clusters init <cluster-name>
 ```
 
-#### Create the First Workspace Named **clusters**:
+The initialization process:
+1. Creates a Cluster resource in Faros
+2. Waits for the cluster to be initialized
+3. Creates an Agent resource for the cluster
+4. Generates a JWT token for agent authentication
+5. Provides a kubectl command to run on your target cluster
+6. Waits for the agent to become ready and establish connection
 
-```yaml
-kubectl faros ws create clusters
-# Confirmation of creation and readiness
-Workspace "clusters" (type root:faros) created. Waiting for it to be ready...
-Workspace "clusters" (type root:faros) is ready to use.
+**Example workflow:**
+
+```bash
+kubectl faros clusters init production-us-east
+
+# Output will include a command like:
+# kubectl apply -f - <<EOF
+# [Agent deployment manifests with JWT token]
+# EOF
+#
+# Run this command on your target cluster to connect it to Faros
 ```
 
-#### Check the Newly Created Workspace:
 
-```yaml
-kubectl get ws
-# Example output
-NAME       TYPE    REGION   PHASE   URL                                                     AGE
-clusters   faros            Ready   https://kcp.faros.sh:443/clusters/exampleorg:clusters   7s
+## Accessing Clusters via SSH
+
+Once a cluster is connected, you can open an interactive SSH session:
+
+```bash
+kubectl faros clusters ssh <cluster-name>
 ```
 
-### Creating Nested Workspaces & Navigating
+Features:
+- WebSocket-based SSH connection
+- Full terminal support with resize handling
+- Secure authentication via Kubernetes credentials
+- Signal handling for graceful shutdown
 
-Navigate Inside the Workspace:
-```yaml
-kubectl faros ws use clusters
-kubectl faros ws create prod
+
+## MCP Server Integration
+
+Retrieve Model Context Protocol (MCP) server details for AI/LLM integration:
+
+```bash
+kubectl faros clusters mcp <cluster-name>
 ```
 
-Return to Root Workspace:
-```yaml
-kubectl faros ws use :
+This displays:
+- Server name and type
+- Connection URL
+- Required authentication headers
+
+
+## Deleting a Cluster
+
+Remove a cluster from Faros:
+
+```bash
+kubectl faros clusters delete <cluster-name>
 ```
 
-**Display Full Workspace Hierarchy:**
-```yaml
-kubectl faros ws tree
-kubectl ws tree
-# Example output
-.
-└── ixn3tjgtr9bb
-    └── clusters
-        └── prod
-```
-
-How each workspace is structured and managed is up to you. You can create as many workspaces as you need, and nest them as required.
+This removes the cluster registration from Faros but does not affect the actual Kubernetes cluster.
