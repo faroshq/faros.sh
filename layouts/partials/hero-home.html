@@ -1,335 +1,665 @@
-<section class="border-t border-transparent dark:border-gray-800 relative overflow-hidden">
-  <!-- Animated Background SVG -->
-  <div class="absolute inset-0 z-0">
-    <svg class="w-full h-full" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-      <!-- Network Connection Background -->
-      <defs>
-        <radialGradient id="clusterGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.4"/>
-          <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0"/>
-        </radialGradient>
-        <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:0"/>
-          <stop offset="50%" style="stop-color:#06B6D4;stop-opacity:0.8"/>
-          <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:0"/>
-        </linearGradient>
-      </defs>
+<!-- ============================================================ -->
+<!-- kedge homepage — styled to match the kedge console aesthetic -->
+<!-- Violet accent (#7c5bf5) · Emerald (#34d399) · Glass panels   -->
+<!-- ============================================================ -->
 
-      <!-- Floating edge nodes -->
-      <g class="edge-nodes">
-        <circle cx="200" cy="150" r="4" fill="#3B82F6" class="neural-node" style="animation-delay: 0s"/>
-        <circle cx="450" cy="220" r="3" fill="#06B6D4" class="neural-node" style="animation-delay: 0.5s"/>
-        <circle cx="720" cy="180" r="5" fill="#8B5CF6" class="neural-node" style="animation-delay: 1s"/>
-        <circle cx="980" cy="250" r="3" fill="#10B981" class="neural-node" style="animation-delay: 1.5s"/>
-        <circle cx="1200" cy="160" r="4" fill="#F59E0B" class="neural-node" style="animation-delay: 2s"/>
-        <circle cx="1450" cy="210" r="3" fill="#EF4444" class="neural-node" style="animation-delay: 2.5s"/>
+<section class="kedge-hero relative overflow-hidden">
 
-        <circle cx="150" cy="400" r="3" fill="#06B6D4" class="neural-node" style="animation-delay: 3s"/>
-        <circle cx="380" cy="480" r="4" fill="#3B82F6" class="neural-node" style="animation-delay: 3.5s"/>
-        <circle cx="650" cy="420" r="3" fill="#10B981" class="neural-node" style="animation-delay: 4s"/>
-        <circle cx="920" cy="500" r="5" fill="#8B5CF6" class="neural-node" style="animation-delay: 4.5s"/>
-        <circle cx="1180" cy="450" r="3" fill="#F59E0B" class="neural-node" style="animation-delay: 5s"/>
-        <circle cx="1420" cy="480" r="4" fill="#EF4444" class="neural-node" style="animation-delay: 5.5s"/>
-      </g>
-
-      <!-- Flowing data connections -->
-      <g class="data-connections">
-        <path d="M200,150 Q350,100 450,220" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 0s"/>
-        <path d="M450,220 Q600,180 720,180" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 1s"/>
-        <path d="M720,180 Q850,200 980,250" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 2s"/>
-        <path d="M980,250 Q1100,220 1200,160" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 3s"/>
-
-        <path d="M150,400 Q280,440 380,480" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 1.5s"/>
-        <path d="M380,480 Q520,450 650,420" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 2.5s"/>
-        <path d="M650,420 Q790,460 920,500" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 3.5s"/>
-        <path d="M920,500 Q1050,480 1180,450" stroke="url(#dataFlow)" stroke-width="2" fill="none" class="data-flow" style="animation-delay: 4.5s"/>
-
-        <!-- Vertical connections -->
-        <path d="M200,150 Q200,280 150,400" stroke="url(#dataFlow)" stroke-width="1.5" fill="none" class="data-flow" style="animation-delay: 6s"/>
-        <path d="M450,220 Q420,350 380,480" stroke="url(#dataFlow)" stroke-width="1.5" fill="none" class="data-flow" style="animation-delay: 6.5s"/>
-        <path d="M720,180 Q680,300 650,420" stroke="url(#dataFlow)" stroke-width="1.5" fill="none" class="data-flow" style="animation-delay: 7s"/>
-        <path d="M980,250 Q950,380 920,500" stroke="url(#dataFlow)" stroke-width="1.5" fill="none" class="data-flow" style="animation-delay: 7.5s"/>
-      </g>
-
-      <!-- Edge cluster representations -->
-      <g class="ai-clusters" opacity="0.3">
-        <circle cx="1600" cy="200" r="60" fill="url(#clusterGlow)" class="ai-cluster"/>
-        <circle cx="1620" cy="180" r="25" fill="url(#clusterGlow)" class="ai-cluster" style="animation-delay: 2s"/>
-        <circle cx="1580" cy="220" r="35" fill="url(#clusterGlow)" class="ai-cluster" style="animation-delay: 4s"/>
-
-        <circle cx="120" cy="600" r="80" fill="url(#clusterGlow)" class="ai-cluster" style="animation-delay: 1s"/>
-        <circle cx="100" cy="580" r="30" fill="url(#clusterGlow)" class="ai-cluster" style="animation-delay: 3s"/>
-        <circle cx="140" cy="620" r="40" fill="url(#clusterGlow)" class="ai-cluster" style="animation-delay: 5s"/>
-      </g>
-    </svg>
+  <!-- Ambient backdrop: dot grid + radial glows -->
+  <div class="absolute inset-0 -z-10 kedge-bg" aria-hidden="true">
+    <div class="absolute inset-0 kedge-dot-grid"></div>
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-40 blur-3xl"
+         style="background: radial-gradient(circle, rgba(124,91,245,0.35) 0%, transparent 60%);"></div>
+    <div class="absolute top-[40%] -left-40 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl"
+         style="background: radial-gradient(circle, rgba(52,211,153,0.25) 0%, transparent 60%);"></div>
   </div>
 
-  <div class="py-12 md:py-20 relative z-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <!-- Hero content -->
-      <div class="py-12 md:py-10">
-        <div class="max-w-3xl mx-auto px-4 sm:px-2">
-          <!-- Section header -->
-          <div class="max-w-4xl mx-auto text-center">
-            
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 ai-title">
-              <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
-                Edge Kubernetes
-              </span>
-              <br>
-              <span class="text-gray-900 dark:text-white">
-                Access & Automation
-              </span>
-            </h1>
+  <!-- ============= HERO ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="text-center max-w-4xl mx-auto">
 
-            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Connect from <strong class="text-blue-600">anywhere to anywhere</strong>.
-              Manage <strong class="text-purple-600">edge Kubernetes clusters</strong> with native
-              <strong class="text-cyan-600">kubectl access</strong> through a unified control plane.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <a href="/docs/getting-started/" class="group btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 inline-flex items-center transform hover:-translate-y-1">
-                <div class="w-6 h-6 mr-3">
-                  <svg viewBox="0 0 24 24" class="w-full h-full rocket-icon">
-                    <path d="M12 2L15.5 8.5L22 9L16 14L18 22L12 18.5L6 22L8 14L2 9L8.5 8.5L12 2Z"
-                          fill="currentColor"/>
-                  </svg>
-                </div>
-                Get Started
-              </a>
-            </div>
-            
-            <div class="ai-terminal bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white p-8 rounded-3xl mx-auto max-w-3xl shadow-2xl border border-blue-500/30 relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-pulse"></div>
-              <div class="relative z-10">
-                <div class="flex items-center mb-6">
-                  <div class="flex space-x-2 mr-4">
-                    <div class="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-                    <div class="w-4 h-4 bg-yellow-500 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
-                    <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse" style="animation-delay: 1s"></div>
-                  </div>
-                  <span class="text-cyan-300 text-sm font-mono flex items-center">
-                    <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-ping"></span>
-                    kubectl Terminal
-                  </span>
-                </div>
-                <div class="font-mono text-left space-y-3">
-                  <div class="typing-animation">
-                    <span class="text-cyan-400">$</span>
-                    <span class="text-white">kubectl faros login</span>
-                  </div>
-                  <div class="text-green-400 flex items-center">
-                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                    ✓ Successfully authenticated to Faros Cloud
-                  </div>
-                  <div class="typing-animation" style="animation-delay: 1s">
-                    <span class="text-cyan-400">$</span>
-                    <span class="text-white">kubectl faros clusters init home-lab</span>
-                  </div>
-                  <div class="text-blue-400 flex items-center">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-spin"></span>
-                    → Cluster "home-lab" created successfully
-                  </div>
-                  <div class="text-purple-400 flex items-center">
-                    <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
-                    ✓ Agent deployed and connected from edge
-                  </div>
-                  <div class="typing-animation" style="animation-delay: 2s">
-                    <span class="text-cyan-400">$</span>
-                    <span class="text-white">kubectl faros clusters ssh home-lab</span>
-                  </div>
-                  <div class="text-yellow-400 flex items-center">
-                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-2 animate-bounce"></span>
-                    ⚡ Connected! Managing cluster from anywhere with kubectl
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Open source badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full kedge-pill text-sm font-medium">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 kedge-pulse"></span>
+        <span class="text-gray-700 dark:text-gray-200">Open source · Apache 2.0 · Free forever</span>
       </div>
 
-      <!-- Many Clusters - Single Control Plane Section -->
-      <div class="max-w-7xl mx-auto mt-20 relative">
-        <!-- Background decoration -->
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 via-purple-50 to-cyan-50 dark:from-gray-900/90 dark:via-blue-900/20 dark:to-purple-900/20 rounded-3xl border border-transparent dark:border-blue-500/20"></div>
-        
-        <div class="relative z-10 p-8 md:p-16">
-          <div class="text-center mb-16">
-            <div class="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-800 dark:from-cyan-900 dark:to-blue-900 dark:text-cyan-200 mb-6 shadow-lg">
-              Many Clusters - Single Control Plane
-            </div>
-            <h2 class="text-3xl md:text-5xl font-bold mb-6" id="how-it-works">
-              <span class="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Unified Kubernetes
-              </span>
-              <br>
-              <span class="text-gray-900 dark:text-white">
-                Management Platform
-              </span>
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Use <strong class="text-cyan-600">Faros Cloud</strong> to access and manage your Kubernetes clusters from anywhere.
-              Home lab, cloud, edge - <strong class="text-blue-600">connect them all</strong> with secure kubectl access through a single pane of glass.
-            </p>
+      <!-- Title -->
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]">
+        <span class="kedge-gradient-text">One control plane</span>
+        <br>
+        <span class="text-gray-900 dark:text-white">for clusters anywhere</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
+        <strong class="text-gray-900 dark:text-white">kedge</strong> connects your distributed Kubernetes clusters and bare-metal servers through a single hub —
+        <strong>no VPNs, no open firewall ports, no kubeconfig juggling</strong>.
+        Agents dial outbound, so home labs, edge sites, and clusters behind NAT just work.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14">
+        <a href="https://github.com/faroshq/kedge"
+           class="kedge-btn-primary group">
+          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          Star on GitHub
+          <span class="ml-2 opacity-60 group-hover:opacity-100 transition-opacity">→</span>
+        </a>
+        <a href="https://faroshq.github.io/kedge/getting-started.html" class="kedge-btn-secondary">
+          Quickstart
+        </a>
+      </div>
+
+      <!-- Terminal demo -->
+      <div class="kedge-terminal mx-auto max-w-3xl text-left">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/70"></span>
           </div>
-          
-          <div class="grid md:grid-cols-3 gap-8 items-start">
-            
-            <!-- Step 1: Connect Multiple Clusters -->
-            <div class="text-center group">
-              <div class="cluster-connection-visual mb-8 relative h-32 flex flex-col items-center justify-center">
-                <!-- Multiple cluster representation -->
-                <div class="flex justify-center items-center space-x-4 mb-4">
-                  <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg flex items-center justify-center cluster-node">
-                    <svg viewBox="0 0 24 24" class="w-8 h-8 text-white">
-                      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7.27A2,2 0 0,1 15,9A2,2 0 0,1 13,11V12.27A2,2 0 0,1 15,14A2,2 0 0,1 13,16V17.27A2,2 0 0,1 15,19A2,2 0 0,1 13,21H11A2,2 0 0,1 9,19A2,2 0 0,1 11,17V16.27A2,2 0 0,1 9,14A2,2 0 0,1 11,12V11.27A2,2 0 0,1 9,9A2,2 0 0,1 11,7V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                  <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-lg flex items-center justify-center cluster-node" style="animation-delay: 0.5s">
-                    <svg viewBox="0 0 24 24" class="w-8 h-8 text-white">
-                      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7.27A2,2 0 0,1 15,9A2,2 0 0,1 13,11V12.27A2,2 0 0,1 15,14A2,2 0 0,1 13,16V17.27A2,2 0 0,1 15,19A2,2 0 0,1 13,21H11A2,2 0 0,1 9,19A2,2 0 0,1 11,17V16.27A2,2 0 0,1 9,14A2,2 0 0,1 11,12V11.27A2,2 0 0,1 9,9A2,2 0 0,1 11,7V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                  <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl shadow-lg flex items-center justify-center cluster-node" style="animation-delay: 1s">
-                    <svg viewBox="0 0 24 24" class="w-8 h-8 text-white">
-                      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7.27A2,2 0 0,1 15,9A2,2 0 0,1 13,11V12.27A2,2 0 0,1 15,14A2,2 0 0,1 13,16V17.27A2,2 0 0,1 15,19A2,2 0 0,1 13,21H11A2,2 0 0,1 9,19A2,2 0 0,1 11,17V16.27A2,2 0 0,1 9,14A2,2 0 0,1 11,12V11.27A2,2 0 0,1 9,9A2,2 0 0,1 11,7V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                </div>
-                <!-- Connection lines to control plane -->
-                <div class="absolute bottom-0 flex justify-center w-full">
-                  <svg class="w-64 h-16" viewBox="0 0 256 64">
-                    <path d="M32,8 Q128,32 224,8" stroke="url(#controlPlaneFlow)" stroke-width="3" fill="none" class="control-flow"/>
-                    <path d="M32,24 Q128,48 224,24" stroke="url(#controlPlaneFlow)" stroke-width="3" fill="none" class="control-flow" style="animation-delay: 1s"/>
-                    <path d="M32,40 Q128,16 224,40" stroke="url(#controlPlaneFlow)" stroke-width="3" fill="none" class="control-flow" style="animation-delay: 2s"/>
-                  </svg>
-                </div>
-              </div>
-              
-              <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-200/50 dark:border-blue-400/30 group-hover:-translate-y-2">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Connect Any Cluster</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  Deploy lightweight agents to <strong>any Kubernetes distribution</strong>. Home lab, cloud, edge - all connect seamlessly to Faros Cloud.
-                </p>
-                <div class="space-y-3 text-left">
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-                    All Kubernetes distributions
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-purple-500 rounded-full mr-3 animate-pulse" style="animation-delay: 0.5s"></div>
-                    Zero cluster modifications
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3 animate-pulse" style="animation-delay: 1s"></div>
-                    Secure read-only agents
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 2: Unified Control Plane -->
-            <div class="text-center group">
-              <div class="control-plane-visual mb-8 relative h-32 flex items-center justify-center">
-                <!-- Central control plane -->
-                <div class="w-24 h-24 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl shadow-2xl flex items-center justify-center control-plane-hub">
-                  <svg viewBox="0 0 24 24" class="w-12 h-12 text-white">
-                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2M21 9V7L19 6V4H17V6L15 7V9C15 10.1 15.9 11 17 11S19 10.1 19 9M7 9C7 10.1 7.9 11 9 11S11 10.1 11 9V7L9 6V4H7V6L5 7V9M12 13C8.7 13 6 15.7 6 19V21H18V19C18 15.7 15.3 13 12 13Z" 
-                          fill="currentColor"/>
-                  </svg>
-                </div>
-                <!-- Orbiting elements -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-32 h-32 border-2 border-dashed border-purple-300/50 rounded-full animate-spin-slow"></div>
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-28 h-28 border border-blue-300/30 rounded-full animate-spin-reverse-slow"></div>
-                </div>
-              </div>
-              
-              <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-purple-200/50 dark:border-purple-400/30 group-hover:-translate-y-2">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Single Control Plane</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  Access all your clusters through <strong>one unified interface</strong>. Full API, CLI, and native kubectl experience from anywhere.
-                </p>
-                <div class="space-y-3 text-left">
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
-                    Full API & CLI experience
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-purple-500 rounded-full mr-3 animate-pulse" style="animation-delay: 0.5s"></div>
-                    Native kubectl access
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-pink-500 rounded-full mr-3 animate-pulse" style="animation-delay: 1s"></div>
-                    Kubernetes RBAC support
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 3: Automation & Integration -->
-            <div class="text-center group">
-              <div class="ai-management-visual mb-8 relative h-32 flex items-center justify-center">
-                <!-- Automation gears -->
-                <div class="w-24 h-24 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-full shadow-2xl flex items-center justify-center ai-brain">
-                  <svg viewBox="0 0 24 24" class="w-12 h-12 text-white">
-                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
-                          fill="currentColor"/>
-                  </svg>
-                </div>
-                <!-- Floating automation badges -->
-                <div class="absolute -top-2 right-8">
-                  <div class="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center insight-badge">
-                    <span class="text-yellow-900 text-xs font-bold">⚡</span>
-                  </div>
-                </div>
-                <div class="absolute -bottom-2 left-8">
-                  <div class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center insight-badge" style="animation-delay: 1s">
-                    <span class="text-green-900 text-xs font-bold">✓</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-emerald-200/50 dark:border-emerald-400/30 group-hover:-translate-y-2">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Automation & Integration</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  Integrate with your existing tools and workflows. <strong>GitOps-ready</strong> with API access and optional AI-powered insights.
-                </p>
-                <div class="space-y-3 text-left">
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-emerald-500 rounded-full mr-3 animate-pulse"></div>
-                    Full REST API access
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-teal-500 rounded-full mr-3 animate-pulse" style="animation-delay: 0.5s"></div>
-                    GitOps & CI/CD integration
-                  </div>
-                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3 animate-pulse" style="animation-delay: 1s"></div>
-                    Optional AI insights
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <span class="text-xs font-mono text-gray-400 tracking-wide">kedge</span>
+          <span class="text-xs font-mono text-gray-500">~ </span>
         </div>
-        
-        <!-- Add gradient definitions for SVG -->
-        <svg width="0" height="0" style="position: absolute;">
-          <defs>
-            <linearGradient id="controlPlaneFlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:0"/>
-              <stop offset="50%" style="stop-color:#06B6D4;stop-opacity:0.8"/>
-              <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:0"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code><span class="kedge-prompt">$</span> kubectl kedge login --hub-url https://console.faros.sh
+<span class="kedge-ok">✓ authenticated via OIDC</span>
+
+<span class="kedge-prompt">$</span> kubectl kedge edge create home-lab --type kubernetes
+<span class="kedge-info">→ edge registered · token issued · join command ready</span>
+
+<span class="kedge-prompt">$</span> kubectl kedge edge join-command home-lab
+<span class="kedge-muted"># run on the target cluster, agent dials back</span>
+
+<span class="kedge-prompt">$</span> kubectl --kubeconfig &lt;(kubectl kedge kubeconfig edge home-lab) get nodes
+<span class="kedge-ok">NAME       STATUS   ROLES           AGE   VERSION</span>
+<span class="kedge-ok">edge-01    Ready    control-plane   12d   v1.30.0</span>
+
+<span class="kedge-prompt">$</span> kubectl kedge mcp url --name default
+<span class="kedge-accent">https://hub/.../mcp · ready for Claude · Cursor · agents</span></code></pre>
       </div>
 
     </div>
   </div>
+
+  <!-- ============= ARCHITECTURE ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-12">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Architecture</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Agents dial out. <span class="kedge-gradient-text">You log in.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        The hub is the only thing with a public endpoint. Everything else stays behind its firewall — and still becomes reachable.
+      </p>
+    </div>
+
+    <div class="kedge-panel p-8 md:p-12">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+
+        <!-- You -->
+        <div class="text-center md:text-right">
+          <div class="kedge-tile inline-flex flex-col items-center px-6 py-5">
+            <svg class="w-8 h-8 text-violet-500 dark:text-violet-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+            <span class="font-semibold text-gray-900 dark:text-white">Your laptop</span>
+            <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">kubectl · kedge · ssh</span>
+          </div>
+        </div>
+
+        <!-- Hub -->
+        <div class="flex flex-col items-center">
+          <div class="kedge-flow-line"></div>
+          <div class="kedge-hub px-6 py-5 text-center">
+            <div class="text-xs uppercase tracking-[0.2em] text-violet-300 mb-1">Hub</div>
+            <div class="font-semibold text-white text-lg">kedge hub</div>
+            <div class="text-xs text-gray-400 mt-1 font-mono">kcp · OIDC · MCP</div>
+          </div>
+          <div class="kedge-flow-line"></div>
+        </div>
+
+        <!-- Edges -->
+        <div class="text-center md:text-left">
+          <div class="space-y-2.5">
+            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15"/></svg>
+              <div class="text-left">
+                <div class="text-sm font-semibold text-gray-900 dark:text-white">Kubernetes edge</div>
+                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">behind NAT</div>
+              </div>
+            </div>
+            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+              <div class="text-left">
+                <div class="text-sm font-semibold text-gray-900 dark:text-white">Bare metal / VM</div>
+                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">SSH mode</div>
+              </div>
+            </div>
+            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+              <div class="text-left">
+                <div class="text-sm font-semibold text-gray-900 dark:text-white">Home lab · Raspberry Pi</div>
+                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">no inbound rules</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= FEATURES ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Features</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Everything you need. <span class="kedge-gradient-text">Nothing you don't.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Reverse tunnel connectivity</h3>
+        <p class="kedge-card-text">Agents dial out to the hub — no inbound firewall rules, no port forwarding, no VPN. NAT and corporate firewalls are not a problem.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Native kubectl access</h3>
+        <p class="kedge-card-text">Proxy <code class="kedge-inline-code">kubectl</code> to any registered cluster through the hub. One kubeconfig, one auth flow, every cluster.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">SSH server mode</h3>
+        <p class="kedge-card-text">Manage non-Kubernetes hosts — VMs, bare metal, Raspberry Pis — through the same hub. <code class="kedge-inline-code">kubectl kedge ssh my-server</code>.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">MCP for AI agents</h3>
+        <p class="kedge-card-text">Expose all connected clusters as a single <a href="https://modelcontextprotocol.io" class="kedge-link">Model Context Protocol</a> server. Claude, Cursor, and any MCP client can drive your fleet.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">OIDC or static tokens</h3>
+        <p class="kedge-card-text">Plug in Dex, Auth0, Okta — anything OIDC. Or use a static token for home labs and dev environments. Per-user kcp workspaces enforce isolation.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">CLI-first</h3>
+        <p class="kedge-card-text">Register edges, get kubeconfigs, SSH into servers — all one command. <code class="kedge-inline-code">krew</code>-installable or a single Go binary.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============= QUICKSTART ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Quickstart</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Four commands to <span class="kedge-gradient-text">a live edge.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <div class="kedge-step">
+        <div class="kedge-step-num">1</div>
+        <div class="flex-1">
+          <h4 class="kedge-step-title">Install the CLI</h4>
+          <p class="kedge-step-text">Download a binary, install via krew, or <code class="kedge-inline-code">go install</code>.</p>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl krew install faros/kedge</code></pre>
+        </div>
+      </div>
+
+      <div class="kedge-step">
+        <div class="kedge-step-num">2</div>
+        <div class="flex-1">
+          <h4 class="kedge-step-title">Log in to the hub</h4>
+          <p class="kedge-step-text">Use the hosted hub at <code class="kedge-inline-code">console.faros.sh</code> to try it instantly, or self-host your own.</p>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge login --hub-url https://console.faros.sh</code></pre>
+        </div>
+      </div>
+
+      <div class="kedge-step">
+        <div class="kedge-step-num">3</div>
+        <div class="flex-1">
+          <h4 class="kedge-step-title">Register an edge</h4>
+          <p class="kedge-step-text">Get a one-time join command. Run it on the cluster or host.</p>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge edge create my-cluster --type kubernetes
+<span class="kedge-prompt">$</span> kubectl kedge edge join-command my-cluster</code></pre>
+        </div>
+      </div>
+
+      <div class="kedge-step">
+        <div class="kedge-step-num">4</div>
+        <div class="flex-1">
+          <h4 class="kedge-step-title">Use it</h4>
+          <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells, MCP for AI agents.</p>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge kubeconfig edge my-cluster &gt; kc.yaml
+<span class="kedge-prompt">$</span> kubectl kedge mcp url --name default</code></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============= FREE FOREVER ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="kedge-panel kedge-panel-accent p-10 md:p-16 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full kedge-pill text-sm">
+        <span class="text-violet-600 dark:text-violet-300 font-semibold">Apache 2.0</span>
+        <span class="text-gray-400 dark:text-gray-500">·</span>
+        <span class="text-emerald-600 dark:text-emerald-300 font-semibold">No license keys</span>
+        <span class="text-gray-400 dark:text-gray-500">·</span>
+        <span class="text-gray-700 dark:text-gray-200 font-semibold">No telemetry</span>
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+        <span class="kedge-gradient-text">Free forever.</span>
+        <br class="md:hidden">
+        Open source by design.
+      </h2>
+
+      <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
+        kedge is fully open source. Self-host the hub anywhere — VPS, home server, behind a Cloudflare tunnel. No paywalled features, no upsell tiers, no usage limits.
+        Fork it, audit it, ship it. The whole stack is yours.
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10 text-left">
+        <div class="kedge-tile p-4">
+          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-violet-500 dark:text-violet-400 mb-2">Self-hosted</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Run the hub on any device you control. One container, one binary, no SaaS dependency.</p>
+        </div>
+        <div class="kedge-tile p-4">
+          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-emerald-500 dark:text-emerald-400 mb-2">Unlimited edges</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Connect as many clusters and servers as you want. No seat counts, no metering.</p>
+        </div>
+        <div class="kedge-tile p-4">
+          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-cyan-500 dark:text-cyan-400 mb-2">Audit the code</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Every line on GitHub. Reproducible builds. PRs welcome.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://github.com/faroshq/kedge" class="kedge-btn-primary">
+          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github.com/faroshq/kedge
+        </a>
+        <a href="https://faroshq.github.io/kedge/helm.html" class="kedge-btn-secondary">
+          Deploy with Helm
+        </a>
+      </div>
+    </div>
+  </div>
+
 </section>
+
+<style>
+/* ─────────── kedge homepage styles (scoped to .kedge-hero) ─────────── */
+
+.kedge-hero {
+  --kedge-violet: #7c5bf5;
+  --kedge-violet-hover: #9b85f7;
+  --kedge-violet-soft: rgba(124, 91, 245, 0.12);
+  --kedge-emerald: #34d399;
+  --kedge-surface-dark: #06060b;
+  --kedge-surface-raised-dark: #0d0d14;
+}
+
+/* Background grid + ambient glow */
+.kedge-bg {
+  background:
+    linear-gradient(180deg, rgba(124,91,245,0.02) 0%, transparent 30%, rgba(52,211,153,0.015) 100%);
+}
+.dark .kedge-bg {
+  background:
+    linear-gradient(180deg, rgba(124,91,245,0.05) 0%, transparent 30%, rgba(52,211,153,0.03) 100%);
+}
+.kedge-dot-grid {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dark .kedge-dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+
+/* Pill (badge) */
+.kedge-pill {
+  background: rgba(124, 91, 245, 0.08);
+  border: 1px solid rgba(124, 91, 245, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .kedge-pill {
+  background: rgba(124, 91, 245, 0.12);
+  border-color: rgba(124, 91, 245, 0.25);
+}
+
+/* Gradient text — matches portal --text-gradient */
+.kedge-gradient-text {
+  background: linear-gradient(135deg, #0f172a 0%, #7c5bf5 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.dark .kedge-gradient-text {
+  background: linear-gradient(135deg, #eeeef3 0%, #7c5bf5 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.kedge-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
+  box-shadow:
+    0 4px 14px rgba(124, 91, 245, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+}
+.kedge-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 22px rgba(124, 91, 245, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.kedge-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #4a4a64;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+.kedge-btn-secondary:hover {
+  border-color: rgba(124, 91, 245, 0.4);
+  color: #7c5bf5;
+  transform: translateY(-1px);
+}
+.dark .kedge-btn-secondary {
+  color: #c0c0d6;
+  background: rgba(13, 13, 20, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.dark .kedge-btn-secondary:hover {
+  border-color: rgba(124, 91, 245, 0.5);
+  color: #9b85f7;
+}
+
+/* Pulse dot */
+@keyframes kedge-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); opacity: 1; }
+  50% { box-shadow: 0 0 8px 2px rgba(52, 211, 153, 0.5); opacity: 0.7; }
+}
+.kedge-pulse { animation: kedge-pulse-glow 2.5s ease-in-out infinite; }
+
+/* Terminal */
+.kedge-terminal {
+  background: #0d0d14;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  box-shadow:
+    0 24px 60px -20px rgba(124, 91, 245, 0.2),
+    0 12px 32px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+.kedge-terminal pre { background: transparent; margin: 0; }
+.kedge-prompt { color: #7c5bf5; font-weight: 600; }
+.kedge-ok { color: #34d399; }
+.kedge-info { color: #60a5fa; }
+.kedge-accent { color: #9b85f7; }
+.kedge-muted { color: #7e7e96; font-style: italic; }
+
+/* Panels */
+.kedge-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+.dark .kedge-panel {
+  background: rgba(13, 13, 20, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.kedge-panel-accent {
+  border: 1px solid rgba(124, 91, 245, 0.18);
+  background:
+    radial-gradient(ellipse at top, rgba(124,91,245,0.06) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.6);
+}
+.dark .kedge-panel-accent {
+  border-color: rgba(124, 91, 245, 0.25);
+  background:
+    radial-gradient(ellipse at top, rgba(124,91,245,0.1) 0%, transparent 60%),
+    rgba(13, 13, 20, 0.7);
+}
+
+/* Tiles (architecture row, free-forever sub-cards) */
+.kedge-tile {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s;
+}
+.kedge-tile:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 91, 245, 0.25);
+}
+.dark .kedge-tile {
+  background: rgba(20, 20, 31, 0.7);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.dark .kedge-tile:hover { border-color: rgba(124, 91, 245, 0.35); }
+
+/* Hub block in architecture */
+.kedge-hub {
+  background: linear-gradient(135deg, #1a1530 0%, #06060b 100%);
+  border: 1px solid rgba(124, 91, 245, 0.4);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(124, 91, 245, 0.1),
+    0 12px 32px -8px rgba(124, 91, 245, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Flow line between hub and edges */
+.kedge-flow-line {
+  width: 1px;
+  height: 32px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, transparent 0%, rgba(124,91,245,0.4) 50%, transparent 100%);
+  position: relative;
+}
+.kedge-flow-line::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
+  background: #34d399;
+  animation: kedge-flow 2.2s linear infinite;
+}
+@keyframes kedge-flow {
+  0% { top: 0; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Feature cards */
+.kedge-card {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.kedge-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124, 91, 245, 0.3);
+  box-shadow: 0 12px 28px -10px rgba(124, 91, 245, 0.15);
+}
+.dark .kedge-card {
+  background: rgba(13, 13, 20, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.dark .kedge-card:hover {
+  border-color: rgba(124, 91, 245, 0.4);
+  box-shadow: 0 12px 28px -8px rgba(124, 91, 245, 0.25);
+}
+.kedge-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.kedge-icon-violet { background: rgba(124,91,245,0.12); color: #7c5bf5; }
+.kedge-icon-emerald { background: rgba(52,211,153,0.12); color: #10b981; }
+.kedge-icon-cyan { background: rgba(6,182,212,0.12); color: #0891b2; }
+.dark .kedge-icon-violet { color: #9b85f7; }
+.dark .kedge-icon-emerald { color: #34d399; }
+.dark .kedge-icon-cyan { color: #22d3ee; }
+
+.kedge-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.dark .kedge-card-title { color: #eeeef3; }
+.kedge-card-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4a5568;
+}
+.dark .kedge-card-text { color: #7e7e96; }
+
+.kedge-inline-code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.82em;
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+  background: rgba(124,91,245,0.1);
+  color: #6d4fe0;
+}
+.dark .kedge-inline-code {
+  background: rgba(124,91,245,0.18);
+  color: #b9a6fa;
+}
+
+.kedge-link {
+  color: #7c5bf5;
+  text-decoration: underline;
+  text-decoration-color: rgba(124,91,245,0.35);
+  text-underline-offset: 3px;
+}
+.kedge-link:hover { color: #6d4fe0; text-decoration-color: #7c5bf5; }
+.dark .kedge-link { color: #9b85f7; }
+
+/* Quickstart steps */
+.kedge-step {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.25s;
+}
+.kedge-step:hover { border-color: rgba(124, 91, 245, 0.25); }
+.dark .kedge-step {
+  background: rgba(13, 13, 20, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.dark .kedge-step:hover { border-color: rgba(124, 91, 245, 0.35); }
+
+.kedge-step-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
+  box-shadow: 0 4px 12px rgba(124, 91, 245, 0.3);
+}
+.kedge-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+.dark .kedge-step-title { color: #eeeef3; }
+.kedge-step-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+.dark .kedge-step-text { color: #7e7e96; }
+
+.kedge-code-snippet {
+  background: rgba(13, 13, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: #c0c0d6;
+  overflow-x: auto;
+  margin: 0;
+}
+</style>
