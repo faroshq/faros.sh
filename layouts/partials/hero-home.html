@@ -106,9 +106,9 @@
         </div>
 
         <!-- Hub -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col md:flex-row items-center justify-center md:gap-0 gap-3">
           <div class="kedge-flow-line"></div>
-          <div class="kedge-hub px-6 py-5 text-center">
+          <div class="kedge-hub px-6 py-5 text-center shrink-0">
             <div class="text-xs uppercase tracking-[0.2em] text-violet-300 mb-1">Hub</div>
             <div class="font-semibold text-white text-lg">kedge hub</div>
             <div class="text-xs text-gray-400 mt-1 font-mono">kcp · OIDC · MCP</div>
@@ -224,6 +224,7 @@
         <div class="kedge-step-num">1</div>
         <div class="flex-1">
           <h4 class="kedge-step-title">Install the CLI</h4>
+          <p class="kedge-step-text">Download CLI binary.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
         </div>
       </div>
@@ -232,6 +233,7 @@
         <div class="kedge-step-num">2</div>
         <div class="flex-1">
           <h4 class="kedge-step-title">Log in</h4>
+          <p class="kedge-step-text">Authenticate to the hosted hub.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge login</code></pre>
         </div>
       </div>
@@ -501,13 +503,16 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Flow line between hub and edges */
+/* Flow line between hub and edges.
+   Vertical on small screens (columns stack); horizontal at md+ so the
+   laptop · hub · edges flow reads left-to-right. */
 .kedge-flow-line {
   width: 1px;
   height: 32px;
   margin: 0 auto;
   background: linear-gradient(180deg, transparent 0%, rgba(124,91,245,0.4) 50%, transparent 100%);
   position: relative;
+  overflow: hidden;
 }
 .kedge-flow-line::after {
   content: '';
@@ -521,10 +526,34 @@
   animation: kedge-flow 2.2s linear infinite;
 }
 @keyframes kedge-flow {
-  0% { top: 0; opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
+  0%   { top: 0;    opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
   100% { top: 100%; opacity: 0; }
+}
+
+@media (min-width: 768px) {
+  .kedge-flow-line {
+    width: 48px;
+    height: 1px;
+    margin: 0;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(124,91,245,0.4) 50%, transparent 100%);
+  }
+  .kedge-flow-line::after {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 1px;
+    animation: kedge-flow-h 2.2s linear infinite;
+  }
+}
+@keyframes kedge-flow-h {
+  0%   { left: 0;    opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
 }
 
 /* Feature cards */
