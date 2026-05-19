@@ -50,6 +50,27 @@
         </a>
       </div>
 
+      <!-- Install — the very first thing visitors see, copyable -->
+      <div class="mx-auto max-w-2xl mb-8">
+        <div class="kedge-quickcmd">
+          <div class="kedge-quickcmd-head">
+            <span class="kedge-quickcmd-label">Install the CLI</span>
+            <span class="kedge-quickcmd-hint">macOS · Linux · WSL</span>
+          </div>
+          <div class="kedge-quickcmd-row" data-kedge-install-copy>
+            <pre class="kedge-quickcmd-line"><code><span class="kedge-prompt">$</span> <span data-kedge-install-text>curl -fsSL https://downloads.faros.sh/install.sh | sh</span></code></pre>
+            <button type="button"
+                    class="kedge-install-copy-btn"
+                    data-kedge-install-copy-btn
+                    aria-label="Copy install command">
+              <svg class="kedge-install-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <svg class="kedge-install-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="kedge-install-copy-label">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Terminal demo -->
       <div class="kedge-terminal mx-auto max-w-3xl text-left">
         <div class="flex items-center justify-between px-5 py-3 border-b border-white/5">
@@ -222,7 +243,7 @@
 
       <div class="kedge-step">
         <div class="kedge-step-num">1</div>
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Install the CLI</h4>
           <p class="kedge-step-text">Download CLI binary.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
@@ -231,7 +252,7 @@
 
       <div class="kedge-step">
         <div class="kedge-step-num">2</div>
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Log in</h4>
           <p class="kedge-step-text">Authenticate to the hosted hub.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge login</code></pre>
@@ -240,7 +261,7 @@
 
       <div class="kedge-step">
         <div class="kedge-step-num">3</div>
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Register an edge</h4>
           <p class="kedge-step-text">Get a one-time join command. Run it on the cluster or host.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge edge create my-cluster --type kubernetes
@@ -250,7 +271,7 @@
 
       <div class="kedge-step">
         <div class="kedge-step-num">4</div>
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Use it</h4>
           <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells, MCP for AI agents.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge kubeconfig edge my-cluster &gt; kc.yaml
@@ -448,6 +469,124 @@
 .kedge-info { color: #60a5fa; }
 .kedge-accent { color: #9b85f7; }
 .kedge-muted { color: #7e7e96; font-style: italic; }
+
+/* Quick command cards — the prominent install + login pair above the demo */
+.kedge-quickcmd {
+  background: #0d0d14;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 0.85rem 1rem 0.95rem;
+  box-shadow:
+    0 12px 28px -16px rgba(124, 91, 245, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.kedge-quickcmd:hover {
+  border-color: rgba(124, 91, 245, 0.4);
+  transform: translateY(-2px);
+}
+.kedge-quickcmd::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(124, 91, 245, 0.08), transparent 60%);
+  pointer-events: none;
+}
+.kedge-quickcmd-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.55rem;
+  position: relative;
+}
+.kedge-quickcmd-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
+  box-shadow: 0 2px 8px rgba(124, 91, 245, 0.4);
+  flex-shrink: 0;
+}
+.kedge-quickcmd-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #eeeef3;
+  letter-spacing: -0.01em;
+}
+.kedge-quickcmd-hint {
+  margin-left: auto;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7e7e96;
+  font-weight: 500;
+}
+.kedge-quickcmd-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+.kedge-quickcmd-line {
+  background: transparent;
+  margin: 0;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #d4d4dc;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  /* Truncate long commands with "..." — the full text still copies. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Inline copy button — always visible */
+.kedge-install-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(124, 91, 245, 0.12);
+  border: 1px solid rgba(124, 91, 245, 0.25);
+  color: #b9a6fa;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.kedge-install-copy-btn:hover {
+  background: rgba(124, 91, 245, 0.22);
+  border-color: rgba(124, 91, 245, 0.45);
+  color: #d6c9fb;
+}
+.kedge-install-copy-btn:active { transform: scale(0.97); }
+.kedge-install-copy-btn:focus-visible {
+  outline: 2px solid rgba(124, 91, 245, 0.5);
+  outline-offset: 2px;
+}
+.kedge-install-copy-icon-done { display: none; }
+.kedge-install-copy-btn.is-copied {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34d399;
+}
+.kedge-install-copy-btn.is-copied .kedge-install-copy-icon-default { display: none; }
+.kedge-install-copy-btn.is-copied .kedge-install-copy-icon-done { display: inline-block; }
 
 /* Panels */
 .kedge-panel {
@@ -687,44 +826,215 @@
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.82rem;
   color: #c0c0d6;
-  overflow-x: auto;
+  overflow: hidden;            /* per-line truncation handles overflow */
   margin: 0;
 }
-.kedge-code-snippet--with-copy {
-  padding-right: 4.25rem;
+/* Each command line truncates with "..." when wider than the container. */
+.kedge-code-line {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
-.kedge-copy-btn {
+.kedge-code-snippet--with-copy {
+  padding-right: 2.75rem;     /* reserves room for the icon-only copy button */
+}
+.kedge-snippet-copy-btn {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
   z-index: 2;
-  padding: 0.2rem 0.55rem;
-  font-family: inherit;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #c4b5fd;
-  background: rgba(124, 91, 245, 0.12);
-  border: 1px solid rgba(124, 91, 245, 0.32);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: #b9a6fa;
+  /* Opaque so any text that does scroll under stays hidden */
+  background: #1a1530;
+  border: 1px solid rgba(124, 91, 245, 0.35);
   border-radius: 6px;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
 }
-.kedge-code-snippet:hover .kedge-copy-btn,
-.kedge-code-snippet:focus-within .kedge-copy-btn,
-.kedge-copy-btn:focus-visible {
-  opacity: 1;
+.kedge-snippet-copy-btn:hover {
+  background: #261d44;
+  border-color: rgba(124, 91, 245, 0.6);
+  color: #d6c9fb;
 }
-.kedge-copy-btn:hover {
-  background: rgba(124, 91, 245, 0.2);
-  border-color: rgba(124, 91, 245, 0.55);
-  color: #e9defc;
+.kedge-snippet-copy-btn:active { transform: scale(0.92); }
+.kedge-snippet-copy-btn:focus-visible {
+  outline: 2px solid rgba(124, 91, 245, 0.5);
+  outline-offset: 2px;
 }
-.kedge-copy-btn.is-copied {
-  opacity: 1;
-  color: #6ee7b7;
-  background: rgba(52, 211, 153, 0.12);
-  border-color: rgba(52, 211, 153, 0.4);
+.kedge-snippet-copy-icon-done { display: none; }
+.kedge-snippet-copy-btn.is-copied {
+  color: #34d399;
+  background: #0f2620;
+  border-color: rgba(52, 211, 153, 0.45);
 }
+.kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-default { display: none; }
+.kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-done { display: inline-block; }
 </style>
+
+<script>
+(function () {
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.left = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function flash(btn) {
+    if (!btn) return;
+    btn.classList.add("is-copied");
+    var label = btn.querySelector(".kedge-install-copy-label");
+    var prev = label ? label.textContent : null;
+    if (label) label.textContent = "Copied!";
+    setTimeout(function () {
+      btn.classList.remove("is-copied");
+      if (label && prev !== null) label.textContent = prev;
+    }, 1800);
+  }
+
+  function copy(row) {
+    var textEl = row.querySelector("[data-kedge-install-text]");
+    var btn = row.querySelector("[data-kedge-install-copy-btn]");
+    if (!textEl) {
+      console.warn("[kedge-install-copy] no text element found");
+      return;
+    }
+    var text = (textEl.textContent || "").trim();
+    console.debug("[kedge-install-copy] copying:", text);
+
+    // Try the modern async API but always fall back to execCommand so we
+    // work on http://localhost, http://192.168.*, and older browsers.
+    var done = false;
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        var p = navigator.clipboard.writeText(text);
+        if (p && typeof p.then === "function") {
+          p.then(function () { flash(btn); }).catch(function () {
+            if (fallbackCopy(text)) flash(btn);
+          });
+          done = true;
+        }
+      } catch (e) { /* fall through */ }
+    }
+    if (!done) {
+      if (fallbackCopy(text)) flash(btn);
+      else console.warn("[kedge-install-copy] copy failed");
+    }
+  }
+
+  // Strip leading "$ " prompts from each line so the user pastes the
+  // actual commands, not the shell prompt.
+  function snippetText(pre) {
+    var raw = (pre.textContent || "").replace(/\n?Copy(ied!?)?\s*$/, "");
+    return raw
+      .split("\n")
+      .map(function (line) { return line.replace(/^\s*\$\s+/, ""); })
+      .filter(function (line) { return line.trim().length > 0; })
+      .join("\n");
+  }
+
+  function copySnippet(btn, pre) {
+    var text = snippetText(pre);
+    console.debug("[kedge-snippet-copy] copying:", text);
+    var done = false;
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        var p = navigator.clipboard.writeText(text);
+        if (p && typeof p.then === "function") {
+          p.then(function () { flash(btn); }).catch(function () {
+            if (fallbackCopy(text)) flash(btn);
+          });
+          done = true;
+        }
+      } catch (e) { /* fall through */ }
+    }
+    if (!done) {
+      if (fallbackCopy(text)) flash(btn);
+      else console.warn("[kedge-snippet-copy] copy failed");
+    }
+  }
+
+  // Wrap each line of code in its own .kedge-code-line span so long lines
+  // can truncate independently with "..." while preserving newlines for
+  // copy. Operates on the innerHTML of <code> to keep inline markup
+  // (e.g. the violet prompt span) intact.
+  function wrapCodeLines(code) {
+    if (code.dataset.linesWrapped === "1") return;
+    code.dataset.linesWrapped = "1";
+    var html = code.innerHTML.replace(/^\n+|\n+$/g, "");
+    var lines = html.split("\n");
+    code.innerHTML = lines
+      .map(function (line) { return '<span class="kedge-code-line">' + line + "</span>"; })
+      .join("\n");
+    // Add a title (hover tooltip) showing the full line — handy on truncation.
+    code.querySelectorAll(".kedge-code-line").forEach(function (el) {
+      el.setAttribute("title", el.textContent);
+    });
+  }
+
+  function attachSnippetCopy(pre) {
+    if (pre.dataset.copyInit === "1") return;
+    pre.dataset.copyInit = "1";
+    pre.classList.add("kedge-code-snippet--with-copy");
+
+    var code = pre.querySelector("code");
+    if (code) wrapCodeLines(code);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "kedge-snippet-copy-btn";
+    btn.setAttribute("aria-label", "Copy command");
+    btn.innerHTML =
+      '<svg class="kedge-snippet-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
+      '<svg class="kedge-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      copySnippet(btn, pre);
+    });
+    pre.appendChild(btn);
+  }
+
+  function init() {
+    var rows = document.querySelectorAll("[data-kedge-install-copy]");
+    console.debug("[kedge-install-copy] init, rows:", rows.length);
+    rows.forEach(function (row) {
+      var btn = row.querySelector("[data-kedge-install-copy-btn]");
+      if (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          copy(row);
+        });
+      }
+      row.addEventListener("click", function () { copy(row); });
+    });
+
+    var snippets = document.querySelectorAll(".kedge-code-snippet");
+    console.debug("[kedge-snippet-copy] init, snippets:", snippets.length);
+    snippets.forEach(attachSnippetCopy);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
