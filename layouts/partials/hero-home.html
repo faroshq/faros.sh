@@ -61,20 +61,20 @@
           <span class="text-xs font-mono text-gray-400 tracking-wide">kedge</span>
           <span class="text-xs font-mono text-gray-500">~ </span>
         </div>
-        <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code><span class="kedge-prompt">$</span> kubectl kedge login --hub-url https://console.faros.sh
+        <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code><span class="kedge-prompt">$</span> kedge login
 <span class="kedge-ok">✓ authenticated via OIDC</span>
 
-<span class="kedge-prompt">$</span> kubectl kedge edge create home-lab --type kubernetes
+<span class="kedge-prompt">$</span> kedge edge create home-lab --type kubernetes
 <span class="kedge-info">→ edge registered · token issued · join command ready</span>
 
-<span class="kedge-prompt">$</span> kubectl kedge edge join-command home-lab
+<span class="kedge-prompt">$</span> kedge edge join-command home-lab
 <span class="kedge-muted"># run on the target cluster, agent dials back</span>
 
-<span class="kedge-prompt">$</span> kubectl --kubeconfig &lt;(kubectl kedge kubeconfig edge home-lab) get nodes
+<span class="kedge-prompt">$</span> kubectl --kubeconfig &lt;(kedge kubeconfig edge home-lab) get nodes
 <span class="kedge-ok">NAME       STATUS   ROLES           AGE   VERSION</span>
 <span class="kedge-ok">edge-01    Ready    control-plane   12d   v1.30.0</span>
 
-<span class="kedge-prompt">$</span> kubectl kedge mcp url --name default
+<span class="kedge-prompt">$</span> kedge mcp url --name default
 <span class="kedge-accent">https://hub/.../mcp · ready for Claude · Cursor · agents</span></code></pre>
       </div>
 
@@ -179,7 +179,7 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
         </div>
         <h3 class="kedge-card-title">SSH server mode</h3>
-        <p class="kedge-card-text">Manage non-Kubernetes hosts — VMs, bare metal, Raspberry Pis — through the same hub. <code class="kedge-inline-code">kubectl kedge ssh my-server</code>.</p>
+        <p class="kedge-card-text">Manage non-Kubernetes hosts — VMs, bare metal, Raspberry Pis — through the same hub. <code class="kedge-inline-code">kedge ssh my-server</code>.</p>
       </div>
 
       <div class="kedge-card">
@@ -224,17 +224,15 @@
         <div class="kedge-step-num">1</div>
         <div class="flex-1">
           <h4 class="kedge-step-title">Install the CLI</h4>
-          <p class="kedge-step-text">Download a binary, install via krew, or <code class="kedge-inline-code">go install</code>.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl krew install faros/kedge</code></pre>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
         </div>
       </div>
 
       <div class="kedge-step">
         <div class="kedge-step-num">2</div>
         <div class="flex-1">
-          <h4 class="kedge-step-title">Log in to the hub</h4>
-          <p class="kedge-step-text">Use the hosted hub at <code class="kedge-inline-code">console.faros.sh</code> to try it instantly, or self-host your own.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge login --hub-url https://console.faros.sh</code></pre>
+          <h4 class="kedge-step-title">Log in</h4>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge login</code></pre>
         </div>
       </div>
 
@@ -243,8 +241,8 @@
         <div class="flex-1">
           <h4 class="kedge-step-title">Register an edge</h4>
           <p class="kedge-step-text">Get a one-time join command. Run it on the cluster or host.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge edge create my-cluster --type kubernetes
-<span class="kedge-prompt">$</span> kubectl kedge edge join-command my-cluster</code></pre>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge edge create my-cluster --type kubernetes
+<span class="kedge-prompt">$</span> kedge edge join-command my-cluster</code></pre>
         </div>
       </div>
 
@@ -253,8 +251,8 @@
         <div class="flex-1">
           <h4 class="kedge-step-title">Use it</h4>
           <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells, MCP for AI agents.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kubectl kedge kubeconfig edge my-cluster &gt; kc.yaml
-<span class="kedge-prompt">$</span> kubectl kedge mcp url --name default</code></pre>
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge kubeconfig edge my-cluster &gt; kc.yaml
+<span class="kedge-prompt">$</span> kedge mcp url --name default</code></pre>
         </div>
       </div>
 
@@ -652,6 +650,7 @@
 .dark .kedge-step-text { color: #7e7e96; }
 
 .kedge-code-snippet {
+  position: relative;
   background: rgba(13, 13, 20, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
@@ -661,5 +660,42 @@
   color: #c0c0d6;
   overflow-x: auto;
   margin: 0;
+}
+.kedge-code-snippet--with-copy {
+  padding-right: 4.25rem;
+}
+.kedge-copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 2;
+  padding: 0.2rem 0.55rem;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #c4b5fd;
+  background: rgba(124, 91, 245, 0.12);
+  border: 1px solid rgba(124, 91, 245, 0.32);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.kedge-code-snippet:hover .kedge-copy-btn,
+.kedge-code-snippet:focus-within .kedge-copy-btn,
+.kedge-copy-btn:focus-visible {
+  opacity: 1;
+}
+.kedge-copy-btn:hover {
+  background: rgba(124, 91, 245, 0.2);
+  border-color: rgba(124, 91, 245, 0.55);
+  color: #e9defc;
+}
+.kedge-copy-btn.is-copied {
+  opacity: 1;
+  color: #6ee7b7;
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.4);
 }
 </style>

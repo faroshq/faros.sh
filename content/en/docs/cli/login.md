@@ -8,8 +8,16 @@ weight: 1
 
 ## OIDC (browser flow)
 
+`--hub-url` defaults to the hosted hub at `https://console.faros.sh`, so for the hosted experience you can omit it entirely:
+
 ```bash
-kubectl kedge login --hub-url https://console.faros.sh
+kubectl kedge login
+```
+
+Or point at a self-hosted hub:
+
+```bash
+kubectl kedge login --hub-url https://hub.example.com
 ```
 
 This:

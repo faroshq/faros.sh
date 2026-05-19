@@ -146,3 +146,51 @@ function addCopyButtonToDom(button, highlightDiv) {
 document
   .querySelectorAll(".highlight")
   .forEach((highlightDiv) => createCopyButton(highlightDiv));
+
+// Copy button for the kedge-styled command snippets on the marketing site.
+// These don't use the chroma highlighter, so we attach our own button and
+// strip the leading "$ " prompt from each line so users paste only the command.
+function attachKedgeSnippetCopy(pre) {
+  if (pre.dataset.copyInit === "1") return;
+  pre.dataset.copyInit = "1";
+  pre.classList.add("kedge-code-snippet--with-copy");
+
+  const button = document.createElement("button");
+  button.className = "kedge-copy-btn";
+  button.type = "button";
+  button.setAttribute("aria-label", "Copy command");
+  button.innerText = "Copy";
+  button.addEventListener("click", () => copyKedgeSnippet(button, pre));
+  pre.appendChild(button);
+}
+
+async function copyKedgeSnippet(button, pre) {
+  const raw = (pre.innerText || pre.textContent || "").replace(/\nCopy$/, "");
+  const text = raw
+    .split("\n")
+    .map((line) => line.replace(/^\s*\$\s+/, ""))
+    .filter((line, idx, arr) => !(idx === arr.length - 1 && line === ""))
+    .join("\n");
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (_) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.className = "copyable-text-area";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  }
+  const prev = button.innerText;
+  button.innerText = "Copied!";
+  button.classList.add("is-copied");
+  setTimeout(() => {
+    button.innerText = prev;
+    button.classList.remove("is-copied");
+  }, 2000);
+}
+
+document
+  .querySelectorAll(".kedge-code-snippet")
+  .forEach((pre) => attachKedgeSnippetCopy(pre));
