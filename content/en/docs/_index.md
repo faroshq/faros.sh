@@ -1,10 +1,10 @@
 ---
-title: kedge Documentation
-description: One control plane for Kubernetes clusters and bare-metal servers anywhere. Open source, Apache 2.0, free forever.
+title: faros Documentation
+description: One control plane for everything you run — clusters, servers, apps, and AI. Open source, Apache 2.0, free forever.
 weight: 1
 ---
 
-**kedge** connects your distributed Kubernetes clusters and bare-metal servers through a single hub — no inbound firewall rules required.
+**faros** connects your distributed Kubernetes clusters and bare-metal servers through a single hub — no inbound firewall rules required. (You'll see the name `kedge` throughout the CLI, charts, and APIs — that's the engine faros is built on.) On top of that connectivity floor sits a multi-tenant **provider platform**: application templates, git repositories, hosted AI agents, fleet-wide query, and more, each enable-able per workspace and all exposed to AI tools through one MCP endpoint.
 
 ## No inbound rules. No VPNs. No port forwarding.
 
@@ -64,3 +64,9 @@ The hub is the only component that needs to be publicly reachable. Agents connec
 ## What's in this documentation
 
 Pick whichever path fits where you are.
+
+- **[Get started](/docs/getting-started/install/)** — install the CLI, log in, connect your first edge.
+- **[CLI reference](/docs/cli/)** — every command: auth, orgs and workspaces, edges, agents, SSH, MCP.
+- **[Deploy your own hub](/docs/deploy/helm/)** — Helm, ingress options, Cloudflare Tunnel.
+- **[Security & tenancy](/docs/security/)** — static tokens, OIDC, organizations, workspaces, service accounts.
+- **[Building providers](/docs/providers/)** — extend kedge with your own APIs, controllers, UI, and MCP tools; plus the [catalog](/docs/providers/catalog/) of providers that ship in the box (edges, application templates, git repos, hosted AI agents, fleet query, and more).

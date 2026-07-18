@@ -1,97 +1,68 @@
 ---
 title: MCP for AI Agents
-description: Expose all your clusters as a single Model Context Protocol server.
-weight: 4
+description: Expose your clusters and servers as Model Context Protocol servers.
+weight: 6
 ---
 
-kedge exposes every Kubernetes-type edge in your workspace as a single [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server. AI coding assistants — Claude Code, Claude Desktop, Cursor, anything that speaks MCP — can list pods, describe deployments, apply manifests, and more, across all your clusters at once, with no per-cluster configuration.
+kedge exposes your edges as [Model Context Protocol](https://modelcontextprotocol.io) (MCP) servers. AI coding assistants — Claude Code, Claude Desktop, Codex, Cursor, anything that speaks MCP — can list pods, describe deployments, run commands, and (with the edges provider's service catalog) even control apps like Home Assistant across all your edges at once.
+
+There are two endpoint shapes:
+
+| Flag | Scope |
+|:-----|:------|
+| `--mcpserver-name <name>` | **Aggregate** — one endpoint spanning all matching edges: Kubernetes tools, Linux/SSH tools, and a `list_targets` tool to enumerate them. Backed by an `MCPServer` object in your workspace (one named `default` is created for you). |
+| `--edge <edge-name>` | **Per-edge** — an endpoint scoped to a single edge. |
+
+Exactly one of the two flags is required.
 
 ## Get the URL
 
 ```bash
-kubectl kedge mcp url --name default
+kubectl kedge mcp url --mcpserver-name default
 ```
 
-Output:
+This prints the endpoint URL plus ready-to-paste setup snippets for Claude Code (`claude mcp add`), Claude Desktop (`claude_desktop_config.json`), and Codex (`codex mcp add`), with your bearer token filled in.
+
+The URL shapes look like this:
 
 ```
-https://console.faros.sh/services/mcp/root:kedge:user-default/apis/kedge.faros.sh/v1alpha1/kubernetesmcps/default/mcp
+# Aggregate (MCPServer object)
+https://<hub>/services/mcpserver/<cluster>/apis/kedge.faros.sh/v1alpha1/mcpservers/<name>/mcp
 
-To add this MCP server to Claude Code:
-  claude mcp add --transport http kedge \
-    "https://console.faros.sh/services/mcp/.../mcp" \
-    -H "Authorization: Bearer <your-token>"
-
-To add to Claude Desktop (claude_desktop_config.json):
-  {
-    "mcpServers": {
-      "kedge": {
-        "url": "https://console.faros.sh/services/mcp/.../mcp",
-        "headers": { "Authorization": "Bearer <your-token>" }
-      }
-    }
-  }
+# Per-edge (served by the edges provider)
+https://<hub>/services/providers/edges/agent/<cluster>/apis/edges.kedge.faros.sh/v1alpha1/kubernetesclusters/<edge>/mcp
 ```
 
-Copy the URL and the bearer token; that's everything the MCP client needs.
+`<cluster>` is your workspace's logical cluster ID — the CLI derives it from your kubeconfig, so you never construct these by hand.
 
 ## Adding to Claude Code
 
-Paste the printed `claude mcp add` line straight into your shell. From then on, Claude Code can call MCP tools that read and write Kubernetes resources across every connected cluster.
+Paste the printed `claude mcp add` line straight into your shell:
 
 ```bash
-claude mcp list                            # confirm it's registered
-claude mcp tools kedge | head             # see what's exposed
+claude mcp list        # confirm it's registered
 ```
 
-## Adding to Claude Desktop
+For Claude Desktop, add the printed JSON snippet under `mcpServers` in `claude_desktop_config.json` and restart the app. For Codex, use the printed `codex mcp add` line.
 
-Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or the equivalent path on your platform, add the snippet from the CLI output under `mcpServers`, and restart Claude Desktop.
+## The MCPServer object
 
-## Per-edge MCP
-
-The default `--name default` MCP aggregates *all* connected `kubernetes`-type edges. To get an MCP scoped to a single edge:
+The aggregate endpoint is backed by an `MCPServer` custom resource (`kedge.faros.sh/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. It aggregates all connected edges and can filter them with a label selector — label your edges at creation time (`kubectl kedge edge create ... --labels env=prod`) and scope the MCP to the matching subset:
 
 ```bash
-kubectl kedge mcp url --edge home-lab
+kubectl get mcpservers.kedge.faros.sh
+kubectl edit mcpserver default
 ```
 
-The hub creates a separate per-edge MCP virtual workspace and prints its URL.
+Authentication for the aggregate endpoint uses a long-lived service-account token minted per MCPServer (referenced from `status.tokenSecretRef`) rather than your personal OIDC token — so long-running MCP connections don't break when your browser token expires.
 
-## Filtering which edges are aggregated
+## What tools are exposed
 
-The default MCP is backed by a `Kubernetes` custom resource in your workspace. It has a label selector:
+The aggregate endpoint federates tools from two sources:
 
-```yaml
-apiVersion: kedge.faros.sh/v1alpha1
-kind: Kubernetes
-metadata:
-  name: default
-spec:
-  edgeSelector:
-    matchLabels:
-      env: prod
-```
+- **Edges**: Kubernetes tools (via [kubernetes-mcp-server](https://github.com/containers/kubernetes-mcp-server)) for every connected Kubernetes edge, Linux/SSH tools for server edges, and per-service tools for any [`Service`](/docs/providers/catalog/#edges) the edges provider has discovered (e.g. `ha_call_service` for Home Assistant).
+- **Providers**: every enabled provider that exposes MCP contributes its tools, namespaced as `<provider>__<tool>` — e.g. `code__create_repository`, `kuery__kuery_query`, `infrastructure__provision`.
 
-Empty selector = all connected kubernetes edges. Add labels to your edges (`kubectl kedge edge create ... --label env=prod`) and the MCP only sees the matching subset.
+## Authentication and scoping
 
-Edit the object the usual way:
-
-```bash
-kubectl --context kedge edit kubernetes.kedge.faros.sh/default
-```
-
-## How the hub serves MCP
-
-When an MCP client connects:
-
-1. The hub's MCP virtual-workspace handler validates the bearer token.
-2. It lists all `Edge` objects in the workspace, filters to `type: kubernetes` + `connected: true` + the label selector on the `Kubernetes` object.
-3. It builds a multi-edge provider that dials each matching edge over its revdial tunnel.
-4. It hands the connection to [`kubernetes-mcp-server`](https://github.com/kagent-dev/kmcp), which implements the MCP protocol and translates tool calls into Kubernetes API calls against each edge.
-
-You don't have to deploy anything on the edges — the existing tunnel is reused.
-
-## Authentication
-
-The bearer token printed by `mcp url` is your hub token. Anything it can do via `kubectl --context kedge`, the MCP can do. If you want to restrict an AI agent, create a separate token-bound user (static-token only) or a separate OIDC identity with narrower RBAC, log in as that user, then call `mcp url` to get a scoped token.
+The token printed by `mcp url` carries the same access you have in the workspace. To hand an AI agent narrower access, create a workspace [service account](/docs/security/tenancy/#service-accounts), fetch its token, and use that instead.

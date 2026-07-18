@@ -1,7 +1,7 @@
 ---
 title: SSH
 description: Reach server-mode edges through the hub's reverse tunnel.
-weight: 3
+weight: 5
 ---
 
 `kubectl kedge ssh` opens a shell (or runs a single command) on a `server`-type edge. The connection rides on the same reverse tunnel the agent uses to talk to the hub — no inbound SSH port, no public IP, no jump host.
@@ -12,7 +12,7 @@ weight: 3
 kubectl kedge ssh my-vps
 ```
 
-The hub authenticates you (bearer token from `kubectl kedge login`), then upgrades the HTTP connection to a TCP stream that the agent pipes to a local `sshd` running inside the agent container.
+The CLI looks up the edge's endpoint on the hub, opens a WebSocket with your bearer token (from `kubectl kedge login`), puts your terminal in raw mode, and streams the session — including window-resize events — through the agent's reverse tunnel.
 
 Exit with `exit` or `Ctrl-D` as you would with any SSH session.
 
@@ -42,13 +42,13 @@ For larger files or recursive copies, run an interactive session and use `rsync`
 ## How it works
 
 ```
-your laptop  ──HTTPS──►  hub  ──reverse tunnel──►  agent  ──unix socket──►  sshd
+your laptop  ──WebSocket──►  hub  ──reverse tunnel──►  agent  ──►  local sshd (port 22)
 ```
 
-The agent on the server hosts a per-edge `sshd` listening on a local socket. The hub authenticates your bearer token, then proxies the bytes between your terminal and that socket. No SSH key management — you're authorized because you can log in to the hub.
+The agent proxies the session to the host's own SSH daemon (port configurable with `--ssh-proxy-port` at agent install time; user and key/password come from the agent's `--ssh-user` / `--ssh-private-key` / `--ssh-password` configuration). The hub authenticates your bearer token and proxies the bytes between your terminal and the agent. No inbound SSH port, no key exchange with you — you're authorized because you can log in to the hub.
 
 ## Limits
 
-- The remote user is whichever user the agent runs as. For Helm-installed agents that's `root` inside the agent pod; for systemd-installed agents on a host, it's whoever owns the systemd unit.
-- Long-running sessions are kept alive via WebSocket pings. Idle disconnects come from the hub's tunnel timeout (default 60s of total silence), not OpenSSH's `ClientAliveInterval`.
+- The remote user is whatever the agent was configured with at install time (`--ssh-user`), not your hub identity.
+- Long-running sessions are kept alive via WebSocket pings through the tunnel.
 - Port forwarding (`-L` / `-R`) is not exposed through `kubectl kedge ssh`. If you need it, run a real SSH server on the host and reach it some other way.

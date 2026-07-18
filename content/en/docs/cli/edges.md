@@ -1,54 +1,54 @@
 ---
 title: Edges
-description: Register, list, inspect, and remove edges.
-weight: 2
+description: Register, list, inspect, upgrade, and remove edges.
+weight: 3
 ---
 
 An **edge** is anything connected to the hub through a reverse tunnel. There are two types:
 
-| Type | Use case |
-|:-----|:---------|
-| `kubernetes` | A Kubernetes cluster. Reachable via `kubectl` through the hub. |
-| `server` | A plain Linux host (VM, bare metal, Raspberry Pi). Reachable via `kubectl kedge ssh`. |
+| Type | Kind on the hub | Use case |
+|:-----|:----------------|:---------|
+| `kubernetes` | `KubernetesCluster` | A Kubernetes cluster. Reachable via `kubectl` through the hub. |
+| `server` | `LinuxServer` | A plain Linux host (VM, bare metal, Raspberry Pi). Reachable via `kubectl kedge ssh`. |
+
+Both kinds live in the `edges.kedge.faros.sh` API group in your workspace, and edge commands address them uniformly by name.
 
 ## create
 
 Register a new edge:
 
 ```bash
-kubectl kedge edge create <name> --type kubernetes
+kubectl kedge edge create <name>                  # kubernetes is the default type
 kubectl kedge edge create <name> --type server
 ```
 
-This creates an `Edge` object in your workspace and issues a one-time join token. The token expires once consumed — you'll need a new one if you re-deploy the agent.
+This creates the edge object in your current workspace, waits for the hub to issue a join token, and prints a full join guide: how to install the CLI on the target, plus the Helm / `kedge agent join` / `kedge agent run` variants pre-filled with hub URL, edge name, type, and token.
 
 **Flags:**
 
 | Flag | Description |
 |:-----|:------------|
-| `--type` | `kubernetes` or `server`. Required. |
-| `--label key=value` | Add a label. Repeatable. Used for placement selectors. |
-| `--description "..."` | Free-text description shown in `edge list`. |
+| `--type` | `kubernetes` (default) or `server`. |
+| `--labels key=value,key2=value2` | Labels for the edge. Used for placement and MCP selectors. |
 
-Examples:
+Example:
 
 ```bash
-kubectl kedge edge create home-lab \
-  --type kubernetes \
-  --label env=home --label region=eu
-
-kubectl kedge edge create my-vps \
-  --type server \
-  --description "Hetzner CX22 in Helsinki"
+kubectl kedge edge create home-lab --labels env=home,region=eu
 ```
 
 ## list
 
 ```bash
-kubectl kedge edge list
+kubectl kedge edge list        # also: kubectl kedge list / ls
 ```
 
-Shows every edge in your workspace with its type, ready state, and connection status. Use `-o yaml` or `-o json` for machine-readable output.
+Prints a table with NAME, TYPE, PHASE, CONNECTED, AGENT VERSION, and AGE for every edge in the workspace. For machine-readable output, use kubectl against the underlying resources instead:
+
+```bash
+kubectl get kubernetesclusters.edges.kedge.faros.sh -o yaml
+kubectl get linuxservers.edges.kedge.faros.sh -o yaml
+```
 
 ## get
 
@@ -56,7 +56,7 @@ Shows every edge in your workspace with its type, ready state, and connection st
 kubectl kedge edge get <name>
 ```
 
-Shows the full status: connection state, agent version, last heartbeat, labels, and any condition messages.
+Shows name, type, phase, connection state, hostname, workspace URL, creation time, and labels.
 
 ## join-command
 
@@ -64,23 +64,28 @@ Shows the full status: connection state, agent version, last heartbeat, labels, 
 kubectl kedge edge join-command <name>
 ```
 
-Prints the command(s) to install and start the agent on the target. The exact form depends on `--type`:
+Re-prints the same join guide as `edge create` — CLI install instructions plus the Helm chart, `kedge agent join` (persistent install), and `kedge agent run` (foreground) variants with the join token filled in. Use it whenever you need to (re)install the agent. Accepts `--insecure-skip-tls-verify` for dev hubs.
 
-- **Kubernetes** — a `helm upgrade --install` command for the `kedge-agent` chart, pre-populated with hub URL, edge name, and one-time token.
-- **Server** — a `curl ... | sh` one-liner (or the equivalent `kedge agent join` invocation) that installs a systemd unit.
+## upgrade
 
-The join token is single-use and short-lived. If you mis-paste, just re-run `join-command` to get a fresh one.
+```bash
+kubectl kedge edge upgrade <name>
+```
+
+Compares the edge's reported agent version against your CLI version. If the agent is behind, prints the upgrade instructions for that edge type (Helm upgrade for Kubernetes edges, binary replacement for servers); otherwise reports it's up to date. To actually drive the upgrade from the CLI, see [`agent upgrade`](/docs/cli/agent/#agent-upgrade).
 
 ## kubeconfig
 
-For `kubernetes`-type edges, generate a kubeconfig that proxies kubectl through the hub:
+For `kubernetes`-type edges, generate a standalone kubeconfig that proxies kubectl through the hub:
 
 ```bash
 kubectl kedge kubeconfig edge <name> > kc.yaml
 kubectl --kubeconfig kc.yaml get nodes
 ```
 
-The generated kubeconfig points at the hub's edge-proxy endpoint — the hub forwards each request through the agent's reverse tunnel. There are no certs on disk for the edge; auth happens via your hub bearer token.
+The generated kubeconfig (context `<name>-edge`) points at the hub's edge endpoint and reuses your current hub credentials — the hub forwards each request through the agent's reverse tunnel. There are no edge certificates on disk.
+
+**Flags:** `-o, --output <path>` (default stdout), `--insecure-skip-tls-verify`.
 
 To stream into a temporary kubeconfig (handy in scripts):
 
@@ -88,12 +93,14 @@ To stream into a temporary kubeconfig (handy in scripts):
 kubectl --kubeconfig <(kubectl kedge kubeconfig edge home-lab) get pods -A
 ```
 
+The lighter alternative — retargeting your *current* context at the edge — is [`kedge connect`](/docs/cli/workspaces/#connect).
+
 ## delete
 
 ```bash
 kubectl kedge edge delete <name>
 ```
 
-Removes the edge from the hub. The agent on the target will eventually fail its heartbeat and exit; if you want a graceful shutdown, stop the agent first (e.g. `helm uninstall kedge-agent` on the cluster, or `systemctl stop kedge-agent` on a server).
+Removes the edge from the hub. The agent on the target will fail its connection and keep retrying; stop it explicitly for a graceful shutdown (`helm uninstall` on the cluster, or `kubectl kedge agent uninstall` / `systemctl stop` on a server).
 
 > `delete` is irreversible. There's no recycle bin — recreate the edge to reconnect.

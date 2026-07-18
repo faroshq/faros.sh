@@ -1,167 +1,124 @@
 ---
-title: Anatomy of a Provider
-description: The manifest contract, registration, and lifecycle — first-party and third-party.
+title: Anatomy & Lifecycle
+description: The Provider and CatalogEntry objects, the init bootstrap, heartbeats, and the Enable flow.
 weight: 1
 ---
 
-A provider is the sum of its manifest, the surfaces it opts into, and (for third-party) the YAML CR that introduces it to the hub. This page is the minimum-viable-provider walkthrough; the surface-specific guides ([UI](/docs/providers/ui/), [API](/docs/providers/api/), [Virtual workspace](/docs/providers/virtual-workspace/)) drill into each capability.
+A provider's life involves two kcp objects and one bootstrap step, with clear ownership:
 
-## First-party: register from Go
+| Piece | Created by | Lives in | Purpose |
+|:------|:-----------|:---------|:--------|
+| `Provider` (`admin.kedge.faros.sh/v1alpha1`) | platform admin | `root:kedge:system:providers` | Provisions the provider workspace, service account, and kubeconfig |
+| provider `init` subcommand | your binary (initContainer) | runs against your workspace | Creates schemas, APIExport, endpoint slice, bind grant, CatalogEntry |
+| `CatalogEntry` (`providers.kedge.faros.sh/v1alpha1`) | your `init` step | `root:kedge:providers:<name>` | Routing, UI/backend URLs, Enable-dialog metadata |
 
-First-party providers live in `providers/<name>/` in the kedge repo. The hub picks them up via a blank import in `cmd/kedge-hub/main.go`:
+## Step 1 — the admin applies a `Provider`
 
-```go
-import (
-    _ "github.com/faroshq/faros-kedge/providers/mcp"
-    _ "github.com/faroshq/faros-kedge/providers/kubernetesedges"
-    _ "github.com/faroshq/faros-kedge/providers/serveredges"
-    _ "github.com/faroshq/faros-kedge/providers/myprovider"   // your new one
-)
+This is `provider.yaml` in every in-repo provider, and it's tiny — the name is the identity:
+
+```yaml
+apiVersion: admin.kedge.faros.sh/v1alpha1
+kind: Provider
+metadata:
+  name: quickstart
+spec:
+  displayName: "Quickstart"
 ```
 
-The provider's package-level `init()` calls `providers.RegisterBuiltin`:
+Optional spec fields: `secretName` (override the kubeconfig Secret name, default `<name>-kubeconfig`) and `serverURLOverride` (override the API-server URL baked into the minted kubeconfig).
 
-```go
-// providers/myprovider/manifest.go
-package myprovider
+The hub's provider reconciler then, idempotently:
 
-import (
-    "github.com/faroshq/faros-kedge/pkg/hub/providers"
-)
+1. Creates the workspace `root:kedge:providers:<name>` with the restricted `provider` workspace type and waits for it to be ready.
+2. Creates a `default` namespace, a ServiceAccount named `provider`, and a ClusterRoleBinding granting it **cluster-admin inside that workspace only**.
+3. Mints a long-lived service-account token and builds a kubeconfig whose server is `<hub-url>/clusters/<logical-cluster-id>` — the cluster **ID**, not the workspace path (kcp shards only resolve IDs).
+4. Writes the kubeconfig into the Secret `<name>-kubeconfig` in `root:kedge:system:providers`, and sets `status.workspacePath`, `status.workspaceCluster`, `status.secretRef`, and the `Ready` condition.
 
-func init() {
-    providers.RegisterBuiltin(providers.BuiltinSpec{
-        Name:        "my-provider",
-        DisplayName: "My Provider",
-        Description: "A short blurb shown on the catalog card.",
-        Category:    "Custom",
-        // No VirtualWorkspaceMount / LocalUIAssets here — this provider
-        // is metadata-only. Catalog entry shows up; clicking it lands
-        // on a "no UI" stub. Add surfaces below as needed.
-    })
-}
-```
+> **Deleting a `Provider` is a full teardown.** A finalizer deletes the workspace — cascading the APIExport, schemas, and CatalogEntry — plus the kubeconfig Secret. Tenant `APIBinding`s pointing at the export break. Don't delete a Provider whose API tenants still use.
 
-A provider that registers nothing else still appears in the catalog. That's already useful for a metadata-only entry — links to docs, runbooks, dashboards elsewhere.
+The `provider` workspace type is deliberately restricted: it can't create child workspaces, and its only default binding is `providers.kedge.faros.sh` — just enough for the provider to self-register its `CatalogEntry`.
 
-### Adding surfaces
+## Step 2 — your `init` subcommand bootstraps the API
 
-The remaining fields on `BuiltinSpec` opt into the three surfaces:
+Your Deployment runs an initContainer with `args: ["init"]` and the minted kubeconfig mounted (`KEDGE_PROVIDER_KUBECONFIG=/var/run/secrets/kedge/kedge-provider-kubeconfig`). The kedge provider SDK's `install.Bootstrap` then runs, idempotently and in order:
 
-```go
-providers.RegisterBuiltin(providers.BuiltinSpec{
-    Name:        "my-provider",
-    DisplayName: "My Provider",
-    Category:    "Custom",
+1. **Apply schemas** — every `*.yaml` in `KEDGE_SCHEMAS_DIR` (default `/etc/kedge/schemas`, baked into your image) is applied as an `APIResourceSchema`.
+2. **Apply the APIExport** — referencing those schemas plus your permission claims. Resource lists are *merged*, not clobbered, so controllers that add entries at runtime coexist with `init`.
+3. **Ensure an `APIExportEndpointSlice`** — this is what your controllers consume to reach the virtual workspace.
+4. **Apply the bind grant** — a ClusterRole/Binding named `kedge:providers:bind:<export>` letting `system:authenticated` create APIBindings to your export. Without it, every tenant Enable fails with a 403.
+5. **Self-register the `CatalogEntry`** — from the file at `KEDGE_CATALOGENTRY_FILE` (the Helm chart renders your `manifest.yaml` into a ConfigMap).
 
-    // Sub-nav under the provider in the side bar.
-    Children: []providers.BuiltinChild{
-        {DisplayName: "Reports", BuiltinRoute: "reports"},
-    },
+Because the kubeconfig Secret mount is non-optional, the pod simply blocks until the hub has provisioned it — natural ordering, no operator choreography.
 
-    // Hard depends-on. Hub refuses to start if these aren't in the
-    // enabled set. Use sparingly — most providers should be standalone.
-    Requires: []string{"kubernetes-edges"},
+## The `CatalogEntry` (manifest.yaml)
 
-    // Virtual workspace HTTP surface (see Virtual Workspace guide).
-    VirtualWorkspaceMount:   "/services/myprovider",
-    VirtualWorkspaceHandler: virtual.Build,
-
-    // Embedded UI bundle (see UI guide).
-    LocalUIAssets: localUIAssets(),
-})
-```
-
-### Selecting providers at runtime
-
-The hub takes a `--providers` flag listing which builtins to enable. Empty (the default) enables all. Use it to disable optional providers in a deployment:
-
-```
---providers=kubernetes-edges,mcp     # skip server-edges
---providers=mcp                       # MCP only; aggregator runs empty
-```
-
-`Requires` is enforced here: the hub refuses to start if you enable a provider whose dependencies are missing, with an actionable error.
-
-### The lifecycle, in order
-
-1. **`init()`**: every imported provider package calls `RegisterBuiltin`. The registry is built before `main()` runs.
-2. **Flag parse**: hub reads `--providers`, calls `ResolveEnabledBuiltins`, fails fast on unknown names or unmet `Requires`.
-3. **kcp bootstrap**: for each enabled builtin, the hub applies a `CatalogEntry` CR into `root:kedge:providers` (the workspace tenants browse to enable providers).
-4. **Mount handlers**: for each enabled builtin with `VirtualWorkspaceHandler`, the hub mounts the handler at `VirtualWorkspaceMount` with `http.StripPrefix`. For each with `LocalUIAssets`, the UI proxy serves the embedded FS under `/ui/providers/{Name}/`.
-5. **Serve**: hub listens; tenants discover providers via the catalog page, enable them, get an `APIBinding` (if the provider has CRDs).
-
-## Third-party: register from YAML
-
-A third-party provider runs as your own pod/service in the same cluster as the hub (or any cluster the hub can reach). You don't write Go in the hub repo — you write a `CatalogEntry` CR.
+The full shape, from the quickstart provider:
 
 ```yaml
 apiVersion: providers.kedge.faros.sh/v1alpha1
 kind: CatalogEntry
 metadata:
-  name: my-provider
+  name: quickstart
 spec:
-  displayName: "My Provider"
-  description: "A short blurb shown on the catalog card."
-  category: "Custom"
-  iconURL: "https://example.com/icon.svg"
-
-  # Where your UI lives. The hub reverse-proxies /ui/providers/my-provider/*
-  # to this URL. Leave empty if your provider has no UI.
+  displayName: "Quickstart"
+  description: "Reference provider demonstrating the kedge plugin surface."
+  vendor: "kedge"
+  version: "0.1.0"
+  category: "Demo"
+  iconURL: "/ui/providers/quickstart/icon.svg"
   ui:
-    url: "http://my-provider-portal.my-namespace.svc:8080"
-
-  # Where your backend lives. The hub reverse-proxies
-  # /services/providers/my-provider/* to this URL.
+    url: "http://quickstart.kedge.svc.cluster.local:8081"
+    indexPath: "/"
   backend:
-    url: "http://my-provider-backend.my-namespace.svc:8080"
-
-  # CRDs you surface to tenants. See the API guide.
+    url: "http://quickstart.kedge.svc.cluster.local:8081"
+    healthPath: "/healthz"
   apiExport:
-    name: "my-provider.providers.kedge.faros.sh"
+    name: "quickstart.providers.kedge.faros.sh"
     permissionClaims:
       - resource: configmaps
         verbs: [get, list, watch]
         tenantScoped: true
-    schemas:
-      - groupResource: "things.my-provider.providers.kedge.faros.sh"
-        body: |
-          apiVersion: apis.kcp.io/v1alpha1
-          kind: APIResourceSchema
-          # ... inline schema body ...
 ```
 
-The hub's CatalogEntry reconciler does the rest: creates the `APIExport` in `root:kedge:providers:my-provider`, applies the inline schemas, sets up the bind grants, registers your provider in the in-memory registry, and starts proxying traffic.
+Field reference:
 
-The runtime contract is identical to first-party from the tenant's point of view — they see the same Enable button, the same provider page, the same dashboard tile.
+| Field | Meaning |
+|:------|:--------|
+| `displayName` (required), `description`, `vendor`, `version` | Catalog card metadata. |
+| `category` | Side-nav grouping in the portal. |
+| `iconURL` | Portal-relative icon path, served through the UI proxy. |
+| `dependencies[].name` | Providers that must already be enabled in a workspace; Enable returns 409 otherwise. |
+| `ui.url` | Your UI origin. The hub reverse-proxies `/ui/providers/<name>/*` here; the portal loads `main.js` from it as a custom element. |
+| `ui.children[]` | Sub-navigation items (`{displayName, builtinRoute}`); your element reads the active child from `kedgeContext.subPath`. |
+| `backend.url` (+ `healthPath`) | Your API origin. Proxied at `/services/providers/<name>/*`; health checked at `healthPath` (default `/healthz`). |
+| `apiExport.name` | The export tenants bind. The export itself is created by `init` — this is a reference, not a definition. |
+| `apiExport.permissionClaims[]` | Mirror of the claims on your export, used to render the Enable dialog. |
+| `edgeProxyAccess` | If true, enabling also grants your provider SA the `proxy` verb on edges in the tenant workspace — for background connections to edge clusters (kuery uses this). |
 
-## The `/api/providers` endpoint
+> Older drafts had inline `schemas[].body` on the CatalogEntry — that's gone. Schemas ship in your image and are applied by `init`.
 
-Both flavors surface through one read endpoint:
+## Step 3 — registration, heartbeat, readiness
 
-```json
-{
-  "name": "my-provider",
-  "displayName": "My Provider",
-  "ready": true,
-  "hasUI": true,
-  "hasBackend": true,
-  "iconURL": "...",
-  "category": "Custom",
-  "children": [],
-  "apiExportPath": "root:kedge:providers:my-provider",
-  "apiExportName": "my-provider.providers.kedge.faros.sh",
-  "permissionClaims": [...],
-  "builtin": false
-}
+The hub watches `CatalogEntry` objects across all provider workspaces and mirrors them into an in-memory registry that drives `/api/providers`, the portal nav, the proxies, and MCP federation.
+
+Your serve process **heartbeats** the hub every 30 seconds: `POST /api/providers/<name>/heartbeat` with `{"version": "...", "status": "..."}`. Heartbeats have a 90-second TTL. A provider is **Ready** when its endpoints parse and its heartbeat is fresh (a provider that has never heartbeated is given the benefit of the doubt; once it beats, it must keep beating). Not-Ready means the UI proxy serves 503 and the provider drops out of MCP federation.
+
+## Step 4 — the tenant clicks Enable
+
+Enabling happens through the hub's REST API (the portal calls it for you):
+
+```
+POST /api/orgs/{org}/workspaces/{ws}/providers/{name}/enable
 ```
 
-The portal queries this on every dashboard / nav render. `Ready` is computed by the hub: builtins are always ready; third-party readiness is true once the `APIExport` exists and the UI/backend URLs (if declared) are reachable.
+The hub checks the caller's workspace membership, then creates an `APIBinding` in the tenant workspace pointing at your export. Accepted permission claims come from the dialog, but the *verbs* always come from your declared claims — a tenant can't escalate what you asked for. Disable deletes the binding (kcp then removes the bound resources from the workspace).
 
-## What to read next
+From that moment your resources are ordinary objects in the tenant workspace — `kubectl get greetings` just works — and your controllers see them through the [virtual workspace](/docs/providers/virtual-workspace/).
 
-Pick the surfaces you're opting into:
+## The whole lifecycle at a glance
 
-- **[Building the UI](/docs/providers/ui/)** — the custom-element pattern shared by first and third party.
-- **[Defining the API](/docs/providers/api/)** — `APIExport`, schemas, permission claims, the Enable flow.
-- **[Virtual workspace handler](/docs/providers/virtual-workspace/)** — HTTP handler shape and the `builder.Deps` bundle.
+1. Admin applies `Provider` → hub provisions workspace + SA + kubeconfig Secret.
+2. Helm installs your chart → initContainer `init` creates schemas, export, slice, bind grant, CatalogEntry.
+3. Serve container starts, heartbeats → registry marks you Ready; you appear in the catalog.
+4. Tenant clicks Enable → APIBinding created in their workspace.
+5. Tenant creates your resources; your controllers reconcile them; your UI, backend, and MCP tools light up for that workspace.

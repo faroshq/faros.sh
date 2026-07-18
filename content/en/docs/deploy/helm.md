@@ -29,7 +29,8 @@ cat > values-kind.yaml <<EOF
 hub:
   hubExternalURL: "https://localhost:9443"
   devMode: true
-  staticAuthToken: "$(openssl rand -hex 32)"
+  staticAuthTokens:
+    - "$(openssl rand -hex 32)"
 EOF
 
 # 3. Install
@@ -52,7 +53,7 @@ In another terminal:
 ```bash
 kubectl kedge login \
   --hub-url https://localhost:9443 \
-  --token $(grep staticAuthToken values-kind.yaml | awk '{print $2}' | tr -d '"') \
+  --token $(grep -A1 staticAuthTokens values-kind.yaml | tail -1 | tr -d ' -"') \
   --insecure-skip-tls-verify
 ```
 
@@ -73,8 +74,14 @@ hub:
   hubExternalURL: "https://hub.example.com"
   devMode: false
 
-  # Pick one — static token OR OIDC (idp section below)
-  staticAuthToken: "<generated-with-openssl-rand-hex-32>"
+  # Static tokens (each one becomes its own tenant user). Omit for OIDC-only.
+  staticAuthTokens:
+    - "<generated-with-openssl-rand-hex-32>"
+
+  # Identities allowed to use the hub admin surface (provider onboarding).
+  # Empty = admin surface disabled.
+  adminUsers:
+    - "you@example.com"
 
   tls:
     selfSigned:
@@ -87,11 +94,11 @@ hub:
       dnsNames:
         - "hub.example.com"
 
-# Only for OIDC — omit the staticAuthToken above if you set this
+# Only for OIDC — can coexist with static tokens. No client secret:
+# kedge is a PKCE public client (configure your IdP client as public).
 idp:
   issuerURL: "https://idp.example.com"
   clientID: "kedge"
-  clientSecret: "<secret>"
 
 ingress:
   enabled: true
@@ -157,15 +164,17 @@ kubectl delete namespace kedge-system
 | `hub.hubExternalURL` | **Required.** External URL agents and users hit. Embedded in kubeconfigs and OIDC callbacks. | `""` |
 | `hub.listenAddr` | Pod listen address. | `:9443` |
 | `hub.devMode` | Skip OIDC issuer TLS verification. **Dev only.** | `false` |
-| `hub.staticAuthToken` | Static bearer token. Bypasses OIDC entirely. | `""` |
+| `hub.staticAuthTokens` | List of static bearer tokens. Each maps to its own tenant user. | `[]` |
+| `hub.adminUsers` | Identities (name/email) allowed to use the hub admin surface. | `[]` |
 
 ### Identity provider (OIDC)
 
 | Key | Description | Default |
 |:----|:------------|:--------|
 | `idp.issuerURL` | OIDC issuer URL. | `""` |
-| `idp.clientID` | OIDC client ID. | `kedge` |
-| `idp.clientSecret` | OIDC client secret. | `""` |
+| `idp.clientID` | OIDC client ID (public/PKCE client — no secret). | `kedge` |
+| `idp.caSecretName` | Secret holding a PEM CA bundle for a privately-signed IdP. | `""` |
+| `idp.caSecretKey` | Key inside that Secret. | `tls.crt` |
 
 ### TLS
 

@@ -1,7 +1,10 @@
 <!-- ============================================================ -->
 <!-- kedge homepage — styled to match the kedge console aesthetic -->
 <!-- Violet accent (#7c5bf5) · Emerald (#34d399) · Glass panels   -->
+<!-- Sections: hero · architecture · platform · quickstart · oss  -->
 <!-- ============================================================ -->
+
+{{ $ghIcon := `<svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>` }}
 
 <section class="kedge-hero relative overflow-hidden">
 
@@ -15,7 +18,7 @@
   </div>
 
   <!-- ============= HERO ============= -->
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 md:pt-36 md:pb-28">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 md:pt-36 md:pb-24">
     <div class="text-center max-w-4xl mx-auto">
 
       <!-- Open source badge -->
@@ -28,24 +31,23 @@
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]">
         <span class="kedge-gradient-text">One control plane</span>
         <br>
-        <span class="text-gray-900 dark:text-white">for clusters anywhere</span>
+        <span class="text-gray-900 dark:text-white">for everything you run</span>
       </h1>
 
       <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
-        <strong class="text-gray-900 dark:text-white">kedge</strong> connects your distributed Kubernetes clusters and bare-metal servers through a single hub —
-        <strong>no VPNs, no open firewall ports, no kubeconfig juggling</strong>.
-        Agents dial outbound, so home labs, edge sites, and clusters behind NAT just work.
+        <strong class="text-gray-900 dark:text-white">faros</strong> connects your Kubernetes clusters and bare-metal servers through a single hub —
+        <strong>no VPNs, no open firewall ports, no kubeconfig juggling</strong> — then grows into a platform:
+        application templates, git repos, hosted AI agents, and fleet-wide query, all multi-tenant and all reachable by AI through one MCP endpoint.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14">
-        <a href="https://github.com/faroshq/kedge"
-           class="kedge-btn-primary group">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        <a href="https://github.com/faroshq/kedge" class="kedge-btn-primary group">
+          {{ $ghIcon | safeHTML }}
           Star on GitHub
           <span class="ml-2 opacity-60 group-hover:opacity-100 transition-opacity">→</span>
         </a>
-        <a href="https://faroshq.github.io/kedge/getting-started.html" class="kedge-btn-secondary">
+        <a href="/docs/getting-started/quickstart/" class="kedge-btn-secondary">
           Quickstart
         </a>
       </div>
@@ -79,24 +81,21 @@
             <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
             <span class="w-3 h-3 rounded-full bg-emerald-500/70"></span>
           </div>
-          <span class="text-xs font-mono text-gray-400 tracking-wide">kedge</span>
+          <span class="text-xs font-mono text-gray-400 tracking-wide">faros</span>
           <span class="text-xs font-mono text-gray-500">~ </span>
         </div>
         <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code><span class="kedge-prompt">$</span> kedge login
-<span class="kedge-ok">✓ authenticated via OIDC</span>
+<span class="kedge-ok">✓ authenticated · personal workspace ready</span>
 
-<span class="kedge-prompt">$</span> kedge edge create home-lab --type kubernetes
-<span class="kedge-info">→ edge registered · token issued · join command ready</span>
-
-<span class="kedge-prompt">$</span> kedge edge join-command home-lab
-<span class="kedge-muted"># run on the target cluster, agent dials back</span>
+<span class="kedge-prompt">$</span> kedge edge create home-lab
+<span class="kedge-info">→ edge registered · join command ready · agent dials back</span>
 
 <span class="kedge-prompt">$</span> kubectl --kubeconfig &lt;(kedge kubeconfig edge home-lab) get nodes
 <span class="kedge-ok">NAME       STATUS   ROLES           AGE   VERSION</span>
 <span class="kedge-ok">edge-01    Ready    control-plane   12d   v1.30.0</span>
 
-<span class="kedge-prompt">$</span> kedge mcp url --name default
-<span class="kedge-accent">https://hub/.../mcp · ready for Claude · Cursor · agents</span></code></pre>
+<span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default
+<span class="kedge-accent">https://hub/.../mcp · clusters + servers + providers · Claude-ready</span></code></pre>
       </div>
 
     </div>
@@ -107,7 +106,7 @@
     <div class="text-center mb-12">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Architecture</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Agents dial out. <span class="kedge-gradient-text">You log in.</span>
+        Agents dial out. You log in.
       </h2>
       <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
         The hub is the only thing with a public endpoint. Everything else stays behind its firewall — and still becomes reachable.
@@ -132,7 +131,7 @@
           <div class="kedge-hub px-6 py-5 text-center shrink-0">
             <div class="text-xs uppercase tracking-[0.2em] text-violet-300 mb-1">Hub</div>
             <div class="font-semibold text-white text-lg">kedge hub</div>
-            <div class="text-xs text-gray-400 mt-1 font-mono">kcp · OIDC · MCP</div>
+            <div class="text-xs text-gray-400 mt-1 font-mono">kcp · OIDC · providers · MCP</div>
           </div>
           <div class="kedge-flow-line"></div>
         </div>
@@ -165,68 +164,97 @@
         </div>
 
       </div>
+
+      <!-- Compact capability strip — what the connectivity floor gives you -->
+      <div class="kedge-strip mt-10 pt-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="kedge-feature">
+            <div class="kedge-feature-title">Reverse tunnels</div>
+            <p class="kedge-feature-text">Agents dial out — NAT and firewalls are not a problem.</p>
+          </div>
+          <div class="kedge-feature">
+            <div class="kedge-feature-title">kubectl &amp; SSH</div>
+            <p class="kedge-feature-text">Native access to every cluster and server through the hub.</p>
+          </div>
+          <div class="kedge-feature">
+            <div class="kedge-feature-title">Multi-tenant</div>
+            <p class="kedge-feature-text">Orgs and workspaces, each an isolated kcp logical cluster.</p>
+          </div>
+          <div class="kedge-feature">
+            <div class="kedge-feature-title">MCP for AI</div>
+            <p class="kedge-feature-text">One endpoint — Claude and any MCP client drive it all.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ============= FEATURES ============= -->
+  <!-- ============= PLATFORM / PROVIDERS ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Features</p>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Platform</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Everything you need. <span class="kedge-gradient-text">Nothing you don't.</span>
+        Connectivity is the floor. <span class="kedge-gradient-text">Providers are the building.</span>
       </h2>
+      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Every capability beyond raw connectivity ships as a <strong>provider</strong> — its own pod, its own release cycle, enabled per workspace. These ship in the box:
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Reverse tunnel connectivity</h3>
-        <p class="kedge-card-text">Agents dial out to the hub — no inbound firewall rules, no port forwarding, no VPN. NAT and corporate firewalls are not a problem.</p>
-      </div>
-
-      <div class="kedge-card">
+      <a href="/docs/providers/catalog/#edges" class="kedge-card block !no-underline">
         <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
         </div>
-        <h3 class="kedge-card-title">Native kubectl access</h3>
-        <p class="kedge-card-text">Proxy <code class="kedge-inline-code">kubectl</code> to any registered cluster through the hub. One kubeconfig, one auth flow, every cluster.</p>
-      </div>
+        <h3 class="kedge-card-title">Edges</h3>
+        <p class="kedge-card-text">Clusters, servers, and the apps beside them — deploy workloads across the fleet, control Home Assistant and friends via discovered services.</p>
+      </a>
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">SSH server mode</h3>
-        <p class="kedge-card-text">Manage non-Kubernetes hosts — VMs, bare metal, Raspberry Pis — through the same hub. <code class="kedge-inline-code">kedge ssh my-server</code>.</p>
-      </div>
-
-      <div class="kedge-card">
+      <a href="/docs/providers/catalog/#infrastructure" class="kedge-card block !no-underline">
         <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
         </div>
-        <h3 class="kedge-card-title">MCP for AI agents</h3>
-        <p class="kedge-card-text">Expose all connected clusters as a single <a href="https://modelcontextprotocol.io" class="kedge-link">Model Context Protocol</a> server. Claude, Cursor, and any MCP client can drive your fleet.</p>
-      </div>
+        <h3 class="kedge-card-title">Application Templates</h3>
+        <p class="kedge-card-text">Provision databases, caches, workers, and full apps from a curated template catalog — Gateway-API exposure and OIDC included.</p>
+      </a>
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">OIDC or static tokens</h3>
-        <p class="kedge-card-text">Plug in Dex, Auth0, Okta — anything OIDC. Or use a static token for home labs and dev environments. Per-user kcp workspaces enforce isolation.</p>
-      </div>
-
-      <div class="kedge-card">
+      <a href="/docs/providers/catalog/#agents" class="kedge-card block !no-underline">
         <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
         </div>
-        <h3 class="kedge-card-title">CLI-first</h3>
-        <p class="kedge-card-text">Register edges, get kubeconfigs, SSH into servers — all one command. <code class="kedge-inline-code">krew</code>-installable or a single Go binary.</p>
-      </div>
+        <h3 class="kedge-card-title">AI Agents</h3>
+        <p class="kedge-card-text">Host persistent AI agents with schedules, triggers, memory, budgets, and Telegram/Slack channels — using every other provider's tools.</p>
+      </a>
 
+      <a href="/docs/providers/catalog/#code" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Code</h3>
+        <p class="kedge-card-text">Git repositories, deploy keys, collaborators, and packages as declarative resources — GitHub first, more hosts pluggable.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#kuery" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Kuery</h3>
+        <p class="kedge-card-text">Fleet-wide object search and impact analysis — "who consumes this Secret?" — one query instead of N kubectl round-trips.</p>
+      </a>
+
+      <a href="/docs/providers/" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Build your own</h3>
+        <p class="kedge-card-text">A provider is a standalone pod: your API, controllers, UI, and MCP tools, plugged into the hub's proxies and tenancy. The docs walk you through it.</p>
+      </a>
+
+    </div>
+
+    <div class="text-center">
+      <a href="/docs/providers/catalog/" class="kedge-btn-secondary">Explore the provider catalog</a>
     </div>
   </div>
 
@@ -235,7 +263,7 @@
     <div class="text-center mb-14">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Quickstart</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Four commands to <span class="kedge-gradient-text">a live edge.</span>
+        Four commands to a live edge.
       </h2>
     </div>
 
@@ -264,7 +292,7 @@
         <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Register an edge</h4>
           <p class="kedge-step-text">Get a one-time join command. Run it on the cluster or host.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge edge create my-cluster --type kubernetes
+          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge edge create my-cluster
 <span class="kedge-prompt">$</span> kedge edge join-command my-cluster</code></pre>
         </div>
       </div>
@@ -275,7 +303,7 @@
           <h4 class="kedge-step-title">Use it</h4>
           <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells, MCP for AI agents.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge kubeconfig edge my-cluster &gt; kc.yaml
-<span class="kedge-prompt">$</span> kedge mcp url --name default</code></pre>
+<span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default</code></pre>
         </div>
       </div>
 
@@ -294,37 +322,20 @@
       </div>
 
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
-        <span class="kedge-gradient-text">Free forever.</span>
-        <br class="md:hidden">
-        Open source by design.
+        Free forever. Open source by design.
       </h2>
 
       <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
-        kedge is fully open source. Self-host the hub anywhere — VPS, home server, behind a Cloudflare tunnel. No paywalled features, no upsell tiers, no usage limits.
-        Fork it, audit it, ship it. The whole stack is yours.
+        faros is fully open source — hub, portal, and every provider. Self-host it anywhere: VPS, home server, behind a Cloudflare tunnel.
+        No paywalled features, no upsell tiers, no usage limits. Unlimited edges. Fork it, audit it, ship it — the whole stack is yours.
       </p>
-
-      <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10 text-left">
-        <div class="kedge-tile p-4">
-          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-violet-500 dark:text-violet-400 mb-2">Self-hosted</div>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Run the hub on any device you control. One container, one binary, no SaaS dependency.</p>
-        </div>
-        <div class="kedge-tile p-4">
-          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-emerald-500 dark:text-emerald-400 mb-2">Unlimited edges</div>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Connect as many clusters and servers as you want. No seat counts, no metering.</p>
-        </div>
-        <div class="kedge-tile p-4">
-          <div class="text-xs font-semibold tracking-[0.15em] uppercase text-cyan-500 dark:text-cyan-400 mb-2">Audit the code</div>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Every line on GitHub. Reproducible builds. PRs welcome.</p>
-        </div>
-      </div>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a href="https://github.com/faroshq/kedge" class="kedge-btn-primary">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          {{ $ghIcon | safeHTML }}
           github.com/faroshq/kedge
         </a>
-        <a href="https://faroshq.github.io/kedge/helm.html" class="kedge-btn-secondary">
+        <a href="/docs/deploy/helm/" class="kedge-btn-secondary">
           Deploy with Helm
         </a>
       </div>
@@ -366,15 +377,13 @@
 .kedge-pill {
   background: rgba(124, 91, 245, 0.08);
   border: 1px solid rgba(124, 91, 245, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 .dark .kedge-pill {
   background: rgba(124, 91, 245, 0.12);
   border-color: rgba(124, 91, 245, 0.25);
 }
 
-/* Gradient text — matches portal --text-gradient */
+/* Gradient text — hero + platform headings only */
 .kedge-gradient-text {
   background: linear-gradient(135deg, #0f172a 0%, #7c5bf5 50%, #10b981 100%);
   -webkit-background-clip: text;
@@ -423,10 +432,8 @@
   font-weight: 600;
   font-size: 0.95rem;
   color: #4a4a64;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   text-decoration: none !important;
   transition: all 0.2s;
 }
@@ -437,7 +444,7 @@
 }
 .dark .kedge-btn-secondary {
   color: #c0c0d6;
-  background: rgba(13, 13, 20, 0.6);
+  background: rgba(13, 13, 20, 0.75);
   border-color: rgba(255, 255, 255, 0.08);
 }
 .dark .kedge-btn-secondary:hover {
@@ -470,7 +477,7 @@
 .kedge-accent { color: #9b85f7; }
 .kedge-muted { color: #7e7e96; font-style: italic; }
 
-/* Quick command cards — the prominent install + login pair above the demo */
+/* Quick command card — the prominent install one-liner */
 .kedge-quickcmd {
   background: #0d0d14;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -500,20 +507,6 @@
   gap: 0.55rem;
   margin-bottom: 0.55rem;
   position: relative;
-}
-.kedge-quickcmd-step {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
-  box-shadow: 0 2px 8px rgba(124, 91, 245, 0.4);
-  flex-shrink: 0;
 }
 .kedge-quickcmd-label {
   font-size: 0.78rem;
@@ -551,7 +544,7 @@
   text-overflow: ellipsis;
 }
 
-/* Inline copy button — always visible */
+/* Copy buttons (shared look: install row + code snippets) */
 .kedge-install-copy-btn {
   display: inline-flex;
   align-items: center;
@@ -588,7 +581,7 @@
 .kedge-install-copy-btn.is-copied .kedge-install-copy-icon-default { display: none; }
 .kedge-install-copy-btn.is-copied .kedge-install-copy-icon-done { display: inline-block; }
 
-/* Panels */
+/* Panels — the only glass (blurred) containers on the page */
 .kedge-panel {
   position: relative;
   background: rgba(255, 255, 255, 0.6);
@@ -614,7 +607,7 @@
     rgba(13, 13, 20, 0.7);
 }
 
-/* Tiles (architecture row, free-forever sub-cards) */
+/* Tiles (architecture row) */
 .kedge-tile {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -695,15 +688,37 @@
   100% { left: 100%; opacity: 0; }
 }
 
-/* Feature cards */
+/* Capability strip inside the architecture panel */
+.kedge-strip {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.dark .kedge-strip {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+.kedge-feature { text-align: left; }
+.kedge-feature-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+.dark .kedge-feature-title { color: #eeeef3; }
+.kedge-feature-text {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #4a5568;
+  margin: 0;
+}
+.dark .kedge-feature-text { color: #7e7e96; }
+
+/* Provider cards */
 .kedge-card {
   position: relative;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .kedge-card:hover {
@@ -712,7 +727,7 @@
   box-shadow: 0 12px 28px -10px rgba(124, 91, 245, 0.15);
 }
 .dark .kedge-card {
-  background: rgba(13, 13, 20, 0.6);
+  background: rgba(13, 13, 20, 0.75);
   border-color: rgba(255, 255, 255, 0.06);
 }
 .dark .kedge-card:hover {
@@ -749,19 +764,6 @@
 }
 .dark .kedge-card-text { color: #7e7e96; }
 
-.kedge-inline-code {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.82em;
-  padding: 0.1em 0.4em;
-  border-radius: 5px;
-  background: rgba(124,91,245,0.1);
-  color: #6d4fe0;
-}
-.dark .kedge-inline-code {
-  background: rgba(124,91,245,0.18);
-  color: #b9a6fa;
-}
-
 .kedge-link {
   color: #7c5bf5;
   text-decoration: underline;
@@ -776,16 +778,14 @@
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   transition: border-color 0.25s;
 }
 .kedge-step:hover { border-color: rgba(124, 91, 245, 0.25); }
 .dark .kedge-step {
-  background: rgba(13, 13, 20, 0.6);
+  background: rgba(13, 13, 20, 0.75);
   border-color: rgba(255, 255, 255, 0.06);
 }
 .dark .kedge-step:hover { border-color: rgba(124, 91, 245, 0.35); }
@@ -881,14 +881,13 @@
 
 <script>
 (function () {
+  // ── One shared copy pipeline for the install row and all code snippets ──
+
   function fallbackCopy(text) {
     var ta = document.createElement("textarea");
     ta.value = text;
     ta.setAttribute("readonly", "");
-    ta.style.position = "fixed";
-    ta.style.top = "0";
-    ta.style.left = "0";
-    ta.style.opacity = "0";
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
     document.body.appendChild(ta);
     ta.focus();
     ta.select();
@@ -910,81 +909,39 @@
     }, 1800);
   }
 
-  function copy(row) {
-    var textEl = row.querySelector("[data-kedge-install-text]");
-    var btn = row.querySelector("[data-kedge-install-copy-btn]");
-    if (!textEl) {
-      console.warn("[kedge-install-copy] no text element found");
-      return;
-    }
-    var text = (textEl.textContent || "").trim();
-    console.debug("[kedge-install-copy] copying:", text);
-
-    // Try the modern async API but always fall back to execCommand so we
-    // work on http://localhost, http://192.168.*, and older browsers.
-    var done = false;
+  // Modern async API where available, execCommand fallback everywhere else
+  // (http://localhost, LAN IPs, older browsers).
+  function copyText(text, btn) {
     if (navigator.clipboard && window.isSecureContext) {
       try {
-        var p = navigator.clipboard.writeText(text);
-        if (p && typeof p.then === "function") {
-          p.then(function () { flash(btn); }).catch(function () {
-            if (fallbackCopy(text)) flash(btn);
-          });
-          done = true;
-        }
+        navigator.clipboard.writeText(text).then(
+          function () { flash(btn); },
+          function () { if (fallbackCopy(text)) flash(btn); }
+        );
+        return;
       } catch (e) { /* fall through */ }
     }
-    if (!done) {
-      if (fallbackCopy(text)) flash(btn);
-      else console.warn("[kedge-install-copy] copy failed");
-    }
+    if (fallbackCopy(text)) flash(btn);
   }
 
-  // Strip leading "$ " prompts from each line so the user pastes the
-  // actual commands, not the shell prompt.
+  // Strip leading "$ " prompts so the user pastes commands, not prompts.
   function snippetText(pre) {
-    var raw = (pre.textContent || "").replace(/\n?Copy(ied!?)?\s*$/, "");
-    return raw
+    return (pre.textContent || "")
       .split("\n")
       .map(function (line) { return line.replace(/^\s*\$\s+/, ""); })
       .filter(function (line) { return line.trim().length > 0; })
       .join("\n");
   }
 
-  function copySnippet(btn, pre) {
-    var text = snippetText(pre);
-    console.debug("[kedge-snippet-copy] copying:", text);
-    var done = false;
-    if (navigator.clipboard && window.isSecureContext) {
-      try {
-        var p = navigator.clipboard.writeText(text);
-        if (p && typeof p.then === "function") {
-          p.then(function () { flash(btn); }).catch(function () {
-            if (fallbackCopy(text)) flash(btn);
-          });
-          done = true;
-        }
-      } catch (e) { /* fall through */ }
-    }
-    if (!done) {
-      if (fallbackCopy(text)) flash(btn);
-      else console.warn("[kedge-snippet-copy] copy failed");
-    }
-  }
-
   // Wrap each line of code in its own .kedge-code-line span so long lines
-  // can truncate independently with "..." while preserving newlines for
-  // copy. Operates on the innerHTML of <code> to keep inline markup
-  // (e.g. the violet prompt span) intact.
+  // truncate independently with "..." while preserving newlines for copy.
   function wrapCodeLines(code) {
     if (code.dataset.linesWrapped === "1") return;
     code.dataset.linesWrapped = "1";
-    var html = code.innerHTML.replace(/^\n+|\n+$/g, "");
-    var lines = html.split("\n");
+    var lines = code.innerHTML.replace(/^\n+|\n+$/g, "").split("\n");
     code.innerHTML = lines
       .map(function (line) { return '<span class="kedge-code-line">' + line + "</span>"; })
       .join("\n");
-    // Add a title (hover tooltip) showing the full line — handy on truncation.
     code.querySelectorAll(".kedge-code-line").forEach(function (el) {
       el.setAttribute("title", el.textContent);
     });
@@ -1007,28 +964,24 @@
       '<svg class="kedge-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
-      copySnippet(btn, pre);
+      copyText(snippetText(pre), btn);
     });
     pre.appendChild(btn);
   }
 
   function init() {
-    var rows = document.querySelectorAll("[data-kedge-install-copy]");
-    console.debug("[kedge-install-copy] init, rows:", rows.length);
-    rows.forEach(function (row) {
+    document.querySelectorAll("[data-kedge-install-copy]").forEach(function (row) {
       var btn = row.querySelector("[data-kedge-install-copy-btn]");
-      if (btn) {
-        btn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          copy(row);
-        });
-      }
-      row.addEventListener("click", function () { copy(row); });
+      var textEl = row.querySelector("[data-kedge-install-text]");
+      var doCopy = function (e) {
+        if (e) e.stopPropagation();
+        if (textEl) copyText((textEl.textContent || "").trim(), btn);
+      };
+      if (btn) btn.addEventListener("click", doCopy);
+      row.addEventListener("click", doCopy);
     });
 
-    var snippets = document.querySelectorAll(".kedge-code-snippet");
-    console.debug("[kedge-snippet-copy] init, snippets:", snippets.length);
-    snippets.forEach(attachSnippetCopy);
+    document.querySelectorAll(".kedge-code-snippet").forEach(attachSnippetCopy);
   }
 
   if (document.readyState === "loading") {

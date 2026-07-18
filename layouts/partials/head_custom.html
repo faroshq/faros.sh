@@ -6,10 +6,12 @@
 
 <base href="{{ .Site.BaseURL }}">
 
-{{ if .Title }}
-  <title> {{ .Title }} : faros.sh </title>
+{{ if .IsHome }}
+  <title> {{ .Title | default "faros" }} </title>
+{{ else if .Title }}
+  <title> {{ .Title }} : faros </title>
 {{ else }}
-  <title> faros.sh </title>
+  <title> faros </title>
 {{ end }}
 
 {{ with .Description }}

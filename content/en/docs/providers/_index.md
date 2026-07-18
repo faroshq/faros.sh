@@ -1,77 +1,67 @@
 ---
 title: Building Providers
-description: How to extend kedge with your own provider — UI, API, and virtual workspace.
+description: How to extend kedge with your own provider — APIs, controllers, UI, proxies, and MCP.
 weight: 50
 ---
 
-A **provider** is how you teach the kedge hub a new capability without forking it. Edges, MCP, and a future "cost", "secrets", or "policy" surface are all the same shape: a Go package that registers itself, optional CRDs surfaced through kcp, an optional HTTP handler mounted under `/services/`, and an optional UI bundle mounted under `/ui/`.
+A **provider** is how you teach kedge a new capability without forking the hub. Everything beyond raw connectivity ships as a provider: edge management, application templates, git repositories, AI agents, fleet-wide query — all built on the same contract a third-party provider uses.
 
-The three first-party providers shipping today — `kubernetes-edges`, `server-edges`, and `mcp` — are written against the same interface a third-party provider uses. The difference is *where the code lives*, not what it can do.
+A provider is a **standalone service**: its own binary, its own pod, its own Helm chart, its own release cycle. It plugs into the hub through five optional surfaces:
+
+1. **An API** — custom resources published as a kcp `APIExport` that tenants bind into their workspaces. For most providers this is the heart of the integration.
+2. **Controllers** — reconcilers that watch the provider's resources *across every tenant workspace at once* through the export's [virtual workspace](/docs/providers/virtual-workspace/).
+3. **A backend** — any HTTP surface (REST, GraphQL, WebSocket, MCP) the hub reverse-proxies at `/services/providers/<name>/*` with verified identity headers.
+4. **A portal UI** — a Web Component micro-frontend the portal mounts at `/providers/<name>` — no iframes, shared theme.
+5. **MCP tools** — a `/mcp` endpoint on the backend; the hub federates every provider's tools into one aggregate MCP server for AI agents.
+
+A minimal provider (the in-repo [`quickstart`](https://github.com/faroshq/kedge/tree/main/providers/quickstart)) is a single Go binary with `init` and `serve` subcommands, an embedded frontend, and two small YAML files.
+
+## The moving parts
+
+```
+                        kcp workspace tree
+   root:kedge:providers:<name>      ← your workspace: APIExport, schemas, SA
+   root:kedge:system:providers      ← Provider + CatalogEntry objects, kubeconfig Secret
+   root:kedge:tenants:<org>:<ws>    ← tenants; APIBinding pulls your API in
+
+   ┌──────────┐   /ui/providers/<name>/*        ┌────────────────┐
+   │  portal  │ ──────────────────────────────► │                │
+   └──────────┘                                 │   kedge hub    │
+   ┌──────────┐   /services/providers/<name>/*  │  (UI + backend │      ┌───────────────┐
+   │ CLI / AI │ ──────────────────────────────► │    proxies)    │ ───► │ your provider │
+   └──────────┘                                 └────────────────┘      │      pod      │
+                                                                        └──────┬────────┘
+                                     APIExport virtual workspace               │
+                                     (see tenant resources cross-workspace) ◄──┘
+```
+
+Two small YAML objects wire a provider in:
+
+- **`Provider`** (`admin.kedge.faros.sh`) — applied by the platform admin. The hub provisions your workspace at `root:kedge:providers:<name>`, a service account with admin rights *inside that workspace only*, and a kubeconfig Secret your pod mounts.
+- **`CatalogEntry`** (`providers.kedge.faros.sh`) — self-registered by your `init` step. Declares display metadata, UI/backend URLs, and which APIExport tenants bind. It drives the portal catalog, the Enable dialog, and the hub's proxies.
+
+Your binary's **`init`** subcommand (running as an initContainer with the minted kubeconfig) creates the API surface itself: `APIResourceSchema`s, the `APIExport`, an `APIExportEndpointSlice`, and the bind grant. The hub provisions infrastructure; you own your API.
 
 ## When to write a provider
 
-You want a provider when you have a vertical slice that needs to be:
+You want a provider when you have a vertical slice that should be:
 
-- **Discoverable**: appear in the side nav and the catalog page, separately enable-able per tenant.
-- **Tenant-scoped**: backed by CRDs that each tenant manages in their own workspace.
-- **Self-describing**: ships its own UI, its own backend, its own data model.
+- **Discoverable** — a card in the catalog, separately enable-able per workspace.
+- **Tenant-scoped** — resources each tenant manages in their own workspace, reconciled by your controllers.
+- **Independently shipped** — your repo, your image, your release cadence; the hub doesn't rebuild when you do.
 
-If you only need to add a button or a column to an existing surface, you probably don't need a provider — patch the relevant page in the portal directly. Providers exist to draw boundaries between concerns that *would* otherwise grow into a monolith.
+If you just need a button on an existing page, patch the portal. Providers exist to draw boundaries that would otherwise grow into a monolith.
 
-## First-party vs third-party
+## The guides
 
-The two paths share a manifest contract; what differs is who runs the code.
+Read them roughly in order — each builds on the previous:
 
-| | **First-party (in-tree)** | **Third-party (out-of-tree)** |
-|:-|:-|:-|
-| Where it lives | `providers/<name>/` in the kedge repo | Your own repo, deployed as a pod |
-| How it's registered | Go `init()` calls `RegisterBuiltin` | YAML `CatalogEntry` CR applied to the hub |
-| How the UI ships | `//go:embed` into the hub binary | Hub reverse-proxies to your `spec.ui.url` |
-| How the backend ships | Mounted handler in the hub process | Hub reverse-proxies to your `spec.backend.url` |
-| CRDs | Apply directly to the hub's kcp workspace | Declared as inline `APIResourceSchema` in the `CatalogEntry`, surfaced via `APIExport` |
-| Best for | Capabilities you want bundled with the hub release | Anything you ship independently of the hub's release cycle |
-
-You can start as third-party, prove the shape, and move in-tree later (or never — the in-tree path is just a deployment convenience).
-
-## The three surfaces
-
-A provider can opt into any subset:
-
-- **[UI](/docs/providers/ui/)** — a Vite-built micro-frontend that registers a custom element. The portal mounts it inside the SPA; no iframes, shared theme, internal routing through a memory-history router. Optionally a dashboard tile too.
-- **[API](/docs/providers/api/)** — CRDs surfaced through a kcp `APIExport`. Tenants `APIBinding` to your export to get the resources in their own workspace; the portal handles the bind flow when the user clicks "Enable".
-- **[Virtual workspace](/docs/providers/virtual-workspace/)** — an HTTP handler mounted at `/services/<your-mount>/` that gets per-request access to kcp, the edge tunnel pool, and SSH session opening. This is where you put long-running logic that doesn't fit cleanly as a CRD reconciler.
-
-There's also an **MCP integration** (`providers/mcp/aggregate`) where any provider can contribute a `ToolFamily` to the aggregate MCP endpoint. Covered briefly in the UI guide; deeper write-up coming.
-
-## The contract at a glance
-
-For first-party providers, this is the entire interface the hub knows about:
-
-```go
-type BuiltinSpec struct {
-    Name        string                  // catalog name, kebab-case
-    DisplayName string                  // side-nav label
-    Description string                  // catalog card blurb
-    Category    string                  // grouping in side nav
-    IconURL     string                  // portal-relative icon path
-    BuiltinRoute string                 // legacy Vue route (most providers leave empty)
-    Children    []BuiltinChild          // sub-nav items
-    Requires    []string                // depends-on other provider names
-
-    VirtualWorkspaceMount   string                         // e.g. /services/myprovider
-    VirtualWorkspaceHandler func(*builder.Deps) http.Handler
-
-    LocalUIAssets fs.FS                 // embed.FS with main.js, index.html
-}
-```
-
-That's it. A minimal provider is ~30 lines of Go plus optional CRDs and UI.
-
-## Next steps
-
-The pages below walk through each surface, end-to-end, with code from the in-tree providers as reference.
-
-- **[Anatomy of a provider](/docs/providers/anatomy/)** — registration, lifecycle, the bare minimum
-- **[Building the UI](/docs/providers/ui/)** — custom element, dashboard tile, kedgeContext, navigation
-- **[Defining the API](/docs/providers/api/)** — CRDs, APIExport, permission claims, the enable flow
-- **[Virtual workspace handler](/docs/providers/virtual-workspace/)** — HTTP handler, builder.Deps, request shape
+- **[Anatomy & lifecycle](/docs/providers/anatomy/)** — the `Provider` / `CatalogEntry` objects, the `init` bootstrap, heartbeats, and the tenant Enable flow.
+- **[Defining the API](/docs/providers/api/)** — APIResourceSchemas, the APIExport, permission claims, versioning.
+- **[Virtual workspaces](/docs/providers/virtual-workspace/)** — how your controllers see all tenant workspaces at once, and the two access patterns (service identity vs. caller identity).
+- **[Connectivity & proxies](/docs/providers/connectivity/)** — the UI and backend proxies, identity headers, the revdial reverse tunnel, and data-plane subresources.
+- **[RBAC & security](/docs/providers/rbac/)** — what your SA can touch, bind grants, claim acceptance, and the isolation rules every provider must follow.
+- **[Building the UI](/docs/providers/ui/)** — the custom-element contract, `kedgeContext`, navigation, and asset serving.
+- **[MCP integration](/docs/providers/mcp/)** — exposing tools to AI agents through the hub's aggregate endpoint.
+- **[Packaging & deployment](/docs/providers/deploy/)** — the Helm chart shape, environment variables, Docker image, and publishing.
+- **[Provider catalog](/docs/providers/catalog/)** — reference for the eight providers that ship with kedge today.

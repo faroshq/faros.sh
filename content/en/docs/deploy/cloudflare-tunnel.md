@@ -118,8 +118,9 @@ hub:
   hubExternalURL: "https://hub.yourdomain.com"
   devMode: false
 
-  # Pick one — static token here, or omit for OIDC
-  staticAuthToken: "<openssl rand -hex 32>"
+  # Static tokens (list; each is its own tenant user) — or omit for OIDC
+  staticAuthTokens:
+    - "<openssl rand -hex 32>"
 
   tls:
     selfSigned:

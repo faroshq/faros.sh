@@ -58,7 +58,7 @@ config:
   staticClients:
     - id: kedge
       name: Kedge
-      secret: "<generate-a-secret>"
+      public: true          # kedge is a PKCE public client — no client secret
       redirectURIs:
         - https://hub.example.com/auth/callback
 
@@ -111,17 +111,27 @@ curl -s https://idp.example.com/.well-known/openid-configuration | head -5
 
 ## 2. Configure the hub for OIDC
 
-Update your hub values — remove `staticAuthToken`, add the `idp` section:
+Update your hub values — remove `staticAuthTokens` (or keep them; both methods can coexist), add the `idp` section:
 
 ```yaml
 hub:
   hubExternalURL: "https://hub.example.com"
-  devMode: false           # Real OIDC needs real TLS verification
 
 idp:
   issuerURL: "https://idp.example.com"
   clientID: "kedge"
-  clientSecret: "<same-secret-as-in-dex-staticClients>"
+```
+
+There is **no client secret** — the hub, CLI, and portal are PKCE public clients. That's why the Dex client above is marked `public: true`.
+
+If your IdP serves a certificate signed by a private CA, put the PEM bundle in a Secret and reference it — the hub then verifies the issuer properly instead of you disabling TLS checks:
+
+```yaml
+idp:
+  issuerURL: "https://idp.example.com"
+  clientID: "kedge"
+  caSecretName: "idp-ca"      # Secret with the PEM bundle
+  caSecretKey: "tls.crt"      # key inside the Secret
 ```
 
 Roll out:
@@ -138,7 +148,7 @@ helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
 kubectl kedge login --hub-url https://hub.example.com
 ```
 
-The browser opens to the hub's `/auth` endpoint, which redirects to Dex, which redirects to your identity backend (GitHub, Google, …). After you authorize, the CLI receives the resulting OIDC token and writes it to your kubeconfig.
+The browser opens to the hub's `/auth/authorize` endpoint, which redirects to Dex, which redirects to your identity backend (GitHub, Google, …). After you authorize, the CLI receives your kubeconfig over a one-time localhost callback. The kubeconfig uses an exec credential plugin (`kedge get-token`) that refreshes tokens automatically — see [Login & Authentication](/docs/cli/login/).
 
 ## Identity connectors
 
@@ -206,7 +216,9 @@ Dex supports many backends. The most common configurations:
 
 **Callback URL mismatch** — `redirectURIs` in Dex's `staticClients` must be exactly `<hubExternalURL>/auth/callback`. Mismatched scheme or path is the usual culprit.
 
-**TLS errors on the issuer** — If Dex is using a self-signed cert (don't, in prod), set `hub.devMode: true` to skip TLS verification of the OIDC issuer. Don't ship that to production.
+**TLS errors on the issuer** — If Dex's certificate is signed by a private CA, set `idp.caSecretName` / `idp.caSecretKey` (see above). As a last resort for throwaway dev setups, `hub.devMode: true` skips issuer TLS verification — never in production.
+
+**`unauthorized_client` / secret prompts** — The Dex client must be `public: true` with no `secret`. kedge does PKCE; a confidential client configuration will fail.
 
 **Dex logs**:
 
