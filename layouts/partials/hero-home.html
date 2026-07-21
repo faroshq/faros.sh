@@ -1571,6 +1571,10 @@
     new IntersectionObserver(function (entries, obs) {
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
+      // Lock the fully-rendered height before clearing, so the terminal
+      // doesn't grow (and shove the page) while the session types out.
+      var pre = code.closest("pre") || code.parentElement;
+      pre.style.minHeight = pre.offsetHeight + "px";
       code.textContent = "";           // drop the static fallback, then replay it
       playLine(0);
     }, { threshold: 0.45 }).observe(code);
