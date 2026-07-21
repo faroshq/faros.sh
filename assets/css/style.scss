@@ -731,25 +731,24 @@ code, pre {
 }
 .kedge-wordmark:hover { opacity: 0.85; }
 
+// Hexagon mark — same brand as the kedge console (lucide Hexagon in a
+// violet-bordered rounded box with a soft glow).
 .kedge-wordmark-mark {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 26px;
   height: 26px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #7c5bf5 0%, #34d399 100%);
-  box-shadow:
-    0 4px 14px rgba(124, 91, 245, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  position: relative;
+  color: #7c5bf5;
+  background: rgba(124, 91, 245, 0.1);
+  border: 1px solid rgba(124, 91, 245, 0.3);
+  box-shadow: 0 4px 14px rgba(124, 91, 245, 0.25);
 }
-.kedge-wordmark-mark::after {
-  // tiny inner gleam
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 4px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45), transparent 60%);
-  pointer-events: none;
+.dark .kedge-wordmark-mark {
+  color: #9b85f7;
+  background: rgba(124, 91, 245, 0.16);
+  border-color: rgba(124, 91, 245, 0.4);
 }
 
 .kedge-wordmark-text {
@@ -760,25 +759,6 @@ code, pre {
   line-height: 1;
 }
 .dark .kedge-wordmark-text { color: #eeeef3; }
-
-.kedge-wordmark-badge {
-  display: inline-block;
-  padding: 0.18rem 0.5rem;
-  border-radius: 999px;
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #6d4fe0;
-  background: rgba(124, 91, 245, 0.1);
-  border: 1px solid rgba(124, 91, 245, 0.22);
-  line-height: 1;
-}
-.dark .kedge-wordmark-badge {
-  color: #b9a6fa;
-  background: rgba(124, 91, 245, 0.15);
-  border-color: rgba(124, 91, 245, 0.3);
-}
 
 // ─────────── kedge docs layout ───────────
 .kedge-docs-shell {
@@ -842,12 +822,21 @@ code, pre {
 .dark .kedge-docs-brand:hover { color: #9b85f7; }
 
 .kedge-docs-brand-mark {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 22px;
   height: 22px;
   border-radius: 7px;
-  background: linear-gradient(135deg, #7c5bf5 0%, #34d399 100%);
-  box-shadow: 0 4px 14px rgba(124, 91, 245, 0.3);
+  color: #7c5bf5;
+  background: rgba(124, 91, 245, 0.1);
+  border: 1px solid rgba(124, 91, 245, 0.3);
+  box-shadow: 0 4px 14px rgba(124, 91, 245, 0.25);
+}
+.dark .kedge-docs-brand-mark {
+  color: #9b85f7;
+  background: rgba(124, 91, 245, 0.16);
+  border-color: rgba(124, 91, 245, 0.4);
 }
 
 .kedge-docs-group {

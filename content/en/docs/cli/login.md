@@ -4,11 +4,20 @@ description: kubectl kedge login — OIDC browser flow or static token.
 weight: 1
 ---
 
-`kubectl kedge login` authenticates against a hub and writes a kubeconfig context (`kedge` by default) with the resulting token embedded. Use it once per hub; subsequent commands use the saved context.
+`kubectl kedge login` authenticates against a hub and writes a kubeconfig context named `kedge` with your credentials embedded. Use it once per hub; subsequent commands use the saved context.
+
+**Flags:**
+
+| Flag | Description |
+|:-----|:------------|
+| `--hub-url <url>` | Hub URL. Defaults to `https://console.faros.sh`. `https://` is assumed if you omit the scheme. |
+| `--token <token>` | Static bearer token — skips the OIDC browser flow. |
+| `-i, --interactive` | After login, run the organization/workspace picker (same as `kedge use`). |
+| `--insecure-skip-tls-verify` | Skip TLS verification — only for self-signed dev hubs. |
 
 ## OIDC (browser flow)
 
-`--hub-url` defaults to the hosted hub at `https://console.faros.sh`, so for the hosted experience you can omit it entirely:
+For the hosted hub you can omit everything:
 
 ```bash
 kubectl kedge login
@@ -20,12 +29,18 @@ Or point at a self-hosted hub:
 kubectl kedge login --hub-url https://hub.example.com
 ```
 
-This:
+What happens:
 
-1. Opens your browser to the hub's `/auth` endpoint.
-2. The hub redirects to its configured OIDC provider (the hosted hub uses GitHub).
-3. After you authorize, the browser is redirected back; the CLI receives the token over a one-time local listener.
-4. Your kubeconfig gets a `kedge` context with that token.
+1. The CLI checks `https://<hub>/healthz` to see whether the hub has OIDC enabled. If not, it tells you to use `--token`.
+2. It starts a one-time listener on a random `127.0.0.1` port and opens your browser to the hub's `/auth/authorize` endpoint, passing the callback port and a PKCE code verifier.
+3. The hub redirects to its configured OIDC provider (Dex — GitHub, Google, LDAP, ... depending on the hub). After you authorize, the browser is redirected back to `http://127.0.0.1:<port>/callback` and the CLI receives your kubeconfig.
+4. The kubeconfig is merged into `$KUBECONFIG` (or `~/.kube/config`) as the `kedge` context.
+
+The flow is a PKCE **public client** — there is no client secret anywhere on your machine.
+
+### Token refresh
+
+The kubeconfig doesn't embed a static OIDC token. It uses a kubectl [exec credential plugin](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins) that runs `kedge get-token` behind the scenes: cached ID tokens are reused until they expire, then refreshed with your refresh token. You should rarely need to re-run `login`.
 
 ## Static token
 
@@ -39,39 +54,23 @@ kubectl kedge login \
 
 Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate.
 
-> See [Static tokens](/docs/security/static-token/) for how to provision them on the hub side.
+> See [Static tokens](/docs/security/static-token/) for how to provision them on the hub side. Each distinct static token maps to its own isolated tenant user on the hub.
 
-## Switching hubs
+## Pick an organization and workspace
 
-You can log in to multiple hubs. Each one is stored under its own kubeconfig context:
-
-```bash
-kubectl kedge login --hub-url https://hub-a.example.com --context hub-a
-kubectl kedge login --hub-url https://hub-b.example.com --context hub-b
-
-kubectl kedge --context hub-a edge list
-```
-
-Switch the default context with `kubectl config use-context hub-a`.
-
-## Logout
+After login your context points at your default workspace. To switch:
 
 ```bash
-kubectl kedge logout
+kubectl kedge use                    # interactive picker
+kubectl kedge use --org acme --workspace platform
 ```
 
-Removes the saved token from your kubeconfig. The context itself stays so you can `login` again later without retyping the URL.
+See [Organizations & workspaces](/docs/cli/workspaces/).
 
-## whoami
+## Logging out / switching hubs
 
-Check who you're authenticated as on the current hub:
-
-```bash
-kubectl kedge whoami
-```
-
-Shows the username, email (for OIDC), workspace, and hub URL.
+There is no `logout` command. Credentials live in the `kedge` context of your kubeconfig — to log out, delete that context (`kubectl config delete-context kedge`) or simply `login` against a different hub, which overwrites it. The CLI keeps exactly one active hub per kubeconfig file; to work against two hubs at once, use separate kubeconfig files via the global `--kubeconfig` flag or `$KUBECONFIG`.
 
 ## Where credentials live
 
-kedge writes to your standard kubeconfig (`$KUBECONFIG` or `~/.kube/config`). The token is stored as a bearer token in the user entry — no separate keychain, no cookie store. Treat the kubeconfig file as a secret.
+kedge writes to your standard kubeconfig (`$KUBECONFIG` or `~/.kube/config`). OIDC refresh-token state is cached on disk for the exec plugin; static tokens are stored as bearer tokens in the user entry. Treat both as secrets.

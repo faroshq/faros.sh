@@ -1,6 +1,6 @@
 ---
 title: CLI Reference
-description: Every kedge command — authentication, edges, kubeconfigs, SSH, MCP.
+description: Every kedge command — authentication, organizations, edges, agents, SSH, MCP.
 weight: 20
 ---
 
@@ -10,29 +10,32 @@ The `kedge` CLI is a kubectl plugin (when installed via krew, it's `kubectl kedg
 
 | Flag | Description |
 |:-----|:------------|
-| `--hub-url <url>` | URL of the hub. Required for `login`. Saved in kubeconfig after the first login. |
-| `--token <token>` | Bearer token (used with `--hub-url` instead of OIDC). |
-| `--insecure-skip-tls-verify` | Skip TLS verification — only for self-signed dev hubs. |
-| `--context <name>` | Kubeconfig context to operate against. Defaults to `kedge`. |
-| `-v` / `--verbose` | Verbose output. |
+| `--kubeconfig <path>` | Path to the kubeconfig to read and write. Defaults to `$KUBECONFIG` or `~/.kube/config`. |
+
+That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecure-skip-tls-verify`, ...) lives on the individual commands that need it. Login always writes to a kubeconfig context named `kedge`.
 
 ## Command summary
 
 | Command | What it does |
 |:--------|:-------------|
 | [`login`](/docs/cli/login/) | Authenticate with the hub (OIDC browser flow or static token). |
-| [`whoami`](/docs/cli/login/#whoami) | Show who you're logged in as. |
-| [`edge create <name>`](/docs/cli/edges/) | Register a new edge in the hub. |
-| [`edge list`](/docs/cli/edges/#list) | List all edges and their connection status. |
+| [`use`](/docs/cli/workspaces/) | Switch the active organization and workspace (interactive picker or flags). |
+| [`connect <edge>`](/docs/cli/workspaces/#connect) | Point your kubeconfig at an edge cluster; `connect :` returns to the hub root. |
+| [`edge create <name>`](/docs/cli/edges/) | Register a new edge and print the agent join guide. |
+| [`edge list`](/docs/cli/edges/#list) | List all edges with type, phase, and connection status (`list`/`ls` also work top-level). |
 | [`edge get <name>`](/docs/cli/edges/#get) | Show details for a specific edge. |
-| [`edge join-command <name>`](/docs/cli/edges/#join-command) | Print the agent install command with the join token. |
+| [`edge join-command <name>`](/docs/cli/edges/#join-command) | Re-print the agent install guide with the join token. |
+| [`edge upgrade <name>`](/docs/cli/edges/#upgrade) | Show upgrade instructions when the agent version is behind the CLI. |
 | [`edge delete <name>`](/docs/cli/edges/#delete) | Remove an edge. |
 | [`kubeconfig edge <name>`](/docs/cli/edges/#kubeconfig) | Generate a kubeconfig that proxies kubectl through the hub. |
-| [`ssh <name>`](/docs/cli/ssh/) | Open an SSH session (or run a single command) on a server-mode edge. |
-| [`mcp url`](/docs/cli/mcp/) | Print the multi-cluster MCP endpoint for AI agents. |
-| `agent run` | Start the agent as a foreground process (used inside container images). |
-| `agent join` | Install the agent as a persistent service (systemd or k8s Deployment). |
-| `dev create` | Create a local dev environment (two kind clusters). |
-| `dev delete` | Tear down the dev environment. |
+| [`agent ...`](/docs/cli/agent/) | Run, install, and upgrade the edge agent (`run`, `join`, `install`, `uninstall`, `upgrade`). |
+| [`install`](/docs/cli/agent/#kedge-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
+| [`ssh <name>`](/docs/cli/ssh/) | Open an SSH session (or run a single command) on a server-type edge. |
+| [`mcp url`](/docs/cli/mcp/) | Print an MCP endpoint for AI agents (`--mcpserver-name` aggregate or `--edge` per-edge). |
+| `apply -f <file>` | Apply a kedge resource from a YAML file. |
+| `get <resource>` | List `edges`, `workloads`, or `placements` in the current workspace. |
+| `version` | Print CLI version, commit, build date, and platform. |
+| `dev init` / `dev update` / `dev delete` | Create, upgrade, or tear down a local kind-based dev hub (`init` has alias `create`). |
+| `init` | Run an in-process kedge hub (server bootstrap — for development, not the CLI workflow). |
 
 Pick a command from the sidebar for the full reference.

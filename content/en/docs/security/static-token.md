@@ -4,9 +4,11 @@ description: Pre-shared bearer tokens — the simplest way to secure a personal 
 weight: 1
 ---
 
-A **static token** is a pre-shared bearer token that grants full admin access to the hub. No identity provider, no callback URLs, no client configuration — just one string both sides agree on.
+A **static token** is a pre-shared bearer token. No identity provider, no callback URLs, no client configuration — just a string both sides agree on.
 
-It's the right choice for:
+Each distinct token becomes its **own isolated user** on the hub, with its own personal organization and workspace. A static token is admin *within its own tenant* — it is **not** a platform-wide admin credential unless you also list its identity in `hub.adminUsers`.
+
+Static tokens are the right choice for:
 
 - A single-user home lab
 - Quick dev / test deployments
@@ -19,17 +21,18 @@ It's the right choice for:
 openssl rand -hex 32
 ```
 
-Save the output somewhere safe (password manager, encrypted file). It's the only credential — anyone who has it is admin.
+Save the output somewhere safe (password manager, encrypted file) — anyone who has it can act as that user.
 
 ## 2. Configure the hub
 
-Add the token to your Helm values:
+The Helm value is a **list** — you can issue several tokens, and each maps to a separate tenant user:
 
 ```yaml
 hub:
   hubExternalURL: "https://hub.example.com"
-  devMode: true              # Skips OIDC issuer TLS verification — only set with static tokens, never with real OIDC
-  staticAuthToken: "<your-generated-token>"
+  staticAuthTokens:
+    - "<token-for-you>"
+    - "<token-for-ci>"
 
 # No idp section needed
 ```
@@ -43,13 +46,13 @@ helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
   --create-namespace
 ```
 
-You can also pass the token directly to the binary in non-Helm setups:
+Or pass tokens directly to the binary in non-Helm setups (the flag is repeatable):
 
 ```bash
 kedge-hub \
-  --static-auth-token=<your-generated-token> \
-  --hub-external-url=https://localhost:9443 \
-  --dev-mode
+  --static-auth-token=<token-one> \
+  --static-auth-token=<token-two> \
+  --hub-external-url=https://localhost:9443
 ```
 
 ## 3. Log in with the token
@@ -57,35 +60,24 @@ kedge-hub \
 ```bash
 kubectl kedge login \
   --hub-url https://hub.example.com \
-  --token <your-generated-token>
+  --token <your-token>
 ```
 
-Add `--insecure-skip-tls-verify` if the hub is using a self-signed certificate.
-
-This writes a kubeconfig context named `kedge` with the token embedded as a bearer token.
+Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `kedge` with the token embedded.
 
 ## 4. Verify
 
 ```bash
-kubectl --context kedge get namespaces
 kubectl kedge edge list
 ```
 
-## Rotating the token
+## Rotating a token
 
-Static tokens don't auto-rotate. To rotate manually:
-
-1. Generate a new token.
-2. Update `hub.staticAuthToken` in your Helm values.
-3. `helm upgrade` — the hub picks up the new token.
-4. Re-run `kubectl kedge login --token <new-token>` on every machine that talks to the hub.
-
-The old token is invalidated as soon as the new one is in place.
+Static tokens don't auto-rotate. To rotate: generate a new token, replace it in `staticAuthTokens`, `helm upgrade`, and re-run `login --token` wherever the old one was used. Note that a *new* token is a *new* user with a fresh personal workspace — for rotation-without-migration keep this in mind, or use OIDC/service accounts where identity and credential are separate.
 
 ## Security notes
 
-- The token grants **full admin access** to the hub. Treat it like a root password.
-- Store it in a password manager or an encrypted secrets store (1Password, Bitwarden, sealed-secrets, sops, Vault).
-- Don't commit `values.yaml` containing the token to a public repo. Use a values file outside Git, or store the token in a `Secret` and reference it via `valueFrom` in your own deployment process.
-- Rotate periodically — there's no expiry built in.
-- For multi-user scenarios, switch to [OIDC](/docs/security/oidc/) so each user has their own identity and you can revoke individuals without bouncing everyone.
+- A token is the full identity of its user — treat it like a password. Store it in a password manager or an encrypted secrets store; don't commit values files containing tokens.
+- Scope by issuing separate tokens per purpose (you, CI, a teammate) instead of sharing one — each gets its own isolated tenant, and you can revoke them individually.
+- Platform-admin powers (provider onboarding, admin API) require the identity to be listed in `hub.adminUsers` — static tokens don't get this implicitly.
+- For multi-user scenarios with real names and revocation, switch to [OIDC](/docs/security/oidc/).

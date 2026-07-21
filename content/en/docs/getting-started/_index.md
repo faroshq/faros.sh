@@ -4,7 +4,7 @@ description: Install the CLI, log in, register your first edge.
 weight: 10
 ---
 
-Three pages get you from zero to a working edge:
+Two pages get you from zero to a working edge:
 
 1. **[Install](/docs/getting-started/install/)** — get the `kedge` binary or the `kubectl kedge` plugin on your machine.
 2. **[Quickstart](/docs/getting-started/quickstart/)** — log in, register an edge, run the agent, use it.

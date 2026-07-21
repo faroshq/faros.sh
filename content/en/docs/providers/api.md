@@ -1,182 +1,85 @@
 ---
 title: Defining the API
-description: CRDs, APIExport, APIBinding, and permission claims.
-weight: 3
+description: APIResourceSchemas, the APIExport, permission claims, and schema versioning.
+weight: 2
 ---
 
-A provider's API surface is one or more **CRDs** that tenants can create in their own workspace. The plumbing is kcp's: you publish an `APIExport` with the schemas you want to share, tenants create an `APIBinding` to pull those resources into their workspace, and from there they're regular `kubectl` objects.
+A provider's API surface is a set of custom resources that tenants create in their own workspaces. The plumbing is kcp's: you publish an **`APIExport`** referencing **`APIResourceSchema`** objects; tenants get the resources via an **`APIBinding`** (created by the hub's Enable flow). Your `init` subcommand applies all of it — see [Anatomy & lifecycle](/docs/providers/anatomy/) for where that runs.
 
-The kedge hub handles all the bootstrap for you. You just declare the schemas; the hub creates the `APIExport`, the bind grants, and the catalog metadata that drives the portal's Enable button.
+## APIResourceSchemas
 
-## The flow, end to end
+An `APIResourceSchema` is kcp's workspace-aware equivalent of a CRD. You generate them from your Go types the same way you'd generate CRDs (the kedge repo does this with controller-gen plus a conversion step in `make codegen`), and bake the YAML files into your image under `/etc/kedge/schemas`.
 
-1. **You declare** `CatalogEntry.spec.apiExport` (third-party) or pass equivalent data through `BuiltinSpec` (first-party). It includes the export name, the inline schemas, and any permission claims you need to read tenant data.
-2. **The hub reconciles**: creates a per-provider workspace at `root:kedge:providers:<your-name>`, applies the `APIResourceSchema` objects there, creates the `APIExport`, and installs a `ClusterRoleBinding` so `system:authenticated` users are allowed to bind.
-3. **The tenant clicks Enable** in the portal. The portal posts an `APIBinding` into the tenant's workspace pointing at your export.
-4. **kcp materializes** the bound resources. The tenant can now `kubectl get yourthings` in their workspace.
-5. **Your controllers** watch through the export's "virtual workspace" — the union of all bound tenants' resources — and reconcile each one. (Out of scope for this page; the same kcp controller pattern any APIExport author uses.)
+Names are version-prefixed and encode the group and resource:
 
-## The CatalogEntry shape
-
-```yaml
-apiVersion: providers.kedge.faros.sh/v1alpha1
-kind: CatalogEntry
-metadata:
-  name: my-provider
-spec:
-  displayName: "My Provider"
-  description: "Manage Things."
-  category: "Custom"
-
-  apiExport:
-    # APIExport name — convention: <provider>.providers.kedge.faros.sh.
-    # This becomes the name of the kcp APIExport object.
-    name: "my-provider.providers.kedge.faros.sh"
-
-    # PermissionClaims tell kcp what your provider's controllers may
-    # access *in the tenant's workspace* beyond your own CRDs. Each
-    # claim shows up in the Enable dialog so the tenant explicitly
-    # accepts it before the binding is created.
-    permissionClaims:
-      - group: ""
-        resource: configmaps
-        verbs: [get, list, watch]
-        tenantScoped: true
-      - group: ""
-        resource: secrets
-        verbs: [get, list, watch]
-        tenantScoped: true
-
-    # Inline APIResourceSchema documents. The hub applies these into
-    # the per-provider workspace before creating the export. body is
-    # the full APIResourceSchema YAML as a string — easy to template
-    # from your CRD generator output.
-    schemas:
-      - groupResource: "things.my-provider.providers.kedge.faros.sh"
-        body: |
-          apiVersion: apis.kcp.io/v1alpha1
-          kind: APIResourceSchema
-          metadata:
-            name: v260529-abc.things.my-provider.providers.kedge.faros.sh
-          spec:
-            group: my-provider.providers.kedge.faros.sh
-            names:
-              kind: Thing
-              listKind: ThingList
-              plural: things
-              singular: thing
-            scope: Namespaced
-            versions:
-              - name: v1alpha1
-                served: true
-                storage: true
-                schema:
-                  openAPIV3Schema:
-                    type: object
-                    properties:
-                      spec:
-                        type: object
-                        properties:
-                          replicas:
-                            type: integer
-                      status:
-                        type: object
-                        properties:
-                          phase: { type: string }
-                additionalPrinterColumns:
-                  - name: Phase
-                    type: string
-                    jsonPath: .status.phase
-
-  # The UI/backend URL fields — covered in the UI and Virtual Workspace guides.
-  ui:
-    url: "http://my-provider-portal.my-namespace.svc:8080"
-  backend:
-    url: "http://my-provider-backend.my-namespace.svc:8080"
+```
+v260522-001.greetings.quickstart.providers.kedge.faros.sh
+└───┬────┘ └───┬───┘ └──────────────┬──────────────────┘
+ revision   resource              group
 ```
 
-### Schema versioning
+**Schemas are immutable.** Once applied, the body can't change. To change your API, ship a new file with a bumped revision prefix (`v260522-002...`) and reference the new name from the export. Old bindings keep working against the old schema until they're migrated.
 
-`APIResourceSchema` names must be unique and immutable per kcp's contract — once applied you can't mutate the schema body in place. The convention is to prefix with a date or version suffix: `v260529-abc.things.my-provider.providers.kedge.faros.sh`. When you change the schema, ship a new name. The `APIExport` references the latest by name, and old bindings continue to work against the old schema.
+Group convention: `<provider>.providers.kedge.faros.sh` for provider-scoped APIs (quickstart), or a first-class group like `code.kedge.faros.sh` / `infrastructure.kedge.faros.sh` for platform providers. Pick one and stay consistent — the group appears in every tenant's `kubectl` output.
 
-In practice this means your CRD code-generation pipeline writes a new file per change, and you bump the schema name on every release. The first-party providers in the kedge repo follow this pattern; see `config/kcp/apiresourceschema-edges.kedge.faros.sh.yaml` for an example.
+## The APIExport
+
+The SDK's `init` bootstrap builds the export from three inputs you pass it: the export name, the schema list (derived from the schema files), and permission claims:
+
+```go
+// init_cmd.go — what a provider passes to the SDK bootstrap
+import sdkinstall "github.com/faroshq/provider-sdk/install"
+
+err := sdkinstall.Bootstrap(ctx, sdkinstall.Options{
+    Config:        config, // rest.Config from KEDGE_PROVIDER_KUBECONFIG
+    ExportName:    "quickstart.providers.kedge.faros.sh",
+    WorkspacePath: "root:kedge:providers:quickstart",
+    SchemasDir:    "/etc/kedge/schemas",
+    Claims: []sdkinstall.PermissionClaim{
+        {Resource: "configmaps", Verbs: []string{"get", "list", "watch"}},
+    },
+    CatalogEntryFile: os.Getenv("KEDGE_CATALOGENTRY_FILE"),
+})
+```
+
+Two behaviors worth knowing:
+
+- **`spec.resources` is merged, not replaced.** Some providers (infrastructure) add per-template resource entries to their own export at runtime; the SDK merges by group+name so `init` re-runs don't clobber them.
+- **The endpoint slice is delete-and-recreated on path change.** `APIExportEndpointSlice.spec.export` is immutable in kcp; the SDK handles stale slices for you.
 
 ## Permission claims
 
-Permission claims are kcp's way of letting an `APIExport`'s controllers read or write resources *in the tenant workspace* that the provider doesn't own. Examples:
+Permission claims let your controllers touch resources *in the tenant's workspace* that your export doesn't own — Secrets for credentials, ConfigMaps for settings, another provider's resources for integration.
 
-- A "secrets sync" provider needs `get/list/watch` on `Secrets` to mirror them somewhere.
-- A "policy" provider needs `list/watch` on `Pods` and `Deployments` to validate them.
-- A "cost" provider needs `list` on `Nodes` and `Pods` to compute usage.
-
-Each claim names the resource + verbs. The portal surfaces them in the Enable dialog:
-
-> *Enable my-provider in workspace `tenant-foo`?*
-> *It will be granted:*
-> - *`get, list, watch` on `configmaps`*
-> - *`get, list, watch` on `secrets`*
->
-> *[Cancel] [Enable]*
-
-When the tenant clicks Enable, the portal sets each claim's `state: Accepted` on the `APIBinding`; un-accepted claims become `state: Rejected` and kcp refuses to expose those resources to your controllers.
-
-### `tenantScoped: true`
-
-Mark claims as `tenantScoped` if they're scoped to the tenant's own workspace (the common case). Untrusted/cross-workspace claims require an admin annotation on the `CatalogEntry` (`kedge.faros.sh/accept-untrusted-claims`) and shouldn't be the default.
-
-### Don't over-claim
-
-A provider that claims `*/*` will be rejected by careful tenants every time. Start with the narrowest set of resources you actually need; expand only when you have a concrete reason. Each new claim is friction at Enable time and a security review the tenant has to do.
-
-## What the tenant sees on Enable
-
-The portal's flow once the user clicks Enable on the catalog page:
-
-1. Fetches `/api/providers` to get the `permissionClaims` list.
-2. Shows the confirmation dialog with each claim laid out.
-3. On accept, POSTs an `APIBinding` into the tenant's workspace:
-   ```yaml
-   apiVersion: apis.kcp.io/v1alpha1
-   kind: APIBinding
-   metadata:
-     name: my-provider-binding
-   spec:
-     reference:
-       export:
-         path: "root:kedge:providers:my-provider"
-         name: "my-provider.providers.kedge.faros.sh"
-     permissionClaims:
-       - { group: "", resource: configmaps, state: Accepted, ... }
-   ```
-4. kcp resolves the bind (the hub's `ApplyBindGrant` already authorized `system:authenticated` to bind your export, so this succeeds).
-5. The portal refreshes; the provider's resources are now visible in the tenant's workspace.
-
-The disable flow is the inverse: delete the `APIBinding` and kcp cleans up the materialized resources.
-
-## Discovering bound providers from the portal
-
-The portal lists `APIBinding`s in the tenant workspace and matches `spec.reference.export.path` against the catalog to figure out which providers are enabled for the current tenant. That drives the side nav: enabled providers (with UIs) appear in the nav; unbound providers are visible only in the catalog page.
-
-## First-party variant
-
-First-party providers don't need a `CatalogEntry` YAML — the hub's bootstrap creates one automatically from the `BuiltinSpec` registered in Go. The CRDs ship in the hub repo under `config/crds/` and `config/kcp/apiresourceschema-*.yaml`, and the bootstrap applies them at startup before creating the export.
-
-If your first-party provider needs CRDs, the conventional places to add them are:
-
-```
-config/crds/<your>.kedge.faros.sh_<resource>.yaml      # for plain CRDs
-config/kcp/apiresourceschema-<resource>.<group>.yaml   # for the kcp schema
-pkg/hub/bootstrap/crds/...                              # for the embedded copy the hub installer applies
+```yaml
+apiExport:
+  name: "kuery.providers.kedge.faros.sh"
+  permissionClaims:
+    - group: "edges.kedge.faros.sh"
+      resource: kubernetesclusters
+      verbs: [get, list, watch]
+      tenantScoped: true
 ```
 
-The CI codegen pipeline (`make codegen`) keeps these in sync with the Go types under `apis/<group>/v1alpha1/`.
+Rules of the road:
 
-## Beyond the basics
+- **`tenantScoped: true`** marks a claim as bounded to the binding tenant's own workspace — the common, auto-acceptable case. Claims that aren't tenant-scoped are refused unless a platform admin overrides with the `kedge.faros.sh/accept-untrusted-claims` annotation.
+- **First-party claim groups need an identity hash.** Claiming a `*.faros.sh` group (like the kuery example above) requires the export's `identityHash`, which the platform admin supplies at deploy time (it's a Helm value, visible in the hub's admin view). Built-in Kubernetes types (empty group — `configmaps`, `secrets`) need none.
+- **Don't over-claim.** Each claim is rendered in the Enable dialog and is friction plus security review for every tenant. Start with the narrowest set you need.
 
-What this page doesn't cover yet:
+The claims live in two places: on the **APIExport** (where kcp enforces them) and mirrored on the **CatalogEntry** (where the portal renders the Enable dialog). Keep them in sync — the dialog shows the CatalogEntry copy, kcp enforces the export copy.
 
-- **Writing the controller**: the standard kcp APIExport-controller pattern with the virtual-workspace client. The existing providers (`providers/kubernetesedges/controllers/`) are good references.
-- **Status subresource conventions**: how kedge providers report `phase` + `conditions`.
-- **Webhook admission**: optional, same shape as any kcp APIExport that ships webhooks.
+## What the tenant sees
 
-The [Virtual Workspace guide](/docs/providers/virtual-workspace/) covers the *other* kind of HTTP surface — handlers mounted at `/services/` that aren't tied to CRDs.
+After Enable, your resources are ordinary objects in the tenant workspace:
+
+```bash
+kubectl get greetings.quickstart.providers.kedge.faros.sh
+kubectl apply -f my-greeting.yaml
+```
+
+Status subresource conventions follow the kedge house style: a `phase` string for at-a-glance state plus `conditions[]` (with `Ready` as the summary condition) for machine consumption. Every shipped provider follows this; tenants and the portal rely on it.
+
+## Consuming your API from controllers
+
+Defining the API is half the story — reconciling it across all tenant workspaces is the other half, and that's the [virtual workspace](/docs/providers/virtual-workspace/) guide.
