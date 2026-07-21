@@ -60,7 +60,7 @@ languageName ="English"
 weight = 1
 [languages.en.params]
 title = "faros"
-description = "faros — the open-source harness for platform engineering. Build your own AI-native platform with guardrails: multi-tenant control plane, infrastructure templates, git repos, edge clusters, hosted AI agents, and tenancy-scoped MCP tools. Apache 2.0, free forever."
+description = "faros — give AI agents a platform, not root. The open-source, AI-native platform layer: multi-tenant control plane, infrastructure templates, git repos, edge clusters, hosted AI agents, and tenancy-scoped MCP tools with guardrails built in. Apache 2.0, free forever."
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"

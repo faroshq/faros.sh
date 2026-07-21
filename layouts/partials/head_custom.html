@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="faros">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — the open-source harness for platform engineering" }}{{ else }}{{ .Title }} : faros{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — give AI agents a platform, not root" }}{{ else }}{{ .Title }} : faros{{ end }}">
 {{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
 <meta property="og:image" content="{{ "logo.png" | absURL }}">
 

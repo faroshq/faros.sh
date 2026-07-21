@@ -31,27 +31,27 @@
 
       <!-- Title -->
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]">
-        <span class="text-gray-900 dark:text-white">The harness for</span>
+        <span class="text-gray-900 dark:text-white">Give AI agents a platform.</span>
         <br>
-        <span class="kedge-gradient-text">platform engineering</span>
+        <span class="kedge-gradient-text">Not root.</span>
       </h1>
 
       <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
         <strong class="text-gray-900 dark:text-white">Batteries included, guardrails on.</strong>
-        faros is the open-source, multi-tenant control plane your team — and your AI agents — operate
-        through one governed surface: infrastructure templates, git repos, edge clusters, hosted agents,
+        faros is the open-source, AI-native platform layer: a multi-tenant control plane where
+        infrastructure templates, git repos, edge clusters, and hosted agents ship as pluggable providers —
         every capability exposed as <strong>MCP tools with tenancy built in</strong>.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14">
-        <a href="/docs/getting-started/quickstart/" class="kedge-btn-primary group">
-          Get started
+        <a href="https://console-dev.faros.sh/" class="kedge-btn-primary group">
+          Create your workspace
           <span class="ml-2 opacity-60 group-hover:opacity-100 transition-opacity">→</span>
         </a>
         <a href="https://github.com/faroshq/kedge" class="kedge-btn-secondary">
           {{ $ghIcon | safeHTML }}
-          GitHub
+          GitHub<span class="kedge-star-badge" data-kedge-stars></span>
         </a>
       </div>
 
@@ -186,7 +186,7 @@
     <div class="text-center mb-14">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Guardrails</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Give AI agents a platform, <span class="kedge-gradient-text">not root.</span>
+        Guardrails as architecture, <span class="kedge-gradient-text">not policy docs.</span>
       </h2>
       <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
         Agents operating infrastructure today get one of two things: nothing, or a god-mode kubeconfig.
@@ -1083,6 +1083,20 @@
 .kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-default { display: none; }
 .kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-done { display: inline-block; }
 
+/* GitHub star count in the hero button — hidden until JS fills it */
+.kedge-star-badge {
+  margin-left: 0.55rem;
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(124, 91, 245, 0.12);
+  border: 1px solid rgba(124, 91, 245, 0.25);
+  color: #7c5bf5;
+}
+.dark .kedge-star-badge { color: #9b85f7; }
+.kedge-star-badge:empty { display: none; }
+
 /* ─────────── Product frame (agents UI demo / placeholder) ─────────── */
 
 .kedge-product-frame {
@@ -1414,7 +1428,6 @@
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
 
   /* ---------- 1. Node constellation behind the hero ----------
      Drifting nodes that link up when close — edges dialing into a hub. */
@@ -1589,7 +1602,34 @@
     });
   }
 
-  function boot() { initNet(); initTerm(); initReveals(); }
+  /* ---------- 4. GitHub stars (proof) ----------
+     Fills [data-kedge-stars]; silent on API failure or private repo. */
+  function initStars() {
+    var els = document.querySelectorAll("[data-kedge-stars]");
+    if (!els.length || !window.fetch) return;
+    var KEY = "kedge-gh-stars", TTL = 24 * 60 * 60 * 1000;
+    function show(n) {
+      var label = n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
+      els.forEach(function (el) { el.textContent = "★ " + label; });
+    }
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+    if (cached && Date.now() - cached.t < TTL) { show(cached.n); return; }
+    fetch("https://api.github.com/repos/faroshq/kedge")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && typeof d.stargazers_count === "number") {
+          show(d.stargazers_count);
+          try { localStorage.setItem(KEY, JSON.stringify({ n: d.stargazers_count, t: Date.now() })); } catch (e) {}
+        }
+      })
+      .catch(function () {});
+  }
+
+  function boot() {
+    if (!reduceMotion) { initNet(); initTerm(); initReveals(); }
+    initStars();
+  }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {

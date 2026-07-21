@@ -1,4 +1,4 @@
 ---
-title: faros — the open-source harness for platform engineering
-description: Build your own AI-native internal developer platform with guardrails. faros is an open-source, multi-tenant control plane — infrastructure templates, git repos, edge clusters, and hosted AI agents, every capability exposed as tenancy-scoped MCP tools. Self-host in an evening or use the hosted hub free. Apache 2.0.
+title: faros — give AI agents a platform, not root
+description: faros is the open-source, AI-native platform layer for platform engineering. A multi-tenant control plane with batteries-included providers — infrastructure templates, git repos, edge clusters, hosted AI agents — every capability exposed as tenancy-scoped MCP tools with guardrails built in. Self-host in an evening or start free on the hosted hub. Apache 2.0.
 ---
