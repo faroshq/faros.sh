@@ -14,8 +14,57 @@
   <title> faros </title>
 {{ end }}
 
-{{ with .Description }}
+{{ $desc := .Description | default .Site.Params.description }}
+{{ with $desc }}
 <meta name="description" content="{{ . }}"> {{ end }}
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="faros">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — the open-source harness for platform engineering" }}{{ else }}{{ .Title }} : faros{{ end }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:image" content="{{ "logo.png" | absURL }}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "faros" }}{{ else }}{{ .Title }} : faros{{ end }}">
+{{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+<meta name="twitter:image" content="{{ "logo.png" | absURL }}">
+
+{{ if .IsHome }}
+<!-- Structured data: the product + the org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "faros",
+      "alternateName": "kedge",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Kubernetes",
+      "description": {{ $desc | jsonify }},
+      "url": "https://faros.sh/",
+      "downloadUrl": "https://downloads.faros.sh/install.sh",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "sameAs": ["https://github.com/faroshq/kedge"]
+    },
+    {
+      "@type": "Organization",
+      "name": "faroshq",
+      "url": "https://faros.sh/",
+      "logo": "https://faros.sh/logo.png",
+      "sameAs": ["https://github.com/faroshq"]
+    }
+  ]
+}
+</script>
+{{ end }}
 <!-- noindex meta -->
 {{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
 {{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}

@@ -1,8 +1,9 @@
-<!-- ============================================================ -->
-<!-- kedge homepage — styled to match the kedge console aesthetic -->
-<!-- Violet accent (#7c5bf5) · Emerald (#34d399) · Glass panels   -->
-<!-- Sections: hero · architecture · platform · quickstart · oss  -->
-<!-- ============================================================ -->
+<!-- ================================================================ -->
+<!-- kedge homepage — "the harness for platform engineering"          -->
+<!-- Violet accent (#7c5bf5) · Emerald (#34d399) · Glass panels       -->
+<!-- Sections: hero · guardrails · providers · architecture ·         -->
+<!--           compare · quickstart · oss                             -->
+<!-- ================================================================ -->
 
 {{ $ghIcon := `<svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>` }}
 
@@ -29,26 +30,27 @@
 
       <!-- Title -->
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]">
-        <span class="kedge-gradient-text">One control plane</span>
+        <span class="text-gray-900 dark:text-white">The harness for</span>
         <br>
-        <span class="text-gray-900 dark:text-white">for everything you run</span>
+        <span class="kedge-gradient-text">platform engineering</span>
       </h1>
 
       <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
-        <strong class="text-gray-900 dark:text-white">faros</strong> connects your Kubernetes clusters and bare-metal servers through a single hub —
-        <strong>no VPNs, no open firewall ports, no kubeconfig juggling</strong> — then grows into a platform:
-        application templates, git repos, hosted AI agents, and fleet-wide query, all multi-tenant and all reachable by AI through one MCP endpoint.
+        <strong class="text-gray-900 dark:text-white">Batteries included, guardrails on.</strong>
+        faros is the open-source, multi-tenant control plane your team — and your AI agents — operate
+        through one governed surface: infrastructure templates, git repos, edge clusters, hosted agents,
+        every capability exposed as <strong>MCP tools with tenancy built in</strong>.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14">
-        <a href="https://github.com/faroshq/kedge" class="kedge-btn-primary group">
-          {{ $ghIcon | safeHTML }}
-          Star on GitHub
+        <a href="/docs/getting-started/quickstart/" class="kedge-btn-primary group">
+          Get started
           <span class="ml-2 opacity-60 group-hover:opacity-100 transition-opacity">→</span>
         </a>
-        <a href="/docs/getting-started/quickstart/" class="kedge-btn-secondary">
-          Quickstart
+        <a href="https://github.com/faroshq/kedge" class="kedge-btn-secondary">
+          {{ $ghIcon | safeHTML }}
+          GitHub
         </a>
       </div>
 
@@ -73,7 +75,7 @@
         </div>
       </div>
 
-      <!-- Terminal demo -->
+      <!-- Terminal demo — a human sets up, an agent operates, a guardrail holds -->
       <div class="kedge-terminal mx-auto max-w-3xl text-left">
         <div class="flex items-center justify-between px-5 py-3 border-b border-white/5">
           <div class="flex items-center gap-2">
@@ -85,31 +87,144 @@
           <span class="text-xs font-mono text-gray-500">~ </span>
         </div>
         <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code><span class="kedge-prompt">$</span> kedge login
-<span class="kedge-ok">✓ authenticated · personal workspace ready</span>
-
-<span class="kedge-prompt">$</span> kedge edge create home-lab
-<span class="kedge-info">→ edge registered · join command ready · agent dials back</span>
-
-<span class="kedge-prompt">$</span> kubectl --kubeconfig &lt;(kedge kubeconfig edge home-lab) get nodes
-<span class="kedge-ok">NAME       STATUS   ROLES           AGE   VERSION</span>
-<span class="kedge-ok">edge-01    Ready    control-plane   12d   v1.30.0</span>
+<span class="kedge-ok">✓ authenticated · workspace ready — your own isolated tenant</span>
 
 <span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default
-<span class="kedge-accent">https://hub/.../mcp · clusters + servers + providers · Claude-ready</span></code></pre>
+<span class="kedge-accent">https://hub/…/mcp · every provider's tools · Claude-ready</span>
+
+<span class="kedge-claude">claude&gt;</span> deploy postgres for billing on the home-lab cluster
+<span class="kedge-info">→ mcp: infrastructure__provision template=postgres target=home-lab</span>
+<span class="kedge-ok">✓ provisioned · gateway route wired · OIDC on</span>
+
+<span class="kedge-claude">claude&gt;</span> now delete namespace kube-system
+<span class="kedge-err">✗ denied — outside workspace scope · request logged</span></code></pre>
       </div>
 
     </div>
   </div>
 
-  <!-- ============= ARCHITECTURE ============= -->
+  <!-- ============= GUARDRAILS ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Guardrails</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Give AI agents a platform, <span class="kedge-gradient-text">not root.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Agents operating infrastructure today get one of two things: nothing, or a god-mode kubeconfig.
+        faros gives them a third option — a governed platform where the guardrails are architecture, not policy documents.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Isolated by construction</h3>
+        <p class="kedge-card-text">Every team is its own workspace — a full logical cluster with its own APIs, RBAC, and quota. An agent physically cannot see what tenancy doesn't grant. Isolation isn't a setting; it's the substrate.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Everything is an API resource</h3>
+        <p class="kedge-card-text">Provisioning, repos, agents, edges — all declarative resources, not imperative side-doors. Every action an agent takes is a recorded object you can audit, diff, and revert. No mystery mutations.</p>
+      </div>
+
+      <div class="kedge-card">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+        </div>
+        <h3 class="kedge-card-title">MCP tools are derived, not bolted on</h3>
+        <p class="kedge-card-text">One MCP endpoint per tenant, and every tool inherits that workspace's permissions automatically. No god-mode gateway token, no separate tool catalog to govern — the platform and the tools are the same authority.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============= PLATFORM / PROVIDERS ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Batteries included</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Every capability is a <span class="kedge-gradient-text">provider.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        A provider is a pluggable building block: its own pod, its own release cycle, enabled per workspace —
+        UI, API, and MCP tools included. These ship in the box:
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+
+      <a href="/docs/providers/catalog/#edges" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Edges</h3>
+        <p class="kedge-card-text">Clusters, servers, and the apps beside them — deploy workloads across the fleet, control Home Assistant and friends via discovered services.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#infrastructure" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Application Templates</h3>
+        <p class="kedge-card-text">Provision databases, caches, workers, and full apps from a curated template catalog — Gateway-API exposure and OIDC included.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#agents" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">AI Agents</h3>
+        <p class="kedge-card-text">Host persistent AI agents with schedules, triggers, memory, budgets, and Telegram/Slack channels — declared as platform resources, using every other provider's tools.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#code" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-violet">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Code</h3>
+        <p class="kedge-card-text">Git repositories, deploy keys, collaborators, and packages as declarative resources — GitHub first, more hosts pluggable.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#kuery" class="kedge-card block !no-underline">
+        <div class="kedge-card-icon kedge-icon-emerald">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Kuery</h3>
+        <p class="kedge-card-text">Fleet-wide object search and impact analysis — "who consumes this Secret?" — one query instead of N kubectl round-trips.</p>
+      </a>
+
+      <a href="/docs/providers/" class="kedge-card kedge-card-build block !no-underline">
+        <div class="kedge-card-icon kedge-icon-cyan">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </div>
+        <h3 class="kedge-card-title">Build your own</h3>
+        <p class="kedge-card-text">This is the harness part. A provider is a standalone pod — your API, controllers, UI, and MCP tools, plugged into the hub's tenancy, proxies, and guardrails. The docs walk you through it.</p>
+      </a>
+
+    </div>
+
+    <div class="text-center">
+      <a href="/docs/providers/catalog/" class="kedge-btn-secondary">Explore the provider catalog</a>
+    </div>
+  </div>
+
+  <!-- ============= ARCHITECTURE / CONNECTIVITY ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-12">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Architecture</p>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Connectivity</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
         Agents dial out. You log in.
       </h2>
       <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        The hub is the only thing with a public endpoint. Everything else stays behind its firewall — and still becomes reachable.
+        The hub is the only thing with a public endpoint. Clusters and servers behind NAT, firewalls, or a home router
+        dial out and become part of your platform — no VPNs, no open ports, no kubeconfig juggling.
       </p>
     </div>
 
@@ -120,8 +235,8 @@
         <div class="text-center md:text-right">
           <div class="kedge-tile inline-flex flex-col items-center px-6 py-5">
             <svg class="w-8 h-8 text-violet-500 dark:text-violet-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
-            <span class="font-semibold text-gray-900 dark:text-white">Your laptop</span>
-            <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">kubectl · kedge · ssh</span>
+            <span class="font-semibold text-gray-900 dark:text-white">You &amp; your agents</span>
+            <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">kubectl · kedge · ssh · mcp</span>
           </div>
         </div>
 
@@ -189,72 +304,39 @@
     </div>
   </div>
 
-  <!-- ============= PLATFORM / PROVIDERS ============= -->
+  <!-- ============= COMPARE / TIME TO PLATFORM ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Platform</p>
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Time to platform</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Connectivity is the floor. <span class="kedge-gradient-text">Providers are the building.</span>
+        An evening. <span class="kedge-gradient-text">Not a quarter.</span>
       </h2>
       <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Every capability beyond raw connectivity ships as a <strong>provider</strong> — its own pod, its own release cycle, enabled per workspace. These ship in the box:
+        Today's platform market makes you choose: rent something closed in minutes, or spend months assembling something you own.
+        faros refuses the trade.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+    <div class="grid md:grid-cols-3 gap-4">
 
-      <a href="/docs/providers/catalog/#edges" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Edges</h3>
-        <p class="kedge-card-text">Clusters, servers, and the apps beside them — deploy workloads across the fleet, control Home Assistant and friends via discovered services.</p>
-      </a>
+      <div class="kedge-card kedge-card-dim">
+        <h3 class="kedge-card-title">Assemble-it-yourself portals</h3>
+        <p class="kedge-card-text">Scaffold the app, wire the database, pick the plugins, staff the team. Months to first value, a dedicated crew to keep it alive — before a single guardrail exists for AI.</p>
+        <div class="kedge-compare-foot">6–12 months · dedicated engineers</div>
+      </div>
 
-      <a href="/docs/providers/catalog/#infrastructure" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Application Templates</h3>
-        <p class="kedge-card-text">Provision databases, caches, workers, and full apps from a curated template catalog — Gateway-API exposure and OIDC included.</p>
-      </a>
+      <div class="kedge-card kedge-card-dim">
+        <h3 class="kedge-card-title">Per-seat platform SaaS</h3>
+        <p class="kedge-card-text">Live in minutes — but closed source, priced per seat or per month in the thousands, and your platform's control plane belongs to someone else.</p>
+        <div class="kedge-compare-foot">from ~€2k/mo or $30+/seat · rented</div>
+      </div>
 
-      <a href="/docs/providers/catalog/#agents" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">AI Agents</h3>
-        <p class="kedge-card-text">Host persistent AI agents with schedules, triggers, memory, budgets, and Telegram/Slack channels — using every other provider's tools.</p>
-      </a>
+      <div class="kedge-card kedge-card-win">
+        <h3 class="kedge-card-title">faros</h3>
+        <p class="kedge-card-text">Hosted hub: two commands, free. Self-hosted: two Helm charts on any Kubernetes cluster, running by tonight. Open source top to bottom — the whole stack is yours either way.</p>
+        <div class="kedge-compare-foot kedge-compare-foot-win">minutes hosted · an evening self-hosted · $0</div>
+      </div>
 
-      <a href="/docs/providers/catalog/#code" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Code</h3>
-        <p class="kedge-card-text">Git repositories, deploy keys, collaborators, and packages as declarative resources — GitHub first, more hosts pluggable.</p>
-      </a>
-
-      <a href="/docs/providers/catalog/#kuery" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Kuery</h3>
-        <p class="kedge-card-text">Fleet-wide object search and impact analysis — "who consumes this Secret?" — one query instead of N kubectl round-trips.</p>
-      </a>
-
-      <a href="/docs/providers/" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Build your own</h3>
-        <p class="kedge-card-text">A provider is a standalone pod: your API, controllers, UI, and MCP tools, plugged into the hub's proxies and tenancy. The docs walk you through it.</p>
-      </a>
-
-    </div>
-
-    <div class="text-center">
-      <a href="/docs/providers/catalog/" class="kedge-btn-secondary">Explore the provider catalog</a>
     </div>
   </div>
 
@@ -263,7 +345,7 @@
     <div class="text-center mb-14">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Quickstart</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Four commands to a live edge.
+        Four commands to a live platform.
       </h2>
     </div>
 
@@ -282,7 +364,7 @@
         <div class="kedge-step-num">2</div>
         <div class="flex-1 min-w-0">
           <h4 class="kedge-step-title">Log in</h4>
-          <p class="kedge-step-text">Authenticate to the hosted hub.</p>
+          <p class="kedge-step-text">Authenticate to the hosted hub — your isolated workspace is created on the spot.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge login</code></pre>
         </div>
       </div>
@@ -300,8 +382,8 @@
       <div class="kedge-step">
         <div class="kedge-step-num">4</div>
         <div class="flex-1 min-w-0">
-          <h4 class="kedge-step-title">Use it</h4>
-          <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells, MCP for AI agents.</p>
+          <h4 class="kedge-step-title">Hand it to your agents</h4>
+          <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells — and one MCP URL that gives Claude every provider's tools, scoped to your workspace.</p>
           <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge kubeconfig edge my-cluster &gt; kc.yaml
 <span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default</code></pre>
         </div>
@@ -327,7 +409,8 @@
 
       <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
         faros is fully open source — hub, portal, and every provider. Self-host it anywhere: VPS, home server, behind a Cloudflare tunnel.
-        No paywalled features, no upsell tiers, no usage limits. Unlimited edges. Fork it, audit it, ship it — the whole stack is yours.
+        No paywalled features, no usage limits, and <strong class="text-gray-900 dark:text-white">no per-seat pricing — platforms shouldn't tax headcount</strong>.
+        Unlimited edges. Fork it, audit it, ship it — the whole stack is yours.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -383,7 +466,7 @@
   border-color: rgba(124, 91, 245, 0.25);
 }
 
-/* Gradient text — hero + platform headings only */
+/* Gradient text — hero + section headings only */
 .kedge-gradient-text {
   background: linear-gradient(135deg, #0f172a 0%, #7c5bf5 50%, #10b981 100%);
   -webkit-background-clip: text;
@@ -472,9 +555,11 @@
 }
 .kedge-terminal pre { background: transparent; margin: 0; }
 .kedge-prompt { color: #7c5bf5; font-weight: 600; }
+.kedge-claude { color: #34d399; font-weight: 600; }
 .kedge-ok { color: #34d399; }
 .kedge-info { color: #60a5fa; }
 .kedge-accent { color: #9b85f7; }
+.kedge-err { color: #f87171; }
 .kedge-muted { color: #7e7e96; font-style: italic; }
 
 /* Quick command card — the prominent install one-liner */
@@ -712,7 +797,7 @@
 }
 .dark .kedge-feature-text { color: #7e7e96; }
 
-/* Provider cards */
+/* Provider / guardrail / compare cards */
 .kedge-card {
   position: relative;
   padding: 1.5rem;
@@ -763,6 +848,48 @@
   color: #4a5568;
 }
 .dark .kedge-card-text { color: #7e7e96; }
+
+/* "Build your own" card gets a subtle violet ring — it's the harness pitch */
+.kedge-card-build {
+  border-color: rgba(124, 91, 245, 0.3);
+}
+.dark .kedge-card-build {
+  border-color: rgba(124, 91, 245, 0.35);
+}
+
+/* Compare cards */
+.kedge-card-dim { opacity: 0.85; }
+.kedge-card-win {
+  border-color: rgba(52, 211, 153, 0.35);
+  background:
+    radial-gradient(ellipse at top, rgba(52,211,153,0.05) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.75);
+}
+.dark .kedge-card-win {
+  border-color: rgba(52, 211, 153, 0.4);
+  background:
+    radial-gradient(ellipse at top, rgba(52,211,153,0.07) 0%, transparent 60%),
+    rgba(13, 13, 20, 0.75);
+}
+.kedge-card-win:hover {
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 12px 28px -10px rgba(52, 211, 153, 0.2);
+}
+.kedge-compare-foot {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: #64748b;
+}
+.dark .kedge-compare-foot {
+  border-top-color: rgba(255, 255, 255, 0.06);
+  color: #7e7e96;
+}
+.kedge-compare-foot-win { color: #10b981; }
+.dark .kedge-compare-foot-win { color: #34d399; }
 
 .kedge-link {
   color: #7c5bf5;
