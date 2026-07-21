@@ -104,6 +104,83 @@
     </div>
   </div>
 
+  <!-- ============= PRODUCT ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-10">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">In action</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Agents, operating <span class="kedge-gradient-text">your platform.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Create an agent, give it a budget and provider tools, and watch it work —
+        inside your workspace, inside the guardrails.
+      </p>
+    </div>
+
+    <div class="kedge-product-frame mx-auto max-w-5xl">
+      <div class="kedge-product-chrome">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500/70"></span>
+        </div>
+        <div class="kedge-product-urlbar">console.faros.sh/agents</div>
+        <div class="w-12"></div>
+      </div>
+      <div class="kedge-product-media">
+        <!-- PLACEHOLDER — drop the agents UI capture at static/images/agents-ui.gif
+             and it replaces the skeleton below automatically (no code change).
+             Using another format? Just update the src (e.g. agents-ui.webp). -->
+        <img src="/images/agents-ui.gif"
+             alt="faros agents UI — creating a hosted AI agent and chatting with it"
+             loading="lazy"
+             onerror="this.parentElement.classList.add('kedge-media-missing')">
+        <div class="kedge-product-skeleton" aria-hidden="true">
+          <div class="kedge-skel-side">
+            <div class="kedge-skel-dot"></div>
+            <div class="kedge-skel-line" style="width:80%"></div>
+            <div class="kedge-skel-line" style="width:65%"></div>
+            <div class="kedge-skel-line kedge-skel-active" style="width:88%"></div>
+            <div class="kedge-skel-line" style="width:70%"></div>
+            <div class="kedge-skel-line" style="width:58%"></div>
+          </div>
+          <div class="kedge-skel-main">
+            <div class="kedge-skel-topbar">
+              <div class="kedge-skel-line" style="width:130px"></div>
+              <div class="kedge-skel-chip"></div>
+            </div>
+            <div class="kedge-skel-cards">
+              <div class="kedge-skel-card">
+                <div class="kedge-skel-dot kedge-skel-dot-violet"></div>
+                <div class="kedge-skel-line" style="width:75%"></div>
+                <div class="kedge-skel-line" style="width:50%"></div>
+              </div>
+              <div class="kedge-skel-card">
+                <div class="kedge-skel-dot kedge-skel-dot-emerald"></div>
+                <div class="kedge-skel-line" style="width:65%"></div>
+                <div class="kedge-skel-line" style="width:55%"></div>
+              </div>
+              <div class="kedge-skel-card">
+                <div class="kedge-skel-dot kedge-skel-dot-cyan"></div>
+                <div class="kedge-skel-line" style="width:70%"></div>
+                <div class="kedge-skel-line" style="width:45%"></div>
+              </div>
+            </div>
+            <div class="kedge-skel-chat">
+              <div class="kedge-skel-bubble" style="width:52%"></div>
+              <div class="kedge-skel-bubble kedge-skel-bubble-me" style="width:38%"></div>
+              <div class="kedge-skel-bubble" style="width:60%"></div>
+            </div>
+          </div>
+          <div class="kedge-skel-badge">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 kedge-pulse"></span>
+            Live demo — coming right here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ============= GUARDRAILS ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
@@ -1005,6 +1082,172 @@
 }
 .kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-default { display: none; }
 .kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-done { display: inline-block; }
+
+/* ─────────── Product frame (agents UI demo / placeholder) ─────────── */
+
+.kedge-product-frame {
+  background: #0d0d14;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px -24px rgba(124, 91, 245, 0.28),
+    0 16px 40px -12px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.kedge-product-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.kedge-product-urlbar {
+  flex: 1;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 0.28rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: #7e7e96;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kedge-product-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0a0a10;
+}
+.kedge-product-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Skeleton shows only while the real capture is missing */
+.kedge-product-skeleton { display: none; }
+.kedge-media-missing img { display: none; }
+.kedge-media-missing .kedge-product-skeleton {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+}
+@media (max-width: 640px) {
+  .kedge-media-missing .kedge-product-skeleton { grid-template-columns: 90px 1fr; }
+}
+.kedge-skel-side {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.kedge-skel-main {
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+}
+.kedge-skel-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.kedge-skel-line {
+  height: 9px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  position: relative;
+  overflow: hidden;
+}
+.kedge-skel-line.kedge-skel-active { background: rgba(124, 91, 245, 0.28); }
+.kedge-skel-chip {
+  width: 84px;
+  height: 26px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(124,91,245,0.5) 0%, rgba(109,79,224,0.5) 100%);
+}
+.kedge-skel-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.09);
+}
+.kedge-skel-dot-violet  { background: rgba(124, 91, 245, 0.4); }
+.kedge-skel-dot-emerald { background: rgba(52, 211, 153, 0.35); }
+.kedge-skel-dot-cyan    { background: rgba(6, 182, 212, 0.35); }
+.kedge-skel-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.kedge-skel-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+.kedge-skel-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+}
+.kedge-skel-bubble {
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.kedge-skel-bubble-me {
+  align-self: flex-end;
+  background: rgba(124, 91, 245, 0.25);
+}
+.kedge-skel-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: rgba(13, 13, 20, 0.85);
+  border: 1px solid rgba(124, 91, 245, 0.35);
+  color: #c0c0d6;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+/* Shimmer sweep across skeleton lines */
+@media (prefers-reduced-motion: no-preference) {
+  .kedge-skel-line::after, .kedge-skel-bubble::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: kedge-shimmer 2.4s ease-in-out infinite;
+  }
+  .kedge-skel-bubble { position: relative; overflow: hidden; }
+}
+@keyframes kedge-shimmer {
+  60%, 100% { transform: translateX(100%); }
+}
 
 /* ─────────── Motion (all gated on prefers-reduced-motion) ─────────── */
 
