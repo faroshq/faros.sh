@@ -11,21 +11,21 @@ All traffic between users and your provider flows through the hub. Two reverse p
 Serves your static frontend assets (from `spec.ui.url`). No token is forwarded — it's assets only. Two behaviors to know:
 
 - Only paths whose last segment looks like a file (contains a `.` — `main.js`, `icon.svg`, `assets/x-abc123.js`) are proxied. Bare SPA routes fall through to the portal shell, so a hard refresh on `/providers/you/some/route` keeps the portal chrome and remounts your element.
-- The proxy injects `X-Kedge-Base-Path` so your server can render relative asset paths if it needs to.
+- The proxy injects `X-Faros-Base-Path` so your server can render relative asset paths if it needs to.
 
 ## The backend proxy — `/services/providers/<name>/*`
 
 Everything dynamic: REST, GraphQL, WebSocket, MCP. For each request the hub:
 
 1. Authenticates the caller (OIDC, static token, or service account) and resolves their active workspace.
-2. **Strips any inbound `X-Kedge-*` headers** — a client can never forge identity.
-3. Injects verified `X-Kedge-User`, `X-Kedge-Tenant` (workspace path), and `X-Kedge-Cluster` (logical cluster ID).
+2. **Strips any inbound `X-Faros-*` headers** — a client can never forge identity.
+3. Injects verified `X-Faros-User`, `X-Faros-Tenant` (workspace path), and `X-Faros-Cluster` (logical cluster ID).
 4. Forwards the caller's `Authorization` header untouched.
 5. Streams without buffering (`FlushInterval: -1`), so SSE, WebSockets, and long-lived tunnels work.
 
-Your handler's contract: trust the `X-Kedge-*` headers (they're hub-asserted), act as the caller using the bearer token ([pattern B](/docs/providers/virtual-workspace/#the-two-identity-patterns)), and never accept those headers from any other path into your process.
+Your handler's contract: trust the `X-Faros-*` headers (they're hub-asserted), act as the caller using the bearer token ([pattern B](/docs/providers/virtual-workspace/#the-two-identity-patterns)), and never accept those headers from any other path into your process.
 
-A minimal backend endpoint (quickstart's `/api/hello`) just echoes `X-Kedge-User` back — that's the whole integration test for the proxy contract.
+A minimal backend endpoint (quickstart's `/api/hello`) just echoes `X-Faros-User` back — that's the whole integration test for the proxy contract.
 
 ## The revdial reverse tunnel
 
@@ -42,7 +42,7 @@ Providers that talk to agents behind NAT (the `edges` provider) use the SDK's **
 CRUD on resources goes through kcp; everything else — streams, exec, proxying into an edge — is served as **HTTP subresource paths** on your backend, styled after the Kubernetes API so they read naturally. The edges provider is the reference:
 
 ```
-/services/providers/edges/agent/{cluster}/apis/edges.kedge.faros.sh/v1alpha1/{resource}/{name}/proxy
+/services/providers/edges/agent/{cluster}/apis/edges.faros.sh/v1alpha1/{resource}/{name}/proxy
     ← agent control-tunnel ingress (the agent dials this)
 
 /services/providers/edges/edgeproxy/clusters/{cluster}/.../{name}/k8s

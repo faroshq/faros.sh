@@ -105,10 +105,10 @@ helm upgrade --install --wait \
   strrl.dev/cloudflare-tunnel-ingress-controller \
   --set=cloudflare.apiToken="YOUR_CLOUDFLARE_API_TOKEN" \
   --set=cloudflare.accountId="YOUR_CLOUDFLARE_ACCOUNT_ID" \
-  --set=cloudflare.tunnelName="kedge-tunnel"
+  --set=cloudflare.tunnelName="faros-tunnel"
 ```
 
-In the [Cloudflare Zero Trust dashboard](https://one.dash.cloudflare.com) → **Networks → Tunnels** you should see `kedge-tunnel` as **Healthy**.
+In the [Cloudflare Zero Trust dashboard](https://one.dash.cloudflare.com) → **Networks → Tunnels** you should see `faros-tunnel` as **Healthy**.
 
 ## Step 4 — Deploy the hub
 
@@ -144,9 +144,9 @@ ingress:
 ```
 
 ```bash
-helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
+helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
   -f values-cloudflare.yaml \
-  --namespace kedge-system \
+  --namespace faros-system \
   --create-namespace
 ```
 
@@ -154,18 +154,18 @@ helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
 
 ```bash
 # TLS cert ready?
-kubectl -n kedge-system get certificate
-# kedge-kedge-hub-tls   True   ...
+kubectl -n faros-system get certificate
+# faros-faros-hub-tls   True   ...
 
 # Ingress address (will be xxxx.cfargotunnel.com)
-kubectl get ingress -n kedge-system
+kubectl get ingress -n faros-system
 
 # End-to-end
 curl -s https://hub.yourdomain.com/healthz
 # ok
 
 # Log in
-kubectl kedge login --hub-url https://hub.yourdomain.com
+kubectl faros login --hub-url https://hub.yourdomain.com
 ```
 
 ## Exposing additional services through the same tunnel
@@ -204,8 +204,8 @@ Common causes:
 
 ```bash
 kubectl -n cert-manager logs -l app=cert-manager
-kubectl -n kedge-system describe certificate
-kubectl -n kedge-system get certificaterequest,order,challenge
+kubectl -n faros-system describe certificate
+kubectl -n faros-system get certificaterequest,order,challenge
 ```
 
 Most failures here are missing `DNS:Edit` on the API token, or the token doesn't cover the zone.

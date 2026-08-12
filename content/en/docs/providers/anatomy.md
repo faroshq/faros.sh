@@ -8,16 +8,16 @@ A provider's life involves two kcp objects and one bootstrap step, with clear ow
 
 | Piece | Created by | Lives in | Purpose |
 |:------|:-----------|:---------|:--------|
-| `Provider` (`admin.kedge.faros.sh/v1alpha1`) | platform admin | `root:kedge:system:providers` | Provisions the provider workspace, service account, and kubeconfig |
+| `Provider` (`admin.faros.sh/v1alpha1`) | platform admin | `root:faros:system:providers` | Provisions the provider workspace, service account, and kubeconfig |
 | provider `init` subcommand | your binary (initContainer) | runs against your workspace | Creates schemas, APIExport, endpoint slice, bind grant, CatalogEntry |
-| `CatalogEntry` (`providers.kedge.faros.sh/v1alpha1`) | your `init` step | `root:kedge:providers:<name>` | Routing, UI/backend URLs, Enable-dialog metadata |
+| `CatalogEntry` (`providers.faros.sh/v1alpha1`) | your `init` step | `root:faros:providers:<name>` | Routing, UI/backend URLs, Enable-dialog metadata |
 
 ## Step 1 — the admin applies a `Provider`
 
 This is `provider.yaml` in every in-repo provider, and it's tiny — the name is the identity:
 
 ```yaml
-apiVersion: admin.kedge.faros.sh/v1alpha1
+apiVersion: admin.faros.sh/v1alpha1
 kind: Provider
 metadata:
   name: quickstart
@@ -29,24 +29,24 @@ Optional spec fields: `secretName` (override the kubeconfig Secret name, default
 
 The hub's provider reconciler then, idempotently:
 
-1. Creates the workspace `root:kedge:providers:<name>` with the restricted `provider` workspace type and waits for it to be ready.
+1. Creates the workspace `root:faros:providers:<name>` with the restricted `provider` workspace type and waits for it to be ready.
 2. Creates a `default` namespace, a ServiceAccount named `provider`, and a ClusterRoleBinding granting it **cluster-admin inside that workspace only**.
 3. Mints a long-lived service-account token and builds a kubeconfig whose server is `<hub-url>/clusters/<logical-cluster-id>` — the cluster **ID**, not the workspace path (kcp shards only resolve IDs).
-4. Writes the kubeconfig into the Secret `<name>-kubeconfig` in `root:kedge:system:providers`, and sets `status.workspacePath`, `status.workspaceCluster`, `status.secretRef`, and the `Ready` condition.
+4. Writes the kubeconfig into the Secret `<name>-kubeconfig` in `root:faros:system:providers`, and sets `status.workspacePath`, `status.workspaceCluster`, `status.secretRef`, and the `Ready` condition.
 
 > **Deleting a `Provider` is a full teardown.** A finalizer deletes the workspace — cascading the APIExport, schemas, and CatalogEntry — plus the kubeconfig Secret. Tenant `APIBinding`s pointing at the export break. Don't delete a Provider whose API tenants still use.
 
-The `provider` workspace type is deliberately restricted: it can't create child workspaces, and its only default binding is `providers.kedge.faros.sh` — just enough for the provider to self-register its `CatalogEntry`.
+The `provider` workspace type is deliberately restricted: it can't create child workspaces, and its only default binding is `providers.faros.sh` — just enough for the provider to self-register its `CatalogEntry`.
 
 ## Step 2 — your `init` subcommand bootstraps the API
 
-Your Deployment runs an initContainer with `args: ["init"]` and the minted kubeconfig mounted (`KEDGE_PROVIDER_KUBECONFIG=/var/run/secrets/kedge/kedge-provider-kubeconfig`). The kedge provider SDK's `install.Bootstrap` then runs, idempotently and in order:
+Your Deployment runs an initContainer with `args: ["init"]` and the minted kubeconfig mounted (`FAROS_PROVIDER_KUBECONFIG=/var/run/secrets/faros/faros-provider-kubeconfig`). The faros provider SDK's `install.Bootstrap` then runs, idempotently and in order:
 
-1. **Apply schemas** — every `*.yaml` in `KEDGE_SCHEMAS_DIR` (default `/etc/kedge/schemas`, baked into your image) is applied as an `APIResourceSchema`.
+1. **Apply schemas** — every `*.yaml` in `FAROS_SCHEMAS_DIR` (default `/etc/faros/schemas`, baked into your image) is applied as an `APIResourceSchema`.
 2. **Apply the APIExport** — referencing those schemas plus your permission claims. Resource lists are *merged*, not clobbered, so controllers that add entries at runtime coexist with `init`.
 3. **Ensure an `APIExportEndpointSlice`** — this is what your controllers consume to reach the virtual workspace.
-4. **Apply the bind grant** — a ClusterRole/Binding named `kedge:providers:bind:<export>` letting `system:authenticated` create APIBindings to your export. Without it, every tenant Enable fails with a 403.
-5. **Self-register the `CatalogEntry`** — from the file at `KEDGE_CATALOGENTRY_FILE` (the Helm chart renders your `manifest.yaml` into a ConfigMap).
+4. **Apply the bind grant** — a ClusterRole/Binding named `faros:providers:bind:<export>` letting `system:authenticated` create APIBindings to your export. Without it, every tenant Enable fails with a 403.
+5. **Self-register the `CatalogEntry`** — from the file at `FAROS_CATALOGENTRY_FILE` (the Helm chart renders your `manifest.yaml` into a ConfigMap).
 
 Because the kubeconfig Secret mount is non-optional, the pod simply blocks until the hub has provisioned it — natural ordering, no operator choreography.
 
@@ -55,25 +55,25 @@ Because the kubeconfig Secret mount is non-optional, the pod simply blocks until
 The full shape, from the quickstart provider:
 
 ```yaml
-apiVersion: providers.kedge.faros.sh/v1alpha1
+apiVersion: providers.faros.sh/v1alpha1
 kind: CatalogEntry
 metadata:
   name: quickstart
 spec:
   displayName: "Quickstart"
-  description: "Reference provider demonstrating the kedge plugin surface."
-  vendor: "kedge"
+  description: "Reference provider demonstrating the faros plugin surface."
+  vendor: "faros"
   version: "0.1.0"
   category: "Demo"
   iconURL: "/ui/providers/quickstart/icon.svg"
   ui:
-    url: "http://quickstart.kedge.svc.cluster.local:8081"
+    url: "http://quickstart.faros.svc.cluster.local:8081"
     indexPath: "/"
   backend:
-    url: "http://quickstart.kedge.svc.cluster.local:8081"
+    url: "http://quickstart.faros.svc.cluster.local:8081"
     healthPath: "/healthz"
   apiExport:
-    name: "quickstart.providers.kedge.faros.sh"
+    name: "quickstart.providers.faros.sh"
     permissionClaims:
       - resource: configmaps
         verbs: [get, list, watch]
@@ -89,7 +89,7 @@ Field reference:
 | `iconURL` | Portal-relative icon path, served through the UI proxy. |
 | `dependencies[].name` | Providers that must already be enabled in a workspace; Enable returns 409 otherwise. |
 | `ui.url` | Your UI origin. The hub reverse-proxies `/ui/providers/<name>/*` here; the portal loads `main.js` from it as a custom element. |
-| `ui.children[]` | Sub-navigation items (`{displayName, builtinRoute}`); your element reads the active child from `kedgeContext.subPath`. |
+| `ui.children[]` | Sub-navigation items (`{displayName, builtinRoute}`); your element reads the active child from `farosContext.subPath`. |
 | `backend.url` (+ `healthPath`) | Your API origin. Proxied at `/services/providers/<name>/*`; health checked at `healthPath` (default `/healthz`). |
 | `apiExport.name` | The export tenants bind. The export itself is created by `init` — this is a reference, not a definition. |
 | `apiExport.permissionClaims[]` | Mirror of the claims on your export, used to render the Enable dialog. |

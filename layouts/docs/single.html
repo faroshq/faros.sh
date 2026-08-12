@@ -1,25 +1,25 @@
 {{ define "main" }}
-<div class="kedge-docs-shell">
-  <div class="kedge-docs-bg" aria-hidden="true">
-    <div class="absolute inset-0 kedge-dot-grid"></div>
+<div class="faros-docs-shell">
+  <div class="faros-docs-bg" aria-hidden="true">
+    <div class="absolute inset-0 faros-dot-grid"></div>
   </div>
 
   {{ partial "docs-sidebar.html" . }}
 
-  <main class="kedge-docs-main">
-    <article class="kedge-docs-article">
-      <header class="kedge-docs-header">
-        <p class="kedge-docs-eyebrow">{{ with .Parent }}{{ .Title }}{{ else }}Documentation{{ end }}</p>
-        <h1 class="kedge-docs-title">{{ .Title }}</h1>
-        {{ with .Params.description }}<p class="kedge-docs-lead">{{ . }}</p>{{ end }}
+  <main class="faros-docs-main">
+    <article class="faros-docs-article">
+      <header class="faros-docs-header">
+        <p class="faros-docs-eyebrow">{{ with .Parent }}{{ .Title }}{{ else }}Documentation{{ end }}</p>
+        <h1 class="faros-docs-title">{{ .Title }}</h1>
+        {{ with .Params.description }}<p class="faros-docs-lead">{{ . }}</p>{{ end }}
       </header>
 
-      <div class="kedge-docs-body">
+      <div class="faros-docs-body">
         {{ .Content }}
       </div>
 
-      <footer class="kedge-docs-article-foot">
-        <a href="https://github.com/faroshq/kedge/edit/main/docs/{{ .File.LogicalName }}" class="kedge-docs-edit-link" target="_blank" rel="noopener">
+      <footer class="faros-docs-article-foot">
+        <a href="https://github.com/faroshq/faros.sh/edit/main/content/en/{{ .File.Path }}" class="faros-docs-edit-link" target="_blank" rel="noopener">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>
           Edit this page on GitHub
         </a>

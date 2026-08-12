@@ -4,7 +4,7 @@ description: Authentication, organizations and workspaces, service accounts, pla
 weight: 40
 ---
 
-Three pieces make up kedge's security story:
+Three pieces make up faros's security story:
 
 - **Authentication** — how a person or machine proves who they are: a [static token](/docs/security/static-token/) or [OIDC via Dex](/docs/security/oidc/).
 - **Tenancy** — where they can act: [organizations, workspaces, memberships, and service accounts](/docs/security/tenancy/). Every identity gets a personal organization automatically, so single-user hubs never have to think about this.

@@ -40,16 +40,16 @@ hub:
 Apply:
 
 ```bash
-helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
+helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
   -f values.yaml \
-  --namespace kedge-system \
+  --namespace faros-system \
   --create-namespace
 ```
 
 Or pass tokens directly to the binary in non-Helm setups (the flag is repeatable):
 
 ```bash
-kedge-hub \
+faros-hub \
   --static-auth-token=<token-one> \
   --static-auth-token=<token-two> \
   --hub-external-url=https://localhost:9443
@@ -58,17 +58,17 @@ kedge-hub \
 ## 3. Log in with the token
 
 ```bash
-kubectl kedge login \
+kubectl faros login \
   --hub-url https://hub.example.com \
   --token <your-token>
 ```
 
-Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `kedge` with the token embedded.
+Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `faros` with the token embedded.
 
 ## 4. Verify
 
 ```bash
-kubectl kedge edge list
+kubectl faros edge list
 ```
 
 ## Rotating a token

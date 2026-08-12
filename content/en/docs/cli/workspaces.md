@@ -1,6 +1,6 @@
 ---
 title: Organizations & Workspaces
-description: kubectl kedge use and connect — switch orgs, workspaces, and edge clusters.
+description: kubectl faros use and connect — switch orgs, workspaces, and edge clusters.
 weight: 2
 ---
 
@@ -8,12 +8,12 @@ Everything you do on a hub happens inside a **workspace**, which belongs to an *
 
 ## use
 
-`kedge use` (aliases: `switch`, `ctx`) selects the active organization and workspace, rewriting the `kedge` context's server URL so every subsequent command targets that workspace.
+`faros use` (aliases: `switch`, `ctx`) selects the active organization and workspace, rewriting the `faros` context's server URL so every subsequent command targets that workspace.
 
 ```bash
-kubectl kedge use                                  # interactive picker (org, then workspace)
-kubectl kedge use --org acme                       # pick org, then choose workspace interactively
-kubectl kedge use --org acme --workspace platform  # fully scripted, no TTY needed
+kubectl faros use                                  # interactive picker (org, then workspace)
+kubectl faros use --org acme                       # pick org, then choose workspace interactively
+kubectl faros use --org acme --workspace platform  # fully scripted, no TTY needed
 ```
 
 **Flags:**
@@ -27,12 +27,12 @@ With no flags you get an interactive picker; it requires a TTY. Providing both f
 
 ## connect
 
-`kedge connect` (aliases: `ws`, `workspace`) navigates *within* the current workspace — most commonly, into a Kubernetes edge cluster and back:
+`faros connect` (aliases: `ws`, `workspace`) navigates *within* the current workspace — most commonly, into a Kubernetes edge cluster and back:
 
 ```bash
-kubectl kedge connect home-lab     # point kubectl at the home-lab edge cluster
+kubectl faros connect home-lab     # point kubectl at the home-lab edge cluster
 kubectl get nodes                  # talks to home-lab through the hub tunnel
-kubectl kedge connect :            # return to the hub root (disconnect)
+kubectl faros connect :            # return to the hub root (disconnect)
 ```
 
 `connect` rewrites the server URL of the current context, so everything that reads your kubeconfig (`kubectl`, `helm`, `k9s`, ...) follows.
@@ -58,9 +58,9 @@ Under the hood this is kcp's workspace navigation, so all the standard targets w
 A typical session:
 
 ```bash
-kubectl kedge use --org acme --workspace prod
-kubectl kedge edge list
-kubectl kedge connect edge-paris
+kubectl faros use --org acme --workspace prod
+kubectl faros edge list
+kubectl faros connect edge-paris
 kubectl get pods -A
-kubectl kedge connect :
+kubectl faros connect :
 ```

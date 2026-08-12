@@ -4,7 +4,7 @@ description: Expose your clusters and servers as Model Context Protocol servers.
 weight: 6
 ---
 
-kedge exposes your edges as [Model Context Protocol](https://modelcontextprotocol.io) (MCP) servers. AI coding assistants — Claude Code, Claude Desktop, Codex, Cursor, anything that speaks MCP — can list pods, describe deployments, run commands, and (with the edges provider's service catalog) even control apps like Home Assistant across all your edges at once.
+faros exposes your edges as [Model Context Protocol](https://modelcontextprotocol.io) (MCP) servers. AI coding assistants — Claude Code, Claude Desktop, Codex, Cursor, anything that speaks MCP — can list pods, describe deployments, run commands, and (with the edges provider's service catalog) even control apps like Home Assistant across all your edges at once.
 
 There are two endpoint shapes:
 
@@ -18,7 +18,7 @@ Exactly one of the two flags is required.
 ## Get the URL
 
 ```bash
-kubectl kedge mcp url --mcpserver-name default
+kubectl faros mcp url --mcpserver-name default
 ```
 
 This prints the endpoint URL plus ready-to-paste setup snippets for Claude Code (`claude mcp add`), Claude Desktop (`claude_desktop_config.json`), and Codex (`codex mcp add`), with your bearer token filled in.
@@ -27,10 +27,10 @@ The URL shapes look like this:
 
 ```
 # Aggregate (MCPServer object)
-https://<hub>/services/mcpserver/<cluster>/apis/kedge.faros.sh/v1alpha1/mcpservers/<name>/mcp
+https://<hub>/services/mcpserver/<cluster>/apis/faros.sh/v1alpha1/mcpservers/<name>/mcp
 
 # Per-edge (served by the edges provider)
-https://<hub>/services/providers/edges/agent/<cluster>/apis/edges.kedge.faros.sh/v1alpha1/kubernetesclusters/<edge>/mcp
+https://<hub>/services/providers/edges/agent/<cluster>/apis/edges.faros.sh/v1alpha1/kubernetesclusters/<edge>/mcp
 ```
 
 `<cluster>` is your workspace's logical cluster ID — the CLI derives it from your kubeconfig, so you never construct these by hand.
@@ -47,10 +47,10 @@ For Claude Desktop, add the printed JSON snippet under `mcpServers` in `claude_d
 
 ## The MCPServer object
 
-The aggregate endpoint is backed by an `MCPServer` custom resource (`kedge.faros.sh/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. It aggregates all connected edges and can filter them with a label selector — label your edges at creation time (`kubectl kedge edge create ... --labels env=prod`) and scope the MCP to the matching subset:
+The aggregate endpoint is backed by an `MCPServer` custom resource (`faros.sh/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. It aggregates all connected edges and can filter them with a label selector — label your edges at creation time (`kubectl faros edge create ... --labels env=prod`) and scope the MCP to the matching subset:
 
 ```bash
-kubectl get mcpservers.kedge.faros.sh
+kubectl get mcpservers.faros.sh
 kubectl edit mcpserver default
 ```
 

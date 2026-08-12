@@ -1,8 +1,7 @@
-
-
-<h{{ .Level }} 
-  id="{{ .Anchor | safeURL }}" 
-  class="h{{ add .Level 1 }}  font-red-hat-display mb-4 mt-4">
-  <a href="{{ .Page.Permalink }}#{{ .Anchor | safeURL }}" class="dark:text-gray-100">{{ .Text | safeHTML }}</a> 
+{{/* Headings link to themselves; the anchor inherits heading colour and is
+     never underlined (the docs body underlines ordinary links only). */}}
+<h{{ .Level }}
+  id="{{ .Anchor | safeURL }}"
+  class="faros-docs-heading">
+  <a href="{{ .Page.Permalink }}#{{ .Anchor | safeURL }}" class="faros-docs-anchor">{{ .Text | safeHTML }}</a>
 </h{{ .Level }}>
-

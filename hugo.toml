@@ -60,7 +60,7 @@ languageName ="English"
 weight = 1
 [languages.en.params]
 title = "faros"
-description = "faros — give AI agents a platform, not root. The open-source, AI-native platform layer: multi-tenant control plane, infrastructure templates, git repos, edge clusters, hosted AI agents, and tenancy-scoped MCP tools with guardrails built in. Apache 2.0, free forever."
+description = "faros — the open-source operating system for AI-native platforms. Workspaces isolate, providers plug in as drivers, and every capability is a tenancy-scoped MCP tool: infrastructure templates, git repos, edge clusters, hosted AI agents, fleet query. Agents get a platform, not root. Apache 2.0, free forever."
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"
@@ -121,7 +121,7 @@ version = "0.0"
 #url_latest_version = "https://example.com"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/google/docsy-example"
+github_repo = "https://github.com/faroshq/faros.sh"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/faroshq/faros"
 
