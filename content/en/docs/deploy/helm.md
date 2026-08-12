@@ -1,10 +1,10 @@
 ---
 title: Helm Deployment
-description: Deploy the kedge hub with Helm — local kind, single-node k3s, or full production.
+description: Deploy the faros hub with Helm — local kind, single-node k3s, or full production.
 weight: 1
 ---
 
-The `kedge-hub` Helm chart deploys **kcp + kedge-hub** as a single StatefulSet. The same chart works for local kind, a single-node k3s on a VPS, or a full production setup behind cert-manager and a real ingress controller.
+The `faros-hub` Helm chart deploys **kcp + faros-hub** as a single StatefulSet. The same chart works for local kind, a single-node k3s on a VPS, or a full production setup behind cert-manager and a real ingress controller.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Try the hub locally first; it's the fastest feedback loop.
 
 ```bash
 # 1. Cluster
-kind create cluster --name kedge
+kind create cluster --name faros
 
 # 2. Values file
 cat > values-kind.yaml <<EOF
@@ -34,30 +34,30 @@ hub:
 EOF
 
 # 3. Install
-helm upgrade --install kedge \
-  oci://ghcr.io/faroshq/charts/kedge-hub \
+helm upgrade --install faros \
+  oci://ghcr.io/faroshq/charts/faros-hub \
   -f values-kind.yaml \
-  --namespace kedge-system \
+  --namespace faros-system \
   --create-namespace
 
 # 4. Wait
-kubectl -n kedge-system wait --for=condition=ready pod \
-  -l app.kubernetes.io/name=kedge-hub --timeout=120s
+kubectl -n faros-system wait --for=condition=ready pod \
+  -l app.kubernetes.io/name=faros-hub --timeout=120s
 
 # 5. Port-forward
-kubectl -n kedge-system port-forward svc/kedge-kedge-hub 9443:9443
+kubectl -n faros-system port-forward svc/faros-faros-hub 9443:9443
 ```
 
 In another terminal:
 
 ```bash
-kubectl kedge login \
+kubectl faros login \
   --hub-url https://localhost:9443 \
   --token $(grep -A1 staticAuthTokens values-kind.yaml | tail -1 | tr -d ' -"') \
   --insecure-skip-tls-verify
 ```
 
-You're in. Try `kubectl kedge edge list`.
+You're in. Try `kubectl faros edge list`.
 
 ## Production deployment
 
@@ -95,10 +95,10 @@ hub:
         - "hub.example.com"
 
 # Only for OIDC — can coexist with static tokens. No client secret:
-# kedge is a PKCE public client (configure your IdP client as public).
+# faros is a PKCE public client (configure your IdP client as public).
 idp:
   issuerURL: "https://idp.example.com"
-  clientID: "kedge"
+  clientID: "faros"
 
 ingress:
   enabled: true
@@ -113,10 +113,10 @@ ingress:
 Install or upgrade:
 
 ```bash
-helm upgrade --install kedge \
-  oci://ghcr.io/faroshq/charts/kedge-hub \
+helm upgrade --install faros \
+  oci://ghcr.io/faroshq/charts/faros-hub \
   -f values-prod.yaml \
-  --namespace kedge-system \
+  --namespace faros-system \
   --create-namespace
 ```
 
@@ -126,17 +126,17 @@ helm upgrade --install kedge \
 
 ```bash
 # kcp (the multi-tenant API server)
-kubectl -n kedge-system logs kedge-kedge-hub-0 -c kcp
+kubectl -n faros-system logs faros-faros-hub-0 -c kcp
 
-# kedge-hub (the API + tunnel endpoints)
-kubectl -n kedge-system logs kedge-kedge-hub-0 -c hub
+# faros-hub (the API + tunnel endpoints)
+kubectl -n faros-system logs faros-faros-hub-0 -c hub
 ```
 
 ### Upgrading
 
 ```bash
-helm upgrade kedge oci://ghcr.io/faroshq/charts/kedge-hub \
-  -f values.yaml --namespace kedge-system
+helm upgrade faros oci://ghcr.io/faroshq/charts/faros-hub \
+  -f values.yaml --namespace faros-system
 ```
 
 TLS secrets are annotated `helm.sh/resource-policy: keep` so they survive `helm uninstall`. The kcp PVC is also retained.
@@ -144,15 +144,15 @@ TLS secrets are annotated `helm.sh/resource-policy: keep` so they survive `helm 
 ### Uninstall
 
 ```bash
-helm uninstall kedge --namespace kedge-system
+helm uninstall faros --namespace faros-system
 ```
 
 To fully wipe:
 
 ```bash
-kubectl -n kedge-system delete pvc --all
-kubectl -n kedge-system delete secret kedge-kedge-hub-tls
-kubectl delete namespace kedge-system
+kubectl -n faros-system delete pvc --all
+kubectl -n faros-system delete secret faros-faros-hub-tls
+kubectl delete namespace faros-system
 ```
 
 ## Values reference
@@ -172,7 +172,7 @@ kubectl delete namespace kedge-system
 | Key | Description | Default |
 |:----|:------------|:--------|
 | `idp.issuerURL` | OIDC issuer URL. | `""` |
-| `idp.clientID` | OIDC client ID (public/PKCE client — no secret). | `kedge` |
+| `idp.clientID` | OIDC client ID (public/PKCE client — no secret). | `faros` |
 | `idp.caSecretName` | Secret holding a PEM CA bundle for a privately-signed IdP. | `""` |
 | `idp.caSecretKey` | Key inside that Secret. | `tls.crt` |
 

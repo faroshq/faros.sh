@@ -1,29 +1,29 @@
 {{ define "main" }}
-<div class="kedge-docs-shell">
-  <div class="kedge-docs-bg" aria-hidden="true">
-    <div class="absolute inset-0 kedge-dot-grid"></div>
+<div class="faros-docs-shell">
+  <div class="faros-docs-bg" aria-hidden="true">
+    <div class="absolute inset-0 faros-dot-grid"></div>
   </div>
 
   {{ partial "docs-sidebar.html" . }}
 
-  <main class="kedge-docs-main">
-    <article class="kedge-docs-article">
-      <header class="kedge-docs-header">
-        <p class="kedge-docs-eyebrow">{{ with .Parent }}{{ .Title }}{{ else }}Documentation{{ end }}</p>
-        <h1 class="kedge-docs-title">{{ .Title }}</h1>
-        {{ with .Params.description }}<p class="kedge-docs-lead">{{ . }}</p>{{ end }}
+  <main class="faros-docs-main">
+    <article class="faros-docs-article">
+      <header class="faros-docs-header">
+        <p class="faros-docs-eyebrow">{{ with .Parent }}{{ .Title }}{{ else }}Documentation{{ end }}</p>
+        <h1 class="faros-docs-title">{{ .Title }}</h1>
+        {{ with .Params.description }}<p class="faros-docs-lead">{{ . }}</p>{{ end }}
       </header>
 
-      <div class="kedge-docs-body">
+      <div class="faros-docs-body">
         {{ .Content }}
 
         {{ $pages := where .Pages "Params.hidden" "!=" true }}
         {{ if $pages }}
-        <div class="kedge-docs-cards mt-10">
+        <div class="faros-docs-cards mt-10">
           {{ range $pages.ByWeight }}
-            <a class="kedge-docs-card" href="{{ .RelPermalink }}">
-              <h3 class="kedge-docs-card-title">{{ .Title }} <span class="kedge-docs-card-arrow">→</span></h3>
-              {{ with .Params.description }}<p class="kedge-docs-card-text">{{ . }}</p>{{ end }}
+            <a class="faros-docs-card" href="{{ .RelPermalink }}">
+              <h3 class="faros-docs-card-title">{{ .Title }} <span class="faros-docs-card-arrow">→</span></h3>
+              {{ with .Params.description }}<p class="faros-docs-card-text">{{ . }}</p>{{ end }}
             </a>
           {{ end }}
         </div>

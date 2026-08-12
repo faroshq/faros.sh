@@ -4,10 +4,10 @@ description: Exposing provider tools to AI agents through the hub's aggregate MC
 weight: 7
 ---
 
-kedge presents one aggregate [Model Context Protocol](https://modelcontextprotocol.io) endpoint per workspace:
+faros presents one aggregate [Model Context Protocol](https://modelcontextprotocol.io) endpoint per workspace:
 
 ```
-https://<hub>/services/mcpserver/{cluster}/apis/kedge.faros.sh/v1alpha1/mcpservers/{name}/mcp
+https://<hub>/services/mcpserver/{cluster}/apis/faros.sh/v1alpha1/mcpservers/{name}/mcp
 ```
 
 An AI agent connecting there sees tools from **every Ready provider in the workspace**, federated by the hub: the edges provider contributes Kubernetes and SSH tools, and each enabled provider with an MCP surface contributes its own, namespaced as `<provider>__<tool>` — `code__create_repository`, `infrastructure__provision`, `kuery__kuery_query`, and so on. A provider that fails `tools/list` is skipped, not fatal.
@@ -18,7 +18,7 @@ Three requirements:
 
 1. **Serve a streamable-HTTP MCP handler at `/mcp` on your backend** (the shipped providers use the official MCP Go SDK; `providers/infrastructure/mcpserver/` is the reference — most also serve `/mcp/sse` for older clients).
 2. **Be Ready** — registered CatalogEntry with a reachable `backend.url`, fresh heartbeats. Not-Ready providers are dropped from federation.
-3. **Honour forwarded identity.** Every MCP request arrives through the backend proxy with `X-Kedge-Tenant`, `X-Kedge-Cluster`, and the caller's `Authorization` bearer. Do all tenant work *as that token, scoped to that workspace* — never your provider SA. This is [pattern B](/docs/providers/virtual-workspace/#the-two-identity-patterns); an MCP tool must never see more than its caller could with kubectl.
+3. **Honour forwarded identity.** Every MCP request arrives through the backend proxy with `X-Faros-Tenant`, `X-Faros-Cluster`, and the caller's `Authorization` bearer. Do all tenant work *as that token, scoped to that workspace* — never your provider SA. This is [pattern B](/docs/providers/virtual-workspace/#the-two-identity-patterns); an MCP tool must never see more than its caller could with kubectl.
 
 A typical tool implementation resolves the tenant client once per request from the headers, then reads/writes the provider's own CRs — meaning MCP is usually a thin verb layer over the same API your UI and controllers use.
 

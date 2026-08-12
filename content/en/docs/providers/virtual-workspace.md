@@ -4,7 +4,7 @@ description: How provider controllers see every tenant workspace at once — and
 weight: 3
 ---
 
-Your provider's service account is admin **only inside its own workspace** (`root:kedge:providers:<name>`). It cannot read tenant workspaces directly — and it never should. Cross-workspace access goes through kcp's **APIExport virtual workspace**: a synthetic API endpoint that presents, in one place, every tenant workspace that has bound your export.
+Your provider's service account is admin **only inside its own workspace** (`root:faros:providers:<name>`). It cannot read tenant workspaces directly — and it never should. Cross-workspace access goes through kcp's **APIExport virtual workspace**: a synthetic API endpoint that presents, in one place, every tenant workspace that has bound your export.
 
 Through the virtual workspace your provider sees, per bound workspace:
 
@@ -30,7 +30,7 @@ builder.ControllerManagedBy(mgr).
 
 Inside a reconciler, `mcmanager.GetCluster(ctx, clusterName).GetConfig()` hands you a config scoped to that one tenant workspace — this is your *only* legitimate cross-workspace credential.
 
-The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the kedge repo for the canonical setup.
+The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the faros repo for the canonical setup.
 
 ## The two identity patterns
 
@@ -45,20 +45,20 @@ Continuous reconciliation runs as **your provider SA** through the virtual works
 For REST/MCP/GraphQL requests arriving through the hub's backend proxy, your provider must **drop its own credential and act as the caller**. The proxy hands you everything you need:
 
 - `Authorization: Bearer <token>` — the caller's token, forwarded as-is.
-- `X-Kedge-User` — resolved user identity.
-- `X-Kedge-Tenant` — the caller's workspace path.
-- `X-Kedge-Cluster` — the workspace's **logical cluster ID**.
+- `X-Faros-User` — resolved user identity.
+- `X-Faros-Tenant` — the caller's workspace path.
+- `X-Faros-Cluster` — the workspace's **logical cluster ID**.
 
-Build a per-request client from the caller's token scoped to `X-Kedge-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Every shipped provider has a `tenant/client.go` doing exactly this.
+Build a per-request client from the caller's token scoped to `X-Faros-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Every shipped provider has a `tenant/client.go` doing exactly this.
 
 Why the split matters: pattern A lets a buggy request handler at most touch what claims allow; pattern B guarantees a user can never do more through your provider than they could with `kubectl` directly.
 
 ## Address by cluster ID, never by path
 
-The number-one footgun: kcp **shards resolve only `/clusters/<logical-cluster-id>`**. Workspace *paths* (`root:kedge:tenants:...`) resolve only at the front proxy. Consequences:
+The number-one footgun: kcp **shards resolve only `/clusters/<logical-cluster-id>`**. Workspace *paths* (`root:faros:tenants:...`) resolve only at the front proxy. Consequences:
 
 - The minted provider kubeconfig points at `/clusters/<your-workspace-id>` — keep that pattern for anything you construct.
-- When addressing a tenant's workspace (e.g. a per-cluster GraphQL endpoint), use the ID from `X-Kedge-Cluster`, never the `X-Kedge-Tenant` path.
+- When addressing a tenant's workspace (e.g. a per-cluster GraphQL endpoint), use the ID from `X-Faros-Cluster`, never the `X-Faros-Tenant` path.
 - You cannot "re-root" your provider SA kubeconfig at another workspace's `/clusters/<id>` — the token is pinned to your workspace and kcp rejects it. Cross-workspace = virtual workspace, full stop.
 
 ## Dynamic APIs

@@ -8,7 +8,7 @@ For agents and users to reach your hub, it needs a public URL with TLS. The hub 
 
 ## The challenge
 
-For kedge to work with remote agents, the hub must be reachable from:
+For faros to work with remote agents, the hub must be reachable from:
 
 - **Agents** — running on edges that establish reverse tunnels
 - **Users** — running the CLI from anywhere
@@ -65,7 +65,7 @@ ingress:
           pathType: Prefix
 ```
 
-> kedge uses HTTP/1.1 + WebSockets for all communication — works with any reverse proxy. No gRPC passthrough, no HTTP/2 termination, no ALPN gymnastics required.
+> faros uses HTTP/1.1 + WebSockets for all communication — works with any reverse proxy. No gRPC passthrough, no HTTP/2 termination, no ALPN gymnastics required.
 
 ## Tailscale / ZeroTier (private mesh)
 

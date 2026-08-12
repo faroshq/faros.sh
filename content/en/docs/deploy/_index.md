@@ -1,10 +1,10 @@
 ---
 title: Deploy your own hub
-description: Run kedge on infrastructure you control.
+description: Run faros on infrastructure you control.
 weight: 30
 ---
 
-The hosted hub at [console.faros.sh](https://console.faros.sh) is convenient, but everything kedge does is open source — you can run the hub yourself and never touch the SaaS.
+The hosted hub at [console.faros.sh](https://console.faros.sh) is convenient, but everything faros does is open source — you can run the hub yourself and never touch the SaaS.
 
 Self-hosting takes three decisions:
 

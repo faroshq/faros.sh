@@ -4,7 +4,7 @@ description: Organizations, workspaces, memberships, roles, and service accounts
 weight: 3
 ---
 
-kedge is multi-tenant from the ground up. Every user operates inside a **workspace**, which belongs to an **organization** — and because the hub creates a personal organization with a default workspace for every new identity, single-user hubs get all of this without ever noticing it.
+faros is multi-tenant from the ground up. Every user operates inside a **workspace**, which belongs to an **organization** — and because the hub creates a personal organization with a default workspace for every new identity, single-user hubs get all of this without ever noticing it.
 
 ## The model
 
@@ -15,10 +15,10 @@ Organization  ("acme")                ← billing/teams boundary; has members
 ```
 
 - An **organization** groups people and workspaces. Everyone gets a *personal* org automatically on first login; you create more for teams (`POST /api/orgs`, or the portal's org switcher).
-- A **workspace** is the unit of isolation: your edges, enabled providers, and resources live in exactly one workspace. Under the hood each workspace is its own kcp logical cluster in the hub's workspace tree (`root:kedge:tenants:<org>:<workspace>`), so isolation is structural, not filter-based.
-- Workspaces can contain **edge mounts** — the per-edge sub-workspaces `kedge connect` navigates into.
+- A **workspace** is the unit of isolation: your edges, enabled providers, and resources live in exactly one workspace. Under the hood each workspace is its own kcp logical cluster in the hub's workspace tree (`root:faros:tenants:<org>:<workspace>`), so isolation is structural, not filter-based.
+- Workspaces can contain **edge mounts** — the per-edge sub-workspaces `faros connect` navigates into.
 
-The CLI drives all of this with [`kedge use`](/docs/cli/workspaces/) (pick org + workspace) and the portal has an equivalent switcher.
+The CLI drives all of this with [`faros use`](/docs/cli/workspaces/) (pick org + workspace) and the portal has an equivalent switcher.
 
 ## Membership and roles
 
@@ -52,8 +52,8 @@ All membership writes are hub-mediated — tenants never touch the org's underly
 
 For automation that shouldn't ride on a person's identity, create a **service account** scoped to a workspace (portal → workspace settings, or `POST /api/orgs/{org}/workspaces/{ws}/serviceaccounts`; requires workspace admin). You get:
 
-- A Kubernetes ServiceAccount living in the workspace, labeled as kedge-managed.
-- A token (audience `kedge`), returned **once** at creation — store it then.
+- A Kubernetes ServiceAccount living in the workspace, labeled as faros-managed.
+- A token (audience `faros`), returned **once** at creation — store it then.
 - Access scoped to that one workspace: the token is pinned to the workspace's logical cluster and can't be replayed elsewhere. An SA token can never reach org-level operations.
 
 Use service-account tokens for CI, MCP endpoints for AI agents, and anything long-lived.
@@ -67,6 +67,6 @@ Entirely separate from org/workspace roles: the `hub.adminUsers` Helm value (rep
 Useful mental model when debugging:
 
 1. You authenticate (OIDC token, static token, or SA token).
-2. The active org/workspace ride along as `X-Kedge-Org` / `X-Kedge-Workspace` headers — the CLI and portal set them from your `kedge use` selection.
+2. The active org/workspace ride along as `X-Faros-Org` / `X-Faros-Workspace` headers — the CLI and portal set them from your `faros use` selection.
 3. The hub checks your membership for that pair and rejects mismatches; the workspace's logical cluster becomes the target of everything downstream (kubectl proxying, provider backends, MCP).
 4. Direct kcp access (`/clusters/<id>` URLs in your kubeconfig) is gated by the same membership data — an org-scope membership covers all child workspaces, revocation applies on the next request.

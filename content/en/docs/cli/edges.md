@@ -9,20 +9,20 @@ An **edge** is anything connected to the hub through a reverse tunnel. There are
 | Type | Kind on the hub | Use case |
 |:-----|:----------------|:---------|
 | `kubernetes` | `KubernetesCluster` | A Kubernetes cluster. Reachable via `kubectl` through the hub. |
-| `server` | `LinuxServer` | A plain Linux host (VM, bare metal, Raspberry Pi). Reachable via `kubectl kedge ssh`. |
+| `server` | `LinuxServer` | A plain Linux host (VM, bare metal, Raspberry Pi). Reachable via `kubectl faros ssh`. |
 
-Both kinds live in the `edges.kedge.faros.sh` API group in your workspace, and edge commands address them uniformly by name.
+Both kinds live in the `edges.faros.sh` API group in your workspace, and edge commands address them uniformly by name.
 
 ## create
 
 Register a new edge:
 
 ```bash
-kubectl kedge edge create <name>                  # kubernetes is the default type
-kubectl kedge edge create <name> --type server
+kubectl faros edge create <name>                  # kubernetes is the default type
+kubectl faros edge create <name> --type server
 ```
 
-This creates the edge object in your current workspace, waits for the hub to issue a join token, and prints a full join guide: how to install the CLI on the target, plus the Helm / `kedge agent join` / `kedge agent run` variants pre-filled with hub URL, edge name, type, and token.
+This creates the edge object in your current workspace, waits for the hub to issue a join token, and prints a full join guide: how to install the CLI on the target, plus the Helm / `faros agent join` / `faros agent run` variants pre-filled with hub URL, edge name, type, and token.
 
 **Flags:**
 
@@ -34,26 +34,26 @@ This creates the edge object in your current workspace, waits for the hub to iss
 Example:
 
 ```bash
-kubectl kedge edge create home-lab --labels env=home,region=eu
+kubectl faros edge create home-lab --labels env=home,region=eu
 ```
 
 ## list
 
 ```bash
-kubectl kedge edge list        # also: kubectl kedge list / ls
+kubectl faros edge list        # also: kubectl faros list / ls
 ```
 
 Prints a table with NAME, TYPE, PHASE, CONNECTED, AGENT VERSION, and AGE for every edge in the workspace. For machine-readable output, use kubectl against the underlying resources instead:
 
 ```bash
-kubectl get kubernetesclusters.edges.kedge.faros.sh -o yaml
-kubectl get linuxservers.edges.kedge.faros.sh -o yaml
+kubectl get kubernetesclusters.edges.faros.sh -o yaml
+kubectl get linuxservers.edges.faros.sh -o yaml
 ```
 
 ## get
 
 ```bash
-kubectl kedge edge get <name>
+kubectl faros edge get <name>
 ```
 
 Shows name, type, phase, connection state, hostname, workspace URL, creation time, and labels.
@@ -61,15 +61,15 @@ Shows name, type, phase, connection state, hostname, workspace URL, creation tim
 ## join-command
 
 ```bash
-kubectl kedge edge join-command <name>
+kubectl faros edge join-command <name>
 ```
 
-Re-prints the same join guide as `edge create` — CLI install instructions plus the Helm chart, `kedge agent join` (persistent install), and `kedge agent run` (foreground) variants with the join token filled in. Use it whenever you need to (re)install the agent. Accepts `--insecure-skip-tls-verify` for dev hubs.
+Re-prints the same join guide as `edge create` — CLI install instructions plus the Helm chart, `faros agent join` (persistent install), and `faros agent run` (foreground) variants with the join token filled in. Use it whenever you need to (re)install the agent. Accepts `--insecure-skip-tls-verify` for dev hubs.
 
 ## upgrade
 
 ```bash
-kubectl kedge edge upgrade <name>
+kubectl faros edge upgrade <name>
 ```
 
 Compares the edge's reported agent version against your CLI version. If the agent is behind, prints the upgrade instructions for that edge type (Helm upgrade for Kubernetes edges, binary replacement for servers); otherwise reports it's up to date. To actually drive the upgrade from the CLI, see [`agent upgrade`](/docs/cli/agent/#agent-upgrade).
@@ -79,7 +79,7 @@ Compares the edge's reported agent version against your CLI version. If the agen
 For `kubernetes`-type edges, generate a standalone kubeconfig that proxies kubectl through the hub:
 
 ```bash
-kubectl kedge kubeconfig edge <name> > kc.yaml
+kubectl faros kubeconfig edge <name> > kc.yaml
 kubectl --kubeconfig kc.yaml get nodes
 ```
 
@@ -90,17 +90,17 @@ The generated kubeconfig (context `<name>-edge`) points at the hub's edge endpoi
 To stream into a temporary kubeconfig (handy in scripts):
 
 ```bash
-kubectl --kubeconfig <(kubectl kedge kubeconfig edge home-lab) get pods -A
+kubectl --kubeconfig <(kubectl faros kubeconfig edge home-lab) get pods -A
 ```
 
-The lighter alternative — retargeting your *current* context at the edge — is [`kedge connect`](/docs/cli/workspaces/#connect).
+The lighter alternative — retargeting your *current* context at the edge — is [`faros connect`](/docs/cli/workspaces/#connect).
 
 ## delete
 
 ```bash
-kubectl kedge edge delete <name>
+kubectl faros edge delete <name>
 ```
 
-Removes the edge from the hub. The agent on the target will fail its connection and keep retrying; stop it explicitly for a graceful shutdown (`helm uninstall` on the cluster, or `kubectl kedge agent uninstall` / `systemctl stop` on a server).
+Removes the edge from the hub. The agent on the target will fail its connection and keep retrying; stop it explicitly for a graceful shutdown (`helm uninstall` on the cluster, or `kubectl faros agent uninstall` / `systemctl stop` on a server).
 
 > `delete` is irreversible. There's no recycle bin — recreate the edge to reconnect.

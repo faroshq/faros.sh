@@ -1,279 +1,447 @@
 <!-- ================================================================ -->
-<!-- kedge homepage — "the harness for platform engineering"          -->
-<!-- Violet accent (#7c5bf5) · Emerald (#34d399) · Glass panels       -->
-<!-- Sections: hero · guardrails · providers · architecture ·         -->
-<!--           compare · quickstart · oss                             -->
+<!-- faros homepage — "the operating system for AI-native platforms" -->
+<!-- Design system: Violet Circuit (faros repo docs/design-book.md)  -->
+<!--   dark-first · accent #8b6bff · radius law 6/4/3 · square mono  -->
+<!--   tags (never pills) · glow only on live/primary things         -->
+<!-- Sections: hero · kernel · product · drivers · guardrails ·      -->
+<!--           I/O · compare · quickstart · oss                      -->
 <!-- ================================================================ -->
 
-{{ $ghIcon := `<svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>` }}
+{{ $ghIcon := `<svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>` }}
 
-<section class="kedge-hero relative overflow-hidden">
+<section class="faros-home relative overflow-hidden">
 
-  <!-- Ambient backdrop: dot grid + radial glows + node constellation -->
-  <div class="absolute inset-0 -z-10 kedge-bg" aria-hidden="true">
-    <div class="absolute inset-0 kedge-dot-grid"></div>
-    <canvas id="kedge-net" class="absolute inset-0 w-full h-full" style="pointer-events:none;"></canvas>
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-40 blur-3xl"
-         style="background: radial-gradient(circle, rgba(124,91,245,0.35) 0%, transparent 60%);"></div>
-    <div class="absolute top-[40%] -left-40 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl"
-         style="background: radial-gradient(circle, rgba(52,211,153,0.25) 0%, transparent 60%);"></div>
+  <!-- Ambient backdrop: contour signature + node field + one accent wash -->
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute inset-0 faros-contour faros-contour-fade"></div>
+    <canvas id="faros-net" class="absolute inset-0 w-full h-full" style="pointer-events:none;"></canvas>
+    <div class="faros-wash"></div>
   </div>
 
   <!-- ============= HERO ============= -->
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 md:pt-36 md:pb-24">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-16 md:pt-36 md:pb-20">
     <div class="text-center max-w-4xl mx-auto">
 
-      <!-- Open source badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full kedge-pill text-sm font-medium">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 kedge-pulse"></span>
-        <span class="text-gray-700 dark:text-gray-200">Open source · Apache 2.0 · Free forever</span>
+      <!-- Status tags — square mono, never pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <span class="faros-tag faros-tag-live"><span class="faros-dot"></span>Open source</span>
+        <span class="faros-tag">Apache 2.0</span>
+        <span class="faros-tag">Free forever</span>
+        <span class="faros-tag">Self-host or hosted</span>
       </div>
 
       <!-- Title -->
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]">
-        <span class="text-gray-900 dark:text-white">The harness for</span>
+      <h1 class="faros-display text-5xl md:text-7xl mb-6 leading-[1.03]">
+        <span>The operating system for</span>
         <br>
-        <span class="kedge-gradient-text">platform engineering</span>
+        <span class="faros-accent-text">AI-native platforms.</span>
       </h1>
 
-      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
-        <strong class="text-gray-900 dark:text-white">Batteries included, guardrails on.</strong>
-        faros is the open-source, multi-tenant control plane your team — and your AI agents — operate
-        through one governed surface: infrastructure templates, git repos, edge clusters, hosted agents,
-        every capability exposed as <strong>MCP tools with tenancy built in</strong>.
+      <p class="text-lg md:text-xl faros-lede max-w-3xl mx-auto leading-relaxed mb-4">
+        faros is the open-source substrate you build your platform <em>on</em> — not another portal
+        bolted over it. Workspaces are the isolation boundary, providers are the drivers,
+        and every capability is a <strong>tenancy-scoped MCP tool</strong>.
+      </p>
+      <p class="text-base md:text-lg faros-kicker mb-10">
+        Agents get a platform. Not root.
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14">
-        <a href="/docs/getting-started/quickstart/" class="kedge-btn-primary group">
-          Get started
-          <span class="ml-2 opacity-60 group-hover:opacity-100 transition-opacity">→</span>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12">
+        <a href="https://console-dev.faros.sh/" class="faros-btn-primary group">
+          Create your workspace
+          <span class="ml-2 opacity-70 group-hover:opacity-100 transition-opacity">→</span>
         </a>
-        <a href="https://github.com/faroshq/kedge" class="kedge-btn-secondary">
+        <a href="https://github.com/faroshq/faros" class="faros-btn-secondary">
           {{ $ghIcon | safeHTML }}
-          GitHub
+          GitHub<span class="faros-star-badge" data-faros-stars></span>
         </a>
       </div>
 
-      <!-- Install — the very first thing visitors see, copyable -->
+      <!-- Install — copyable, the first real thing on the page -->
       <div class="mx-auto max-w-2xl mb-8">
-        <div class="kedge-quickcmd">
-          <div class="kedge-quickcmd-head">
-            <span class="kedge-quickcmd-label">Install the CLI</span>
-            <span class="kedge-quickcmd-hint">macOS · Linux · WSL</span>
+        <div class="faros-quickcmd">
+          <div class="faros-quickcmd-head">
+            <span class="faros-quickcmd-label">Install the CLI</span>
+            <span class="faros-quickcmd-hint">macOS · Linux · WSL</span>
           </div>
-          <div class="kedge-quickcmd-row" data-kedge-install-copy>
-            <pre class="kedge-quickcmd-line"><code><span class="kedge-prompt">$</span> <span data-kedge-install-text>curl -fsSL https://downloads.faros.sh/install.sh | sh</span></code></pre>
+          <div class="faros-quickcmd-row" data-faros-install-copy>
+            <pre class="faros-quickcmd-line"><code><span class="faros-prompt">$</span> <span data-faros-install-text>curl -fsSL https://downloads.faros.sh/install.sh | sh</span></code></pre>
             <button type="button"
-                    class="kedge-install-copy-btn"
-                    data-kedge-install-copy-btn
+                    class="faros-install-copy-btn"
+                    data-faros-install-copy-btn
                     aria-label="Copy install command">
-              <svg class="kedge-install-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              <svg class="kedge-install-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="kedge-install-copy-label">Copy</span>
+              <svg class="faros-install-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <svg class="faros-install-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="faros-install-copy-label">Copy</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Terminal demo — a human sets up, an agent operates, a guardrail holds -->
-      <div class="kedge-terminal mx-auto max-w-3xl text-left">
-        <div class="flex items-center justify-between px-5 py-3 border-b border-white/5">
+      <!-- Terminal demo — a human boots it, an agent runs on it, the kernel says no -->
+      <div class="faros-terminal mx-auto max-w-3xl text-left">
+        <div class="faros-terminal-chrome">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
-            <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500/70"></span>
+            <span class="faros-dot-sm" style="background:#ff5d5d"></span>
+            <span class="faros-dot-sm" style="background:#f0a63a"></span>
+            <span class="faros-dot-sm" style="background:#2fd6a0"></span>
           </div>
-          <span class="text-xs font-mono text-gray-400 tracking-wide">faros</span>
-          <span class="text-xs font-mono text-gray-500">~ </span>
+          <span class="faros-terminal-title">faros</span>
+          <span class="w-10"></span>
         </div>
-        <pre class="px-5 py-6 font-mono text-[13.5px] leading-7 text-gray-200 overflow-x-auto"><code data-kedge-term><span class="kedge-prompt">$</span> kedge login
-<span class="kedge-ok">✓ authenticated · workspace ready — your own isolated tenant</span>
+        <pre class="faros-terminal-body"><code data-faros-term><span class="faros-prompt">$</span> faros login
+<span class="faros-ok">✓ authenticated · workspace root:faros:tenants:acme:web is yours alone</span>
 
-<span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default
-<span class="kedge-accent">https://hub/…/mcp · every provider's tools · Claude-ready</span>
+<span class="faros-prompt">$</span> faros mcp url --mcpserver-name default
+<span class="faros-accent">https://hub/…/mcp · every enabled provider's tools · scoped to this workspace</span>
 
-<span class="kedge-claude">claude&gt;</span> deploy postgres for billing on the home-lab cluster
-<span class="kedge-info">→ mcp: infrastructure__provision template=postgres target=home-lab</span>
-<span class="kedge-ok">✓ provisioned · gateway route wired · OIDC on</span>
+<span class="faros-claude">claude&gt;</span> provision postgres for billing on the home-lab cluster
+<span class="faros-info">→ infrastructure__provision template=postgres target=home-lab</span>
+<span class="faros-ok">✓ instance running · HTTPRoute published · OIDC in front</span>
 
-<span class="kedge-claude">claude&gt;</span> now delete namespace kube-system
-<span class="kedge-err">✗ denied — outside workspace scope · request logged</span></code></pre>
+<span class="faros-claude">claude&gt;</span> now delete namespace kube-system on prod
+<span class="faros-err">✗ denied — outside workspace scope · recorded as an API event</span></code></pre>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ============= KERNEL PRIMITIVES ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="faros-eyebrow">Kernel</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        Four primitives. <span class="faros-accent-text">Everything else is userspace.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        An OS isn't a bigger app — it's a small set of primitives everything else is written against.
+        faros has four, and they behave the same whether a human, a controller, or an agent is calling.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <div class="faros-card">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <span class="faros-tag">process</span>
+        </div>
+        <h3 class="faros-card-title">Workspaces are the isolation boundary</h3>
+        <p class="faros-card-text">
+          Every team, project, or environment gets a <strong>kcp logical cluster</strong>: its own API surface,
+          its own RBAC, its own quota. Nothing leaks sideways because there is no sideways — an agent
+          can't see what its workspace was never granted. Isolation isn't a setting; it's the address space.
+        </p>
+      </div>
+
+      <div class="faros-card">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v4M16 3v4M4 7h16v5a8 8 0 01-16 0V7zM12 20v-3"/></svg>
+          </div>
+          <span class="faros-tag">driver</span>
+        </div>
+        <h3 class="faros-card-title">Providers are drivers</h3>
+        <p class="faros-card-text">
+          A capability — databases, git repos, edge clusters, hosted agents — ships as a provider:
+          <strong>its own pod, its own repo, its own release cycle</strong>. It plugs into the kernel through five
+          sockets: an API, controllers, a proxied backend, a portal micro-frontend, and MCP tools.
+          Enable one per workspace; the platform grows without a fork.
+        </p>
+      </div>
+
+      <div class="faros-card">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+          </div>
+          <span class="faros-tag">syscall</span>
+        </div>
+        <h3 class="faros-card-title">MCP is the syscall interface</h3>
+        <p class="faros-card-text">
+          One MCP endpoint per tenant federates every enabled provider's tools — and each tool
+          <strong>inherits that workspace's permissions automatically</strong>. No god-mode gateway token, no second
+          catalog of tools to govern separately. The platform and the agent interface are the same authority.
+        </p>
+      </div>
+
+      <div class="faros-card">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3M3.6 9h16.8M3.6 15h16.8"/></svg>
+          </div>
+          <span class="faros-tag">i/o</span>
+        </div>
+        <h3 class="faros-card-title">Edges are the I/O layer</h3>
+        <p class="faros-card-text">
+          Clusters, bare metal, home labs, Raspberry Pis — agents <strong>dial out</strong> to the hub over a reverse
+          tunnel, so the hub is the only public endpoint in the system. No VPNs, no inbound rules, no
+          kubeconfig juggling. Real hardware, addressed like a device file.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============= PRODUCT ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-10">
+      <p class="faros-eyebrow">In action</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        Agents, running <span class="faros-accent-text">on your platform.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        Declare an agent, give it a budget and a tool policy, and it works inside your workspace —
+        under the same guardrails as everything else.
+      </p>
+    </div>
+
+    <div class="faros-product-frame mx-auto max-w-5xl">
+      <div class="faros-product-chrome">
+        <div class="flex items-center gap-2">
+          <span class="faros-dot-sm" style="background:#ff5d5d"></span>
+          <span class="faros-dot-sm" style="background:#f0a63a"></span>
+          <span class="faros-dot-sm" style="background:#2fd6a0"></span>
+        </div>
+        <div class="faros-product-urlbar">console.faros.sh/agents</div>
+        <div class="w-12"></div>
+      </div>
+      <div class="faros-product-media">
+        <!-- PLACEHOLDER — drop the agents UI capture at static/images/agents-ui.gif
+             and it replaces the skeleton below automatically (no code change).
+             Using another format? Just update the src (e.g. agents-ui.webp). -->
+        <img src="/images/agents-ui.gif"
+             alt="faros agents UI — creating a hosted AI agent and chatting with it"
+             loading="lazy"
+             onerror="this.parentElement.classList.add('faros-media-missing')">
+        <div class="faros-product-skeleton" aria-hidden="true">
+          <div class="faros-skel-side">
+            <div class="faros-skel-dot"></div>
+            <div class="faros-skel-line" style="width:80%"></div>
+            <div class="faros-skel-line" style="width:65%"></div>
+            <div class="faros-skel-line faros-skel-active" style="width:88%"></div>
+            <div class="faros-skel-line" style="width:70%"></div>
+            <div class="faros-skel-line" style="width:58%"></div>
+          </div>
+          <div class="faros-skel-main">
+            <div class="faros-skel-topbar">
+              <div class="faros-skel-line" style="width:130px"></div>
+              <div class="faros-skel-chip"></div>
+            </div>
+            <div class="faros-skel-cards">
+              <div class="faros-skel-card">
+                <div class="faros-skel-dot faros-skel-dot-accent"></div>
+                <div class="faros-skel-line" style="width:75%"></div>
+                <div class="faros-skel-line" style="width:50%"></div>
+              </div>
+              <div class="faros-skel-card">
+                <div class="faros-skel-dot faros-skel-dot-success"></div>
+                <div class="faros-skel-line" style="width:65%"></div>
+                <div class="faros-skel-line" style="width:55%"></div>
+              </div>
+              <div class="faros-skel-card">
+                <div class="faros-skel-dot"></div>
+                <div class="faros-skel-line" style="width:70%"></div>
+                <div class="faros-skel-line" style="width:45%"></div>
+              </div>
+            </div>
+            <div class="faros-skel-chat">
+              <div class="faros-skel-bubble" style="width:52%"></div>
+              <div class="faros-skel-bubble faros-skel-bubble-me" style="width:38%"></div>
+              <div class="faros-skel-bubble" style="width:60%"></div>
+            </div>
+          </div>
+          <div class="faros-skel-badge">
+            <span class="faros-dot"></span>
+            Live demo — coming right here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= DRIVERS / PROVIDERS ============= -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="faros-eyebrow">Drivers</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        Batteries included. <span class="faros-accent-text">Sockets exposed.</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        Everything above the kernel is a provider — including everything we ship.
+        Each brings its own API, controllers, portal UI, and MCP tools, and is enabled per workspace.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+
+      <a href="/docs/providers/catalog/#edges" class="faros-card faros-card-link block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3M3.6 9h16.8M3.6 15h16.8"/></svg>
+          </div>
+          <span class="faros-tag">edges</span>
+        </div>
+        <h3 class="faros-card-title">Edges</h3>
+        <p class="faros-card-text">Kubernetes clusters, Linux servers, and the apps beside them. kubectl and SSH through the tunnel, fleet-wide workload placement, and discovered services — Home Assistant, Grafana, Jellyfin — turned into tools.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#infrastructure" class="faros-card faros-card-link block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75V16.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>
+          </div>
+          <span class="faros-tag">infrastructure</span>
+        </div>
+        <h3 class="faros-card-title">Application Templates</h3>
+        <p class="faros-card-text">Provision databases, caches, workers, and full apps from a curated kro template catalog — Gateway API exposure and per-app OIDC included, plus live development sandboxes with preview, logs, and file sync.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#agents" class="faros-card faros-card-link block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+          </div>
+          <span class="faros-tag">agents</span>
+        </div>
+        <h3 class="faros-card-title">AI Agents</h3>
+        <p class="faros-card-text">Long-running agents as platform resources: schedules, triggers, durable memory, budgets, approval inboxes, and Telegram/Slack channels — using every other provider's tools inside the same guardrails.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#code" class="faros-card faros-card-link block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+          </div>
+          <span class="faros-tag">code</span>
+        </div>
+        <h3 class="faros-card-title">Code</h3>
+        <p class="faros-card-text">Git repositories, commits, checkouts, deploy keys, collaborators, and published packages as declarative resources. GitHub first, other hosts pluggable behind the same API.</p>
+      </a>
+
+      <a href="/docs/providers/catalog/#kuery" class="faros-card faros-card-link block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          </div>
+          <span class="faros-tag">kuery</span>
+        </div>
+        <h3 class="faros-card-title">Kuery</h3>
+        <p class="faros-card-text">One structured query across every object in the fleet, plus impact traversal — "who consumes this Secret, is it safe to rotate?" — instead of N kubectl round-trips through N tunnels.</p>
+      </a>
+
+      <a href="/docs/providers/" class="faros-card faros-card-link faros-card-build block !no-underline">
+        <div class="faros-card-head">
+          <div class="faros-card-icon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          </div>
+          <span class="faros-tag faros-tag-accent">write your own</span>
+        </div>
+        <h3 class="faros-card-title">Build a driver</h3>
+        <p class="faros-card-text">Your capability, your pod, your release cycle — plugged into the kernel's tenancy, proxies, and guardrails. Copy the quickstart provider, rename it, ship it. The docs walk the whole contract.</p>
+      </a>
+
+    </div>
+
+    <div class="text-center">
+      <a href="/docs/providers/catalog/" class="faros-btn-secondary">Explore the provider catalog</a>
     </div>
   </div>
 
   <!-- ============= GUARDRAILS ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Guardrails</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Give AI agents a platform, <span class="kedge-gradient-text">not root.</span>
+      <p class="faros-eyebrow">Protection rings</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        Guardrails as architecture, <span class="faros-accent-text">not policy docs.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Agents operating infrastructure today get one of two things: nothing, or a god-mode kubeconfig.
-        faros gives them a third option — a governed platform where the guardrails are architecture, not policy documents.
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        Agents operating real infrastructure today get one of two things: nothing, or a god-mode kubeconfig.
+        Operating systems solved this forty years ago — you give them userspace.
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4">
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Isolated by construction</h3>
-        <p class="kedge-card-text">Every team is its own workspace — a full logical cluster with its own APIs, RBAC, and quota. An agent physically cannot see what tenancy doesn't grant. Isolation isn't a setting; it's the substrate.</p>
+      <div class="faros-card">
+        <h3 class="faros-card-title">Isolated by construction</h3>
+        <p class="faros-card-text">Tenancy is the substrate, not a filter applied late. An agent physically cannot address resources outside the workspace it was issued — the request never reaches a place where the answer exists.</p>
       </div>
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Everything is an API resource</h3>
-        <p class="kedge-card-text">Provisioning, repos, agents, edges — all declarative resources, not imperative side-doors. Every action an agent takes is a recorded object you can audit, diff, and revert. No mystery mutations.</p>
+      <div class="faros-card">
+        <h3 class="faros-card-title">Everything is an API resource</h3>
+        <p class="faros-card-text">Provisioning, repos, agents, edges — declarative objects, not imperative side doors. Every action an agent takes is something you can list, diff, audit, and revert. No mystery mutations.</p>
       </div>
 
-      <div class="kedge-card">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
-        </div>
-        <h3 class="kedge-card-title">MCP tools are derived, not bolted on</h3>
-        <p class="kedge-card-text">One MCP endpoint per tenant, and every tool inherits that workspace's permissions automatically. No god-mode gateway token, no separate tool catalog to govern — the platform and the tools are the same authority.</p>
+      <div class="faros-card">
+        <h3 class="faros-card-title">Tools inherit permissions</h3>
+        <p class="faros-card-text">MCP tools derive from the same RBAC that governs the API, so "what can this agent do?" has exactly one answer — and you change it in one place, not in a tool allowlist that drifts.</p>
       </div>
 
     </div>
   </div>
 
-  <!-- ============= PLATFORM / PROVIDERS ============= -->
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
-    <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Batteries included</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Every capability is a <span class="kedge-gradient-text">provider.</span>
-      </h2>
-      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        A provider is a pluggable building block: its own pod, its own release cycle, enabled per workspace —
-        UI, API, and MCP tools included. These ship in the box:
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-
-      <a href="/docs/providers/catalog/#edges" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Edges</h3>
-        <p class="kedge-card-text">Clusters, servers, and the apps beside them — deploy workloads across the fleet, control Home Assistant and friends via discovered services.</p>
-      </a>
-
-      <a href="/docs/providers/catalog/#infrastructure" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Application Templates</h3>
-        <p class="kedge-card-text">Provision databases, caches, workers, and full apps from a curated template catalog — Gateway-API exposure and OIDC included.</p>
-      </a>
-
-      <a href="/docs/providers/catalog/#agents" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">AI Agents</h3>
-        <p class="kedge-card-text">Host persistent AI agents with schedules, triggers, memory, budgets, and Telegram/Slack channels — declared as platform resources, using every other provider's tools.</p>
-      </a>
-
-      <a href="/docs/providers/catalog/#code" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-violet">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Code</h3>
-        <p class="kedge-card-text">Git repositories, deploy keys, collaborators, and packages as declarative resources — GitHub first, more hosts pluggable.</p>
-      </a>
-
-      <a href="/docs/providers/catalog/#kuery" class="kedge-card block !no-underline">
-        <div class="kedge-card-icon kedge-icon-emerald">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Kuery</h3>
-        <p class="kedge-card-text">Fleet-wide object search and impact analysis — "who consumes this Secret?" — one query instead of N kubectl round-trips.</p>
-      </a>
-
-      <a href="/docs/providers/" class="kedge-card kedge-card-build block !no-underline">
-        <div class="kedge-card-icon kedge-icon-cyan">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </div>
-        <h3 class="kedge-card-title">Build your own</h3>
-        <p class="kedge-card-text">This is the harness part. A provider is a standalone pod — your API, controllers, UI, and MCP tools, plugged into the hub's tenancy, proxies, and guardrails. The docs walk you through it.</p>
-      </a>
-
-    </div>
-
-    <div class="text-center">
-      <a href="/docs/providers/catalog/" class="kedge-btn-secondary">Explore the provider catalog</a>
-    </div>
-  </div>
-
-  <!-- ============= ARCHITECTURE / CONNECTIVITY ============= -->
+  <!-- ============= I/O LAYER / CONNECTIVITY ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-12">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Connectivity</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Agents dial out. You log in.
+      <p class="faros-eyebrow">I/O</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        Agents dial out. <span class="faros-accent-text">You log in.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        The hub is the only thing with a public endpoint. Clusters and servers behind NAT, firewalls, or a home router
-        dial out and become part of your platform — no VPNs, no open ports, no kubeconfig juggling.
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        The hub is the only thing with a public endpoint. Clusters and servers behind NAT, corporate
+        firewalls, or a home router dial outward and become part of your platform.
       </p>
     </div>
 
-    <div class="kedge-panel p-8 md:p-12">
+    <div class="faros-panel p-8 md:p-12">
       <div class="grid md:grid-cols-3 gap-8 items-center">
 
         <!-- You -->
         <div class="text-center md:text-right">
-          <div class="kedge-tile inline-flex flex-col items-center px-6 py-5">
-            <svg class="w-8 h-8 text-violet-500 dark:text-violet-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
-            <span class="font-semibold text-gray-900 dark:text-white">You &amp; your agents</span>
-            <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">kubectl · kedge · ssh · mcp</span>
+          <div class="faros-tile inline-flex flex-col items-center px-6 py-5">
+            <svg class="w-7 h-7 faros-icon-accent mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+            <span class="faros-tile-title">You &amp; your agents</span>
+            <span class="faros-tile-meta">kubectl · faros · ssh · mcp</span>
           </div>
         </div>
 
         <!-- Hub -->
         <div class="flex flex-col md:flex-row items-center justify-center md:gap-0 gap-3">
-          <div class="kedge-flow-line"></div>
-          <div class="kedge-hub px-6 py-5 text-center shrink-0">
-            <div class="text-xs uppercase tracking-[0.2em] text-violet-300 mb-1">Hub</div>
-            <div class="font-semibold text-white text-lg">kedge hub</div>
-            <div class="text-xs text-gray-400 mt-1 font-mono">kcp · OIDC · providers · MCP</div>
+          <div class="faros-flow-line"></div>
+          <div class="faros-hub px-6 py-5 text-center shrink-0">
+            <div class="faros-hub-eyebrow">Kernel</div>
+            <div class="faros-hub-title">faros hub</div>
+            <div class="faros-hub-meta">kcp · OIDC · providers · MCP</div>
           </div>
-          <div class="kedge-flow-line"></div>
+          <div class="faros-flow-line"></div>
         </div>
 
         <!-- Edges -->
         <div class="text-center md:text-left">
           <div class="space-y-2.5">
-            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15"/></svg>
+            <div class="faros-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 faros-icon-success shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15"/></svg>
               <div class="text-left">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">Kubernetes edge</div>
-                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">behind NAT</div>
+                <div class="faros-tile-title">Kubernetes edge</div>
+                <div class="faros-tile-meta">behind NAT</div>
               </div>
             </div>
-            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+            <div class="faros-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 faros-icon-accent shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3"/></svg>
               <div class="text-left">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">Bare metal / VM</div>
-                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">SSH mode</div>
+                <div class="faros-tile-title">Bare metal / VM</div>
+                <div class="faros-tile-meta">SSH mode</div>
               </div>
             </div>
-            <div class="kedge-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+            <div class="faros-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 faros-icon-muted shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
               <div class="text-left">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">Home lab · Raspberry Pi</div>
-                <div class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">no inbound rules</div>
+                <div class="faros-tile-title">Home lab · Raspberry Pi</div>
+                <div class="faros-tile-meta">no inbound rules</div>
               </div>
             </div>
           </div>
@@ -281,61 +449,64 @@
 
       </div>
 
-      <!-- Compact capability strip — what the connectivity floor gives you -->
-      <div class="kedge-strip mt-10 pt-8">
+      <!-- What the I/O floor gives you -->
+      <div class="faros-strip mt-10 pt-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="kedge-feature">
-            <div class="kedge-feature-title">Reverse tunnels</div>
-            <p class="kedge-feature-text">Agents dial out — NAT and firewalls are not a problem.</p>
+          <div>
+            <div class="faros-feature-title">Reverse tunnels</div>
+            <p class="faros-feature-text">Agents dial out — NAT and firewalls stop being your problem.</p>
           </div>
-          <div class="kedge-feature">
-            <div class="kedge-feature-title">kubectl &amp; SSH</div>
-            <p class="kedge-feature-text">Native access to every cluster and server through the hub.</p>
+          <div>
+            <div class="faros-feature-title">kubectl &amp; SSH</div>
+            <p class="faros-feature-text">Native access to every cluster and host, through one endpoint.</p>
           </div>
-          <div class="kedge-feature">
-            <div class="kedge-feature-title">Multi-tenant</div>
-            <p class="kedge-feature-text">Orgs and workspaces, each an isolated kcp logical cluster.</p>
+          <div>
+            <div class="faros-feature-title">Multi-tenant</div>
+            <p class="faros-feature-text">Orgs and workspaces, each an isolated logical cluster.</p>
           </div>
-          <div class="kedge-feature">
-            <div class="kedge-feature-title">MCP for AI</div>
-            <p class="kedge-feature-text">One endpoint — Claude and any MCP client drive it all.</p>
+          <div>
+            <div class="faros-feature-title">MCP for AI</div>
+            <p class="faros-feature-text">One URL — Claude and any MCP client drive the whole platform.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============= COMPARE / TIME TO PLATFORM ============= -->
+  <!-- ============= COMPARE ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Time to platform</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        An evening. <span class="kedge-gradient-text">Not a quarter.</span>
+      <p class="faros-eyebrow">Time to platform</p>
+      <h2 class="faros-display text-3xl md:text-5xl">
+        An evening. <span class="faros-accent-text">Not a quarter.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Today's platform market makes you choose: rent something closed in minutes, or spend months assembling something you own.
-        faros refuses the trade.
+      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+        The platform market makes you choose: rent something closed in minutes, or spend months
+        assembling something you own. faros refuses the trade.
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4">
 
-      <div class="kedge-card kedge-card-dim">
-        <h3 class="kedge-card-title">Assemble-it-yourself portals</h3>
-        <p class="kedge-card-text">Scaffold the app, wire the database, pick the plugins, staff the team. Months to first value, a dedicated crew to keep it alive — before a single guardrail exists for AI.</p>
-        <div class="kedge-compare-foot">6–12 months · dedicated engineers</div>
+      <div class="faros-card faros-card-dim">
+        <span class="faros-tag">assemble it yourself</span>
+        <h3 class="faros-card-title mt-3">Portal frameworks</h3>
+        <p class="faros-card-text">Scaffold the app, wire the database, pick the plugins, staff the team. Months to first value — and at the end you have a catalog that <em>describes</em> your infrastructure, not a control plane that runs it.</p>
+        <div class="faros-compare-foot">6–12 months · dedicated engineers</div>
       </div>
 
-      <div class="kedge-card kedge-card-dim">
-        <h3 class="kedge-card-title">Per-seat platform SaaS</h3>
-        <p class="kedge-card-text">Live in minutes — but closed source, priced per seat or per month in the thousands, and your platform's control plane belongs to someone else.</p>
-        <div class="kedge-compare-foot">from ~€2k/mo or $30+/seat · rented</div>
+      <div class="faros-card faros-card-dim">
+        <span class="faros-tag">rent it</span>
+        <h3 class="faros-card-title mt-3">Per-seat platform SaaS</h3>
+        <p class="faros-card-text">Live in minutes — but closed source, priced per seat or per month in the thousands, and the control plane your platform depends on belongs to someone else.</p>
+        <div class="faros-compare-foot">from ~€2k/mo or $30+/seat · rented</div>
       </div>
 
-      <div class="kedge-card kedge-card-win">
-        <h3 class="kedge-card-title">faros</h3>
-        <p class="kedge-card-text">Hosted hub: two commands, free. Self-hosted: two Helm charts on any Kubernetes cluster, running by tonight. Open source top to bottom — the whole stack is yours either way.</p>
-        <div class="kedge-compare-foot kedge-compare-foot-win">minutes hosted · an evening self-hosted · $0</div>
+      <div class="faros-card faros-card-win">
+        <span class="faros-tag faros-tag-success">boot it</span>
+        <h3 class="faros-card-title mt-3">faros</h3>
+        <p class="faros-card-text">Hosted hub: two commands, free. Self-hosted: two Helm charts on any Kubernetes cluster, running by tonight. Open source top to bottom — kernel, portal, and every provider.</p>
+        <div class="faros-compare-foot faros-compare-foot-win">minutes hosted · an evening self-hosted · $0</div>
       </div>
 
     </div>
@@ -344,82 +515,79 @@
   <!-- ============= QUICKSTART ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-violet-500 dark:text-violet-400 mb-3">Quickstart</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Four commands to a live platform.
-      </h2>
+      <p class="faros-eyebrow">Boot sequence</p>
+      <h2 class="faros-display text-3xl md:text-5xl">Four commands to a live platform.</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
 
-      <div class="kedge-step">
-        <div class="kedge-step-num">1</div>
+      <div class="faros-step">
+        <div class="faros-step-num">1</div>
         <div class="flex-1 min-w-0">
-          <h4 class="kedge-step-title">Install the CLI</h4>
-          <p class="kedge-step-text">Download CLI binary.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
+          <h4 class="faros-step-title">Install the CLI</h4>
+          <p class="faros-step-text">One binary — macOS, Linux, WSL.</p>
+          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
         </div>
       </div>
 
-      <div class="kedge-step">
-        <div class="kedge-step-num">2</div>
+      <div class="faros-step">
+        <div class="faros-step-num">2</div>
         <div class="flex-1 min-w-0">
-          <h4 class="kedge-step-title">Log in</h4>
-          <p class="kedge-step-text">Authenticate to the hosted hub — your isolated workspace is created on the spot.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge login</code></pre>
+          <h4 class="faros-step-title">Log in</h4>
+          <p class="faros-step-text">Authenticate to the hosted hub — your isolated workspace is created on the spot.</p>
+          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros login</code></pre>
         </div>
       </div>
 
-      <div class="kedge-step">
-        <div class="kedge-step-num">3</div>
+      <div class="faros-step">
+        <div class="faros-step-num">3</div>
         <div class="flex-1 min-w-0">
-          <h4 class="kedge-step-title">Register an edge</h4>
-          <p class="kedge-step-text">Get a one-time join command. Run it on the cluster or host.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge edge create my-cluster
-<span class="kedge-prompt">$</span> kedge edge join-command my-cluster</code></pre>
+          <h4 class="faros-step-title">Attach an edge</h4>
+          <p class="faros-step-text">Get a one-time join command and run it on the cluster or host.</p>
+          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros edge create my-cluster
+<span class="faros-prompt">$</span> faros edge join-command my-cluster</code></pre>
         </div>
       </div>
 
-      <div class="kedge-step">
-        <div class="kedge-step-num">4</div>
+      <div class="faros-step">
+        <div class="faros-step-num">4</div>
         <div class="flex-1 min-w-0">
-          <h4 class="kedge-step-title">Hand it to your agents</h4>
-          <p class="kedge-step-text">Kubeconfig for kubectl, SSH for shells — and one MCP URL that gives Claude every provider's tools, scoped to your workspace.</p>
-          <pre class="kedge-code-snippet"><code><span class="kedge-prompt">$</span> kedge kubeconfig edge my-cluster &gt; kc.yaml
-<span class="kedge-prompt">$</span> kedge mcp url --mcpserver-name default</code></pre>
+          <h4 class="faros-step-title">Hand it to your agents</h4>
+          <p class="faros-step-text">A kubeconfig for kubectl, SSH for shells, and one MCP URL that gives Claude every provider's tools — scoped to this workspace.</p>
+          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros kubeconfig edge my-cluster &gt; kc.yaml
+<span class="faros-prompt">$</span> faros mcp url --mcpserver-name default</code></pre>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ============= FREE FOREVER ============= -->
+  <!-- ============= OPEN SOURCE ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
-    <div class="kedge-panel kedge-panel-accent p-10 md:p-16 text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full kedge-pill text-sm">
-        <span class="text-violet-600 dark:text-violet-300 font-semibold">Apache 2.0</span>
-        <span class="text-gray-400 dark:text-gray-500">·</span>
-        <span class="text-emerald-600 dark:text-emerald-300 font-semibold">No license keys</span>
-        <span class="text-gray-400 dark:text-gray-500">·</span>
-        <span class="text-gray-700 dark:text-gray-200 font-semibold">No telemetry</span>
+    <div class="faros-panel faros-panel-accent p-10 md:p-16 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <span class="faros-tag faros-tag-accent">Apache 2.0</span>
+        <span class="faros-tag">No license keys</span>
+        <span class="faros-tag">No telemetry</span>
+        <span class="faros-tag">No per-seat pricing</span>
       </div>
 
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+      <h2 class="faros-display text-3xl md:text-5xl mb-6">
         Free forever. Open source by design.
       </h2>
 
-      <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
-        faros is fully open source — hub, portal, and every provider. Self-host it anywhere: VPS, home server, behind a Cloudflare tunnel.
-        No paywalled features, no usage limits, and <strong class="text-gray-900 dark:text-white">no per-seat pricing — platforms shouldn't tax headcount</strong>.
-        Unlimited edges. Fork it, audit it, ship it — the whole stack is yours.
+      <p class="text-base md:text-lg faros-lede max-w-2xl mx-auto leading-relaxed mb-10">
+        Kernel, portal, and every provider are open source. Self-host it anywhere — a VPS, a home
+        server, behind a Cloudflare Tunnel. No paywalled features, no usage limits, unlimited edges, and
+        <strong>no per-seat pricing — platforms shouldn't tax headcount</strong>. Fork it, audit it, ship it.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="https://github.com/faroshq/kedge" class="kedge-btn-primary">
+        <a href="https://github.com/faroshq/faros" class="faros-btn-primary">
           {{ $ghIcon | safeHTML }}
-          github.com/faroshq/kedge
+          github.com/faroshq/faros
         </a>
-        <a href="/docs/deploy/helm/" class="kedge-btn-secondary">
+        <a href="/docs/deploy/helm/" class="faros-btn-secondary">
           Deploy with Helm
         </a>
       </div>
@@ -429,199 +597,259 @@
 </section>
 
 <style>
-/* ─────────── kedge homepage styles (scoped to .kedge-hero) ─────────── */
+/* ─────────── faros homepage — Violet Circuit, scoped to .faros-home ───────────
+   Dark is the base; light is the override under html:not(.dark).
+   Radius law: cards 6px · controls 4px · tags 3px. Tags are square, never pills.
+   Glow only on live/primary things (primary button, live dot, hub, focus ring). */
 
-.kedge-hero {
-  --kedge-violet: #7c5bf5;
-  --kedge-violet-hover: #9b85f7;
-  --kedge-violet-soft: rgba(124, 91, 245, 0.12);
-  --kedge-emerald: #34d399;
-  --kedge-surface-dark: #06060b;
-  --kedge-surface-raised-dark: #0d0d14;
-}
-
-/* Background grid + ambient glow */
-.kedge-bg {
-  background:
-    linear-gradient(180deg, rgba(124,91,245,0.02) 0%, transparent 30%, rgba(52,211,153,0.015) 100%);
-}
-.dark .kedge-bg {
-  background:
-    linear-gradient(180deg, rgba(124,91,245,0.05) 0%, transparent 30%, rgba(52,211,153,0.03) 100%);
-}
-.kedge-dot-grid {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-.dark .kedge-dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-}
-
-/* Pill (badge) */
-.kedge-pill {
-  background: rgba(124, 91, 245, 0.08);
-  border: 1px solid rgba(124, 91, 245, 0.2);
-}
-.dark .kedge-pill {
-  background: rgba(124, 91, 245, 0.12);
-  border-color: rgba(124, 91, 245, 0.25);
+.faros-home {
+  --fx-surface: #0a0b12;
+  --fx-raised: #111320;
+  --fx-overlay: #171927;
+  --fx-hover: #1e2033;
+  --fx-border: rgba(255, 255, 255, 0.07);
+  --fx-border-strong: rgba(255, 255, 255, 0.11);
+  --fx-accent: #8b6bff;
+  --fx-accent-hover: #a18aff;
+  --fx-accent-subtle: rgba(139, 107, 255, 0.14);
+  --fx-accent-glow: rgba(139, 107, 255, 0.3);
+  --fx-text: #e9e9f2;
+  --fx-text-2: #8a8ca6;
+  --fx-text-muted: #5d5f78;
+  --fx-success: #2fd6a0;
+  --fx-success-subtle: rgba(47, 214, 160, 0.12);
+  --fx-warning: #f0a63a;
+  --fx-danger: #ff5d5d;
+  --fx-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fx-display: 'Archivo', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Gradient text — hero + section headings only */
-.kedge-gradient-text {
-  background: linear-gradient(135deg, #0f172a 0%, #7c5bf5 50%, #10b981 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-.dark .kedge-gradient-text {
-  background: linear-gradient(135deg, #eeeef3 0%, #7c5bf5 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Buttons */
-.kedge-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #fff;
-  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
-  box-shadow:
-    0 4px 14px rgba(124, 91, 245, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  text-decoration: none !important;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
-}
-.kedge-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 6px 22px rgba(124, 91, 245, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  color: #fff;
-}
-.kedge-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #4a4a64;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  text-decoration: none !important;
-  transition: all 0.2s;
-}
-.kedge-btn-secondary:hover {
-  border-color: rgba(124, 91, 245, 0.4);
-  color: #7c5bf5;
-  transform: translateY(-1px);
-}
-.dark .kedge-btn-secondary {
-  color: #c0c0d6;
-  background: rgba(13, 13, 20, 0.75);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-.dark .kedge-btn-secondary:hover {
-  border-color: rgba(124, 91, 245, 0.5);
-  color: #9b85f7;
+html:not(.dark) .faros-home {
+  --fx-surface: #f1f1f6;
+  --fx-raised: #ffffff;
+  --fx-overlay: #eaeaf2;
+  --fx-hover: #e3e3ee;
+  --fx-border: #e7e6f1;
+  --fx-border-strong: #dfdeeb;
+  --fx-accent: #6b48e8;
+  --fx-accent-hover: #5a38d6;
+  --fx-accent-subtle: rgba(107, 72, 232, 0.1);
+  --fx-accent-glow: rgba(107, 72, 232, 0.18);
+  --fx-text: #14152a;
+  --fx-text-2: #565975;
+  --fx-text-muted: #8d8fa6;
+  --fx-success: #0c9c66;
+  --fx-success-subtle: #e5f6ef;
+  --fx-warning: #c07508;
+  --fx-danger: #d63a40;
 }
 
-/* Pulse dot */
-@keyframes kedge-pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); opacity: 1; }
-  50% { box-shadow: 0 0 8px 2px rgba(52, 211, 153, 0.5); opacity: 0.7; }
+/* ── Signature background: contour lines, one accent wash, no glass ── */
+.faros-contour {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%238b6bff' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px 240px;
 }
-.kedge-pulse { animation: kedge-pulse-glow 2.5s ease-in-out infinite; }
-
-/* Terminal */
-.kedge-terminal {
-  background: #0d0d14;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  box-shadow:
-    0 24px 60px -20px rgba(124, 91, 245, 0.2),
-    0 12px 32px -10px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  overflow: hidden;
+html:not(.dark) .faros-contour {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%236b48e8' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
 }
-.kedge-terminal pre { background: transparent; margin: 0; }
-.kedge-prompt { color: #7c5bf5; font-weight: 600; }
-.kedge-claude { color: #34d399; font-weight: 600; }
-.kedge-ok { color: #34d399; }
-.kedge-info { color: #60a5fa; }
-.kedge-accent { color: #9b85f7; }
-.kedge-err { color: #f87171; }
-.kedge-muted { color: #7e7e96; font-style: italic; }
-
-/* Quick command card — the prominent install one-liner */
-.kedge-quickcmd {
-  background: #0d0d14;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
-  padding: 0.85rem 1rem 0.95rem;
-  box-shadow:
-    0 12px 28px -16px rgba(124, 91, 245, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  transition: border-color 0.2s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
+.faros-contour-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 55%);
+  mask-image: linear-gradient(to bottom, black, transparent 55%);
 }
-.kedge-quickcmd:hover {
-  border-color: rgba(124, 91, 245, 0.4);
-  transform: translateY(-2px);
-}
-.kedge-quickcmd::before {
-  content: "";
+.faros-wash {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 0% 0%, rgba(124, 91, 245, 0.08), transparent 60%);
+  top: -18rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rem;
+  max-width: 140%;
+  height: 40rem;
+  background: radial-gradient(ellipse at center, var(--fx-accent-subtle) 0%, transparent 65%);
   pointer-events: none;
 }
-.kedge-quickcmd-head {
+
+/* ── Type ── */
+.faros-display {
+  font-family: var(--fx-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--fx-text);
+}
+/* Archivo at wdth 125 is wide: at a fixed 48px the hero h1 overflows a
+   390px phone, so both heading levels are fluid rather than stepped. */
+.faros-home h1.faros-display {
+  font-size: clamp(2.1rem, 6.6vw, 4.4rem);
+  line-height: 1.05;
+}
+/* Cap section headings so they land on two lines instead of three. */
+.faros-home h2.faros-display {
+  font-size: clamp(1.9rem, 3.3vw, 2.9rem);
+  line-height: 1.12;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faros-accent-text { color: var(--fx-accent); }
+.faros-lede { color: var(--fx-text-2); }
+.faros-lede strong { color: var(--fx-text); font-weight: 600; }
+.faros-kicker {
+  color: var(--fx-text);
+  font-family: var(--fx-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.faros-eyebrow {
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fx-accent);
+  margin-bottom: 0.85rem;
+}
+
+/* ── Square mono tags (3px — never pills) ── */
+.faros-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  background: var(--fx-overlay);
+  color: var(--fx-text-2);
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.faros-tag-accent { background: var(--fx-accent-subtle); color: var(--fx-accent); }
+.faros-tag-success { background: var(--fx-success-subtle); color: var(--fx-success); }
+.faros-tag-live { color: var(--fx-text); }
+
+/* Live dot — one of the few things allowed to glow */
+.faros-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--fx-success);
+  box-shadow: 0 0 8px var(--fx-success);
+  animation: faros-live-pulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes faros-live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.faros-dot-sm {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  opacity: 0.7;
+}
+
+/* ── Buttons (4px controls) ── */
+.faros-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  background: var(--fx-accent);
+  border: 1px solid transparent;
+  box-shadow: 0 0 16px var(--fx-accent-glow);
+  text-decoration: none !important;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.faros-btn-primary:hover {
+  background: var(--fx-accent-hover);
+  box-shadow: 0 0 22px var(--fx-accent-glow);
+  color: #fff;
+}
+.faros-btn-primary:focus-visible {
+  outline: 2px solid var(--fx-accent);
+  outline-offset: 2px;
+}
+.faros-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--fx-text);
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-border-strong);
+  text-decoration: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.faros-btn-secondary:hover {
+  background: var(--fx-hover);
+  border-color: var(--fx-accent);
+  color: var(--fx-text);
+}
+.faros-btn-secondary:focus-visible {
+  outline: 2px solid var(--fx-accent);
+  outline-offset: 2px;
+}
+.faros-star-badge {
+  margin-left: 0.55rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: var(--fx-accent-subtle);
+  color: var(--fx-accent);
+}
+.faros-star-badge:empty { display: none; }
+
+/* ── Install command card ── */
+.faros-quickcmd {
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  padding: 0.8rem 0.9rem 0.9rem;
+  transition: border-color 0.15s ease;
+  position: relative;
+}
+.faros-quickcmd:hover { border-color: var(--fx-accent); }
+.faros-quickcmd-head {
   display: flex;
   align-items: center;
   gap: 0.55rem;
   margin-bottom: 0.55rem;
-  position: relative;
 }
-.kedge-quickcmd-label {
+.faros-quickcmd-label {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #eeeef3;
-  letter-spacing: -0.01em;
+  color: var(--fx-text);
 }
-.kedge-quickcmd-hint {
+.faros-quickcmd-hint {
   margin-left: auto;
+  font-family: var(--fx-mono);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #7e7e96;
-  font-weight: 500;
+  color: var(--fx-text-muted);
 }
-.kedge-quickcmd-row {
+.faros-quickcmd-row {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  position: relative;
 }
-.kedge-quickcmd-line {
+.faros-quickcmd-line {
   background: transparent;
   margin: 0;
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.9rem;
+  font-family: var(--fx-mono);
+  font-size: 0.85rem;
   line-height: 1.5;
-  color: #d4d4dc;
-  position: relative;
+  color: var(--fx-text);
   flex: 1;
   min-width: 0;
   /* Truncate long commands with "..." — the full text still copies. */
@@ -630,109 +858,190 @@
   text-overflow: ellipsis;
 }
 
-/* Copy buttons (shared look: install row + code snippets) */
-.kedge-install-copy-btn {
+/* ── Copy buttons (install row + code snippets) ── */
+.faros-install-copy-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   flex-shrink: 0;
-  padding: 0.4rem 0.7rem;
-  border-radius: 8px;
-  background: rgba(124, 91, 245, 0.12);
-  border: 1px solid rgba(124, 91, 245, 0.25);
-  color: #b9a6fa;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  font-family: 'Inter', sans-serif;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-border-strong);
+  color: var(--fx-text-2);
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
-.kedge-install-copy-btn:hover {
-  background: rgba(124, 91, 245, 0.22);
-  border-color: rgba(124, 91, 245, 0.45);
-  color: #d6c9fb;
+.faros-install-copy-btn:hover {
+  background: var(--fx-hover);
+  border-color: var(--fx-accent);
+  color: var(--fx-text);
 }
-.kedge-install-copy-btn:active { transform: scale(0.97); }
-.kedge-install-copy-btn:focus-visible {
-  outline: 2px solid rgba(124, 91, 245, 0.5);
+.faros-install-copy-btn:focus-visible {
+  outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.kedge-install-copy-icon-done { display: none; }
-.kedge-install-copy-btn.is-copied {
-  background: rgba(52, 211, 153, 0.15);
-  border-color: rgba(52, 211, 153, 0.4);
-  color: #34d399;
+.faros-install-copy-icon-done { display: none; }
+.faros-install-copy-btn.is-copied {
+  background: var(--fx-success-subtle);
+  border-color: var(--fx-success);
+  color: var(--fx-success);
 }
-.kedge-install-copy-btn.is-copied .kedge-install-copy-icon-default { display: none; }
-.kedge-install-copy-btn.is-copied .kedge-install-copy-icon-done { display: inline-block; }
+.faros-install-copy-btn.is-copied .faros-install-copy-icon-default { display: none; }
+.faros-install-copy-btn.is-copied .faros-install-copy-icon-done { display: inline-block; }
 
-/* Panels — the only glass (blurred) containers on the page */
-.kedge-panel {
+/* ── Terminal ── */
+.faros-terminal {
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.faros-terminal-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid var(--fx-border);
+}
+.faros-terminal-title {
+  font-family: var(--fx-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--fx-text-muted);
+}
+.faros-terminal-body {
+  background: transparent;
+  margin: 0;
+  padding: 1.4rem 1.25rem;
+  font-family: var(--fx-mono);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--fx-text-2);
+  overflow-x: auto;
+}
+.faros-prompt { color: var(--fx-accent); font-weight: 600; }
+.faros-claude { color: var(--fx-success); font-weight: 600; }
+.faros-ok { color: var(--fx-success); }
+.faros-info { color: var(--fx-text-2); }
+.faros-accent { color: var(--fx-accent); }
+.faros-err { color: var(--fx-danger); }
+
+/* ── Surfaces: flat raised cards, 6px, no glass ── */
+.faros-panel {
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+}
+.faros-panel-accent { border-color: var(--fx-accent-subtle); }
+
+.faros-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 24px;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  padding: 1.4rem;
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
-.dark .kedge-panel {
-  background: rgba(13, 13, 20, 0.6);
-  border-color: rgba(255, 255, 255, 0.06);
+.faros-card-link:hover { border-color: var(--fx-accent); background: var(--fx-overlay); }
+.faros-card-build { border-color: var(--fx-accent-subtle); }
+.faros-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
 }
-.kedge-panel-accent {
-  border: 1px solid rgba(124, 91, 245, 0.18);
-  background:
-    radial-gradient(ellipse at top, rgba(124,91,245,0.06) 0%, transparent 60%),
-    rgba(255, 255, 255, 0.6);
+.faros-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: var(--fx-accent-subtle);
+  color: var(--fx-accent);
+  flex-shrink: 0;
 }
-.dark .kedge-panel-accent {
-  border-color: rgba(124, 91, 245, 0.25);
-  background:
-    radial-gradient(ellipse at top, rgba(124,91,245,0.1) 0%, transparent 60%),
-    rgba(13, 13, 20, 0.7);
+.faros-card-title {
+  font-size: 1.02rem;
+  font-weight: 650;
+  color: var(--fx-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.faros-card-text {
+  font-size: 0.89rem;
+  line-height: 1.65;
+  color: var(--fx-text-2);
+  margin: 0;
+}
+.faros-card-text strong { color: var(--fx-text); font-weight: 600; }
+.faros-card-dim { background: var(--fx-surface); }
+.faros-card-win { border-color: var(--fx-success); }
+.faros-compare-foot {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--fx-border);
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  color: var(--fx-text-muted);
+}
+.faros-compare-foot-win { color: var(--fx-success); }
+
+/* ── I/O diagram ── */
+.faros-tile {
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  transition: border-color 0.15s ease;
+}
+.faros-tile:hover { border-color: var(--fx-accent); }
+.faros-tile-title { font-size: 0.85rem; font-weight: 600; color: var(--fx-text); }
+.faros-tile-meta {
+  font-family: var(--fx-mono);
+  font-size: 0.68rem;
+  color: var(--fx-text-muted);
+  margin-top: 0.15rem;
+}
+.faros-icon-accent { color: var(--fx-accent); }
+.faros-icon-success { color: var(--fx-success); }
+.faros-icon-muted { color: var(--fx-text-muted); }
+
+.faros-hub {
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-accent);
+  border-radius: 6px;
+  box-shadow: 0 0 20px var(--fx-accent-glow);
+}
+.faros-hub-eyebrow {
+  font-family: var(--fx-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fx-accent);
+  margin-bottom: 0.25rem;
+}
+.faros-hub-title { font-weight: 700; color: var(--fx-text); font-size: 1.05rem; }
+.faros-hub-meta {
+  font-family: var(--fx-mono);
+  font-size: 0.68rem;
+  color: var(--fx-text-muted);
+  margin-top: 0.25rem;
 }
 
-/* Tiles (architecture row) */
-.kedge-tile {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 14px;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s;
-}
-.kedge-tile:hover {
-  transform: translateY(-2px);
-  border-color: rgba(124, 91, 245, 0.25);
-}
-.dark .kedge-tile {
-  background: rgba(20, 20, 31, 0.7);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-.dark .kedge-tile:hover { border-color: rgba(124, 91, 245, 0.35); }
-
-/* Hub block in architecture */
-.kedge-hub {
-  background: linear-gradient(135deg, #1a1530 0%, #06060b 100%);
-  border: 1px solid rgba(124, 91, 245, 0.4);
-  border-radius: 16px;
-  box-shadow:
-    0 0 0 1px rgba(124, 91, 245, 0.1),
-    0 12px 32px -8px rgba(124, 91, 245, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-/* Flow line between hub and edges.
-   Vertical on small screens (columns stack); horizontal at md+ so the
-   laptop · hub · edges flow reads left-to-right. */
-.kedge-flow-line {
+/* Flow line: vertical when columns stack, horizontal at md+ */
+.faros-flow-line {
   width: 1px;
   height: 32px;
   margin: 0 auto;
-  background: linear-gradient(180deg, transparent 0%, rgba(124,91,245,0.4) 50%, transparent 100%);
+  background: var(--fx-border-strong);
   position: relative;
   overflow: hidden;
 }
-.kedge-flow-line::after {
+.faros-flow-line::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -740,313 +1049,337 @@
   transform: translateX(-50%);
   width: 1px;
   height: 8px;
-  background: #34d399;
-  animation: kedge-flow 2.2s linear infinite;
+  background: var(--fx-success);
+  animation: faros-flow 2.2s linear infinite;
 }
-@keyframes kedge-flow {
+@keyframes faros-flow {
   0%   { top: 0;    opacity: 0; }
   20%  { opacity: 1; }
   80%  { opacity: 1; }
   100% { top: 100%; opacity: 0; }
 }
-
 @media (min-width: 768px) {
-  .kedge-flow-line {
+  .faros-flow-line {
     width: 48px;
     height: 1px;
     margin: 0;
     flex-shrink: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(124,91,245,0.4) 50%, transparent 100%);
   }
-  .kedge-flow-line::after {
+  .faros-flow-line::after {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 8px;
     height: 1px;
-    animation: kedge-flow-h 2.2s linear infinite;
+    animation: faros-flow-h 2.2s linear infinite;
   }
 }
-@keyframes kedge-flow-h {
+@keyframes faros-flow-h {
   0%   { left: 0;    opacity: 0; }
   20%  { opacity: 1; }
   80%  { opacity: 1; }
   100% { left: 100%; opacity: 0; }
 }
 
-/* Capability strip inside the architecture panel */
-.kedge-strip {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-.dark .kedge-strip {
-  border-top-color: rgba(255, 255, 255, 0.06);
-}
-.kedge-feature { text-align: left; }
-.kedge-feature-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #0f172a;
+.faros-strip { border-top: 1px solid var(--fx-border); }
+.faros-feature-title {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--fx-text);
   margin-bottom: 0.25rem;
-  letter-spacing: -0.01em;
 }
-.dark .kedge-feature-title { color: #eeeef3; }
-.kedge-feature-text {
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: #4a5568;
+.faros-feature-text {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--fx-text-2);
   margin: 0;
 }
-.dark .kedge-feature-text { color: #7e7e96; }
 
-/* Provider / guardrail / compare cards */
-.kedge-card {
-  position: relative;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 16px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.kedge-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(124, 91, 245, 0.3);
-  box-shadow: 0 12px 28px -10px rgba(124, 91, 245, 0.15);
-}
-.dark .kedge-card {
-  background: rgba(13, 13, 20, 0.75);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-.dark .kedge-card:hover {
-  border-color: rgba(124, 91, 245, 0.4);
-  box-shadow: 0 12px 28px -8px rgba(124, 91, 245, 0.25);
-}
-.kedge-card-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-.kedge-icon-violet { background: rgba(124,91,245,0.12); color: #7c5bf5; }
-.kedge-icon-emerald { background: rgba(52,211,153,0.12); color: #10b981; }
-.kedge-icon-cyan { background: rgba(6,182,212,0.12); color: #0891b2; }
-.dark .kedge-icon-violet { color: #9b85f7; }
-.dark .kedge-icon-emerald { color: #34d399; }
-.dark .kedge-icon-cyan { color: #22d3ee; }
-
-.kedge-card-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-.dark .kedge-card-title { color: #eeeef3; }
-.kedge-card-text {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #4a5568;
-}
-.dark .kedge-card-text { color: #7e7e96; }
-
-/* "Build your own" card gets a subtle violet ring — it's the harness pitch */
-.kedge-card-build {
-  border-color: rgba(124, 91, 245, 0.3);
-}
-.dark .kedge-card-build {
-  border-color: rgba(124, 91, 245, 0.35);
-}
-
-/* Compare cards */
-.kedge-card-dim { opacity: 0.85; }
-.kedge-card-win {
-  border-color: rgba(52, 211, 153, 0.35);
-  background:
-    radial-gradient(ellipse at top, rgba(52,211,153,0.05) 0%, transparent 60%),
-    rgba(255, 255, 255, 0.75);
-}
-.dark .kedge-card-win {
-  border-color: rgba(52, 211, 153, 0.4);
-  background:
-    radial-gradient(ellipse at top, rgba(52,211,153,0.07) 0%, transparent 60%),
-    rgba(13, 13, 20, 0.75);
-}
-.kedge-card-win:hover {
-  border-color: rgba(52, 211, 153, 0.55);
-  box-shadow: 0 12px 28px -10px rgba(52, 211, 153, 0.2);
-}
-.kedge-compare-foot {
-  margin-top: 1rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  color: #64748b;
-}
-.dark .kedge-compare-foot {
-  border-top-color: rgba(255, 255, 255, 0.06);
-  color: #7e7e96;
-}
-.kedge-compare-foot-win { color: #10b981; }
-.dark .kedge-compare-foot-win { color: #34d399; }
-
-.kedge-link {
-  color: #7c5bf5;
-  text-decoration: underline;
-  text-decoration-color: rgba(124,91,245,0.35);
-  text-underline-offset: 3px;
-}
-.kedge-link:hover { color: #6d4fe0; text-decoration-color: #7c5bf5; }
-.dark .kedge-link { color: #9b85f7; }
-
-/* Quickstart steps */
-.kedge-step {
+/* ── Quickstart steps ── */
+.faros-step {
   display: flex;
   gap: 1rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 16px;
-  transition: border-color 0.25s;
+  padding: 1.4rem;
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  transition: border-color 0.15s ease;
 }
-.kedge-step:hover { border-color: rgba(124, 91, 245, 0.25); }
-.dark .kedge-step {
-  background: rgba(13, 13, 20, 0.75);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-.dark .kedge-step:hover { border-color: rgba(124, 91, 245, 0.35); }
-
-.kedge-step-num {
+.faros-step:hover { border-color: var(--fx-accent); }
+.faros-step-num {
   flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #fff;
-  background: linear-gradient(135deg, #7c5bf5 0%, #6d4fe0 100%);
-  box-shadow: 0 4px 12px rgba(124, 91, 245, 0.3);
+  font-family: var(--fx-mono);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--fx-accent);
+  background: var(--fx-accent-subtle);
 }
-.kedge-step-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0f172a;
+.faros-step-title {
+  font-size: 0.98rem;
+  font-weight: 650;
+  color: var(--fx-text);
   margin-bottom: 0.25rem;
 }
-.dark .kedge-step-title { color: #eeeef3; }
-.kedge-step-text {
-  font-size: 0.875rem;
-  color: #64748b;
+.faros-step-text {
+  font-size: 0.86rem;
+  color: var(--fx-text-2);
   margin-bottom: 0.75rem;
 }
-.dark .kedge-step-text { color: #7e7e96; }
 
-.kedge-code-snippet {
+.faros-code-snippet {
   position: relative;
-  background: rgba(13, 13, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.82rem;
-  color: #c0c0d6;
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-border);
+  border-radius: 4px;
+  padding: 0.7rem 0.9rem;
+  font-family: var(--fx-mono);
+  font-size: 0.8rem;
+  color: var(--fx-text);
   overflow: hidden;            /* per-line truncation handles overflow */
   margin: 0;
 }
 /* Each command line truncates with "..." when wider than the container. */
-.kedge-code-line {
+.faros-code-line {
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0;
 }
-.kedge-code-snippet--with-copy {
-  padding-right: 2.75rem;     /* reserves room for the icon-only copy button */
+.faros-code-snippet--with-copy {
+  padding-right: 2.5rem;      /* reserves room for the icon-only copy button */
 }
-.kedge-snippet-copy-btn {
+.faros-snippet-copy-btn {
   position: absolute;
-  top: 0.4rem;
-  right: 0.4rem;
+  top: 0.35rem;
+  right: 0.35rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   padding: 0;
-  color: #b9a6fa;
-  /* Opaque so any text that does scroll under stays hidden */
-  background: #1a1530;
-  border: 1px solid rgba(124, 91, 245, 0.35);
-  border-radius: 6px;
+  color: var(--fx-text-2);
+  /* Opaque so any text that scrolls under stays hidden */
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border-strong);
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.kedge-snippet-copy-btn:hover {
-  background: #261d44;
-  border-color: rgba(124, 91, 245, 0.6);
-  color: #d6c9fb;
+.faros-snippet-copy-btn:hover {
+  background: var(--fx-hover);
+  border-color: var(--fx-accent);
+  color: var(--fx-text);
 }
-.kedge-snippet-copy-btn:active { transform: scale(0.92); }
-.kedge-snippet-copy-btn:focus-visible {
-  outline: 2px solid rgba(124, 91, 245, 0.5);
+.faros-snippet-copy-btn:focus-visible {
+  outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.kedge-snippet-copy-icon-done { display: none; }
-.kedge-snippet-copy-btn.is-copied {
-  color: #34d399;
-  background: #0f2620;
-  border-color: rgba(52, 211, 153, 0.45);
+.faros-snippet-copy-icon-done { display: none; }
+.faros-snippet-copy-btn.is-copied {
+  color: var(--fx-success);
+  background: var(--fx-success-subtle);
+  border-color: var(--fx-success);
 }
-.kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-default { display: none; }
-.kedge-snippet-copy-btn.is-copied .kedge-snippet-copy-icon-done { display: inline-block; }
+.faros-snippet-copy-btn.is-copied .faros-snippet-copy-icon-default { display: none; }
+.faros-snippet-copy-btn.is-copied .faros-snippet-copy-icon-done { display: inline-block; }
+
+/* ─────────── Product frame (agents UI demo / placeholder) ─────────── */
+
+.faros-product-frame {
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.faros-product-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid var(--fx-border);
+}
+.faros-product-urlbar {
+  flex: 1;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 0.25rem 0.9rem;
+  border-radius: 4px;
+  background: var(--fx-overlay);
+  border: 1px solid var(--fx-border);
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  color: var(--fx-text-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.faros-product-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--fx-surface);
+}
+.faros-product-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Skeleton shows only while the real capture is missing */
+.faros-product-skeleton { display: none; }
+.faros-media-missing img { display: none; }
+.faros-media-missing .faros-product-skeleton {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+}
+@media (max-width: 640px) {
+  .faros-media-missing .faros-product-skeleton { grid-template-columns: 90px 1fr; }
+}
+.faros-skel-side {
+  border-right: 1px solid var(--fx-border);
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.faros-skel-main {
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+}
+.faros-skel-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faros-skel-line {
+  height: 9px;
+  border-radius: 2px;
+  background: var(--fx-overlay);
+  position: relative;
+  overflow: hidden;
+}
+.faros-skel-line.faros-skel-active { background: var(--fx-accent-subtle); }
+.faros-skel-chip {
+  width: 84px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--fx-accent-subtle);
+}
+.faros-skel-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--fx-overlay);
+}
+.faros-skel-dot-accent  { background: var(--fx-accent-subtle); }
+.faros-skel-dot-success { background: var(--fx-success-subtle); }
+.faros-skel-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.faros-skel-card {
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.faros-skel-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+}
+.faros-skel-bubble {
+  height: 22px;
+  border-radius: 4px;
+  background: var(--fx-overlay);
+}
+.faros-skel-bubble-me {
+  align-self: flex-end;
+  background: var(--fx-accent-subtle);
+}
+.faros-skel-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 4px;
+  background: var(--fx-raised);
+  border: 1px solid var(--fx-border-strong);
+  color: var(--fx-text-2);
+  font-family: var(--fx-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+/* Shimmer sweep across skeleton lines */
+@media (prefers-reduced-motion: no-preference) {
+  .faros-skel-line::after, .faros-skel-bubble::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    animation: faros-shimmer 2.4s ease-in-out infinite;
+  }
+  .faros-skel-bubble { position: relative; overflow: hidden; }
+}
+@keyframes faros-shimmer {
+  60%, 100% { transform: translateX(100%); }
+}
 
 /* ─────────── Motion (all gated on prefers-reduced-motion) ─────────── */
 
-/* Scroll reveal — .kedge-reveal is only ever added by JS, so no-JS
+/* Scroll reveal — .faros-reveal is only ever added by JS, so no-JS
    visitors (and crawlers) always see fully rendered content. */
-.kedge-reveal {
+.faros-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.kedge-reveal.is-visible {
+.faros-reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Typing cursor for the terminal demo */
-.kedge-cursor {
+.faros-cursor {
   display: inline-block;
-  width: 8px;
+  width: 7px;
   height: 1.05em;
   margin-left: 1px;
-  background: #9b85f7;
+  background: var(--fx-accent);
   vertical-align: text-bottom;
-  animation: kedge-blink 1s steps(2, start) infinite;
+  animation: faros-blink 1s steps(2, start) infinite;
 }
-@keyframes kedge-blink { to { visibility: hidden; } }
-
-/* Slow shimmer on gradient headlines */
-@media (prefers-reduced-motion: no-preference) {
-  .kedge-gradient-text {
-    background-size: 200% 200%;
-    animation: kedge-grad-shift 9s ease-in-out infinite;
-  }
-}
-@keyframes kedge-grad-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
+@keyframes faros-blink { to { visibility: hidden; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .kedge-reveal { opacity: 1; transform: none; transition: none; }
-  .kedge-pulse, .kedge-flow-line::after, .kedge-cursor { animation: none; }
+  .faros-reveal { opacity: 1; transform: none; transition: none; }
+  .faros-dot, .faros-flow-line::after, .faros-cursor { animation: none; }
 }
 </style>
 
@@ -1071,7 +1404,7 @@
   function flash(btn) {
     if (!btn) return;
     btn.classList.add("is-copied");
-    var label = btn.querySelector(".kedge-install-copy-label");
+    var label = btn.querySelector(".faros-install-copy-label");
     var prev = label ? label.textContent : null;
     if (label) label.textContent = "Copied!";
     setTimeout(function () {
@@ -1104,16 +1437,16 @@
       .join("\n");
   }
 
-  // Wrap each line of code in its own .kedge-code-line span so long lines
+  // Wrap each line of code in its own .faros-code-line span so long lines
   // truncate independently with "..." while preserving newlines for copy.
   function wrapCodeLines(code) {
     if (code.dataset.linesWrapped === "1") return;
     code.dataset.linesWrapped = "1";
     var lines = code.innerHTML.replace(/^\n+|\n+$/g, "").split("\n");
     code.innerHTML = lines
-      .map(function (line) { return '<span class="kedge-code-line">' + line + "</span>"; })
+      .map(function (line) { return '<span class="faros-code-line">' + line + "</span>"; })
       .join("\n");
-    code.querySelectorAll(".kedge-code-line").forEach(function (el) {
+    code.querySelectorAll(".faros-code-line").forEach(function (el) {
       el.setAttribute("title", el.textContent);
     });
   }
@@ -1121,18 +1454,18 @@
   function attachSnippetCopy(pre) {
     if (pre.dataset.copyInit === "1") return;
     pre.dataset.copyInit = "1";
-    pre.classList.add("kedge-code-snippet--with-copy");
+    pre.classList.add("faros-code-snippet--with-copy");
 
     var code = pre.querySelector("code");
     if (code) wrapCodeLines(code);
 
     var btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "kedge-snippet-copy-btn";
+    btn.className = "faros-snippet-copy-btn";
     btn.setAttribute("aria-label", "Copy command");
     btn.innerHTML =
-      '<svg class="kedge-snippet-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
-      '<svg class="kedge-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      '<svg class="faros-snippet-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
+      '<svg class="faros-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
       copyText(snippetText(pre), btn);
@@ -1141,9 +1474,9 @@
   }
 
   function init() {
-    document.querySelectorAll("[data-kedge-install-copy]").forEach(function (row) {
-      var btn = row.querySelector("[data-kedge-install-copy-btn]");
-      var textEl = row.querySelector("[data-kedge-install-text]");
+    document.querySelectorAll("[data-faros-install-copy]").forEach(function (row) {
+      var btn = row.querySelector("[data-faros-install-copy-btn]");
+      var textEl = row.querySelector("[data-faros-install-text]");
       var doCopy = function (e) {
         if (e) e.stopPropagation();
         if (textEl) copyText((textEl.textContent || "").trim(), btn);
@@ -1152,7 +1485,7 @@
       row.addEventListener("click", doCopy);
     });
 
-    document.querySelectorAll(".kedge-code-snippet").forEach(attachSnippetCopy);
+    document.querySelectorAll(".faros-code-snippet").forEach(attachSnippetCopy);
   }
 
   if (document.readyState === "loading") {
@@ -1165,18 +1498,17 @@
 
 <script>
 (function () {
-  // ── Motion layer: constellation, terminal typewriter, scroll reveals ──
+  // ── Motion layer: node field, terminal typewriter, scroll reveals ──
   // Everything here is progressive enhancement: without JS (or with
   // prefers-reduced-motion) the page stays fully static and readable.
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
 
-  /* ---------- 1. Node constellation behind the hero ----------
+  /* ---------- 1. Node field behind the hero ----------
      Drifting nodes that link up when close — edges dialing into a hub. */
   function initNet() {
-    var canvas = document.getElementById("kedge-net");
+    var canvas = document.getElementById("faros-net");
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1196,8 +1528,8 @@
           y: Math.random() * H,
           vx: (Math.random() - 0.5) * 0.22,
           vy: (Math.random() - 0.5) * 0.22,
-          r: 1 + Math.random() * 1.4,
-          hue: Math.random() < 0.75 ? "124,91,245" : "52,211,153"
+          r: 1 + Math.random() * 1.2,
+          hue: Math.random() < 0.8 ? "139,107,255" : "47,214,160"
         });
       }
     }
@@ -1219,7 +1551,7 @@
           dx = a.x - b.x; dy = a.y - b.y; d2 = dx * dx + dy * dy;
           if (d2 < LINK_DIST * LINK_DIST) {
             var t = 1 - Math.sqrt(d2) / LINK_DIST;
-            ctx.strokeStyle = "rgba(124,91,245," + (0.12 * t).toFixed(3) + ")";
+            ctx.strokeStyle = "rgba(139,107,255," + (0.1 * t).toFixed(3) + ")";
             ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
@@ -1227,7 +1559,7 @@
       }
       for (i = 0; i < nodes.length; i++) {
         a = nodes[i];
-        ctx.fillStyle = "rgba(" + a.hue + ",0.35)";
+        ctx.fillStyle = "rgba(" + a.hue + ",0.3)";
         ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
       }
       raf = requestAnimationFrame(tick);
@@ -1254,27 +1586,27 @@
      Retypes the hero session when it scrolls into view. Content mirrors
      the static markup (the no-JS fallback) — keep the two in sync. */
   function initTerm() {
-    var code = document.querySelector("[data-kedge-term]");
+    var code = document.querySelector("[data-faros-term]");
     if (!code || !("IntersectionObserver" in window)) return;
 
     var LINES = [
-      { prompt: "$",       pcls: "kedge-prompt", text: " kedge login", type: true },
-      { cls: "kedge-ok",   text: "✓ authenticated · workspace ready — your own isolated tenant" },
+      { prompt: "$",       pcls: "faros-prompt", text: " faros login", type: true },
+      { cls: "faros-ok",   text: "✓ authenticated · workspace root:faros:tenants:acme:web is yours alone" },
       { text: "" },
-      { prompt: "$",       pcls: "kedge-prompt", text: " kedge mcp url --mcpserver-name default", type: true },
-      { cls: "kedge-accent", text: "https://hub/…/mcp · every provider's tools · Claude-ready" },
+      { prompt: "$",       pcls: "faros-prompt", text: " faros mcp url --mcpserver-name default", type: true },
+      { cls: "faros-accent", text: "https://hub/…/mcp · every enabled provider's tools · scoped to this workspace" },
       { text: "" },
-      { prompt: "claude>", pcls: "kedge-claude", text: " deploy postgres for billing on the home-lab cluster", type: true },
-      { cls: "kedge-info", text: "→ mcp: infrastructure__provision template=postgres target=home-lab" },
-      { cls: "kedge-ok",   text: "✓ provisioned · gateway route wired · OIDC on" },
+      { prompt: "claude>", pcls: "faros-claude", text: " provision postgres for billing on the home-lab cluster", type: true },
+      { cls: "faros-info", text: "→ infrastructure__provision template=postgres target=home-lab" },
+      { cls: "faros-ok",   text: "✓ instance running · HTTPRoute published · OIDC in front" },
       { text: "" },
-      { prompt: "claude>", pcls: "kedge-claude", text: " now delete namespace kube-system", type: true },
-      { cls: "kedge-err",  text: "✗ denied — outside workspace scope · request logged" }
+      { prompt: "claude>", pcls: "faros-claude", text: " now delete namespace kube-system on prod", type: true },
+      { cls: "faros-err",  text: "✗ denied — outside workspace scope · recorded as an API event" }
     ];
     var CHAR_MS = 26, OUT_MS = 260, CMD_PAUSE = 320;
 
     var cursor = document.createElement("span");
-    cursor.className = "kedge-cursor";
+    cursor.className = "faros-cursor";
 
     function playLine(idx) {
       if (idx >= LINES.length) { cursor.remove(); return; }
@@ -1315,6 +1647,10 @@
     new IntersectionObserver(function (entries, obs) {
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
+      // Lock the fully-rendered height before clearing, so the terminal
+      // doesn't grow (and shove the page) while the session types out.
+      var pre = code.closest("pre") || code.parentElement;
+      pre.style.minHeight = pre.offsetHeight + "px";
       code.textContent = "";           // drop the static fallback, then replay it
       playLine(0);
     }, { threshold: 0.45 }).observe(code);
@@ -1323,12 +1659,12 @@
   /* ---------- 3. Scroll reveals with card stagger ---------- */
   function initReveals() {
     if (!("IntersectionObserver" in window)) return;
-    var sections = document.querySelectorAll(".kedge-hero > div.relative.max-w-6xl");
+    var sections = document.querySelectorAll(".faros-home > div.relative.max-w-6xl");
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
-        entry.target.querySelectorAll(".kedge-card, .kedge-step").forEach(function (el) {
+        entry.target.querySelectorAll(".faros-card, .faros-step").forEach(function (el) {
           el.classList.add("is-visible");
         });
         obs.unobserve(entry.target);
@@ -1337,16 +1673,43 @@
 
     sections.forEach(function (sec, i) {
       if (i === 0) return;             // hero is visible immediately
-      sec.classList.add("kedge-reveal");
-      sec.querySelectorAll(".kedge-card, .kedge-step").forEach(function (el, j) {
-        el.classList.add("kedge-reveal");
+      sec.classList.add("faros-reveal");
+      sec.querySelectorAll(".faros-card, .faros-step").forEach(function (el, j) {
+        el.classList.add("faros-reveal");
         el.style.transitionDelay = Math.min(j * 70, 420) + "ms";
       });
       obs.observe(sec);
     });
   }
 
-  function boot() { initNet(); initTerm(); initReveals(); }
+  /* ---------- 4. GitHub stars (proof) ----------
+     Fills [data-faros-stars]; silent on API failure or private repo. */
+  function initStars() {
+    var els = document.querySelectorAll("[data-faros-stars]");
+    if (!els.length || !window.fetch) return;
+    var KEY = "faros-gh-stars", TTL = 24 * 60 * 60 * 1000;
+    function show(n) {
+      var label = n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
+      els.forEach(function (el) { el.textContent = "★ " + label; });
+    }
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+    if (cached && Date.now() - cached.t < TTL) { show(cached.n); return; }
+    fetch("https://api.github.com/repos/faroshq/faros")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && typeof d.stargazers_count === "number") {
+          show(d.stargazers_count);
+          try { localStorage.setItem(KEY, JSON.stringify({ n: d.stargazers_count, t: Date.now() })); } catch (e) {}
+        }
+      })
+      .catch(function () {});
+  }
+
+  function boot() {
+    if (!reduceMotion) { initNet(); initTerm(); initReveals(); }
+    initStars();
+  }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {

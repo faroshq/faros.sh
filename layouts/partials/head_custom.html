@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="faros">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — the open-source harness for platform engineering" }}{{ else }}{{ .Title }} : faros{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} : faros{{ end }}">
 {{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
 <meta property="og:image" content="{{ "logo.png" | absURL }}">
 
@@ -44,7 +44,6 @@
     {
       "@type": "SoftwareApplication",
       "name": "faros",
-      "alternateName": "kedge",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux, macOS, Kubernetes",
       "description": {{ $desc | jsonify }},
@@ -52,7 +51,7 @@
       "downloadUrl": "https://downloads.faros.sh/install.sh",
       "license": "https://www.apache.org/licenses/LICENSE-2.0",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "sameAs": ["https://github.com/faroshq/kedge"]
+      "sameAs": ["https://github.com/faroshq/faros"]
     },
     {
       "@type": "Organization",

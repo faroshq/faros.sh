@@ -1,10 +1,10 @@
 ---
 title: Building Providers
-description: How to extend kedge with your own provider — APIs, controllers, UI, proxies, and MCP.
+description: Write a driver for the platform OS — APIs, controllers, UI, proxies, and MCP.
 weight: 50
 ---
 
-A **provider** is how you teach kedge a new capability without forking the hub. Everything beyond raw connectivity ships as a provider: edge management, application templates, git repositories, AI agents, fleet-wide query — all built on the same contract a third-party provider uses.
+A **provider** is a driver for the platform: how you teach faros a new capability without forking the hub. Everything above the [four kernel primitives](/docs/concepts/) ships as one — edge management, application templates, git repositories, AI agents, fleet-wide query — all built on the same contract a third-party provider uses. There is no privileged internal path.
 
 A provider is a **standalone service**: its own binary, its own pod, its own Helm chart, its own release cycle. It plugs into the hub through five optional surfaces:
 
@@ -14,19 +14,19 @@ A provider is a **standalone service**: its own binary, its own pod, its own Hel
 4. **A portal UI** — a Web Component micro-frontend the portal mounts at `/providers/<name>` — no iframes, shared theme.
 5. **MCP tools** — a `/mcp` endpoint on the backend; the hub federates every provider's tools into one aggregate MCP server for AI agents.
 
-A minimal provider (the in-repo [`quickstart`](https://github.com/faroshq/kedge/tree/main/providers/quickstart)) is a single Go binary with `init` and `serve` subcommands, an embedded frontend, and two small YAML files.
+A minimal provider (the in-repo [`quickstart`](https://github.com/faroshq/faros/tree/main/providers/quickstart)) is a single Go binary with `init` and `serve` subcommands, an embedded frontend, and two small YAML files.
 
 ## The moving parts
 
 ```
                         kcp workspace tree
-   root:kedge:providers:<name>      ← your workspace: APIExport, schemas, SA
-   root:kedge:system:providers      ← Provider + CatalogEntry objects, kubeconfig Secret
-   root:kedge:tenants:<org>:<ws>    ← tenants; APIBinding pulls your API in
+   root:faros:providers:<name>      ← your workspace: APIExport, schemas, SA
+   root:faros:system:providers      ← Provider + CatalogEntry objects, kubeconfig Secret
+   root:faros:tenants:<org>:<ws>    ← tenants; APIBinding pulls your API in
 
    ┌──────────┐   /ui/providers/<name>/*        ┌────────────────┐
    │  portal  │ ──────────────────────────────► │                │
-   └──────────┘                                 │   kedge hub    │
+   └──────────┘                                 │   faros hub    │
    ┌──────────┐   /services/providers/<name>/*  │  (UI + backend │      ┌───────────────┐
    │ CLI / AI │ ──────────────────────────────► │    proxies)    │ ───► │ your provider │
    └──────────┘                                 └────────────────┘      │      pod      │
@@ -37,8 +37,8 @@ A minimal provider (the in-repo [`quickstart`](https://github.com/faroshq/kedge/
 
 Two small YAML objects wire a provider in:
 
-- **`Provider`** (`admin.kedge.faros.sh`) — applied by the platform admin. The hub provisions your workspace at `root:kedge:providers:<name>`, a service account with admin rights *inside that workspace only*, and a kubeconfig Secret your pod mounts.
-- **`CatalogEntry`** (`providers.kedge.faros.sh`) — self-registered by your `init` step. Declares display metadata, UI/backend URLs, and which APIExport tenants bind. It drives the portal catalog, the Enable dialog, and the hub's proxies.
+- **`Provider`** (`admin.faros.sh`) — applied by the platform admin. The hub provisions your workspace at `root:faros:providers:<name>`, a service account with admin rights *inside that workspace only*, and a kubeconfig Secret your pod mounts.
+- **`CatalogEntry`** (`providers.faros.sh`) — self-registered by your `init` step. Declares display metadata, UI/backend URLs, and which APIExport tenants bind. It drives the portal catalog, the Enable dialog, and the hub's proxies.
 
 Your binary's **`init`** subcommand (running as an initContainer with the minted kubeconfig) creates the API surface itself: `APIResourceSchema`s, the `APIExport`, an `APIExportEndpointSlice`, and the bind grant. The hub provisions infrastructure; you own your API.
 
@@ -61,7 +61,7 @@ Read them roughly in order — each builds on the previous:
 - **[Virtual workspaces](/docs/providers/virtual-workspace/)** — how your controllers see all tenant workspaces at once, and the two access patterns (service identity vs. caller identity).
 - **[Connectivity & proxies](/docs/providers/connectivity/)** — the UI and backend proxies, identity headers, the revdial reverse tunnel, and data-plane subresources.
 - **[RBAC & security](/docs/providers/rbac/)** — what your SA can touch, bind grants, claim acceptance, and the isolation rules every provider must follow.
-- **[Building the UI](/docs/providers/ui/)** — the custom-element contract, `kedgeContext`, navigation, and asset serving.
+- **[Building the UI](/docs/providers/ui/)** — the custom-element contract, `farosContext`, navigation, and asset serving.
 - **[MCP integration](/docs/providers/mcp/)** — exposing tools to AI agents through the hub's aggregate endpoint.
 - **[Packaging & deployment](/docs/providers/deploy/)** — the Helm chart shape, environment variables, Docker image, and publishing.
-- **[Provider catalog](/docs/providers/catalog/)** — reference for the eight providers that ship with kedge today.
+- **[Provider catalog](/docs/providers/catalog/)** — reference for the providers that ship with faros today.

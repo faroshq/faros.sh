@@ -147,5 +147,5 @@ document
   .querySelectorAll(".highlight")
   .forEach((highlightDiv) => createCopyButton(highlightDiv));
 
-// All kedge marketing-site copy buttons are wired inline in the
+// All faros marketing-site copy buttons are wired inline in the
 // hero-home.html partial — that avoids asset-bundle caching surprises.

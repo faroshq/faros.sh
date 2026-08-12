@@ -1,10 +1,10 @@
 ---
 title: CLI Reference
-description: Every kedge command — authentication, organizations, edges, agents, SSH, MCP.
+description: Every faros command — authentication, organizations, edges, agents, SSH, MCP.
 weight: 20
 ---
 
-The `kedge` CLI is a kubectl plugin (when installed via krew, it's `kubectl kedge`; the standalone binary just drops the `kubectl` prefix). All commands below use the `kubectl kedge` form.
+The `faros` CLI is a kubectl plugin (when installed via krew, it's `kubectl faros`; the standalone binary just drops the `kubectl` prefix). All commands below use the `kubectl faros` form.
 
 ## Global flags
 
@@ -12,7 +12,7 @@ The `kedge` CLI is a kubectl plugin (when installed via krew, it's `kubectl kedg
 |:-----|:------------|
 | `--kubeconfig <path>` | Path to the kubeconfig to read and write. Defaults to `$KUBECONFIG` or `~/.kube/config`. |
 
-That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecure-skip-tls-verify`, ...) lives on the individual commands that need it. Login always writes to a kubeconfig context named `kedge`.
+That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecure-skip-tls-verify`, ...) lives on the individual commands that need it. Login always writes to a kubeconfig context named `faros`.
 
 ## Command summary
 
@@ -29,13 +29,13 @@ That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecur
 | [`edge delete <name>`](/docs/cli/edges/#delete) | Remove an edge. |
 | [`kubeconfig edge <name>`](/docs/cli/edges/#kubeconfig) | Generate a kubeconfig that proxies kubectl through the hub. |
 | [`agent ...`](/docs/cli/agent/) | Run, install, and upgrade the edge agent (`run`, `join`, `install`, `uninstall`, `upgrade`). |
-| [`install`](/docs/cli/agent/#kedge-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
+| [`install`](/docs/cli/agent/#faros-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
 | [`ssh <name>`](/docs/cli/ssh/) | Open an SSH session (or run a single command) on a server-type edge. |
 | [`mcp url`](/docs/cli/mcp/) | Print an MCP endpoint for AI agents (`--mcpserver-name` aggregate or `--edge` per-edge). |
-| `apply -f <file>` | Apply a kedge resource from a YAML file. |
+| `apply -f <file>` | Apply a faros resource from a YAML file. |
 | `get <resource>` | List `edges`, `workloads`, or `placements` in the current workspace. |
 | `version` | Print CLI version, commit, build date, and platform. |
 | `dev init` / `dev update` / `dev delete` | Create, upgrade, or tear down a local kind-based dev hub (`init` has alias `create`). |
-| `init` | Run an in-process kedge hub (server bootstrap — for development, not the CLI workflow). |
+| `init` | Run an in-process faros hub (server bootstrap — for development, not the CLI workflow). |
 
 Pick a command from the sidebar for the full reference.

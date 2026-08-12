@@ -56,9 +56,9 @@ config:
     http: 0.0.0.0:5556
 
   staticClients:
-    - id: kedge
-      name: Kedge
-      public: true          # kedge is a PKCE public client — no client secret
+    - id: faros
+      name: Faros
+      public: true          # faros is a PKCE public client — no client secret
       redirectURIs:
         - https://hub.example.com/auth/callback
 
@@ -119,7 +119,7 @@ hub:
 
 idp:
   issuerURL: "https://idp.example.com"
-  clientID: "kedge"
+  clientID: "faros"
 ```
 
 There is **no client secret** — the hub, CLI, and portal are PKCE public clients. That's why the Dex client above is marked `public: true`.
@@ -129,7 +129,7 @@ If your IdP serves a certificate signed by a private CA, put the PEM bundle in a
 ```yaml
 idp:
   issuerURL: "https://idp.example.com"
-  clientID: "kedge"
+  clientID: "faros"
   caSecretName: "idp-ca"      # Secret with the PEM bundle
   caSecretKey: "tls.crt"      # key inside the Secret
 ```
@@ -137,18 +137,18 @@ idp:
 Roll out:
 
 ```bash
-helm upgrade --install kedge oci://ghcr.io/faroshq/charts/kedge-hub \
+helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
   -f values.yaml \
-  --namespace kedge-system
+  --namespace faros-system
 ```
 
 ## 3. Log in
 
 ```bash
-kubectl kedge login --hub-url https://hub.example.com
+kubectl faros login --hub-url https://hub.example.com
 ```
 
-The browser opens to the hub's `/auth/authorize` endpoint, which redirects to Dex, which redirects to your identity backend (GitHub, Google, …). After you authorize, the CLI receives your kubeconfig over a one-time localhost callback. The kubeconfig uses an exec credential plugin (`kedge get-token`) that refreshes tokens automatically — see [Login & Authentication](/docs/cli/login/).
+The browser opens to the hub's `/auth/authorize` endpoint, which redirects to Dex, which redirects to your identity backend (GitHub, Google, …). After you authorize, the CLI receives your kubeconfig over a one-time localhost callback. The kubeconfig uses an exec credential plugin (`faros get-token`) that refreshes tokens automatically — see [Login & Authentication](/docs/cli/login/).
 
 ## Identity connectors
 
@@ -218,7 +218,7 @@ Dex supports many backends. The most common configurations:
 
 **TLS errors on the issuer** — If Dex's certificate is signed by a private CA, set `idp.caSecretName` / `idp.caSecretKey` (see above). As a last resort for throwaway dev setups, `hub.devMode: true` skips issuer TLS verification — never in production.
 
-**`unauthorized_client` / secret prompts** — The Dex client must be `public: true` with no `secret`. kedge does PKCE; a confidential client configuration will fail.
+**`unauthorized_client` / secret prompts** — The Dex client must be `public: true` with no `secret`. faros does PKCE; a confidential client configuration will fail.
 
 **Dex logs**:
 

@@ -1,21 +1,24 @@
 ---
 title: Provider Catalog
-description: Reference for the providers that ship with kedge — APIs, tools, and UI surfaces.
+description: Reference for the providers that ship with faros — APIs, tools, and UI surfaces.
 weight: 9
 ---
 
-Eight providers ship in the kedge repo today. Each follows the [standard packaging](/docs/providers/anatomy/): a CatalogEntry, an `init`+`serve` binary, an embedded portal micro-frontend, and a hub heartbeat. This page is the tenant/operator-facing reference; per-provider architecture docs live in the kedge repo under `docs/`.
+These are the drivers that ship in the faros repo today. Each follows the [standard packaging](/docs/providers/anatomy/): a CatalogEntry, an `init`+`serve` binary, an embedded portal micro-frontend, and a hub heartbeat — the same contract your own provider uses. This page is the tenant/operator-facing reference; per-provider architecture docs live in the faros repo under `docs/`.
 
 | Provider | API group | What it gives you |
 |:---------|:----------|:------------------|
-| [edges](#edges) | `edges.kedge.faros.sh` | Edge connectivity: clusters, servers, services, workloads |
-| [infrastructure](#infrastructure) | `infrastructure.kedge.faros.sh` | Application templates and provisioned instances |
-| [code](#code) | `code.kedge.faros.sh` | Git repositories, deploy keys, packages |
-| [agents](#agents) | `agents.kedge.faros.sh` | Hosted, persistent AI agents |
-| [app-studio](#app-studio) | `ai.kedge.faros.sh` | AI project workspaces with live dev environments |
+| [edges](#edges) | `edges.faros.sh` | Edge connectivity: clusters, servers, services, workloads |
+| [infrastructure](#infrastructure) | `infrastructure.faros.sh` | Application templates and provisioned instances |
+| [code](#code) | `code.faros.sh` | Git repositories, deploy keys, packages |
+| [agents](#agents) | `agents.faros.sh` | Hosted, persistent AI agents |
+| [app-studio](#app-studio) | `ai.faros.sh` | AI project workspaces with live dev environments |
+| [vibe-studio](#vibe-studio) | `vibe.faros.sh` | Wizard-first app builder (early — see status below) |
 | [kuery](#kuery) | — (query surface) | Fleet-wide object search and impact analysis |
-| [databricks](#databricks) | `databricks.kedge.faros.sh` | Databricks warehouse tables as workspace resources |
-| [quickstart](#quickstart) | `quickstart.providers.kedge.faros.sh` | Reference/scaffold provider |
+| [databricks](#databricks) | `databricks.faros.sh` | Databricks warehouse tables as workspace resources |
+| [quickstart](#quickstart) | `quickstart.providers.faros.sh` | Reference/scaffold provider |
+
+Two portal surfaces in the repo (`mcp`, and the `kubernetesedges` / `serveredges` split views) are micro-frontends over APIs the hub and the edges provider already own — they aren't separate providers and have no API group of their own.
 
 ## edges
 
@@ -76,6 +79,14 @@ Persistent **AI project workspaces**: named Projects with durable memory (goals/
 
 **Portal:** project list, chat surface, memory editor, development workbench with live preview.
 
+## vibe-studio
+
+The **wizard-first app builder**, and the eventual successor to App Studio. A guided intake collects what you're trying to build, recommends an infrastructure [Template](#infrastructure), provisions a development sandbox from its scaffold, then drops you into conversational building with preview, build, and promotion to production.
+
+**Resources:** `Project` (`vibe.faros.sh/v1alpha1`) — the only CRD. Everything conversational lives in the provider's event-sourced store (Postgres, or in-memory for dev), never in Kubernetes objects. Approving a blueprint records a resolved runtime binding on the Project; a multicluster reconciler then creates the `farosMode: development` instance in your workspace, mirrors its phase/URL/outputs into `Project.status`, and tears it down via finalizer on delete.
+
+**Status:** early. The wizard lifecycle and provisioning path are real and deterministic (a scripted engine, no LLM in the loop yet); the conversational engine, workspace file store, repo wiring, and build/promote steps are still landing. Treat it as preview — [app-studio](#app-studio) is the shipping path today.
+
 ## kuery
 
 A single query surface over every object across your connected edge clusters — for humans and especially AI agents. One SQL-backed structured query replaces N kubectl round-trips through N tunnels.
@@ -88,7 +99,7 @@ A single query surface over every object across your connected edge clusters —
 
 ## databricks
 
-Exposes imported Databricks SQL Warehouse tables to kedge apps (notably App Studio) as workspace resources plus a query surface.
+Exposes imported Databricks SQL Warehouse tables to faros apps (notably App Studio) as workspace resources plus a query surface.
 
 **Resources:** `Connection` (workspace host + credential), `Warehouse`, `Table` (imported table with column metadata).
 
