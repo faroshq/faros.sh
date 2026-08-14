@@ -7,11 +7,11 @@
 <base href="{{ .Site.BaseURL }}">
 
 {{ if .IsHome }}
-  <title> {{ .Title | default "faros" }} </title>
+  <title>{{ .Title | default "Faros — the operating system for AI-native platforms" }}</title>
 {{ else if .Title }}
-  <title> {{ .Title }} : faros </title>
+  <title>{{ .Title }} | Faros</title>
 {{ else }}
-  <title> faros </title>
+  <title>Faros</title>
 {{ end }}
 
 {{ $desc := .Description | default .Site.Params.description }}
@@ -22,46 +22,65 @@
 <link rel="canonical" href="{{ .Permalink }}">
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="faros">
+<meta property="og:site_name" content="Faros">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} : faros{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "Faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} | Faros{{ end }}">
 {{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
 <meta property="og:image" content="{{ "logo.png" | absURL }}">
+<meta property="og:image:alt" content="Faros">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "faros" }}{{ else }}{{ .Title }} : faros{{ end }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "Faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} | Faros{{ end }}">
 {{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
 <meta name="twitter:image" content="{{ "logo.png" | absURL }}">
+<meta name="twitter:image:alt" content="Faros">
 
 {{ if .IsHome }}
-<!-- Structured data: the product + the org -->
+<!-- Structured data: one Faros brand, with the Apache-licensed source identified separately. -->
+{{- $organization := dict
+  "@type" "Organization"
+  "@id" "https://faros.sh/#organization"
+  "name" "Faros"
+  "url" "https://faros.sh/"
+  "logo" "https://faros.sh/logo.png"
+  "sameAs" (slice "https://github.com/faroshq")
+-}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" "https://faros.sh/#website"
+  "name" "Faros"
+  "url" "https://faros.sh/"
+  "description" $desc
+  "publisher" (dict "@id" "https://faros.sh/#organization")
+-}}
+{{- $platform := dict
+  "@type" "SoftwareApplication"
+  "@id" "https://faros.sh/#platform"
+  "name" "Faros"
+  "applicationCategory" "DeveloperApplication"
+  "description" $desc
+  "url" "https://faros.sh/platform/"
+  "author" (dict "@id" "https://faros.sh/#organization")
+  "isRelatedTo" (dict "@id" "https://faros.sh/#open-source")
+-}}
+{{- $openSource := dict
+  "@type" "SoftwareSourceCode"
+  "@id" "https://faros.sh/#open-source"
+  "name" "Faros Open Source"
+  "description" "The Apache 2.0 open-source Faros platform."
+  "url" "https://faros.sh/open-source/"
+  "codeRepository" "https://github.com/faroshq/faros"
+  "license" "https://www.apache.org/licenses/LICENSE-2.0"
+  "author" (dict "@id" "https://faros.sh/#organization")
+-}}
+{{- $structuredData := dict
+  "@context" "https://schema.org"
+  "@graph" (slice $organization $website $platform $openSource)
+-}}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "faros",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Linux, macOS, Kubernetes",
-      "description": {{ $desc | jsonify }},
-      "url": "https://faros.sh/",
-      "downloadUrl": "https://downloads.faros.sh/install.sh",
-      "license": "https://www.apache.org/licenses/LICENSE-2.0",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "sameAs": ["https://github.com/faroshq/faros"]
-    },
-    {
-      "@type": "Organization",
-      "name": "faroshq",
-      "url": "https://faros.sh/",
-      "logo": "https://faros.sh/logo.png",
-      "sameAs": ["https://github.com/faroshq"]
-    }
-  ]
-}
+{{ $structuredData | jsonify | safeJS }}
 </script>
 {{ end }}
 <!-- noindex meta -->

@@ -1,0 +1,475 @@
+<style>
+.faros-home-v2 {
+  --fx-surface: #0a0b12;
+  --fx-raised: #111320;
+  --fx-overlay: #171927;
+  --fx-hover: #1e2033;
+  --fx-border: rgba(255, 255, 255, 0.07);
+  --fx-border-strong: rgba(255, 255, 255, 0.12);
+  --fx-accent: #8b6bff;
+  --fx-accent-hover: #a18aff;
+  --fx-accent-subtle: rgba(139, 107, 255, 0.13);
+  --fx-accent-glow: rgba(139, 107, 255, 0.28);
+  --fx-text: #e9e9f2;
+  --fx-text-2: #9b9db5;
+  --fx-text-muted: #666880;
+  --fx-success: #2fd6a0;
+  --fx-success-subtle: rgba(47, 214, 160, 0.12);
+  --fx-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fx-display: 'Archivo', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
+  background: var(--fx-surface);
+  color: var(--fx-text);
+}
+
+html:not(.dark) .faros-home-v2 {
+  --fx-surface: #f3f2f7;
+  --fx-raised: #ffffff;
+  --fx-overlay: #ebe9f1;
+  --fx-hover: #e4e1ec;
+  --fx-border: #e1deea;
+  --fx-border-strong: #d5d0e2;
+  --fx-accent: #6b48e8;
+  --fx-accent-hover: #5a38d6;
+  --fx-accent-subtle: rgba(107, 72, 232, 0.09);
+  --fx-accent-glow: rgba(107, 72, 232, 0.16);
+  --fx-text: #171628;
+  --fx-text-2: #5d5d73;
+  --fx-text-muted: #858498;
+  --fx-success: #0b9562;
+  --fx-success-subtle: #e4f6ef;
+}
+
+.faros-v2-backdrop {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 48rem;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 14%, var(--fx-accent-subtle), transparent 42%),
+    linear-gradient(var(--fx-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fx-border) 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+}
+
+.faros-v2-shell {
+  position: relative;
+  width: min(1160px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.faros-v2-anchor { scroll-margin-top: 5rem; }
+
+.faros-v2-hero {
+  position: relative;
+  padding: 5rem 0 4rem;
+}
+
+.faros-v2-hero-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.faros-v2-hero-message {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
+
+.faros-v2-eyebrow {
+  font-family: var(--fx-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fx-accent);
+}
+
+.faros-v2-hero h1,
+.faros-v2-section h2 {
+  margin: 0;
+  font-family: var(--fx-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--fx-text);
+}
+
+.faros-v2-hero h1 {
+  max-width: 15ch;
+  font-size: clamp(2.25rem, 5.5vw, 3rem);
+  line-height: 1;
+}
+
+.faros-v2-hero h1 span { display: block; color: var(--fx-accent); }
+
+.faros-v2-lede {
+  max-width: 38rem;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+  line-height: 1.65;
+  color: var(--fx-text-2);
+}
+
+.faros-v2-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.faros-v2-btn {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none !important;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.faros-v2-btn-primary {
+  background: var(--fx-accent);
+  color: #fff;
+  box-shadow: 0 0 18px var(--fx-accent-glow);
+}
+
+.faros-v2-btn-primary:hover { background: var(--fx-accent-hover); color: #fff; }
+
+.faros-v2-btn-secondary {
+  border-color: var(--fx-border-strong);
+  background: var(--fx-overlay);
+  color: var(--fx-text);
+}
+
+.faros-v2-btn-secondary:hover {
+  border-color: var(--fx-accent);
+  background: var(--fx-hover);
+  color: var(--fx-text);
+}
+
+.faros-v2-btn:focus-visible,
+.faros-v2-text-link:focus-visible,
+.faros-v2-feature-card:focus-visible {
+  outline: 2px solid var(--fx-accent);
+  outline-offset: 3px;
+}
+
+.faros-v2-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--fx-text);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.faros-v2-text-link:hover { color: var(--fx-accent); }
+.faros-v2-hero .faros-v2-actions .faros-v2-text-link { margin-left: 0.35rem; color: var(--fx-text-2); }
+
+.faros-v2-section { position: relative; padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+.faros-v2-section-muted { border-block: 1px solid var(--fx-border); background: var(--fx-raised); }
+.faros-v2-section-heading { max-width: 48rem; margin: 0 auto 2.8rem; text-align: center; }
+.faros-v2-section-heading-left { max-width: 43rem; margin-left: 0; text-align: left; }
+.faros-v2-eyebrow { margin: 0 0 0.85rem; }
+.faros-v2-section h2 { font-size: clamp(2.1rem, 4.7vw, 3.8rem); line-height: 1.07; }
+.faros-v2-section-heading > p:last-child {
+  margin: 1.1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fx-text-2);
+}
+
+.faros-v2-feature-section { position: relative; padding: 0 0 clamp(4.5rem, 9vw, 7.5rem); }
+.faros-v2-feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+.faros-v2-feature-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 250px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--fx-border);
+  border-radius: 6px;
+  background: var(--fx-raised);
+  color: var(--fx-text);
+  text-decoration: none !important;
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+.faros-v2-feature-card:hover {
+  border-color: var(--fx-accent);
+  background: var(--fx-overlay);
+  color: var(--fx-text);
+  transform: translateY(-2px);
+}
+.faros-v2-feature-card-featured { grid-column: span 2; }
+.faros-v2-feature-card-tall { min-height: 430px; }
+.faros-v2-feature-copy { position: relative; z-index: 2; padding: 1.45rem 1.45rem 0; }
+.faros-v2-feature-card-featured .faros-v2-feature-copy { max-width: 55%; }
+.faros-v2-feature-title { display: flex; align-items: center; gap: 0.65rem; }
+.faros-v2-feature-title svg { width: 21px; height: 21px; flex: 0 0 auto; color: var(--fx-text); }
+.faros-v2-feature-title h3 { margin: 0; font-size: 1.06rem; font-weight: 650; letter-spacing: -0.01em; color: var(--fx-text); }
+.faros-v2-feature-copy > p { max-width: 27rem; margin: 1rem 0 0; font-size: 0.88rem; line-height: 1.62; color: var(--fx-text-2); }
+.faros-v2-feature-copy strong { font-weight: 600; color: var(--fx-text); }
+.faros-v2-feature-arrow { position: absolute; z-index: 4; top: 1.25rem; right: 1.25rem; color: var(--fx-text-muted); opacity: 0; transform: translate(-3px, 3px); transition: opacity 150ms ease, transform 150ms ease; }
+.faros-v2-feature-card:hover .faros-v2-feature-arrow { opacity: 1; transform: translate(0, 0); color: var(--fx-accent); }
+
+.faros-v2-feature-list { position: absolute; z-index: 2; left: 1.45rem; bottom: 1.35rem; display: grid; gap: 0.42rem; margin: 0; padding: 0; list-style: none; }
+.faros-v2-feature-list li { position: relative; padding-left: 1.1rem; font-size: 0.72rem; color: var(--fx-text-2); }
+.faros-v2-feature-list li::before { content: '✓'; position: absolute; left: 0; color: var(--fx-success); }
+.faros-v2-workspace-art { position: absolute; right: 1.6rem; bottom: 1.4rem; width: 44%; height: 52%; }
+.faros-v2-workspace-ring { position: absolute; inset: 8% 2% 2% 8%; border: 1px solid var(--fx-border-strong); border-radius: 18%; }
+.faros-v2-workspace-ring-one { transform: rotate(0deg); }
+.faros-v2-workspace-ring-two { transform: rotate(7deg); }
+.faros-v2-workspace-ring-three { transform: rotate(-7deg); }
+.faros-v2-workspace-art > div { position: absolute; inset: 23% 12% 14% 18%; display: flex; flex-direction: column; justify-content: center; padding: 1rem; border: 1px solid var(--fx-accent); border-radius: 6px; background: var(--fx-surface); box-shadow: 0 0 24px var(--fx-accent-glow); }
+.faros-v2-workspace-art small,
+.faros-v2-workspace-art em { font-family: var(--fx-mono); font-size: 0.52rem; font-style: normal; color: var(--fx-text-muted); }
+.faros-v2-workspace-art strong { margin: 0.45rem 0; font-size: 0.72rem; color: var(--fx-text); }
+.faros-v2-workspace-art em { color: var(--fx-success); }
+
+.faros-v2-provider-art { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; transform: translateY(22%); }
+.faros-v2-provider-art div { min-height: 78px; padding: 0.8rem; border: 1px solid var(--fx-border); border-radius: 5px; background: var(--fx-surface); }
+.faros-v2-provider-art span { font-family: var(--fx-mono); font-size: 0.56rem; color: var(--fx-text-muted); }
+.faros-v2-provider-art i { display: block; width: 55%; height: 4px; margin-top: 1.3rem; border-radius: 3px; background: var(--fx-accent-subtle); }
+
+.faros-v2-mcp-art { position: absolute; right: 0; bottom: -1rem; left: 0; height: 225px; color: var(--fx-border-strong); }
+.faros-v2-mcp-art svg { position: absolute; inset: 2rem 0 0; width: 100%; height: 100%; }
+.faros-v2-mcp-command { position: absolute; z-index: 2; top: 1.2rem; left: 50%; padding: 0.42rem 0.75rem; border: 1px solid var(--fx-border-strong); border-radius: 4px; background: var(--fx-raised); font-family: var(--fx-mono); font-size: 0.58rem; color: var(--fx-text-2); transform: translateX(-50%); white-space: nowrap; }
+.faros-v2-mcp-command span { margin-right: 0.4rem; color: var(--fx-accent); }
+
+.faros-v2-blueprint-art,
+.faros-v2-agent-art,
+.faros-v2-edge-art,
+.faros-v2-code-art { position: absolute; right: 1rem; bottom: 0.7rem; left: 1rem; height: 72px; opacity: 0.75; }
+.faros-v2-blueprint-art span { position: absolute; width: 54px; height: 32px; border: 1px solid var(--fx-border-strong); border-radius: 3px; background: var(--fx-surface); }
+.faros-v2-blueprint-art span:nth-child(1) { left: 0; bottom: 0; }
+.faros-v2-blueprint-art span:nth-child(2) { left: calc(50% - 27px); top: 0; border-color: var(--fx-accent); }
+.faros-v2-blueprint-art span:nth-child(3) { right: 0; bottom: 0; }
+.faros-v2-blueprint-art i { position: absolute; top: 32px; width: 36%; height: 1px; background: var(--fx-border-strong); }
+.faros-v2-blueprint-art i:nth-of-type(1) { left: 17%; transform: rotate(-15deg); }
+.faros-v2-blueprint-art i:nth-of-type(2) { right: 17%; transform: rotate(15deg); }
+
+.faros-v2-agent-art { display: grid; align-content: end; gap: 0.42rem; }
+.faros-v2-agent-art span { position: relative; padding: 0.36rem 0.55rem 0.36rem 1.35rem; border: 1px solid var(--fx-border); border-radius: 3px; background: var(--fx-surface); font-family: var(--fx-mono); font-size: 0.53rem; color: var(--fx-text-muted); }
+.faros-v2-agent-art span::before { content: ''; position: absolute; left: 0.55rem; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: var(--fx-success); transform: translateY(-50%); }
+
+.faros-v2-edge-art i { position: absolute; width: 9px; height: 9px; border: 1px solid var(--fx-accent); border-radius: 50%; background: var(--fx-surface); }
+.faros-v2-edge-art i:nth-child(1) { left: 6%; bottom: 10%; }
+.faros-v2-edge-art i:nth-child(2) { left: 50%; top: 4%; transform: translateX(-50%); box-shadow: 0 0 12px var(--fx-accent-glow); }
+.faros-v2-edge-art i:nth-child(3) { right: 6%; bottom: 10%; }
+.faros-v2-edge-art span { position: absolute; top: 48%; width: 45%; height: 1px; background: var(--fx-border-strong); }
+.faros-v2-edge-art span:nth-of-type(1) { left: 7%; transform: rotate(-11deg); }
+.faros-v2-edge-art span:nth-of-type(2) { right: 7%; transform: rotate(11deg); }
+
+.faros-v2-code-art { display: flex; align-items: end; gap: 0.45rem; }
+.faros-v2-code-art span { position: relative; z-index: 2; padding: 0.32rem 0.5rem; border: 1px solid var(--fx-border); border-radius: 3px; background: var(--fx-surface); font-family: var(--fx-mono); font-size: 0.52rem; color: var(--fx-text-muted); }
+.faros-v2-code-art span:last-of-type { border-color: var(--fx-accent); color: var(--fx-accent); }
+.faros-v2-code-art i { position: absolute; right: 0; bottom: 14px; left: 0; height: 1px; background: var(--fx-border-strong); }
+.faros-v2-section-link-row { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.6rem; }
+.faros-v2-section-heading + .faros-v2-section-link-row { justify-content: center; }
+
+.faros-v2-platform-statement {
+  max-width: 48rem;
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--fx-border-strong);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 650;
+  line-height: 1.45;
+}
+.faros-v2-platform-statement span { color: var(--fx-text-2); }
+
+.faros-v2-provider-showcase { border-block: 1px solid var(--fx-border); background: var(--fx-raised); }
+.faros-v2-provider-showcase-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.72fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.faros-v2-provider-showcase-intro h2 { max-width: 19ch; font-size: clamp(1.85rem, 3vw, 2.7rem); line-height: 1.08; }
+.faros-v2-provider-showcase-summary > p { margin: 0; font-size: 0.95rem; line-height: 1.7; color: var(--fx-text-2); }
+.faros-v2-provider-showcase-summary .faros-v2-text-link { margin-top: 1.25rem; }
+.faros-v2-provider-feature-grid,
+.faros-v2-provider-compact-grid { display: grid; margin: 0; padding: 0; list-style: none; }
+.faros-v2-provider-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.faros-v2-provider-compact-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }
+.faros-v2-provider-feature-grid li,
+.faros-v2-provider-compact-grid li { min-width: 0; }
+.faros-v2-provider-feature-card,
+.faros-v2-provider-compact-card {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid var(--fx-border);
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  overflow: hidden;
+  text-decoration: none !important;
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+.faros-v2-provider-feature-card { min-height: 510px; border-radius: 8px; background: linear-gradient(155deg, var(--fx-accent-subtle), transparent 48%), var(--fx-surface); }
+.faros-v2-provider-compact-card { min-height: 185px; padding: 1.15rem; border-radius: 5px; }
+.faros-v2-provider-feature-card:hover,
+.faros-v2-provider-compact-card:hover { border-color: var(--fx-accent); background-color: var(--fx-overlay); color: var(--fx-text); transform: translateY(-2px); }
+.faros-v2-provider-feature-card:focus-visible,
+.faros-v2-provider-compact-card:focus-visible { outline: 2px solid var(--fx-accent); outline-offset: 3px; }
+.faros-v2-provider-feature-copy { padding: 1.4rem 1.4rem 1.5rem; }
+.faros-v2-provider-slug { overflow: hidden; font-family: var(--fx-mono); font-size: 0.58rem; color: var(--fx-accent); text-overflow: ellipsis; white-space: nowrap; }
+.faros-v2-provider-feature-copy h3 { margin: 0.7rem 0 0; font-size: 1.35rem; font-weight: 650; color: var(--fx-text); }
+.faros-v2-provider-feature-copy p { max-width: 35rem; margin: 0.65rem 0 0; font-size: 0.82rem; line-height: 1.6; color: var(--fx-text-2); }
+.faros-v2-provider-compact-card h3 { margin: auto 0 0.45rem; font-size: 0.94rem; font-weight: 650; color: var(--fx-text); }
+.faros-v2-provider-compact-card p { margin: 0; padding-right: 0.6rem; font-size: 0.69rem; line-height: 1.5; color: var(--fx-text-2); }
+.faros-v2-provider-arrow { position: absolute; right: 1rem; bottom: 0.85rem; color: var(--fx-text-muted); opacity: 0; transition: opacity 150ms ease, transform 150ms ease; transform: translateX(-3px); }
+.faros-v2-provider-feature-card:hover .faros-v2-provider-arrow,
+.faros-v2-provider-compact-card:hover .faros-v2-provider-arrow { color: var(--fx-accent); opacity: 1; transform: translateX(0); }
+.faros-v2-provider-window {
+  position: absolute;
+  right: 1.4rem;
+  bottom: -1px;
+  left: 1.4rem;
+  height: 292px;
+  overflow: hidden;
+  border: 1px solid var(--fx-border-strong);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: var(--fx-surface);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 25%);
+}
+.faros-v2-provider-window-bar { display: flex; height: 38px; align-items: center; gap: 0.4rem; padding: 0 0.8rem; border-bottom: 1px solid var(--fx-border); background: var(--fx-overlay); }
+.faros-v2-provider-window-bar > span { width: 6px; height: 6px; border-radius: 50%; background: var(--fx-border-strong); }
+.faros-v2-provider-window-bar b { margin-left: auto; font-family: var(--fx-mono); font-size: 0.48rem; font-weight: 500; color: var(--fx-text-muted); }
+.faros-v2-provider-app-ui { display: grid; height: calc(100% - 38px); grid-template-columns: 38px minmax(0, 0.86fr) minmax(0, 1.14fr); }
+.faros-v2-provider-app-nav { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; padding-top: 1rem; border-right: 1px solid var(--fx-border); }
+.faros-v2-provider-app-nav i { width: 9px; height: 9px; border: 1px solid var(--fx-border-strong); border-radius: 3px; }
+.faros-v2-provider-app-nav i.is-active { border-color: var(--fx-accent); background: var(--fx-accent); box-shadow: 0 0 14px var(--fx-accent); }
+.faros-v2-provider-app-thread { display: flex; min-width: 0; flex-direction: column; gap: 0.6rem; padding: 1rem 0.8rem; border-right: 1px solid var(--fx-border); }
+.faros-v2-provider-app-thread small,
+.faros-v2-provider-app-preview small { font-family: var(--fx-mono); font-size: 0.48rem; color: var(--fx-text-muted); }
+.faros-v2-provider-app-thread strong { margin-bottom: 0.25rem; font-size: 0.68rem; color: var(--fx-text); }
+.faros-v2-provider-app-thread span { padding: 0.5rem 0.55rem; border: 1px solid var(--fx-border); border-radius: 4px; font-size: 0.52rem; line-height: 1.35; color: var(--fx-text-2); }
+.faros-v2-provider-app-thread .is-prompt { margin-left: 0.8rem; border-color: var(--fx-border-strong); background: var(--fx-overlay); color: var(--fx-text); }
+.faros-v2-provider-app-thread .is-complete { color: var(--fx-success); }
+.faros-v2-provider-app-preview { min-width: 0; padding: 1rem 0.8rem; background: linear-gradient(135deg, transparent, var(--fx-accent-subtle)); }
+.faros-v2-provider-preview-shell { display: grid; height: 180px; margin-top: 0.6rem; grid-template-columns: repeat(3, 1fr); grid-template-rows: 44% 1fr; gap: 0.45rem; padding: 0.7rem; border: 1px solid var(--fx-border-strong); border-radius: 5px; background: var(--fx-surface); }
+.faros-v2-provider-preview-shell i { border-radius: 3px; background: var(--fx-overlay); }
+.faros-v2-provider-preview-shell i:nth-child(2) { background: var(--fx-accent-subtle); box-shadow: inset 0 0 0 1px var(--fx-accent); }
+.faros-v2-provider-preview-shell span { grid-column: span 3; height: 7px; align-self: start; border-radius: 999px; background: var(--fx-border); }
+.faros-v2-provider-preview-shell span:last-child { width: 68%; }
+.faros-v2-provider-edge-map { position: relative; height: calc(100% - 38px); }
+.faros-v2-provider-edge-map svg { width: 100%; height: 100%; }
+.faros-v2-provider-edge-map path { fill: none; stroke: var(--fx-border-strong); stroke-width: 2; stroke-dasharray: 4 5; }
+.faros-v2-provider-edge-map circle { fill: var(--fx-surface); stroke: var(--fx-accent); stroke-width: 2; }
+.faros-v2-provider-edge-map circle.is-hub { fill: var(--fx-accent-subtle); filter: drop-shadow(0 0 10px var(--fx-accent)); }
+.faros-v2-provider-edge-label { position: absolute; font-family: var(--fx-mono); font-size: 0.48rem; color: var(--fx-text-2); transform: translateX(-50%); white-space: nowrap; }
+.faros-v2-provider-edge-label b { display: block; margin-top: 0.15rem; font-weight: 500; color: var(--fx-success); }
+.faros-v2-provider-edge-label.is-hub { top: 1rem; left: 50%; color: var(--fx-text); }
+.faros-v2-provider-edge-label.is-west { bottom: 0.9rem; left: 23%; }
+.faros-v2-provider-edge-label.is-local { bottom: 0.2rem; left: 50%; }
+.faros-v2-provider-edge-label.is-east { right: 2%; bottom: 0.9rem; transform: none; }
+
+.faros-v2-community { overflow: hidden; border-block: 1px solid var(--fx-border); background: var(--fx-raised); }
+.faros-v2-community-header { max-width: 48rem; margin: 0 auto; text-align: center; }
+.faros-v2-community-header h2 { margin: 0; }
+.faros-v2-community-header > p { margin: 1rem 0 0; font-size: 1rem; line-height: 1.7; color: var(--fx-text-2); }
+.faros-v2-community-header .faros-v2-actions { justify-content: center; }
+
+.faros-v2-oss { border-bottom: 1px solid var(--fx-border); background: var(--fx-surface); }
+.faros-v2-oss-layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.faros-v2-oss-copy h2 { max-width: 15ch; font-size: clamp(2rem, 3.8vw, 3.25rem); line-height: 1.07; }
+.faros-v2-oss-copy > p:not(.faros-v2-eyebrow) { max-width: 35rem; margin: 1.2rem 0 0; font-size: 0.98rem; line-height: 1.75; color: var(--fx-text-2); }
+.faros-v2-oss .faros-v2-btn svg { width: 1rem; height: 1rem; flex: none; }
+.faros-v2-oss-art { position: relative; min-height: 330px; overflow: hidden; }
+.faros-v2-oss-art > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.faros-v2-oss-art text { font-family: var(--fx-mono); font-size: 8.7rem; font-weight: 700; letter-spacing: 0.04em; }
+.faros-v2-oss-dot { fill: var(--fx-border-strong); }
+.faros-v2-oss-accent-dot { fill: var(--fx-accent); }
+.faros-v2-oss-art-legend {
+  position: absolute;
+  right: 8%;
+  bottom: 1rem;
+  left: 8%;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  font-family: var(--fx-mono);
+  font-size: 0.55rem;
+  color: var(--fx-text-muted);
+}
+.faros-v2-oss-art-legend span::before { content: '•'; margin-right: 0.4rem; color: var(--fx-accent); }
+
+.faros-v2-final { text-align: center; }
+.faros-v2-final-inner { display: flex; flex-direction: column; align-items: center; }
+.faros-v2-final h2 {
+  max-width: 20ch;
+  font-size: clamp(1.9rem, 3.6vw, 3.25rem);
+  line-height: 1.1;
+}
+.faros-v2-final .faros-v2-actions { justify-content: center; }
+.faros-v2-final .faros-v2-text-link { margin-left: 0.35rem; }
+
+@media (max-width: 980px) {
+  .faros-v2-hero-message { grid-template-columns: 1fr; gap: 1.5rem; }
+  .faros-v2-hero h1 { max-width: 15ch; }
+  .faros-v2-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faros-v2-feature-card-featured { grid-column: span 2; }
+  .faros-v2-feature-card-tall { min-height: 380px; }
+  .faros-v2-provider-showcase-intro { grid-template-columns: 1fr; gap: 1.25rem; }
+  .faros-v2-provider-showcase-summary { max-width: 43rem; }
+  .faros-v2-provider-feature-grid { grid-template-columns: 1fr; }
+  .faros-v2-provider-compact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faros-v2-oss-layout { grid-template-columns: 1fr; }
+  .faros-v2-oss-copy { max-width: 43rem; }
+  .faros-v2-oss-art { min-height: 250px; }
+}
+
+@media (max-width: 760px) {
+  .faros-v2-hero { padding-top: 3.5rem; }
+}
+
+@media (max-width: 560px) {
+  .faros-v2-shell { width: min(100% - 1.25rem, 1160px); }
+  .faros-v2-hero h1 { font-size: clamp(2.25rem, 10vw, 3rem); }
+  .faros-v2-feature-grid { grid-template-columns: 1fr; }
+  .faros-v2-feature-card-featured { grid-column: span 1; min-height: 460px; }
+  .faros-v2-feature-card-tall:not(.faros-v2-feature-card-featured) { min-height: 340px; }
+  .faros-v2-feature-card-featured .faros-v2-feature-copy { max-width: none; }
+  .faros-v2-workspace-art { right: 0.6rem; bottom: 0.8rem; width: 52%; height: 39%; }
+  .faros-v2-feature-list { left: 1.15rem; bottom: 1rem; max-width: 44%; }
+  .faros-v2-provider-compact-grid { grid-template-columns: 1fr; }
+  .faros-v2-provider-feature-card { min-height: 480px; }
+  .faros-v2-provider-window { right: 0.75rem; left: 0.75rem; }
+  .faros-v2-provider-app-ui { grid-template-columns: 32px minmax(0, 0.92fr) minmax(0, 1.08fr); }
+  .faros-v2-oss-art { min-height: 190px; }
+  .faros-v2-oss-art text { font-size: 7.5rem; }
+  .faros-v2-oss-art-legend { bottom: 0; gap: 0.7rem; }
+  .faros-v2-final .faros-v2-actions { flex-direction: column; }
+  .faros-v2-final .faros-v2-text-link { margin: 0.65rem 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faros-v2-btn,
+  .faros-v2-feature-card,
+  .faros-v2-provider-feature-card,
+  .faros-v2-provider-compact-card { transition: none; }
+}
+</style>

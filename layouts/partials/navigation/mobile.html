@@ -1,0 +1,56 @@
+<div
+  id="faros-mobile-menu"
+  class="faros-mobile-overlay"
+  x-show="mobileOpen"
+  x-transition:enter="transition ease-out duration-150"
+  x-transition:enter-start="opacity-0"
+  x-transition:enter-end="opacity-100"
+  x-transition:leave="transition ease-in duration-100"
+  x-transition:leave-start="opacity-100"
+  x-transition:leave-end="opacity-0"
+  @keydown.tab="trapMobile($event)"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Main navigation"
+  x-ref="mobilePanel"
+  x-cloak
+>
+  <div class="faros-mobile-topbar">
+    <a href="/" aria-label="Faros home" class="faros-wordmark">
+      <span class="faros-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+      <span class="faros-wordmark-text">faros</span>
+    </a>
+    <button type="button" class="faros-mobile-close" @click="closeAll(true)" x-ref="mobileClose"><span class="sr-only">Close main menu</span><span aria-hidden="true">×</span></button>
+  </div>
+
+  <div class="faros-mobile-scroll">
+    {{ partial "navigation/mobile-section.html" (dict "id" "mobile-platform" "label" "Platform" "links" (slice
+      (dict "label" "Platform overview" "href" "/platform/")
+      (dict "label" "Workspaces" "href" "/docs/cli/workspaces/")
+      (dict "label" "Providers" "href" "/docs/providers/")
+      (dict "label" "MCP" "href" "/docs/cli/mcp/")
+      (dict "label" "Edges" "href" "/docs/cli/edges/")
+    )) }}
+    {{ partial "navigation/mobile-section.html" (dict "id" "mobile-developers" "label" "Developers" "links" (slice
+      (dict "label" "Developer overview" "href" "/developers/")
+      (dict "label" "Documentation" "href" "/docs/")
+      (dict "label" "Quickstart" "href" "/docs/getting-started/quickstart/")
+      (dict "label" "Open Source" "href" "/open-source/")
+      (dict "label" "GitHub" "href" .sourceRepo)
+      (dict "label" "Company" "href" "/company/")
+    )) }}
+    {{ partial "navigation/mobile-section.html" (dict "id" "mobile-solutions" "label" "Solutions" "links" (slice
+      (dict "label" "Solutions overview" "href" "/solutions/")
+      (dict "label" "Faros Cloud" "href" "/solutions/")
+      (dict "label" "Self-hosted Faros" "href" "/docs/deploy/helm/")
+      (dict "label" "Work with Faros" "href" "/contact/")
+    )) }}
+    <a class="faros-mobile-direct" href="/pricing/">Pricing</a>
+    <a class="faros-mobile-direct" href="/docs/">Docs</a>
+  </div>
+
+  <div class="faros-mobile-actions">
+    <a href="/docs/getting-started/quickstart/" class="faros-cta-ghost">Quickstart</a>
+    {{ with .consoleURL }}<a href="{{ . }}" class="faros-cta">Open console</a>{{ end }}
+  </div>
+</div>

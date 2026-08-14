@@ -1,0 +1,53 @@
+{{- $sourceRepo := .Site.Params.brand.open_source_repo | default "https://github.com/faroshq/faros" -}}
+<section id="open-source" class="faros-v2-section faros-v2-oss faros-v2-anchor" aria-labelledby="faros-oss-title">
+  <div class="faros-v2-shell faros-v2-oss-layout">
+    <div class="faros-v2-oss-copy">
+      <p class="faros-v2-eyebrow">Apache 2.0</p>
+      <h2 id="faros-oss-title">Open source from the foundation up.</h2>
+      <p>
+        The Faros control plane, portal, providers, and deployment charts are published in the
+        open. Inspect the implementation, run it yourself, or extend the platform with your own
+        provider.
+      </p>
+      <div class="faros-v2-actions">
+        <a class="faros-v2-btn faros-v2-btn-secondary" href="{{ $sourceRepo }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.3.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.4 3.7 1.1.1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.4 4.4 0 0 1 .1-3.1s1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.4 1 .4 2.1.1 3.1a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.4 11.4 0 0 0 12 .8Z" />
+          </svg>
+          View Faros on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="faros-v2-oss-art" aria-hidden="true">
+      <svg viewBox="0 0 680 320" role="presentation">
+        <defs>
+          <pattern id="faros-oss-dots" width="15" height="15" patternUnits="userSpaceOnUse">
+            <circle cx="4" cy="4" r="3" class="faros-v2-oss-dot" />
+          </pattern>
+          <pattern id="faros-oss-accent-dots" width="15" height="15" patternUnits="userSpaceOnUse">
+            <circle cx="4" cy="4" r="3.8" class="faros-v2-oss-accent-dot" />
+          </pattern>
+          <mask id="faros-oss-wordmark">
+            <rect width="100%" height="100%" fill="black" />
+            <text x="50%" y="59%" text-anchor="middle" fill="white">OSS</text>
+          </mask>
+          <radialGradient id="faros-oss-fade">
+            <stop offset="38%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="faros-oss-field-fade">
+            <rect width="100%" height="100%" fill="url(#faros-oss-fade)" />
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#faros-oss-dots)" mask="url(#faros-oss-field-fade)" />
+        <rect width="100%" height="100%" fill="url(#faros-oss-accent-dots)" mask="url(#faros-oss-wordmark)" />
+      </svg>
+      <div class="faros-v2-oss-art-legend">
+        <span>inspect</span>
+        <span>self-host</span>
+        <span>extend</span>
+      </div>
+    </div>
+  </div>
+</section>

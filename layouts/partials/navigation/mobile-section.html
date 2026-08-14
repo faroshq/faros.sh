@@ -1,0 +1,10 @@
+<section class="faros-mobile-section" x-data="{ expanded: false }">
+  <h2>
+    <button type="button" @click="expanded = !expanded" :aria-expanded="expanded.toString()" aria-controls="{{ .id }}">
+      <span>{{ .label }}</span><span class="faros-mobile-section-icon" :class="{ 'is-open': expanded }" aria-hidden="true">⌄</span>
+    </button>
+  </h2>
+  <div id="{{ .id }}" class="faros-mobile-section-links" x-show="expanded" x-cloak>
+    {{ range .links }}<a href="{{ .href }}" @click="closeAll(false)">{{ .label }} <span aria-hidden="true">→</span></a>{{ end }}
+  </div>
+</section>

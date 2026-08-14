@@ -1,111 +1,92 @@
+{{- $sourceRepo := .Site.Params.brand.open_source_repo | default "https://github.com/faroshq/faros" -}}
+
 <footer class="faros-footer relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="py-16">
-
-        <!-- Top area: Blocks -->
-        <div class="grid lg:grid-cols-5 gap-8 mb-12">
-
-          <!-- 1st block - Company Info -->
-          <div class="lg:col-span-2">
-            <a href="/" aria-label="faros" class="faros-wordmark mb-6 inline-flex">
-              <span class="faros-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
-              <span class="faros-wordmark-text">faros</span>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-16">
+      <div class="grid lg:grid-cols-6 gap-10 mb-12">
+        <div class="lg:col-span-2">
+          <a href="/" aria-label="Faros home" class="faros-wordmark mb-6 inline-flex">
+            <span class="faros-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+            <span class="faros-wordmark-text">faros</span>
+          </a>
+          <p class="faros-footer-text text-sm leading-relaxed mb-6 max-w-sm">
+            The operating system for AI-native platforms. Start with Faros Cloud,
+            self-host the Apache 2.0 project, or work directly with the Faros team.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://x.com/mangirdas" target="_blank" rel="noopener" class="faros-footer-icon">
+              <span class="sr-only">Faros updates on X</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
-            <p class="faros-footer-text text-sm leading-relaxed mb-6 max-w-sm">
-              faros — the open-source operating system for AI-native platforms. Multi-tenant control plane, pluggable providers, tenancy-scoped MCP tools. Apache 2.0. Free forever.
-            </p>
-            <div class="flex space-x-4">
-              <a href="https://x.com/mangirdas" target="_blank" rel="noopener" class="faros-footer-icon">
-                <span class="sr-only">Twitter</span>
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-              </a>
-              <a href="https://github.com/faroshq/faros" target="_blank" rel="noopener" class="faros-footer-icon">
-                <span class="sr-only">GitHub</span>
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </a>
-              <a href="https://discord.gg/XEeZpBfM" target="_blank" rel="noopener" class="faros-footer-icon">
-                <span class="sr-only">Discord</span>
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"/>
-                </svg>
-              </a>
-            </div>
+            <a href="{{ $sourceRepo }}" target="_blank" rel="noopener" class="faros-footer-icon">
+              <span class="sr-only">Faros on GitHub</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://discord.gg/XEeZpBfM" target="_blank" rel="noopener" class="faros-footer-icon">
+              <span class="sr-only">Faros community on Discord</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"/></svg>
+            </a>
           </div>
-
-          <!-- Navigation Columns -->
-          <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
-
-            <!-- faros -->
-            <div>
-              <h3 class="faros-footer-heading">faros</h3>
-              <ul class="space-y-3">
-                <li>
-                  <a href="/docs/" class="faros-footer-link">Documentation</a>
-                </li>
-                <li>
-                  <a href="/docs/getting-started/quickstart/" class="faros-footer-link">Quickstart</a>
-                </li>
-                <li>
-                  <a href="/docs/cli/" class="faros-footer-link">CLI Reference</a>
-                </li>
-                <li>
-                  <a href="https://console-dev.faros.sh/" class="faros-footer-link">Hosted hub</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Community -->
-            <div>
-              <h3 class="faros-footer-heading">Community</h3>
-              <ul class="space-y-3">
-                <li>
-                  <a href="https://discord.gg/XEeZpBfM" target="_blank" rel="noopener" class="faros-footer-link">Discord</a>
-                </li>
-                <li>
-                  <a href="https://github.com/faroshq/faros" target="_blank" rel="noopener" class="faros-footer-link">GitHub</a>
-                </li>
-                <li>
-                  <a href="https://x.com/mangirdas" target="_blank" rel="noopener" class="faros-footer-link">Twitter</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Support -->
-            <div>
-              <h3 class="faros-footer-heading">Support</h3>
-              <ul class="space-y-3">
-                <li>
-                  <a href="/contact/" class="faros-footer-link">Contact Us</a>
-                </li>
-                <li>
-                  <a href="https://github.com/faroshq/faros/issues" target="_blank" rel="noopener" class="faros-footer-link">Bug Reports</a>
-                </li>
-                <li>
-                  <a href="/docs/getting-started/" class="faros-footer-link">Getting Started</a>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-
         </div>
 
-        <!-- Bottom area -->
-        <div class="faros-strip-top pt-8 flex flex-col md:flex-row md:items-center md:justify-between">
-          
-          <!-- Copyright -->
-          <div class="faros-footer-text text-sm mb-4 md:mb-0">
-            &copy; {{ now.Format "2006" }} faros authors. Released under <a href="https://github.com/faroshq/faros/blob/main/LICENSE" class="faros-footer-link" target="_blank" rel="noopener">Apache 2.0</a>.
+        <nav aria-label="Footer navigation" class="lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-8">
+          <div>
+            <h3 class="faros-footer-heading">Platform</h3>
+            <ul class="space-y-3">
+              <li><a href="/platform/" class="faros-footer-link">Overview</a></li>
+              <li><a href="/solutions/" class="faros-footer-link">Faros Cloud</a></li>
+              <li><a href="/solutions/" class="faros-footer-link">Solutions</a></li>
+              <li><a href="/pricing/" class="faros-footer-link">Pricing</a></li>
+            </ul>
           </div>
 
+          <div>
+            <h3 class="faros-footer-heading">Developers</h3>
+            <ul class="space-y-3">
+              <li><a href="/developers/" class="faros-footer-link">Overview</a></li>
+              <li><a href="/docs/" class="faros-footer-link">Documentation</a></li>
+              <li><a href="/docs/getting-started/quickstart/" class="faros-footer-link">Quickstart</a></li>
+              <li><a href="/docs/providers/" class="faros-footer-link">Providers</a></li>
+            </ul>
+          </div>
 
+          <div>
+            <h3 class="faros-footer-heading">Open Source</h3>
+            <ul class="space-y-3">
+              <li><a href="/open-source/" class="faros-footer-link">Overview</a></li>
+              <li><a href="{{ $sourceRepo }}" target="_blank" rel="noopener" class="faros-footer-link">GitHub</a></li>
+              <li><a href="{{ $sourceRepo }}/releases" target="_blank" rel="noopener" class="faros-footer-link">Releases</a></li>
+              <li><a href="https://discord.gg/XEeZpBfM" target="_blank" rel="noopener" class="faros-footer-link">Community</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="faros-footer-heading">Solutions</h3>
+            <ul class="space-y-3">
+              <li><a href="/solutions/" class="faros-footer-link">Overview</a></li>
+              <li><a href="/docs/deploy/helm/" class="faros-footer-link">Self-hosted Faros</a></li>
+              <li><a href="/contact/" class="faros-footer-link">Work with Faros</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="faros-footer-heading">Company</h3>
+            <ul class="space-y-3">
+              <li><a href="/company/" class="faros-footer-link">About Faros</a></li>
+              <li><a href="/contact/" class="faros-footer-link">Contact</a></li>
+              <li><a href="https://github.com/faroshq" target="_blank" rel="noopener" class="faros-footer-link">GitHub organization</a></li>
+              <li><a href="https://x.com/mangirdas" target="_blank" rel="noopener" class="faros-footer-link">Updates</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="faros-strip-top pt-8 flex flex-col md:flex-row md:items-center md:justify-between">
+        <div class="faros-footer-text text-sm mb-4 md:mb-0">
+          &copy; {{ now.Format "2006" }} Faros authors. The Faros open-source project is released under
+          <a href="{{ $sourceRepo }}/blob/main/LICENSE" class="faros-footer-link" target="_blank" rel="noopener">Apache 2.0</a>.
         </div>
-
       </div>
     </div>
-  </footer>
-
+  </div>
+</footer>
