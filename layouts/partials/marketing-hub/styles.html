@@ -1,0 +1,294 @@
+<style>
+  .faros-marketing-main {
+    flex-grow: 1;
+    background: var(--fx-bg);
+  }
+
+  .faros-marketing {
+    position: relative;
+    overflow: hidden;
+    color: var(--fx-text);
+    background: var(--fx-bg);
+  }
+
+  .faros-marketing-backdrop {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 48rem;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--fx-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--fx-border) 1px, transparent 1px),
+      radial-gradient(circle at 18% 8%, var(--fx-accent-subtle), transparent 36rem);
+    background-size: 6rem 6rem, 6rem 6rem, auto;
+    mask-image: linear-gradient(to bottom, #000 0, transparent 92%);
+  }
+
+  .faros-marketing-shell {
+    position: relative;
+    width: min(100% - 3rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .faros-marketing-hero {
+    padding: 6.5rem 0 5rem;
+    border-bottom: 1px solid var(--fx-border);
+  }
+
+  .faros-marketing-eyebrow,
+  .faros-marketing-card-kicker {
+    margin: 0 0 1.25rem;
+    color: var(--fx-accent);
+    font-family: var(--fx-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .faros-marketing-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+    gap: clamp(2.5rem, 7vw, 7rem);
+    align-items: end;
+  }
+
+  .faros-marketing-hero h1 {
+    max-width: 14ch;
+    margin: 0;
+    color: var(--fx-text);
+    font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+    font-weight: 650;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  .faros-marketing-hero-copy > p,
+  .faros-marketing-section-heading > p,
+  .faros-marketing-closing-inner > p {
+    margin: 0;
+    color: var(--fx-text-2);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .faros-marketing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .faros-marketing-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 650;
+    text-decoration: none !important;
+    transition: background 150ms, border-color 150ms, color 150ms, transform 150ms;
+  }
+
+  .faros-marketing-button:hover { transform: translateY(-1px); }
+
+  .faros-marketing-button-primary {
+    color: #fff;
+    background: var(--fx-accent);
+    box-shadow: 0 0 18px var(--fx-accent-glow);
+  }
+
+  .faros-marketing-button-primary:hover {
+    color: #fff;
+    background: var(--fx-accent-hover);
+  }
+
+  .faros-marketing-button-secondary {
+    color: var(--fx-text);
+    background: var(--fx-overlay);
+    border-color: var(--fx-border-strong);
+  }
+
+  .faros-marketing-button-secondary:hover {
+    color: var(--fx-text);
+    border-color: var(--fx-accent);
+    background: var(--fx-hover);
+  }
+
+  .faros-marketing-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 3.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .faros-marketing-facts li {
+    padding: 0.45rem 0.7rem;
+    color: var(--fx-text-2);
+    background: var(--fx-overlay);
+    border: 1px solid var(--fx-border);
+    border-radius: 999px;
+    font-family: var(--fx-mono);
+    font-size: 0.72rem;
+  }
+
+  .faros-marketing-section {
+    padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+    border-bottom: 1px solid var(--fx-border);
+  }
+
+  .faros-marketing-section-muted { background: var(--fx-surface); }
+
+  .faros-marketing-section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+    gap: 1.5rem 5rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  .faros-marketing-section-heading .faros-marketing-eyebrow {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .faros-marketing-section-heading h2,
+  .faros-marketing-closing h2 {
+    margin: 0;
+    color: var(--fx-text);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .faros-marketing-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    border-top: 1px solid var(--fx-border);
+    border-left: 1px solid var(--fx-border);
+  }
+
+  .faros-marketing-card {
+    display: flex;
+    min-height: 18rem;
+    flex-direction: column;
+    padding: 1.65rem;
+    color: inherit;
+    background: color-mix(in srgb, var(--fx-raised) 72%, transparent);
+    border-right: 1px solid var(--fx-border);
+    border-bottom: 1px solid var(--fx-border);
+    text-decoration: none !important;
+    transition: background 150ms, border-color 150ms;
+  }
+
+  a.faros-marketing-card:hover {
+    color: inherit;
+    background: var(--fx-hover);
+    border-color: var(--fx-border-strong);
+  }
+
+  .faros-marketing-card-kicker { margin-bottom: 1rem; color: var(--fx-text-muted); }
+
+  .faros-marketing-card h3 {
+    margin: 0 0 0.85rem;
+    color: var(--fx-text);
+    font-size: 1.2rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .faros-marketing-card > p:not(.faros-marketing-card-kicker) {
+    margin: 0;
+    color: var(--fx-text-2);
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .faros-marketing-card ul {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .faros-marketing-card li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--fx-text-2);
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .faros-marketing-card li::before {
+    position: absolute;
+    left: 0;
+    color: var(--fx-accent);
+    content: "·";
+  }
+
+  .faros-marketing-card-link {
+    margin-top: auto;
+    padding-top: 1.75rem;
+    color: var(--fx-text);
+    font-size: 0.84rem;
+    font-weight: 650;
+  }
+
+  a.faros-marketing-card:hover .faros-marketing-card-link { color: var(--fx-accent-hover); }
+
+  .faros-marketing-note {
+    max-width: 58rem;
+    margin: 2rem 0 0;
+    padding-left: 1rem;
+    color: var(--fx-text-2);
+    border-left: 2px solid var(--fx-accent);
+    line-height: 1.65;
+  }
+
+  .faros-marketing-prose {
+    max-width: 55rem;
+    color: var(--fx-text-2);
+    line-height: 1.75;
+  }
+
+  .faros-marketing-prose h2,
+  .faros-marketing-prose h3 { color: var(--fx-text); }
+  .faros-marketing-prose a { color: var(--fx-accent-hover); }
+
+  .faros-marketing-closing {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    background:
+      radial-gradient(circle at 50% 120%, var(--fx-accent-subtle), transparent 38rem),
+      var(--fx-bg);
+  }
+
+  .faros-marketing-closing-inner { max-width: 50rem; text-align: center; }
+  .faros-marketing-closing-inner > p { max-width: 42rem; margin: 1.25rem auto 0; }
+  .faros-marketing-closing .faros-marketing-eyebrow { margin-bottom: 1rem; }
+  .faros-marketing-closing .faros-marketing-actions { justify-content: center; }
+
+  @media (max-width: 800px) {
+    .faros-marketing-shell { width: min(100% - 2rem, 76rem); }
+    .faros-marketing-hero { padding-top: 4.5rem; }
+    .faros-marketing-hero-grid,
+    .faros-marketing-section-heading { grid-template-columns: 1fr; gap: 1.5rem; }
+    .faros-marketing-hero h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+    .faros-marketing-facts { margin-top: 2.5rem; }
+    .faros-marketing-section-heading { margin-bottom: 2.25rem; }
+    .faros-marketing-card { min-height: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faros-marketing-button,
+    .faros-marketing-card { transition: none; }
+    .faros-marketing-button:hover { transform: none; }
+  }
+</style>

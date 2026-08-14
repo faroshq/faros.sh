@@ -59,8 +59,12 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 [languages.en.params]
-title = "faros"
-description = "faros — the open-source operating system for AI-native platforms. Workspaces isolate, providers plug in as drivers, and every capability is a tenancy-scoped MCP tool: infrastructure templates, git repos, edge clusters, hosted AI agents, fleet query. Agents get a platform, not root. Apache 2.0, free forever."
+title = "Faros"
+description = "Faros is the operating system for AI-native platforms. Start with Faros Cloud, self-host the Apache 2.0 project, or work with the Faros team."
+
+[params.brand]
+console_url = "https://console.faros.sh/"
+open_source_repo = "https://github.com/faroshq/faros"
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"

@@ -1,0 +1,86 @@
+<section class="faros-marketing">
+  <div class="faros-marketing-backdrop" aria-hidden="true"></div>
+
+  {{ with .Params.hero }}
+  <header class="faros-marketing-hero">
+    <div class="faros-marketing-shell">
+      {{ with .eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
+      <div class="faros-marketing-hero-grid">
+        <h1>{{ $.Title }}</h1>
+        <div class="faros-marketing-hero-copy">
+          <p>{{ .summary }}</p>
+          <div class="faros-marketing-actions">
+            {{ with .primary }}
+            <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} <span aria-hidden="true">→</span></a>
+            {{ end }}
+            {{ with .secondary }}
+            <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ with .facts }}
+      <ul class="faros-marketing-facts" aria-label="Page highlights">
+        {{ range . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      {{ end }}
+    </div>
+  </header>
+  {{ end }}
+
+  {{ range $index, $section := .Params.sections }}
+  <section{{ with $section.id }} id="{{ . }}"{{ end }} class="faros-marketing-section{{ if modBool $index 2 }} faros-marketing-section-muted{{ end }}">
+    <div class="faros-marketing-shell">
+      <div class="faros-marketing-section-heading">
+        {{ with $section.eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
+        <h2>{{ $section.title }}</h2>
+        {{ with $section.summary }}<p>{{ . }}</p>{{ end }}
+      </div>
+
+      {{ with $section.cards }}
+      <div class="faros-marketing-card-grid">
+        {{ range . }}
+          {{ if .url }}<a class="faros-marketing-card" href="{{ .url }}">{{ else }}<article class="faros-marketing-card">{{ end }}
+            {{ with .kicker }}<p class="faros-marketing-card-kicker">{{ . }}</p>{{ end }}
+            <h3>{{ .title }}</h3>
+            <p>{{ .summary }}</p>
+            {{ with .points }}
+            <ul>
+              {{ range . }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            {{ end }}
+            {{ if .url }}<span class="faros-marketing-card-link">{{ .link_label | default "Learn more" }} <span aria-hidden="true">→</span></span>{{ end }}
+          {{ if .url }}</a>{{ else }}</article>{{ end }}
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{ with $section.note }}<p class="faros-marketing-note">{{ . }}</p>{{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Content }}
+  <section class="faros-marketing-section">
+    <div class="faros-marketing-shell faros-marketing-prose">{{ . }}</div>
+  </section>
+  {{ end }}
+
+  {{ with .Params.closing }}
+  <section class="faros-marketing-closing">
+    <div class="faros-marketing-shell faros-marketing-closing-inner">
+      {{ with .eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
+      <h2>{{ .title }}</h2>
+      {{ with .summary }}<p>{{ . }}</p>{{ end }}
+      <div class="faros-marketing-actions">
+        {{ with .primary }}
+        <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} <span aria-hidden="true">→</span></a>
+        {{ end }}
+        {{ with .secondary }}
+        <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+</section>
