@@ -63,7 +63,7 @@ title = "Faros"
 description = "Faros is the operating system for AI-native platforms. Start with Faros Cloud, self-host the Apache 2.0 project, or work with the Faros team."
 
 [params.brand]
-console_url = "https://console.faros.sh/"
+console_url = "https://console-dev.faros.sh/"
 open_source_repo = "https://github.com/faroshq/faros"
 #[languages.no]
 ##languageName ="Norsk"
