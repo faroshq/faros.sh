@@ -1,0 +1,19 @@
+{{- if eq .Page.Section "docs" -}}
+  {{- $language := .Type | default "text" -}}
+  {{- $terminal := in (slice "bash" "sh" "shell" "zsh" "console" "shell-session" "powershell") $language -}}
+  {{- $label := cond $terminal "Terminal" (upper $language) -}}
+  <div class="docs-code-block" data-code-language="{{ $language }}">
+    <div class="docs-code-toolbar">
+      <span class="docs-code-label">{{ $label }}</span>
+      <div class="docs-code-actions" hidden>
+        <button type="button" data-code-wrap aria-label="Wrap long lines" aria-pressed="false" title="Wrap long lines"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 11h12a4 4 0 0 1 0 8h-4m3-3-3 3 3 3M4 16h3"/></svg></button>
+        <button type="button" data-code-copy aria-label="Copy code" title="Copy code"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg></button>
+      </div>
+    </div>
+    {{ highlight .Inner $language "noClasses=false,lineNos=false,guessSyntax=false" }}
+    <textarea class="docs-code-source" hidden aria-hidden="true">{{ .Inner }}</textarea>
+    <p class="docs-code-status" role="status" aria-live="polite"></p>
+  </div>
+{{- else -}}
+  {{ highlight .Inner (.Type | default "text") .Options }}
+{{- end -}}

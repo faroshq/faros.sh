@@ -26,15 +26,15 @@
   <div class="faros-mobile-scroll">
     {{ partial "navigation/mobile-section.html" (dict "id" "mobile-platform" "label" "Platform" "links" (slice
       (dict "label" "Platform overview" "href" "/platform/")
-      (dict "label" "Workspaces" "href" "/docs/cli/workspaces/")
-      (dict "label" "Providers" "href" "/docs/providers/")
-      (dict "label" "MCP" "href" "/docs/cli/mcp/")
-      (dict "label" "Edges" "href" "/docs/cli/edges/")
+      (dict "label" "Workspaces" "href" "/docs/reference/cli/workspaces/")
+      (dict "label" "Providers" "href" "/docs/extend/")
+      (dict "label" "MCP" "href" "/docs/reference/cli/mcp/")
+      (dict "label" "Edges" "href" "/docs/reference/cli/edges/")
     )) }}
     {{ partial "navigation/mobile-section.html" (dict "id" "mobile-developers" "label" "Developers" "links" (slice
       (dict "label" "Developer overview" "href" "/developers/")
       (dict "label" "Documentation" "href" "/docs/")
-      (dict "label" "Quickstart" "href" "/docs/getting-started/quickstart/")
+      (dict "label" "Quickstart" "href" "/docs/use/edges/quickstart/")
       (dict "label" "Open Source" "href" "/open-source/")
       (dict "label" "GitHub" "href" .sourceRepo)
       (dict "label" "Company" "href" "/company/")
@@ -42,7 +42,7 @@
     {{ partial "navigation/mobile-section.html" (dict "id" "mobile-solutions" "label" "Solutions" "links" (slice
       (dict "label" "Solutions overview" "href" "/solutions/")
       (dict "label" "Faros Cloud" "href" "/solutions/")
-      (dict "label" "Self-hosted Faros" "href" "/docs/deploy/helm/")
+      (dict "label" "Self-hosted Faros" "href" "/docs/self-hosting/hub/helm/")
       (dict "label" "Work with Faros" "href" "/contact/")
     )) }}
     <a class="faros-mobile-direct" href="/pricing/">Pricing</a>
@@ -50,7 +50,7 @@
   </div>
 
   <div class="faros-mobile-actions">
-    <a href="/docs/getting-started/quickstart/" class="faros-cta-ghost">Quickstart</a>
+    <a href="/docs/use/edges/quickstart/" class="faros-cta-ghost">Quickstart</a>
     {{ with .consoleURL }}<a href="{{ . }}" class="faros-cta">Open console</a>{{ end }}
   </div>
 </div>

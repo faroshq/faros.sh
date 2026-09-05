@@ -1,0 +1,17 @@
+{{- $root := .Site.GetPage "/docs" -}}
+{{- $parts := split (strings.TrimPrefix $root.RelPermalink .RelPermalink) "/" -}}
+{{- $slug := index $parts 0 -}}
+{{- $sidebar := dict -}}
+{{- $length := 0 -}}
+{{- range .Site.Data.docs.sidebars -}}
+  {{- if and (hasPrefix $.RelPermalink .root) (gt (len .root) $length) -}}
+    {{- $sidebar = . -}}
+    {{- $length = len .root -}}
+  {{- end -}}
+{{- end -}}
+{{- with $sidebar.area }}{{ $slug = . }}{{ end -}}
+{{- $section := $root -}}
+{{- with $slug }}{{ with $.Site.GetPage (printf "/docs/%s" .) }}{{ $section = . }}{{ end }}{{ end -}}
+{{- $local := $section -}}
+{{- with $sidebar.root }}{{ with $.Site.GetPage . }}{{ $local = . }}{{ end }}{{ end -}}
+{{- return (dict "root" $root "section" $section "local" $local "slug" $slug "sidebar" $sidebar) -}}

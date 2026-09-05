@@ -1,0 +1,11 @@
+<section class="docs-provider-catalog" aria-labelledby="provider-catalog-title">
+  <div class="docs-catalog-heading"><h2 id="provider-catalog-title">Explore what you can build with Faros</h2><p>Each provider adds a capability to your workspace. Choose one to find its overview, quickstart, and guides.</p></div>
+  <div class="docs-provider-grid">
+    {{ range .Site.Data.docs.providers }}
+    <a class="docs-provider-card docs-provider-{{ .slug }}" href="/docs/use/{{ .slug }}/" aria-labelledby="catalog-{{ .slug }}">
+      <div class="docs-provider-visual" aria-hidden="true">{{ partial "documentation/provider-visual.html" . }}</div>
+      <div class="docs-provider-copy"><h3 id="catalog-{{ .slug }}">{{ .title }}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></h3><p>{{ .description }}.</p><span>Explore {{ .title }}</span></div>
+    </a>
+    {{ end }}
+  </div>
+</section>

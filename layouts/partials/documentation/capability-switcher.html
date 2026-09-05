@@ -1,0 +1,23 @@
+{{ $ctx := partial "documentation/context.html" . }}
+<div class="docs-capability-control">
+  <a class="docs-capability-fallback" href="/docs/use/">Browse all capabilities</a>
+  <button class="docs-capability-trigger" type="button" popovertarget="docs-capability-picker" aria-label="{{ with .Params.provider }}{{ $ctx.local.Title }}. Switch capability{{ else }}Choose a capability{{ end }}" hidden>
+    <span><strong>{{ with .Params.provider }}{{ $ctx.local.Title }}{{ else }}All capabilities{{ end }}</strong><span>Switch capability</span></span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 9 4-4 4 4M8 15l4 4 4-4"/></svg>
+  </button>
+</div>
+<div id="docs-capability-picker" class="docs-capability-picker" popover aria-labelledby="docs-capability-title">
+  <div class="docs-capability-picker-head">
+    <h2 id="docs-capability-title">Switch capability</h2>
+    <button type="button" popovertarget="docs-capability-picker" popovertargetaction="hide" aria-label="Close capability chooser"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav aria-label="Capabilities">
+    {{ range .Site.Data.docs.providers }}
+    <a href="/docs/use/{{ .slug }}/"{{ if eq $.Params.provider .slug }} aria-current="true"{{ end }}>
+      <span><strong>{{ .title }}</strong><span>{{ .description }}</span></span>
+      {{ if eq $.Params.provider .slug }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-label="Current capability" role="img"><path d="m5 12 4 4L19 6"/></svg>{{ end }}
+    </a>
+    {{ end }}
+  </nav>
+  <a class="docs-capability-all" href="/docs/use/">Browse all capabilities <span aria-hidden="true">→</span></a>
+</div>

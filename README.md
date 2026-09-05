@@ -18,7 +18,7 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 | Path | What's in it |
 |:-----|:-------------|
 | `layouts/partials/hero-home.html` | The whole landing page — markup, scoped styles, and motion layer |
-| `layouts/partials/{header,footer_custom,docs-sidebar}.html` | Site chrome; the docs menu is a declarative list at the top of the sidebar partial |
+| `layouts/partials/{header,footer_custom,docs-sidebar}.html` | Site chrome; documentation uses its own header and contextual sidebar |
 | `layouts/docs/` | Docs shell (single + list) |
 | `layouts/_default/_markup/` | Markdown render hooks (links, headings, blockquotes, lists) |
 | `content/en/docs/` | All documentation |
@@ -28,7 +28,7 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 
 The site runs on **Violet Circuit**, the same system as the faros console (canonical reference: `docs/design-book.md` in the product repo).
 
-- **Dark is the base.** `html.dark` is forced in `head_custom.html`; the `:root` values in `style.scss` are the light fallback.
+- **Docs support Light, Dark, and System.** The docs header stores its selection under `faros-docs-theme`, with System as the default. Theme initialization runs in the document head. Marketing pages retain their dark appearance. Shared tokens live in `style.scss`; docs-specific contrast adjustments live in `docs.scss`.
 - **Tokens, not hexes.** Use `var(--fx-*)` — surfaces, borders, `--fx-accent` (`#8b6bff` dark / `#6b48e8` light), text ramp, success/danger. Never hardcode a brand colour. The old `#7c5bf5` / `#6d4fe0` / `#9b85f7` values are dead; if they reappear in a diff, it's a regression.
 - **Radius law:** cards/panels 6px, controls 4px, tags 3px. Tags are **square mono**, never pills.
 - **Glow means alive.** Only the primary button, the live dot, the hub block, and focus rings glow. Plain surfaces are flat — no glass, no backdrop blur on cards.
@@ -37,7 +37,12 @@ The site runs on **Violet Circuit**, the same system as the faros console (canon
 ## Adding a docs page
 
 1. Create the markdown under `content/en/docs/<section>/<page>.md` with `title`, `description`, and `weight` front matter.
-2. Add one line to the `$sections` list at the top of `layouts/partials/docs-sidebar.html`.
+2. Set `doc_type` to Tutorial, Guide, Reference, Overview, or Troubleshooting. Sidebar entries are generated from populated pages in weight order.
+3. Provider pages belong under `use/<provider>/`; the provider overview cascades its `provider` slug to children. Shared concepts, administration, and hosting instructions have their own canonical sections.
+4. Add a provider or top-level destination in `data/docs.json` only when its landing page is populated. The directory stays visible regardless of deployment enablement.
+5. Run `npm test` to build, check internal links and anchors, validate navigation/search coverage, and test task discovery. Search is generated at `/docs/index.json`; no external search service is required.
+
+See [navigation validation](docs/navigation-validation.md) for the prototype, task study, and remaining human validation.
 
 ## Local development
 
@@ -85,3 +90,23 @@ Fork, branch, change, verify with `hugo server`, open a PR.
 - **Site**: [faros.sh](https://faros.sh) · **Docs**: [faros.sh/docs](https://faros.sh/docs)
 - **Product repo**: [github.com/faroshq/faros](https://github.com/faroshq/faros)
 - **Docsy**: [docsy.dev](https://www.docsy.dev) · **Hugo**: [gohugo.io](https://gohugo.io/documentation)
+
+### Provider schema reference and runnable examples
+
+Regenerate the provider field tables and downloadable schema bundles from the pinned product source (Python 3 and Ruby's standard YAML/JSON libraries required):
+
+```sh
+python3 scripts/generate-docs-schemas.py ../faros --revision PRODUCT_COMMIT
+```
+
+Replace `PRODUCT_COMMIT` with the reviewed product commit to publish. Generated pages and bundles record its resolved SHA, and source links are pinned to that commit.
+
+The generator reads committed files with `git show`, so unrelated working-tree changes in the product repo are not included. Review changed contracts before advancing the revision; update guide examples and the documentation baseline together. Generated tables cover resource schemas, not every provider HTTP API.
+
+Validate the Databricks server example against that revision's real SDK with a simulated action gateway:
+
+```sh
+FAROS_PRODUCT_REPO=../faros node --test tests/docs-databricks-example.test.mjs
+```
+
+This test needs permission to bind temporary local HTTP ports. It covers success, revoked grants, and incorrect table identity without contacting Databricks. Live hub acceptance and reader testing are tracked in `docs/navigation-validation.md`.

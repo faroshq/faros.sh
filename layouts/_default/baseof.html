@@ -4,7 +4,7 @@
     {{ partial "head_custom.html" . }}
 </head>
 <body class="font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
-    {{ partial "header.html" . }}
+    {{ if eq .Section "docs" }}{{ partial "documentation/header.html" . }}{{ else }}{{ partial "header.html" . }}{{ end }}
     {{ block "main" . }}{{ end }}
 
     {{ if ne .Section "docs" }}

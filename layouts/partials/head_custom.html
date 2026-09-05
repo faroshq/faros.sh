@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 
-<base href="{{ .Site.BaseURL }}">
+{{ if ne .Section "docs" }}<base href="{{ .Site.BaseURL }}">{{ end }}
 
 {{ if .IsHome }}
   <title>{{ .Title | default "Faros — the operating system for AI-native platforms" }}</title>
@@ -87,7 +87,7 @@
 {{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
 {{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}
 {{ $is_noindex_true := and (isset .Params "noindex") .Params.noindex }}
-{{ if or (in $noindex_kinds .Kind) ($is_noindex_true) }}
+{{ if or $is_noindex_true (and (ne .Section "docs") (in $noindex_kinds .Kind)) }}
 <meta name="robots" content="noindex">
 {{ end }}
 
@@ -107,12 +107,18 @@
 
 
 
+{{ if eq .Section "docs" }}
 <script>
-  document.querySelector('html').classList.add('dark');
-
-  // if (localStorage.getItem('dark-mode') == 'true' || !('dark-mode' in localStorage)) {
-  //    document.querySelector('html').classList.add('dark');
-  //} else {
-  //    document.querySelector('html').classList.remove('dark');
-  // }
+  (() => {
+    let preference = 'system';
+    try { preference = localStorage.getItem('faros-docs-theme') || 'system'; } catch {}
+    if (!['light', 'dark', 'system'].includes(preference)) preference = 'system';
+    const dark = preference === 'dark' || (preference === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.toggle('dark', dark);
+    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+    document.documentElement.dataset.docsTheme = preference;
+  })();
 </script>
+{{ else }}
+<script>document.documentElement.classList.add('dark');</script>
+{{ end }}

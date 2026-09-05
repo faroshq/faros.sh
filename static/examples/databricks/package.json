@@ -1,0 +1,7 @@
+{
+  "name": "faros-databricks-example",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": { "@faros/actions-node": "npm:@crwilhit/faros-actions-node@0.1.0" }
+}

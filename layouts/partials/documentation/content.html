@@ -1,0 +1,71 @@
+{{ $ctx := partial "documentation/context.html" . }}
+{{ $hasRail := and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Layout "search") }}
+<div class="docs-layout{{ if .Params.landing }} docs-landing-layout{{ end }}{{ if eq .Params.landing "get-started" }} docs-get-started-layout{{ end }}">
+  {{ if ne .RelPermalink $ctx.root.RelPermalink }}{{ partial "docs-sidebar.html" . }}{{ end }}
+  <main class="faros-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
+    {{ if $hasRail }}{{ partial "documentation/page-tools.html" . }}{{ end }}
+    <article class="faros-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-faros/" }} docs-product-overview{{ end }}">
+      {{ if and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Parent.RelPermalink $ctx.root.RelPermalink) }}
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb">
+        {{ range .Ancestors.Reverse }}{{ if and (eq .Section "docs") (ne .RelPermalink $ctx.root.RelPermalink) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
+        <span aria-current="page">{{ .LinkTitle }}</span>
+      </nav>
+      {{ end }}
+      {{ if eq .Params.landing "home" }}<div class="docs-home-intro">{{ end }}
+      <header class="faros-docs-header">
+        <h1 class="faros-docs-title">{{ .Title }}</h1>
+        <p class="faros-docs-lead">{{ .Description }}</p>
+        {{ if eq .Params.landing "home" }}
+        <p class="docs-intro-links"><a href="/docs/get-started/what-is-faros/">Understand Faros <span aria-hidden="true">→</span></a><a href="/docs/use/">Explore capabilities <span aria-hidden="true">→</span></a></p>
+        {{ end }}
+      </header>
+      {{ if eq .Params.landing "home" }}{{ partial "documentation/quick-connect.html" . }}</div>{{ end }}
+      {{ if eq .Params.landing "home" }}
+      <section class="docs-start-tasks" aria-labelledby="docs-start-title">
+      <h2 id="docs-start-title">What will you build first?</h2>
+      <div class="docs-task-grid">
+        <a href="/docs/use/app-studio/quickstart/"><h3>Build and publish an application</h3><p>Create a project, check its preview, and prepare a production deployment.</p><span>Start with App Studio <span aria-hidden="true">→</span></span></a>
+        <a href="/docs/use/agents/quickstart/"><h3>Create an AI agent</h3><p>Choose a model, give it instructions, and try your first conversation.</p><span>Start with AI agents <span aria-hidden="true">→</span></span></a>
+        <a href="/docs/use/edges/quickstart/"><h3>Connect a cluster or server</h3><p>Install an edge agent and connect through your hub.</p><span>Start with Edges <span aria-hidden="true">→</span></span></a>
+      </div>
+      </section>
+      {{ end }}
+      {{ if eq .Params.landing "home" }}{{ partial "documentation/provider-catalog.html" . }}{{ end }}
+      {{ if eq .Params.landing "get-started" }}
+        {{ $sections := split .RawContent "<!--more-->" }}
+        <div class="faros-docs-body docs-get-started-intro">{{ .RenderString (index $sections 0) }}</div>
+        {{ partial "documentation/get-started.html" . }}
+        {{ if gt (len $sections) 1 }}<div class="faros-docs-body">{{ .RenderString (index $sections 1) }}</div>{{ end }}
+      {{ else }}
+        <div class="faros-docs-body">{{ .Content }}</div>
+      {{ end }}
+      {{ if eq .Params.landing "home" }}
+      <section class="docs-home-paths" aria-labelledby="docs-explore-title">
+        <h2 id="docs-explore-title">Find your way</h2>
+        <div class="docs-path-list">
+          <a href="/docs/use/"><strong>Browse all capabilities</strong><span>Find the provider for your task.</span></a>
+          <a href="/docs/administration/"><strong>Manage your organization</strong><span>Workspaces, teammates, and access.</span></a>
+          <a href="/docs/self-hosting/"><strong>Self-host Faros</strong><span>Run the hub or an existing provider.</span></a>
+          <a href="/docs/extend/quickstart/"><strong>Build a provider</strong><span>Add a capability to the platform.</span></a>
+        </div>
+      </section>
+      {{ with .Site.Data.docs.secondary }}<nav class="docs-home-resources" aria-label="Documentation resources">{{ range . }}<a href="/docs/{{ .slug }}/">{{ .title }}</a>{{ end }}</nav>{{ end }}
+      {{ else if eq .Params.landing "providers" }}
+      {{ partial "documentation/provider-catalog.html" . }}
+      {{ end }}
+      {{ if eq .Layout "search" }}{{ partial "documentation/search.html" . }}{{ end }}
+      {{ if and .IsSection (not .Params.landing) }}
+        <nav class="docs-page-list" aria-label="In this section">
+          {{ range .Pages.ByWeight }}{{ if not .Params.hidden }}<a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong><span>{{ .Description }}</span></a>{{ end }}{{ end }}
+        </nav>
+      {{ end }}
+      <footer class="faros-docs-article-foot docs-article-footer">
+        {{ with .File }}<a href="https://github.com/faroshq/faros.sh/edit/main/content/en/{{ .Path }}">Edit this page</a>{{ end }}
+        <a href="/docs/resources/troubleshooting/">Get help</a>
+        {{ with .Params.provider }}<span>Provider: {{ $ctx.local.Title }}</span>{{ end }}
+      </footer>
+    </article>
+  </main>
+</div>
+{{ $docsJS := resources.Get "js/docs.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ $docsJS.RelPermalink }}" defer></script>

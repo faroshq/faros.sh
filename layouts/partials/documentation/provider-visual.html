@@ -1,0 +1,40 @@
+<svg viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+{{ if eq .slug "app-studio" }}
+  <g class="pv-panel"><rect x="35" y="14" width="330" height="124" rx="5"/><path d="M35 36h330M137 36v102"/></g>
+  <g class="pv-muted"><circle cx="47" cy="25" r="2"/><circle cx="55" cy="25" r="2"/><circle cx="63" cy="25" r="2"/></g>
+  <g class="pv-line"><path d="M51 55h52M51 65h68M51 75h43M51 105h59M51 115h45"/></g>
+  <rect class="pv-accent-fill" x="49" y="85" width="51" height="10" rx="2"/>
+  <g class="pv-reveal"><rect class="pv-panel" x="154" y="51" width="193" height="71" rx="3"/><path class="pv-accent" d="M168 68h79M168 79h53"/><rect class="pv-accent-fill" x="168" y="91" width="43" height="15" rx="2"/><path class="pv-line" d="M269 63h61v43h-61zM269 84h61"/></g>
+{{ else if eq .slug "agents" }}
+  <path class="pv-route" d="M77 75h61m62 0h59m-59 0c32 0 21-43 59-43m-59 43c32 0 21 43 59 43"/>
+  <rect class="pv-panel" x="28" y="57" width="49" height="36" rx="4"/><path class="pv-line" d="M40 69h25M40 79h17"/>
+  <rect class="pv-core" x="138" y="45" width="62" height="60" rx="6"/><path class="pv-accent" d="m159 63-8 12 8 12m20-24 8 12-8 12m-7-28-7 32"/>
+  <g class="pv-panel"><rect x="259" y="17" width="100" height="30" rx="4"/><rect x="259" y="60" width="100" height="30" rx="4"/><rect x="259" y="103" width="100" height="30" rx="4"/></g>
+  <g class="pv-label"><text x="276" y="37">Tools</text><text x="276" y="80">Memory</text><text x="276" y="123">Schedule</text></g>
+{{ else if eq .slug "edges" }}
+  <path class="pv-route" d="M83 31h51q28 0 28 30v14h37M83 119h51q28 0 28-30V75m37 0h77"/>
+  <g class="pv-panel"><rect x="27" y="13" width="56" height="36" rx="4"/><rect x="27" y="101" width="56" height="36" rx="4"/><rect x="276" y="46" width="92" height="58" rx="4"/></g>
+  <g class="pv-line"><path d="M39 24h11v13H39zm18 0h12v13H57zM39 112h32M39 124h22"/></g>
+  <circle class="pv-core" cx="217" cy="75" r="27"/><path class="pv-accent" d="m206 75 8 8 15-17"/>
+  <g class="pv-label"><text x="307" y="80">Hub</text></g>
+{{ else if eq .slug "infrastructure" }}
+  <rect class="pv-panel" x="29" y="34" width="104" height="83" rx="4"/><path class="pv-accent" d="M46 54h48M46 66h68M46 78h34M46 90h53"/>
+  <path class="pv-route" d="M133 75h58m0-43v86m0-86h51m-51 43h51m-51 43h51"/>
+  <g class="pv-reveal pv-panel"><rect x="242" y="17" width="126" height="30" rx="4"/><rect x="242" y="60" width="126" height="30" rx="4"/><rect x="242" y="103" width="126" height="30" rx="4"/></g>
+  <g class="pv-label"><text x="257" y="37">Instance</text><text x="257" y="80">Instance</text><text x="257" y="123">Instance</text></g>
+{{ else if eq .slug "code" }}
+  <path class="pv-line" d="M45 101h313"/><path class="pv-route" d="M105 101c35 0 19-53 58-53h70c37 0 20 53 59 53"/>
+  <g class="pv-core"><circle cx="66" cy="101" r="8"/><circle cx="105" cy="101" r="8"/><circle cx="178" cy="48" r="8"/><circle cx="232" cy="48" r="8"/><circle cx="292" cy="101" r="8"/><circle cx="347" cy="101" r="8"/></g>
+  <g class="pv-label"><text x="42" y="131">main</text><text x="162" y="25">Changes</text></g>
+{{ else if eq .slug "kuery" }}
+  <g class="pv-line"><path d="m77 76 76-41 77 41-77 41-76-41Zm76-41v82m77-41 65-41m-65 41 65 41"/></g>
+  <g class="pv-panel"><circle cx="77" cy="76" r="13"/><circle cx="153" cy="35" r="13"/><circle cx="153" cy="117" r="13"/><circle cx="295" cy="35" r="13"/><circle cx="295" cy="117" r="13"/></g>
+  <circle class="pv-core" cx="230" cy="76" r="18"/><g class="pv-reveal pv-accent"><circle cx="230" cy="76" r="32"/><path d="m253 99 20 20"/></g>
+{{ else if eq .slug "databricks" }}
+  <g class="pv-panel"><rect x="24" y="25" width="179" height="100" rx="4"/><path d="M24 51h179M24 76h179M24 101h179M76 25v100M141 25v100"/></g>
+  <path class="pv-accent" d="M38 38h23M89 38h37M154 38h33"/>
+  <g class="pv-line"><path d="M39 63h18M90 63h30M155 63h23M39 89h18M90 89h30M155 89h23M39 113h18M90 113h30M155 113h23"/></g>
+  <path class="pv-route" d="M203 75h57"/><rect class="pv-core" x="260" y="44" width="109" height="62" rx="4"/>
+  <path class="pv-accent" d="m279 64-10 11 10 11m70-22 10 11-10 11"/><text class="pv-label" x="289" y="80">App</text>
+{{ end }}
+</svg>

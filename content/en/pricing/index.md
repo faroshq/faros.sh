@@ -10,7 +10,7 @@ hero:
     url: "/contact/"
   secondary:
     label: "Deploy open source"
-    url: "/docs/deploy/helm/"
+    url: "/docs/self-hosting/hub/helm/"
   facts:
     - "No invented price tiers"
     - "Apache 2.0 self-hosting"
@@ -28,7 +28,7 @@ sections:
           - "No Faros software license fee"
           - "Your infrastructure and operating costs remain"
           - "Community and public documentation path"
-        url: "/docs/deploy/"
+        url: "/docs/self-hosting/"
         link_label: "Review self-hosting"
       - kicker: "Hosted"
         title: "Faros Cloud"
@@ -59,7 +59,7 @@ sections:
       - kicker: "Environment"
         title: "Where should control and data live?"
         summary: "Review the hub, edge, provider, and authentication architecture against your infrastructure and data-location requirements before selecting a path."
-        url: "/docs/concepts/"
+        url: "/docs/get-started/what-is-faros/#how-faros-works"
         link_label: "Review the architecture"
       - kicker: "Relationship"
         title: "What help do you need?"
@@ -74,7 +74,7 @@ sections:
       - kicker: "Try"
         title: "Run the quickstart"
         summary: "Exercise login, workspace selection, edge connectivity, kubectl or SSH, and MCP from the documented workflow."
-        url: "/docs/getting-started/quickstart/"
+        url: "/docs/use/edges/quickstart/"
         link_label: "Start the quickstart"
       - kicker: "Inspect"
         title: "Read the source"
@@ -84,7 +84,7 @@ sections:
       - kicker: "Assess"
         title: "Review security and tenancy"
         summary: "Understand the workspace, membership, role, service-account, and authentication model before choosing an operating path."
-        url: "/docs/security/"
+        url: "/docs/administration/"
         link_label: "Read security docs"
 closing:
   eyebrow: "Commercial details"
@@ -95,5 +95,5 @@ closing:
     url: "/contact/"
   secondary:
     label: "Explore self-hosting"
-    url: "/docs/deploy/"
+    url: "/docs/self-hosting/"
 ---

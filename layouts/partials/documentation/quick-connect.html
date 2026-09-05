@@ -1,0 +1,36 @@
+<section class="docs-connect" aria-label="Get started with an assistant or the CLI">
+  <div class="docs-connect-toolbar" hidden>
+  <div class="docs-connect-tabs" role="tablist" aria-label="Setup method" hidden>
+    <button type="button" role="tab" id="connect-tab-prompt" aria-controls="connect-prompt" aria-selected="true">AI prompt</button>
+    <button type="button" role="tab" id="connect-tab-mcp" aria-controls="connect-mcp" aria-selected="false" tabindex="-1">MCP</button>
+    <button type="button" role="tab" id="connect-tab-cli" aria-controls="connect-cli" aria-selected="false" tabindex="-1">CLI</button>
+  </div>
+    <button class="docs-connect-copy" type="button" data-copy-connect="connect-prompt-text" aria-label="Copy prompt" title="Copy prompt">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <div class="docs-connect-panel" id="connect-prompt">
+    <h2 class="docs-connect-fallback-title">AI prompt</h2>
+    <p class="docs-connect-instruction">Copy this prompt into your coding assistant.</p>
+    <p class="docs-connect-snippet" id="connect-prompt-text">Help me get started with the Faros SaaS hub. Ask which workspace I should use and what I want to build. If my organization self-hosts Faros, use its hub instead. Check whether the Faros CLI is installed. Guide me through login and workspace selection, then help me connect the workspace’s MCP server and inspect its available tools. Suggest a first task using the providers available to me.</p>
+    <div class="docs-connect-footer"><a href="/docs/use/ai-assistants/">Assistant setup guide <span aria-hidden="true">→</span></a></div>
+  </div>
+  <div class="docs-connect-panel" id="connect-mcp">
+    <h2 class="docs-connect-fallback-title">MCP</h2>
+    <p class="docs-connect-instruction">Already logged in? Select your workspace, then print its MCP setup snippets.</p>
+    <pre><code id="connect-mcp-text">kubectl faros use
+kubectl faros mcp url --mcpserver-name default</code></pre>
+    <p class="docs-connect-note">Use the printed configuration in your MCP client. It includes credentials; keep it private and review the server’s scope.</p>
+    <div class="docs-connect-footer"><a href="/docs/use/ai-assistants/">MCP setup and permissions <span aria-hidden="true">→</span></a></div>
+  </div>
+  <div class="docs-connect-panel" id="connect-cli">
+    <h2 class="docs-connect-fallback-title">CLI</h2>
+    <p class="docs-connect-instruction"><a href="/docs/get-started/install/">Install the CLI</a>, then replace <code>YOUR-HUB</code> with your hub’s address.</p>
+    <pre><code id="connect-cli-text">kubectl faros --help
+kubectl faros login --hub-url https://YOUR-HUB
+kubectl faros use</code></pre>
+    <p class="docs-connect-note">Login updates your kubeconfig. Use the authentication guide if your hub requires a static token.</p>
+    <div class="docs-connect-footer"><a href="/docs/reference/cli/login/">Login and authentication <span aria-hidden="true">→</span></a></div>
+  </div>
+  <p class="docs-connect-status" role="status" aria-live="polite"></p>
+</section>
