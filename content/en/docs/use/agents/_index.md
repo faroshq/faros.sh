@@ -22,7 +22,7 @@ Agents use configured model connections and available tools. Infrastructure is o
 
 ## Before you start
 
-AI agents enabled and a configured model connection. Infrastructure is optional for compute-backed tools and file workspaces. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+AI agents enabled and a configured model connection. Infrastructure is optional for compute-backed tools and file workspaces. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -36,7 +36,7 @@ Agent configuration belongs to your workspace. Conversations, runs, and durable 
 
 - [Quickstart](/docs/use/agents/quickstart/)
 - [Troubleshooting](/docs/use/agents/troubleshooting/)
-- [API reference](/docs/use/agents/reference/)
+- [API reference](/docs/reference/providers/agents/)
 - [Self-host AI agents](/docs/self-hosting/providers/agents/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/agents/README.md).

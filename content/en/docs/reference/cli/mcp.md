@@ -7,4 +7,4 @@ doc_type: "Reference"
 
 Use `kubectl faros mcp url --mcpserver-name default` for the workspace aggregate, or `kubectl faros mcp url --edge EDGE-NAME` for one edge. Exactly one flag is required.
 
-See [connect external AI assistants through MCP](/docs/use/mcp/) for setup, authentication, and verification.
+See [connect external AI assistants through MCP](/docs/use/ai-assistants/) for setup, authentication, and verification.

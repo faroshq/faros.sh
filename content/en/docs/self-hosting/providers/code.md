@@ -71,7 +71,7 @@ Review the rendered resources before installing. The chart initializes the API s
 
 1. Check that the bundle PVC is bound and the provider pod is ready.
 2. Check registration and heartbeat in the hub. A healthy pod alone does not verify hub-to-provider routing.
-3. [Enable Code](/docs/use/enable-provider/) in a disposable workspace.
+3. [Enable Code](/docs/use/workspaces/enable-provider/) in a disposable workspace.
 4. Complete the [Code quickstart](/docs/use/code/quickstart/) with a test repository and confirm that its status is readable using the same workspace identity.
 
 ## Diagnose an installation failure
@@ -100,6 +100,6 @@ Remove test resources and workspace bindings before retiring the provider regist
 helm uninstall code --kube-context HOSTING-CONTEXT --namespace faros-provider-code
 ```
 
-Inspect retained PVCs and credential Secrets separately. Back up required bundle data before deleting storage; Helm uninstall is not a repository backup. Follow [operations and recovery](/docs/self-hosting/operations/) for an existing shared provider.
+Inspect retained PVCs and credential Secrets separately. Back up required bundle data before deleting storage; Helm uninstall is not a repository backup. Follow [operations and recovery](/docs/self-hosting/hub/operations/) for an existing shared provider.
 
 [Chart values](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/values.yaml). *Chart rendering can be checked locally; a live installation walkthrough is still pending.*

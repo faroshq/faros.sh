@@ -22,7 +22,7 @@ App Studio can bind an application to an imported table with the required grants
 
 ## Before you start
 
-Databricks enabled; a workspace credential, SQL warehouse, and access to the table you want to import. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+Databricks enabled; a workspace credential, SQL warehouse, and access to the table you want to import. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -37,7 +37,7 @@ Table handles and schema status live in your Faros workspace. The data stays in 
 - [Build an application using Databricks data](/docs/use/app-studio/databricks/)
 - [Quickstart](/docs/use/databricks/quickstart/)
 - [Troubleshooting](/docs/use/databricks/troubleshooting/)
-- [API reference](/docs/use/databricks/reference/)
+- [API reference](/docs/reference/providers/databricks/)
 - [Self-host Databricks](/docs/self-hosting/providers/databricks/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/databricks/README.md).

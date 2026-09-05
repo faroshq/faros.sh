@@ -7,7 +7,7 @@ hero:
   summary: "Faros gives developers, agents, and platform teams one resource model for building and operating systems. Its core primitives stay the same whether you use the hosted service or run the open-source control plane yourself."
   primary:
     label: "Explore the architecture"
-    url: "/docs/concepts/"
+    url: "/docs/get-started/what-is-faros/#how-faros-works"
   secondary:
     label: "Follow the quickstart"
     url: "/docs/use/edges/quickstart/"
@@ -25,7 +25,7 @@ sections:
       - kicker: "01 · Isolation"
         title: "Workspaces"
         summary: "Each workspace is a logical cluster with its own resources, APIs, RBAC, and quota. Credentials are issued for a workspace, so isolation is part of the address space rather than an application-side filter."
-        url: "/docs/concepts/#organizations-and-workspaces"
+        url: "/docs/get-started/workspaces/"
         link_label: "Understand workspaces"
       - kicker: "02 · Capabilities"
         title: "Providers"
@@ -100,7 +100,7 @@ closing:
   summary: "The concepts guide traces a complete request through Faros. The provider catalog shows the capabilities available in the repository today."
   primary:
     label: "Read the concepts guide"
-    url: "/docs/concepts/"
+    url: "/docs/get-started/what-is-faros/#how-faros-works"
   secondary:
     label: "Browse the provider catalog"
     url: "/docs/use/"

@@ -1,4 +1,45 @@
 import { searchDocs } from './docs-search.mjs';
+import { setupSearchDialog } from './docs-search-dialog.mjs';
+setupSearchDialog();
+
+
+// Top-layer popovers keep section links above the horizontally scrolling navbar.
+document.querySelectorAll('.docs-nav-trigger').forEach(trigger => {
+  const dropdown = document.getElementById(trigger.getAttribute('popovertarget'));
+  if (typeof dropdown.showPopover !== 'function') return;
+  trigger.hidden = false;
+  trigger.parentElement.querySelector('.docs-nav-fallback').hidden = true;
+  const position = () => {
+    const rect = trigger.getBoundingClientRect();
+    const width = Math.min(320, window.innerWidth - 32);
+    dropdown.style.width = `${width}px`;
+    dropdown.style.left = `${Math.max(16, Math.min(rect.left, window.innerWidth - width - 16))}px`;
+    dropdown.style.top = `${rect.bottom + 8}px`;
+    dropdown.style.maxHeight = `${Math.max(80, window.innerHeight - rect.bottom - 24)}px`;
+  };
+  dropdown.addEventListener('beforetoggle', event => {
+    if (event.newState === 'open') position();
+  });
+  dropdown.addEventListener('toggle', () => {
+    trigger.setAttribute('aria-expanded', String(dropdown.matches(':popover-open')));
+  });
+  trigger.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (!dropdown.matches(':popover-open')) dropdown.showPopover();
+      dropdown.querySelector('a').focus();
+    }
+  });
+  dropdown.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      dropdown.hidePopover();
+      trigger.focus();
+    }
+  });
+  window.addEventListener('resize', () => { if (dropdown.matches(':popover-open')) position(); });
+  trigger.closest('.docs-primary').addEventListener('scroll', () => { if (dropdown.matches(':popover-open')) dropdown.hidePopover(); }, { passive: true });
+});
 
 // Native disclosure controls remain usable when JavaScript is unavailable.
 const mobile = window.matchMedia('(max-width: 900px)');

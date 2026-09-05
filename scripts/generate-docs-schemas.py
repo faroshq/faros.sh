@@ -51,10 +51,10 @@ for provider in providers:
     target = root/'static/schemas'/f'{provider}.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps({'resources': bundle}, indent=2)+'\n')
-    lines = ['---', 'title: "Resource schemas"', f'description: "Generated fields and validation rules for {provider} workspace resources."', 'weight: 91', 'doc_type: "Reference"', '---', '',
+    lines = ['---', 'title: "Resource schemas"', f'description: "Generated fields and validation rules for {provider} workspace resources."', 'weight: 91', 'doc_type: "Reference"', f'provider: "{provider}"', '---', '',
       '## Compatibility and access', '',
       f'These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.', '',
-      f'[Download complete schemas](/schemas/{provider}.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/use/{provider}/reference/) for those interfaces and related guides.', '']
+      f'[Download complete schemas](/schemas/{provider}.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/{provider}/) for those interfaces and related guides.', '']
     for entry in bundle:
         spec = entry['schema']['spec']
         for version in spec['versions']:
@@ -66,10 +66,10 @@ for provider in providers:
             schema = version['schema'].get('openAPIV3Schema', version['schema'])
             filtered = {**schema, 'properties': {key:value for key,value in schema.get('properties',{}).items() if key not in ['apiVersion','kind','metadata']}}
             lines += list(fields(filtered)) + ['']
-    (root/'content/en/docs/use'/provider/'schemas.md').write_text('\n'.join(lines).rstrip()+'\n')
-    ref = root/'content/en/docs/use'/provider/'reference.md'
+    (root/'content/en/docs/reference/providers'/provider/'schemas.md').write_text('\n'.join(lines).rstrip()+'\n')
+    ref = root/'content/en/docs/reference/providers'/provider/'_index.md'
     text = ref.read_text()
-    link = f'[Resource fields and validation rules](/docs/use/{provider}/schemas/)'
+    link = f'[Resource fields and validation rules](/docs/reference/providers/{provider}/schemas/)'
     if link not in text:
         text = text.replace('## Authoritative definitions', f'## Resource schemas\n\n{link} are generated from the checked-in schemas, with a downloadable JSON bundle.\n\n## Authoritative definitions')
         ref.write_text(text)

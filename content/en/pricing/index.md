@@ -10,7 +10,7 @@ hero:
     url: "/contact/"
   secondary:
     label: "Deploy open source"
-    url: "/docs/self-hosting/helm/"
+    url: "/docs/self-hosting/hub/helm/"
   facts:
     - "No invented price tiers"
     - "Apache 2.0 self-hosting"
@@ -59,7 +59,7 @@ sections:
       - kicker: "Environment"
         title: "Where should control and data live?"
         summary: "Review the hub, edge, provider, and authentication architecture against your infrastructure and data-location requirements before selecting a path."
-        url: "/docs/concepts/"
+        url: "/docs/get-started/what-is-faros/#how-faros-works"
         link_label: "Review the architecture"
       - kicker: "Relationship"
         title: "What help do you need?"

@@ -12,9 +12,22 @@
   <nav class="docs-primary" aria-label="Documentation sections">
     {{ range .Site.Data.docs.primary }}
       {{ $url := printf "/docs/%s/" .slug }}
-      <a class="faros-navlink" href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
+      {{ $children := .children }}
+      <div class="docs-nav-area">
+        <a class="faros-navlink docs-nav-fallback" href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
+        {{ if $children }}
+        <button type="button" class="faros-navlink docs-nav-trigger" popovertarget="docs-nav-{{ .slug }}" aria-controls="docs-nav-{{ .slug }}" aria-expanded="false"{{ if eq $ctx.slug .slug }} data-current="true"{{ end }} hidden>{{ .title }}<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="docs-nav-{{ .slug }}" class="docs-nav-dropdown" popover>
+          <nav aria-label="{{ .title }} pages">
+            <a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ end }}>{{ .title }} overview</a>
+            {{ range $children }}<a href="{{ .url }}"{{ if .groupBreak }} class="docs-nav-group-start"{{ end }}{{ if eq $.RelPermalink .url }} aria-current="page"{{ else if hasPrefix $.RelPermalink .url }} aria-current="true"{{ end }}>{{ .title }}</a>{{ end }}
+          </nav>
+        </div>
+        {{ end }}
+      </div>
     {{ end }}
   </nav>
+    <button type="button" class="docs-search-trigger" aria-haspopup="dialog" aria-controls="docs-search-dialog" hidden><span>Search documentation</span><kbd>⌘ K</kbd></button>
     <form role="search" action="/docs/search/" class="docs-header-search">
       <label for="docs-header-query" class="sr-only">Search all documentation</label>
       <input id="docs-header-query" name="q" type="search" placeholder="Search documentation" autocomplete="off">
@@ -37,3 +50,18 @@
   </div>
 
 </header>
+
+<dialog id="docs-search-dialog" class="docs-search-dialog" aria-labelledby="docs-search-dialog-title">
+  <form class="docs-modal-search-form" role="search" action="/docs/search/">
+    <label id="docs-search-dialog-title" for="docs-modal-query" class="sr-only">Search documentation</label>
+    <input id="docs-modal-query" name="q" type="search" placeholder="Search documentation…" autocomplete="off" autofocus>
+    <button type="button" class="docs-search-close" aria-label="Close search">Esc</button>
+  </form>
+  <div class="docs-search-dialog-body">
+    <p class="docs-modal-status" role="status" aria-live="polite">Enter a topic to search documentation.</p>
+    <ol class="docs-modal-results" aria-label="Search results"></ol>
+    <nav class="docs-search-suggestions" aria-label="Start exploring">
+      {{ range .Site.Data.docs.primary }}<a href="/docs/{{ .slug }}/">{{ .title }} <span aria-hidden="true">→</span></a>{{ end }}
+    </nav>
+  </div>
+</dialog>

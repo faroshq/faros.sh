@@ -7,7 +7,7 @@ doc_type: "Tutorial"
 
 ## Prerequisites
 
-Use an existing hub with **AI agents** enabled. Select the workspace where the agent should live. You need a [tested model credential](/docs/use/agents/models/) in that workspace and permission to create an agent. Infrastructure and external channels are optional for this first conversation.
+Start in the Faros SaaS hub with **AI agents** enabled in your workspace. You can also follow this guide on your organization’s self-hosted hub. Select the workspace where the agent should live. You need a [tested model credential](/docs/use/agents/models/) in that workspace and permission to create an agent. Infrastructure and external channels are optional for this first conversation.
 
 ## Create and verify
 

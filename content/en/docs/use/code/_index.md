@@ -22,7 +22,7 @@ App Studio uses Code for project repositories. GitHub remains the source hosting
 
 ## Before you start
 
-Code enabled and a GitHub credential with access to the intended repositories. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+Code enabled and a GitHub credential with access to the intended repositories. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -35,8 +35,8 @@ Resource handles belong to your workspace. Git content lives at GitHub; commit a
 ## Start here
 
 - [Quickstart](/docs/use/code/quickstart/)
-- [Troubleshooting](/docs/use/code/troubleshooting/)
-- [API reference](/docs/use/code/reference/)
+- [Troubleshooting](/docs/use/code/repositories/#troubleshooting)
+- [API reference](/docs/reference/providers/code/)
 - [Self-host Code](/docs/self-hosting/providers/code/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/code/README.md).

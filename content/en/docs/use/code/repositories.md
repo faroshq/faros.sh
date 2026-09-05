@@ -17,8 +17,20 @@ Create deploy keys and collaborators only for the intended repository. Verify ac
 
 Packages and repository build status expose upstream artifacts and build results. A requested rebuild is not proof of a successful artifact: inspect the resulting status and the upstream build.
 
-## Diagnose errors
-
-Check the connection first, then the repository owner, visibility, branch, and upstream permission. If a resource is pending, inspect its conditions before submitting another creation request.
-
 App Studio users can follow [projects and repositories](/docs/use/app-studio/projects/) for the application workflow.
+
+## Troubleshooting
+
+### Check workspace and access
+
+Confirm the selected organization/workspace and that the provider is enabled there. Try a read-only operation using the same identity as the failing action. A successful administrator action does not prove another identity has access.
+
+### Diagnose the provider
+
+Check the GitHub connection, owner, repository permissions, branch, and upstream policy. Read resource conditions and build status before submitting another creation request. Do not create duplicate repositories to work around an authentication failure.
+
+### Collect useful evidence
+
+Record the resource name, failing step, time, status conditions, and request/run ID where available. Share these with your operator, excluding bearer tokens, credentials, and private application data.
+
+If the provider itself is unavailable, use [Code self-hosting](/docs/self-hosting/providers/code/) for operator checks. Once resolved, repeat the verification step in the [quickstart](/docs/use/code/quickstart/).

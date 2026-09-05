@@ -13,14 +13,14 @@ doc_type: "Overview"
 
 ## Provider APIs
 
-- [App Studio](/docs/use/app-studio/reference/)
-- [AI agents](/docs/use/agents/reference/)
-- [Edges](/docs/use/edges/reference/)
-- [Infrastructure](/docs/use/infrastructure/reference/)
-- [Code](/docs/use/code/reference/)
-- [Kuery](/docs/use/kuery/reference/)
-- [Databricks](/docs/use/databricks/reference/)
+- [App Studio](/docs/reference/providers/app-studio/)
+- [AI agents](/docs/reference/providers/agents/)
+- [Edges](/docs/reference/providers/edges/)
+- [Infrastructure](/docs/reference/providers/infrastructure/)
+- [Code](/docs/reference/providers/code/)
+- [Kuery](/docs/reference/providers/kuery/)
+- [Databricks](/docs/reference/providers/databricks/)
 
 ## Compatibility
 
-Check the installed chart, image, and API versions together. The source baseline of this documentation is not a supported-version matrix or a claim that a feature is enabled on your hub. See [release notes](/docs/releases/).
+Check the installed chart, image, and API versions together. The source baseline of this documentation is not a supported-version matrix or a claim that a feature is enabled on your hub. See [release notes](/docs/resources/releases/).

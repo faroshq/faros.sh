@@ -6,7 +6,46 @@
     },
     {
       "slug": "use",
-      "title": "Use Faros"
+      "title": "Use Faros",
+      "children": [
+        {
+          "url": "/docs/use/workspaces/",
+          "title": "Workspace basics"
+        },
+        {
+          "url": "/docs/use/ai-assistants/",
+          "title": "AI assistants & MCP"
+        },
+        {
+          "url": "/docs/use/app-studio/",
+          "title": "App Studio",
+          "groupBreak": true
+        },
+        {
+          "url": "/docs/use/agents/",
+          "title": "AI agents"
+        },
+        {
+          "url": "/docs/use/edges/",
+          "title": "Edges"
+        },
+        {
+          "url": "/docs/use/infrastructure/",
+          "title": "Infrastructure"
+        },
+        {
+          "url": "/docs/use/code/",
+          "title": "Code"
+        },
+        {
+          "url": "/docs/use/kuery/",
+          "title": "Kuery"
+        },
+        {
+          "url": "/docs/use/databricks/",
+          "title": "Databricks"
+        }
+      ]
     },
     {
       "slug": "administration",
@@ -14,31 +53,52 @@
     },
     {
       "slug": "self-hosting",
-      "title": "Self-hosting"
+      "title": "Self-hosting",
+      "children": [
+        {
+          "url": "/docs/self-hosting/hub/",
+          "title": "Hub deployment"
+        },
+        {
+          "url": "/docs/self-hosting/providers/",
+          "title": "Provider hosting"
+        }
+      ]
     },
     {
       "slug": "extend",
       "title": "Extend Faros"
-    }
-  ],
-  "secondary": [
-    {
-      "slug": "concepts",
-      "title": "Concepts"
     },
     {
       "slug": "reference",
-      "title": "Reference"
+      "title": "Reference",
+      "children": [
+        {
+          "url": "/docs/reference/cli/",
+          "title": "CLI reference"
+        },
+        {
+          "url": "/docs/reference/providers/",
+          "title": "Provider APIs"
+        }
+      ]
     },
     {
-      "slug": "troubleshooting",
-      "title": "Troubleshooting"
-    },
-    {
-      "slug": "releases",
-      "title": "Release notes"
+      "slug": "resources",
+      "title": "Resources",
+      "children": [
+        {
+          "url": "/docs/resources/releases/",
+          "title": "Release notes"
+        },
+        {
+          "url": "/docs/resources/troubleshooting/",
+          "title": "Troubleshooting"
+        }
+      ]
     }
   ],
+  "secondary": [],
   "providers": [
     {
       "slug": "app-studio",
@@ -74,6 +134,961 @@
       "slug": "databricks",
       "title": "Databricks",
       "description": "Connect tables and use their data"
+    }
+  ],
+  "sidebars": [
+    {
+      "root": "/docs/get-started/",
+      "area": "get-started",
+      "groups": [
+        {
+          "title": "Introduction",
+          "links": [
+            {
+              "url": "/docs/get-started/what-is-faros/",
+              "title": "What is Faros?"
+            }
+          ]
+        },
+        {
+          "title": "First steps",
+          "links": [
+            {
+              "url": "/docs/get-started/workspaces/",
+              "title": "Find your workspace and navigate the console"
+            }
+          ]
+        },
+        {
+          "title": "CLI setup",
+          "links": [
+            {
+              "url": "/docs/get-started/install/",
+              "title": "Use the CLI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/administration/",
+      "area": "administration",
+      "groups": [
+        {
+          "title": "Organizations and access",
+          "links": [
+            {
+              "url": "/docs/administration/workspaces/",
+              "title": "Tenancy Management"
+            },
+            {
+              "url": "/docs/administration/members/",
+              "title": "Add a teammate and manage roles"
+            },
+            {
+              "url": "/docs/administration/service-accounts/",
+              "title": "Service accounts and credentials"
+            }
+          ]
+        },
+        {
+          "title": "Provider management",
+          "links": [
+            {
+              "url": "/docs/administration/providers/",
+              "title": "Provider access and lifecycle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/extend/",
+      "area": "extend",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/extend/quickstart/",
+              "title": "Build your first provider"
+            },
+            {
+              "url": "/docs/extend/anatomy/",
+              "title": "Anatomy & Lifecycle"
+            }
+          ]
+        },
+        {
+          "title": "APIs and authorization",
+          "links": [
+            {
+              "url": "/docs/extend/api/",
+              "title": "Defining the API"
+            },
+            {
+              "url": "/docs/extend/rbac/",
+              "title": "RBAC & Security"
+            },
+            {
+              "url": "/docs/extend/virtual-workspace/",
+              "title": "Virtual Workspaces"
+            }
+          ]
+        },
+        {
+          "title": "UI, templates, and tools",
+          "links": [
+            {
+              "url": "/docs/extend/ui/",
+              "title": "Building the UI"
+            },
+            {
+              "url": "/docs/extend/templates/",
+              "title": "Author infrastructure templates"
+            },
+            {
+              "url": "/docs/extend/actions/",
+              "title": "Provider Actions and assistant skills"
+            },
+            {
+              "url": "/docs/extend/mcp/",
+              "title": "MCP Integration"
+            }
+          ]
+        },
+        {
+          "title": "Connectivity and deployment",
+          "links": [
+            {
+              "url": "/docs/extend/connectivity/",
+              "title": "Connectivity & Proxies"
+            },
+            {
+              "url": "/docs/extend/deploy/",
+              "title": "Packaging & Deployment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/self-hosting/",
+      "area": "self-hosting",
+      "groups": [
+        {
+          "title": "Hub",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/helm/",
+              "title": "Install the hub"
+            }
+          ]
+        },
+        {
+          "title": "Authentication",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/authentication/",
+              "title": "Authentication"
+            },
+            {
+              "url": "/docs/self-hosting/hub/oidc/",
+              "title": "OIDC (Dex)"
+            },
+            {
+              "url": "/docs/self-hosting/hub/static-token/",
+              "title": "Static Tokens"
+            }
+          ]
+        },
+        {
+          "title": "Networking",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/ingress/",
+              "title": "Ingress"
+            },
+            {
+              "url": "/docs/self-hosting/hub/cloudflare-tunnel/",
+              "title": "Cloudflare Tunnel"
+            }
+          ]
+        },
+        {
+          "title": "Operations",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/operations/",
+              "title": "Monitor, recover, and upgrade"
+            }
+          ]
+        },
+        {
+          "title": "Providers",
+          "links": [
+            {
+              "url": "/docs/self-hosting/providers/",
+              "title": "Self-host an existing provider"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "CLI",
+          "links": [
+            {
+              "url": "/docs/reference/cli/agent/",
+              "title": "Agent Commands"
+            },
+            {
+              "url": "/docs/reference/cli/edges/",
+              "title": "Edges"
+            },
+            {
+              "url": "/docs/reference/cli/login/",
+              "title": "Login & Authentication"
+            },
+            {
+              "url": "/docs/reference/cli/mcp/",
+              "title": "MCP command"
+            },
+            {
+              "url": "/docs/reference/cli/resources/",
+              "title": "Work with provider resources"
+            },
+            {
+              "url": "/docs/reference/cli/ssh/",
+              "title": "SSH"
+            },
+            {
+              "url": "/docs/reference/cli/workspaces/",
+              "title": "Organizations & Workspaces"
+            }
+          ]
+        },
+        {
+          "title": "Providers",
+          "links": [
+            {
+              "url": "/docs/reference/providers/",
+              "title": "Provider reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/resources/",
+      "area": "resources",
+      "groups": [
+        {
+          "title": "Resources",
+          "links": [
+            {
+              "url": "/docs/resources/releases/",
+              "title": "Releases"
+            },
+            {
+              "url": "/docs/resources/troubleshooting/",
+              "title": "Troubleshooting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Workspace basics",
+          "links": [
+            {
+              "url": "/docs/use/workspaces/enable-provider/",
+              "title": "Enable a provider"
+            }
+          ]
+        },
+        {
+          "title": "AI assistants & MCP",
+          "links": [
+            {
+              "url": "/docs/use/ai-assistants/",
+              "title": "AI assistants & MCP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/ai-assistants/",
+      "area": "use",
+      "groups": []
+    },
+    {
+      "root": "/docs/self-hosting/providers/",
+      "area": "self-hosting",
+      "groups": [
+        {
+          "title": "Providers",
+          "links": [
+            {
+              "url": "/docs/self-hosting/providers/app-studio/",
+              "title": "Self-host App Studio"
+            },
+            {
+              "url": "/docs/self-hosting/providers/agents/",
+              "title": "Self-host AI agents"
+            },
+            {
+              "url": "/docs/self-hosting/providers/edges/",
+              "title": "Self-host Edges"
+            },
+            {
+              "url": "/docs/self-hosting/providers/infrastructure/",
+              "title": "Self-host Infrastructure"
+            },
+            {
+              "url": "/docs/self-hosting/providers/code/",
+              "title": "Self-host Code"
+            },
+            {
+              "url": "/docs/self-hosting/providers/kuery/",
+              "title": "Self-host Kuery"
+            },
+            {
+              "url": "/docs/self-hosting/providers/databricks/",
+              "title": "Self-host Databricks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/app-studio/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/app-studio/quickstart/",
+              "title": "Build and publish an application"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/app-studio/databricks/",
+              "title": "Build an application using Databricks data"
+            },
+            {
+              "url": "/docs/use/app-studio/development/",
+              "title": "Development environments"
+            },
+            {
+              "url": "/docs/use/app-studio/projects/",
+              "title": "Projects, sessions, and repositories"
+            },
+            {
+              "url": "/docs/use/app-studio/publishing/",
+              "title": "Publishing and sharing"
+            },
+            {
+              "url": "/docs/use/app-studio/skills/",
+              "title": "Use project skills"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/app-studio/",
+              "title": "App Studio reference"
+            },
+            {
+              "url": "/docs/reference/providers/app-studio/schemas/",
+              "title": "App Studio schemas"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "links": [
+            {
+              "url": "/docs/use/app-studio/troubleshooting/",
+              "title": "Troubleshoot App Studio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/agents/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/agents/quickstart/",
+              "title": "Create an AI agent"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/agents/memory-channels/",
+              "title": "Memory and channels"
+            },
+            {
+              "url": "/docs/use/agents/models/",
+              "title": "Connect a model"
+            },
+            {
+              "url": "/docs/use/agents/schedules/",
+              "title": "Schedules and triggers"
+            },
+            {
+              "url": "/docs/use/agents/tools/",
+              "title": "Tools, approvals, and budgets"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/agents/",
+              "title": "AI agents reference"
+            },
+            {
+              "url": "/docs/reference/providers/agents/schemas/",
+              "title": "AI agents schemas"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "links": [
+            {
+              "url": "/docs/use/agents/troubleshooting/",
+              "title": "Troubleshoot AI agents"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/edges/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/edges/quickstart/",
+              "title": "Connect a cluster or server"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/edges/services-workloads/",
+              "title": "Services, workloads, and placement"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/edges/",
+              "title": "Edges reference"
+            },
+            {
+              "url": "/docs/reference/providers/edges/schemas/",
+              "title": "Edges schemas"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "links": [
+            {
+              "url": "/docs/use/edges/troubleshooting/",
+              "title": "Troubleshoot Edges"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/infrastructure/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/infrastructure/quickstart/",
+              "title": "Provision an instance"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/infrastructure/instances/",
+              "title": "Templates and instance lifecycle"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/infrastructure/",
+              "title": "Infrastructure reference"
+            },
+            {
+              "url": "/docs/reference/providers/infrastructure/schemas/",
+              "title": "Infrastructure schemas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/code/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/code/quickstart/",
+              "title": "Connect GitHub and create a repository"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/code/repositories/",
+              "title": "Repositories, collaborators, and builds"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/code/",
+              "title": "Code reference"
+            },
+            {
+              "url": "/docs/reference/providers/code/schemas/",
+              "title": "Code schemas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/kuery/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/kuery/quickstart/",
+              "title": "Query your fleet and inspect impact"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/kuery/",
+              "title": "Kuery reference"
+            },
+            {
+              "url": "/docs/reference/providers/kuery/schemas/",
+              "title": "Kuery schemas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/databricks/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Getting started",
+          "links": [
+            {
+              "url": "/docs/use/databricks/quickstart/",
+              "title": "Import and query a Databricks table"
+            }
+          ]
+        },
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/databricks/",
+              "title": "Databricks reference"
+            },
+            {
+              "url": "/docs/reference/providers/databricks/schemas/",
+              "title": "Databricks schemas"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "links": [
+            {
+              "url": "/docs/use/databricks/troubleshooting/",
+              "title": "Troubleshoot Databricks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "Providers",
+          "links": [
+            {
+              "url": "/docs/reference/providers/app-studio/",
+              "title": "App Studio"
+            },
+            {
+              "url": "/docs/reference/providers/agents/",
+              "title": "AI agents"
+            },
+            {
+              "url": "/docs/reference/providers/edges/",
+              "title": "Edges"
+            },
+            {
+              "url": "/docs/reference/providers/infrastructure/",
+              "title": "Infrastructure"
+            },
+            {
+              "url": "/docs/reference/providers/code/",
+              "title": "Code"
+            },
+            {
+              "url": "/docs/reference/providers/kuery/",
+              "title": "Kuery"
+            },
+            {
+              "url": "/docs/reference/providers/databricks/",
+              "title": "Databricks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/cli/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "Commands",
+          "links": [
+            {
+              "url": "/docs/reference/cli/agent/",
+              "title": "Agent Commands"
+            },
+            {
+              "url": "/docs/reference/cli/edges/",
+              "title": "Edges"
+            },
+            {
+              "url": "/docs/reference/cli/login/",
+              "title": "Login & Authentication"
+            },
+            {
+              "url": "/docs/reference/cli/mcp/",
+              "title": "MCP command"
+            },
+            {
+              "url": "/docs/reference/cli/resources/",
+              "title": "Work with provider resources"
+            },
+            {
+              "url": "/docs/reference/cli/ssh/",
+              "title": "SSH"
+            },
+            {
+              "url": "/docs/reference/cli/workspaces/",
+              "title": "Organizations & Workspaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/use/workspaces/",
+      "area": "use",
+      "groups": [
+        {
+          "title": "Workspace basics",
+          "links": [
+            {
+              "url": "/docs/use/workspaces/enable-provider/",
+              "title": "Enable a provider"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/self-hosting/hub/",
+      "area": "self-hosting",
+      "groups": [
+        {
+          "title": "Installation",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/helm/",
+              "title": "Install the hub"
+            }
+          ]
+        },
+        {
+          "title": "Authentication",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/authentication/",
+              "title": "Authentication"
+            },
+            {
+              "url": "/docs/self-hosting/hub/oidc/",
+              "title": "OIDC (Dex)"
+            },
+            {
+              "url": "/docs/self-hosting/hub/static-token/",
+              "title": "Static Tokens"
+            }
+          ]
+        },
+        {
+          "title": "Networking",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/ingress/",
+              "title": "Ingress"
+            },
+            {
+              "url": "/docs/self-hosting/hub/cloudflare-tunnel/",
+              "title": "Cloudflare Tunnel"
+            }
+          ]
+        },
+        {
+          "title": "Operations",
+          "links": [
+            {
+              "url": "/docs/self-hosting/hub/operations/",
+              "title": "Monitor, recover, and upgrade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/app-studio/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/app-studio/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/app-studio/",
+              "title": "App Studio guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/agents/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/agents/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/agents/",
+              "title": "AI agents guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/edges/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/edges/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/edges/",
+              "title": "Edges guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/infrastructure/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/infrastructure/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/infrastructure/",
+              "title": "Infrastructure guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/code/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/code/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/code/",
+              "title": "Code guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/kuery/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/kuery/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/kuery/",
+              "title": "Kuery guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/providers/databricks/",
+      "area": "reference",
+      "groups": [
+        {
+          "title": "API reference",
+          "links": [
+            {
+              "url": "/docs/reference/providers/databricks/schemas/",
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "title": "Guides",
+          "links": [
+            {
+              "url": "/docs/use/databricks/",
+              "title": "Databricks guides"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

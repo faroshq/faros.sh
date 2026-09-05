@@ -13,7 +13,7 @@ doc_type: "Guide"
 4. Configure the automation with the workspace endpoint and token.
 5. Test one intended operation and one operation that should be denied.
 
-Service-account credentials are distinct from human OIDC sessions, provider-controller credentials, and per-MCPServer credentials. Document which principal an integration actually uses.
+Human sessions, automation service accounts, provider controllers, edge agents, and MCPServer credentials are different principals. Verify the identity used at each boundary. A workspace URL alone is not an authorization policy. Document which principal an integration actually uses.
 
 ## Verify the automation identity from a terminal
 
@@ -32,4 +32,4 @@ Choose a resource and operation that your policy denies and check it with `auth 
 
 Create a replacement credential using the supported lifecycle, update the consumer, verify its operation, then revoke the old credential. Remove test accounts after use. For API details, consult the deployed hub and the [tenancy reference](/docs/reference/).
 
-For external AI assistants, see [MCP authentication](/docs/use/mcp/).
+For external AI assistants, see [MCP authentication](/docs/use/ai-assistants/).

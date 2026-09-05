@@ -22,7 +22,7 @@ App Studio uses Infrastructure for development and production environments. AI a
 
 ## Before you start
 
-Infrastructure enabled and a template made available by the platform operator. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+Infrastructure enabled and a template made available by the platform operator. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -35,8 +35,8 @@ Templates describe the catalog. Instances belong to your workspace; the provider
 ## Start here
 
 - [Quickstart](/docs/use/infrastructure/quickstart/)
-- [Troubleshooting](/docs/use/infrastructure/troubleshooting/)
-- [API reference](/docs/use/infrastructure/reference/)
+- [Troubleshooting](/docs/use/infrastructure/instances/#troubleshooting)
+- [API reference](/docs/reference/providers/infrastructure/)
 - [Self-host Infrastructure](/docs/self-hosting/providers/infrastructure/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/infrastructure/apis/v1alpha1/types_instance.go).

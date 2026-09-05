@@ -5,16 +5,31 @@
     <summary>Documentation navigation</summary>
     <div class="docs-navigation-body">
       <nav aria-label="{{ $ctx.local.Title }} navigation">
-        {{ if not .Params.provider }}<p class="docs-nav-heading">{{ $ctx.local.Title }}</p>{{ end }}
+        {{ if or (ne $ctx.slug "use") (not .Params.provider) }}<p class="docs-nav-heading">{{ $ctx.local.Title }}</p>{{ end }}
         <a class="faros-docs-link{{ if eq .RelPermalink $ctx.local.RelPermalink }} active{{ end }}" href="{{ $ctx.local.RelPermalink }}"{{ if eq .RelPermalink $ctx.local.RelPermalink }} aria-current="page"{{ end }}>Overview</a>
-        {{ partial "documentation/menu.html" (dict "root" $ctx.local "current" .) }}
-        {{ with .Params.provider }}
-          <a class="docs-host-link" href="/docs/self-hosting/providers/{{ . }}/">Self-host {{ $ctx.local.Title }} <span aria-hidden="true">↗</span></a>
+        {{ with $ctx.sidebar.groups }}
+          {{ range . }}
+          <section class="docs-sidebar-group">
+            <h2>{{ .title }}</h2>
+            <ul class="faros-docs-list">
+              {{ range .links }}
+              {{ if ne .url $ctx.local.RelPermalink }}
+              <li><a class="faros-docs-link{{ if eq $.RelPermalink .url }} active{{ end }}" href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ end }}>{{ .title }}</a></li>
+              {{ end }}
+              {{ end }}
+            </ul>
+          </section>
+          {{ end }}
         {{ end }}
+        {{ if eq $ctx.slug "use" }}{{ with .Params.provider }}
+          <a class="docs-host-link" href="/docs/self-hosting/providers/{{ . }}/">Self-host {{ $ctx.local.Title }} <span aria-hidden="true">↗</span></a>
+        {{ end }}{{ end }}
       </nav>
+      {{ with .Site.Data.docs.secondary }}
       <nav class="docs-secondary" aria-label="Documentation resources">
-        {{ range .Site.Data.docs.secondary }}<a href="/docs/{{ .slug }}/"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink (printf "/docs/%s/" .slug) }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>{{ end }}
+        {{ range . }}<a href="/docs/{{ .slug }}/"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink (printf "/docs/%s/" .slug) }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>{{ end }}
       </nav>
+      {{ end }}
     </div>
   </details>
 </aside>

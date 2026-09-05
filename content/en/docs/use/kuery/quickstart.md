@@ -47,4 +47,20 @@ Delete the test query file when no longer needed and unset `FAROS_TOKEN` after u
 
 An empty result may mean the cluster has not synchronized, the kind is excluded by the sync whitelist, or the filter does not match. A dependency graph describes observed relationships; it does not prove that deleting or changing a resource is safe.
 
-Queries do not create workloads, so no workload cleanup is needed for this guide. Next: [query reference and freshness](/docs/use/kuery/reference/).
+Queries do not create workloads, so no workload cleanup is needed for this guide. Next: [query reference and freshness](/docs/reference/providers/kuery/).
+
+## Troubleshooting
+
+### Check workspace and access
+
+Confirm the selected organization/workspace and that the provider is enabled there. Try a read-only operation using the same identity as the failing action. A successful administrator action does not prove another identity has access.
+
+### Diagnose the provider
+
+Check edge connectivity, synchronization status, sync whitelist, filters, and workspace. The query store can lag the source cluster. Compare a known object to the live edge before interpreting an empty result as absence.
+
+### Collect useful evidence
+
+Record the resource name, failing step, time, status conditions, and request/run ID where available. Share these with your operator, excluding bearer tokens, credentials, and private application data.
+
+If the provider itself is unavailable, use [Kuery self-hosting](/docs/self-hosting/providers/kuery/) for operator checks. Once resolved, repeat the verification step in the [quickstart](/docs/use/kuery/quickstart/).

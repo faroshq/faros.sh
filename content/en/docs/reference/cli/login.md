@@ -17,7 +17,7 @@ weight: 1
 
 ## OIDC (browser flow)
 
-Supply the URL of a hub you can access. The built-in default URL does not establish hosted availability:
+Use the Faros SaaS hub for the standard login flow. For a self-hosted hub, supply your organization’s URL instead:
 
 ```bash
 kubectl faros login --hub-url https://hub.example.com
@@ -48,7 +48,7 @@ kubectl faros login \
 
 Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate.
 
-> See [Static tokens](/docs/self-hosting/static-token/) for how to provision them on the hub side. Each distinct static token maps to its own isolated tenant user on the hub.
+> See [Static tokens](/docs/self-hosting/hub/static-token/) for how to provision them on the hub side. Each distinct static token maps to its own isolated tenant user on the hub.
 
 ## Pick an organization and workspace
 

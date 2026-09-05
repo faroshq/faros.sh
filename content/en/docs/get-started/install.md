@@ -1,6 +1,6 @@
 ---
 title: Use the CLI
-description: Install the Faros CLI and connect it to your hub.
+description: Install the Faros CLI and connect to Faros SaaS.
 weight: 5
 ---
 
@@ -8,7 +8,7 @@ The CLI is optional for console-based application and AI-agent tutorials. Use it
 
 ## Prerequisites
 
-Ask your administrator for a hub URL and a compatible CLI version. If you do not have a hub, follow [Self-hosting](/docs/self-hosting/). These docs do not establish hosted-service availability.
+Start with the Faros SaaS hub and a compatible CLI version. If your organization uses a [self-hosted hub](/docs/self-hosting/), ask its administrator for the hub URL and supported CLI version.
 
 Install [kubectl](https://kubernetes.io/docs/tasks/tools/) to use the plugin form and Kubernetes examples below.
 

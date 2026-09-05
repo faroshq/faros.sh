@@ -17,7 +17,7 @@ Choose a task that matches what you want to accomplish:
 - [Create an AI agent](/docs/use/agents/quickstart/): configure a model and instructions, then verify the first response.
 - [Connect a cluster or server](/docs/use/edges/quickstart/): register an edge and verify access through the hub.
 
-These tutorials assume access to a hub. Your administrator can confirm the providers, connections, and permissions available in your workspace. If you are responsible for installing Faros, start with [Self-hosting](/docs/self-hosting/).
+Start these tutorials in the Faros SaaS hub. Your workspace administrator can confirm the providers, connections, and permissions available to you. You can also use a [self-hosted hub](/docs/self-hosting/) if your organization operates Faros on its own infrastructure.
 
 ## When to use Faros
 
@@ -41,7 +41,24 @@ An **organization** groups people and workspaces. A **workspace** is the context
 
 A **provider** adds a capability: its resource APIs, controllers, and, where implemented, console views and MCP tools. Providers can be enabled independently. App Studio, for example, uses Code and Infrastructure to connect application work to repositories and runtime environments. Edges connects existing clusters and servers through an agent that initiates an outbound connection to the hub.
 
-Read [organizations, workspaces, and providers](/docs/get-started/workspaces/) for an introduction to these boundaries, or [Concepts](/docs/concepts/) for the shared platform model.
+Read [organizations, workspaces, and providers](/docs/get-started/workspaces/) for an introduction to these boundaries.
+
+The provider service and the runtime may operate in different clusters. A resource in the control plane describes work; it is not necessarily where that work executes. MCP exposes enabled tools to compatible assistants, subject to the endpoint credential and provider authorization.
+
+## Resources, actions, and streams
+
+Declarative resources express desired state and controllers reconcile it. Direct actions perform bounded requests; streams carry logs, terminals, or other live traffic. Not every action creates an auditable, reversible resource object.
+
+Follow [a provisioning request](/docs/use/infrastructure/instances/#follow-a-provisioning-request) to see how an assistant request becomes a running workload.
+
+## Glossary
+
+- **Hub:** the shared control-plane service.
+- **Provider:** a capability registered with the hub.
+- **Workspace:** the logical API context for resources and access.
+- **Instance:** one provisioned Infrastructure template.
+- **Edge agent:** the daemon connecting a target cluster or server.
+- **AI agent:** an assistant with a model, tools, and optional background work.
 
 ## Choose how you work
 
@@ -51,4 +68,4 @@ Operators install and run the hub and providers. Provider authors extend the pla
 
 ## Next steps
 
-[Complete your first task](/docs/get-started/first-task/), [browse the available capabilities](/docs/use/), or follow [an application workflow using Databricks data](/docs/use/app-studio/databricks/) to see multiple providers working together.
+[Complete your first task](/docs/get-started/#choose-your-first-task), [browse the available capabilities](/docs/use/), or follow [an application workflow using Databricks data](/docs/use/app-studio/databricks/) to see multiple providers working together.

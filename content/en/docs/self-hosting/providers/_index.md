@@ -14,7 +14,7 @@ You need permission to onboard a provider, a Kubernetes runtime you administer, 
 3. Obtain the scoped provider kubeconfig and store it as the Secret expected by the chart. Treat it as a credential.
 4. Run the generated installation instructions using a reviewed chart/image version.
 5. Verify pod readiness, provider registration, and a fresh heartbeat.
-6. [Enable the provider](/docs/use/enable-provider/) in a test workspace and complete its quickstart.
+6. [Enable the provider](/docs/use/workspaces/enable-provider/) in a test workspace and complete its quickstart.
 
 If a remote runtime cannot reach a virtual workspace, inspect the advertised endpoints and shard routing; connectivity to the public console alone is insufficient.
 

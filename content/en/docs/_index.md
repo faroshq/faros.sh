@@ -21,4 +21,4 @@ Start with the capability you need today. Add others as your workflow grows: con
 
 A **hub** provides the shared control plane. **Workspaces** organize resources and access. **Providers** add capabilities such as App Studio, AI agents, and Edges. Your deployment determines which providers and external services are available.
 
-If you already have hub access, choose a tutorial above; each guide lists its own prerequisites. If you are setting up the platform for your team, begin with [Self-hosting](/docs/self-hosting/). Learn more about [how Faros works](/docs/get-started/what-is-faros/#how-faros-works).
+Start with the Faros SaaS hub and choose a tutorial above; each guide lists its workspace prerequisites. To run Faros on your own infrastructure, see [Self-hosting](/docs/self-hosting/). Learn more about [how Faros works](/docs/get-started/what-is-faros/#how-faros-works).

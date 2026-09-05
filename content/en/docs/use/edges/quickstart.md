@@ -4,9 +4,9 @@ description: Register an edge and verify access to a Kubernetes cluster or serve
 weight: 2
 ---
 
-This guide takes you from a freshly installed CLI to a working Kubernetes edge that you can drive with `kubectl`. Use a hub you can already access, with Edges enabled in your workspace and permission to install an agent on the target. Install the [CLI](/docs/get-started/install/) if needed.
+This guide takes you from a freshly installed CLI to a working Kubernetes edge that you can drive with `kubectl`. Start with the Faros SaaS hub, with Edges enabled in your workspace and permission to install an agent on the target. Install the [CLI](/docs/get-started/install/) if needed.
 
-If you do not have a hub, start with [Self-hosting](/docs/self-hosting/).
+If your organization runs a [self-hosted hub](/docs/self-hosting/), use its URL for login instead.
 
 ## 1. Log in
 
@@ -83,7 +83,7 @@ This prints an MCP endpoint URL plus ready-to-paste setup commands for Claude Co
 - **[CLI reference](/docs/reference/cli/)** — every command with flags and examples
 - **[Organizations & workspaces](/docs/reference/cli/workspaces/)** — team orgs and switching workspaces
 - **[Providers](/docs/use/)** — enable application templates, git repos, hosted AI agents, and more
-- **[Deploy your own hub](/docs/self-hosting/helm/)** — run the underlying software
+- **[Deploy your own hub](/docs/self-hosting/hub/helm/)** — run the underlying software
 
 ## Cleanup
 

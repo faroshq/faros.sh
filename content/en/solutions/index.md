@@ -38,7 +38,7 @@ sections:
           - "Your infrastructure and operating model"
           - "Helm-based deployment guidance"
           - "Source available for inspection and extension"
-        url: "/docs/self-hosting/helm/"
+        url: "/docs/self-hosting/hub/helm/"
         link_label: "Deploy a hub"
       - kicker: "Direct relationship"
         title: "Work with Faros"
@@ -67,7 +67,7 @@ sections:
       - kicker: "Distributed infrastructure"
         title: "Reach clusters and servers outbound"
         summary: "Connect Kubernetes clusters and Linux hosts with an agent that dials out, then carry kubectl, SSH, service, and MCP traffic through the existing tunnel."
-        url: "/docs/self-hosting/ingress/"
+        url: "/docs/self-hosting/hub/ingress/"
         link_label: "Review connectivity options"
       - kicker: "Extensible platforms"
         title: "Add a provider instead of changing the hub"
@@ -103,5 +103,5 @@ closing:
     url: "/contact/"
   secondary:
     label: "Deploy it yourself"
-    url: "/docs/self-hosting/helm/"
+    url: "/docs/self-hosting/hub/helm/"
 ---

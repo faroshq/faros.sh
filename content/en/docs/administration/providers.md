@@ -7,7 +7,7 @@ doc_type: "Guide"
 
 ## Enable a capability
 
-Follow [Enable a provider](/docs/use/enable-provider/) in the target workspace. Review requested permission claims and dependencies before granting access. A provider running on the hub is not automatically enabled in every workspace.
+Follow [Enable a provider](/docs/use/workspaces/enable-provider/) in the target workspace. Review requested permission claims and dependencies before granting access. A provider running on the hub is not automatically enabled in every workspace.
 
 ## Organization-owned providers
 
@@ -23,4 +23,4 @@ Deleting the platform Provider object tears down its provider workspace and can 
 
 ## Verify and diagnose
 
-After enabling a provider, use [API discovery and binding checks](/docs/use/enable-provider/#verify-enablement-from-the-cli) from its tenant workspace. For a registered provider whose service is unavailable, use the operator's separate [hosting-cluster diagnostics](/docs/self-hosting/operations/#inspect-the-hosting-cluster-from-the-cli). A running pod and a usable tenant API are distinct checks.
+After enabling a provider, use [API discovery and binding checks](/docs/use/workspaces/enable-provider/#verify-enablement-from-the-cli) from its tenant workspace. For a registered provider whose service is unavailable, use the operator's separate [hosting-cluster diagnostics](/docs/self-hosting/hub/operations/#inspect-the-hosting-cluster-from-the-cli). A running pod and a usable tenant API are distinct checks.

@@ -22,7 +22,7 @@ Edges supplies connectivity. Kuery can use connected Kubernetes clusters for fle
 
 ## Before you start
 
-Edges enabled; permission to register an edge and install an agent on the target. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+Edges enabled; permission to register an edge and install an agent on the target. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -36,7 +36,7 @@ Edge resources belong to your workspace. Workloads run on connected targets; ser
 
 - [Quickstart](/docs/use/edges/quickstart/)
 - [Troubleshooting](/docs/use/edges/troubleshooting/)
-- [API reference](/docs/use/edges/reference/)
+- [API reference](/docs/reference/providers/edges/)
 - [Self-host Edges](/docs/self-hosting/providers/edges/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/edges/README.md).

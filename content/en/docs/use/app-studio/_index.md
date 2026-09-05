@@ -22,7 +22,7 @@ Code connects the project to its repository. Infrastructure supplies the templat
 
 ## Before you start
 
-App Studio, Code, and Infrastructure enabled; a configured model and a development-capable template. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+App Studio, Code, and Infrastructure enabled; a configured model and a development-capable template. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -36,7 +36,7 @@ Projects, Sessions, and Studios are workspace resources. Conversations use the p
 
 - [Quickstart](/docs/use/app-studio/quickstart/)
 - [Troubleshooting](/docs/use/app-studio/troubleshooting/)
-- [API reference](/docs/use/app-studio/reference/)
+- [API reference](/docs/reference/providers/app-studio/)
 - [Self-host App Studio](/docs/self-hosting/providers/app-studio/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/app-studio/README.md).

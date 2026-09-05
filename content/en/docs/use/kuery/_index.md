@@ -22,7 +22,7 @@ Edges provides the cluster connections. Kuery uses those connections to support 
 
 ## Before you start
 
-Kuery and Edges enabled, with at least one connected Kubernetes cluster. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/enable-provider/) if needed.
+Kuery and Edges enabled, with at least one connected Kubernetes cluster. Select the workspace where you intend to create or use resources. [Enable the provider](/docs/use/workspaces/enable-provider/) if needed.
 
 ## Availability and permissions
 
@@ -35,8 +35,8 @@ The provider synchronizes selected cluster resources into its SQLite or Postgres
 ## Start here
 
 - [Quickstart](/docs/use/kuery/quickstart/)
-- [Troubleshooting](/docs/use/kuery/troubleshooting/)
-- [API reference](/docs/use/kuery/reference/)
+- [Troubleshooting](/docs/use/kuery/quickstart/#troubleshooting)
+- [API reference](/docs/reference/providers/kuery/)
 - [Self-host Kuery](/docs/self-hosting/providers/kuery/)
 
 [Implementation reference](https://github.com/faroshq/faros/blob/main/providers/kuery/README.md).

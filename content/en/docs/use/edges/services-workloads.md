@@ -9,7 +9,7 @@ doc_type: "Guide"
 
 Use a connected edge in your selected workspace. In Edges, create a Service using the supported preset or generic configuration. For a Linux server, identify the host/LAN address and port; for Kubernetes, select the target service. Configure the required credential through the provider.
 
-Verify validation status and reachability before testing the generated MCP tools. Discovery alone does not establish permission or readiness. See [MCP setup](/docs/use/mcp/) to connect an external assistant.
+Verify validation status and reachability before testing the generated MCP tools. Discovery alone does not establish permission or readiness. See [MCP setup](/docs/use/ai-assistants/) to connect an external assistant.
 
 ## Available service presets
 
@@ -24,7 +24,7 @@ Edges supports the following service types. Presets describe how to connect to a
 | Network | `adguard`, `pihole`, `unifi-network`, `unifi-protect` |
 | Custom service | `generic` |
 
-Inspect the [service schema](/docs/use/edges/schemas/) for connection fields and the [service catalog](https://github.com/faroshq/faros/blob/main/providers/edges/internal/svccatalog/catalog.go) for preset operations and authentication. Home Assistant has a [dedicated tool implementation](https://github.com/faroshq/faros/blob/main/providers/edges/internal/tunnel/mcp_service.go). A generic service does not automatically gain every preset's tools. After validation, use the MCP client's tool discovery to confirm the operations actually exposed by your service.
+Inspect the [service schema](/docs/reference/providers/edges/schemas/) for connection fields and the [service catalog](https://github.com/faroshq/faros/blob/main/providers/edges/internal/svccatalog/catalog.go) for preset operations and authentication. Home Assistant has a [dedicated tool implementation](https://github.com/faroshq/faros/blob/main/providers/edges/internal/tunnel/mcp_service.go). A generic service does not automatically gain every preset's tools. After validation, use the MCP client's tool discovery to confirm the operations actually exposed by your service.
 
 ## Deploy a workload
 

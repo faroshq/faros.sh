@@ -6,6 +6,16 @@ doc_type: "Overview"
 landing: "get-started"
 ---
 
-Start with [your first task](/docs/get-started/first-task/). The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
+Choose a quickstart below. The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
 
-If you already have a hub, sign in using its configured authentication method. If you do not, ask your platform administrator for access or [install a hub](/docs/self-hosting/).
+Sign in to the Faros SaaS hub to get started. If your organization runs a [self-hosted hub](/docs/self-hosting/), use the URL and sign-in method supplied by its administrator.
+
+## Choose your first task
+
+| Your goal | Start here | You need |
+|---|---|---|
+| Build and publish an application | [App Studio quickstart](/docs/use/app-studio/quickstart/) | App Studio, Code, Infrastructure, a model, and a development template |
+| Create an AI agent | [AI-agent quickstart](/docs/use/agents/quickstart/) | AI agents and a model connection |
+| Connect a cluster or server | [Edge quickstart](/docs/use/edges/quickstart/) | Edges, CLI, and a target you administer |
+
+Check that your workspace has the providers and permissions listed in the tutorial.

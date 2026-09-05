@@ -6,7 +6,7 @@ doc_type: "Tutorial"
 source: "providers/app-studio/portal/src/NewProjectWizard.vue"
 ---
 
-Build a small notes application, verify its development preview, and deploy one verified release. This walkthrough assumes an existing hub; use [self-hosting](/docs/self-hosting/) if you do not have access to one.
+Build a small notes application, verify its development preview, and deploy one verified release. Start in the Faros SaaS hub. If your organization uses a [self-hosted hub](/docs/self-hosting/), follow this walkthrough there with the same workspace prerequisites.
 
 ## Prerequisites
 
