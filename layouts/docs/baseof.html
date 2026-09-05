@@ -3,8 +3,8 @@
 <head>
     {{ partial "head_custom.html" . }}
 </head>
-<body class="font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
-    {{ partial "header.html" . }}
+<body class="docs-page font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
+    {{ partial "documentation/header.html" . }}
     {{ block "main" . }}{{ end }}
 
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}

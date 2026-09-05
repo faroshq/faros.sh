@@ -1,0 +1,13 @@
+{{- $pages := slice -}}
+{{- range where .Site.Pages "Section" "docs" -}}
+  {{- if and (ne .Layout "search") (not .Params.hidden) -}}
+    {{- $provider := "" -}}
+    {{- $providerTitle := "Platform" -}}
+    {{- with .Params.provider -}}
+      {{- $provider = . -}}
+      {{- with $.Site.GetPage (printf "/docs/use/%s" .) }}{{ $providerTitle = .Title }}{{ end -}}
+    {{- end -}}
+    {{- $pages = $pages | append (dict "title" .Title "url" .RelPermalink "description" .Description "text" (.Plain | htmlUnescape) "provider" $provider "providerTitle" $providerTitle "type" (.Params.doc_type | default (cond .IsSection "Overview" "Guide"))) -}}
+  {{- end -}}
+{{- end -}}
+{{- $pages | jsonify -}}

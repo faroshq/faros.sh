@@ -1,0 +1,723 @@
+{
+  "resources": [
+    {
+      "source": "providers/app-studio/deploy/chart/files/schemas/projects.ai.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260814-102b8331.projects.ai.faros.sh"
+        },
+        "spec": {
+          "group": "ai.faros.sh",
+          "names": {
+            "kind": "Project",
+            "listKind": "ProjectList",
+            "plural": "projects",
+            "shortNames": [
+              "proj"
+            ],
+            "singular": "project"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.displayName",
+                  "name": "DisplayName",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.updatedAt",
+                  "name": "Updated",
+                  "type": "date"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Project is a persistent AI workspace scoped to a Faros child workspace.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "ProjectSpec defines user-authored Project state.",
+                    "properties": {
+                      "description": {
+                        "description": "Description is a short project summary.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "description": "DisplayName is the human-readable project title.",
+                        "maxLength": 128,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "environments": {
+                        "description": "Environments describe provider-backed runtime capabilities for this\nProject. App Studio owns the binding contract; providers own runtime\nimplementation details.",
+                        "items": {
+                          "properties": {
+                            "autoDeploy": {
+                              "description": "AutoDeploy marks artifact environments that should deploy automatically.",
+                              "type": "boolean"
+                            },
+                            "bindings": {
+                              "description": "Bindings connect this environment to provider capabilities.",
+                              "items": {
+                                "properties": {
+                                  "allowedActions": {
+                                    "description": "AllowedActions is the versioned allow-list for non-owning provider\nreferences. Owning providerResource bindings may leave this empty; the\nintegration gateway requires an explicitly declared action before it\nforwards a call.",
+                                    "items": {
+                                      "description": "ProjectProviderActionSpec declares one versioned provider action that a\ngenerated application may invoke through the App Studio integration\ngateway. The gateway treats the declaration as an allow-list: an omitted\naction, an unknown version, or a revoked declaration is rejected before any\nprovider tool is called.",
+                                      "properties": {
+                                        "grantedAt": {
+                                          "description": "GrantedAt is the server time at which the catalog-backed grant was\nverified. Clients cannot set or replace this audit value.",
+                                          "format": "date-time",
+                                          "type": "string"
+                                        },
+                                        "grantedBy": {
+                                          "description": "GrantedBy is the authenticated caller recorded by the server when the\naction grant is verified against the provider catalog. Clients cannot\nset or replace this audit value.",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "Name is the provider-neutral action name (for example query_table).",
+                                          "maxLength": 63,
+                                          "minLength": 1,
+                                          "type": "string"
+                                        },
+                                        "revoked": {
+                                          "description": "Revoked disables this action without removing the integration binding,\nallowing an operator to retain the audit history while closing access.",
+                                          "type": "boolean"
+                                        },
+                                        "revokedAt": {
+                                          "description": "RevokedAt is the server time at which the active action grant was\nrevoked. Clients cannot set or replace this audit value.",
+                                          "format": "date-time",
+                                          "type": "string"
+                                        },
+                                        "revokedBy": {
+                                          "description": "RevokedBy is the authenticated caller recorded by the server when an\nactive action grant is revoked. Clients cannot set or replace this audit\nvalue.",
+                                          "type": "string"
+                                        },
+                                        "schemaDigest": {
+                                          "description": "SchemaDigest identifies the exact provider action schema that the caller\nreviewed and consented to. Digests are immutable action-catalog content\naddresses; digest-less grants are never accepted.",
+                                          "maxLength": 71,
+                                          "minLength": 71,
+                                          "pattern": "^sha256:[a-f0-9]{64}$",
+                                          "type": "string"
+                                        },
+                                        "version": {
+                                          "description": "Version identifies the versioned action contract (for example v1).",
+                                          "maxLength": 32,
+                                          "minLength": 1,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "name",
+                                        "schemaDigest",
+                                        "version"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "kind": {
+                                    "enum": [
+                                      "providerResource",
+                                      "providerReference"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "maxLength": 63,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "provider": {
+                                    "maxLength": 63,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "resourceRef": {
+                                    "properties": {
+                                      "apiVersion": {
+                                        "type": "string"
+                                      },
+                                      "kind": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "resource": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "values": {
+                                    "description": "Values is provider-owned configuration. App Studio treats it as an\nopaque contract payload.",
+                                    "type": "object",
+                                    "x-kubernetes-preserve-unknown-fields": true
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "name",
+                                  "provider"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "mode": {
+                              "description": "Mode distinguishes artifact-based environments from live development\nruntimes. Empty means artifact for backward compatibility.",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name is a stable environment identifier such as development or test.",
+                              "maxLength": 63,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "promotion": {
+                              "description": "Promotion controls how changes move into this environment.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "memory": {
+                        "description": "Memory stores durable context the AI should consider for this\nproject. It is edited explicitly through the API in the MVP.",
+                        "properties": {
+                          "constraints": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "goals": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "requirements": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "repository": {
+                        "description": "Repository records the Code provider repository backing this Project.",
+                        "properties": {
+                          "adopted": {
+                            "description": "Adopted marks a binding built from an EXISTING Repository CR\n(repository import). The Project reconciler creates the Repository CR\nfor non-adopted bindings only \u2014 an adopted repository is never\n(re)created on the project's behalf.",
+                            "type": "boolean"
+                          },
+                          "connectionRef": {
+                            "description": "ConnectionRef names the Code provider Connection used by the Repository.",
+                            "maxLength": 253,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name is the repository name on the git host.",
+                            "maxLength": 253,
+                            "type": "string"
+                          },
+                          "repositoryRef": {
+                            "description": "RepositoryRef names the Repository resource in the same workspace.",
+                            "maxLength": 253,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "repositoryRef"
+                        ],
+                        "type": "object"
+                      },
+                      "sharing": {
+                        "description": "Sharing captures App Studio access policy intent for previews and\npublished apps. Empty policies are interpreted as private.",
+                        "properties": {
+                          "preview": {
+                            "description": "Preview controls who may access the mutable development preview. Private\nrequires platform sign-in and workspace access; public allows anyone with\nthe URL. The legacy shared value is normalized to private by App Studio.",
+                            "properties": {
+                              "mode": {
+                                "description": "Mode is the requested preview visibility. Empty means private.",
+                                "enum": [
+                                  "private",
+                                  "public"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "publishing": {
+                            "description": "Publishing controls who may access published app instances once the\npublishing runtime exists.",
+                            "properties": {
+                              "mode": {
+                                "description": "Mode is the requested visibility for this channel. Empty means private.",
+                                "enum": [
+                                  "private",
+                                  "shared",
+                                  "public"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "template": {
+                        "description": "Template names the infrastructure Template whose instance backs this\nProject's development environment (docs/app-studio-template-sandboxes.md).\nWhen set, the development binding is generated from the Template's\ninstanceCRD with farosMode: development, and file sync routes per the\nTemplate's declared development components. Empty means the project has\nno development environment yet \u2014 one must be selected before any\ndevelopment runtime surface (sync, preview, logs) works.",
+                        "properties": {
+                          "name": {
+                            "description": "Name is the Template's catalog name (e.g. \"application\").",
+                            "maxLength": 253,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "displayName"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "ProjectStatus defines the observed Project state.",
+                    "properties": {
+                      "environments": {
+                        "description": "Environments reports provider-observed environment state.",
+                        "items": {
+                          "properties": {
+                            "bindings": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "outputs": {
+                                    "additionalProperties": {
+                                      "type": "string"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "phase": {
+                                    "type": "string"
+                                  },
+                                  "previewURL": {
+                                    "type": "string"
+                                  },
+                                  "provider": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "mode": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "phase": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "phase": {
+                        "description": "Phase is Ready for MVP-created Projects.",
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "description": "UpdatedAt reflects the latest API mutation affecting metadata or memory.",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/app-studio/deploy/chart/files/schemas/sessions.ai.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260806-59f3b567.sessions.ai.faros.sh"
+        },
+        "spec": {
+          "group": "ai.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Session",
+            "listKind": "SessionList",
+            "plural": "sessions",
+            "singular": "session"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.projectRef",
+                  "name": "Project",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.title",
+                  "name": "Title",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Session is the control-plane projection of one assistant conversation\nthread. The Postgres store is authoritative for conversation data; the CR\nis its projection, so `kubectl get sessions.ai` tells the truth without\ntouching the database. Deleting the Session purges the thread from the\nstore (finalizer); the Session is ownerRef'd to its Project so project\ndeletion garbage-collects the conversations with it.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "properties": {
+                      "actorID": {
+                        "description": "ActorID records the user the thread belongs to.",
+                        "type": "string"
+                      },
+                      "projectRef": {
+                        "description": "ProjectRef names the Project this conversation belongs to.",
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "threadID": {
+                        "description": "ThreadID is the store's thread identifier this Session projects.",
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectRef",
+                      "threadID"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "properties": {
+                      "activeTurnID": {
+                        "description": "ActiveTurnID is the in-flight turn, empty when idle.",
+                        "type": "string"
+                      },
+                      "activeTurnStatus": {
+                        "description": "ActiveTurnStatus is the in-flight turn's state.",
+                        "type": "string"
+                      },
+                      "phase": {
+                        "description": "Phase mirrors the thread status (active, archived).",
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Title is the thread's display title.",
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "description": "UpdatedAt is the thread's last store update the mirror observed.",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/app-studio/deploy/chart/files/schemas/studios.ai.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260809-dbe6b457.studios.ai.faros.sh"
+        },
+        "spec": {
+          "group": "ai.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Studio",
+            "listKind": "StudioList",
+            "plural": "studios",
+            "singular": "studio"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Studio is the workspace's shared App Studio services: the backends every\nproject uses rather than each provisioning its own. Today that is web\nsearch \u2014 one searxng instance for the whole workspace, because a search\nindex has no per-project state and N identical pods answer the same\nquestions. The Studio owns its instances: deleting the Studio (or\ndisabling a service) tears them down through the finalizer.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "properties": {
+                      "browser": {
+                        "description": "Browser configures the workspace's shared headless browser, used for\ndevelopment-preview inspection. One Playwright instance for the whole\nworkspace, provisioned through the infrastructure provider exactly like\nSearch \u2014 no per-project browser, and app-studio owns no browser image.",
+                        "properties": {
+                          "disabled": {
+                            "description": "Disabled turns preview browser inspection off for this workspace.",
+                            "type": "boolean"
+                          },
+                          "resourceRef": {
+                            "description": "ResourceRef is the fully-resolved instance the reconciler creates,\nwritten by the API from the browser Template's instanceCRD. Same\nself-contained contract as StudioSearch.ResourceRef.",
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "resource": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "size": {
+                            "description": "Size is the browser's memory bucket, passed to the template.",
+                            "enum": [
+                              "small",
+                              "medium",
+                              "large"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "search": {
+                        "description": "Search configures the workspace's web-search backend.",
+                        "properties": {
+                          "disabled": {
+                            "description": "Disabled turns web search off for every project in this workspace.",
+                            "type": "boolean"
+                          },
+                          "resourceRef": {
+                            "description": "ResourceRef is the fully-resolved instance the reconciler creates,\nwritten by the API from the searxng Template's instanceCRD. The\nreconciler never reads Templates itself \u2014 they ride virtual storage\nwith their own identity, so a self-contained spec keeps the control\nloop dependency-free (the same contract Project bindings use).",
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "resource": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "size": {
+                            "description": "Size is the backend's memory bucket, passed to the template.",
+                            "enum": [
+                              "small",
+                              "medium",
+                              "large"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "status": {
+                    "properties": {
+                      "browser": {
+                        "description": "Browser reports the shared headless browser backend.",
+                        "properties": {
+                          "instance": {
+                            "description": "Instance names the backing infrastructure instance.",
+                            "type": "string"
+                          },
+                          "phase": {
+                            "description": "Phase is Ready, Pending, or Disabled.",
+                            "type": "string"
+                          },
+                          "reason": {
+                            "description": "Reason explains a non-Ready phase.",
+                            "type": "string"
+                          },
+                          "resource": {
+                            "description": "Resource is the instance's plural resource.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "phase": {
+                        "description": "Phase is Ready when every enabled service is Ready.",
+                        "type": "string"
+                      },
+                      "search": {
+                        "description": "Search reports the shared search backend.",
+                        "properties": {
+                          "instance": {
+                            "description": "Instance names the backing infrastructure instance.",
+                            "type": "string"
+                          },
+                          "phase": {
+                            "description": "Phase is Ready, Pending, or Disabled.",
+                            "type": "string"
+                          },
+                          "reason": {
+                            "description": "Reason explains a non-Ready phase.",
+                            "type": "string"
+                          },
+                          "resource": {
+                            "description": "Resource is the instance's plural resource.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "updatedAt": {
+                        "description": "UpdatedAt is the last status transition the reconciler observed.",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

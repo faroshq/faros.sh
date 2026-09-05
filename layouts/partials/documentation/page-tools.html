@@ -1,0 +1,34 @@
+{{- $markdown := printf "# %s\n\n%s\n\nSource: %s\n\n%s" .Title .Description .Permalink .RawContent -}}
+{{- if .IsSection -}}
+  {{- $markdown = printf "%s\n\n## In this section\n" $markdown -}}
+  {{- range .Pages.ByWeight -}}{{- if not .Params.hidden -}}
+    {{- $markdown = printf "%s\n- [%s](%s): %s" $markdown .Title .Permalink .Description -}}
+  {{- end -}}{{- end -}}
+{{- end -}}
+{{- $markdown = replaceRE `\]\(/([^)]*)\)` (printf "](%s$1)" .Site.BaseURL) $markdown -}}
+{{- $file := resources.FromString (printf "%sindex.md" (strings.TrimPrefix "/" .RelPermalink)) $markdown -}}
+<aside class="docs-page-rail" aria-label="Page contents and tools" data-markdown-url="{{ $file.RelPermalink }}" data-page-title="{{ .Title }}">
+  <details class="docs-page-utilities" open>
+    <summary>On this page &amp; tools</summary>
+    <div class="docs-page-utilities-body">
+      {{ if gt (len .Fragments.Headings) 0 }}
+      <nav class="docs-rail-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        {{ .TableOfContents }}
+      </nav>
+      {{ end }}
+      <section class="docs-rail-tools" aria-labelledby="docs-rail-tools-title">
+        <h2 id="docs-rail-tools-title">Use with AI</h2>
+        <button type="button" data-page-copy="markdown" hidden>Copy as Markdown</button>
+        <a href="{{ $file.RelPermalink }}" data-markdown-fallback>Open Markdown to copy manually</a>
+        <a href="/docs/use/mcp/">Connect your AI assistant <span aria-hidden="true">→</span></a>
+        <p class="docs-rail-hint">Copy this guide as context for your assistant.</p>
+        <p class="docs-page-copy-status" role="status" aria-live="polite"></p>
+      </section>
+      <nav class="docs-rail-help" aria-label="Page support">
+        {{ with .File }}<a href="https://github.com/faroshq/faros.sh/edit/main/content/en/{{ .Path }}">Edit this page <span aria-hidden="true">↗</span></a>{{ end }}
+        <a href="/docs/troubleshooting/">Get help <span aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </details>
+</aside>

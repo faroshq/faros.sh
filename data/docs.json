@@ -1,0 +1,79 @@
+{
+  "primary": [
+    {
+      "slug": "get-started",
+      "title": "Get started"
+    },
+    {
+      "slug": "use",
+      "title": "Use Faros"
+    },
+    {
+      "slug": "administration",
+      "title": "Administration"
+    },
+    {
+      "slug": "self-hosting",
+      "title": "Self-hosting"
+    },
+    {
+      "slug": "extend",
+      "title": "Extend Faros"
+    }
+  ],
+  "secondary": [
+    {
+      "slug": "concepts",
+      "title": "Concepts"
+    },
+    {
+      "slug": "reference",
+      "title": "Reference"
+    },
+    {
+      "slug": "troubleshooting",
+      "title": "Troubleshooting"
+    },
+    {
+      "slug": "releases",
+      "title": "Release notes"
+    }
+  ],
+  "providers": [
+    {
+      "slug": "app-studio",
+      "title": "App Studio",
+      "description": "Build and publish applications"
+    },
+    {
+      "slug": "agents",
+      "title": "AI agents",
+      "description": "Run assistants with tools, memory, and schedules"
+    },
+    {
+      "slug": "edges",
+      "title": "Edges",
+      "description": "Connect clusters, servers, and services"
+    },
+    {
+      "slug": "infrastructure",
+      "title": "Infrastructure",
+      "description": "Provision and manage template-based resources"
+    },
+    {
+      "slug": "code",
+      "title": "Code",
+      "description": "Connect GitHub and manage repositories"
+    },
+    {
+      "slug": "kuery",
+      "title": "Kuery",
+      "description": "Search your fleet and inspect resource relationships"
+    },
+    {
+      "slug": "databricks",
+      "title": "Databricks",
+      "description": "Connect tables and use their data"
+    }
+  ]
+}

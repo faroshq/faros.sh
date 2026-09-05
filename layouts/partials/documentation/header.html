@@ -1,0 +1,32 @@
+{{ $ctx := partial "documentation/context.html" . }}
+<a class="docs-skip" href="{{ .RelPermalink }}#docs-content">Skip to content</a>
+<header class="docs-header">
+  <div class="docs-header-top">
+    <a class="faros-docs-brand" href="/docs/" aria-label="Faros documentation home">faros <span class="docs-brand-divider">/</span> <span class="docs-brand-label">docs</span></a>
+    <form role="search" action="/docs/search/" class="docs-header-search">
+      <label for="docs-header-query" class="sr-only">Search all documentation</label>
+      <input id="docs-header-query" name="q" type="search" placeholder="Search documentation" autocomplete="off">
+      <button type="submit" aria-label="Search documentation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+    </form>
+    <details class="docs-theme-control" hidden>
+      <summary aria-label="Documentation theme: System" title="Change documentation theme">
+        {{ range slice "light" "dark" "system" }}<span data-theme-icon="{{ . }}">{{ partial "documentation/theme-icon.html" . }}</span>{{ end }}
+      </summary>
+      <div class="docs-theme-options" role="group" aria-label="Documentation theme">
+        {{ range slice "light" "dark" "system" }}
+        <button type="button" data-theme-choice="{{ . }}" aria-pressed="false">
+          {{ partial "documentation/theme-icon.html" . }}<span>{{ title . }}</span>
+          <svg class="docs-theme-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+        </button>
+        {{ end }}
+      </div>
+    </details>
+    <a class="docs-site-link" href="/">Faros website</a>
+  </div>
+  <nav class="docs-primary" aria-label="Documentation sections">
+    {{ range .Site.Data.docs.primary }}
+      {{ $url := printf "/docs/%s/" .slug }}
+      <a href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
+    {{ end }}
+  </nav>
+</header>

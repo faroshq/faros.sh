@@ -1,0 +1,1908 @@
+{
+  "resources": [
+    {
+      "source": "providers/code/deploy/chart/files/schemas/collaborators.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260609-fc69fa2.collaborators.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Collaborator",
+            "listKind": "CollaboratorList",
+            "plural": "collaborators",
+            "shortNames": [
+              "gcollab"
+            ],
+            "singular": "collaborator"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.username",
+                  "name": "User",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.permission",
+                  "name": "Permission",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.conditions[?(@.type==\"Ready\")].status",
+                  "name": "Ready",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Collaborator grants a host user a permission level on a single Repository.\nKept as its own CR (rather than an array on Repository) so each grant has\nits own lifecycle, finalizer, and status \u2014 notably the InvitationPending\nstate the host reports when an outside collaborator must accept first.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "CollaboratorSpec is the desired state.",
+                    "properties": {
+                      "permission": {
+                        "description": "Permission defaults to pull when empty.",
+                        "enum": [
+                          "pull",
+                          "push",
+                          "admin"
+                        ],
+                        "type": "string"
+                      },
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) this grant is on.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "username": {
+                        "description": "Username is the host login to grant access to.",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef",
+                      "username"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "CollaboratorStatus is the observed state.",
+                    "properties": {
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern. The\nInvitationPending condition is True while the host reports the user\nhas been invited but not yet accepted.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "invitationID": {
+                        "description": "InvitationID is the host-side id of a pending invitation, set while\nan outside collaborator has not yet accepted.",
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/connections.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260609-fc69fa2.connections.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Connection",
+            "listKind": "ConnectionList",
+            "plural": "connections",
+            "shortNames": [
+              "gconn"
+            ],
+            "singular": "connection"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.provider",
+                  "name": "Provider",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.owner",
+                  "name": "Owner",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.login",
+                  "name": "Login",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.conditions[?(@.type==\"Validated\")].status",
+                  "name": "Validated",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Connection binds a tenant to one git hosting account. It is the\ncredential anchor that Repository / DeployKey / Collaborator reference:\nevery git operation runs against the account this Connection authenticates.\n\nThe credential itself never lives on the CR \u2014 spec.secretRef points at a\nSecret in the tenant workspace holding the token. The ConnectionController\nresolves that Secret, calls the git host to verify it, and records the\nauthenticated login + granted scopes in status.\n\nCredential type is pluggable via spec.type so the PAT model shipped in v1\ncan grow a GitHub App installation or OAuth flow later without changing any\nconsumer of this CR.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "ConnectionSpec is the desired state.",
+                    "properties": {
+                      "baseURL": {
+                        "description": "BaseURL overrides the default git host endpoint for self-hosted\ninstalls (GitHub Enterprise Server, self-managed GitLab). Empty\ntargets the provider's public SaaS endpoint.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "owner": {
+                        "description": "Owner is the org or user under which repositories created via this\nConnection land. Must be an account the credential can write to.",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "provider": {
+                        "description": "Provider names the git hosting sub-provider. v1: github.",
+                        "enum": [
+                          "github"
+                        ],
+                        "type": "string"
+                      },
+                      "secretRef": {
+                        "description": "SecretRef points at the Secret in the tenant workspace holding the\ncredential. For type=pat the default key is \"token\".",
+                        "properties": {
+                          "key": {
+                            "description": "Key is the entry within the Secret's data holding the value. For a\nConnection PAT this defaults to \"token\"; for a DeployKey private\nkey the controller writes \"ssh-privatekey\".",
+                            "maxLength": 253,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the Secret.",
+                            "maxLength": 253,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "namespace": {
+                            "description": "Namespace of the Secret. Empty resolves to the provider's\nconvention namespace (\"default\").",
+                            "maxLength": 253,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "description": "Type selects the credential model. v1: pat.",
+                        "enum": [
+                          "pat",
+                          "github-app",
+                          "oauth"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "owner",
+                      "provider",
+                      "secretRef",
+                      "type"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "ConnectionStatus is the observed state.",
+                    "properties": {
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern. The\nValidated condition is True once the credential authenticates.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "login": {
+                        "description": "Login is the authenticated account the credential resolved to\n(e.g. the GitHub login). Empty until first successful validation.",
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "scopes": {
+                        "description": "Scopes lists the granted token scopes the git host reported, when\ndiscoverable (GitHub returns them on the X-OAuth-Scopes header).",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/deploykeys.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260609-fc69fa2.deploykeys.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "DeployKey",
+            "listKind": "DeployKeyList",
+            "plural": "deploykeys",
+            "shortNames": [
+              "gkey"
+            ],
+            "singular": "deploykey"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.readOnly",
+                  "name": "ReadOnly",
+                  "type": "boolean"
+                },
+                {
+                  "jsonPath": ".status.keyID",
+                  "name": "KeyID",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.conditions[?(@.type==\"Ready\")].status",
+                  "name": "Ready",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "DeployKey grants SSH access to a single Repository. It is the cross-provider\nseam: when spec.publicKey is empty the controller generates a keypair,\nregisters the public half on the repository, and writes the private half to\na Secret in the tenant workspace (status.secretRef, owned by this CR so it\nis garbage-collected on delete). Another provider (e.g. infrastructure) can\nthen mount that Secret to clone/push.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "DeployKeySpec is the desired state.",
+                    "properties": {
+                      "publicKey": {
+                        "description": "PublicKey is an OpenSSH-format public key to register (bring your\nown). When empty the controller generates an ed25519 keypair and\nwrites the private half to status.secretRef.",
+                        "maxLength": 8192,
+                        "type": "string"
+                      },
+                      "readOnly": {
+                        "description": "ReadOnly registers the key without write (push) access.",
+                        "type": "boolean"
+                      },
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) this key is\ninstalled on.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Title is the human-readable label shown on the host. Empty uses\nmetadata.name.",
+                        "maxLength": 255,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "DeployKeyStatus is the observed state.",
+                    "properties": {
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "keyID": {
+                        "description": "KeyID is the host-side id of the registered key.",
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "secretRef": {
+                        "description": "SecretRef points at the Secret holding the generated private key\n(key \"ssh-privatekey\"). Only set when the controller generated the\nkeypair (spec.publicKey was empty). The Secret is owned by this CR.",
+                        "properties": {
+                          "key": {
+                            "description": "Key is the entry within the Secret's data holding the value. For a\nConnection PAT this defaults to \"token\"; for a DeployKey private\nkey the controller writes \"ssh-privatekey\".",
+                            "maxLength": 253,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the Secret.",
+                            "maxLength": 253,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "namespace": {
+                            "description": "Namespace of the Secret. Empty resolves to the provider's\nconvention namespace (\"default\").",
+                            "maxLength": 253,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/packages.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260712-dabfd8e.packages.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Package",
+            "listKind": "PackageList",
+            "plural": "packages",
+            "shortNames": [
+              "gpkg"
+            ],
+            "singular": "package"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.packageName",
+                  "name": "Package",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.type",
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.versionCount",
+                  "name": "Versions",
+                  "type": "integer"
+                },
+                {
+                  "jsonPath": ".status.lastSyncTime",
+                  "name": "Synced",
+                  "type": "date"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Package is the observed set of artifacts (container image, npm/maven package,\n\u2026) published under a Repository on the git host. Unlike the other code-provider\nCRs it is NOT tenant-authored desired state: the PackageController (a crawler)\nlists the host on a timer and reconciles one Package CR per published package,\nso the portal can read them straight from kcp instead of hitting the host on\nevery page view (which GitHub rate-limits hard). Each Package is owned by its\nRepository via an OwnerReference, so host packages disappear from kcp when the\nRepository CR is deleted.\n\nAll descriptive fields live in status because the whole object is observed,\nnever desired; spec carries only the link back to the owning Repository.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "PackageSpec links the Package back to its owning Repository. Authored by the\nPackageController on create and immutable thereafter \u2014 everything observed is\nin status.",
+                    "properties": {
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) this package is\npublished under. Also mirrored onto the LabelRepository label so the\nportal can list a repository's packages with a label selector.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "PackageStatus is the observed package metadata as last crawled from the host.",
+                    "properties": {
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "htmlURL": {
+                        "description": "HTMLURL links to the package's browser page.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "imageRepository": {
+                        "description": "ImageRepository is the pullable registry path (no tag/digest) for image\npackages, e.g. \"ghcr.io/owner/repo/component\". Combine with a version's\ndigest to form a deployable reference. Empty for non-image packages.",
+                        "maxLength": 512,
+                        "type": "string"
+                      },
+                      "lastSyncTime": {
+                        "description": "LastSyncTime is when the crawler last refreshed this package from the host.",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "packageName": {
+                        "description": "PackageName is the package's name on the host (the artifact name, which\nmay differ from the Kubernetes object name).",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type is the package ecosystem: container | docker | npm | maven | rubygems | nuget.",
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "description": "UpdatedAt is the host's last-updated time in RFC3339, or \"\" when unknown.",
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "versionCount": {
+                        "description": "VersionCount is how many versions the host reports (0 when unknown).",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "versions": {
+                        "description": "Versions is a bounded, most-recent-first list of the package's published\nversions with their tags and digest (populated for container/docker\npackages). It lets consumers resolve a build tag such as \"sha-<commit>\"\nto an immutable image digest.",
+                        "items": {
+                          "description": "PackageVersion is one published version of a package: an immutable digest and\nthe tags pointing at it (a container image push creates one version).",
+                          "properties": {
+                            "createdAt": {
+                              "description": "CreatedAt is the version's creation time in RFC3339, or \"\" when unknown.",
+                              "maxLength": 64,
+                              "type": "string"
+                            },
+                            "digest": {
+                              "description": "Digest is the version's immutable content digest, e.g. \"sha256:\u2026\".",
+                              "maxLength": 256,
+                              "type": "string"
+                            },
+                            "tags": {
+                              "description": "Tags are the tags pointing at this digest (e.g. \"sha-<commit>\", \"latest\").",
+                              "items": {
+                                "type": "string"
+                              },
+                              "maxItems": 64,
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "maxItems": 100,
+                        "type": "array"
+                      },
+                      "visibility": {
+                        "description": "Visibility is \"public\", \"internal\", or \"private\" (host-reported; may be empty).",
+                        "maxLength": 32,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/repositories.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260609-fc69fa2.repositories.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "Repository",
+            "listKind": "RepositoryList",
+            "plural": "repositories",
+            "shortNames": [
+              "grepo"
+            ],
+            "singular": "repository"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.connectionRef",
+                  "name": "Connection",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.name",
+                  "name": "Repo",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".spec.visibility",
+                  "name": "Visibility",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.htmlURL",
+                  "name": "URL",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.conditions[?(@.type==\"Ready\")].status",
+                  "name": "Ready",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "Repository is the desired state for one git repository on the host the\nreferenced Connection authenticates. The RepositoryController creates (and,\non delete, removes) the repo via the sub-provider backend and records its\nURLs + host-side id in status.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "RepositorySpec is the desired state.",
+                    "properties": {
+                      "autoInit": {
+                        "description": "AutoInit creates an initial commit (README) so the repository has a\ndefault branch immediately. Required if DeployKeys/clones must\nsucceed right after creation.",
+                        "type": "boolean"
+                      },
+                      "connectionRef": {
+                        "description": "ConnectionRef names the Connection (same workspace) whose credential",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "defaultBranch": {
+                        "description": "DefaultBranch names the initial default branch. Empty uses the host\ndefault (e.g. \"main\").",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "Description is set as the repository description on the host.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Name is the repository name on the git host (the path segment after\nthe owner). DNS-ish; the host enforces its own rules.",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "owner": {
+                        "description": "Owner overrides the Connection's owner for this single repository\n(e.g. to create under a different org the same credential controls).\nEmpty inherits Connection.spec.owner.",
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "visibility": {
+                        "description": "Visibility defaults to private when empty.",
+                        "enum": [
+                          "private",
+                          "public",
+                          "internal"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "connectionRef",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "RepositoryStatus is the observed state.",
+                    "properties": {
+                      "cloneURL": {
+                        "description": "CloneURL is the HTTPS clone URL.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "htmlURL": {
+                        "description": "HTMLURL is the browser URL of the repository.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "repoID": {
+                        "description": "RepoID is the host-side numeric/opaque id of the repository.",
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "sshURL": {
+                        "description": "SSHURL is the SSH clone URL (used together with a DeployKey).",
+                        "maxLength": 2048,
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260712-dabfd8e.repositorybuildstatuses.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "RepositoryBuildStatus",
+            "listKind": "RepositoryBuildStatusList",
+            "plural": "repositorybuildstatuses",
+            "shortNames": [
+              "gbuildstatus"
+            ],
+            "singular": "repositorybuildstatus"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.run.conclusion",
+                  "name": "Conclusion",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "RepositoryBuildStatus is a transient request to inspect (or re-run) a\nmanaged Repository's CI build workflow through the host's Actions API. It is\nthe credentialed read the tenant-facing MCP layer cannot do itself: the\ncontroller resolves the Connection credential, queries the host, and writes\nthe run status \u2014 including failed jobs' log tails \u2014 back onto status. The\nbuild-doctor consumes it to diagnose and retry a broken build.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "RepositoryBuildStatusSpec is the desired inspection/re-run request.",
+                    "properties": {
+                      "action": {
+                        "description": "Action selects status (default) or rerun.",
+                        "enum": [
+                          "status",
+                          "rerun"
+                        ],
+                        "type": "string"
+                      },
+                      "maxLogLines": {
+                        "description": "MaxLogLines caps the failure-log tail per failed job (status action).",
+                        "maximum": 1000,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "ref": {
+                        "description": "Ref is the commit SHA to inspect (status) or the branch to re-run on\n(rerun). Empty inspects the most recent run / re-runs the default branch.",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) whose build to inspect.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "workflowFileName": {
+                        "description": "WorkflowFileName is the workflow file to inspect or dispatch\n(e.g. \"faros-app-studio-build.yml\").",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef",
+                      "workflowFileName"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "RepositoryBuildStatusStatus is the observed result.",
+                    "properties": {
+                      "completedAt": {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "conditions": {
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "dispatched": {
+                        "description": "Dispatched is true when a rerun action successfully fired.",
+                        "type": "boolean"
+                      },
+                      "observedGeneration": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "phase": {
+                        "description": "Phase is the coarse status for clients that do not parse conditions.",
+                        "type": "string"
+                      },
+                      "run": {
+                        "description": "Run is the inspected run (status action).",
+                        "properties": {
+                          "conclusion": {
+                            "type": "string"
+                          },
+                          "found": {
+                            "description": "Found is false when no run exists for the request.",
+                            "type": "boolean"
+                          },
+                          "headSHA": {
+                            "type": "string"
+                          },
+                          "htmlURL": {
+                            "type": "string"
+                          },
+                          "jobs": {
+                            "items": {
+                              "description": "RepositoryBuildStatusJob is one job of the inspected run.",
+                              "properties": {
+                                "conclusion": {
+                                  "description": "Conclusion is success | failure | cancelled | ... | \"\" while running.",
+                                  "type": "string"
+                                },
+                                "failureLog": {
+                                  "description": "FailureLog is a bounded tail of the job's logs, set only for a failed job.",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "status": {
+                                  "description": "Status is queued | in_progress | completed.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "runID": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "found"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/repositorycheckouts.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260704-6d52bca.repositorycheckouts.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "RepositoryCheckout",
+            "listKind": "RepositoryCheckoutList",
+            "plural": "repositorycheckouts",
+            "shortNames": [
+              "gcheckout"
+            ],
+            "singular": "repositorycheckout"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.ref",
+                  "name": "Ref",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.commitSHA",
+                  "name": "Commit",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "RepositoryCheckout is a durable request to read a managed Repository's text\ntree into a provider-owned source bundle \u2014 the CommitBundle flow in reverse\n(docs/app-studio-template-sandboxes.md \u00a75). Consumers (App Studio workspace\nhydration, repo import) receive the files through the checkout MCP tool;\ncontents stay in the provider's bundle store so a repository tree never\nbloats kcp/etcd.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "RepositoryCheckoutSpec is the desired checkout operation.",
+                    "properties": {
+                      "ref": {
+                        "description": "Ref is the branch, tag, or commit SHA to read. Empty uses the\nRepository's defaultBranch, then the host default.",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) to read.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "RepositoryCheckoutStatus is the observed result of the checkout operation.",
+                    "properties": {
+                      "bundleRef": {
+                        "description": "BundleRef names the provider-owned bundle holding the checked-out\nfiles, scoped to this CR's cluster.",
+                        "properties": {
+                          "digest": {
+                            "description": "Digest is the expected bundle digest, usually sha256:<hex>.",
+                            "maxLength": 96,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name is the bundle object's provider-local name.",
+                            "maxLength": 253,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "type": "object"
+                      },
+                      "commitSHA": {
+                        "description": "CommitSHA is the commit the tree was read at.",
+                        "maxLength": 128,
+                        "type": "string"
+                      },
+                      "completedAt": {
+                        "description": "CompletedAt is when the controller reached a terminal phase.",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "phase": {
+                        "description": "Phase is the coarse status for clients that do not parse conditions.",
+                        "enum": [
+                          "Pending",
+                          "Running",
+                          "Succeeded",
+                          "Failed"
+                        ],
+                        "type": "string"
+                      },
+                      "ref": {
+                        "description": "Ref is the branch/tag the backend resolved.",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "skipped": {
+                        "description": "Skipped lists repository paths the checkout left out (binary content,\noversized files, tree/file-count caps), so consumers know the bundle is\nnot the complete tree.",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 100,
+                        "type": "array"
+                      },
+                      "source": {
+                        "description": "Source records where the checked-out bundle landed, without contents.\nThe bundle is deleted once its consumer reads it, so this reference is\nshort-lived by design.",
+                        "properties": {
+                          "digest": {
+                            "description": "Digest is the bundle digest committed by the controller.",
+                            "maxLength": 96,
+                            "type": "string"
+                          },
+                          "fileCount": {
+                            "description": "FileCount is the number of files in the bundle.",
+                            "type": "integer"
+                          },
+                          "size": {
+                            "description": "Size is the total bundle size in bytes.",
+                            "format": "int64",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "startedAt": {
+                        "description": "StartedAt is when the controller first picked up the request.",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "providers/code/deploy/chart/files/schemas/repositorycommits.code.faros.sh.yaml",
+      "schema": {
+        "apiVersion": "apis.kcp.io/v1alpha1",
+        "kind": "APIResourceSchema",
+        "metadata": {
+          "name": "v260802-8d0bfc17.repositorycommits.code.faros.sh"
+        },
+        "spec": {
+          "group": "code.faros.sh",
+          "names": {
+            "categories": [
+              "faros"
+            ],
+            "kind": "RepositoryCommit",
+            "listKind": "RepositoryCommitList",
+            "plural": "repositorycommits",
+            "shortNames": [
+              "gcommit"
+            ],
+            "singular": "repositorycommit"
+          },
+          "scope": "Cluster",
+          "versions": [
+            {
+              "additionalPrinterColumns": [
+                {
+                  "jsonPath": ".spec.repositoryRef",
+                  "name": "Repository",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.phase",
+                  "name": "Phase",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.branch",
+                  "name": "Branch",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".status.commitSHA",
+                  "name": "Commit",
+                  "type": "string"
+                },
+                {
+                  "jsonPath": ".metadata.creationTimestamp",
+                  "name": "Age",
+                  "type": "date"
+                }
+              ],
+              "name": "v1alpha1",
+              "schema": {
+                "description": "RepositoryCommit is a durable request to write a provider-owned source bundle\nto a managed Repository. The CR intentionally stores only the repository ref,\nbundle ref, digest, and observed commit metadata; generated file contents stay\nin the provider's bundle store so large LLM outputs do not bloat kcp/etcd.",
+                "properties": {
+                  "apiVersion": {
+                    "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "RepositoryCommitSpec is the desired commit operation.",
+                    "properties": {
+                      "branch": {
+                        "description": "Branch overrides the repository default branch. Empty uses the\nRepository's defaultBranch, then the host/provider default.",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "message": {
+                        "description": "Message is the commit message. Empty lets the backend choose a default.",
+                        "maxLength": 512,
+                        "type": "string"
+                      },
+                      "repositoryRef": {
+                        "description": "RepositoryRef names the Repository (same workspace) to commit into.",
+                        "maxLength": 253,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "source": {
+                        "description": "Source identifies the provider-owned bundle to commit. File contents are\nintentionally not stored in this CR.",
+                        "properties": {
+                          "bundleRef": {
+                            "description": "BundleRef points at a provider-owned, immutable bundle object.",
+                            "properties": {
+                              "digest": {
+                                "description": "Digest is the expected bundle digest, usually sha256:<hex>.",
+                                "maxLength": 96,
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Name is the bundle object's provider-local name.",
+                                "maxLength": 253,
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "bundleRef"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "repositoryRef",
+                      "source"
+                    ],
+                    "type": "object"
+                  },
+                  "status": {
+                    "description": "RepositoryCommitStatus is the observed result of the commit operation.",
+                    "properties": {
+                      "branch": {
+                        "description": "Branch is the branch the backend committed to.",
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "commitSHA": {
+                        "description": "CommitSHA is the resulting commit SHA.",
+                        "maxLength": 128,
+                        "type": "string"
+                      },
+                      "commitURL": {
+                        "description": "CommitURL is the browser URL for the resulting commit.",
+                        "maxLength": 2048,
+                        "type": "string"
+                      },
+                      "completedAt": {
+                        "description": "CompletedAt is when the controller reached a terminal phase.",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "conditions": {
+                        "description": "Conditions follows the standard Kubernetes conditions pattern.",
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "maxLength": 32768,
+                              "type": "string"
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "format": "int64",
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ],
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "files": {
+                        "description": "Files records per-file metadata for visibility and debugging. Contents\nstay in the bundle store.",
+                        "items": {
+                          "description": "RepositoryCommitFileStatus records metadata for one committed file.",
+                          "properties": {
+                            "delete": {
+                              "description": "Delete reports that this path was removed by the commit.",
+                              "type": "boolean"
+                            },
+                            "digest": {
+                              "description": "Digest is the file content digest, usually sha256:<hex>.",
+                              "maxLength": 96,
+                              "type": "string"
+                            },
+                            "path": {
+                              "description": "Path is the repository-relative file path.",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "size": {
+                              "description": "Size is the UTF-8 content size in bytes.",
+                              "format": "int64",
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "path"
+                          ],
+                          "type": "object"
+                        },
+                        "maxItems": 500,
+                        "type": "array",
+                        "x-kubernetes-list-map-keys": [
+                          "path"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "observedGeneration": {
+                        "description": "ObservedGeneration mirrors metadata.generation last reconciled.",
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "phase": {
+                        "description": "Phase is the coarse status for clients that do not parse conditions.",
+                        "enum": [
+                          "Pending",
+                          "Running",
+                          "Succeeded",
+                          "Failed"
+                        ],
+                        "type": "string"
+                      },
+                      "source": {
+                        "description": "Source records the observed bundle metadata, without file contents.",
+                        "properties": {
+                          "digest": {
+                            "description": "Digest is the bundle digest committed by the controller.",
+                            "maxLength": 96,
+                            "type": "string"
+                          },
+                          "fileCount": {
+                            "description": "FileCount is the number of files in the bundle.",
+                            "type": "integer"
+                          },
+                          "size": {
+                            "description": "Size is the total bundle size in bytes.",
+                            "format": "int64",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "startedAt": {
+                        "description": "StartedAt is when the controller first picked up the request.",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              },
+              "served": true,
+              "storage": true,
+              "subresources": {
+                "status": {}
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

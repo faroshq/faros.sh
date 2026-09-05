@@ -1,0 +1,10 @@
+<div id="docs-search" data-index="/docs/index.json">
+  <form id="docs-search-form" role="search" action="/docs/search/">
+    <div><label for="docs-query">Search documentation</label><input id="docs-query" name="q" type="search" placeholder="Try “schedules”, “add a teammate”, or “Databricks”" autocomplete="off"></div>
+    <div><label for="docs-scope">Search scope</label><select id="docs-scope" name="provider"><option value="">All documentation</option>{{ range .Site.Data.docs.providers }}<option value="{{ .slug }}">{{ .title }}</option>{{ end }}</select></div>
+    <button type="submit">Search</button>
+  </form>
+  <p id="docs-search-status" role="status" aria-live="polite">Enter a topic to search all documentation, or choose a provider.</p>
+  <ol id="docs-search-results" aria-label="Search results"></ol>
+  <noscript>Search requires JavaScript. Browse <a href="/docs/use/">capabilities</a>, <a href="/docs/reference/">reference</a>, or <a href="/docs/troubleshooting/">troubleshooting</a> instead.</noscript>
+</div>

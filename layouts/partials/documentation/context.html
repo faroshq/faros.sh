@@ -1,0 +1,8 @@
+{{- $root := .Site.GetPage "/docs" -}}
+{{- $parts := split (strings.TrimPrefix $root.RelPermalink .RelPermalink) "/" -}}
+{{- $slug := index $parts 0 -}}
+{{- $section := $root -}}
+{{- with $slug }}{{ with $.Site.GetPage (printf "/docs/%s" .) }}{{ $section = . }}{{ end }}{{ end -}}
+{{- $local := $section -}}
+{{- with .Params.provider }}{{ with $.Site.GetPage (printf "/docs/use/%s" .) }}{{ $local = . }}{{ end }}{{ end -}}
+{{- return (dict "root" $root "section" $section "local" $local "slug" $slug) -}}
