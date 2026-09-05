@@ -1,0 +1,22 @@
+{{ $groups := slice
+  (dict "title" "Start here" "paths" (slice "docs/get-started/first-task" "docs/use/mcp" "docs/get-started/install"))
+  (dict "title" "Quickstarts" "paths" (slice "docs/use/app-studio/quickstart" "docs/use/agents/quickstart" "docs/use/edges/quickstart"))
+  (dict "title" "Understand Faros" "paths" (slice "docs/get-started/what-is-faros" "docs/get-started/console" "docs/get-started/workspaces"))
+}}
+<div class="docs-guide-directory">
+  {{ range $index, $group := $groups }}
+  <section class="docs-guide-group" aria-labelledby="docs-guide-group-{{ $index }}">
+    <h2 id="docs-guide-group-{{ $index }}">{{ $group.title }}</h2>
+    <div class="docs-guide-grid">
+      {{ range $group.paths }}
+      {{ with site.GetPage . }}
+      <a class="docs-guide-card" href="{{ .RelPermalink }}">
+        <h3>{{ .LinkTitle }}</h3>
+        <p>{{ .Description }}</p>
+      </a>
+      {{ end }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</div>

@@ -3,6 +3,7 @@ title: "Get started"
 description: "Understand Faros and complete your first task."
 weight: 1
 doc_type: "Overview"
+landing: "get-started"
 ---
 
 Start with [your first task](/docs/get-started/first-task/). The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.

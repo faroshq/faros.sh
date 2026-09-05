@@ -1,8 +1,20 @@
 {{ $ctx := partial "documentation/context.html" . }}
 <a class="docs-skip" href="{{ .RelPermalink }}#docs-content">Skip to content</a>
-<header class="docs-header">
+<header class="faros-header docs-header">
   <div class="docs-header-top">
-    <a class="faros-docs-brand" href="/docs/" aria-label="Faros documentation home">faros <span class="docs-brand-divider">/</span> <span class="docs-brand-label">docs</span></a>
+    <div class="docs-brand">
+    <a href="/" aria-label="Faros home" class="faros-wordmark faros-nav-brand">
+      <span class="faros-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+      <span class="faros-wordmark-text">faros</span>
+    </a>
+      <a class="docs-brand-label" href="/docs/" aria-label="Faros documentation home">Docs</a>
+    </div>
+  <nav class="docs-primary" aria-label="Documentation sections">
+    {{ range .Site.Data.docs.primary }}
+      {{ $url := printf "/docs/%s/" .slug }}
+      <a class="faros-navlink" href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
+    {{ end }}
+  </nav>
     <form role="search" action="/docs/search/" class="docs-header-search">
       <label for="docs-header-query" class="sr-only">Search all documentation</label>
       <input id="docs-header-query" name="q" type="search" placeholder="Search documentation" autocomplete="off">
@@ -21,12 +33,7 @@
         {{ end }}
       </div>
     </details>
-    <a class="docs-site-link" href="/">Faros website</a>
+    {{ with .Site.Params.brand.console_url }}<a class="faros-cta docs-console-link" href="{{ . }}">Open console</a>{{ end }}
   </div>
-  <nav class="docs-primary" aria-label="Documentation sections">
-    {{ range .Site.Data.docs.primary }}
-      {{ $url := printf "/docs/%s/" .slug }}
-      <a href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
-    {{ end }}
-  </nav>
+
 </header>

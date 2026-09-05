@@ -104,12 +104,18 @@ if (connect) {
   const tablist = connect.querySelector('[role="tablist"]');
   const tabs = [...tablist.querySelectorAll('[role="tab"]')];
   const feedback = connect.querySelector('.docs-connect-status');
+  const copyButton = connect.querySelector('[data-copy-connect]');
+  connect.querySelector('.docs-connect-toolbar').hidden = false;
   let copyRequest = 0;
   tablist.hidden = false;
   connect.querySelectorAll('.docs-connect-fallback-title').forEach(title => { title.hidden = true; });
   function activate(tab, focus = false) {
     copyRequest++;
     feedback.textContent = '';
+    copyButton.dataset.copyConnect = `${tab.getAttribute('aria-controls')}-text`;
+    const copyLabel = tab.id === 'connect-tab-prompt' ? 'Copy prompt' : 'Copy commands';
+    copyButton.setAttribute('aria-label', copyLabel);
+    copyButton.title = copyLabel;
     tabs.forEach(item => {
       const selected = item === tab;
       item.setAttribute('aria-selected', String(selected));

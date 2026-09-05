@@ -1,14 +1,16 @@
 {{ $ctx := partial "documentation/context.html" . }}
-{{ $hasRail := and (not .Params.landing) (ne .Layout "search") }}
-<div class="docs-layout{{ if .Params.landing }} docs-landing-layout{{ end }}">
+{{ $hasRail := and (or (not .Params.landing) (eq .Params.landing "get-started")) (ne .Layout "search") }}
+<div class="docs-layout{{ if .Params.landing }} docs-landing-layout{{ end }}{{ if eq .Params.landing "get-started" }} docs-get-started-layout{{ end }}">
   {{ if ne .RelPermalink $ctx.root.RelPermalink }}{{ partial "docs-sidebar.html" . }}{{ end }}
   <main class="faros-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
     {{ if $hasRail }}{{ partial "documentation/page-tools.html" . }}{{ end }}
     <article class="faros-docs-article">
+      {{ if and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Parent.RelPermalink $ctx.root.RelPermalink) }}
       <nav class="docs-breadcrumb" aria-label="Breadcrumb">
         {{ range .Ancestors.Reverse }}{{ if eq .Section "docs" }}<a href="{{ .RelPermalink }}">{{ if eq .RelPermalink $ctx.root.RelPermalink }}Docs{{ else }}{{ .LinkTitle }}{{ end }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
         <span aria-current="page">{{ if eq .RelPermalink $ctx.root.RelPermalink }}Documentation{{ else }}{{ .LinkTitle }}{{ end }}</span>
       </nav>
+      {{ end }}
       {{ if eq .Params.landing "home" }}<div class="docs-home-intro">{{ end }}
       <header class="faros-docs-header">
         <h1 class="faros-docs-title">{{ .Title }}</h1>
@@ -29,6 +31,7 @@
       </section>
       {{ end }}
       {{ if eq .Params.landing "home" }}{{ partial "documentation/provider-catalog.html" . }}{{ end }}
+      {{ if eq .Params.landing "get-started" }}{{ partial "documentation/get-started.html" . }}{{ end }}
       <div class="faros-docs-body">{{ .Content }}</div>
       {{ if eq .Params.landing "home" }}
       <section class="docs-home-paths" aria-labelledby="docs-explore-title">
