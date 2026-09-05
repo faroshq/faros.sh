@@ -15,12 +15,24 @@ Nothing else. A tenant that hasn't bound your export is invisible to you. This i
 
 ## Wiring controllers with multicluster-runtime
 
-The `init` bootstrap created an `APIExportEndpointSlice` in your workspace (same name as your export). kcp publishes the virtual-workspace URLs on its status, and the [multicluster-runtime](https://github.com/kcp-dev/multicluster-provider) manager consumes them — each tenant workspace appears as a "cluster" your reconcilers get engaged for:
+The `init` bootstrap must create an `APIExportEndpointSlice` in your provider workspace. By convention its name is the APIExport name; pass that exact name to the multicluster provider. kcp publishes the virtual-workspace URLs on the slice status, and the [multicluster-runtime](https://github.com/kcp-dev/multicluster-provider) manager consumes them — each tenant workspace appears as a "cluster" your reconcilers get engaged for. The provider must have a usable `*rest.Config`, the endpoint-slice name, and a scheme containing its API types before constructing the manager:
 
 ```go
 // Simplified from providers/code/controller_manager.go
-provider, _ := apiexport.New(vwConfig, apiexport.Options{})   // off the endpoint slice
-mgr, _ := mcmanager.New(vwConfig, provider, manager.Options{})
+const endpointSliceName = "<your-api-export-name>"
+scheme := yourscheme.NewScheme()
+
+// Ensure this slice during init/startup, before constructing the provider.
+// install.EnsureAPIExportEndpointSlice(ctx, vwConfig, workspacePath)
+
+provider, err := apiexport.New(vwConfig, endpointSliceName, apiexport.Options{Scheme: scheme})
+if err != nil {
+    return fmt.Errorf("creating APIExport multicluster provider: %w", err)
+}
+mgr, err := mcmanager.New(vwConfig, provider, manager.Options{Scheme: scheme})
+if err != nil {
+    return fmt.Errorf("creating multicluster manager: %w", err)
+}
 
 // Reconcilers are cluster-aware: each request carries the logical cluster.
 builder.ControllerManagedBy(mgr).
@@ -28,7 +40,18 @@ builder.ControllerManagedBy(mgr).
     Complete(reconciler)
 ```
 
-Inside a reconciler, `mcmanager.GetCluster(ctx, clusterName).GetConfig()` hands you a config scoped to that one tenant workspace — this is your *only* legitimate cross-workspace credential.
+Inside a reconciler, obtain the engaged cluster from the manager and handle an unavailable cluster before using its configuration. This fragment assumes `mgr`, `ctx`, and the request's logical `clusterName` are already available; `mcmulticluster` is the multicluster-runtime package alias:
+
+```go
+cl, err := mgr.GetCluster(ctx, mcmulticluster.ClusterName(clusterName))
+if err != nil {
+    return fmt.Errorf("getting engaged cluster: %w", err)
+}
+tenantConfig := cl.GetConfig()
+// Use tenantConfig for this cluster's controller work.
+```
+
+Keep that configuration scoped to the current reconciliation; do not reuse it for another tenant.
 
 The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the faros repo for the canonical setup.
 
@@ -49,9 +72,9 @@ For REST/MCP/GraphQL requests arriving through the hub's backend proxy, your pro
 - `X-Faros-Tenant` — the caller's workspace path.
 - `X-Faros-Cluster` — the workspace's **logical cluster ID**.
 
-Build a per-request client from the caller's token scoped to `X-Faros-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Every shipped provider has a `tenant/client.go` doing exactly this.
+Build a per-request client from the caller's token scoped to `X-Faros-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Code, Databricks, and Infrastructure demonstrate this pattern in their `tenant/client.go` files. Other providers have different request-client wiring; check their authentication path explicitly.
 
-Why the split matters: pattern A lets a buggy request handler at most touch what claims allow; pattern B guarantees a user can never do more through your provider than they could with `kubectl` directly.
+Using the provider service identity in a request handler can give a caller access they do not hold personally. A caller-scoped client lets kcp enforce that caller’s resource permissions; the handler must still authorize any operations performed outside that client.
 
 ## Address by cluster ID, never by path
 
@@ -63,4 +86,4 @@ The number-one footgun: kcp **shards resolve only `/clusters/<logical-cluster-id
 
 ## Dynamic APIs
 
-The resource list on your APIExport is merged, not replaced, so a provider can grow its API at runtime. The infrastructure provider does this: each `Template` a platform admin applies adds that template's instance kind (e.g. `Application`, `Redis`, `Postgres`) to the export, and tenants who bound it see the new kind appear in their workspace.
+The resource list on your APIExport is merged, not replaced, so a provider can grow its API at runtime. Do not confuse that with the infrastructure provider's flattened tenant API: it permanently exports `templates.infrastructure.faros.sh` (`Template`) and `instances.infrastructure.faros.sh` (`Instance`). Each `Instance` names its product in `spec.template`; applying another catalog `Template` does not add a new tenant-facing kind, change the APIExport resource list, or change binding claims. See the [flattened Instance design](https://github.com/faroshq/faros/blob/main/docs/infrastructure-flattened-instances.md) before designing an infrastructure integration.

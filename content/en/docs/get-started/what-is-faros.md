@@ -29,7 +29,6 @@ Faros is useful when a task crosses the boundaries between application code, AI 
 | Run repeatable work with an agent | Configure instructions and tools, inspect runs, and add schedules or triggers when the task works. | [AI agents](/docs/use/agents/) |
 | Reach infrastructure from a shared entry point | Edge agents connect outward to the hub; use those connections to access clusters, servers, and services. | [Edges](/docs/use/edges/) |
 | Offer reusable environments to a team | Templates define the resources people can request; instances track the resulting environments. | [Infrastructure](/docs/use/infrastructure/) |
-| Combine capabilities without giving every user every permission | Organize people and resources in workspaces, then configure membership, provider access, and service credentials. | [Administration](/docs/administration/) |
 
 Faros coordinates these systems; repositories still live in GitHub, source tables remain in Databricks, and workloads run in the configured infrastructure. Each provider overview explains its dependencies and data storage.
 
@@ -50,15 +49,6 @@ The provider service and the runtime may operate in different clusters. A resour
 Declarative resources express desired state and controllers reconcile it. Direct actions perform bounded requests; streams carry logs, terminals, or other live traffic. Not every action creates an auditable, reversible resource object.
 
 Follow [a provisioning request](/docs/use/infrastructure/instances/#follow-a-provisioning-request) to see how an assistant request becomes a running workload.
-
-## Glossary
-
-- **Hub:** the shared control-plane service.
-- **Provider:** a capability registered with the hub.
-- **Workspace:** the logical API context for resources and access.
-- **Instance:** one provisioned Infrastructure template.
-- **Edge agent:** the daemon connecting a target cluster or server.
-- **AI agent:** an assistant with a model, tools, and optional background work.
 
 ## Choose how you work
 

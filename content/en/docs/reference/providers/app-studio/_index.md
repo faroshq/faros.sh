@@ -1,6 +1,6 @@
 ---
 title: "App Studio API reference"
-description: "Resource and interface map, with versioned source definitions."
+description: "Resource operations, examples, and schema definitions."
 weight: 90
 doc_type: "Reference"
 provider: "app-studio"
@@ -17,6 +17,19 @@ Use the workspace where App Studio is enabled. Authenticate with a credential au
 ## Resource schemas
 
 [Resource fields and validation rules](/docs/reference/providers/app-studio/schemas/) are generated from the checked-in schemas, with a downloadable JSON bundle.
+
+## Inspect a workspace
+
+Use a kubeconfig context that is already authenticated for the target workspace. The context supplies the bearer credential; do not put a token in a manifest or shell history.
+
+```sh
+kubectl faros use
+kubectl api-resources --api-group=ai.faros.sh
+kubectl get projects.ai.faros.sh,studios.ai.faros.sh,sessions.ai.faros.sh
+kubectl explain projects.ai.faros.sh.spec --api-version=ai.faros.sh/v1alpha1
+```
+
+The list command returns workspace-scoped objects; these resources do not use Kubernetes namespaces. `Forbidden` means the credential lacks list permission in that workspace; an empty list means no objects matched. If the resource is unknown, verify provider installation and API discovery before applying a manifest.
 
 ## Authoritative definitions
 

@@ -5,6 +5,10 @@ weight: 2
 doc_type: "Guide"
 ---
 
+## Prerequisites
+
+Select the intended workspace and verify that App Studio and Code are enabled. Use a GitHub connection with access to the repository and branch the project should use.
+
 ## Work in a project
 
 Select the workspace and open an existing Project. Projects hold the application’s intent and bindings; Sessions identify conversations. Start a new conversation when the task changes, while keeping work in the same project.
@@ -18,5 +22,7 @@ After the assistant changes files, review the resulting diff and commit/build st
 ## Recover from a failed action
 
 Inspect the project’s status and the failed step. If a repository action fails, check the Code connection and upstream permissions. Avoid creating a second project to retry a transient repository error.
+
+Expected result: the project remains attached to the intended repository and branch, and the assistant’s file changes are visible in the reviewed diff and commit/build status. If the chat reports success but the diff or upstream repository is unchanged, treat the repository action as failed and repair the connection before retrying.
 
 Next: [development environments](/docs/use/app-studio/development/).

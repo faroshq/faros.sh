@@ -1,6 +1,6 @@
 ---
 title: "Databricks API reference"
-description: "Resource and interface map, with versioned source definitions."
+description: "Resource operations, examples, and schema definitions."
 weight: 90
 doc_type: "Reference"
 provider: "databricks"
@@ -24,11 +24,31 @@ The [aggregate MCP endpoint](/docs/use/ai-assistants/) uses the `databricks__` p
 | `describe_table` | Read a table's cached column names and types. |
 | `query_table` | Read up to 100 rows, optionally selecting exact column names. |
 
-Pass the exact Table resource name as `tableRef`, not an App Studio integration alias. Querying is a synchronous action and does not create a query resource. Inspect your client's tool discovery for deployed schemas; see the [versioned tool definitions](https://github.com/faroshq/faros/blob/main/providers/databricks/mcpserver/tools.go).
+Pass the exact Table resource name as `tableRef`, not an App Studio integration alias. Querying is a synchronous action and does not create a query resource. Inspect your client's tool discovery for deployed schemas; see the [tool definitions](https://github.com/faroshq/faros/blob/main/providers/databricks/mcpserver/tools.go).
 
 ## Resource schemas
 
 [Resource fields and validation rules](/docs/reference/providers/databricks/schemas/) are generated from the checked-in schemas, with a downloadable JSON bundle.
+
+## Inspect tables and query rows
+
+Use an authenticated context for the workspace and verify that the imported Table has refreshed status before querying it.
+
+```sh
+kubectl faros use
+kubectl api-resources --api-group=databricks.faros.sh
+kubectl get connections.databricks.faros.sh,warehouses.databricks.faros.sh,tables.databricks.faros.sh
+kubectl explain tables.databricks.faros.sh.spec --api-version=databricks.faros.sh/v1alpha1
+kubectl describe table.databricks.faros.sh/<table-resource-name>
+```
+
+The versioned MCP action accepts the exact imported Table resource name, not an App Studio alias:
+
+```json
+{"actionVersion":"v1","tableRef":"<table-resource-name>","columns":["<column-name>"],"limit":25}
+```
+
+Send that object as the `arguments` for `databricks__query_table` after discovering the tool through MCP. It returns `columns`, `rows`, and the echoed action version. `limit` is at most 100 and columns must be exact names; an unavailable action, stale Table schema, or upstream permission failure must be repaired before retrying.
 
 ## Authoritative definitions
 

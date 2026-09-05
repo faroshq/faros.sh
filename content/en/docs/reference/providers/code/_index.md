@@ -1,6 +1,6 @@
 ---
 title: "Code API reference"
-description: "Resource and interface map, with versioned source definitions."
+description: "Resource operations, examples, and schema definitions."
 weight: 90
 doc_type: "Reference"
 provider: "code"
@@ -33,11 +33,25 @@ After [connecting an MCP client](/docs/use/ai-assistants/), the aggregate endpoi
 | `build_status` | Inspect the latest build workflow run, jobs, and failure log tails. |
 | `rebuild` | Dispatch the repository's build workflow again. |
 
-Check resource status after write operations and verify the result in GitHub. Build tools require a configured build workflow. For exact input schemas and behavior, see the [versioned MCP implementation](https://github.com/faroshq/faros/tree/main/providers/code/mcpserver).
+Check resource status after write operations and verify the result in GitHub. Build tools require a configured build workflow. For exact input schemas and behavior, see the [MCP implementation](https://github.com/faroshq/faros/tree/main/providers/code/mcpserver).
 
 ## Resource schemas
 
 [Resource fields and validation rules](/docs/reference/providers/code/schemas/) are generated from the checked-in schemas, with a downloadable JSON bundle.
+
+## Inspect repositories safely
+
+Use an authenticated context for the workspace. These reads do not contact GitHub directly; the provider reports the managed resource and its controller status.
+
+```sh
+kubectl faros use
+kubectl api-resources --api-group=code.faros.sh
+kubectl get connections.code.faros.sh,repositories.code.faros.sh,repositorybuildstatuses.code.faros.sh
+kubectl explain repositories.code.faros.sh.spec --api-version=code.faros.sh/v1alpha1
+kubectl describe repository.code.faros.sh/<repository-name>
+```
+
+Before a write tool, confirm the Connection is ready and that the linked GitHub account can perform the requested operation. A provider `Forbidden`/`Unauthorized` response is not fixed by retrying; repair the workspace permission or GitHub authorization. Build status can remain pending while GitHub processes the workflow, so inspect the status resource and its failure log tail before requesting `rebuild`.
 
 ## Authoritative definitions
 

@@ -1,4 +1,5 @@
 import { test } from 'node:test';
+import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, copyFile, rm } from 'node:fs/promises';
 import { execFileSync, fork } from 'node:child_process';
@@ -9,6 +10,7 @@ import { once } from 'node:events';
 // Test the published example against the actual SDK at the documented baseline.
 // Set FAROS_PRODUCT_REPO to run this contract test outside the sibling checkout.
 const product = process.env.FAROS_PRODUCT_REPO;
+const revision = JSON.parse(readFileSync(new URL('../static/schemas/databricks.json', import.meta.url), 'utf8')).revision;
 for (const mode of ['success', 'denied', 'wrong-table']) {
   test(`Databricks example: ${mode}`, { skip: !product, timeout: 10000 }, async () => {
     const dir = await mkdtemp(join(tmpdir(), 'faros-docs-example-'));
@@ -17,7 +19,7 @@ for (const mode of ['success', 'denied', 'wrong-table']) {
       const sdk = join(dir, 'node_modules/@faros/actions-node');
       await mkdir(sdk, { recursive: true });
       await writeFile(join(sdk, 'package.json'), JSON.stringify({ type: 'module', exports: './index.mjs' }));
-      await writeFile(join(sdk, 'index.mjs'), execFileSync('git', ['-C', product, 'show', '0c79ff47:provider-sdk/actions-node/index.mjs']));
+      await writeFile(join(sdk, 'index.mjs'), execFileSync('git', ['-C', product, 'show', `${revision}:provider-sdk/actions-node/index.mjs`]));
       await copyFile(resolve('static/examples/databricks/server.mjs'), join(dir, 'server.mjs'));
       await writeFile(join(dir, 'token'), 'test-only-token');
       await writeFile(join(dir, 'runner.mjs'), `

@@ -13,9 +13,11 @@ Use the [Faros release history](https://github.com/faroshq/faros/releases) for p
 
 Available features depend on your installed hub and provider versions. Check your deployment’s catalog and release notes before following an upgrade guide.
 
-## Changes to account for
+## Upgrade considerations
 
-- Infrastructure now exposes Template and Instance rather than dynamic tenant-facing per-template kinds. Review the [Instance model](https://github.com/faroshq/faros/blob/main/docs/infrastructure-flattened-instances.md) before upgrading older workspaces.
+These are compatibility topics to check against the release you are installing, not a dated changelog or a supported-version matrix. For SaaS, consult the published release notes; the deployment checks below are for self-hosting operators.
+
+- Infrastructure exposes Template and Instance rather than dynamic tenant-facing per-template kinds. Review the [Instance model](https://github.com/faroshq/faros/blob/main/docs/infrastructure-flattened-instances.md) before upgrading older workspaces.
 - Edge replica routing requires its supporting chart and internal relay configuration; a replica count alone is not a complete migration.
 - Provider permission-claim changes may require existing bindings to accept new claims. Check dependencies before rollout.
 

@@ -16,6 +16,8 @@ Your project must have a development-capable Infrastructure template and a valid
 
 Development environments run through Infrastructure. App Studio does not need direct credentials to another provider’s runtime cluster. A preview permission failure and an application startup failure require different fixes: check access for the first and component logs for the second.
 
+Expected result: the development Instance and its components report ready, preview opens for the intended audience, and a file change is reflected after sync. If the Instance is ready but the page fails, investigate application logs and routing; if preview is denied, repair sharing or workspace access instead.
+
 Do not treat development preview as a public hosting URL. Next: [publish your application](/docs/use/app-studio/publishing/).
 
 ## Trace the environment from the CLI
@@ -37,3 +39,5 @@ kubectl get instances.infrastructure.faros.sh INSTANCE-NAME --watch
 Inspect phase, message, and conditions. Stop the watch with Ctrl-C. If no matching Instance exists, inspect the binding configuration and project/template setup before looking for runtime pods. Do not delete an App Studio-owned instance as a restart mechanism.
 
 These commands query Faros resources. Runtime pod logs require the operator's hosting/runtime context; a Faros workspace credential does not automatically grant that access.
+
+Next: [publish the application](/docs/use/app-studio/publishing/) after preview and repository changes are verified. If the environment cannot become ready, use [App Studio troubleshooting](/docs/use/app-studio/troubleshooting/) before deleting the project or its owned Instance.

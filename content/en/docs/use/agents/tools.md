@@ -19,6 +19,8 @@ Create an agent and verify its model connection first. To use infrastructure too
 
 Do not infer a tool’s permission from its name or from the skill text. Workspace authorization, provider authorization, upstream credentials, and the agent’s policy all matter.
 
+Expected result: the read-only discovery run lists only resources available through the configured connection, and an operation requiring approval appears in the approval inbox before it runs. A successful discovery does not prove that a write action is authorized.
+
 ## Failure and recovery
 
 If a tool is missing, check that the connection is enabled, the provider is healthy, and the credential can discover its tools. If a run stops on a budget or approval, inspect that state before retrying. Repeating the prompt does not resolve an authorization failure.

@@ -8,6 +8,8 @@ provider: "agents"
 
 ## Compatibility and access
 
+Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
 [Download complete schemas](/schemas/agents.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/agents/) for those interfaces and related guides.
@@ -16,7 +18,7 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 API: `agents.faros.sh/v1alpha1` · Resource: `agents` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/files/schemas/agents.agents.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/agents.agents.faros.sh.yaml)
 
 ```bash
 kubectl explain agents.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
@@ -73,7 +75,7 @@ kubectl explain agents.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --
 
 API: `agents.faros.sh/v1alpha1` · Resource: `connections` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/files/schemas/connections.agents.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/connections.agents.faros.sh.yaml)
 
 ```bash
 kubectl explain connections.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
@@ -106,7 +108,7 @@ kubectl explain connections.agents.faros.sh --api-version=agents.faros.sh/v1alph
 
 API: `agents.faros.sh/v1alpha1` · Resource: `schedules` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/files/schemas/schedules.agents.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/schedules.agents.faros.sh.yaml)
 
 ```bash
 kubectl explain schedules.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
@@ -138,7 +140,7 @@ kubectl explain schedules.agents.faros.sh --api-version=agents.faros.sh/v1alpha1
 
 API: `agents.faros.sh/v1alpha1` · Resource: `toolsets` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/files/schemas/toolsets.agents.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/toolsets.agents.faros.sh.yaml)
 
 ```bash
 kubectl explain toolsets.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
@@ -159,7 +161,7 @@ kubectl explain toolsets.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 
 
 API: `agents.faros.sh/v1alpha1` · Resource: `triggers` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/files/schemas/triggers.agents.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/triggers.agents.faros.sh.yaml)
 
 ```bash
 kubectl explain triggers.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive

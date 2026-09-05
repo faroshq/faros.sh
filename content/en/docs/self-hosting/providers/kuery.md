@@ -5,19 +5,37 @@ weight: 10
 doc_type: "Guide"
 ---
 
+## Prerequisites
+
+You need a Kubernetes runtime you administer, Helm, network access from the provider runtime to the hub and advertised virtual-workspace endpoints, and permission to onboard this provider. Use the [common provider flow](/docs/self-hosting/providers/) to obtain the workspace kubeconfig. The examples below use a Secret named `faros-provider-kubeconfig` with data key `kubeconfig`; the generated onboarding command is authoritative for your hub.
+
 ## Install
 
-Follow [the common provider installation flow](/docs/self-hosting/providers/) to obtain a scoped kubeconfig and generated installation commands. Use the [chart instructions](https://github.com/faroshq/faros/blob/main/providers/kuery/deploy/chart/README.md) for required values, Secret keys, and chart coordinates.
+```bash
+kubectl create namespace faros-provider-kuery
+kubectl --namespace faros-provider-kuery create secret generic faros-provider-kubeconfig \
+  --from-file=kubeconfig=./kuery.kubeconfig
+
+helm upgrade --install kuery oci://ghcr.io/faroshq/charts/faros-kuery-provider \
+  --namespace faros-provider-kuery \
+  --set hub.url=https://faros.example.com \
+  --set providerKubeconfig.secretName=faros-provider-kubeconfig \
+  --set catalogEntry.enabled=true
+```
+
+The chart README contains the matching values table and image coordinates for the deployed source version: [chart instructions](https://github.com/faroshq/faros/blob/main/providers/kuery/deploy/chart/README.md). Replace the placeholder kubeconfig and hub URL; do not put bearer tokens or database URLs directly in a production values file.
 
 ## Provider requirements
 
-The default SQLite store uses persistent storage and cannot be scaled by increasing replicas. Review the Postgres option and chart constraints before scaling. Verify edge engagement, whitelist settings, and synchronization before trusting inventory results.
+SQLite is the default and requires the chart PVC; it is not a multi-replica production store. For shared production storage, set `store.driver=postgres`, set `store.dsn` to the connection string, disable `store.persistence.enabled`, and size resources for the number of engaged edges. Review `sync.whitelist` and `sync.blacklist` before enabling inventory sync.
 
-## Verify and recover
+## Verify
 
-Check the configured liveness/readiness probes, registration heartbeat, and pod events. Enable the provider in a test workspace and complete the [Kuery quickstart](/docs/use/kuery/quickstart/).
+Run `kubectl -n faros-provider-kuery get pods` and wait for Ready and a fresh heartbeat. Enable Kuery in a test workspace, connect a disposable edge, and verify engagement, whitelist behavior, and synchronization using the [Kuery quickstart](/docs/use/kuery/quickstart/).
 
-For a failed upgrade, preserve logs and resource conditions. Restore state with the datastore’s supported procedure and verify credentials, bindings, and schema compatibility before allowing users back in. See [operations and recovery](/docs/self-hosting/hub/operations/).
+## Recover
+
+For a failed rollout, preserve the SQLite PVC or Postgres data before changing storage settings. Inspect edge engagement and sync logs, restore the original driver/DSN, and verify one edge’s inventory before expanding the fleet.
 
 ## Configuration reference
 

@@ -8,6 +8,8 @@ provider: "app-studio"
 
 ## Compatibility and access
 
+Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
 [Download complete schemas](/schemas/app-studio.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/app-studio/) for those interfaces and related guides.
@@ -16,7 +18,7 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 API: `ai.faros.sh/v1alpha1` · Resource: `projects` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/app-studio/deploy/chart/files/schemas/projects.ai.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/projects.ai.faros.sh.yaml)
 
 ```bash
 kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
@@ -42,19 +44,19 @@ kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 | `spec.environments[].bindings[].kind` | string | Yes | enum: &#91;"providerResource", "providerReference"&#93; |
 | `spec.environments[].bindings[].name` | string | Yes | minLength: 1; maxLength: 63 |
 | `spec.environments[].bindings[].provider` | string | Yes | minLength: 1; maxLength: 63 |
-| `spec.environments[].bindings[].resourceRef` | object | No | See the downloadable schema. |
-| `spec.environments[].bindings[].resourceRef.apiVersion` | string | No | See the downloadable schema. |
-| `spec.environments[].bindings[].resourceRef.kind` | string | No | See the downloadable schema. |
-| `spec.environments[].bindings[].resourceRef.name` | string | No | See the downloadable schema. |
-| `spec.environments[].bindings[].resourceRef.resource` | string | No | See the downloadable schema. |
+| `spec.environments[].bindings[].resourceRef` | object | No | No description supplied by the source schema. |
+| `spec.environments[].bindings[].resourceRef.apiVersion` | string | No | No description supplied by the source schema. |
+| `spec.environments[].bindings[].resourceRef.kind` | string | No | No description supplied by the source schema. |
+| `spec.environments[].bindings[].resourceRef.name` | string | No | No description supplied by the source schema. |
+| `spec.environments[].bindings[].resourceRef.resource` | string | No | No description supplied by the source schema. |
 | `spec.environments[].bindings[].values` | object | No | Values is provider-owned configuration. App Studio treats it as an opaque contract payload. |
 | `spec.environments[].mode` | string | No | Mode distinguishes artifact-based environments from live development runtimes. Empty means artifact for backward compatibility. |
 | `spec.environments[].name` | string | Yes | Name is a stable environment identifier such as development or test. minLength: 1; maxLength: 63 |
 | `spec.environments[].promotion` | string | No | Promotion controls how changes move into this environment. |
 | `spec.memory` | object | No | Memory stores durable context the AI should consider for this project. It is edited explicitly through the API in the MVP. |
-| `spec.memory.constraints` | array&#91;string&#93; | No | See the downloadable schema. |
-| `spec.memory.goals` | array&#91;string&#93; | No | See the downloadable schema. |
-| `spec.memory.requirements` | array&#91;string&#93; | No | See the downloadable schema. |
+| `spec.memory.constraints` | array&#91;string&#93; | No | No description supplied by the source schema. |
+| `spec.memory.goals` | array&#91;string&#93; | No | No description supplied by the source schema. |
+| `spec.memory.requirements` | array&#91;string&#93; | No | No description supplied by the source schema. |
 | `spec.repository` | object | No | Repository records the Code provider repository backing this Project. |
 | `spec.repository.adopted` | boolean | No | Adopted marks a binding built from an EXISTING Repository CR (repository import). The Project reconciler creates the Repository CR for non-adopted bindings only — an adopted repository is never (re)created on the project's behalf. |
 | `spec.repository.connectionRef` | string | No | ConnectionRef names the Code provider Connection used by the Repository. maxLength: 253 |
@@ -69,16 +71,16 @@ kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 | `spec.template.name` | string | Yes | Name is the Template's catalog name (e.g. "application"). minLength: 1; maxLength: 253 |
 | `status` | object | No | ProjectStatus defines the observed Project state. |
 | `status.environments` | array&#91;object&#93; | No | Environments reports provider-observed environment state. |
-| `status.environments[].bindings` | array&#91;object&#93; | No | See the downloadable schema. |
-| `status.environments[].bindings[].name` | string | No | See the downloadable schema. |
-| `status.environments[].bindings[].outputs` | object | No | See the downloadable schema. |
-| `status.environments[].bindings[].phase` | string | No | See the downloadable schema. |
-| `status.environments[].bindings[].previewURL` | string | No | See the downloadable schema. |
-| `status.environments[].bindings[].provider` | string | No | See the downloadable schema. |
-| `status.environments[].bindings[].url` | string | No | See the downloadable schema. |
-| `status.environments[].mode` | string | No | See the downloadable schema. |
-| `status.environments[].name` | string | No | See the downloadable schema. |
-| `status.environments[].phase` | string | No | See the downloadable schema. |
+| `status.environments[].bindings` | array&#91;object&#93; | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].name` | string | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].outputs` | object | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].phase` | string | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].previewURL` | string | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].provider` | string | No | No description supplied by the source schema. |
+| `status.environments[].bindings[].url` | string | No | No description supplied by the source schema. |
+| `status.environments[].mode` | string | No | No description supplied by the source schema. |
+| `status.environments[].name` | string | No | No description supplied by the source schema. |
+| `status.environments[].phase` | string | No | No description supplied by the source schema. |
 | `status.phase` | string | No | Phase is Ready for MVP-created Projects. |
 | `status.updatedAt` | string | No | UpdatedAt reflects the latest API mutation affecting metadata or memory. |
 
@@ -86,7 +88,7 @@ kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 
 API: `ai.faros.sh/v1alpha1` · Resource: `sessions` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/app-studio/deploy/chart/files/schemas/sessions.ai.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/sessions.ai.faros.sh.yaml)
 
 ```bash
 kubectl explain sessions.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
@@ -94,11 +96,11 @@ kubectl explain sessions.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 
 | Field | Type | Required in parent | Description and constraints |
 | --- | --- | --- | --- |
-| `spec` | object | Yes | See the downloadable schema. |
+| `spec` | object | Yes | No description supplied by the source schema. |
 | `spec.actorID` | string | No | ActorID records the user the thread belongs to. |
 | `spec.projectRef` | string | Yes | ProjectRef names the Project this conversation belongs to. minLength: 1 |
 | `spec.threadID` | string | Yes | ThreadID is the store's thread identifier this Session projects. minLength: 1 |
-| `status` | object | No | See the downloadable schema. |
+| `status` | object | No | No description supplied by the source schema. |
 | `status.activeTurnID` | string | No | ActiveTurnID is the in-flight turn, empty when idle. |
 | `status.activeTurnStatus` | string | No | ActiveTurnStatus is the in-flight turn's state. |
 | `status.phase` | string | No | Phase mirrors the thread status (active, archived). |
@@ -109,7 +111,7 @@ kubectl explain sessions.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 
 API: `ai.faros.sh/v1alpha1` · Resource: `studios` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/app-studio/deploy/chart/files/schemas/studios.ai.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/studios.ai.faros.sh.yaml)
 
 ```bash
 kubectl explain studios.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
@@ -117,24 +119,24 @@ kubectl explain studios.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursi
 
 | Field | Type | Required in parent | Description and constraints |
 | --- | --- | --- | --- |
-| `spec` | object | No | See the downloadable schema. |
+| `spec` | object | No | No description supplied by the source schema. |
 | `spec.browser` | object | No | Browser configures the workspace's shared headless browser, used for development-preview inspection. One Playwright instance for the whole workspace, provisioned through the infrastructure provider exactly like Search — no per-project browser, and app-studio owns no browser image. |
 | `spec.browser.disabled` | boolean | No | Disabled turns preview browser inspection off for this workspace. |
 | `spec.browser.resourceRef` | object | No | ResourceRef is the fully-resolved instance the reconciler creates, written by the API from the browser Template's instanceCRD. Same self-contained contract as StudioSearch.ResourceRef. |
-| `spec.browser.resourceRef.apiVersion` | string | No | See the downloadable schema. |
-| `spec.browser.resourceRef.kind` | string | No | See the downloadable schema. |
-| `spec.browser.resourceRef.name` | string | No | See the downloadable schema. |
-| `spec.browser.resourceRef.resource` | string | No | See the downloadable schema. |
+| `spec.browser.resourceRef.apiVersion` | string | No | No description supplied by the source schema. |
+| `spec.browser.resourceRef.kind` | string | No | No description supplied by the source schema. |
+| `spec.browser.resourceRef.name` | string | No | No description supplied by the source schema. |
+| `spec.browser.resourceRef.resource` | string | No | No description supplied by the source schema. |
 | `spec.browser.size` | string | No | Size is the browser's memory bucket, passed to the template. enum: &#91;"small", "medium", "large"&#93; |
 | `spec.search` | object | No | Search configures the workspace's web-search backend. |
 | `spec.search.disabled` | boolean | No | Disabled turns web search off for every project in this workspace. |
 | `spec.search.resourceRef` | object | No | ResourceRef is the fully-resolved instance the reconciler creates, written by the API from the searxng Template's instanceCRD. The reconciler never reads Templates itself — they ride virtual storage with their own identity, so a self-contained spec keeps the control loop dependency-free (the same contract Project bindings use). |
-| `spec.search.resourceRef.apiVersion` | string | No | See the downloadable schema. |
-| `spec.search.resourceRef.kind` | string | No | See the downloadable schema. |
-| `spec.search.resourceRef.name` | string | No | See the downloadable schema. |
-| `spec.search.resourceRef.resource` | string | No | See the downloadable schema. |
+| `spec.search.resourceRef.apiVersion` | string | No | No description supplied by the source schema. |
+| `spec.search.resourceRef.kind` | string | No | No description supplied by the source schema. |
+| `spec.search.resourceRef.name` | string | No | No description supplied by the source schema. |
+| `spec.search.resourceRef.resource` | string | No | No description supplied by the source schema. |
 | `spec.search.size` | string | No | Size is the backend's memory bucket, passed to the template. enum: &#91;"small", "medium", "large"&#93; |
-| `status` | object | No | See the downloadable schema. |
+| `status` | object | No | No description supplied by the source schema. |
 | `status.browser` | object | No | Browser reports the shared headless browser backend. |
 | `status.browser.instance` | string | No | Instance names the backing infrastructure instance. |
 | `status.browser.phase` | string | No | Phase is Ready, Pending, or Disabled. |

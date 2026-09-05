@@ -7,7 +7,7 @@ import subprocess
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('product_repo', type=Path)
-parser.add_argument('--revision', default='0c79ff47')
+parser.add_argument('--revision', required=True, help='Product commit or ref to document; resolved to an immutable commit in generated output.')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 def git(*arguments):
@@ -33,7 +33,7 @@ def fields(schema, prefix=''):
             kind += '[' + field.get('items', {}).get('type', 'object') + ']'
         required = 'Yes' if name in schema.get('required', []) else 'No'
         description = field.get('description', '')
-        detail = ' '.join([description, '; '.join(constraints)]).strip() or 'See the downloadable schema.'
+        detail = ' '.join([description, '; '.join(constraints)]).strip() or 'No description supplied by the source schema.'
         yield f'| `{path}` | {cell(kind)} | {required} | {cell(detail)} |'
         yield from fields(field, path+'.')
         if 'items' in field:
@@ -50,9 +50,10 @@ for provider in providers:
         continue
     target = root/'static/schemas'/f'{provider}.json'
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps({'resources': bundle}, indent=2)+'\n')
+    target.write_text(json.dumps({'revision': revision, 'resources': bundle}, indent=2)+'\n')
     lines = ['---', 'title: "Resource schemas"', f'description: "Generated fields and validation rules for {provider} workspace resources."', 'weight: 91', 'doc_type: "Reference"', f'provider: "{provider}"', '---', '',
       '## Compatibility and access', '',
+      f'Generated from [product commit `{revision[:12]}`](https://github.com/faroshq/faros/commit/{revision}). This is a source snapshot, not a guarantee that your deployment runs this version.', '',
       f'These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.', '',
       f'[Download complete schemas](/schemas/{provider}.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/{provider}/) for those interfaces and related guides.', '']
     for entry in bundle:
@@ -60,7 +61,7 @@ for provider in providers:
         for version in spec['versions']:
             lines += [f"## {spec['names']['kind']} ({version['name']})", '',
               f"API: `{spec['group']}/{version['name']}` · Resource: `{spec['names']['plural']}` · Scope: `{spec['scope']}`", '',
-              f"[Source schema](https://github.com/faroshq/faros/blob/main/{entry['source']})", '',
+              f"[Source schema](https://github.com/faroshq/faros/blob/{revision}/{entry['source']})", '',
               '```bash', f"kubectl explain {spec['names']['plural']}.{spec['group']} --api-version={spec['group']}/{version['name']} --recursive", '```', '',
               '| Field | Type | Required in parent | Description and constraints |', '| --- | --- | --- | --- |']
             schema = version['schema'].get('openAPIV3Schema', version['schema'])

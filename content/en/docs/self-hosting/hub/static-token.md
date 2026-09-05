@@ -65,11 +65,13 @@ kubectl faros login \
 
 Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `faros` with the token embedded.
 
-## 4. Verify
+## 4. Verify hub access
 
 ```bash
-kubectl faros edge list
+kubectl faros use
 ```
+
+Choose an organization and workspace when prompted. This verifies that the token can authenticate to the hub and discover workspace APIs; an Edges provider is not required. To run `kubectl faros edge list`, install and enable Edges separately first.
 
 ## Rotating a token
 

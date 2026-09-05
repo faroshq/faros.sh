@@ -1,6 +1,7 @@
 ---
 title: "Provision an instance"
-description: "Choose a template and create a workspace resource."
+linkTitle: "Deploy and manage infrastructure"
+description: "Choose a template, deploy an instance, and manage its lifecycle."
 weight: 1
 doc_type: "Tutorial"
 ---

@@ -5,6 +5,8 @@ weight: 1
 doc_type: "Guide"
 ---
 
+Enable a capability in your workspace and confirm you can open it in the console.
+
 ## Prerequisites
 
 Sign in to the Faros SaaS hub and select your organization and workspace. If your organization self-hosts Faros, sign in to that hub instead. Use an identity permitted to enable providers; ask a workspace administrator if the action is unavailable.
@@ -19,9 +21,13 @@ Sign in to the Faros SaaS hub and select your organization and workspace. If you
 
 Enablement binds the provider’s API into your workspace. It does not install the provider service: a platform or organization operator must have registered and started it already.
 
-## Verify enablement from the CLI
+## When enablement fails
 
-Select the same [workspace in the CLI](/docs/reference/cli/resources/). For example, after enabling Infrastructure:
+A dependency conflict means a required provider is not enabled. A forbidden response means the current identity cannot perform the action or accept the claims. An unavailable provider may be unhealthy; check with the operator.
+
+## Optional CLI diagnostics {#verify-enablement-from-the-cli}
+
+The console checks above are sufficient for normal use. If a resource view fails to load, you or your administrator can investigate from the same [workspace in the CLI](/docs/reference/cli/resources/). For example, after enabling Infrastructure:
 
 ```bash
 kubectl api-resources --api-group=infrastructure.faros.sh
@@ -40,12 +46,8 @@ kubectl get apibindings.apis.kcp.io BINDING-NAME -o yaml
 
 Use the discovered binding name; it need not equal the provider display name. Review `spec.permissionClaims` and `status.conditions`. Do not create or patch bindings from an example to bypass the console's dependency and claim review.
 
-## When enablement fails
-
-A dependency conflict means a required provider is not enabled. A forbidden response means the current identity cannot perform the action or accept the claims. An unavailable provider may be unhealthy; check with the operator.
-
 ## Disable safely
 
 Before disabling, inventory resources and consumers that depend on the provider. Disabling removes the API binding and can remove access to bound resources. It is not a reversible pause or a substitute for a provider’s documented cleanup process.
 
-See [provider access](/docs/administration/providers/) and [self-hosting a provider](/docs/self-hosting/providers/).
+Next: follow the [quickstart for your capability](/docs/use/). For administrative controls, see [provider access](/docs/administration/providers/) and [self-hosting a provider](/docs/self-hosting/providers/).

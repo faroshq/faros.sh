@@ -5,6 +5,8 @@ weight: 3
 doc_type: "Guide"
 ---
 
+Schedule a verified agent task and confirm both its execution and delivery before leaving it unattended.
+
 ## Before you start
 
 Verify the agent’s model and tools in an interactive run. Select its workspace. Decide the intended timezone, output destination, and budget before scheduling background work.
@@ -12,9 +14,9 @@ Verify the agent’s model and tools in an interactive run. Select its workspace
 ## Add a schedule
 
 1. Open the AI agents **Schedules** view and create a schedule for the agent.
-2. Choose recurring cron, a wakeup, or a heartbeat as appropriate.
+2. Choose recurring cron, a wakeup, or a heartbeat as appropriate. Cron and wakeup schedules run a task; a heartbeat reviews a standing checklist and should be used for recurring monitoring rather than a one-off prompt.
 3. For cron, enter a five-field expression such as `0 9 * * *` and an explicit timezone such as `America/Chicago`.
-4. Enter a bounded task and choose the desired enabled state.
+4. Enter a bounded task and choose the desired enabled state. Select an output channel when the schedule should use a named agent channel; leaving it empty sends output to the agent’s primary channel.
 5. Save, inspect the recorded schedule, and use its run action to verify the task before relying on unattended execution.
 6. Check the resulting run and output destination. An enabled schedule alone does not prove that the model or tools can complete it.
 
@@ -28,7 +30,7 @@ Disable the schedule or trigger before changing a misbehaving task. Inspect run 
 
 Delete test schedules and triggers when finished; closing the browser does not stop them.
 
-## Create a schedule from the CLI
+## Optional: create a schedule from the CLI {#create-a-schedule-from-the-cli}
 
 Use the [CLI in the agent's workspace](/docs/reference/cli/resources/). This is the same Schedule resource used by the console. Inspect the installed schema and select an existing agent:
 
@@ -50,15 +52,18 @@ spec:
   schedule: "0 9 * * *"
   timeZone: America/Chicago
   task: "Summarize the information available to you for my daily review."
+  # channelRef: incidents  # omit to use the agent's primary channel
   suspend: true
 ```
+
+For a heartbeat, use `type: heartbeat`, keep the five-field `schedule`, and replace `task` with a `checklist`. A wakeup uses `type: wakeup`, leaves `schedule` empty, and supplies an RFC3339 `runAt` value.
 
 ```bash
 kubectl apply -f schedule.yaml
 kubectl get schedules.agents.faros.sh daily-summary-example -o yaml
 ```
 
-Verify `agentRef`, timezone, task, and the agent's destination channel. Use the console's run action to test execution; creating a Schedule does not perform a test run.
+Verify `agentRef`, timezone, task or heartbeat checklist, and the agent's destination channel. An empty `channelRef` uses the agent's primary channel. Use the console's run action to test execution; creating a Schedule does not perform a test run.
 
 Once ready to allow scheduled execution:
 
@@ -80,3 +85,5 @@ kubectl delete schedules.agents.faros.sh daily-summary-example
 ```
 
 The file still declares `suspend: true`; reapplying it suspends the schedule again. Update the reviewed manifest if you intend to keep an enabled schedule under version control.
+
+Next: use [agent troubleshooting](/docs/use/agents/troubleshooting/) if an execution or delivery fails.

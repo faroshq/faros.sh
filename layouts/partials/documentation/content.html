@@ -4,7 +4,7 @@
   {{ if ne .RelPermalink $ctx.root.RelPermalink }}{{ partial "docs-sidebar.html" . }}{{ end }}
   <main class="faros-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
     {{ if $hasRail }}{{ partial "documentation/page-tools.html" . }}{{ end }}
-    <article class="faros-docs-article">
+    <article class="faros-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-faros/" }} docs-product-overview{{ end }}">
       {{ if and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Parent.RelPermalink $ctx.root.RelPermalink) }}
       <nav class="docs-breadcrumb" aria-label="Breadcrumb">
         {{ range .Ancestors.Reverse }}{{ if and (eq .Section "docs") (ne .RelPermalink $ctx.root.RelPermalink) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
@@ -31,8 +31,14 @@
       </section>
       {{ end }}
       {{ if eq .Params.landing "home" }}{{ partial "documentation/provider-catalog.html" . }}{{ end }}
-      {{ if eq .Params.landing "get-started" }}{{ partial "documentation/get-started.html" . }}{{ end }}
-      <div class="faros-docs-body">{{ .Content }}</div>
+      {{ if eq .Params.landing "get-started" }}
+        {{ $sections := split .RawContent "<!--more-->" }}
+        <div class="faros-docs-body docs-get-started-intro">{{ .RenderString (index $sections 0) }}</div>
+        {{ partial "documentation/get-started.html" . }}
+        {{ if gt (len $sections) 1 }}<div class="faros-docs-body">{{ .RenderString (index $sections 1) }}</div>{{ end }}
+      {{ else }}
+        <div class="faros-docs-body">{{ .Content }}</div>
+      {{ end }}
       {{ if eq .Params.landing "home" }}
       <section class="docs-home-paths" aria-labelledby="docs-explore-title">
         <h2 id="docs-explore-title">Find your way</h2>

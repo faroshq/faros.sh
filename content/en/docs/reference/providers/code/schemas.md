@@ -8,6 +8,8 @@ provider: "code"
 
 ## Compatibility and access
 
+Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
 [Download complete schemas](/schemas/code.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/code/) for those interfaces and related guides.
@@ -16,7 +18,7 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 API: `code.faros.sh/v1alpha1` · Resource: `collaborators` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/collaborators.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/collaborators.code.faros.sh.yaml)
 
 ```bash
 kubectl explain collaborators.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -43,7 +45,7 @@ kubectl explain collaborators.code.faros.sh --api-version=code.faros.sh/v1alpha1
 
 API: `code.faros.sh/v1alpha1` · Resource: `connections` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/connections.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/connections.code.faros.sh.yaml)
 
 ```bash
 kubectl explain connections.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -76,7 +78,7 @@ kubectl explain connections.code.faros.sh --api-version=code.faros.sh/v1alpha1 -
 
 API: `code.faros.sh/v1alpha1` · Resource: `deploykeys` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/deploykeys.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/deploykeys.code.faros.sh.yaml)
 
 ```bash
 kubectl explain deploykeys.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -108,7 +110,7 @@ kubectl explain deploykeys.code.faros.sh --api-version=code.faros.sh/v1alpha1 --
 
 API: `code.faros.sh/v1alpha1` · Resource: `packages` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/packages.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/packages.code.faros.sh.yaml)
 
 ```bash
 kubectl explain packages.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -144,7 +146,7 @@ kubectl explain packages.code.faros.sh --api-version=code.faros.sh/v1alpha1 --re
 
 API: `code.faros.sh/v1alpha1` · Resource: `repositories` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/repositories.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositories.code.faros.sh.yaml)
 
 ```bash
 kubectl explain repositories.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -178,7 +180,7 @@ kubectl explain repositories.code.faros.sh --api-version=code.faros.sh/v1alpha1 
 
 API: `code.faros.sh/v1alpha1` · Resource: `repositorybuildstatuses` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.faros.sh.yaml)
 
 ```bash
 kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -193,8 +195,8 @@ kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.s
 | `spec.repositoryRef` | string | Yes | RepositoryRef names the Repository (same workspace) whose build to inspect. minLength: 1; maxLength: 253 |
 | `spec.workflowFileName` | string | Yes | WorkflowFileName is the workflow file to inspect or dispatch (e.g. "faros-app-studio-build.yml"). minLength: 1; maxLength: 255 |
 | `status` | object | No | RepositoryBuildStatusStatus is the observed result. |
-| `status.completedAt` | string | No | See the downloadable schema. |
-| `status.conditions` | array&#91;object&#93; | No | See the downloadable schema. |
+| `status.completedAt` | string | No | No description supplied by the source schema. |
+| `status.conditions` | array&#91;object&#93; | No | No description supplied by the source schema. |
 | `status.conditions[].lastTransitionTime` | string | Yes | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `status.conditions[].message` | string | Yes | message is a human readable message indicating details about the transition. This may be an empty string. maxLength: 32768 |
 | `status.conditions[].observedGeneration` | integer | No | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions&#91;x&#93;.observedGeneration is 9, the condition is out of date with respect to the current state of the instance. minimum: 0 |
@@ -202,26 +204,26 @@ kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.s
 | `status.conditions[].status` | string | Yes | status of the condition, one of True, False, Unknown. enum: &#91;"True", "False", "Unknown"&#93; |
 | `status.conditions[].type` | string | Yes | type of condition in CamelCase or in foo.example.com/CamelCase. maxLength: 316; pattern: "^(&#91;a-z0-9&#93;(&#91;-a-z0-9&#93;*&#91;a-z0-9&#93;)?(&#92;&#92;.&#91;a-z0-9&#93;(&#91;-a-z0-9&#93;*&#91;a-z0-9&#93;)?)*/)?((&#91;A-Za-z0-9&#93;&#91;-A-Za-z0-9_.&#93;*)?&#91;A-Za-z0-9&#93;)$" |
 | `status.dispatched` | boolean | No | Dispatched is true when a rerun action successfully fired. |
-| `status.observedGeneration` | integer | No | See the downloadable schema. |
+| `status.observedGeneration` | integer | No | No description supplied by the source schema. |
 | `status.phase` | string | No | Phase is the coarse status for clients that do not parse conditions. |
 | `status.run` | object | No | Run is the inspected run (status action). |
-| `status.run.conclusion` | string | No | See the downloadable schema. |
+| `status.run.conclusion` | string | No | No description supplied by the source schema. |
 | `status.run.found` | boolean | Yes | Found is false when no run exists for the request. |
-| `status.run.headSHA` | string | No | See the downloadable schema. |
-| `status.run.htmlURL` | string | No | See the downloadable schema. |
-| `status.run.jobs` | array&#91;object&#93; | No | See the downloadable schema. |
+| `status.run.headSHA` | string | No | No description supplied by the source schema. |
+| `status.run.htmlURL` | string | No | No description supplied by the source schema. |
+| `status.run.jobs` | array&#91;object&#93; | No | No description supplied by the source schema. |
 | `status.run.jobs[].conclusion` | string | No | Conclusion is success &#124; failure &#124; cancelled &#124; ... &#124; "" while running. |
 | `status.run.jobs[].failureLog` | string | No | FailureLog is a bounded tail of the job's logs, set only for a failed job. |
-| `status.run.jobs[].name` | string | No | See the downloadable schema. |
+| `status.run.jobs[].name` | string | No | No description supplied by the source schema. |
 | `status.run.jobs[].status` | string | No | Status is queued &#124; in_progress &#124; completed. |
-| `status.run.runID` | integer | No | See the downloadable schema. |
-| `status.run.status` | string | No | See the downloadable schema. |
+| `status.run.runID` | integer | No | No description supplied by the source schema. |
+| `status.run.status` | string | No | No description supplied by the source schema. |
 
 ## RepositoryCheckout (v1alpha1)
 
 API: `code.faros.sh/v1alpha1` · Resource: `repositorycheckouts` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/repositorycheckouts.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycheckouts.code.faros.sh.yaml)
 
 ```bash
 kubectl explain repositorycheckouts.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
@@ -259,7 +261,7 @@ kubectl explain repositorycheckouts.code.faros.sh --api-version=code.faros.sh/v1
 
 API: `code.faros.sh/v1alpha1` · Resource: `repositorycommits` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/files/schemas/repositorycommits.code.faros.sh.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycommits.code.faros.sh.yaml)
 
 ```bash
 kubectl explain repositorycommits.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive

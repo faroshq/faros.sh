@@ -5,20 +5,28 @@ weight: 1
 doc_type: "Tutorial"
 ---
 
+Connect your GitHub account to Faros and create a test repository whose owner and visibility you can verify in GitHub.
+
 ## Prerequisites
 
-Enable **Code** and select the workspace that will own the repository resource. You need a GitHub credential that can perform the intended action for the selected user or organization.
+Sign in to Faros SaaS, enable **Code** and select the workspace that will own the repository resource. You need a GitHub credential that can perform the intended action for the selected user or organization.
 
-1. Open Code’s **Connections** view and configure a GitHub connection using the credential method your deployment exposes.
-2. Check connection status before creating repository resources.
-3. Open **Repositories**, create a repository using that connection, and select the intended owner and visibility.
-4. Wait for reconciliation, then open the resulting repository on GitHub and verify owner and visibility there.
+## Connect and create
+
+1. Open Code’s **Connections** view and choose **Connect with GitHub** when OAuth is available. Complete the GitHub authorization for the account or organization that should own the repository. If OAuth is not available, choose **Add token manually** and provide a GitHub personal access token through the form; do not paste it into a manifest or chat.
+2. Check that the connection is ready, and confirm that the GitHub identity can access the intended owner. A connection can be healthy while still lacking permission for a particular organization or repository operation.
+3. Open **Repositories**, choose **Create repository**, select the connection and owner, enter the repository name, and choose the intended visibility. Use a disposable repository for this tutorial.
+4. Wait for reconciliation, then open the resulting repository on GitHub and verify its owner, visibility, and default branch there.
+
+## Expected result and recovery
+
+The repository appears in Faros and in the intended GitHub account with the chosen visibility.
 
 If GitHub rejects the request, inspect the connection and upstream organization policy. Faros workspace permissions do not override GitHub permissions.
 
-Use a disposable repository for this tutorial. Before deleting it, inspect the provider’s deletion behavior and preserve any content you want to keep.
+Deleting a managed repository also removes it from GitHub. Preserve any content you want to keep before removing the test repository.
 
-## Verify resources from the CLI
+## Optional CLI diagnostics
 
 Select the [same workspace](/docs/reference/cli/resources/) and discover its provider API:
 

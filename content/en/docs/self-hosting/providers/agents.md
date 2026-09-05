@@ -5,19 +5,37 @@ weight: 10
 doc_type: "Guide"
 ---
 
+## Prerequisites
+
+You need a Kubernetes runtime you administer, Helm, network access from the provider runtime to the hub and advertised virtual-workspace endpoints, and permission to onboard this provider. Use the [common provider flow](/docs/self-hosting/providers/) to obtain the workspace kubeconfig. The examples below use a Secret named `faros-provider-kubeconfig` with data key `kubeconfig`; the generated onboarding command is authoritative for your hub.
+
 ## Install
 
-Follow [the common provider installation flow](/docs/self-hosting/providers/) to obtain a scoped kubeconfig and generated installation commands. Use the [chart instructions](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/README.md) for required values, Secret keys, and chart coordinates.
+```bash
+kubectl create namespace faros-provider-agents
+kubectl --namespace faros-provider-agents create secret generic faros-provider-kubeconfig \
+  --from-file=kubeconfig=./agents.kubeconfig
+
+helm upgrade --install agents oci://ghcr.io/faroshq/charts/faros-agents-provider \
+  --namespace faros-provider-agents \
+  --set hub.url=https://faros.example.com \
+  --set providerKubeconfig.secretName=faros-provider-kubeconfig \
+  --set catalogEntry.enabled=true
+```
+
+The chart README contains the matching values table and image coordinates for the deployed source version: [chart instructions](https://github.com/faroshq/faros/blob/main/providers/agents/deploy/chart/README.md). Replace the placeholder kubeconfig and hub URL; do not put bearer tokens or database URLs directly in a production values file.
 
 ## Provider requirements
 
-Configure Postgres using `store.databaseURLSecretRef`. Retain conversation, run, and memory data according to your policy. Infrastructure is optional for compute-backed tools. During recovery, inspect scheduled work before re-enabling it to avoid unintended repeats.
+Postgres is required for durable conversations, runs, and memory. Create a Secret named `agents-postgres` with key `database-url`, then set `store.databaseURLSecretRef.name=agents-postgres` and leave `store.inMemoryStore=false`. Add `envFromSecret` when the provider needs model or channel credentials.
 
-## Verify and recover
+## Verify
 
-Check the configured liveness/readiness probes, registration heartbeat, and pod events. Enable the provider in a test workspace and complete the [AI agents quickstart](/docs/use/agents/quickstart/).
+Run `kubectl -n faros-provider-agents get pods` and wait for Ready, then confirm a fresh catalog heartbeat in the hub. Enable Agents in a test workspace and follow the [AI agents quickstart](/docs/use/agents/quickstart/).
 
-For a failed upgrade, preserve logs and resource conditions. Restore state with the datastore’s supported procedure and verify credentials, bindings, and schema compatibility before allowing users back in. See [operations and recovery](/docs/self-hosting/hub/operations/).
+## Recover
+
+If a rollout fails, keep the previous chart/image and inspect pod events and provider logs before changing the database. Restore Postgres from its supported backup, verify the Secret key and schema compatibility, then re-enable scheduled work.
 
 ## Configuration reference
 

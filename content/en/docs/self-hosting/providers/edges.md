@@ -5,19 +5,37 @@ weight: 10
 doc_type: "Guide"
 ---
 
+## Prerequisites
+
+You need a Kubernetes runtime you administer, Helm, network access from the provider runtime to the hub and advertised virtual-workspace endpoints, and permission to onboard this provider. Use the [common provider flow](/docs/self-hosting/providers/) to obtain the workspace kubeconfig. The examples below use a Secret named `faros-provider-kubeconfig` with data key `kubeconfig`; the generated onboarding command is authoritative for your hub.
+
 ## Install
 
-Follow [the common provider installation flow](/docs/self-hosting/providers/) to obtain a scoped kubeconfig and generated installation commands. Use the [chart instructions](https://github.com/faroshq/faros/blob/main/providers/edges/deploy/chart/README.md) for required values, Secret keys, and chart coordinates.
+```bash
+kubectl create namespace faros-provider-edges
+kubectl --namespace faros-provider-edges create secret generic faros-provider-kubeconfig \
+  --from-file=kubeconfig=./edges.kubeconfig
+
+helm upgrade --install edges oci://ghcr.io/faroshq/charts/faros-edges-provider \
+  --namespace faros-provider-edges \
+  --set hub.url=https://faros.example.com \
+  --set providerKubeconfig.secretName=faros-provider-kubeconfig \
+  --set catalogEntry.enabled=true
+```
+
+The chart README contains the matching values table and image coordinates for the deployed source version: [chart instructions](https://github.com/faroshq/faros/blob/main/providers/edges/deploy/chart/README.md). Replace the placeholder kubeconfig and hub URL; do not put bearer tokens or database URLs directly in a production values file.
 
 ## Provider requirements
 
-The chart defaults to one replica but supports Lease-based tunnel ownership and replica-to-replica relay. Preserve the chart’s internal relay wiring and provider credential configuration when scaling. Verify that an agent reconnects and kubectl/SSH still work after a pod restart.
+Keep the default one replica unless you have verified the Lease registry and pod-to-pod relay path. If scaling, preserve `internalPort` and the provider workspace credential; agents connect to one replica and other replicas relay to its owner. Configure `hub.externalURL` when agents cannot reach the internal hub URL.
 
-## Verify and recover
+## Verify
 
-Check the configured liveness/readiness probes, registration heartbeat, and pod events. Enable the provider in a test workspace and complete the [Edges quickstart](/docs/use/edges/quickstart/).
+Run `kubectl -n faros-provider-edges get pods` and wait for Ready and a fresh heartbeat. Enable Edges in a test workspace, connect one disposable agent, and verify reconnect plus kubectl/SSH after a pod restart using the [Edges quickstart](/docs/use/edges/quickstart/).
 
-For a failed upgrade, preserve logs and resource conditions. Restore state with the datastore’s supported procedure and verify credentials, bindings, and schema compatibility before allowing users back in. See [operations and recovery](/docs/self-hosting/hub/operations/).
+## Recover
+
+For a failed upgrade, preserve agent join state and inspect Lease/relay logs before deleting pods. Roll back the chart/image, verify the internal listener is reachable between replicas, and reconnect one test agent before restoring normal traffic.
 
 ## Configuration reference
 

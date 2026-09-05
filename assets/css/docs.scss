@@ -378,3 +378,14 @@ html:not(.dark) body.docs-page { --fx-success: #087a50; --fx-text-muted: #696b82
 .docs-primary .docs-nav-dropdown .docs-nav-group-start { border-top: 1px solid var(--fx-border); border-radius: 0; margin-top: .4rem; padding-top: 1rem; }
 .docs-sidebar-group { margin-top: 1.4rem; }
 .docs-sidebar-group h2 { margin: 0 0 .5rem .65rem; color: var(--fx-text-2); font-size: .75rem; font-weight: 600; }
+
+// Keep the overview table’s short destination labels readable.
+.docs-product-overview .faros-docs-body table th:last-child,
+.docs-product-overview .faros-docs-body table td:last-child {
+  min-width: 9rem;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.docs-get-started-layout .docs-get-started-intro { margin-top: 0; margin-bottom: 2.75rem; }
+.docs-guide-description { color: var(--fx-text-2); margin: -.5rem 0 1.25rem; line-height: 1.65; }

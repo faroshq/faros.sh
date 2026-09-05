@@ -5,11 +5,22 @@ weight: 3
 doc_type: "Guide"
 ---
 
+Connect an existing service so Faros can reach it through an edge, or deploy a container workload to connected Kubernetes clusters.
+
+## Prerequisites
+
+Sign in to Faros SaaS and select a workspace with Edges enabled. You need permission to create services or workloads and a [connected edge](/docs/use/edges/quickstart/). Services can use a Linux server or Kubernetes edge; workloads require a Kubernetes edge. Have the application's address and any required credential ready. For workloads, confirm the image can be pulled by the target cluster and inspect its edge labels before selecting targets.
+
 ## Connect a service
 
-Use a connected edge in your selected workspace. In Edges, create a Service using the supported preset or generic configuration. For a Linux server, identify the host/LAN address and port; for Kubernetes, select the target service. Configure the required credential through the provider.
+1. Open **Edges → Services** and choose **Create service**.
+2. Enter a **Name**, select the **Edge**, and choose the service **Type**.
+3. Set **Scheme** and **Port**. A preset may fix the scheme.
+4. For **Host / IP**, enter the address reachable from that edge, not from your laptop. For **Kubernetes Service**, enter **Target namespace** and **Target service name**. Linux server edges use the host option.
+5. Choose **Create service**, then open the service and configure its credentials if the selected type requires them.
+6. Check its validation result and reachability before using it with an assistant.
 
-Verify validation status and reachability before testing the generated MCP tools. Discovery alone does not establish permission or readiness. See [MCP setup](/docs/use/ai-assistants/) to connect an external assistant.
+Expect the service to be listed on the selected edge and validation to succeed. Then use [MCP setup](/docs/use/ai-assistants/) to connect an assistant and inspect the tools exposed for that service. A listing alone does not verify connectivity or access.
 
 ## Available service presets
 
@@ -18,7 +29,6 @@ Edges supports the following service types. Presets describe how to connect to a
 | Category | Service type values |
 |---|---|
 | Home automation | `home-assistant` |
-| Media | `qbittorrent`, `prowlarr`, `sonarr`, `radarr`, `jellyfin`, `plex` |
 | Observability | `grafana`, `grafana-loki`, `prometheus` |
 | Infrastructure | `portainer`, `proxmox` |
 | Network | `adguard`, `pihole`, `unifi-network`, `unifi-protect` |
@@ -28,13 +38,27 @@ Inspect the [service schema](/docs/reference/providers/edges/schemas/) for conne
 
 ## Deploy a workload
 
-Open Workloads or the marketplace and choose a workload or chart. Review values and the edge label selector before creating it. A Workload fans out into Placements for matching targets.
+1. Open **Edges → Workloads** and start creating a workload.
+2. Enter a **Name** and a container **Image** available to the cluster. Prefer a fixed version or digest for repeatable deployment.
+3. Choose **Replicas** and **Strategy**: **Spread** targets all matching edges; **Singleton** selects one.
+4. Enter an **Edge selector** using comma-separated labels such as `env=dev`. Confirm those labels belong only to the Kubernetes edges you intend to use.
+5. Choose **Create workload**. Inspect the resulting Placements to see which edges received the workload.
+6. Wait for ready replicas, then check the application's behavior on the target cluster. A running container does not necessarily expose a public URL.
 
-Inspect Placements and verify the application on the intended edges. If nothing deploys, check labels, connectivity, rendered configuration, and agent status.
+For a marketplace application, select the application, enter **Workload name**, choose a Kubernetes **Edge**, review the pinned chart and service information, then choose **Deploy**. This path creates a singleton Helm workload pinned to that edge; complete any service credentials afterward.
 
-## Verify workloads from the CLI
+## If the service or workload is not ready
 
-Select the [owning Faros workspace](/docs/reference/cli/resources/), then list deployment and placement state:
+| Symptom | What to check |
+| --- | --- |
+| Service validation fails | Confirm the address and port are reachable from the edge and that the configured credential is accepted by the application. |
+| No Placements appear | Check the edge selector against actual Kubernetes edge labels; Linux server edges do not run these workloads. |
+| Placement has no ready replicas | Check edge connectivity, image availability, and application startup errors on that cluster. |
+| Workload is ready but application is inaccessible | Verify its own Service, port, and exposure configuration; readiness is not a public routing check. |
+
+## Optional CLI diagnostics {#verify-workloads-from-the-cli}
+
+If the console status does not explain a failure, select the [owning Faros workspace](/docs/reference/cli/resources/), then list deployment and placement state:
 
 ```bash
 kubectl faros get workloads

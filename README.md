@@ -96,8 +96,10 @@ Fork, branch, change, verify with `hugo server`, open a PR.
 Regenerate the provider field tables and downloadable schema bundles from the pinned product source (Python 3 and Ruby's standard YAML/JSON libraries required):
 
 ```sh
-python3 scripts/generate-docs-schemas.py ../faros --revision 0c79ff47
+python3 scripts/generate-docs-schemas.py ../faros --revision PRODUCT_COMMIT
 ```
+
+Replace `PRODUCT_COMMIT` with the reviewed product commit to publish. Generated pages and bundles record its resolved SHA, and source links are pinned to that commit.
 
 The generator reads committed files with `git show`, so unrelated working-tree changes in the product repo are not included. Review changed contracts before advancing the revision; update guide examples and the documentation baseline together. Generated tables cover resource schemas, not every provider HTTP API.
 

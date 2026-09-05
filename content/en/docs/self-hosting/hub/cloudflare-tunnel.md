@@ -92,7 +92,9 @@ kubectl get clusterissuer letsencrypt-prod
 # letsencrypt-prod   True    30s
 ```
 
-## Step 3 — Install the Cloudflare Tunnel ingress controller
+## Step 3 — Choose a Cloudflare route integration
+
+The hub chart supports both a Kubernetes `Ingress` and a Gateway API `HTTPRoute`. The commands below use the `strrl.dev` Ingress controller, so keep `ingress.enabled: true` in the hub values. If your cluster already runs Faros's cfgate Cloudflare controller, skip this controller install and use the HTTPRoute values shown below instead; do not enable both integrations for the same hostname.
 
 ```bash
 helm repo add strrl.dev https://helm.strrl.dev
@@ -108,6 +110,21 @@ helm upgrade --install --wait \
 ```
 
 In the [Cloudflare Zero Trust dashboard](https://one.dash.cloudflare.com) → **Networks → Tunnels** you should see `faros-tunnel` as **Healthy**.
+
+For the cfgate Gateway API integration, use this route block instead of the `ingress` block in the next step:
+
+```yaml
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: cloudflare-tunnel
+      namespace: cfgate-system
+  hostnames:
+    - hub.yourdomain.com
+  annotations:
+    cfgate.io/origin-protocol: "https"
+    cfgate.io/origin-ssl-verify: "false" # the chart's hub origin is self-signed by default
+```
 
 ## Step 4 — Deploy the hub
 
@@ -156,7 +173,7 @@ helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
 kubectl -n faros-system get certificate
 # faros-faros-hub-tls   True   ...
 
-# Ingress address (will be xxxx.cfargotunnel.com)
+# In the Ingress-controller variant, inspect the generated route.
 kubectl get ingress -n faros-system
 
 # End-to-end

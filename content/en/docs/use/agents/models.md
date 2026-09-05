@@ -19,6 +19,8 @@ Enable **AI agents** in your selected workspace. You need permission to manage i
 
 If testing fails, check the endpoint URL, key validity, model availability, and the provider runtime's outbound network access. Correct the credential with **Rotate / model**, save it, and test again. Never paste the key into an agent prompt or diagnostic report.
 
+Expected result: the credential reports **healthy** with latency, and an agent can use it for a short text response. A healthy credential test does not prove tool access or every model feature.
+
 ## Assign the model
 
 [Create an agent](/docs/use/agents/quickstart/) and select this credential as its model. Run a short conversation to verify generation. A healthy credential test does not validate tool permissions or every model feature.
@@ -28,3 +30,5 @@ If testing fails, check the endpoint URL, key validity, model availability, and 
 Use **Rotate / model** to change the model, endpoint, or key. Leaving the new key blank keeps the existing key. After saving, test the credential and an assigned agent again.
 
 Review the credential's primary/fallback agent assignments before deleting it. Reassign those agents first; deletion does not revoke the upstream API key. Revoke an exposed key at its issuer separately.
+
+Next: [create an AI agent](/docs/use/agents/quickstart/). If the credential remains failed after one corrected test, use [AI agents troubleshooting](/docs/use/agents/troubleshooting/) and provide the status, endpoint class, and request/run ID without the key.

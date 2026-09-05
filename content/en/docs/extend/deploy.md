@@ -21,7 +21,7 @@ deploy/chart/
 
 The key wiring in `deployment.yaml`:
 
-- **initContainer** runs your binary with `args: ["init"]`. It mounts the hub-minted kubeconfig Secret (`providerKubeconfig.secretName`, default `faros-provider-kubeconfig`, key `kubeconfig`) at `/var/run/secrets/faros/` and the CatalogEntry ConfigMap at `/etc/faros/catalogentry/`. The Secret mount is **not optional** — the pod naturally blocks until the hub's provider reconciler has delivered it, which sequences bootstrap without any operator logic.
+- **initContainer** runs your binary with `args: ["init"]`. In charts that use the init/bootstrap path, it mounts the hub-minted kubeconfig Secret (`providerKubeconfig.secretName`, default `faros-provider-kubeconfig`, key `kubeconfig`) at `/var/run/secrets/faros/` and the CatalogEntry ConfigMap at `/etc/faros/catalogentry/`. That Secret mount is intentionally non-optional in this mode, so the pod waits until the hub's provider reconciler delivers it. Charts using an external or hub-provisioned serve-only mode may make the same mount optional and serve limited catalog/readiness traffic while waiting; follow that provider chart's values and README.
 - **serve container** runs the long-lived process: portal assets, backend API, controllers, MCP, heartbeat.
 - The **CatalogEntry goes into a ConfigMap, not the host cluster** — it's a kcp resource; `init` applies it into your provider workspace using the minted kubeconfig. In-cluster the chart points `ui.url`/`backend.url` at the Service DNS (`http://<release>.<namespace>.svc.cluster.local:<port>`).
 
@@ -60,7 +60,7 @@ Serve `/healthz` → 200; the chart wires it into liveness and readiness probes,
 The admin-side steps, in order:
 
 1. `kubectl apply -f provider.yaml` (the `Provider` object) against the hub — provisions workspace, SA, kubeconfig Secret.
-2. Copy the minted Secret (`<name>-kubeconfig` in `root:faros:system:providers`) into the runtime cluster's namespace where the chart expects it — or let your deployment tooling do it.
+2. Read the `kubeconfig` data from the minted Secret (`<name>-kubeconfig` in `root:faros:system:providers`) and create a Secret with that data key in the runtime cluster's provider namespace. A Kubernetes Secret does not cross clusters by itself; use the generated onboarding command or an equivalent sealed-secret/GitOps process.
 3. `helm install` the chart. Init bootstraps the API; serve starts heartbeating; the provider appears in the catalog.
 4. If your export claims `*.faros.sh` groups, supply the required `identityHash` values from the hub admin view.
 

@@ -8,6 +8,8 @@ provider: "infrastructure"
 
 ## Compatibility and access
 
+Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
 [Download complete schemas](/schemas/infrastructure.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/infrastructure/) for those interfaces and related guides.
@@ -16,7 +18,7 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 API: `infrastructure.faros.sh/v1alpha1` · Resource: `instances` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/infrastructure/install/crds/infrastructure.faros.sh_instances.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.faros.sh_instances.yaml)
 
 ```bash
 kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.faros.sh/v1alpha1 --recursive
@@ -29,12 +31,12 @@ kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.f
 | `spec.values` | object | No | Values is the template-shaped input — exactly the object Template.spec.schema describes, the same payload that used to be the whole spec of the retired per-template kinds. The platform-reserved fields (farosMode, farosActions*, plus controller-stamped fields like expose.fqdn, farosCluster, credentialsSecretName) live in here too, so "spec" in template schemas, RGD ${schema.spec.*} expressions, and view definitions all keep meaning this object. The apiserver preserves it verbatim; the instance controller validates it against the Template's schema and reports violations on the Ready condition. |
 | `status` | object | No | InstanceStatus is the observed state: a platform-guaranteed baseline plus whatever the template's backend projects. The struct only types the baseline — backend-projected fields (url, runtimeNamespace, components, outputs, controlSecretRef, …) are preserved as unknown fields, exactly as the retired per-template CRDs did, so a template's status contract is still authored in its RGD statusMapping and not here. |
 | `status.conditions` | array&#91;object&#93; | No | Conditions carries both provider-owned conditions (Valid, OIDCConfigured) and conditions mirrored from the runtime kro instance (Ready, ResourcesReady, …). The shape is deliberately looser than metav1.Condition because mirrored backend conditions may omit reason. |
-| `status.conditions[].lastTransitionTime` | string | No | See the downloadable schema. |
-| `status.conditions[].message` | string | No | See the downloadable schema. |
-| `status.conditions[].observedGeneration` | integer | No | See the downloadable schema. |
-| `status.conditions[].reason` | string | No | See the downloadable schema. |
-| `status.conditions[].status` | string | Yes | See the downloadable schema. |
-| `status.conditions[].type` | string | Yes | See the downloadable schema. |
+| `status.conditions[].lastTransitionTime` | string | No | No description supplied by the source schema. |
+| `status.conditions[].message` | string | No | No description supplied by the source schema. |
+| `status.conditions[].observedGeneration` | integer | No | No description supplied by the source schema. |
+| `status.conditions[].reason` | string | No | No description supplied by the source schema. |
+| `status.conditions[].status` | string | Yes | No description supplied by the source schema. |
+| `status.conditions[].type` | string | Yes | No description supplied by the source schema. |
 | `status.farosNetworkPhase` | string | No | NetworkPhase is the controller-owned runtime network phase. It is mirrored from the runtime Instance only after the runtime reports Ready; callers must not use spec.values as an execution-readiness signal. |
 | `status.message` | string | No | Message carries human-readable detail for the current phase. |
 | `status.observedGeneration` | integer | No | ObservedGeneration mirrors metadata.generation last reconciled by the instance controller. |
@@ -46,7 +48,7 @@ kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.f
 
 API: `infrastructure.faros.sh/v1alpha1` · Resource: `templates` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/main/providers/infrastructure/install/crds/infrastructure.faros.sh_templates.yaml)
+[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.faros.sh_templates.yaml)
 
 ```bash
 kubectl explain templates.infrastructure.faros.sh --api-version=infrastructure.faros.sh/v1alpha1 --recursive

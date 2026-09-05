@@ -1,6 +1,6 @@
 ---
 title: "Infrastructure API reference"
-description: "Resource and interface map, with versioned source definitions."
+description: "Resource operations, examples, and schema definitions."
 weight: 90
 doc_type: "Reference"
 provider: "infrastructure"
@@ -36,6 +36,20 @@ The development tools require a development-capable template, an instance create
 ## Resource schemas
 
 [Resource fields and validation rules](/docs/reference/providers/infrastructure/schemas/) are generated from the checked-in schemas, with a downloadable JSON bundle.
+
+## Inspect templates and instances
+
+Use a workspace-authenticated context. Read the catalog and lifecycle conditions before provisioning or updating an instance.
+
+```sh
+kubectl faros use
+kubectl api-resources --api-group=infrastructure.faros.sh
+kubectl get templates.infrastructure.faros.sh,instances.infrastructure.faros.sh
+kubectl explain instances.infrastructure.faros.sh.spec --api-version=infrastructure.faros.sh/v1alpha1
+kubectl describe instance.infrastructure.faros.sh/<instance-name>
+```
+
+The MCP `provision` tool creates an Instance asynchronously. First call `list_templates`, then `describe_template`; use the returned template name and its declared input schema in `provision`. Read the resulting Instance with `get_instance` or the command above. A failed condition contains the actionable reconciliation message; do not repeatedly update immutable template inputs. Delete only after checking the template's cleanup behavior and the instance's final status.
 
 ## Authoritative definitions
 

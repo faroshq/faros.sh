@@ -20,6 +20,8 @@ Start in the Faros SaaS hub with **AI agents** enabled in your workspace. You ca
 
 A successful text response verifies the model connection. It does not verify access to GitHub, MCP, or other tools.
 
+If creation or the first response fails, confirm the selected workspace and model credential before recreating the agent. A missing model is a credential setup problem; a tool failure requires the tool connection and authorization path.
+
 ## Next steps and cleanup
 
 [Configure tools and approvals](/docs/use/agents/tools/) before granting operational capabilities. Then [add a schedule](/docs/use/agents/schedules/) if the agent should run without an active chat.

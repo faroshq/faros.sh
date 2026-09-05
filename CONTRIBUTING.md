@@ -26,3 +26,7 @@ information on using pull requests.
 
 This project follows
 [Google's Open Source Community Guidelines](https://opensource.google.com/conduct/).
+
+## Product documentation
+
+Follow the [product documentation standard](docs/content-standard.md) when writing or reviewing pages under `content/en/docs`. It covers SaaS workflows, task structure, executable reference examples, source verification, and local checks.

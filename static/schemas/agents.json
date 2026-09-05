@@ -1,4 +1,5 @@
 {
+  "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
       "source": "providers/agents/deploy/chart/files/schemas/agents.agents.faros.sh.yaml",

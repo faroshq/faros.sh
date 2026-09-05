@@ -3,6 +3,7 @@
 
 import subprocess
 import tempfile
+import json
 import unittest
 from pathlib import Path
 
@@ -68,10 +69,16 @@ class SchemaGeneratorTest(unittest.TestCase):
             script.write_text((repo / "scripts" / "generate-docs-schemas.py").read_text())
             subprocess.run(["python3", str(script), str(product), "--revision", "HEAD"], cwd=root, check=True)
 
+            revision = subprocess.check_output(["git", "-C", str(product), "rev-parse", "HEAD"], text=True).strip()
             for provider in PROVIDERS:
                 schema = root / "content" / "en" / "docs" / "reference" / "providers" / provider / "schemas.md"
                 reference = root / "content" / "en" / "docs" / "reference" / "providers" / provider / "_index.md"
                 text = schema.read_text()
+                self.assertIn(f'/blob/{revision}/', text)
+                self.assertNotIn('/blob/main/', text)
+                self.assertIn(f'product commit `{revision[:12]}`', text)
+                bundle = json.loads((root / 'static' / 'schemas' / f'{provider}.json').read_text())
+                self.assertEqual(bundle['revision'], revision)
                 self.assertIn(f'provider: "{provider}"', text)
                 self.assertIn(f"/docs/reference/providers/{provider}/", text)
                 self.assertIn(f"/schemas/{provider}.json", text)
