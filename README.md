@@ -7,8 +7,8 @@ Marketing site and documentation for [faros](https://faros.sh) — the open-sour
 faros is a multi-tenant control plane you build your platform *on*. Four primitives carry the system:
 
 - **Workspaces** — the isolation boundary; every team or environment is a [kcp](https://kcp.io) logical cluster with its own API surface, RBAC, and quota.
-- **Providers** — the drivers; each capability (application templates, git, edges, hosted AI agents, fleet query) is a separate pod with its own API, controllers, portal UI, and MCP tools, enabled per workspace.
-- **MCP** — the syscall layer; one endpoint per tenant federates every enabled provider's tools, each inheriting that workspace's permissions.
+- **Providers** — the drivers; each capability adds resource APIs, controllers, and, where implemented, portal UI and MCP tools. Providers are enabled per workspace.
+- **MCP** — the syscall layer; workspace-scoped endpoints expose tools subject to the endpoint credential and provider authorization. Aggregate MCPServer endpoints federate edge tools and tools from enabled providers that expose MCP; per-edge endpoints serve individual Kubernetes edges.
 - **Edges** — the I/O layer; clusters and servers dial *out* over a reverse tunnel, so only the hub needs a public address.
 
 The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros); this repo is only the website.
@@ -17,11 +17,12 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 
 | Path | What's in it |
 |:-----|:-------------|
-| `layouts/partials/hero-home.html` | The whole landing page — markup, scoped styles, and motion layer |
+| `layouts/partials/home-v2/` | Active landing page; `layouts/index.html` includes `page.html`, which assembles the section and style partials |
 | `layouts/partials/{header,footer_custom,docs-sidebar}.html` | Site chrome; documentation uses its own header and contextual sidebar |
 | `layouts/docs/` | Docs shell (single + list) |
 | `layouts/_default/_markup/` | Markdown render hooks (links, headings, blockquotes, lists) |
 | `content/en/docs/` | All documentation |
+| `data/docs.json` | Documentation destinations, provider directory, and curated sidebar groups and links |
 | `assets/css/style.scss` | Global styles, design tokens, docs theme |
 
 ## Design system
@@ -37,26 +38,26 @@ The site runs on **Violet Circuit**, the same system as the faros console (canon
 ## Adding a docs page
 
 1. Create the markdown under `content/en/docs/<section>/<page>.md` with `title`, `description`, and `weight` front matter.
-2. Set `doc_type` to Tutorial, Guide, Reference, Overview, or Troubleshooting. Sidebar entries are generated from populated pages in weight order.
-3. Provider pages belong under `use/<provider>/`; the provider overview cascades its `provider` slug to children. Shared concepts, administration, and hosting instructions have their own canonical sections.
-4. Add a provider or top-level destination in `data/docs.json` only when its landing page is populated. The directory stays visible regardless of deployment enablement.
+2. Set `doc_type` to match the page, such as Tutorial, Guide, Reference, Overview, Concept, or Troubleshooting. Add its sidebar link to the appropriate `sidebars[].groups[].links` list in `data/docs.json`; sidebar order follows those lists, not page weights.
+3. Provider user guides belong under `use/<provider>/`, API references and generated schemas under `reference/providers/<provider>/`, and hosting instructions under `self-hosting/providers/`. The user-guide overview cascades its `provider` slug to children; set `provider` explicitly on reference pages to retain provider search identity.
+4. Add a provider or top-level destination in `data/docs.json` only when its landing page is populated, and configure its sidebar groups. The directory stays visible regardless of deployment enablement.
 5. Run `npm test` to build, check internal links and anchors, validate navigation/search coverage, and test task discovery. Search is generated at `/docs/index.json`; no external search service is required.
 
 See [navigation validation](docs/navigation-validation.md) for the prototype, task study, and remaining human validation.
 
 ## Local development
 
-Requires Hugo **extended** ≥ v0.110.0, Node.js (PostCSS + Tailwind), and Go (Hugo modules).
+Requires Node.js (PostCSS + Tailwind) and Go (Hugo modules). The npm dependencies pin Hugo **extended** to **0.140.0**; the theme declares a minimum of v0.110.0. Validation with `npm test` also requires Python 3 and Ruby with its standard YAML/JSON libraries for the schema-generator tests.
 
 ```bash
 npm install
-hugo server          # http://localhost:1313
+npm run serve        # http://localhost:1313; uses the pinned Hugo installation
 ```
 
 Build a production bundle:
 
 ```bash
-hugo                 # output in public/
+npm run build:production     # output in public/; also checks internal links
 ```
 
 Docker:
@@ -83,7 +84,7 @@ HUGO_MODULE_WORKSPACE=docsy.work hugo server --ignoreVendorPaths "**"
 
 ## Contributing
 
-Fork, branch, change, verify with `hugo server`, open a PR.
+Fork, branch, change, preview with `npm run serve`, run `npm test`, and open a PR.
 
 ## Resources
 
