@@ -92,8 +92,6 @@
 {{ end }}
 
 {{ template "_internal/google_analytics.html" . }}
-{{ template "_internal/google_captacha.html" . }}
-{{ template "_internal/discord_form.html" . }}
 
 {{ $sass := resources.Get "css/style.scss" }}
 {{ $styles := $sass | css.Sass | postCSS }}
