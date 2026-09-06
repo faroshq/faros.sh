@@ -1,0 +1,34 @@
+<script>
+(() => {
+ const root = document.getElementById('violet-circuit');
+ if (!root) return;
+ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+ const scenes = [...root.querySelectorAll('.vc-scene')];
+ let queued = false;
+ function update() {
+  queued = false;
+  if (reduced.matches) return;
+  const height = window.innerHeight;
+  scenes.forEach(scene => {
+   const box = scene.getBoundingClientRect();
+   if (box.bottom < 0 || box.top > height) return;
+   const progress = Math.max(0, Math.min(1, (height - box.top) / (height + box.height)));
+   scene.style.setProperty('--flow', progress.toFixed(4));
+  });
+ }
+ function schedule() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+ window.addEventListener('scroll', schedule, { passive: true });
+ window.addEventListener('resize', schedule, { passive: true });
+ reduced.addEventListener('change', () => { if(reduced.matches) scenes.forEach(s=>s.style.removeProperty('--flow')); else schedule(); });
+ root.querySelectorAll('[data-branch]').forEach(link => {
+  const scene = link.closest('.vc-scene');
+  const activate = () => scene.dataset.active = link.dataset.branch;
+  const clear = () => delete scene.dataset.active;
+  link.addEventListener('pointerenter', activate);
+  link.addEventListener('pointerleave', clear);
+  link.addEventListener('focus', activate);
+  link.addEventListener('blur', clear);
+ });
+ schedule();
+})();
+</script>

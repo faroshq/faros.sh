@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T13:59:52.273634+00:00",
+  "title": "Design System: Faros \u2014 Violet Circuit homepage",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Near-black ground",
+        "tonalRamp": [
+          "oklch(15% 0.015 275)",
+          "oklch(26% 0.015 275)",
+          "oklch(38% 0.015 275)",
+          "oklch(49% 0.015 275)",
+          "oklch(61% 0.015 275)",
+          "oklch(72% 0.015 275)",
+          "oklch(84% 0.015 275)",
+          "oklch(95% 0.015 275)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Pale ink",
+        "tonalRamp": [
+          "oklch(15% 0.012 285)",
+          "oklch(26% 0.012 285)",
+          "oklch(38% 0.012 285)",
+          "oklch(49% 0.012 285)",
+          "oklch(61% 0.012 285)",
+          "oklch(72% 0.012 285)",
+          "oklch(84% 0.012 285)",
+          "oklch(95% 0.012 285)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted lavender",
+        "tonalRamp": [
+          "oklch(15% 0.04 285)",
+          "oklch(26% 0.04 285)",
+          "oklch(38% 0.04 285)",
+          "oklch(49% 0.04 285)",
+          "oklch(61% 0.04 285)",
+          "oklch(72% 0.04 285)",
+          "oklch(84% 0.04 285)",
+          "oklch(95% 0.04 285)"
+        ]
+      },
+      "violet": {
+        "role": "primary",
+        "displayName": "Circuit violet",
+        "tonalRamp": [
+          "oklch(15% 0.2 290)",
+          "oklch(26% 0.2 290)",
+          "oklch(38% 0.2 290)",
+          "oklch(49% 0.2 290)",
+          "oklch(61% 0.2 290)",
+          "oklch(72% 0.2 290)",
+          "oklch(84% 0.2 290)",
+          "oklch(95% 0.2 290)"
+        ]
+      },
+      "bright": {
+        "role": "primary",
+        "displayName": "Signal violet",
+        "tonalRamp": [
+          "oklch(15% 0.16 290)",
+          "oklch(26% 0.16 290)",
+          "oklch(38% 0.16 290)",
+          "oklch(49% 0.16 290)",
+          "oklch(61% 0.16 290)",
+          "oklch(72% 0.16 290)",
+          "oklch(84% 0.16 290)",
+          "oklch(95% 0.16 290)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Translucent divider",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "light-ground": {
+        "role": "neutral",
+        "displayName": "Cool paper",
+        "tonalRamp": [
+          "oklch(15% 0.008 285)",
+          "oklch(26% 0.008 285)",
+          "oklch(38% 0.008 285)",
+          "oklch(49% 0.008 285)",
+          "oklch(61% 0.008 285)",
+          "oklch(72% 0.008 285)",
+          "oklch(84% 0.008 285)",
+          "oklch(95% 0.008 285)"
+        ]
+      },
+      "light-ink": {
+        "role": "neutral",
+        "displayName": "Deep ink",
+        "tonalRamp": [
+          "oklch(15% 0.035 280)",
+          "oklch(26% 0.035 280)",
+          "oklch(38% 0.035 280)",
+          "oklch(49% 0.035 280)",
+          "oklch(61% 0.035 280)",
+          "oklch(72% 0.035 280)",
+          "oklch(84% 0.035 280)",
+          "oklch(95% 0.035 280)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Slate lavender",
+        "tonalRamp": [
+          "oklch(15% 0.045 280)",
+          "oklch(26% 0.045 280)",
+          "oklch(38% 0.045 280)",
+          "oklch(49% 0.045 280)",
+          "oklch(61% 0.045 280)",
+          "oklch(72% 0.045 280)",
+          "oklch(84% 0.045 280)",
+          "oklch(95% 0.045 280)"
+        ]
+      },
+      "light-violet": {
+        "role": "primary",
+        "displayName": "Paper circuit violet",
+        "tonalRamp": [
+          "oklch(15% 0.22 290)",
+          "oklch(26% 0.22 290)",
+          "oklch(38% 0.22 290)",
+          "oklch(49% 0.22 290)",
+          "oklch(61% 0.22 290)",
+          "oklch(72% 0.22 290)",
+          "oklch(84% 0.22 290)",
+          "oklch(95% 0.22 290)"
+        ]
+      },
+      "light-bright": {
+        "role": "primary",
+        "displayName": "Paper active violet",
+        "tonalRamp": [
+          "oklch(15% 0.22 290)",
+          "oklch(26% 0.22 290)",
+          "oklch(38% 0.22 290)",
+          "oklch(49% 0.22 290)",
+          "oklch(61% 0.22 290)",
+          "oklch(72% 0.22 290)",
+          "oklch(84% 0.22 290)",
+          "oklch(95% 0.22 290)"
+        ]
+      },
+      "light-on": {
+        "role": "neutral",
+        "displayName": "White action ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "light-rule": {
+        "role": "neutral",
+        "displayName": "Paper divider",
+        "tonalRamp": [
+          "oklch(15% 0.018 290)",
+          "oklch(26% 0.018 290)",
+          "oklch(38% 0.018 290)",
+          "oklch(49% 0.018 290)",
+          "oklch(61% 0.018 290)",
+          "oklch(72% 0.018 290)",
+          "oklch(84% 0.018 290)",
+          "oklch(95% 0.018 290)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Wide display",
+        "purpose": "Homepage hero only; Archivo width stretch is 125%."
+      }
+    },
+    "shadows": [
+      {
+        "name": "action-hover",
+        "value": "0 0 22px color-mix(in srgb,var(--vc-violet) 25%,transparent)",
+        "purpose": "Primary action hover only."
+      },
+      {
+        "name": "signal-filter",
+        "value": "drop-shadow(0 0 3px var(--vc-violet))",
+        "purpose": "Bright hero signal SVG filter."
+      }
+    ],
+    "motion": [
+      {
+        "name": "action-state",
+        "value": "160ms",
+        "purpose": "Background and glow transition."
+      },
+      {
+        "name": "branch-state",
+        "value": "180ms",
+        "purpose": "Branch opacity/stroke, terminal fill, and hover arrow."
+      },
+      {
+        "name": "scroll-signal",
+        "value": "stroke-dashoffset: calc(var(--phase) - var(--flow)*1000)",
+        "purpose": "Visible scene scroll progress, queued by requestAnimationFrame; disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-hero",
+        "value": "1700px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Demo destination, with violet hover and visible keyboard focus.",
+      "html": "<a class=\"ds-cta\" href=\"/contact/\">Request a demo <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 13 13 3M3 3h10v10\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></a>",
+      "css": ".ds-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:40px;background:var(--vc-violet,#8b6bff);color:var(--vc-on,#0a0b12);padding:17px 22px;border-radius:4px;font-weight:600;font-size:16px;text-decoration:none;font-family:VCInstrument,'Instrument Sans',sans-serif;transition:background 160ms,box-shadow 160ms}.ds-cta:hover{background:var(--vc-bright,#a18aff);box-shadow:0 0 22px color-mix(in srgb,var(--vc-violet,#8b6bff) 25%,transparent)}.ds-cta:focus-visible{outline:2px solid var(--vc-violet,#8b6bff);outline-offset:8px}@media(prefers-reduced-motion:reduce){.ds-cta,.ds-link,.ds-terminal,.ds-detail svg{transition:none!important}}"
+    },
+    {
+      "name": "Text link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Open secondary navigation without a containing card.",
+      "html": "<a class=\"ds-link\" href=\"/platform/\">Understand the platform <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 13 13 3M3 3h10v10\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:20px;font-size:15px;padding:10px 0;color:var(--vc-ink,#e9e9f2);text-decoration:none;text-underline-offset:5px;font-family:VCInstrument,'Instrument Sans',sans-serif;}.ds-link:hover{text-decoration:underline}.ds-link:focus-visible{outline:2px solid var(--vc-violet,#8b6bff);outline-offset:8px}@media(prefers-reduced-motion:reduce){.ds-cta,.ds-link,.ds-terminal,.ds-detail svg{transition:none!important}}"
+    },
+    {
+      "name": "Capability terminal",
+      "kind": "custom",
+      "description": "A linked capability and square connection point; full-page script also activates its associated SVG branch.",
+      "html": "<a class=\"ds-cap\" href=\"/docs/use/agents/\"><span class=\"ds-terminal\" aria-hidden=\"true\"></span><strong>AI agents</strong><p>Persistent agents. Defined tools, schedules, and budgets.</p><span class=\"ds-detail\">Explore agents <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 13 13 3M3 3h10v10\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></span></a>",
+      "css": ".ds-cap{display:block;position:relative;max-width:320px;padding:12px 18px 14px 28px;background:var(--vc-ground,#0a0b12);color:var(--vc-ink,#e9e9f2);text-decoration:none;font-family:VCInstrument,'Instrument Sans',sans-serif;}.ds-cap strong{font-family:VCArchivo,Archivo,sans-serif;font-stretch:125%;font-size:25px;font-weight:500;letter-spacing:-.025em}.ds-cap p{font-size:16px;line-height:1.65;color:var(--vc-muted,#9b9db5);margin:14px 0 0}.ds-terminal{position:absolute;left:-4px;top:25px;width:9px;height:9px;border:1px solid var(--vc-violet,#8b6bff);background:var(--vc-ground,#0a0b12);transition:background 180ms}.ds-cap:hover .ds-terminal,.ds-cap:focus-visible .ds-terminal{background:var(--vc-violet,#8b6bff)}.ds-detail{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--vc-muted,#9b9db5);margin-top:18px}.ds-detail svg{transition:transform 180ms}.ds-cap:hover .ds-detail svg{transform:translate(3px,-3px)}.ds-cap:focus-visible{outline:2px solid var(--vc-violet,#8b6bff);outline-offset:8px}@media(prefers-reduced-motion:reduce){.ds-cta,.ds-link,.ds-terminal,.ds-detail svg{transition:none!important}}"
+    },
+    {
+      "name": "Source braces",
+      "kind": "custom",
+      "description": "Typographic open-source signature, independent of product UI.",
+      "html": "<div class=\"ds-source\" aria-hidden=\"true\"><span>{</span><span class=\"ds-source-center\">faros<small>Apache 2.0</small></span><span>}</span></div>",
+      "css": ".ds-source{display:flex;align-items:center;gap:20px;color:var(--vc-violet,#8b6bff);font:135px/1 VCMono,\"IBM Plex Mono\",monospace}.ds-source-center{font:38px/1 VCArchivo,Archivo,sans-serif;color:var(--vc-ink,#e9e9f2);letter-spacing:-.035em}.ds-source-center small{display:block;font:11px/1 VCMono,\"IBM Plex Mono\",monospace;color:var(--vc-muted,#9b9db5);margin-top:20px;letter-spacing:0}@media(prefers-reduced-motion:reduce){.ds-cta,.ds-link,.ds-terminal,.ds-detail svg{transition:none!important}}"
+    },
+    {
+      "name": "Conductor segment",
+      "kind": "custom",
+      "description": "A scaled excerpt of the implemented branch geometry; decorative and static in this preview.",
+      "html": "<svg class=\"ds-circuit\" viewBox=\"180 100 550 220\" fill=\"none\" aria-hidden=\"true\"><path d=\"M225 -20V160Q225 225 290 225H660\"/><path d=\"M236 -20V168Q236 233 301 233H660\"/><path d=\"M247 -20V176Q247 241 312 241H660\"/></svg>",
+      "css": ".ds-circuit{width:100%;max-width:550px;pointer-events:none}.ds-circuit path{stroke:var(--vc-violet,#8b6bff);stroke-width:1;opacity:.55;vector-effect:non-scaling-stroke}@media(prefers-reduced-motion:reduce){.ds-cta,.ds-link,.ds-terminal,.ds-detail svg{transition:none!important}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Routed intelligence",
+    "overview": "Routed intelligence gives Violet Circuit a spacious editorial expression for the Faros marketing homepage: wide typography, deliberate empty space, and fine conductors route people, agents, and infrastructure into a connected system. Violet identifies routes, terminals, and actions; dark ground keeps the composition quiet.\n\nThis document covers only the implemented homepage marketing expression in `layouts/partials/violet-circuit/`. It inherits identity vocabulary from `../faros/docs/design/README.md`; it does not replace application foundations, PortalKit contracts, or portal density rules. The user authorized larger display typography, spacious geometry, and restrained motion for this surface.",
+    "keyCharacteristics": [
+      "Wide display type with restrained monospaced annotations.",
+      "Thin violet conductors and square terminals; artwork is SVG, CSS, and typography.",
+      "Scroll-linked signal movement and equivalent pointer/focus branch activation.",
+      "Dark and light themes, local fonts, and a reduced-motion alternative."
+    ],
+    "rules": [
+      {
+        "name": "The Theme Pair Rule",
+        "body": "Read the dark and light tokens as complete coordinated sets. The `html.light` state switches the homepage palette; it does not change artwork or information hierarchy. Dark CTA text uses ground; light CTA text uses light-on.",
+        "section": "colors"
+      },
+      {
+        "name": "The Motion Follows Input Rule",
+        "body": "Motion follows scrolling or an explicit hover/focus state. Reduced-motion preference freezes hero signals at their phase offsets, disables transitions, and removes scene progress when the preference changes.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve the homepage scope and consult the main Faros design authority for application UI.",
+      "Do keep route artwork behind readable copy and make every capability a real link.",
+      "Do retain keyboard focus, theme parity, and static reduced-motion rendering.",
+      "Do use the shipped local fonts and code-native artwork."
+    ],
+    "donts": [
+      "Don't promote homepage display sizes or spacious scene geometry into portal component rules.",
+      "Don't replace the route language with UI mockups or unapproved generated raster compositions.",
+      "Don't animate the governance aperture or introduce continuous autonomous signal loops."
+    ]
+  }
+}
