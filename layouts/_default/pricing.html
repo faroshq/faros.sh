@@ -1,8 +1,6 @@
 {{ define "main" }}
-<main class="flex-grow">
-  <div class="relative max-w-6xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-    {{ partial "page-illustration.html" . }}
-  </div>
-  {{ partial "pricing.html" . }}
+<main class="faros-pricing">
+  {{ partial "pricing/styles.html" . }}
+  {{ partial "pricing/page.html" . }}
 </main>
 {{ end }}

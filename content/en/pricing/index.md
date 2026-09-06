@@ -1,7 +1,7 @@
 ---
 title: "Faros plans and operating paths"
 description: "An honest overview of self-hosted Faros, the hosted service, and direct work with the Faros team while public commercial pricing is not yet published."
-layout: marketing-hub
+layout: pricing
 hero:
   eyebrow: "Plans"
   summary: "Choose an operating path for the same Faros platform. The open-source project is available under Apache 2.0. Public pricing for the hosted and direct-support paths is not published on this site yet."
