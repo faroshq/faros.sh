@@ -27,28 +27,38 @@
             },
             {
               name: 'Company',
-              value: senderCompany
+              value: senderCompany || 'Not provided'
             }
           ]
         }],
       };
       const webhookUrl = 'https://discord.com/api/webhooks/1484568469092434090/8tpYZXPU9cFRl5ZqwRuU0jW7LJvMH6tcTW4Vj12dJmBnQAqvilsS-8wkHauWlUK5nLJa';
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookBody),
-      });
-      if (response.ok) {
-        // Show success message
-        document.getElementById('contact-success-message').classList.remove('hidden');
-        // Hide the form
-        document.getElementById('contact-form').style.display = 'none';
-        // Scroll to success message
-        document.getElementById('contact-success-message').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('There was an error! Try again later!');
+      const form = document.getElementById('contact-form');
+      const button = document.getElementById('contact-submit-button');
+      const error = document.getElementById('contact-error');
+      if (form.getAttribute('aria-busy') === 'true' || button.disabled || !form.reportValidity()) return;
+      error.hidden = true;
+      button.disabled = true;
+      button.querySelector('span').textContent = 'Sending…';
+      form.setAttribute('aria-busy', 'true');
+      try {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(webhookBody),
+        });
+        if (!response.ok) throw new Error('Submission failed');
+        const success = document.getElementById('contact-success-message');
+        success.classList.remove('hidden');
+        form.hidden = true;
+        success.focus();
+      } catch {
+        error.textContent = 'Your message could not be sent. Please try again, or email mangirdas@judeikis.lt directly.';
+        error.hidden = false;
+      } finally {
+        form.removeAttribute('aria-busy');
+        button.disabled = !window.grecaptcha || !grecaptcha.getResponse();
+        button.querySelector('span').textContent = 'Send message';
       }
     }
   </script>

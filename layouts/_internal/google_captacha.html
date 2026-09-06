@@ -1,10 +1,20 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script type="text/javascript">
-    function contact_callback() {
-        const submitButton = document.getElementById("contact-submit-button");
-        submitButton.removeAttribute("style");
-        submitButton.removeAttribute("disabled");
-        const captacha = document.getElementById("contact-recaptcha");
-        captacha.setAttribute("style", "display: none;");
-      }
+<script>
+  function contact_callback() {
+    const button = document.getElementById('contact-submit-button');
+    if (!button) return;
+    button.disabled = document.getElementById('contact-form').getAttribute('aria-busy') === 'true';
+    document.getElementById('contact-verification-status').textContent = 'Verification complete. You’re ready to send.';
+  }
+  function contact_expired() {
+    const button = document.getElementById('contact-submit-button');
+    if (!button) return;
+    button.disabled = true;
+    document.getElementById('contact-verification-status').textContent = 'Verification expired. Please verify again to send.';
+  }
+  function contact_captcha_error() {
+    contact_expired();
+    const status = document.getElementById('contact-verification-status');
+    if (status) status.textContent = 'Verification could not load. Refresh the page or email us directly.';
+  }
 </script>
