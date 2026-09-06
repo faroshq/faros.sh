@@ -1,0 +1,51 @@
+<div class="pricing-shell">
+  <header class="pricing-hero">
+    <h1>One platform.<br><span>Your way to run it.</span></h1>
+    <p>Run Faros on your infrastructure, choose a hosted control plane, or work directly with our team. Start with the operating model that fits you.</p>
+  </header>
+
+  <section id="paths" class="pricing-options" aria-label="Compare Faros operating options">
+    {{ range $index, $plan := (index .Params.sections 0).cards }}
+    <article class="pricing-option{{ if eq $index 1 }} pricing-option-cloud{{ end }}">
+      <h2>{{ .title }}</h2>
+      <p class="pricing-model">{{ if eq $index 0 }}Your infrastructure. Your control.{{ else if eq $index 1 }}A control plane operated by Faros.{{ else }}Expertise for your requirements.{{ end }}</p>
+      <div class="pricing-terms">
+        <p>{{ if eq $index 0 }}No license fee{{ else }}Let’s talk{{ end }}</p>
+        <span>{{ if eq $index 0 }}Apache 2.0 · Infrastructure costs apply{{ else if eq $index 1 }}Contact us for availability and pricing{{ else }}Scope and terms tailored through discussion{{ end }}</span>
+      </div>
+      <a class="pricing-button{{ if eq $index 1 }} pricing-button-primary{{ end }}" href="{{ .url }}">{{ .link_label }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <p class="pricing-plan-summary">{{ .summary }}</p>
+      <ul>
+        {{ if eq $index 0 }}
+        <li>Deploy on infrastructure you control</li><li>Manage your own upgrades and operations</li><li>Public documentation and community</li>
+        {{ else if eq $index 1 }}
+        <li>Faros operates the control plane</li><li>Same platform model as open source</li><li>Discuss your environment with the team</li>
+        {{ else }}
+        <li>Architecture and deployment guidance</li><li>Organization-specific requirements</li><li>Agree on scope and deliverables together</li>
+        {{ end }}
+      </ul>
+    </article>
+    {{ end }}
+  </section>
+  <p class="pricing-note">Commercial pricing, quotas, support packages, and service commitments are not yet published. <a href="/contact/">Contact the team for current details.</a></p>
+
+  <section id="considerations" class="pricing-guide" aria-labelledby="pricing-guide-title">
+    <div class="pricing-section-intro"><h2 id="pricing-guide-title">Choose what<br>you want to own.</h2><p>Your environment, operational responsibilities, and support needs are the best place to start.</p></div>
+    <div class="pricing-questions">
+      {{ range (index .Params.sections 1).cards }}
+      <details><summary>{{ .title }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div><p>{{ .summary }}</p>{{ if .url }}<a href="{{ .url }}">{{ .link_label }}</a>{{ end }}</div></details>
+      {{ end }}
+    </div>
+  </section>
+
+  <section id="evaluate" class="pricing-evaluate" aria-labelledby="pricing-evaluate-title">
+    <div class="pricing-section-intro"><h2 id="pricing-evaluate-title">Get to know Faros first.</h2><p>Explore the platform before choosing a commercial path.</p></div>
+    <div class="pricing-resources">
+      {{ range (index .Params.sections 2).cards }}
+      <a href="{{ .url }}"><div><h3>{{ .title }}</h3><p>{{ .summary }}</p><span>{{ .link_label }}</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="pricing-closing" aria-labelledby="pricing-closing-title"><div><h2 id="pricing-closing-title">Let’s find the right fit.</h2><p>Bring your architecture, questions, and requirements. We’ll start there.</p></div><a class="pricing-button pricing-button-primary" href="/contact/">Talk to the Faros team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+</div>
