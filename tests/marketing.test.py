@@ -28,12 +28,18 @@ class Page(HTMLParser):
         self.forms = []
         self.controls = []
         self.recaptcha = None
+        self.visual_panels = []
+        self.visual_choices = []
         self._heading = None
         self._heading_text = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         classes = set((attrs.get("class") or "").split())
+        if "data-visual-panel" in attrs:
+            self.visual_panels.append(attrs)
+        if "data-visual-choice" in attrs:
+            self.visual_choices.append(attrs)
         self.classes.update(classes)
         if attrs.get("id"):
             self.ids.add(attrs["id"])
@@ -124,6 +130,19 @@ for route in MARKETING:
         errors.append(f"{path}: production marketing route must not be noindex")
     if not any(src.endswith("connected-theme.js") for src in page.scripts):
         errors.append(f"{path}: missing connected theme script")
+    if route in {"platform", "developers", "solutions"}:
+        expected = 4 if route == "platform" else 3
+        if len(page.visual_choices) != expected or len(page.visual_panels) != expected:
+            errors.append(f"{path}: incomplete visual explorer")
+        for choice in page.visual_choices:
+            if choice.get("aria-controls") not in {p.get("id") for p in page.visual_panels}:
+                errors.append(f"{path}: visual control has no matching panel")
+        if any("hidden" in panel for panel in page.visual_panels):
+            errors.append(f"{path}: visual content must remain readable without JavaScript")
+        if "/js/marketing-visuals.js" not in page.scripts:
+            errors.append(f"{path}: visual interaction script missing")
+    elif "/js/marketing-visuals.js" in page.scripts:
+        errors.append(f"{path}: unrelated route must not load visual explorer")
     local_assets_exist(page, path, errors)
 
 docs = parse(ROOT / "docs" / "index.html")

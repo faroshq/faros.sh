@@ -1,0 +1,54 @@
+<section class="mv-platform mv-stage" data-visual-tabs data-active="workspaces" aria-label="Explore the Faros architecture">
+  <div class="mv-platform-copy">
+    <h2>One system.<br><span>Deliberate boundaries.</span></h2>
+    <div class="mv-choices" data-visual-controls hidden aria-label="Architecture layers">
+      {{ range slice (dict "id" "workspaces" "name" "Workspaces") (dict "id" "providers" "name" "Providers") (dict "id" "interfaces" "name" "People & agents") (dict "id" "edges" "name" "Connected infrastructure") }}
+      <button id="architecture-{{ .id }}-tab" data-visual-choice="{{ .id }}" aria-controls="architecture-{{ .id }}">{{ .name }} {{ partial "connected-home/arrow.html" $ }}</button>
+      {{ end }}
+    </div>
+    <div id="architecture-workspaces" data-visual-panel="workspaces"><h3>Room to build. Scope by design.</h3><p>Each workspace has its own resources, APIs, roles, and quota. Requests stay within the caller’s workspace.</p><a href="/docs/get-started/workspaces/">Understand workspaces {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-providers" data-visual-panel="providers"><h3>Add capabilities, independently.</h3><p>Providers bring APIs, controllers, portal surfaces, and tools into the platform through a shared contract.</p><a href="/docs/extend/">Explore providers {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-interfaces" data-visual-panel="interfaces"><h3>Different interfaces. Shared resources.</h3><p>People and agents reach workspace resources through the portal, CLI, APIs, and MCP. Tool calls use the caller’s permissions.</p><a href="/docs/reference/cli/mcp/">Explore MCP {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-edges" data-visual-panel="edges"><h3>Reach the systems you already run.</h3><p>An edge agent connects outbound from a cluster or Linux host. Faros carries requests through that established tunnel.</p><a href="/docs/use/edges/">Connect an edge {{ partial "connected-home/arrow.html" . }}</a></div>
+  </div>
+  <figure class="mv-architecture">
+    <svg viewBox="0 0 820 650" role="img" aria-labelledby="architecture-title architecture-desc">
+      <title id="architecture-title">Faros architecture layers</title><desc id="architecture-desc">People and agents use interfaces to reach workspace-scoped provider capabilities. Edges connect external clusters and hosts outbound. This is a conceptual view, not a deployment topology.</desc>
+      <defs>
+        <linearGradient id="mv-slab" x2="1" y2="1"><stop class="mv-stone-start"/><stop offset="1" class="mv-stone-end"/></linearGradient>
+        <linearGradient id="mv-glass" x2="0" y2="1"><stop stop-color="currentColor" stop-opacity=".13"/><stop offset="1" stop-color="currentColor" stop-opacity=".02"/></linearGradient>
+        <filter id="mv-glow"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+      <g class="mv-axis" fill="none"><path d="M400 50V581M170 195V476M630 195V476"/><path d="m130 502 270 124 270-124M400 626v-38"/></g>
+      <g class="mv-layer mv-layer-edges">
+        <path class="mv-slab-side" d="m140 465 260 120 260-120v18L400 603 140 483Z"/>
+        <path class="mv-slab-top" d="m140 465 260-120 260 120-260 120Z"/>
+        <g class="mv-layer-marks" fill="none"><path d="m285 461 45-21 45 21-45 21Z M285 461v27l45 21 45-21v-27M330 482v27M440 424l48-22 48 22-48 22Z M440 424v35l48 22 48-22v-35M488 446v35"/></g>
+        <path class="mv-leader" d="m635 477 75 35h58"/><text x="775" y="544">CLUSTERS & HOSTS</text>
+      </g>
+      <g class="mv-layer mv-layer-providers">
+        <path class="mv-slab-side" d="m140 355 260 120 260-120v18L400 493 140 373Z"/>
+        <path class="mv-slab-top" d="m140 355 260-120 260 120-260 120Z"/>
+        <g class="mv-layer-marks" fill="none"><path d="m250 355 70-32 70 32-70 32Z M344 312l70-32 70 32-70 32Z M344 398l70-32 70 32-70 32Z M438 355l70-32 70 32-70 32Z"/></g>
+        <path class="mv-leader" d="m635 367 75 35h58"/><text x="775" y="434">PROVIDERS</text>
+      </g>
+      <g class="mv-layer mv-layer-workspaces">
+        <path class="mv-slab-side" d="m140 245 260 120 260-120v18L400 383 140 263Z"/>
+        <path class="mv-slab-top" d="m140 245 260-120 260 120-260 120Z"/>
+        <path class="mv-boundary" d="m200 245 200-92 200 92-200 92Z"/>
+        <path class="mv-glass-wall" d="m200 245 200 92 200-92v-65l-200 92-200-92Z"/>
+        <path class="mv-leader" d="m635 257 75 35h58"/><text x="775" y="324">WORKSPACES</text>
+      </g>
+      <g class="mv-layer mv-layer-interfaces">
+        <path class="mv-slab-side" d="m140 135 260 120 260-120v18L400 273 140 153Z"/>
+        <path class="mv-slab-top" d="m140 135 260-120 260 120-260 120Z"/>
+        <g class="mv-layer-marks" fill="none"><path d="m275 134 35-16 35 16-35 16Z M275 134v16l35 16 35-16v-16M405 91l45-21 45 21-45 21Z M405 91v16l45 21 45-21V91"/></g>
+        <path class="mv-leader" d="m635 147 75 35h58"/><text x="775" y="214">PEOPLE & AGENTS</text>
+      </g>
+      <path class="mv-circuit-halo" d="M400 128v100l28 13v92l-28 13v114"/>
+      <path class="mv-circuit" d="M400 128v100l28 13v92l-28 13v114"/>
+      <g class="mv-nodes"><circle cx="400" cy="128" r="4"/><circle cx="428" cy="241" r="4"/><circle cx="400" cy="346" r="4"/><circle cx="400" cy="460" r="4"/></g>
+    </svg>
+    <figcaption>Conceptual architecture · Workspace-scoped access</figcaption>
+  </figure>
+</section>

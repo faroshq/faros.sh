@@ -19,6 +19,9 @@
           </div>
         </div>
       </div>
+      {{ if eq $.RelPermalink "/platform/" }}{{ partial "marketing-hub/platform-visual.html" $ }}{{ end }}
+      {{ if eq $.RelPermalink "/developers/" }}{{ partial "marketing-hub/developer-visual.html" $ }}{{ end }}
+      {{ if eq $.RelPermalink "/solutions/" }}{{ partial "marketing-hub/solutions-visual.html" $ }}{{ end }}
       {{ with .facts }}
       <ul class="faros-marketing-facts" aria-label="Page highlights">
         {{ range . }}<li>{{ . }}</li>{{ end }}

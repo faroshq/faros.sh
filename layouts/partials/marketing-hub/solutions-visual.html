@@ -1,0 +1,28 @@
+<section class="mv-solutions mv-stage" data-visual-tabs data-active="teams" aria-label="Explore Faros use cases">
+  <div class="mv-solution-heading"><h2>Put the platform<br><span>to work.</span></h2><div class="mv-choices mv-choice-row" data-visual-controls hidden aria-label="Use cases">
+    {{ range slice (dict "id" "teams" "name" "Internal platforms") (dict "id" "agents" "name" "Governed agents") (dict "id" "infrastructure" "name" "Remote infrastructure") }}<button id="solution-{{ .id }}-tab" data-visual-choice="{{ .id }}" aria-controls="solution-{{ .id }}">{{ .name }}</button>{{ end }}
+  </div></div>
+  {{ range slice (dict "id" "teams" "heading" "Give each team a place to build." "description" "Bring selected provider capabilities into isolated workspaces. Teams operate their own resources with workspace-specific access." "link" "/docs/administration/workspaces/" "cta" "Explore workspace isolation") (dict "id" "agents" "heading" "Useful tools. Meaningful boundaries." "description" "Give agents a workspace-scoped MCP endpoint. Provider tools execute as the caller, using the same resource boundaries as other clients." "link" "/docs/reference/cli/mcp/" "cta" "See how MCP connects") (dict "id" "infrastructure" "heading" "Bring distant systems within reach." "description" "Clusters and Linux hosts connect outbound to Faros. Use the established tunnel for kubectl, SSH, services, and MCP." "link" "/docs/use/edges/" "cta" "Explore edge connectivity") }}
+  <div id="solution-{{ .id }}" class="mv-solution-panel" data-visual-panel="{{ .id }}">
+    <div class="mv-solution-copy"><h3>{{ .heading }}</h3><p>{{ .description }}</p><a href="{{ .link }}">{{ .cta }} {{ partial "connected-home/arrow.html" $ }}</a><small>Illustrative workflow</small></div>
+    <figure class="mv-topology">
+    {{ if eq .id "teams" }}
+      <div class="mv-topology-source"><span class="mv-mini-mark">{{ partial "connected-home/mark.html" $ }}</span><strong>Shared provider capabilities</strong><span>Applications · Agents · Data</span></div>
+      <svg class="mv-branch" preserveAspectRatio="none" viewBox="0 0 600 76" aria-hidden="true"><path d="M300 0v30H145v46M300 30h155v46"/></svg>
+      <div class="mv-workspaces"><div class="mv-workspace"><span class="mv-resource-caption">Workspace / Product</span><strong>Application templates</strong><div class="mv-resource-line"><i></i> Resources</div><div class="mv-resource-line"><i></i> Roles & permissions</div></div><div class="mv-workspace"><span class="mv-resource-caption">Workspace / Research</span><strong>Agents & data</strong><div class="mv-resource-line"><i></i> Resources</div><div class="mv-resource-line"><i></i> Roles & permissions</div></div></div>
+      <figcaption>Separate workspaces. Explicit access.</figcaption>
+    {{ else if eq .id "agents" }}
+      <div class="mv-agent-source"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="15" width="30" height="24" rx="4"/><path d="M24 15V7m-4 0h8M3 23v8m42-8v8M17 32h14"/><circle cx="18" cy="24" r="1"/><circle cx="30" cy="24" r="1"/></svg><strong>Agent client</strong><span>Caller identity</span></div>
+      <svg class="mv-branch" preserveAspectRatio="none" viewBox="0 0 600 64" aria-hidden="true"><path d="M300 0v64"/></svg>
+      <div class="mv-permission"><span class="mv-resource-caption">Workspace-scoped MCP</span><strong>Provider tools</strong><div class="mv-tool-list"><span>Discover</span><span>Check access</span><span>Invoke</span></div><p>Actions run with the caller’s permissions.</p></div>
+      <figcaption>One endpoint to enabled provider tools.</figcaption>
+    {{ else }}
+      <div class="mv-topology-source"><span class="mv-mini-mark">{{ partial "connected-home/mark.html" $ }}</span><strong>Faros hub</strong><span>kubectl · SSH · Services · MCP</span></div>
+      <svg class="mv-branch mv-outbound" preserveAspectRatio="none" viewBox="0 0 600 96" aria-hidden="true"><path d="M145 96V48H300V4M455 96V48H300"/><path d="m291 16 9-12 9 12"/></svg>
+      <div class="mv-edge-label">Outbound connections</div><div class="mv-workspaces"><div class="mv-endpoint"><svg viewBox="0 0 60 48" aria-hidden="true"><path d="M30 7 12 17v20l18 10 18-10V17ZM12 17l18 10 18-10M30 27v20"/></svg><strong>Kubernetes cluster</strong><span>Edge agent</span></div><div class="mv-endpoint"><svg viewBox="0 0 60 48" aria-hidden="true"><rect x="10" y="5" width="40" height="16" rx="2"/><rect x="10" y="27" width="40" height="16" rx="2"/><path d="M17 13h2m5 0h2M17 35h2m5 0h2"/></svg><strong>Linux host</strong><span>Edge agent</span></div></div>
+      <figcaption>No inbound firewall rules required for the edge tunnel.</figcaption>
+    {{ end }}
+    </figure>
+  </div>
+  {{ end }}
+</section>

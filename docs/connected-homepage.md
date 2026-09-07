@@ -17,3 +17,9 @@ Run `npm test` and `npm run build:production`. Both include the rendered homepag
 Platform, Developers, Solutions, Open source, and Company use the marketing-hub template with open content rows, generous spacing, and fine dividers. Pricing and Contact retain their dedicated layouts and interactions. Shared shell styling lives in `static/css/connected-marketing.css`; page styles are scoped to `.cm-page`.
 
 `tests/marketing.test.py` verifies the seven routes, shared controls, canonical/indexability metadata, local assets, Contact form contract, native Pricing accordions, and the separate docs shell. Contact is a leaf page at `content/en/contact/index.md`, preserving `/contact/`.
+
+## Product visuals
+
+Platform, Developers, and Solutions add progressively enhanced visual explorers near the hero. `marketing-visuals.js` enables tab selection and arrow/Home/End keyboard navigation; all examples remain visible without JavaScript. Platform highlights architectural layers and briefly illuminates the request path on selection. Developers uses documented CLI examples and illustrative result explanations. Solutions diagrams workspace isolation, governed agent tools, and outbound edge connectivity. Diagrams use the shared palette and respect reduced motion.
+
+The visuals are in `layouts/partials/marketing-hub/{platform-visual,developer-visual,solutions-visual}.html`; CSS is scoped in `marketing-visuals.css` and `developer-visual.css`. These are explanatory illustrations, not recordings of a live tenant.
