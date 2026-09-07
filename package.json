@@ -27,9 +27,9 @@
     "precheck:links:all": "npm run build",
     "precheck:links": "npm run build",
     "postbuild:preview": "npm run _check:links",
-    "postbuild:production": "npm run _check:links",
+    "postbuild:production": "npm run _check:links && python3 tests/homepage.test.py",
     "serve": "npm run _serve",
-    "test": "npm run build && npm run _check:links && node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs && python3 tests/docs-schemas.test.py",
+    "test": "npm run build && npm run _check:links && node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs && python3 tests/docs-schemas.test.py && python3 tests/homepage.test.py",
     "update:pkg:dep": "npm install --save-dev autoprefixer@latest postcss-cli@latest",
     "update:pkg:hugo": "npm install --save-dev --save-exact hugo-extended@latest"
   },

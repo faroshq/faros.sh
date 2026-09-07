@@ -1,0 +1,25 @@
+{{ $copy := site.Data.connected_home }}
+<section class="gs-hero" aria-labelledby="hero-title">
+  {{ partial "connected-home/theme-art.html" (dict "kind" "hero") }}
+  <div class="gs-hero-copy gs-shell">
+    <h1 id="hero-title">{{ $copy.headline }} <span>{{ $copy.headlineEnd }}</span></h1>
+    <p>{{ $copy.intro }}</p>
+    <div class="gs-actions"><a class="gs-button" href="{{ $copy.primaryURL }}">{{ $copy.primary }} {{ partial "connected-home/arrow.html" . }}</a><a class="gs-text-link" href="{{ $copy.secondaryURL }}">{{ $copy.secondary }} {{ partial "connected-home/arrow.html" . }}</a></div>
+  </div>
+  <a class="gs-follow" href="#system">{{ $copy.explore }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></a>
+</section>
+{{ partial "connected-home/request-path.html" . }}
+<section class="gs-govern gs-shell" aria-labelledby="govern-title">
+  {{ partial "connected-home/theme-art.html" (dict "kind" "detail") }}
+  <div class="gs-govern-copy"><h2 id="govern-title">{{ $copy.govern }} <span>{{ $copy.governEnd }}</span></h2><p>{{ $copy.governBody }}</p><a class="gs-text-link" href="{{ $copy.secondaryURL }}">{{ $copy.secondary }} {{ partial "connected-home/arrow.html" . }}</a></div>
+  <div class="gs-workspace" role="img" aria-label="A workspace boundary contains Applications, Agents, and Infrastructure, connected through APIs and MCP.">
+    <div class="gs-workspace-heading"><span>Workspace</span><span>APIs + MCP</span></div>
+    <div class="gs-workspace-plan"><div class="gs-plan-trunk"></div>{{ range $copy.capabilities }}<div class="gs-plan-room"><span class="gs-plan-node"></span><span>{{ .name }}</span></div>{{ end }}</div>
+    <span class="gs-plan-caption">Resources and access, scoped together.</span>
+  </div>
+</section>
+{{ partial "home-v2/open-source.html" . }}
+<section class="gs-close gs-shell" aria-labelledby="close-title">
+  <h2 id="close-title">{{ $copy.close }}</h2><a class="gs-button" href="{{ $copy.primaryURL }}">{{ $copy.primary }} {{ partial "connected-home/arrow.html" . }}</a>
+  <div class="gs-close-line" aria-hidden="true"></div>
+</section>

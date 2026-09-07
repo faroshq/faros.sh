@@ -17,7 +17,8 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 
 | Path | What's in it |
 |:-----|:-------------|
-| `layouts/partials/home-v2/` | Active landing page; `layouts/index.html` includes `page.html`, which assembles the section and style partials |
+| `layouts/partials/connected-home/` | Active Connected Layers landing page, assembled by `layouts/index.html`; copy in `data/connected_home.json`, shared production metadata in `layouts/partials/head-metadata.html` |
+| `layouts/partials/home-v2/` | Retained original sections; Connected Layers reuses the open-source section |
 | `layouts/partials/{header,footer_custom,docs-sidebar}.html` | Site chrome; documentation uses its own header and contextual sidebar |
 | `layouts/docs/` | Docs shell (single + list) |
 | `layouts/_default/_markup/` | Markdown render hooks (links, headings, blockquotes, lists) |

@@ -1,0 +1,104 @@
+/* One composition, two palettes; a brief illumination welcomes the visitor. */
+/* Typed colors let the existing tokens fade everywhere, including gradients and SVG. */
+@property --gs-ground { syntax: '<color>'; inherits: true; initial-value: #0a0b12; }
+@property --gs-panel { syntax: '<color>'; inherits: true; initial-value: #111320; }
+@property --gs-ink { syntax: '<color>'; inherits: true; initial-value: #e9e9f2; }
+@property --gs-muted { syntax: '<color>'; inherits: true; initial-value: #8a8ca6; }
+@property --gs-violet { syntax: '<color>'; inherits: true; initial-value: #8b6bff; }
+@property --gs-glow { syntax: '<color>'; inherits: true; initial-value: rgba(139,107,255,.3); }
+@property --gs-rule { syntax: '<color>'; inherits: true; initial-value: rgba(255,255,255,.11); }
+@property --cl-accent-hover { syntax: '<color>'; inherits: true; initial-value: #a18aff; }
+@property --cl-on-accent { syntax: '<color>'; inherits: true; initial-value: #0a0b12; }
+@property --oss-surface { syntax: '<color>'; inherits: true; initial-value: #0a0b12; }
+@property --oss-overlay { syntax: '<color>'; inherits: true; initial-value: #171927; }
+@property --oss-hover { syntax: '<color>'; inherits: true; initial-value: #1e2033; }
+@property --oss-border { syntax: '<color>'; inherits: true; initial-value: rgba(255,255,255,.07); }
+@property --oss-dots { syntax: '<color>'; inherits: true; initial-value: rgba(255,255,255,.12); }
+@property --oss-accent { syntax: '<color>'; inherits: true; initial-value: #8b6bff; }
+@property --oss-ink { syntax: '<color>'; inherits: true; initial-value: #e9e9f2; }
+@property --oss-muted { syntax: '<color>'; inherits: true; initial-value: #8a8ca6; }
+.gs-connected {
+  --cl-theme-duration: 420ms;
+  transition-property: --gs-ground, --gs-panel, --gs-ink, --gs-muted, --gs-violet, --gs-glow, --gs-rule, --cl-on-accent, --cl-accent-hover;
+  transition-duration: var(--cl-theme-duration);
+  transition-timing-function: ease-in-out;
+}
+.gs-connected .faros-v2-oss {
+  transition-property: --oss-surface, --oss-overlay, --oss-hover, --oss-border, --oss-dots, --oss-accent, --oss-ink, --oss-muted;
+  transition-duration: var(--cl-theme-duration);
+  transition-timing-function: ease-in-out;
+}
+/* Exact semantic palette from faros/portal/src/assets/main.css. */
+:root[data-study-theme=light] .gs-connected {
+  --gs-ground: #f1f1f6; --gs-panel: #ffffff; --gs-ink: #14152a;
+  --gs-muted: #565975; --gs-violet: #6b48e8; --gs-glow: rgba(107,72,232,.18);
+  --gs-rule: #dfdeeb; --cl-on-accent: #ffffff; --cl-accent-hover: #5a38d6;
+}
+:root[data-study-theme=dark] .gs-connected {
+  --gs-ground: #0a0b12; --gs-panel: #111320; --gs-ink: #e9e9f2;
+  --gs-muted: #8a8ca6; --gs-violet: #8b6bff; --gs-glow: rgba(139,107,255,.3);
+  --gs-rule: rgba(255,255,255,.11); --cl-on-accent: #0a0b12; --cl-accent-hover: #a18aff;
+}
+.gs-connected { --gs-on: var(--cl-on-accent); }
+.gs-connected .cl-picture { display: block; position: absolute; inset: 0; opacity: 0; transition: opacity var(--cl-theme-duration) ease-in-out; }
+:root[data-study-theme=light] .cl-picture[data-art-theme=light],
+:root[data-study-theme=dark] .cl-picture[data-art-theme=dark] { opacity: 1; }
+.cl-theme-toggle, .cl-motion-toggle, .cl-theme-fallback {
+  color: var(--gs-ink); background: transparent; border: 1px solid var(--gs-rule);
+  border-radius: 4px; font: inherit; font-size: 13px; min-height: 44px;
+  padding: 9px 14px; cursor: pointer;
+}
+.cl-theme-picker { position: relative; flex-shrink: 0; }
+.cl-theme-picker[hidden], .cl-motion-toggle[hidden] { display: none; }
+.cl-theme-toggle { display: flex; align-items: center; justify-content: center; gap: 4px; width: 44px; height: 44px; padding: 0; border-color: transparent; list-style: none; }
+.cl-theme-toggle::-webkit-details-marker { display: none; }
+.cl-theme-toggle svg, .cl-theme-menu svg { width: 18px; height: 18px; flex-shrink: 0; }
+.cl-theme-toggle .cl-theme-chevron { width: 10px; height: 10px; color: var(--gs-muted); }
+.cl-theme-toggle .cl-sun { display: none; }
+:root[data-study-theme=light] .cl-theme-toggle .cl-moon { display: none; }
+:root[data-study-theme=light] .cl-theme-toggle .cl-sun { display: block; }
+.cl-theme-toggle:hover, .cl-theme-picker[open] .cl-theme-toggle { background: var(--gs-panel); }
+.cl-motion-toggle:hover:not(:disabled) { border-color: var(--gs-violet); }
+.cl-theme-toggle:focus-visible, .cl-motion-toggle:focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 3px; }
+.cl-theme-toggle[aria-busy=true] { cursor: progress; }
+.cl-theme-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 3; width: 164px; padding: 6px; border: 1px solid var(--gs-rule); border-radius: 4px; background: var(--gs-panel); }
+.cl-theme-menu button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px; border: 0; border-radius: 2px; background: transparent; color: var(--gs-ink); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.cl-theme-menu button:hover, .cl-theme-menu button:focus-visible { background: var(--gs-ground); }
+.cl-theme-menu button:focus-visible { outline: 2px solid var(--gs-violet); outline-offset: -2px; }
+.cl-theme-menu button[aria-pressed=true] { color: var(--gs-violet); }
+.cl-theme-menu button[aria-disabled=true] { cursor: progress; }
+.cl-theme-menu .cl-theme-check { width: 14px; height: 14px; margin-left: auto; visibility: hidden; }
+.cl-theme-menu button[aria-pressed=true] .cl-theme-check { visibility: visible; }
+.cl-motion-toggle:disabled { cursor: default; color: var(--gs-muted); }
+.gs-connected .gs-header { gap: 25px; }
+.gs-connected .gs-header-action { background: var(--gs-violet); border-color: var(--gs-violet); color: var(--cl-on-accent); font-weight: 550; }
+.gs-connected .gs-header-action:hover { background: var(--cl-accent-hover); border-color: transparent; }
+.gs-connected .gs-header-action:focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 4px; }
+.gs-connected .gs-footer { flex-wrap: wrap; padding-bottom: 45px; }
+.gs-connected .gs-footer nav { margin-left: auto; }
+.cl-circuit { display: none; position: absolute; pointer-events: none; z-index: 1; max-width: none; }
+:root[data-motion] .cl-circuit { display: block; }
+.cl-arrival-light { opacity: 0; }
+.cl-arriving .cl-arrival-light { animation: cl-arrival 3.8s ease-in-out both; animation-play-state: paused; }
+.gs-connected .cl-motion-visible .cl-arrival-light { animation-play-state: running; }
+@keyframes cl-arrival { 0%,100% { opacity: 0; } 22% { opacity: 1; } 42% { opacity: .8; } }
+.cl-channel-filter { position: absolute; pointer-events: none; }
+.cl-channel-light { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .65s ease; }
+.cl-channel-breath { position: relative; height: 100%; filter: url(#cl-violet-channels); animation: cl-channel-breathe 6.8s ease-in-out infinite; animation-play-state: paused; }
+:root[data-motion=on] .cl-detail-art.cl-motion-visible .cl-channel-light { opacity: 1; }
+.cl-detail-art.cl-motion-visible .cl-channel-breath { animation-play-state: running; }
+@keyframes cl-channel-breathe { 0%,100% { opacity: .12; } 45%,55% { opacity: .7; } }
+:root.cl-motion-suspended .gs-connected *, :root.cl-motion-suspended .gs-connected *:after { animation-play-state: paused !important; }
+:root[data-motion=off] .gs-connected *, :root[data-motion=off] .gs-connected *:after { animation: none !important; }
+:root[data-motion=off] .cl-arrival-light { opacity: 0; }
+:root[data-motion=off] .gs-connected, :root[data-motion=off] .gs-connected .cl-picture, :root[data-motion=off] .gs-connected .faros-v2-oss { transition-duration: 0s; }
+@media(max-width:1050px) { .gs-connected .gs-header { gap: 18px; } }
+@media(max-width:700px) {
+  .gs-connected .gs-header-action { display: none; }
+  .gs-connected .gs-footer nav { margin-left: 0; width: 100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .gs-connected *, .gs-connected *:after { animation: none !important; transition: none !important; }
+  .cl-arrival-light { opacity: 0; }
+  :root[data-motion] .cl-detail-art.cl-motion-visible .cl-channel-light { opacity: 0; }
+}
