@@ -1,14 +1,14 @@
-<section id="primitives" class="mv-platform mv-stage" data-visual-tabs data-active="workspaces" aria-label="Explore the Faros architecture">
+<section id="primitives" class="mv-platform mv-stage" data-visual-tabs data-active="interfaces" aria-label="Explore the Faros architecture">
   <div class="mv-platform-copy">
     <h2>How the platform<br><span>fits together.</span></h2>
     <div class="mv-choices" data-visual-controls hidden aria-label="Architecture layers">
-      {{ range slice (dict "id" "workspaces" "name" "Workspaces") (dict "id" "providers" "name" "Providers") (dict "id" "interfaces" "name" "People & agents") (dict "id" "edges" "name" "Connected infrastructure") }}
+      {{ range slice (dict "id" "interfaces" "name" "People & agents") (dict "id" "workspaces" "name" "Workspaces") (dict "id" "providers" "name" "Providers") (dict "id" "edges" "name" "Connected infrastructure") }}
       <button id="architecture-{{ .id }}-tab" data-visual-choice="{{ .id }}" aria-controls="architecture-{{ .id }}">{{ .name }} {{ partial "connected-home/arrow.html" $ }}</button>
       {{ end }}
     </div>
+    <div id="architecture-interfaces" data-visual-panel="interfaces"><h3>Connect people and agents to workspace resources.</h3><p>Use the portal, CLI, APIs, or MCP to work with workspace resources. A workspace MCP endpoint uses its own service-account identity.</p><a href="/docs/reference/cli/mcp/">Explore MCP {{ partial "connected-home/arrow.html" . }}</a></div>
     <div id="architecture-workspaces" data-visual-panel="workspaces"><h3>Keep each team’s resources separate.</h3><p>Each workspace has its own resources, APIs, roles, and quota. Requests stay within the caller’s workspace.</p><a href="/docs/get-started/workspaces/">Understand workspaces {{ partial "connected-home/arrow.html" . }}</a></div>
     <div id="architecture-providers" data-visual-panel="providers"><h3>Extend Faros with providers.</h3><p>Providers add APIs, controllers, user interfaces, and tools. Enable the providers each workspace needs.</p><a href="/docs/extend/">Explore providers {{ partial "connected-home/arrow.html" . }}</a></div>
-    <div id="architecture-interfaces" data-visual-panel="interfaces"><h3>Connect people and agents to workspace resources.</h3><p>Use the portal, CLI, APIs, or MCP to work with workspace resources. A workspace MCP endpoint uses its own service-account identity.</p><a href="/docs/reference/cli/mcp/">Explore MCP {{ partial "connected-home/arrow.html" . }}</a></div>
     <div id="architecture-edges" data-visual-panel="edges"><h3>Connect your clusters and servers.</h3><p>An edge agent connects outbound from a cluster or Linux host. Use the connection to access the cluster or host through Faros.</p><a href="/docs/use/edges/">Connect an edge {{ partial "connected-home/arrow.html" . }}</a></div>
   </div>
   <figure class="mv-architecture">
