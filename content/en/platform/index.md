@@ -11,11 +11,6 @@ hero:
   secondary:
     label: "Follow the quickstart"
     url: "/docs/use/edges/quickstart/"
-  facts:
-    - "Workspace isolation"
-    - "Provider-based capabilities"
-    - "Workspace-scoped MCP"
-    - "Outbound edge connectivity"
 sections:
   - id: "interfaces"
     eyebrow: "One resource model"
