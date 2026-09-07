@@ -1,21 +1,25 @@
+{{ $connected := or (in (slice "marketing-hub" "pricing" "contact") .Params.layout) (eq .Section "contact") }}
 <!DOCTYPE html>
-<html lang="{{ .Language.Lang }}">
+<html lang="{{ .Language.Lang }}"{{ if $connected }} data-study-theme="dark"{{ end }}>
 <head>
-    {{ partial "head_custom.html" . }}
+    {{ if $connected }}{{ partial "connected-home/head.html" . }}{{ else }}{{ partial "head_custom.html" . }}{{ end }}
 </head>
-<body class="font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight">
-    {{ if eq .Section "docs" }}{{ partial "documentation/header.html" . }}{{ else }}{{ partial "header.html" . }}{{ end }}
+<body class="{{ if $connected }}gs gs-connected cm-page{{ else }}font-inter antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 tracking-tight{{ end }}">
+    {{ if $connected }}{{ partial "connected-home/header.html" . }}{{ else if eq .Section "docs" }}{{ partial "documentation/header.html" . }}{{ else }}{{ partial "header.html" . }}{{ end }}
     {{ block "main" . }}{{ end }}
 
-    {{ if ne .Section "docs" }}
+    {{ if $connected }}{{ partial "connected-home/footer.html" . }}
+    {{ else if ne .Section "docs" }}
     {{ partial "footer_custom.html" . }}
     {{ end }}
 
+    {{ if $connected }}<script src="/js/connected-theme.js" defer></script>{{ else }}
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
 
     {{ $alpineJs := resources.Get "js/alpine.min.js" | js.Build (dict "minify" false "params" (dict "myparam" "Alpine")) }}
     <script src="{{ $alpineJs.RelPermalink }}"></script>
+    {{ end }}
 </body>
 </html>
 

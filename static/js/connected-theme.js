@@ -20,9 +20,10 @@
   }
   function motionState() {
     const active = !paused && !reduced.matches;
-    if (!active) hero.classList.remove('cl-arriving');
+    if (!active && hero) hero.classList.remove('cl-arriving');
     root.dataset.motion = active ? 'on' : 'off';
     root.classList.toggle('cl-motion-suspended', document.hidden);
+    if (!motionButton) return;
     motionButton.textContent = reduced.matches ? 'Reduced motion' : active ? 'Motion on' : 'Motion off';
     motionButton.setAttribute('aria-pressed', String(active));
     motionButton.disabled = reduced.matches;
@@ -30,6 +31,7 @@
   }
   const hero = document.querySelector('.cl-hero-art');
   function alignCircuit() {
+    if (!hero) return;
     const img = hero.querySelector(`[data-art-theme="${root.dataset.studyTheme}"] img`);
     const svg = hero.querySelector('.cl-circuit');
     const scale = Math.max(hero.clientWidth / 1536, hero.clientHeight / 1024);
@@ -80,15 +82,16 @@
   themePicker.addEventListener('focusout', event => {
     if (!themePicker.contains(event.relatedTarget)) closeThemePicker();
   });
-  motionButton.addEventListener('click', () => {
+  motionButton?.addEventListener('click', () => {
     paused = !paused;
     save('faros-connected-motion', paused ? 'off' : 'on');
     motionState();
   });
   labelTheme(); motionState();
-  themePicker.hidden = false; motionButton.hidden = false;
+  themePicker.hidden = false; if (motionButton) motionButton.hidden = false;
   reduced.addEventListener('change', motionState);
   document.addEventListener('visibilitychange', motionState);
+  if (!hero) return;
   // Observe the detail artwork itself: on phones it can leave view before its section does.
   const sections = [hero.closest('section'), document.querySelector('.cl-detail-art')];
   if ('IntersectionObserver' in window) {
