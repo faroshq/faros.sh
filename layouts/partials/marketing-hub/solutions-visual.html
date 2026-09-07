@@ -1,0 +1,28 @@
+<section class="mv-solutions mv-stage" data-visual-tabs data-active="teams" aria-label="Explore Faros use cases">
+  <div class="mv-solution-heading"><h2>What you can<br><span>do with Faros.</span></h2><div class="mv-choices mv-choice-row" data-visual-controls hidden aria-label="Use cases">
+    {{ range slice (dict "id" "teams" "name" "Internal platforms") (dict "id" "agents" "name" "Agent tools") (dict "id" "infrastructure" "name" "Remote infrastructure") }}<button id="solution-{{ .id }}-tab" data-visual-choice="{{ .id }}" aria-controls="solution-{{ .id }}">{{ .name }}</button>{{ end }}
+  </div></div>
+  {{ range slice (dict "id" "teams" "heading" "Give each team a workspace for its applications, agents, and data." "description" "Enable the providers each team needs in its workspace, then manage resources within that workspace boundary." "link" "/docs/administration/workspaces/" "cta" "Configure workspaces") (dict "id" "agents" "heading" "Connect agents to your workspace tools." "description" "Configure a workspace MCP endpoint for an agent client. Review the MCPServer service-account scope before connecting it." "link" "/docs/use/ai-assistants/" "cta" "Set up MCP") (dict "id" "infrastructure" "heading" "Connect clusters and servers." "description" "Register a Kubernetes cluster or Linux host, then run its agent so it can dial out to the Faros hub." "link" "/docs/use/edges/quickstart/" "cta" "Connect an edge") }}
+  <div id="solution-{{ .id }}" class="mv-solution-panel" data-visual-panel="{{ .id }}">
+    <div class="mv-solution-copy"><h3>{{ .heading }}</h3><p>{{ .description }}</p><a href="{{ .link }}">{{ .cta }} {{ partial "connected-home/arrow.html" $ }}</a><small>Example configuration</small></div>
+    <figure class="mv-topology">
+    {{ if eq .id "teams" }}
+      <div class="mv-topology-source"><span class="mv-mini-mark">{{ partial "connected-home/mark.html" $ }}</span><strong>Shared provider capabilities</strong><span>Resources · Providers · Access</span></div>
+      <svg class="mv-branch" preserveAspectRatio="none" viewBox="0 0 600 76" aria-hidden="true"><path d="M300 0v30H145v46M300 30h155v46"/></svg>
+      <div class="mv-workspaces"><div class="mv-workspace"><span class="mv-resource-caption">Workspace / Product</span><strong>Application templates</strong><div class="mv-resource-line"><i></i> Resources</div><div class="mv-resource-line"><i></i> Roles & permissions</div></div><div class="mv-workspace"><span class="mv-resource-caption">Workspace / Research</span><strong>Agents & data</strong><div class="mv-resource-line"><i></i> Resources</div><div class="mv-resource-line"><i></i> Roles & permissions</div></div></div>
+      <figcaption>Each workspace has its own resources and permissions.</figcaption>
+    {{ else if eq .id "agents" }}
+      <div class="mv-agent-source"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="15" width="30" height="24" rx="4"/><path d="M24 15V7m-4 0h8M3 23v8m42-8v8M17 32h14"/><circle cx="18" cy="24" r="1"/><circle cx="30" cy="24" r="1"/></svg><strong>Agent client</strong><span>MCPServer credential</span></div>
+      <svg class="mv-branch" preserveAspectRatio="none" viewBox="0 0 600 64" aria-hidden="true"><path d="M300 0v64"/></svg>
+      <div class="mv-permission"><span class="mv-resource-caption">Workspace-scoped MCP</span><strong>Provider tools</strong><div class="mv-tool-list"><span>Discover</span><span>Check access</span><span>Invoke</span></div><p>Tools use the MCPServer service-account identity.</p></div>
+      <figcaption>Give a client access to enabled provider tools through one workspace endpoint.</figcaption>
+    {{ else }}
+      <div class="mv-topology-source"><span class="mv-mini-mark">{{ partial "connected-home/mark.html" $ }}</span><strong>Faros hub</strong><span>kubectl · SSH · Services · MCP</span></div>
+      <svg class="mv-branch mv-outbound" preserveAspectRatio="none" viewBox="0 0 600 96" aria-hidden="true"><path d="M145 96V48H300V4M455 96V48H300"/><path d="m291 16 9-12 9 12"/></svg>
+      <div class="mv-edge-label">Outbound connections</div><div class="mv-workspaces"><div class="mv-endpoint"><svg viewBox="0 0 60 48" aria-hidden="true"><path d="M30 7 12 17v20l18 10 18-10V17ZM12 17l18 10 18-10M30 27v20"/></svg><strong>Kubernetes cluster</strong><span>Edge agent</span></div><div class="mv-endpoint"><svg viewBox="0 0 60 48" aria-hidden="true"><rect x="10" y="5" width="40" height="16" rx="2"/><rect x="10" y="27" width="40" height="16" rx="2"/><path d="M17 13h2m5 0h2M17 35h2m5 0h2"/></svg><strong>Linux host</strong><span>Edge agent</span></div></div>
+      <figcaption>The edge agent dials out from the target to the Faros hub.</figcaption>
+    {{ end }}
+    </figure>
+  </div>
+  {{ end }}
+</section>

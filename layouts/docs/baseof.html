@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ .Language.Lang }}">
+<html lang="{{ .Language.Lang }}" data-study-theme="dark" class="dark">
 <head>
     {{ partial "head_custom.html" . }}
 </head>
-<body class="docs-page font-inter antialiased text-gray-900 dark:text-gray-100 tracking-tight">
+<body class="docs-page gs-connected">
     {{ partial "documentation/header.html" . }}
     {{ block "main" . }}{{ end }}
 
+    <script src="/js/connected-theme.js" defer></script>
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
 

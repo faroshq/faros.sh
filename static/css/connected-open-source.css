@@ -1,0 +1,64 @@
+/* Retain the original home-v2 open-source partial, scoped to this exploration. */
+.gs-connected .faros-v2-oss {
+  --oss-surface: #0a0b12; --oss-overlay: #171927; --oss-hover: #1e2033;
+  --oss-border: rgba(255,255,255,.07); --oss-dots: rgba(255,255,255,.11);
+  --oss-accent: #8b6bff; --oss-ink: #e9e9f2; --oss-muted: #8a8ca6;
+  position: relative; padding: clamp(4.5rem,9vw,7.5rem) 0;
+  scroll-margin-top: 5rem; border-bottom: 1px solid var(--oss-border);
+  background: var(--oss-surface); color: var(--oss-ink);
+}
+:root[data-study-theme=light] .gs-connected .faros-v2-oss {
+  --oss-surface: #f1f1f6; --oss-overlay: #eaeaf2; --oss-hover: #e3e3ee;
+  --oss-border: #e7e6f1; --oss-dots: #dfdeeb;
+  --oss-accent: #6b48e8; --oss-ink: #14152a; --oss-muted: #565975;
+}
+.gs-connected .faros-v2-oss-layout {
+  position: relative; width: min(1160px,calc(100% - 3rem)); margin-inline: auto;
+  display: grid; grid-template-columns: minmax(17rem,.8fr) minmax(0,1.2fr);
+  gap: clamp(2rem,6vw,5rem); align-items: center;
+}
+.gs-connected .faros-v2-oss-copy .faros-v2-eyebrow {
+  margin-bottom: 1rem; font-family: StudyMono,monospace; font-size: .7rem;
+  font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--oss-accent);
+}
+.gs-connected .faros-v2-oss-copy h2 {
+  max-width: 15ch; margin: 0; font-family: StudyArchivo,StudyInstrument,sans-serif;
+  font-variation-settings: 'wdth' 125; font-weight: 700;
+  font-size: clamp(2rem,3.8vw,3.25rem); line-height: 1.07;
+  letter-spacing: -.025em; text-wrap: initial; color: var(--oss-ink);
+}
+.gs-connected .faros-v2-oss-copy > p:not(.faros-v2-eyebrow) {
+  max-width: 35rem; margin: 1.2rem 0 0; font-size: .98rem; line-height: 1.75; color: var(--oss-muted);
+}
+.gs-connected .faros-v2-oss .faros-v2-actions { display: flex; flex-wrap: wrap; margin-top: 1.8rem; }
+.gs-connected .faros-v2-oss .faros-v2-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 44px; padding: .65rem 1.1rem; border: 1px solid var(--oss-dots); border-radius: 4px;
+  font-size: .9rem; font-weight: 650; line-height: 1; text-decoration: none;
+  background: var(--oss-overlay); color: var(--oss-ink);
+  transition: background-color 150ms ease,border-color 150ms ease;
+}
+.gs-connected .faros-v2-oss .faros-v2-btn:hover { border-color: var(--oss-accent); background: var(--oss-hover); }
+.gs-connected .faros-v2-oss .faros-v2-btn:focus-visible { outline: 2px solid var(--oss-accent); outline-offset: 4px; }
+.gs-connected .faros-v2-oss svg { stroke: none; }
+.gs-connected .faros-v2-oss .faros-v2-btn svg { width: 1rem; height: 1rem; flex: none; }
+.gs-connected .faros-v2-oss-art { position: relative; min-height: 330px; overflow: hidden; }
+.gs-connected .faros-v2-oss-art > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gs-connected .faros-v2-oss-art text { font-family: StudyMono,monospace; font-size: 8.7rem; font-weight: 700; letter-spacing: .04em; }
+.gs-connected .faros-v2-oss-dot { fill: var(--oss-dots); }
+.gs-connected .faros-v2-oss-accent-dot { fill: var(--oss-accent); }
+.gs-connected .faros-v2-oss-art-legend {
+  position: absolute; inset: auto 8% 1rem; display: flex; justify-content: center; gap: 1.2rem;
+  font-family: StudyMono,monospace; font-size: .55rem; color: var(--oss-muted);
+}
+.gs-connected .faros-v2-oss-art-legend span:before { content: '•'; margin-right: .4rem; color: var(--oss-accent); }
+@media(max-width:980px) {
+  .gs-connected .faros-v2-oss-layout { grid-template-columns: 1fr; }
+  .gs-connected .faros-v2-oss-copy { max-width: 43rem; }
+  .gs-connected .faros-v2-oss-art { min-height: 250px; }
+}
+@media(max-width:560px) {
+  .gs-connected .faros-v2-oss-art { min-height: 190px; }
+  .gs-connected .faros-v2-oss-art text { font-size: 7.5rem; }
+  .gs-connected .faros-v2-oss-art-legend { bottom: 0; gap: .7rem; }
+}

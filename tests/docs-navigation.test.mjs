@@ -60,3 +60,19 @@ test('section overviews retain both navigation and article tools', () => {
     assert.ok(page.includes('docs-page-rail'));
   }
 });
+
+test('documentation uses one header with docs navigation and shared actions', () => {
+  for (const route of ['/docs/', '/docs/use/app-studio/quickstart/']) {
+    const page = html(route);
+    const header = page.match(/<header class="docs-header[\s\S]*?<\/header>/)?.[0];
+    assert.ok(header, 'documentation header is present');
+    assert.doesNotMatch(header, /cm-primary-nav|docs-toolbar|\/platform\/|\/pricing\/|\/developers\/|\/solutions\//);
+    for (const area of nav.primary) assert.ok(header.includes(`/docs/${area.slug}/`));
+    assert.match(header, /docs-mobile-menu/);
+    assert.match(header, /cl-theme-picker/);
+    assert.match(header, /docs-search-trigger/);
+    assert.match(header, /href="\/docs\/search\/"/);
+    assert.match(header, /Open console/);
+    assert.match(header, /aria-label="Faros home"/);
+  }
+});

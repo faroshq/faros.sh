@@ -1,0 +1,32 @@
+{
+  "headline": "Give intelligence",
+  "headlineEnd": "something to build on.",
+  "intro": "An open-source control plane for applications, agents, and infrastructure. Organize them in workspaces with their own resources and permissions.",
+  "primary": "Request a demo",
+  "primaryURL": "/contact/",
+  "secondary": "Understand the platform",
+  "secondaryURL": "/platform/",
+  "explore": "Explore the system",
+  "capabilities": [
+    {
+      "name": "Applications",
+      "description": "Build with App Studio.",
+      "url": "/docs/use/app-studio/"
+    },
+    {
+      "name": "Agents",
+      "description": "Tools, schedules, and budgets.",
+      "url": "/docs/use/agents/"
+    },
+    {
+      "name": "Infrastructure",
+      "description": "Connect clusters and servers.",
+      "url": "/docs/use/edges/"
+    }
+  ],
+  "govern": "Freedom to build.",
+  "governEnd": "Boundaries by design.",
+  "governBody": "Workspaces scope resources and access. People and agents reach the same resources through APIs and MCP.",
+  "close": "The foundation is yours. What will you build?",
+  "footer": "An open-source control plane for applications, agents, and infrastructure."
+}

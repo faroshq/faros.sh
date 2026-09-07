@@ -1,0 +1,96 @@
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta charset="utf-8">
+
+{{ if ne .Section "docs" }}<base href="{{ .Site.BaseURL }}">{{ end }}
+
+{{ if .IsHome }}
+  <title>{{ .Title | default "Faros — Give intelligence something to build on." }}</title>
+{{ else if .Title }}
+  <title>{{ .Title }} | Faros</title>
+{{ else }}
+  <title>Faros</title>
+{{ end }}
+
+{{ $desc := .Description | default .Site.Params.description }}
+{{ with $desc }}
+<meta name="description" content="{{ . }}"> {{ end }}
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Faros">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "Faros — Give intelligence something to build on." }}{{ else }}{{ .Title }} | Faros{{ end }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:image" content="{{ "logo.png" | absURL }}">
+<meta property="og:image:alt" content="Faros">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "Faros — Give intelligence something to build on." }}{{ else }}{{ .Title }} | Faros{{ end }}">
+{{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+<meta name="twitter:image" content="{{ "logo.png" | absURL }}">
+<meta name="twitter:image:alt" content="Faros">
+
+{{ if .IsHome }}
+<!-- Structured data: one Faros brand, with the Apache-licensed source identified separately. -->
+{{- $organization := dict
+  "@type" "Organization"
+  "@id" "https://faros.sh/#organization"
+  "name" "Faros"
+  "url" "https://faros.sh/"
+  "logo" "https://faros.sh/logo.png"
+  "sameAs" (slice "https://github.com/faroshq")
+-}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" "https://faros.sh/#website"
+  "name" "Faros"
+  "url" "https://faros.sh/"
+  "description" $desc
+  "publisher" (dict "@id" "https://faros.sh/#organization")
+-}}
+{{- $platform := dict
+  "@type" "SoftwareApplication"
+  "@id" "https://faros.sh/#platform"
+  "name" "Faros"
+  "applicationCategory" "DeveloperApplication"
+  "description" $desc
+  "url" "https://faros.sh/platform/"
+  "author" (dict "@id" "https://faros.sh/#organization")
+  "isRelatedTo" (dict "@id" "https://faros.sh/#open-source")
+-}}
+{{- $openSource := dict
+  "@type" "SoftwareSourceCode"
+  "@id" "https://faros.sh/#open-source"
+  "name" "Faros Open Source"
+  "description" "The Apache 2.0 open-source Faros platform."
+  "url" "https://faros.sh/open-source/"
+  "codeRepository" "https://github.com/faroshq/faros"
+  "license" "https://www.apache.org/licenses/LICENSE-2.0"
+  "author" (dict "@id" "https://faros.sh/#organization")
+-}}
+{{- $structuredData := dict
+  "@context" "https://schema.org"
+  "@graph" (slice $organization $website $platform $openSource)
+-}}
+<script type="application/ld+json">
+{{ $structuredData | jsonify | safeJS }}
+</script>
+{{ end }}
+<!-- noindex meta -->
+{{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
+{{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}
+{{ $is_noindex_true := and (isset .Params "noindex") .Params.noindex }}
+{{ if or $is_noindex_true (and (ne .Section "docs") (in $noindex_kinds .Kind)) }}
+<meta name="robots" content="noindex">
+{{ end }}
+
+{{ template "_internal/google_analytics.html" . }}
+{{ template "_internal/google_captacha.html" . }}
+{{ template "_internal/discord_form.html" . }}

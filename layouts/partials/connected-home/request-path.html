@@ -1,0 +1,35 @@
+{{/* Recording slots are intentionally empty until the user supplies real product videos. */}}
+{{ $workflows := slice
+  (dict "id" "build" "name" "Build with your data" "outcome" "Turn existing data into a useful application." "steps" (slice "Connect a table" "Describe your app" "Explore the preview") "url" "/docs/use/app-studio/databricks/" "link" "Explore App Studio")
+  (dict "id" "agent" "name" "Put an agent to work" "outcome" "Run an agent on a schedule." "steps" (slice "Give it a task" "Review the result" "Set a schedule") "url" "/docs/use/agents/schedules/" "link" "Explore agents")
+  (dict "id" "launch" "name" "Launch an environment" "outcome" "Go from a template to a running environment." "steps" (slice "Choose a template" "Configure your instance" "Open your environment") "url" "/docs/use/infrastructure/quickstart/" "link" "Explore infrastructure")
+}}
+<section class="ly-proof gs-shell cl-workflows" id="system" aria-labelledby="workflow-title">
+  <div class="cl-workflow-inner">
+    <div class="cl-workflow-heading">
+      <h2 id="workflow-title">Put Faros <span>to work.</span></h2>
+      <p>Build an app, delegate a task, or launch an environment—all from your workspace.</p>
+    </div>
+    <div class="cl-workflow-tabs" aria-label="Faros workflows">
+      {{ range $workflows }}<a id="workflow-tab-{{ .id }}" href="#workflow-{{ .id }}">{{ .name }}</a>{{ end }}
+    </div>
+    {{ range $workflows }}
+    <section class="cl-workflow-panel" id="workflow-{{ .id }}" aria-labelledby="workflow-tab-{{ .id }}">
+      <div class="cl-video-slot" aria-label="{{ .name }} video placeholder">
+        <div class="cl-video-empty">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="20" rx="2"/><path d="M3 12h26M10 6v6m7-6v6m7-6v6"/></svg>
+          <p>{{ .name }}</p>
+          <span>Recording coming soon</span>
+        </div>
+      </div>
+      <div class="cl-workflow-caption">
+        <div>
+          <h3>{{ .outcome }}</h3>
+          <ol aria-label="Workflow steps">{{ range .steps }}<li>{{ . }}</li>{{ end }}</ol>
+        </div>
+        <a class="gs-text-link" href="{{ .url }}">{{ .link }} {{ partial "connected-home/arrow.html" $ }}</a>
+      </div>
+    </section>
+    {{ end }}
+  </div>
+</section>

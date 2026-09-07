@@ -11,7 +11,7 @@
           <p>{{ .summary }}</p>
           <div class="faros-marketing-actions">
             {{ with .primary }}
-            <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} <span aria-hidden="true">→</span></a>
+            <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
             {{ end }}
             {{ with .secondary }}
             <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
@@ -19,6 +19,9 @@
           </div>
         </div>
       </div>
+      {{ if eq $.RelPermalink "/platform/" }}{{ partial "marketing-hub/platform-visual.html" $ }}{{ end }}
+      {{ if eq $.RelPermalink "/developers/" }}{{ partial "marketing-hub/developer-visual.html" $ }}{{ end }}
+      {{ if eq $.RelPermalink "/solutions/" }}{{ partial "marketing-hub/solutions-visual.html" $ }}{{ end }}
       {{ with .facts }}
       <ul class="faros-marketing-facts" aria-label="Page highlights">
         {{ range . }}<li>{{ . }}</li>{{ end }}
@@ -49,10 +52,14 @@
               {{ range . }}<li>{{ . }}</li>{{ end }}
             </ul>
             {{ end }}
-            {{ if .url }}<span class="faros-marketing-card-link">{{ .link_label | default "Learn more" }} <span aria-hidden="true">→</span></span>{{ end }}
+            {{ if .url }}<span class="faros-marketing-card-link">{{ .link_label | default "Learn more" }} {{ partial "connected-home/arrow.html" $ }}</span>{{ end }}
           {{ if .url }}</a>{{ else }}</article>{{ end }}
         {{ end }}
       </div>
+      {{ end }}
+
+      {{ with $section.primary }}
+      <div class="faros-marketing-actions"><a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a></div>
       {{ end }}
 
       {{ with $section.note }}<p class="faros-marketing-note">{{ . }}</p>{{ end }}
@@ -74,7 +81,7 @@
       {{ with .summary }}<p>{{ . }}</p>{{ end }}
       <div class="faros-marketing-actions">
         {{ with .primary }}
-        <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} <span aria-hidden="true">→</span></a>
+        <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
         {{ end }}
         {{ with .secondary }}
         <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>

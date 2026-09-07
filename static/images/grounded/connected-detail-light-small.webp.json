@@ -1,0 +1,17 @@
+{
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery.",
+  "createdAt": "2026-09-07T17:30:07.026Z",
+  "source": "connected-detail-light-4k.png",
+  "sourceDimensions": [
+    6144,
+    4096
+  ],
+  "sourceSha256": "c7460a84f3ef8114bf932f9ed5abe1de7a2b4d76c51f6a968c7a4864280d2890",
+  "encoding": {
+    "format": "WebP",
+    "quality": 85,
+    "method": 6,
+    "resampling": "Lanczos",
+    "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
+  }
+}

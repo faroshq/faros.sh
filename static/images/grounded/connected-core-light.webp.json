@@ -1,0 +1,17 @@
+{
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery.",
+  "createdAt": "2026-09-07T17:30:42.886Z",
+  "source": "connected-core-light-4k.png",
+  "sourceDimensions": [
+    6144,
+    4096
+  ],
+  "sourceSha256": "b5e0fba9554e5d19dc3ba2629b4c32e25c37aca367d52af7dde4d9b1e87071c5",
+  "encoding": {
+    "format": "WebP",
+    "quality": 85,
+    "method": 6,
+    "resampling": "Lanczos",
+    "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
+  }
+}

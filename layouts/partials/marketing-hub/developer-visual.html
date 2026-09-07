@@ -1,0 +1,88 @@
+<section class="dv" data-visual-tabs aria-labelledby="dv-title">
+  <div class="dv-shell">
+    <div class="dv-heading">
+      <div>
+        <h2 id="dv-title">Start in<br><span>your terminal.</span></h2>
+      </div>
+      <p class="dv-intro">Select a workspace, list its connected edges, or get an MCP endpoint for your agent. Try the commands below with kubectl-faros.</p>
+    </div>
+
+    <div class="dv-stage">
+      <div class="dv-console" aria-label="Illustrative Faros CLI examples">
+        <div class="dv-console-bar"><span></span><span></span><span></span><b>faros / workspace</b></div>
+        <div class="dv-tabs" data-visual-controls hidden role="tablist" aria-label="CLI examples">
+          <button type="button" data-visual-choice="workspace" aria-controls="dv-panel-workspace" aria-selected="true">Workspace</button>
+          <button type="button" data-visual-choice="edge" aria-controls="dv-panel-edge" aria-selected="false">Edge</button>
+          <button type="button" data-visual-choice="mcp" aria-controls="dv-panel-mcp" aria-selected="false">MCP</button>
+        </div>
+        <div class="dv-panels">
+          <article class="dv-panel" data-visual-panel="workspace" id="dv-panel-workspace" aria-labelledby="dv-panel-workspace-title">
+            <p class="dv-panel-label" id="dv-panel-workspace-title">Select a workspace</p>
+            <code class="dv-command"><span>$</span> kubectl faros use --org acme --workspace platform</code>
+            <div class="dv-result-artifact"><span>What this does</span><strong>acme / platform</strong><small>selected organization and workspace</small></div>
+            <p class="dv-result">Selects the organization and workspace without a prompt. Subsequent commands use this workspace.</p>
+            <a class="dv-link" href="/docs/reference/cli/workspaces/">Read workspace commands {{ partial "connected-home/arrow.html" $ }}</a>
+          </article>
+          <article class="dv-panel" data-visual-panel="edge" id="dv-panel-edge" aria-labelledby="dv-panel-edge-title">
+            <p class="dv-panel-label" id="dv-panel-edge-title">List workspace edges</p>
+            <code class="dv-command"><span>$</span> kubectl faros edge list</code>
+            <div class="dv-result-artifact dv-inventory"><span>What this does</span><strong>edge inventory</strong><div><i>NAME</i><i>TYPE</i><i>PHASE</i><i>CONNECTED</i><i>AGE</i></div></div>
+            <p class="dv-result">Lists the edges in your workspace, including their type, connection status, and age.</p>
+            <a class="dv-link" href="/docs/reference/cli/edges/">Read edge commands {{ partial "connected-home/arrow.html" $ }}</a>
+          </article>
+          <article class="dv-panel" data-visual-panel="mcp" id="dv-panel-mcp" aria-labelledby="dv-panel-mcp-title">
+            <p class="dv-panel-label" id="dv-panel-mcp-title">Get the workspace MCP endpoint</p>
+            <code class="dv-command"><span>$</span> kubectl faros mcp url --mcpserver-name default</code>
+            <div class="dv-result-artifact"><span>What this does</span><strong>Workspace MCP endpoint</strong><small>Use this URL in your MCP client</small></div>
+            <p class="dv-result">Prints the workspace MCP URL. The CLI also supports a separate endpoint for each connected Kubernetes edge.</p>
+            <a class="dv-link" href="/docs/reference/cli/mcp/">Read MCP commands {{ partial "connected-home/arrow.html" $ }}</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="dv-diagrams" aria-label="Command results illustrated">
+        <figure class="dv-diagram" data-visual-companion="workspace" aria-labelledby="dv-context-title">
+          <figcaption><h3 id="dv-context-title">Your workspace, selected.</h3><p>A local context tells your tools where to work.</p></figcaption>
+          <div class="dv-context-scene">
+            <div class="dv-context-file">
+              <svg viewBox="0 0 32 36" aria-hidden="true"><path d="M6 2h13l7 7v25H6Z M19 2v8h7M11 17h10m-10 6h10m-10 6h6"/></svg>
+              <div><strong>kubeconfig</strong><span>Saved on your machine</span></div>
+            </div>
+            <div class="dv-connector" aria-hidden="true"><i></i></div>
+            <div class="dv-scope">
+              <div class="dv-scope-label"><span>Organization</span><strong>acme</strong></div>
+              <div class="dv-workspace-selected"><div><span>Active workspace</span><strong>platform</strong></div><svg viewBox="0 0 24 24" aria-label="Selected"><path d="m5 12 4 4L19 6"/></svg></div>
+              <div class="dv-other-workspaces"><span>product</span><span>research</span><small>Other workspaces</small></div>
+            </div>
+          </div>
+          <p class="dv-diagram-note">Subsequent CLI requests target <code>acme / platform</code>. Switching context does not create a workspace.</p>
+        </figure>
+
+        <figure class="dv-diagram" data-visual-companion="edge" aria-labelledby="dv-inventory-title">
+          <figcaption><h3 id="dv-inventory-title">See what’s connected.</h3><p>Read the edge inventory in your active workspace.</p></figcaption>
+          <div class="dv-inventory-scene">
+            <div class="dv-scope-label"><span>Workspace</span><strong>acme / platform</strong></div>
+            <div class="dv-edge-collection">
+              <div class="dv-edge-record"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 12 7v13l-12 7-12-7V10ZM4 10l12 7 12-7M16 17v13"/></svg><div><strong>production-eu</strong><span>Kubernetes cluster</span></div><span class="dv-connection-status"><i></i>Connected</span></div>
+              <div class="dv-edge-record"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="5" width="26" height="9" rx="1"/><rect x="3" y="19" width="26" height="9" rx="1"/><path d="M8 9h3m-3 14h3"/></svg><div><strong>build-runner</strong><span>Linux host</span></div><span class="dv-connection-status"><i></i>Connected</span></div>
+              <div class="dv-edge-record"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 12 7v13l-12 7-12-7V10ZM4 10l12 7 12-7M16 17v13"/></svg><div><strong>staging-us</strong><span>Kubernetes cluster</span></div><span class="dv-connection-status dv-disconnected"><i></i>Offline</span></div>
+            </div>
+            <div class="dv-readout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4ZM8 9h8m-8 6h5"/></svg><span>Names, types, and connection status</span></div>
+          </div>
+          <p class="dv-diagram-note">Example inventory. <code>edge list</code> reads registered edges; their agents establish the outbound connections.</p>
+        </figure>
+
+        <figure class="dv-diagram" data-visual-companion="mcp" aria-labelledby="dv-endpoint-title">
+          <figcaption><h3 id="dv-endpoint-title">An endpoint for your agent.</h3><p>Get the workspace URL, then configure your MCP client.</p></figcaption>
+          <div class="dv-endpoint-scene">
+            <div class="dv-scope-label"><span>Workspace</span><strong>acme / platform</strong></div>
+            <div class="dv-mcp-endpoint"><span>MCPServer</span><strong>default</strong><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 14 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 8a4 4 0 0 0 6 0l4-4a4 4 0 0 0-6-6l-1 1"/></svg><span>Workspace MCP URL</span></div></div>
+            <div class="dv-connector dv-connector-labeled" aria-hidden="true"><i></i><span>Add to client configuration</span></div>
+            <div class="dv-client"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 6h26v21H3Zm0 6h26m-21 5 4 3-4 3m9 0h6"/></svg><div><strong>Your MCP client</strong><span>Ready to discover provider tools</span></div></div>
+          </div>
+          <p class="dv-diagram-note">The endpoint uses its MCPServer service account. This command returns a URL; it does not invoke tools.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

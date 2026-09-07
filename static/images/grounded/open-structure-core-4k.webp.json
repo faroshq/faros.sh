@@ -1,0 +1,16 @@
+{
+  "source": "open-structure-core-4k.png",
+  "sourceDimensions": [
+    6144,
+    4096
+  ],
+  "sourceSha256": "478d029bae32af54d8f7a0994dd584eb4a9714c599356da66c55efeb17b6c643",
+  "encoding": {
+    "format": "WebP",
+    "quality": 85,
+    "method": 6,
+    "resampling": "Lanczos",
+    "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
+  },
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery."
+}

@@ -1,0 +1,17 @@
+{
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery.",
+  "createdAt": "2026-09-07T16:18:05.951Z",
+  "source": "layers-dark-detail-4k.png",
+  "sourceDimensions": [
+    6144,
+    4096
+  ],
+  "sourceSha256": "0df4114f39a13ceada012c2d5b505be474422c355772137338d37e48c51ece26",
+  "encoding": {
+    "format": "WebP",
+    "quality": 85,
+    "method": 6,
+    "resampling": "Lanczos",
+    "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
+  }
+}

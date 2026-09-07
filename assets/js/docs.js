@@ -296,52 +296,24 @@ document.querySelectorAll('.docs-code-block').forEach(block => {
   });
 });
 
-const themeControl = document.querySelector('.docs-theme-control');
-if (themeControl) {
-  const trigger = themeControl.querySelector('summary');
-  const choices = [...themeControl.querySelectorAll('[data-theme-choice]')];
-  const systemTheme = matchMedia('(prefers-color-scheme: dark)');
-  let preference = document.documentElement.dataset.docsTheme || 'system';
-  function applyTheme() {
-    const dark = preference === 'dark' || (preference === 'system' && systemTheme.matches);
-    document.documentElement.classList.toggle('dark', dark);
-    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
-    document.documentElement.dataset.docsTheme = preference;
-    trigger.setAttribute('aria-label', `Documentation theme: ${preference[0].toUpperCase() + preference.slice(1)}`);
-    choices.forEach(choice => choice.setAttribute('aria-pressed', String(choice.dataset.themeChoice === preference)));
-    themeControl.querySelectorAll('[data-theme-icon]').forEach(icon => { icon.hidden = icon.dataset.themeIcon !== preference; });
-  }
-  themeControl.hidden = false;
-  applyTheme();
-  choices.forEach((choice, index) => {
-    choice.addEventListener('click', () => {
-      preference = choice.dataset.themeChoice;
-      try { localStorage.setItem('faros-docs-theme', preference); } catch {}
-      applyTheme();
-      themeControl.open = false;
-      trigger.focus();
-    });
-    choice.addEventListener('keydown', event => {
-      let next;
-      if (event.key === 'ArrowDown') next = (index + 1) % choices.length;
-      if (event.key === 'ArrowUp') next = (index + choices.length - 1) % choices.length;
-      if (event.key === 'Home') next = 0;
-      if (event.key === 'End') next = choices.length - 1;
-      if (next !== undefined) { event.preventDefault(); choices[next].focus(); }
-    });
-  });
-  themeControl.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { themeControl.open = false; trigger.focus(); }
-    if (event.target === trigger && event.key === 'ArrowDown') {
-      event.preventDefault(); themeControl.open = true; choices.find(choice => choice.dataset.themeChoice === preference).focus();
+// Track the shared header height so sticky navigation and anchors survive wrapping/zoom.
+const docsHeader = document.querySelector('.docs-header');
+if (docsHeader && 'ResizeObserver' in window) {
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--docs-header-height', `${docsHeader.getBoundingClientRect().height}px`);
+  }).observe(docsHeader);
+}
+
+// Keep the compact documentation menu local to the single header.
+const docsMenu = document.querySelector('.docs-mobile-menu');
+if (docsMenu) {
+  const closeMenu = () => { docsMenu.open = false; };
+  docsMenu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && docsMenu.open) {
+      event.preventDefault(); closeMenu(); docsMenu.querySelector('summary').focus();
     }
   });
-  document.addEventListener('click', event => { if (!themeControl.contains(event.target)) themeControl.open = false; });
-  document.addEventListener('focusin', event => { if (!themeControl.contains(event.target)) themeControl.open = false; });
-  systemTheme.addEventListener('change', applyTheme);
-  window.addEventListener('storage', event => {
-    if (event.key !== 'faros-docs-theme' && event.key !== null) return;
-    preference = ['light', 'dark'].includes(event.newValue) ? event.newValue : 'system';
-    applyTheme();
-  });
+  document.addEventListener('pointerdown', event => { if (!docsMenu.contains(event.target)) closeMenu(); });
+  docsMenu.addEventListener('focusout', event => { if (!docsMenu.contains(event.relatedTarget)) closeMenu(); });
+  matchMedia('(min-width: 1281px)').addEventListener('change', closeMenu);
 }

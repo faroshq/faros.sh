@@ -1,5 +1,11 @@
-{{ define "main" }}
-<main class="flex-grow">
-    {{ partial "home-v2/page.html" . }}
-</main>
-{{ end }}
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}" data-study-theme="dark">
+<head>{{ partial "connected-home/head.html" . }}</head>
+<body class="gs gs-layers gs-platform-story gs-connected">
+{{ partial "connected-home/header.html" . }}
+<main id="main">{{ partial "connected-home/page.html" . }}</main>
+{{ partial "connected-home/footer.html" . }}
+<script src="/js/connected-theme.js" defer></script>
+<script src="/js/workflow-showcase.js" defer></script>
+</body>
+</html>

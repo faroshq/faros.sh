@@ -60,7 +60,7 @@ languageName ="English"
 weight = 1
 [languages.en.params]
 title = "Faros"
-description = "Faros is the operating system for AI-native platforms. Start with Faros Cloud, self-host the Apache 2.0 project, or work with the Faros team."
+description = "Build applications, run agents, and connect infrastructure with Faros, an open-source control plane with isolated workspaces and provider tools."
 
 [params.brand]
 console_url = "https://console-dev.faros.sh/"

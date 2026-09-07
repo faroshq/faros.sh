@@ -1,0 +1,5 @@
+<footer class="gs-footer gs-shell cm-footer">
+  <div><a class="gs-brand" href="/">{{ partial "connected-home/mark.html" . }}<span>faros</span></a><p>{{ site.Data.connected_home.footer }}</p></div>
+  <nav aria-label="Footer">{{ range slice (dict "name" "Platform" "url" "/platform/") (dict "name" "Developers" "url" "/developers/") (dict "name" "Solutions" "url" "/solutions/") (dict "name" "Pricing" "url" "/pricing/") (dict "name" "Open source" "url" "/open-source/") (dict "name" "Company" "url" "/company/") (dict "name" "Docs" "url" "/docs/") (dict "name" "Contact" "url" "/contact/") }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}</nav>
+  {{ if .IsHome }}<button class="cl-motion-toggle" type="button" aria-pressed="true" hidden>Motion on</button>{{ end }}
+</footer>

@@ -1,0 +1,47 @@
+/* Shared Connected Layers shell; documentation retains its own layout and theme. */
+.gs-connected {
+  --fx-bg: var(--gs-ground); --fx-surface: var(--gs-ground); --fx-raised: var(--gs-panel);
+  --fx-overlay: var(--gs-panel); --fx-hover: var(--gs-panel);
+  --fx-text: var(--gs-ink); --fx-text-2: var(--gs-muted); --fx-text-muted: var(--gs-muted);
+  --fx-border: var(--gs-rule); --fx-border-strong: var(--gs-rule);
+  --fx-accent: var(--gs-violet); --fx-accent-hover: var(--cl-accent-hover);
+  --fx-accent-subtle: color-mix(in srgb,var(--gs-violet) 10%,transparent);
+  --fx-accent-glow: var(--gs-glow); --fx-mono: StudyInstrument,sans-serif; --fx-body: StudyInstrument,sans-serif; --fx-display: StudyInstrument,sans-serif;
+}
+.gs-connected .gs-header { gap: 24px; }
+.gs-connected .cm-primary-nav { gap: 24px; }
+.gs-connected [aria-current=page] { color: var(--gs-violet); text-decoration: underline; }
+.cm-mobile-nav { display: none; }
+.gs-connected .cm-footer { padding-block: 56px; align-items: flex-start; border-top: 1px solid var(--gs-rule); gap: 40px; }
+.cm-footer > div { flex: 1; }
+.cm-footer p { margin-top: 18px; max-width: 32ch; }
+.gs-connected .cm-footer nav { display: grid; grid-template-columns: repeat(4,auto); gap: 16px 32px; margin-left: auto; font-size: 14px; }
+.cm-footer .cl-motion-toggle { align-self: flex-end; }
+.cm-page .hidden, .cm-page [hidden] { display: none !important; }
+.cm-page p { max-width: none; }
+.cm-page main { min-height: 65vh; }
+.cm-page :is(input,textarea,button) { font-family: inherit; }
+.cm-page svg { max-width: 100%; }
+.cm-page :is(button,summary):focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 4px; }
+.cm-page section[id] { scroll-margin-top: 32px; }
+@media(max-width:1050px) {
+  .gs-connected .cm-primary-nav { display: none; }
+  .gs-connected .cl-theme-picker { margin-left: auto; }
+  .cm-mobile-nav { display: block; }
+  .cm-mobile-nav > summary { display: flex; align-items: center; gap: 10px; padding: 10px 0 10px 12px; min-height: 44px; font-size: 14px; cursor: pointer; list-style: none; }
+  .cm-mobile-nav > summary::-webkit-details-marker { display: none; }
+  .cm-mobile-nav > summary svg { width: 18px; height: 18px; transform: rotate(90deg); }
+  .cm-mobile-nav[open] > summary svg { transform: rotate(-90deg); }
+  .gs-connected .cm-mobile-nav nav { position: absolute; top: 100%; right: 24px; left: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 16px; background: var(--gs-panel); border: 1px solid var(--gs-rule); margin: 0; font-size: 16px; }
+  .gs-connected .cm-mobile-nav nav a { display: block; min-height: 44px; padding: 10px; }
+  .gs-connected .cm-footer nav { grid-template-columns: repeat(2,auto); }
+}
+@media(max-width:700px) {
+  .gs-connected .gs-header { gap: 10px; }
+  .gs-connected .cm-footer { gap: 32px; }
+  .cm-footer > div { flex-basis: 100%; }
+  .gs-connected .cm-footer nav { margin: 0; width: 100%; }
+}
+
+.cm-page .faros-marketing-button-primary, .cm-page .pricing-button-primary { color: var(--cl-on-accent); }
+.cm-page .pricing-button-primary:hover { color: var(--cl-on-accent); }
