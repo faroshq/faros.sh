@@ -43,26 +43,14 @@
       top: `${(hero.clientHeight - 1024 * scale) * position[1] / 100}px`
     });
   }
-  let switchingTheme = false;
-  async function applyTheme(next) {
-    if (switchingTheme) return;
+  function applyTheme(next) {
     closeThemePicker(true);
     if (next === root.dataset.themePreference) return;
-    const resolved = window.FarosTheme.resolve(next);
-    switchingTheme = true;
-    themeButton.setAttribute('aria-busy', 'true');
-    themeChoices.forEach(choice => choice.setAttribute('aria-disabled', 'true'));
-    // Decode the companion art before changing the palette, preserving the current scene while it loads.
-    await Promise.allSettled([...document.querySelectorAll(`[data-art-theme="${resolved}"] img`)].map(img => {
-      img.loading = 'eager';
-      return img.decode();
-    }));
+    // Palette changes must not wait for artwork, including lazy offscreen images.
+    // The existing CSS transition fades whichever images are ready.
     window.FarosTheme.set(next);
     labelTheme();
     alignCircuit();
-    switchingTheme = false;
-    themeButton.setAttribute('aria-busy', 'false');
-    themeChoices.forEach(choice => choice.removeAttribute('aria-disabled'));
   }
   themeChoices.forEach(choice => choice.addEventListener('click', () => applyTheme(choice.dataset.themeChoice)));
   themePicker.addEventListener('keydown', event => {

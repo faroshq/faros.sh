@@ -1,3 +1,4 @@
+@font-face { font-family: StudyMono; src: url('/fonts/violet-circuit/ibm-plex-mono.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face{font-family:StudyInstrument;src:url('/fonts/violet-circuit/instrument-sans.woff2') format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:StudyArchivo;src:url('/fonts/violet-circuit/archivo.woff2') format('woff2');font-weight:100 900;font-display:swap}
 :root{color-scheme:light;--gs-ground:#f6f3ee;--gs-ink:#252329;--gs-muted:#645e69;--gs-violet:#7141d5;--gs-glow:#ab79ff;--gs-rule:#d9d2df;--gs-panel:#ebe7e0;--gs-on:#fff;scroll-behavior:smooth;scroll-padding-top:32px}

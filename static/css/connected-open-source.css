@@ -1,5 +1,4 @@
 /* Retain the original home-v2 open-source partial, scoped to this exploration. */
-@font-face { font-family: StudyMono; src: url('/fonts/violet-circuit/ibm-plex-mono.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 .gs-connected .faros-v2-oss {
   --oss-surface: #0a0b12; --oss-overlay: #171927; --oss-hover: #1e2033;
   --oss-border: rgba(255,255,255,.07); --oss-dots: rgba(255,255,255,.11);

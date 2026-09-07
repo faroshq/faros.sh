@@ -60,13 +60,11 @@
 .cl-theme-toggle:hover, .cl-theme-picker[open] .cl-theme-toggle { background: var(--gs-panel); }
 .cl-motion-toggle:hover:not(:disabled) { border-color: var(--gs-violet); }
 .cl-theme-toggle:focus-visible, .cl-motion-toggle:focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 3px; }
-.cl-theme-toggle[aria-busy=true] { cursor: progress; }
 .cl-theme-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 3; width: 164px; padding: 6px; border: 1px solid var(--gs-rule); border-radius: 4px; background: var(--gs-panel); }
 .cl-theme-menu button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px; border: 0; border-radius: 2px; background: transparent; color: var(--gs-ink); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
 .cl-theme-menu button:hover, .cl-theme-menu button:focus-visible { background: var(--gs-ground); }
 .cl-theme-menu button:focus-visible { outline: 2px solid var(--gs-violet); outline-offset: -2px; }
 .cl-theme-menu button[aria-pressed=true] { color: var(--gs-violet); }
-.cl-theme-menu button[aria-disabled=true] { cursor: progress; }
 .cl-theme-menu .cl-theme-check { width: 14px; height: 14px; margin-left: auto; visibility: hidden; }
 .cl-theme-menu button[aria-pressed=true] .cl-theme-check { visibility: visible; }
 .cl-motion-toggle:disabled { cursor: default; color: var(--gs-muted); }
