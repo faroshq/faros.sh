@@ -1,19 +1,19 @@
 <section id="primitives" class="mv-platform mv-stage" data-visual-tabs data-active="workspaces" aria-label="Explore the Faros architecture">
   <div class="mv-platform-copy">
-    <h2>One system.<br><span>Deliberate boundaries.</span></h2>
+    <h2>How the platform<br><span>fits together.</span></h2>
     <div class="mv-choices" data-visual-controls hidden aria-label="Architecture layers">
       {{ range slice (dict "id" "workspaces" "name" "Workspaces") (dict "id" "providers" "name" "Providers") (dict "id" "interfaces" "name" "People & agents") (dict "id" "edges" "name" "Connected infrastructure") }}
       <button id="architecture-{{ .id }}-tab" data-visual-choice="{{ .id }}" aria-controls="architecture-{{ .id }}">{{ .name }} {{ partial "connected-home/arrow.html" $ }}</button>
       {{ end }}
     </div>
-    <div id="architecture-workspaces" data-visual-panel="workspaces"><h3>Room to build. Scope by design.</h3><p>Each workspace has its own resources, APIs, roles, and quota. Requests stay within the caller’s workspace.</p><a href="/docs/get-started/workspaces/">Understand workspaces {{ partial "connected-home/arrow.html" . }}</a></div>
-    <div id="architecture-providers" data-visual-panel="providers"><h3>Add capabilities, independently.</h3><p>Providers bring APIs, controllers, portal surfaces, and tools into the platform through a shared contract.</p><a href="/docs/extend/">Explore providers {{ partial "connected-home/arrow.html" . }}</a></div>
-    <div id="architecture-interfaces" data-visual-panel="interfaces"><h3>Different interfaces. Shared resources.</h3><p>People and agents reach workspace resources through the portal, CLI, APIs, and MCP. Tool calls use the caller’s permissions.</p><a href="/docs/reference/cli/mcp/">Explore MCP {{ partial "connected-home/arrow.html" . }}</a></div>
-    <div id="architecture-edges" data-visual-panel="edges"><h3>Reach the systems you already run.</h3><p>An edge agent connects outbound from a cluster or Linux host. Faros carries requests through that established tunnel.</p><a href="/docs/use/edges/">Connect an edge {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-workspaces" data-visual-panel="workspaces"><h3>Keep each team’s resources separate.</h3><p>Each workspace has its own resources, APIs, roles, and quota. Requests stay within the caller’s workspace.</p><a href="/docs/get-started/workspaces/">Understand workspaces {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-providers" data-visual-panel="providers"><h3>Extend Faros with providers.</h3><p>Providers add APIs, controllers, user interfaces, and tools. Enable the providers each workspace needs.</p><a href="/docs/extend/">Explore providers {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-interfaces" data-visual-panel="interfaces"><h3>Connect people and agents to workspace resources.</h3><p>Use the portal, CLI, APIs, or MCP to work with workspace resources. A workspace MCP endpoint uses its own service-account identity.</p><a href="/docs/reference/cli/mcp/">Explore MCP {{ partial "connected-home/arrow.html" . }}</a></div>
+    <div id="architecture-edges" data-visual-panel="edges"><h3>Connect your clusters and servers.</h3><p>An edge agent connects outbound from a cluster or Linux host. Use the connection to access the cluster or host through Faros.</p><a href="/docs/use/edges/">Connect an edge {{ partial "connected-home/arrow.html" . }}</a></div>
   </div>
   <figure class="mv-architecture">
     <svg viewBox="0 0 820 650" role="img" aria-labelledby="architecture-title architecture-desc">
-      <title id="architecture-title">Faros architecture layers</title><desc id="architecture-desc">People and agents use interfaces to reach workspace-scoped provider capabilities. Edges connect external clusters and hosts outbound. This is a conceptual view, not a deployment topology.</desc>
+      <title id="architecture-title">Faros architecture layers</title><desc id="architecture-desc">People and agents access provider capabilities within a workspace. Edge agents connect clusters and hosts to Faros through outbound connections. The layers show the platform concepts, not a deployment topology.</desc>
       <defs>
         <linearGradient id="mv-slab" x2="1" y2="1"><stop class="mv-stone-start"/><stop offset="1" class="mv-stone-end"/></linearGradient>
         <linearGradient id="mv-glass" x2="0" y2="1"><stop stop-color="currentColor" stop-opacity=".13"/><stop offset="1" stop-color="currentColor" stop-opacity=".02"/></linearGradient>
@@ -49,6 +49,6 @@
       <path class="mv-circuit" d="M400 128v100l28 13v92l-28 13v114"/>
       <g class="mv-nodes"><circle cx="400" cy="128" r="4"/><circle cx="428" cy="241" r="4"/><circle cx="400" cy="346" r="4"/><circle cx="400" cy="460" r="4"/></g>
     </svg>
-    <figcaption>Conceptual architecture · Workspace-scoped access</figcaption>
+    <figcaption>Platform overview · Access is scoped to a workspace</figcaption>
   </figure>
 </section>

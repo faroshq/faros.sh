@@ -2,9 +2,9 @@
   <div class="dv-shell">
     <div class="dv-heading">
       <div>
-        <h2 id="dv-title">One workspace.<br><span>Several ways in.</span></h2>
+        <h2 id="dv-title">Start in<br><span>your terminal.</span></h2>
       </div>
-      <p class="dv-intro">Use the CLI to choose a workspace, reach an edge, or hand an agent the endpoint it needs. The same boundaries stay visible as the interface changes.</p>
+      <p class="dv-intro">Select a workspace, list its connected edges, or get an MCP endpoint for your agent. Try the commands below with kubectl-faros.</p>
     </div>
 
     <div class="dv-stage">
@@ -19,31 +19,31 @@
           <article class="dv-panel" data-visual-panel="workspace" id="dv-panel-workspace" aria-labelledby="dv-panel-workspace-title">
             <p class="dv-panel-label" id="dv-panel-workspace-title">Select a workspace</p>
             <code class="dv-command"><span>$</span> kubectl faros use --org acme --workspace platform</code>
-            <div class="dv-result-artifact"><span>explained result</span><strong>acme / platform</strong><small>selected organization and workspace</small></div>
-            <p class="dv-result">The scripted form selects the organization and workspace without prompts, so following commands target that workspace.</p>
+            <div class="dv-result-artifact"><span>What this does</span><strong>acme / platform</strong><small>selected organization and workspace</small></div>
+            <p class="dv-result">Selects the organization and workspace without a prompt. Subsequent commands use this workspace.</p>
             <a class="dv-link" href="/docs/reference/cli/workspaces/">Read workspace commands {{ partial "connected-home/arrow.html" $ }}</a>
           </article>
           <article class="dv-panel" data-visual-panel="edge" id="dv-panel-edge" aria-labelledby="dv-panel-edge-title">
-            <p class="dv-panel-label" id="dv-panel-edge-title">Inspect a connected edge</p>
+            <p class="dv-panel-label" id="dv-panel-edge-title">List workspace edges</p>
             <code class="dv-command"><span>$</span> kubectl faros edge list</code>
-            <div class="dv-result-artifact dv-inventory"><span>explained result</span><strong>edge inventory</strong><div><i>NAME</i><i>TYPE</i><i>PHASE</i><i>CONNECTED</i><i>AGE</i></div></div>
-            <p class="dv-result">The documented list exposes these fields for every edge in the workspace; live values depend on the selected environment.</p>
+            <div class="dv-result-artifact dv-inventory"><span>What this does</span><strong>edge inventory</strong><div><i>NAME</i><i>TYPE</i><i>PHASE</i><i>CONNECTED</i><i>AGE</i></div></div>
+            <p class="dv-result">Lists the edges in your workspace, including their type, connection status, and age.</p>
             <a class="dv-link" href="/docs/reference/cli/edges/">Read edge commands {{ partial "connected-home/arrow.html" $ }}</a>
           </article>
           <article class="dv-panel" data-visual-panel="mcp" id="dv-panel-mcp" aria-labelledby="dv-panel-mcp-title">
-            <p class="dv-panel-label" id="dv-panel-mcp-title">Give an agent its endpoint</p>
+            <p class="dv-panel-label" id="dv-panel-mcp-title">Get the workspace MCP endpoint</p>
             <code class="dv-command"><span>$</span> kubectl faros mcp url --mcpserver-name default</code>
-            <div class="dv-result-artifact"><span>explained result</span><strong>workspace aggregate</strong><small>endpoint → client setup</small></div>
-            <p class="dv-result">The command prints the MCP endpoint for the selected workspace. Use the per-edge form for a Kubernetes edge.</p>
+            <div class="dv-result-artifact"><span>What this does</span><strong>Workspace MCP endpoint</strong><small>Use this URL in your MCP client</small></div>
+            <p class="dv-result">Prints the workspace MCP URL. The CLI also supports a separate endpoint for each connected Kubernetes edge.</p>
             <a class="dv-link" href="/docs/reference/cli/mcp/">Read MCP commands {{ partial "connected-home/arrow.html" $ }}</a>
           </article>
         </div>
-        <p class="dv-note">Illustrative command surface. Values follow the documented CLI examples.</p>
+        <p class="dv-note">Command examples with explanations, not live output.</p>
       </div>
 
       <figure class="dv-map">
         <figcaption><span>Request path</span><small>workspace-scoped connections</small></figcaption>
-        <svg viewBox="0 0 620 420" role="img" aria-label="A workspace connects a Faros hub to an edge tunnel, MCP endpoint, and server access path">
+        <svg viewBox="0 0 620 420" role="img" aria-label="Faros provides workspace access through kubectl, edge connections, and MCP">
           <defs>
             <linearGradient id="dv-line" x1="0" x2="1">
               <stop offset="0" stop-color="currentColor" stop-opacity=".2"/>
@@ -59,13 +59,13 @@
           <path class="dv-route-pulse" data-visual-target="edge" d="M310 210C310 150 185 150 185 100M310 210C310 275 435 275 435 320"/>
           <path class="dv-route-pulse" data-visual-target="mcp" d="M310 210C310 150 435 150 435 100"/>
           <path class="dv-route-pulse" data-visual-target="workspace" d="M310 210C310 275 185 275 185 320"/>
-          <g class="dv-node dv-node-core"><circle cx="310" cy="210" r="43"/><path d="M310 184v52m-18-26h36"/><text x="310" y="276">workspace hub</text></g>
+          <g class="dv-node dv-node-core"><circle cx="310" cy="210" r="43"/><path d="M310 184v52m-18-26h36"/><text x="310" y="276">Faros workspace</text></g>
           <g class="dv-node" data-visual-target="edge"><circle cx="185" cy="100" r="28"/><path d="M173 89h24v22h-24zm5 6h14m-14 6h14"/><text x="185" y="56">edge tunnel</text></g>
           <g class="dv-node" data-visual-target="mcp"><circle cx="435" cy="100" r="28"/><circle cx="435" cy="96" r="7"/><path d="M423 110c4-7 20-7 24 0m-17-22h10"/><text x="435" y="56">MCP endpoint</text></g>
           <g class="dv-node" data-visual-target="workspace"><circle cx="185" cy="320" r="28"/><rect x="172" y="309" width="26" height="20" rx="2"/><path d="m177 316 4 4 6-7"/><text x="185" y="376">kubectl</text></g>
           <g class="dv-node" data-visual-target="edge"><circle cx="435" cy="320" r="28"/><rect x="422" y="309" width="26" height="6" rx="1"/><rect x="422" y="318" width="26" height="6" rx="1"/><rect x="422" y="327" width="26" height="2"/><text x="435" y="376">server edge</text></g>
         </svg>
-        <p class="dv-map-note">The hub carries workspace identity while each provider keeps its own connection and authorization boundary.</p>
+        <p class="dv-map-note">Requests identify the workspace. Providers use the configured identity to check access to their resources.</p>
       </figure>
     </div>
   </div>
