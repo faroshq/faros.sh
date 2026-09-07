@@ -2,14 +2,14 @@
 <header class="gs-header gs-shell">
   <a class="gs-brand" href="/" aria-label="Faros home">{{ partial "connected-home/mark.html" . }}<span>faros</span></a>
   <nav class="cm-primary-nav" aria-label="Main navigation">
-    {{ range slice (dict "name" "Platform" "url" "/platform/") (dict "name" "Developers" "url" "/developers/") (dict "name" "Solutions" "url" "/solutions/") (dict "name" "Pricing" "url" "/pricing/") (dict "name" "Docs" "url" "/docs/") }}
+    {{ range slice (dict "name" "Platform" "url" "/platform/") (dict "name" "Solutions" "url" "/solutions/") (dict "name" "Developers" "url" "/developers/") (dict "name" "Pricing" "url" "/pricing/") (dict "name" "Docs" "url" "/docs/") }}
     <a href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ else if and (eq .url "/docs/") (eq $.Section "docs") }} aria-current="true"{{ end }}>{{ .name }}</a>
     {{ end }}
   </nav>
   {{ partial "connected-home/theme-controls.html" . }}
   {{ with site.Params.brand.console_url }}<a class="gs-header-action" href="{{ . }}">Open console {{ partial "connected-home/arrow.html" $ }}</a>{{ end }}
   <details class="cm-mobile-nav"><summary aria-label="Main menu">Menu {{ partial "connected-home/arrow.html" . }}</summary><nav aria-label="Mobile navigation">
-    {{ range slice (dict "name" "Platform" "url" "/platform/") (dict "name" "Developers" "url" "/developers/") (dict "name" "Solutions" "url" "/solutions/") (dict "name" "Pricing" "url" "/pricing/") (dict "name" "Docs" "url" "/docs/") (dict "name" "Open source" "url" "/open-source/") (dict "name" "Company" "url" "/company/") (dict "name" "Contact" "url" "/contact/") }}<a href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ else if and (eq .url "/docs/") (eq $.Section "docs") }} aria-current="true"{{ end }}>{{ .name }}</a>{{ end }}
+    {{ range slice (dict "name" "Platform" "url" "/platform/") (dict "name" "Solutions" "url" "/solutions/") (dict "name" "Developers" "url" "/developers/") (dict "name" "Pricing" "url" "/pricing/") (dict "name" "Docs" "url" "/docs/") (dict "name" "Open source" "url" "/open-source/") (dict "name" "Company" "url" "/company/") (dict "name" "Contact" "url" "/contact/") }}<a href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ else if and (eq .url "/docs/") (eq $.Section "docs") }} aria-current="true"{{ end }}>{{ .name }}</a>{{ end }}
     {{ with site.Params.brand.console_url }}<a href="{{ . }}">Open console</a>{{ end }}
   </nav></details>
 </header>
