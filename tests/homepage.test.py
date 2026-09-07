@@ -21,6 +21,7 @@ class Homepage(HTMLParser):
         self.h1 = []
         self.hrefs = []
         self.assets = []
+        self.responsive_art = []
         self.meta = []
         self.console_links = []
         self.classes = set()
@@ -53,9 +54,12 @@ class Homepage(HTMLParser):
         elif tag == "meta":
             self.meta.append(attrs)
         elif tag in {"script", "img", "source"}:
-            src = attrs.get("src") or attrs.get("srcset")
-            if src:
-                self.assets.extend(src.split(",") if tag == "source" else [src])
+            if attrs.get("src"):
+                self.assets.append(attrs["src"])
+            if attrs.get("srcset"):
+                self.assets.extend(attrs["srcset"].split(","))
+            if tag == "img" and "/images/grounded/" in attrs.get("src", ""):
+                self.responsive_art.append(attrs)
         elif tag == "a":
             href = attrs.get("href")
             if href:
@@ -126,6 +130,15 @@ if not parser.workflow_tabs:
 
 if any("/explorations/" in href for href in parser.hrefs):
     errors.append("homepage contains an /explorations/ link")
+
+if len(parser.responsive_art) != 6:
+    errors.append("expected two hero images and four detail/base glow images")
+for art in parser.responsive_art:
+    candidates = [candidate.strip().split() for candidate in art.get("srcset", "").split(",")]
+    if [c[-1] for c in candidates if c] != ["960w", "1536w", "2560w", "3840w", "6144w"]:
+        errors.append(f"missing responsive image sizes: {art['src']}")
+    if not art.get("sizes"):
+        errors.append(f"missing responsive layout size: {art['src']}")
 
 for raw in parser.assets:
     asset = raw.strip().split()[0]

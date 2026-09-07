@@ -1,4 +1,17 @@
 {
-  "prompt": "Use case: stylized-concept\nAsset type: premium website section art, standalone raster background\nInput images: Image 1 is a visual reference for the overall architectural editorial language and the first dark panel composition.\nScene/backdrop: dark charcoal architectural environment, whole background #13161b.\nSubject: a tall, narrow rectilinear concrete-black structural spine occupying the right 60% of the frame, with smoky transparent cubic modular volumes projecting outward and overlapping.\nStyle/medium: photoreal architectural visualization with restrained fine architectural drawing lines and an elegant editorial technology aesthetic.\nComposition/framing: wide 3:2 image, right-weighted structure, left 45% intentionally quiet and low-detail for native website copy; precise geometric perspective.\nLighting/mood: moody low-key lighting, restrained violet glow concentrated in a tiny luminous cube at the center of the modular volumes, subtle atmospheric haze.\nColor palette: charcoal black, graphite, soft concrete gray, restrained luminous violet.\nMaterials/textures: matte concrete-black spine, translucent smoked glass/cubic planes, subtle fine linework.\nConstraints: art only, no text, no logos, no symbols, no UI, no watermark, premium and believable architecture, tiny central luminous cube only.\nAvoid: giant sci-fi tower, skyscraper, spaceship, busy left side, excessive neon, fantasy city, people.",
-  "createdAt": "2026-09-07T16:31:42.262Z"
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery.",
+  "createdAt": "2026-09-07T16:31:42.262Z",
+  "source": "open-structure-core-4k.png",
+  "sourceDimensions": [
+    6144,
+    4096
+  ],
+  "sourceSha256": "478d029bae32af54d8f7a0994dd584eb4a9714c599356da66c55efeb17b6c643",
+  "encoding": {
+    "format": "WebP",
+    "quality": 85,
+    "method": 6,
+    "resampling": "Lanczos",
+    "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
+  }
 }

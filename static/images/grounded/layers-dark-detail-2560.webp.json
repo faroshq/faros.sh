@@ -1,6 +1,4 @@
 {
-  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery.",
-  "createdAt": "2026-09-07T16:18:05.925Z",
   "source": "layers-dark-detail-4k.png",
   "sourceDimensions": [
     6144,
@@ -13,5 +11,6 @@
     "method": 6,
     "resampling": "Lanczos",
     "source": "User-supplied high-resolution PNG, encoded 2026-09-07"
-  }
+  },
+  "prompt": "User-supplied artwork. No new image generation; encoded from the high-resolution PNG master and resized for responsive delivery."
 }

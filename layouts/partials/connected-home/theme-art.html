@@ -1,11 +1,13 @@
 {{ $hero := eq .kind "hero" }}
+{{/* Account for object-fit: cover, including the cropped 3:2 image on phones. */}}
+{{ $sizes := "(max-width: 700px) max(100vw, 555px), (min-width: 2100px) min(100vw, 2500px), max(100vw, 1425px)" }}
+{{ if $hero }}{{ $sizes = "(max-width: 700px) max(100vw, 720px), (min-width: 2100px) min(100vw, 2500px), max(100vw, clamp(1230px, calc(150svh - 150px), 1575px))" }}{{ end }}
 {{ $light := "connected-detail-light" }}{{ $dark := "layers-dark-detail" }}
 {{ if $hero }}{{ $light = "connected-core-light" }}{{ $dark = "open-structure-core" }}{{ end }}
 <figure class="{{ if $hero }}gs-hero-art cl-hero-art{{ else }}ly-detail cl-detail-art{{ end }}" aria-hidden="true">
   {{ range $theme, $asset := dict "light" $light "dark" $dark }}
   <picture class="cl-picture" data-art-theme="{{ $theme }}">
-    <source media="(max-width: 650px)" srcset="/images/grounded/{{ $asset }}-small.webp">
-    <img src="/images/grounded/{{ $asset }}.webp" width="1536" height="1024" alt="" {{ if $hero }}fetchpriority="high"{{ else }}loading="lazy"{{ end }}>
+    <img src="/images/grounded/{{ $asset }}.webp" srcset="/images/grounded/{{ $asset }}-small.webp 960w, /images/grounded/{{ $asset }}.webp 1536w, /images/grounded/{{ $asset }}-2560.webp 2560w, /images/grounded/{{ $asset }}-3840.webp 3840w, /images/grounded/{{ $asset }}-4k.webp 6144w" sizes="{{ $sizes }}" width="1536" height="1024" alt="" {{ if $hero }}fetchpriority="high"{{ else }}loading="lazy"{{ end }}>
   </picture>
   {{ end }}
   {{ if $hero }}
@@ -36,8 +38,7 @@
     <div class="cl-channel-breath">
       {{ range $theme, $asset := dict "light" $light "dark" $dark }}
       <picture class="cl-picture" data-art-theme="{{ $theme }}">
-        <source media="(max-width: 650px)" srcset="/images/grounded/{{ $asset }}-small.webp">
-        <img src="/images/grounded/{{ $asset }}.webp" width="1536" height="1024" alt="" loading="lazy">
+            <img src="/images/grounded/{{ $asset }}.webp" srcset="/images/grounded/{{ $asset }}-small.webp 960w, /images/grounded/{{ $asset }}.webp 1536w, /images/grounded/{{ $asset }}-2560.webp 2560w, /images/grounded/{{ $asset }}-3840.webp 3840w, /images/grounded/{{ $asset }}-4k.webp 6144w" sizes="{{ $sizes }}" width="1536" height="1024" alt="" loading="lazy">
       </picture>
       {{ end }}
     </div>
