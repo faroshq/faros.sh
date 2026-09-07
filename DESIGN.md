@@ -80,7 +80,7 @@ The user delegated direction selection and implementation. Routed intelligence w
 **Key Characteristics:**
 - Wide display type with restrained monospaced annotations.
 - Thin violet conductors and square terminals; artwork is SVG, CSS, and typography.
-- Scroll-linked signal movement and equivalent pointer/focus branch activation.
+- Scroll-linked sphere transport and pulsation, with equivalent pointer/focus branch activation.
 - Dark and light themes, local fonts, and a reduced-motion alternative.
 
 ## Colors
@@ -109,7 +109,7 @@ Desktop hero height follows `calc(100svh + 200px)` within 1040–1250px. The com
 
 ## Elevation & Depth
 
-Flat ground and fine translucent strokes provide depth through repetition and overlap. Text-backed cutouts preserve legibility over the conductors. There are no raised marketing cards. Primary-action hover has a small violet glow; moving signals have a three-pixel drop shadow. Exact effects are recorded in the sidecar.
+Flat ground and fine translucent strokes provide depth through repetition and overlap. Text-backed cutouts preserve legibility over the conductors. There are no raised marketing cards. Primary-action hover has a small violet glow; tiny network spheres use a bounded radial light falloff. Exact effects are recorded in the sidecar.
 
 ## Shapes
 
@@ -123,13 +123,15 @@ The filled demo link is compact against the display typography: semibold 16px te
 ### Capability branches
 Each capability is a complete anchor containing a title, explanation, detail link treatment, and square terminal. Pointer entry or keyboard focus brightens its associated desktop SVG branch; leaving or blurring clears it. The terminal fills for hover and focus. The detail arrow moves only on hover. Mobile preserves the terminal and connecting rail while hiding the desktop SVG network.
 
-### Conductor hero
-Decorative SVG is hidden from assistive technology and ignores pointer events. Fine conductors carry short bright signal segments. Visible scene progress updates `--flow` through a single queued animation frame on passive scroll/resize events; this moves the hero signal dash offsets. There is no continuous animation loop.
+### Conductor hero and routed pulses
+Decorative SVG is hidden from assistive technology and ignores pointer events. Tiny network spheres replace the prior line highlights. Their body diameter pulses between approximately 17 and 20 SVG units, with a bright core and restrained halo. This intermediate scale follows feedback that both the 45-unit and nine-unit versions missed the mark. No binary text is rendered. A shared depth-layered mesh and restrained violet light define each sphere.
+
+A single queued animation frame samples real conductor paths on scroll and resize. Scroll distance advances the spheres and modulates their scale and opacity, so motion and pulsation stop immediately when scrolling stops. There is no autonomous loop or pause control. Reduced-motion preference renders stationary spheres at authored phase offsets. Offscreen scenes are skipped during scroll updates.
 
 ### Governance aperture, source mark, and closing ribbon
-The governance aperture stays still. The open-source mark is oversized monospaced braces around the Faros name and license annotation. The closing ribbon repeats the conductor grammar around a large question and demo link; it has no signal animation. Decorative artwork is hidden from assistive technology; semantic headings and real anchors carry the content. Site navigation and footer remain inherited shell components outside this extraction.
+The governance aperture stays still. The open-source mark is oversized monospaced braces around the Faros name and license annotation. The closing ribbon and desktop capability branches carry the same tiny scroll-driven spheres. Decorative artwork remains hidden from assistive technology; semantic headings and real anchors carry content. Navigation and footer remain inherited shell components.
 
-**The Motion Follows Input Rule.** Motion follows scrolling or an explicit hover/focus state. Reduced-motion preference freezes hero signals at their phase offsets, disables transitions, and removes scene progress when the preference changes.
+**The Motion Follows Input Rule.** Only scrolling advances and pulses the spheres. Hover and keyboard focus emphasize capability branches. Reduced motion freezes travel and pulsation while preserving the static artwork and functional feedback.
 
 ## Do's and Don'ts
 
@@ -142,7 +144,15 @@ The governance aperture stays still. The open-source mark is oversized monospace
 ### Don't:
 - Don't promote homepage display sizes or spacious scene geometry into portal component rules.
 - Don't replace the route language with UI mockups or unapproved generated raster compositions.
-- Don't animate the governance aperture or introduce continuous autonomous signal loops.
+- Don't animate the governance aperture or introduce unrelated ambient particles; all sphere movement and pulsation follows scrolling.
 
 
 Implementation evidence: `layouts/partials/violet-circuit/page.html`, `styles.html`, and `script.html`. Review captures: `.impeccable/review/desktop.png`, `mobile.png`, `light.png`, plus desktop/mobile `-composition`, `-govern`, `-open`, and `-close` scenes. Captures establish rendered appearance; they are not a blanket accessibility certification.
+
+### Subsequent explorations — separate scope
+
+The user selected Assembly field and Activation frontier for additional live experiments on independent routes. Their implementation and provisional surface decisions are recorded in [Violet Circuit explorations](docs/violet-circuit-explorations.md). Neither is a selected winner or approved comp. The Routed intelligence homepage record, its design sidecar, and the pushed checkpoint remain retained; exploration display sizes do not extend the normative tokens above or application rules.
+
+Orb density refinement: 12 spheres in the hero and nine each on desktop capability branches and the closing ribbon (30 total). The user requested more visible transport and stronger glow; the sphere body size and scroll-only motion remain unchanged. The halo extends to 40 SVG units at maximum pulse, with a brighter core and rim.
+
+Signal Through Matter and Infinite Machine are separate material explorations built from both user-approved full-page comps for review. Their palettes, raster provenance, responsive scenes, motion, implementation paths, and review evidence are recorded in [Violet Circuit material explorations](docs/violet-material-explorations.md). Both are ready for user review; neither is a selected homepage replacement. This scoped addition does not change the Routed intelligence tokens or `.impeccable/design.json`.

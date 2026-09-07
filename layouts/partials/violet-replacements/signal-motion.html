@@ -1,0 +1,85 @@
+<script>
+(() => {
+ const root = document.querySelector('.mr-signal');
+ if (!root) return;
+ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+ const hero = root.querySelector('.mr-hero');
+ const replay = root.querySelector('.mr-replay');
+ const states = [...root.querySelectorAll('.mr-scene')].map(scene => ({
+  scene, progress: null, branches: [...scene.querySelectorAll('[data-energy-branch]')]
+ }));
+ const clamp = n => Math.max(0, Math.min(1, n));
+ let introStart = null;
+ let frame = 0;
+ let lastTime = performance.now();
+ let lastScroll = scrollY;
+ root.classList.add('mr-signal-ready');
+ function draw(now = performance.now()) {
+  frame = 0;
+  if (document.hidden) {introStart = null; return;}
+  const step = 1 - Math.exp(-Math.min(64, now-lastTime) / 140);
+  lastTime = now;
+  const intro = introStart === null ? null : clamp((now-introStart)/4200);
+  let settling = false;
+  states.forEach(state => {
+   const {scene, branches} = state;
+   const box = scene.getBoundingClientRect();
+   if (box.bottom < 0 || box.top > innerHeight) return;
+   const target = scene === hero
+    ? clamp(scrollY / Math.max(1, box.height*.82))
+    : clamp((innerHeight*.85-box.top)/(box.height*.85));
+   if (state.progress === null || reduced.matches) state.progress = target;
+   if (Math.abs(target-state.progress) > .0005) {
+    state.progress += (target-state.progress)*step;
+    settling = true;
+   } else state.progress = target;
+   const progress = scene === hero && intro !== null ? intro : state.progress;
+   const envelope = Math.min(1, progress*10, (1-progress)*8);
+   // The main conduit charges first; its side routes discharge into adjacent floors.
+   branches.forEach((branch, index) => {
+    const delay = index === 0 ? 0 : .40 + (index-1)*.16;
+    const local = clamp((progress-delay)/(1-delay));
+    branch.style.setProperty('--branch-progress',local.toFixed(4));
+    branch.style.setProperty('--branch-opacity',Math.min(1,local*12,(1-local)*10).toFixed(4));
+   });
+   const activation = scene === hero && intro === null ? 1 : .08+progress*1.1;
+   scene.style.setProperty('--route-progress',progress.toFixed(4));
+   scene.style.setProperty('--packet-opacity',reduced.matches ? '0' : '1');
+   scene.style.setProperty('--emission',reduced.matches ? '0' : (envelope*.8).toFixed(4));
+   scene.style.setProperty('--reveal',`${reduced.matches ? 100 : Math.min(100,activation*100).toFixed(2)}%`);
+  });
+  if (!reduced.matches && ((intro !== null && intro < 1) || settling)) frame = requestAnimationFrame(draw);
+  if (intro === 1) introStart = null;
+ }
+ function schedule() {if(!frame){lastTime=performance.now();frame=requestAnimationFrame(draw);}}
+ function play() {
+  if(reduced.matches || document.hidden) return;
+  const box = hero.getBoundingClientRect();
+  if(box.bottom <= 0 || box.top >= innerHeight) return;
+  introStart=performance.now();
+  schedule();
+ }
+ replay.hidden=reduced.matches;
+ replay.addEventListener('click',play);
+ addEventListener('scroll',()=>{
+  if(Math.abs(scrollY-lastScroll)>2) introStart=null;
+  lastScroll=scrollY;
+  schedule();
+ },{passive:true});
+ addEventListener('resize',schedule,{passive:true});
+ reduced.addEventListener('change',()=>{
+  introStart=null;replay.hidden=reduced.matches;
+  if(frame){cancelAnimationFrame(frame);frame=0;}
+  draw();
+ });
+ document.addEventListener('visibilitychange',()=>{
+  introStart=null;
+  if(frame){cancelAnimationFrame(frame);frame=0;}
+  if(!document.hidden)draw();
+ });
+ draw();
+ const image=hero.querySelector('.mr-material');
+ if(image.complete && image.naturalWidth) play();
+ else image.addEventListener('load',play,{once:true});
+})();
+</script>

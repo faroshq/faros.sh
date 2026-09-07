@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ partial "violet-circuit/styles.html" . }}
+{{ partial "circuit-explorations/styles.html" . }}
+<main class="violet-circuit cx cx-{{ .Params.concept }}" data-concept="{{ .Params.concept }}">
+<nav class="cx-switch" aria-label="Design explorations">
+<a href="/">Routed intelligence</a>
+<a href="/explorations/assembly-field/" {{ if eq .Params.concept "assembly" }}aria-current="page"{{ end }}>Assembly field</a>
+<a href="/explorations/activation-frontier/" {{ if eq .Params.concept "frontier" }}aria-current="page"{{ end }}>Activation frontier</a>
+</nav>
+{{ if eq .Params.concept "assembly" }}{{ partial "circuit-explorations/assembly.html" . }}{{ else }}{{ partial "circuit-explorations/frontier.html" . }}{{ end }}
+</main>
+{{ partial "circuit-explorations/script.html" . }}
+{{ end }}

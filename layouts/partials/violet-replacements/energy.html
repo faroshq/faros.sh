@@ -1,0 +1,20 @@
+{{- $routes := slice -}}
+{{- if eq .name "signal-hero" -}}
+ {{- $routes = slice "M-20 880 L807 861 Q836 859 836 830 L836 806 Q836 793 852 792 L926 784 Q954 782 955 755 L955 591 Q955 574 974 574 L1089 550 Q1123 543 1123 517 L1123 314" "M955 591 L1220 614 V457" "M836 806 L1190 832 V728" -}}
+{{- else if eq .name "signal-system" -}}
+ {{- $routes = slice "M-20 774 H704 Q726 774 726 752 V700 Q726 681 748 678 L864 666 Q884 664 884 641 V453 Q884 438 902 433 L1226 357 V237" "M884 666 L1218 627 V532" "M729 779 L854 781 Q877 781 890 795 L950 854 Q963 865 983 865 L1230 870 V783" -}}
+{{- else if eq .name "signal-govern" -}}
+ {{- $routes = slice "M-20 775 L416 773 Q496 773 496 713 V690 Q496 633 550 633 L799 630 Q851 630 851 590 V324" "M850 519 L1240 527" "M850 638 L1128 640 Q1155 640 1155 666 V725" -}}
+{{- else -}}
+ {{- $routes = slice "M-20 805 H612 Q634 805 634 779 V776 Q634 753 661 753 L922 748 Q945 748 945 723 V717 Q945 690 970 690 H994 Q1012 690 1012 672 V602 Q1012 578 1020 562 L1038 278" "M1014 602 L1245 615 Q1268 616 1268 640 V650 L1480 660" -}}
+{{- end -}}
+<svg class="mr-energy-circuit" viewBox="0 0 1513 1039" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+{{ range $i, $route := $routes }}
+<g data-energy-branch="{{ $i }}">
+<path class="mr-energy-wake" pathLength="1000" d="{{ $route }}"/>
+<path class="mr-energy-glow" pathLength="1000" d="{{ $route }}"/>
+<path class="mr-energy-core" pathLength="1000" d="{{ $route }}"/>
+<path class="mr-energy-tip" pathLength="1000" d="{{ $route }}"/>
+</g>
+{{ end }}
+</svg>

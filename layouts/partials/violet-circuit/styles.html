@@ -26,9 +26,17 @@ html.light .violet-circuit {--vc-ground:#f1f1f6;--vc-raised:#ffffff;--vc-ink:#14
 .vc-link{display:inline-flex;align-items:center;gap:20px;font-size:15px;padding-block:10px}
 .vc-link:hover{text-decoration:underline}
 .vc-hero-circuit{position:absolute;width:100%;height:100%;inset:0;pointer-events:none}
+/* The orb is the payload; every position is sampled from its conductor. */
+.vc-orb{pointer-events:none}
+.vc-orb-mesh{fill:none;stroke:var(--vc-bright);stroke-width:.65;stroke-dasharray:none;animation:none}
+.vc-orb-mesh-0{opacity:.15}.vc-orb-mesh-1{opacity:.35}.vc-orb-mesh-2{opacity:.85}
+.vc-orb-node{fill:var(--vc-bright)}
+.vc-orb-filament{fill:none;stroke:var(--vc-bright);stroke-width:.45;opacity:.48;stroke-dasharray:none;animation:none}
+
+.vc-orb-route{visibility:hidden}
 .vc-wire{stroke:var(--vc-violet);stroke-width:.8;opacity:.34;vector-effect:non-scaling-stroke}
 .vc-hero-circuit .vc-wire:nth-of-type(3n){opacity:.6}
-.violet-circuit .vc-signal{stroke:var(--vc-bright);stroke-width:1.7;stroke-dasharray:22 978;stroke-dashoffset:calc(var(--phase) - var(--flow)*1000);vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px var(--vc-violet))}
+
 .vc-routing-note{position:absolute;right:6.25%;top:51%;font:11px/2 var(--vc-mono);color:var(--vc-ink);padding:12px 0 12px 18px;background:var(--vc-ground)}
 .vc-routing-note>span:last-child{color:var(--vc-muted)}
 .vc-node{position:absolute;left:0;top:20px;width:5px;height:5px;background:var(--vc-violet)}
@@ -91,5 +99,5 @@ html.light .violet-circuit {--vc-ground:#f1f1f6;--vc-raised:#ffffff;--vc-ink:#14
  .vc-open{margin:0 24px;padding:70px 0;flex-direction:column;align-items:flex-start;gap:55px}.vc-source-mark{align-self:flex-end;font-size:135px;gap:20px}.vc-source-center{font-size:38px}
  .vc-close{height:830px;margin-top:0}.vc-close-circuit{width:180%;left:-50%}.vc-close-copy{left:24px;right:24px;top:34%;padding:24px 0}.violet-circuit .vc-close h2{font-size:59px}.vc-close-links{left:24px;bottom:28px;flex-direction:column;gap:18px}
 }
-@media(prefers-reduced-motion:reduce){.violet-circuit .vc-signal{stroke-dashoffset:var(--phase)}.violet-circuit *{scroll-behavior:auto!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.violet-circuit *{scroll-behavior:auto!important;transition:none!important}}
 </style>

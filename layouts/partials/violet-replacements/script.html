@@ -1,0 +1,35 @@
+<script>
+(() => {
+ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+ const scenes = [...document.querySelectorAll('.mr-machine .mr-scene')];
+ const clamp = n => Math.max(0, Math.min(1, n));
+ let queued = false;
+ function draw(force = false) {
+  queued = false;
+  scenes.forEach(scene => {
+   const box = scene.getBoundingClientRect();
+   if (!force && (box.bottom < 0 || box.top > innerHeight)) return;
+   const progress = clamp((innerHeight - box.top) / (innerHeight + box.height));
+   const activation = reduced.matches ? 1 : .5 + progress * .64;
+   scene.style.setProperty('--reveal', `${Math.min(100,activation*100).toFixed(2)}%`);
+   if (scene.classList.contains('mr-machine-journey')) {
+    const stage = scene.querySelector('.mr-machine-stage');
+    const zoom = reduced.matches ? 1 : 1.15 - clamp(-box.top / Math.max(1,box.height-stage.offsetHeight)) * .15;
+    scene.style.setProperty('--pullback', zoom.toFixed(4));
+   }
+  });
+ }
+ function schedule() {if(!queued){queued=true;requestAnimationFrame(()=>draw());}}
+ addEventListener('scroll',schedule,{passive:true});
+ addEventListener('resize',schedule,{passive:true});
+ reduced.addEventListener('change',()=>draw(true));
+ document.querySelectorAll('[data-port]').forEach(link=>{
+  const art=link.closest('.mr-system').querySelector('.mr-energized');
+  const activate=()=>art.style.maskImage='none';
+  const clear=()=>art.style.removeProperty('mask-image');
+  link.addEventListener('pointerenter',activate);link.addEventListener('focus',activate);
+  link.addEventListener('pointerleave',clear);link.addEventListener('blur',clear);
+ });
+ draw(true);
+})();
+</script>

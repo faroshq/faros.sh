@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><meta name="description" content="Explore Faros: the operating system for AI-native platforms.">
+<title>{{ .Title }} | Faros</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preload" href="/fonts/violet-circuit/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/violet-circuit/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+{{ partial "violet-replacements/styles.html" . }}
+</head>
+<body class="mr mr-{{ .Params.concept }}">
+{{ printf "<!-- THESIS: Two approved material explorations: signal activates dormant architecture; an infinite machine reveals its immense connected scale. OWN-WORLD: Violet Circuit fonts, sharp controls, dark smoked structure or pale precision architecture. STORY: Build, run, and govern capabilities for people and agents; request a demo. FIRST VIEWPORT: Semantic editorial headline occupies negative space left of a monumental architectural structure; a violet route enters below it. FORM: User-approved Signal Through Matter and Infinite Machine comps, seeded 3e76af95, user shortlist overrides roll. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance. -->" | safeHTML }}
+<a class="mr-skip" href="#main">Skip to content</a>
+<header class="mr-header">
+<a class="mr-logo" href="/" aria-label="Faros home">faros</a>
+<nav aria-label="Main navigation"><a href="/platform/">Platform</a><a href="/developers/">Developers</a><a href="/docs/">Docs</a></nav>
+<a class="mr-header-demo" href="/contact/">Request a demo {{ partial "violet-replacements/arrow.html" . }}</a>
+</header>
+<main id="main">
+{{ if eq .Params.concept "signal" }}{{ partial "violet-replacements/signal.html" . }}{{ else }}{{ partial "violet-replacements/machine.html" . }}{{ end }}
+</main>
+<footer class="mr-footer"><a class="mr-logo" href="/">faros</a><span>The operating system for AI-native platforms.</span><nav aria-label="Footer"><a href="/open-source/">Open source</a><a href="/docs/">Documentation</a><a href="/contact/">Contact</a></nav></footer>
+<nav class="mr-compare" aria-label="Compare design explorations"><a href="/explorations/signal-through-matter/" {{ if eq .Params.concept "signal" }}aria-current="page"{{ end }}>Signal Through Matter</a><a href="/explorations/infinite-machine/" {{ if eq .Params.concept "machine" }}aria-current="page"{{ end }}>Infinite Machine</a><a href="/" aria-label="View Routed intelligence">Original {{ partial "violet-replacements/arrow.html" . }}</a></nav>
+{{ partial "violet-replacements/script.html" . }}
+{{ if eq .Params.concept "signal" }}{{ partial "violet-replacements/signal-motion.html" . }}{{ end }}
+</body></html>

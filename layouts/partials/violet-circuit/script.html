@@ -3,23 +3,38 @@
  const root = document.getElementById('violet-circuit');
  if (!root) return;
  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
- const scenes = [...root.querySelectorAll('.vc-scene')];
+ const groups = [...root.querySelectorAll('.vc-scene')].map(scene => ({
+  scene,
+  orbs: [...scene.querySelectorAll('.vc-orb')].map(element => {
+   const svg = element.closest('svg');
+   const path = svg.querySelectorAll(element.dataset.orbTrack)[Number(element.dataset.orbIndex)];
+   return {element, body:element.querySelector('use'), path, length:path.getTotalLength(), phase:Number(element.dataset.orbPhase)};
+  })
+ })).filter(group => group.orbs.length);
  let queued = false;
- function update() {
+ function update(force = false) {
   queued = false;
-  if (reduced.matches) return;
-  const height = window.innerHeight;
-  scenes.forEach(scene => {
-   const box = scene.getBoundingClientRect();
-   if (box.bottom < 0 || box.top > height) return;
-   const progress = Math.max(0, Math.min(1, (height - box.top) / (height + box.height)));
-   scene.style.setProperty('--flow', progress.toFixed(4));
+  groups.forEach(group => {
+   const box = group.scene.getBoundingClientRect();
+   if (!force && (box.bottom < 0 || box.top > innerHeight)) return;
+   // A scene's current advances only with scroll; no autonomous animation loop.
+   const sceneTop = box.top + scrollY;
+   const entry = Math.max(0, sceneTop - innerHeight);
+   const travel = reduced.matches ? 0 : Math.max(0, scrollY - entry) * .9;
+   group.orbs.forEach(orb => {
+    const phase = (orb.phase + travel / orb.length) % 1;
+    const point = orb.path.getPointAtLength(phase * orb.length);
+    const pulse = reduced.matches ? 1 : (1 + Math.sin(travel * .026 + orb.phase * Math.PI * 2)) / 2;
+    orb.element.setAttribute('transform', `translate(${point.x.toFixed(2)} ${point.y.toFixed(2)})`);
+    orb.body.setAttribute('transform', `scale(${(.17 + pulse * .03).toFixed(4)})`);
+    orb.element.style.opacity = ((.85 + pulse * .15) * Math.min(1, phase / .035, (1 - phase) / .035)).toFixed(3);
+   });
   });
  }
- function schedule() { if (!queued) { queued = true; requestAnimationFrame(update); } }
- window.addEventListener('scroll', schedule, { passive: true });
- window.addEventListener('resize', schedule, { passive: true });
- reduced.addEventListener('change', () => { if(reduced.matches) scenes.forEach(s=>s.style.removeProperty('--flow')); else schedule(); });
+ function schedule() { if (!queued) {queued = true; requestAnimationFrame(() => update());} }
+ addEventListener('scroll', schedule, {passive:true});
+ addEventListener('resize', schedule, {passive:true});
+ reduced.addEventListener('change', () => update(true));
  root.querySelectorAll('[data-branch]').forEach(link => {
   const scene = link.closest('.vc-scene');
   const activate = () => scene.dataset.active = link.dataset.branch;
@@ -29,6 +44,6 @@
   link.addEventListener('focus', activate);
   link.addEventListener('blur', clear);
  });
- schedule();
+ update(true);
 })();
 </script>

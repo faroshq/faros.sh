@@ -1,0 +1,4 @@
+{
+  "prompt": "Use case: precise-object-edit\nEdit target: attached clean architectural machine image.\nChange ONLY this: remove the four small white icon-like glyphs at the far lower-right edge, around x=93% to100%, y=80% to85%. Reconstruct the pale-gray machine pillar surface behind these symbols so it is continuous natural structural material.\nPreserve everything else exactly: the entire architecture, composition, scale, camera, generous left negative space, lighting, realistic detail, purple energy channel, and 1600 by1100 landscape dimensions.\nNo letters, symbols, logos, text, watermark, UI or footer icons anywhere in the final image.",
+  "createdAt": "2026-09-06T20:39:36.593Z"
+}

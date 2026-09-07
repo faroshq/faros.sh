@@ -1,0 +1,137 @@
+{{- $id := .id -}}
+<defs>
+  <radialGradient id="vc-orb-halo-{{ $id }}">
+    <stop offset=".35" stop-color="var(--vc-violet)" stop-opacity=".7"/>
+    <stop offset=".62" stop-color="var(--vc-violet)" stop-opacity=".36"/>
+    <stop offset="1" stop-color="var(--vc-violet)" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vc-orb-body-{{ $id }}">
+    <stop offset="0" stop-color="var(--vc-ground)" stop-opacity=".96"/>
+    <stop offset=".65" stop-color="var(--vc-raised)" stop-opacity=".92"/>
+    <stop offset=".9" stop-color="var(--vc-violet)" stop-opacity=".12"/>
+    <stop offset=".98" stop-color="var(--vc-bright)" stop-opacity=".85"/>
+    <stop offset="1" stop-color="var(--vc-bright)" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vc-orb-node-{{ $id }}">
+    <stop offset="0" stop-color="var(--vc-ink)" stop-opacity=".9"/>
+    <stop offset=".2" stop-color="var(--vc-bright)" stop-opacity=".8"/>
+    <stop offset="1" stop-color="var(--vc-violet)" stop-opacity="0"/>
+  </radialGradient>
+  <g id="vc-orb-network-{{ $id }}">
+    <circle r="100" fill="url(#vc-orb-halo-{{ $id }})"/>
+    <circle r="49" fill="url(#vc-orb-body-{{ $id }})"/>
+    {{/* Deterministic Fibonacci sphere, projected in 3D depth layers; edges join five nearest surface neighbors. */}}
+    <path class="vc-orb-mesh vc-orb-mesh-0" d="M47.83 2.45L41.62 7.78 M-36.86 30.46L-35.51 22.11 M6.60 -47.27L11.11 -39.78 M27.01 39.22L18.42 36.33 M-46.29 -10.65L-44.11 -0.43 M-46.29 -10.65L-37.58 -14.14 M41.20 -23.34L32.51 -29.21 M41.20 -23.34L36.68 -14.73 M-14.56 44.89L-27.85 35.60 M-14.56 44.89L-4.20 43.07 M-19.51 -42.77L-3.49 -44.72 M-19.51 -42.77L-25.72 -34.23 M43.09 18.28L32.52 30.38 M43.09 18.28L41.62 7.78 M-43.92 15.56L-44.11 -0.43 M-43.92 15.56L-35.51 22.11 M21.77 -40.93L32.51 -29.21 M21.77 -40.93L11.11 -39.78 M11.53 44.63L-4.20 43.07 M11.53 44.63L18.42 36.33 M-38.42 -24.97L-25.72 -34.23 M-38.42 -24.97L-37.58 -14.14 M44.90 -7.49L41.62 7.78 M44.90 -7.49L36.68 -14.73 M-27.85 35.60L-35.51 22.11 M-27.85 35.60L-16.82 35.05 M-3.49 -44.72L11.11 -39.78 M-3.49 -44.72L-11.07 -36.55 M32.52 30.38L18.42 36.33 M32.52 30.38L32.23 19.10 M-44.11 -0.43L-37.58 -14.14 M-44.11 -0.43L-35.93 7.53 M32.51 -29.21L36.68 -14.73 M32.51 -29.21L20.94 -29.18 M-4.20 43.07L-16.82 35.05 M-4.20 43.07L4.17 34.83 M-25.72 -34.23L-11.07 -36.55 M-25.72 -34.23L-25.93 -22.29 M41.62 7.78L32.23 19.10 M41.62 7.78L33.24 -1.05 M-35.51 22.11L-35.93 7.53 M-35.51 22.11L-23.09 22.53 M11.11 -39.78L20.94 -29.18 M11.11 -39.78L1.75 -31.17 M18.42 36.33L4.17 34.83 M18.42 36.33L19.06 23.30 M-37.58 -14.14L-25.93 -22.29 M-37.58 -14.14L-28.63 -4.14 M36.68 -14.73L33.24 -1.05 M36.68 -14.73L22.86 -15.57 M-16.82 35.05L4.17 34.83 M-16.82 35.05L-23.09 22.53 M-16.82 35.05L-6.02 25.60 M-11.07 -36.55L-25.93 -22.29 M-11.07 -36.55L1.75 -31.17 M-11.07 -36.55L-12.14 -21.67 M32.23 19.10L33.24 -1.05 M32.23 19.10L19.06 23.30 M32.23 19.10L22.07 7.28 M-35.93 7.53L-23.09 22.53 M-35.93 7.53L-28.63 -4.14 M-35.93 7.53L-19.59 8.82 M20.94 -29.18L1.75 -31.17 M20.94 -29.18L22.86 -15.57 M20.94 -29.18L7.72 -17.94 M4.17 34.83L19.06 23.30 M4.17 34.83L-6.02 25.60 M-25.93 -22.29L-28.63 -4.14 M-25.93 -22.29L-12.14 -21.67 M-25.93 -22.29L-12.95 -6.97 M33.24 -1.05L22.86 -15.57 M33.24 -1.05L22.07 7.28 M-23.09 22.53L-6.02 25.60 M-23.09 22.53L-19.59 8.82 M1.75 -31.17L-12.14 -21.67 M1.75 -31.17L7.72 -17.94 M19.06 23.30L22.07 7.28 M19.06 23.30L5.70 16.35 M-28.63 -4.14L-19.59 8.82 M-28.63 -4.14L-12.95 -6.97 M22.86 -15.57L7.72 -17.94 M22.86 -15.57L11.10 -2.81 M-6.02 25.60L5.70 16.35 M-6.02 25.60L-3.65 5.55 M-12.14 -21.67L7.72 -17.94 M-12.14 -21.67L-12.95 -6.97 M22.07 7.28L5.70 16.35 M22.07 7.28L11.10 -2.81 M-19.59 8.82L-12.95 -6.97 M-19.59 8.82L-3.65 5.55 M7.72 -17.94L11.10 -2.81 M5.70 16.35L11.10 -2.81 M5.70 16.35L-3.65 5.55 M-12.95 -6.97L-3.65 5.55 M11.10 -2.81L-3.65 5.55"/>
+    <path class="vc-orb-mesh vc-orb-mesh-1" d="M8.81 -39.17L16.51 -44.54 M20.25 35.35L17.96 44.11 M-39.35 -12.55L-43.13 -20.44 M37.97 -17.55L45.70 -14.09 M-16.35 39.06L-8.38 46.06 M-16.35 39.06L-24.21 41.32 M-14.49 -40.29L-25.04 -39.79 M-14.49 -40.29L-10.07 -46.88 M38.31 20.13L45.51 12.47 M38.31 20.13L39.12 27.79 M-42.26 11.14L-46.16 -4.28 M-42.26 11.14L-42.13 21.62 M-42.26 11.14L-47.63 5.94 M23.86 -37.10L37.11 -28.17 M23.86 -37.10L16.51 -44.54 M23.86 -37.10L31.11 -36.55 M7.54 43.85L-8.38 46.06 M7.54 43.85L17.96 44.11 M7.54 43.85L1.75 47.95 M-35.47 -27.47L-25.04 -39.79 M-35.47 -27.47L-43.13 -20.44 M-35.47 -27.47L-33.65 -34.15 M45.05 -3.73L45.51 12.47 M45.05 -3.73L45.70 -14.09 M45.05 -3.73L47.83 2.45 M-30.91 33.41L-42.13 21.62 M-30.91 33.41L-24.21 41.32 M-30.91 33.41L-36.86 30.46 M0.22 -45.82L16.51 -44.54 M0.22 -45.82L-10.07 -46.88 M0.22 -45.82L6.60 -47.27 M30.97 34.14L17.96 44.11 M30.97 34.14L39.12 27.79 M30.97 34.14L27.01 39.22 M-46.16 -4.28L-43.13 -20.44 M-46.16 -4.28L-47.63 5.94 M-46.16 -4.28L-46.29 -10.65 M37.11 -28.17L45.70 -14.09 M37.11 -28.17L31.11 -36.55 M37.11 -28.17L41.20 -23.34 M-8.38 46.06L-24.21 41.32 M-8.38 46.06L1.75 47.95 M-8.38 46.06L-14.56 44.89 M-25.04 -39.79L-10.07 -46.88 M-25.04 -39.79L-33.65 -34.15 M-25.04 -39.79L-19.51 -42.77 M45.51 12.47L39.12 27.79 M45.51 12.47L47.83 2.45 M45.51 12.47L43.09 18.28 M-42.13 21.62L-47.63 5.94 M-42.13 21.62L-36.86 30.46 M-42.13 21.62L-43.92 15.56 M16.51 -44.54L31.11 -36.55 M16.51 -44.54L6.60 -47.27 M16.51 -44.54L21.77 -40.93 M17.96 44.11L1.75 47.95 M17.96 44.11L27.01 39.22 M17.96 44.11L11.53 44.63 M-43.13 -20.44L-33.65 -34.15 M-43.13 -20.44L-46.29 -10.65 M-43.13 -20.44L-38.42 -24.97 M45.70 -14.09L47.83 2.45 M45.70 -14.09L41.20 -23.34 M45.70 -14.09L44.90 -7.49 M-24.21 41.32L-36.86 30.46 M-24.21 41.32L-14.56 44.89 M-24.21 41.32L-27.85 35.60 M-10.07 -46.88L6.60 -47.27 M-10.07 -46.88L-19.51 -42.77 M-10.07 -46.88L-3.49 -44.72 M39.12 27.79L27.01 39.22 M39.12 27.79L43.09 18.28 M39.12 27.79L32.52 30.38 M-47.63 5.94L-46.29 -10.65 M-47.63 5.94L-43.92 15.56 M-47.63 5.94L-44.11 -0.43 M31.11 -36.55L41.20 -23.34 M31.11 -36.55L21.77 -40.93 M31.11 -36.55L32.51 -29.21 M1.75 47.95L-14.56 44.89 M1.75 47.95L11.53 44.63 M1.75 47.95L-4.20 43.07 M-33.65 -34.15L-19.51 -42.77 M-33.65 -34.15L-38.42 -24.97 M-33.65 -34.15L-25.72 -34.23 M47.83 2.45L43.09 18.28 M47.83 2.45L44.90 -7.49 M-36.86 30.46L-43.92 15.56 M-36.86 30.46L-27.85 35.60 M6.60 -47.27L21.77 -40.93 M6.60 -47.27L-3.49 -44.72 M27.01 39.22L11.53 44.63 M27.01 39.22L32.52 30.38 M-46.29 -10.65L-38.42 -24.97 M41.20 -23.34L44.90 -7.49"/>
+    <path class="vc-orb-mesh vc-orb-mesh-2" d="M6.64 0.00L-8.44 7.73 M6.64 0.00L1.29 -14.65 M6.64 0.00L10.53 13.74 M6.64 0.00L18.13 -11.53 M6.64 0.00L24.70 9.02 M-8.44 7.73L10.53 13.74 M-8.44 7.73L-19.23 -3.40 M-8.44 7.73L-6.03 22.44 M-8.44 7.73L-25.57 10.55 M1.29 -14.65L18.13 -11.53 M1.29 -14.65L-11.45 -22.04 M1.29 -14.65L12.26 -26.20 M1.29 -14.65L-4.39 -33.90 M10.53 13.74L-6.03 22.44 M10.53 13.74L24.70 9.02 M10.53 13.74L9.01 28.73 M-19.23 -3.40L-11.45 -22.04 M-19.23 -3.40L-25.57 10.55 M-19.23 -3.40L-27.01 -15.65 M-19.23 -3.40L-35.88 1.48 M18.13 -11.53L12.26 -26.20 M18.13 -11.53L31.51 -6.93 M18.13 -11.53L26.02 -25.90 M-6.03 22.44L9.01 28.73 M-6.03 22.44L-19.12 27.20 M-6.03 22.44L-1.73 37.43 M-11.45 -22.04L-27.01 -15.65 M-11.45 -22.04L-4.39 -33.90 M-11.45 -22.04L-24.47 -29.32 M24.70 9.02L31.51 -6.93 M24.70 9.02L26.82 22.60 M24.70 9.02L38.53 5.18 M-25.57 10.55L-19.12 27.20 M-25.57 10.55L-35.88 1.48 M-25.57 10.55L-32.45 22.58 M12.26 -26.20L-4.39 -33.90 M12.26 -26.20L26.02 -25.90 M12.26 -26.20L8.81 -39.17 M9.01 28.73L26.82 22.60 M9.01 28.73L-1.73 37.43 M9.01 28.73L20.25 35.35 M-27.01 -15.65L-35.88 1.48 M-27.01 -15.65L-24.47 -29.32 M-27.01 -15.65L-39.35 -12.55 M31.51 -6.93L26.02 -25.90 M31.51 -6.93L38.53 5.18 M31.51 -6.93L37.97 -17.55 M-19.12 27.20L-1.73 37.43 M-19.12 27.20L-32.45 22.58 M-19.12 27.20L-16.35 39.06 M-4.39 -33.90L-24.47 -29.32 M-4.39 -33.90L8.81 -39.17 M-4.39 -33.90L-14.49 -40.29 M26.82 22.60L38.53 5.18 M26.82 22.60L20.25 35.35 M26.82 22.60L38.31 20.13 M-35.88 1.48L-39.35 -12.55 M-35.88 1.48L-42.26 11.14 M26.02 -25.90L37.97 -17.55 M26.02 -25.90L23.86 -37.10 M-1.73 37.43L-16.35 39.06 M-1.73 37.43L7.54 43.85 M-24.47 -29.32L-14.49 -40.29 M-24.47 -29.32L-35.47 -27.47 M38.53 5.18L38.31 20.13 M38.53 5.18L45.05 -3.73 M-32.45 22.58L-42.26 11.14 M-32.45 22.58L-30.91 33.41 M-32.45 22.58L-42.13 21.62 M8.81 -39.17L23.86 -37.10 M8.81 -39.17L0.22 -45.82 M20.25 35.35L7.54 43.85 M20.25 35.35L30.97 34.14 M-39.35 -12.55L-35.47 -27.47 M-39.35 -12.55L-46.16 -4.28 M37.97 -17.55L45.05 -3.73 M37.97 -17.55L37.11 -28.17 M-16.35 39.06L-30.91 33.41 M-14.49 -40.29L0.22 -45.82 M38.31 20.13L30.97 34.14"/>
+    <circle cx="6.64" cy="0.00" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="6.64" cy="0.00" r="1.19" opacity="0.99"/>
+    <circle class="vc-orb-node" cx="-8.44" cy="7.73" r="1.18" opacity="0.98"/>
+    <circle class="vc-orb-node" cx="1.29" cy="-14.65" r="1.17" opacity="0.97"/>
+    <circle class="vc-orb-node" cx="10.53" cy="13.74" r="1.16" opacity="0.96"/>
+    <circle cx="-19.23" cy="-3.40" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-19.23" cy="-3.40" r="1.15" opacity="0.95"/>
+    <circle class="vc-orb-node" cx="18.13" cy="-11.53" r="1.14" opacity="0.94"/>
+    <circle class="vc-orb-node" cx="-6.03" cy="22.44" r="1.13" opacity="0.93"/>
+    <circle class="vc-orb-node" cx="-11.45" cy="-22.04" r="1.12" opacity="0.92"/>
+    <circle cx="24.70" cy="9.02" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="24.70" cy="9.02" r="1.11" opacity="0.91"/>
+    <circle class="vc-orb-node" cx="-25.57" cy="10.55" r="1.10" opacity="0.90"/>
+    <circle class="vc-orb-node" cx="12.26" cy="-26.20" r="1.09" opacity="0.89"/>
+    <circle class="vc-orb-node" cx="9.01" cy="28.73" r="1.08" opacity="0.88"/>
+    <circle cx="-27.01" cy="-15.65" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-27.01" cy="-15.65" r="1.07" opacity="0.87"/>
+    <circle class="vc-orb-node" cx="31.51" cy="-6.93" r="1.06" opacity="0.86"/>
+    <circle class="vc-orb-node" cx="-19.12" cy="27.20" r="1.05" opacity="0.85"/>
+    <circle class="vc-orb-node" cx="-4.39" cy="-33.90" r="1.04" opacity="0.84"/>
+    <circle cx="26.82" cy="22.60" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="26.82" cy="22.60" r="1.03" opacity="0.83"/>
+    <circle class="vc-orb-node" cx="-35.88" cy="1.48" r="1.01" opacity="0.81"/>
+    <circle class="vc-orb-node" cx="26.02" cy="-25.90" r="1.00" opacity="0.80"/>
+    <circle class="vc-orb-node" cx="-1.73" cy="37.43" r="0.99" opacity="0.79"/>
+    <circle cx="-24.47" cy="-29.32" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-24.47" cy="-29.32" r="0.98" opacity="0.78"/>
+    <circle class="vc-orb-node" cx="38.53" cy="5.18" r="0.97" opacity="0.77"/>
+    <circle class="vc-orb-node" cx="-32.45" cy="22.58" r="0.96" opacity="0.76"/>
+    <circle class="vc-orb-node" cx="8.81" cy="-39.17" r="0.95" opacity="0.75"/>
+    <circle cx="20.25" cy="35.35" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="20.25" cy="35.35" r="0.94" opacity="0.74"/>
+    <circle class="vc-orb-node" cx="-39.35" cy="-12.55" r="0.93" opacity="0.73"/>
+    <circle class="vc-orb-node" cx="37.97" cy="-17.55" r="0.92" opacity="0.72"/>
+    <circle class="vc-orb-node" cx="-16.35" cy="39.06" r="0.91" opacity="0.71"/>
+    <circle cx="-14.49" cy="-40.29" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-14.49" cy="-40.29" r="0.90" opacity="0.70"/>
+    <circle class="vc-orb-node" cx="38.31" cy="20.13" r="0.89" opacity="0.69"/>
+    <circle class="vc-orb-node" cx="-42.26" cy="11.14" r="0.88" opacity="0.68"/>
+    <circle class="vc-orb-node" cx="23.86" cy="-37.10" r="0.87" opacity="0.67"/>
+    <circle cx="7.54" cy="43.85" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="7.54" cy="43.85" r="0.86" opacity="0.66"/>
+    <circle class="vc-orb-node" cx="-35.47" cy="-27.47" r="0.85" opacity="0.65"/>
+    <circle class="vc-orb-node" cx="45.05" cy="-3.73" r="0.84" opacity="0.64"/>
+    <circle class="vc-orb-node" cx="-30.91" cy="33.41" r="0.82" opacity="0.62"/>
+    <circle cx="0.22" cy="-45.82" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="0.22" cy="-45.82" r="0.81" opacity="0.61"/>
+    <circle class="vc-orb-node" cx="30.97" cy="34.14" r="0.80" opacity="0.60"/>
+    <circle class="vc-orb-node" cx="-46.16" cy="-4.28" r="0.79" opacity="0.59"/>
+    <circle class="vc-orb-node" cx="37.11" cy="-28.17" r="0.78" opacity="0.58"/>
+    <circle cx="-8.38" cy="46.06" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-8.38" cy="46.06" r="0.77" opacity="0.57"/>
+    <circle class="vc-orb-node" cx="-25.04" cy="-39.79" r="0.76" opacity="0.56"/>
+    <circle class="vc-orb-node" cx="45.51" cy="12.47" r="0.75" opacity="0.55"/>
+    <circle class="vc-orb-node" cx="-42.13" cy="21.62" r="0.74" opacity="0.54"/>
+    <circle cx="16.51" cy="-44.54" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="16.51" cy="-44.54" r="0.73" opacity="0.53"/>
+    <circle class="vc-orb-node" cx="17.96" cy="44.11" r="0.72" opacity="0.52"/>
+    <circle class="vc-orb-node" cx="-43.13" cy="-20.44" r="0.71" opacity="0.51"/>
+    <circle class="vc-orb-node" cx="45.70" cy="-14.09" r="0.70" opacity="0.50"/>
+    <circle cx="-24.21" cy="41.32" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-24.21" cy="41.32" r="0.69" opacity="0.49"/>
+    <circle class="vc-orb-node" cx="-10.07" cy="-46.88" r="0.68" opacity="0.48"/>
+    <circle class="vc-orb-node" cx="39.12" cy="27.79" r="0.67" opacity="0.47"/>
+    <circle class="vc-orb-node" cx="-47.63" cy="5.94" r="0.66" opacity="0.46"/>
+    <circle cx="31.11" cy="-36.55" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="31.11" cy="-36.55" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="1.75" cy="47.95" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="-33.65" cy="-34.15" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="47.83" cy="2.45" r="0.65" opacity="0.45"/>
+    <circle cx="-36.86" cy="30.46" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="-36.86" cy="30.46" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="6.60" cy="-47.27" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="27.01" cy="39.22" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="-46.29" cy="-10.65" r="0.65" opacity="0.45"/>
+    <circle cx="41.20" cy="-23.34" r="3.2" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle class="vc-orb-node" cx="41.20" cy="-23.34" r="0.65" opacity="0.45"/>
+    <circle class="vc-orb-node" cx="-14.56" cy="44.89" r="0.65" opacity="0.45"/>
+    <path class="vc-orb-filament" d="M47.00 0.00L53.00 0.00"/><circle class="vc-orb-node" cx="53.00" cy="0.00" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-34.66 31.75L-40.92 37.49"/><circle class="vc-orb-node" cx="-40.92" cy="37.49" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M4.11 -46.82L5.07 -57.78"/><circle class="vc-orb-node" cx="5.07" cy="-57.78" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M28.60 37.30L36.81 48.01"/><circle class="vc-orb-node" cx="36.81" cy="48.01" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-46.28 -8.19L-62.04 -10.97"/><circle class="vc-orb-node" cx="-62.04" cy="-10.97" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M39.66 -25.23L44.72 -28.45"/><circle class="vc-orb-node" cx="44.72" cy="-28.45" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-12.20 45.39L-14.41 53.60"/><circle class="vc-orb-node" cx="-14.41" cy="53.60" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-21.66 -41.71L-26.73 -51.47"/><circle class="vc-orb-node" cx="-26.73" cy="-51.47" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M44.15 16.12L56.83 20.75"/><circle class="vc-orb-node" cx="56.83" cy="20.75" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-43.44 17.93L-58.23 24.04"/><circle class="vc-orb-node" cx="-58.23" cy="24.04" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M19.92 -42.57L22.46 -48.00"/><circle class="vc-orb-node" cx="22.46" cy="-48.00" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M14.07 44.85L16.61 52.96"/><circle class="vc-orb-node" cx="16.61" cy="52.96" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-40.67 -23.56L-50.18 -29.08"/><circle class="vc-orb-node" cx="-50.18" cy="-29.08" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M45.90 -10.09L59.09 -12.99"/><circle class="vc-orb-node" cx="59.09" cy="-12.99" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-27.03 38.45L-36.23 51.54"/><circle class="vc-orb-node" cx="-36.23" cy="51.54" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-6.04 -46.61L-6.81 -52.56"/><circle class="vc-orb-node" cx="-6.81" cy="-52.56" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M35.94 30.29L42.44 35.76"/><circle class="vc-orb-node" cx="42.44" cy="35.76" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-46.96 1.94L-57.95 2.40"/><circle class="vc-orb-node" cx="-57.95" cy="2.40" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M33.31 -33.15L42.88 -42.68"/><circle class="vc-orb-node" cx="42.88" cy="-42.68" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-2.17 46.95L-2.91 62.93"/><circle class="vc-orb-node" cx="-2.91" cy="62.93" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-30.12 -36.08L-33.96 -40.69"/><circle class="vc-orb-node" cx="-33.96" cy="-40.69" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M46.58 6.26L55.00 7.40"/><circle class="vc-orb-node" cx="55.00" cy="7.40" r=".55" opacity=".65"/>
+    <path class="vc-orb-filament" d="M-38.58 26.85L-47.61 33.13"/><circle class="vc-orb-node" cx="-47.61" cy="33.13" r=".55" opacity=".65"/>
+
+    <circle r="32" fill="url(#vc-orb-node-{{ $id }})"/>
+    <circle r="7" fill="var(--vc-ink)"/>
+  </g>
+</defs>
+{{ range .orbs }}
+<g class="vc-orb" data-orb-track="{{ $.track }}" data-orb-index="{{ .index }}" data-orb-phase="{{ .phase }}" transform="translate({{ .x }} {{ .y }})">
+  <use href="#vc-orb-network-{{ $id }}" transform="scale(.2)"/>
+</g>
+{{ end }}

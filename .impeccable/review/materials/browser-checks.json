@@ -1,0 +1,18 @@
+{
+  "viewports": [
+    "1440x1000",
+    "847x900",
+    "390x844"
+  ],
+  "horizontalOverflowAt390": false,
+  "allImagesLoaded": true,
+  "reducedMotionSignalMask": "none",
+  "keyboardFocusOutline": "solid",
+  "comparisonNavigation": "/explorations/infinite-machine/",
+  "reviewDisposition": "ship for user review",
+  "reviewRequiredFixes": [],
+  "reviewMinorNotes": [
+    "Machine mobile junction hides explanatory descriptions; labels remain working links.",
+    "Fixed comparison control can temporarily overlap scrolling content."
+  ]
+}

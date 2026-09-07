@@ -11,10 +11,13 @@ Mode: Persuade. Audience: leaders enabling business users and AI agents. Primary
 
 The user explicitly replaced the prior screenshot-led concepts with an art-directed exploration, delegated selection among three directions, and requested implementation with frontend primitives. Chosen: Routed intelligence, over Assembly field and Activation frontier. No previous generated comp is approved or used. This session builds directly in code; the saved comp-first preference remains a default for future unrelated work.
 
-The composition uses native SVG conductor bundles to route around oversized typography, branch to capability links, gather into a governance aperture, and frame the closing invitation. No product imagery, background grid, cards, or perpetual motion. SVG geometry is decorative; all content and navigation remain semantic HTML.
+The composition uses native SVG conductor bundles to route around oversized typography, branch to capability links, gather into a governance aperture, and frame the closing invitation. No product imagery, background grid, or cards. SVG geometry is decorative; all content and navigation remain semantic HTML.
 
 Retain main-project Violet Circuit faces, sharp controls, dark and light token families. The user authorizes spacious marketing display sizes and expressive routing geometry outside the portal's dense UI rules. Glyphs and small labels use locally served Archivo, Instrument Sans, and IBM Plex Mono.
 
-Motion: scroll-linked signal only in visible hero; static conductors; branch emphasis on hover and keyboard focus; reduced-motion media freezes signal and removes transitions. Mobile uses one vertical capability conductor and separately arranged hero/closing geometry.
+Motion: final user feedback settles on an intermediate size after the 45-unit version was too big and the nine-unit version too small and dim. Sphere body diameter pulses between approximately 17 and 20 SVG units, with a bright core, restrained halo, and no binary text. They replace line highlights; travel, scale, and brightness derive from scroll distance and stop when scrolling stops. No autonomous loop or pause control. Reduced motion preserves stationary spheres. Pointer/focus branch emphasis remains. Mobile retains its vertical capability rail and independently cropped hero/closing artwork.
+
 
 Proof: product descriptions and local docs routes; no customer metrics or invented outcomes. Existing navigation/footer retained. Demo links target /contact/. The build, built-route checks, keyboard focus, anchor scrolling, console-error scan, light theme, and desktop/mobile screenshots were checked. Detector was degraded regex only. Independent review: ship for inspected scenes and reported browser checks. See .impeccable/review/.
+
+Orb density refinement: 12 spheres in the hero and nine each on desktop capability branches and the closing ribbon (30 total). The user requested more visible transport and stronger glow; the sphere body size and scroll-only motion remain unchanged. The halo extends to 40 SVG units at maximum pulse, with a brighter core and rim.

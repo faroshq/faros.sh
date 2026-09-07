@@ -1,0 +1,16 @@
+{
+  "signal-through-matter": {
+    "links": 21,
+    "image_elements": 8,
+    "errors": [],
+    "contract": true,
+    "noindex": true
+  },
+  "infinite-machine": {
+    "links": 21,
+    "image_elements": 4,
+    "errors": [],
+    "contract": true,
+    "noindex": true
+  }
+}

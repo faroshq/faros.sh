@@ -1,0 +1,4 @@
+<div class="mr-art" aria-hidden="true">
+<img class="mr-material" src="/images/violet-replacements/{{ .name }}.webp" width="1600" height="1100" alt="" {{ if .hero }}fetchpriority="high"{{ else }}loading="lazy" decoding="async"{{ end }}>
+{{ if .signal }}<div class="mr-energized"><img src="/images/violet-replacements/{{ .name }}.webp" width="1600" height="1100" alt="" {{ if not .hero }}loading="lazy" decoding="async"{{ end }}></div>{{ partial "violet-replacements/energy.html" . }}{{ end }}
+</div>

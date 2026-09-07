@@ -1,0 +1,44 @@
+<script>
+(() => {
+ const root = document.querySelector('.cx');
+ if (!root) return;
+ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+ const journey = root.querySelector('.cx-journey');
+ const stage = root.querySelector('.cx-stage');
+ const pieces = [...root.querySelectorAll('.af-piece')];
+ const mask = root.querySelector('.ff-mask');
+ const boundary = root.querySelector('.ff-boundary');
+ const activated = root.querySelector('.ff-activated');
+ const landscape = root.querySelector('.ff-landscape');
+ const state = root.querySelector('.af-state');
+ let queued = false;
+ const clamp = n => Math.max(0, Math.min(1, n));
+ function draw() {
+  queued = false;
+  const rect = journey.getBoundingClientRect();
+  const progress = reduced.matches ? 1 : clamp((64 - rect.top) / Math.max(1, rect.height - stage.offsetHeight));
+  pieces.forEach((piece, index) => {
+   const local = clamp((progress - index * .045) / .72);
+   const remaining = (1 - local) ** 3;
+   piece.style.transform = `translate(${piece.dataset.dx * remaining}px, ${piece.dataset.dy * remaining}px) rotate(${piece.dataset.turn * remaining}deg)`;
+  });
+  if (state) state.textContent = progress > .94 ? 'CAPABILITIES / ASSEMBLED' : progress > .2 ? 'CAPABILITIES / COMPOSING' : 'CAPABILITIES / INDEPENDENT';
+  if (mask) {
+   const x = 1180 - progress * 1240;
+   mask.setAttribute('points', `${x},0 1540,0 1540,960 ${x-270},960`);
+   boundary.setAttribute('d', `M${x} 0 L${x-270} 960`);
+   activated.style.clipPath = `polygon(${x/14.4}% 0,100% 0,100% 100%,${(x-270)/14.4}% 100%)`;
+  }
+  if (landscape) {
+   const box = landscape.getBoundingClientRect();
+   const active = reduced.matches ? .55 : clamp((innerHeight - box.top) / (box.height + innerHeight));
+   landscape.style.setProperty('--cx-progress', active.toFixed(4));
+  }
+ }
+ function schedule() { if (!queued) {queued = true; requestAnimationFrame(draw);} }
+ addEventListener('scroll', schedule, {passive:true});
+ addEventListener('resize', schedule, {passive:true});
+ reduced.addEventListener('change', schedule);
+ draw();
+})();
+</script>
