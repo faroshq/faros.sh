@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const themePicker = document.querySelector('.cl-theme-picker');
+  if (!themePicker || !window.FarosTheme) return;
   const themeButton = themePicker.querySelector('.cl-theme-toggle');
   const themeChoices = [...themePicker.querySelectorAll('[data-theme-choice]')];
   const motionButton = document.querySelector('.cl-motion-toggle');
@@ -9,9 +10,9 @@
   const save = (key, value) => { try { localStorage.setItem(key, value); } catch {} };
   let paused = read('faros-connected-motion') === 'off';
   function labelTheme() {
-    const current = root.dataset.studyTheme;
+    const current = root.dataset.themePreference;
     themeButton.setAttribute('aria-label', `Choose theme, ${current} selected`);
-    themeButton.title = `Theme: ${current === 'light' ? 'Light' : 'Dark'}`;
+    themeButton.title = `Theme: ${current[0].toUpperCase() + current.slice(1)}`;
     themeChoices.forEach(choice => choice.setAttribute('aria-pressed', String(choice.dataset.themeChoice === current)));
   }
   function closeThemePicker(restoreFocus = false) {
@@ -46,17 +47,17 @@
   async function applyTheme(next) {
     if (switchingTheme) return;
     closeThemePicker(true);
-    if (next === root.dataset.studyTheme) return;
+    if (next === root.dataset.themePreference) return;
+    const resolved = window.FarosTheme.resolve(next);
     switchingTheme = true;
     themeButton.setAttribute('aria-busy', 'true');
     themeChoices.forEach(choice => choice.setAttribute('aria-disabled', 'true'));
     // Decode the companion art before changing the palette, preserving the current scene while it loads.
-    await Promise.allSettled([...document.querySelectorAll(`[data-art-theme="${next}"] img`)].map(img => {
+    await Promise.allSettled([...document.querySelectorAll(`[data-art-theme="${resolved}"] img`)].map(img => {
       img.loading = 'eager';
       return img.decode();
     }));
-    root.dataset.studyTheme = next;
-    save('faros-connected-theme', next);
+    window.FarosTheme.set(next);
     labelTheme();
     alignCircuit();
     switchingTheme = false;
@@ -87,6 +88,7 @@
     save('faros-connected-motion', paused ? 'off' : 'on');
     motionState();
   });
+  window.addEventListener('faros:theme-change', () => { labelTheme(); alignCircuit(); });
   labelTheme(); motionState();
   themePicker.hidden = false; if (motionButton) motionButton.hidden = false;
   reduced.addEventListener('change', motionState);

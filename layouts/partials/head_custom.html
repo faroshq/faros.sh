@@ -13,17 +13,8 @@
 
 
 {{ if eq .Section "docs" }}
-<script>
-  (() => {
-    let preference = 'system';
-    try { preference = localStorage.getItem('faros-docs-theme') || 'system'; } catch {}
-    if (!['light', 'dark', 'system'].includes(preference)) preference = 'system';
-    const dark = preference === 'dark' || (preference === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
-    document.documentElement.classList.toggle('dark', dark);
-    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
-    document.documentElement.dataset.docsTheme = preference;
-  })();
-</script>
+{{ partial "connected-home/appearance.html" . }}
+<link rel="stylesheet" href="/css/connected-docs.css">
 {{ else }}
 <script>document.documentElement.classList.add('dark');</script>
 {{ end }}

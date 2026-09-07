@@ -128,6 +128,8 @@ for route in MARKETING:
     robots = [m.get("content", "").lower() for m in page.meta if m.get("name", "").lower() == "robots"]
     if any("noindex" in value for value in robots):
         errors.append(f"{path}: production marketing route must not be noindex")
+    if "/js/site-theme.js" not in page.scripts:
+        errors.append(f"{path}: shared pre-paint theme script missing")
     if not any(src.endswith("connected-theme.js") for src in page.scripts):
         errors.append(f"{path}: missing connected theme script")
     if route in {"platform", "developers", "solutions"}:
@@ -148,10 +150,16 @@ for route in MARKETING:
 docs = parse(ROOT / "docs" / "index.html")
 if "docs-header" not in docs.classes or "faros-docs-main" not in docs.classes:
     errors.append("/docs/: docs shell is missing")
-if not any("docs-theme" in value for value in docs.body_classes | docs.classes):
-    errors.append("/docs/: docs theme marker is missing")
-if any(src.endswith("connected-theme.js") for src in docs.scripts):
-    errors.append("/docs/: must not load connected theme script")
+if "gs-connected" not in docs.body_classes or "cl-theme-picker" not in docs.classes:
+    errors.append("/docs/: shared theme shell is missing")
+if "docs-theme-control" in docs.classes:
+    errors.append("/docs/: separate docs theme picker must not return")
+for script in ("/js/site-theme.js", "/js/connected-theme.js"):
+    if script not in docs.scripts:
+        errors.append(f"/docs/: missing shared theme script {script}")
+for target in ("/platform/", "/developers/", "/solutions/", "/pricing/"):
+    if target not in docs.hrefs:
+        errors.append(f"/docs/: missing shared navigation link {target}")
 
 contact = parse(ROOT / "contact" / "index.html")
 form = next((attrs for attrs in contact.forms if attrs.get("id") == "contact-form"), None)

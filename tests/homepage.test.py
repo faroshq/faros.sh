@@ -121,7 +121,7 @@ if not parser.console_links:
 
 if "cl-theme-picker" not in parser.classes:
     errors.append("homepage is missing the theme picker")
-if parser.theme_choices != {"light", "dark"}:
+if parser.theme_choices != {"light", "dark", "system"}:
     errors.append(f"homepage theme choices are {sorted(parser.theme_choices)!r}")
 if not parser.workflow_section:
     errors.append("homepage is missing the workflow section")

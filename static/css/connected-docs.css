@@ -1,0 +1,42 @@
+/* The same marketing shell and palette, with reading-specific density. */
+:root { --docs-header-height: 162px; }
+body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace; font-family: StudyInstrument,sans-serif; color: var(--gs-ink); background: var(--gs-ground); line-height: 1.6; height: auto; width: 100%; }
+.docs-page.gs-connected .docs-header { position: sticky; top: 0; z-index: 40; background: var(--gs-ground); border-bottom: 1px solid var(--gs-rule); }
+.docs-page.gs-connected .gs-header { position: relative; background: var(--gs-ground); border-bottom: 1px solid var(--gs-rule); }
+.docs-page.gs-connected .gs-header svg { fill: none; stroke: currentColor; stroke-width: 1.5; }
+.docs-page.gs-connected .gs-header a { text-decoration: none; color: inherit; }
+.docs-page.gs-connected .gs-header a[aria-current] { color: var(--gs-violet); text-decoration: underline; text-underline-offset: 5px; }
+.docs-page.gs-connected .gs-header .gs-header-action { color: var(--cl-on-accent); }
+.docs-page.gs-connected .gs-brand { font-family: StudyInstrument,sans-serif; }
+.docs-page.gs-connected .cm-mobile-nav nav { z-index: 50; }
+.docs-page.gs-connected path { animation: none; stroke-dasharray: none; }
+.docs-page.gs-connected .docs-toolbar { display: flex; align-items: center; gap: 22px; min-height: 62px; padding: 8px 32px; }
+.docs-page.gs-connected .docs-home-link { color: var(--gs-ink); font-size: 14px; padding-right: 22px; border-right: 1px solid var(--gs-rule); }
+.docs-page.gs-connected .docs-primary { order: initial; width: auto; padding: 0; flex: 1; min-width: 0; overflow-x: auto; gap: 4px; }
+.docs-page.gs-connected .docs-primary .faros-navlink { font-family: inherit; font-size: 13px; color: var(--gs-muted); padding: 9px 11px; border-radius: 4px; }
+.docs-page.gs-connected .docs-primary .faros-navlink:hover, .docs-page.gs-connected .docs-nav-trigger[data-current] { color: var(--gs-violet); background: var(--fx-accent-subtle); }
+.docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { flex: 0 1 260px; margin-left: auto; min-height: 40px; max-width: none; min-width: 160px; }
+.docs-page.gs-connected .docs-search-trigger { font-family: inherit; font-size: 13px; }
+.docs-page.gs-connected .docs-layout { background: var(--gs-ground); min-height: calc(100dvh - var(--docs-header-height)); }
+.docs-page.gs-connected .docs-layout .faros-docs-sidebar { top: var(--docs-header-height); height: calc(100dvh - var(--docs-header-height)); background: var(--gs-ground); }
+.docs-page.gs-connected .docs-page-rail { top: calc(var(--docs-header-height) + 24px); max-height: calc(100dvh - var(--docs-header-height) - 48px); }
+.docs-page.gs-connected .docs-layout [id] { scroll-margin-top: calc(var(--docs-header-height) + 24px); }
+.docs-page.gs-connected .faros-docs-title { font-family: StudyInstrument,sans-serif; font-weight: 440; letter-spacing: -.035em; font-stretch: normal; }
+.docs-page.gs-connected .faros-docs-body :is(h2,h3,h4), .docs-page.gs-connected .docs-task-grid h3 { font-family: StudyInstrument,sans-serif; font-weight: 550; letter-spacing: -.02em; font-stretch: normal; }
+.docs-page.gs-connected .faros-docs-body { font-family: StudyInstrument,sans-serif; }
+.docs-page.gs-connected .docs-code-block { border-radius: 4px; }
+.docs-page.gs-connected .docs-code-block code { font-family: var(--fx-mono); }
+.docs-page.gs-connected .docs-search-dialog { border-radius: 6px; }
+.docs-page.gs-connected .docs-search-dialog input { font-family: inherit; }
+.docs-page.gs-connected .gs-skip { background: var(--gs-panel); color: var(--gs-ink); }
+.docs-page.gs-connected :focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 3px; }
+@media(max-width:1150px) { .docs-page.gs-connected .docs-page-rail { position: static; max-height: none; } .docs-page.gs-connected .docs-home-link { display: none; } }
+@media(max-width:900px) { .docs-page.gs-connected .docs-layout .faros-docs-sidebar { position: static; height: auto; } }
+@media(max-width:700px) {
+  :root { --docs-header-height: 190px; }
+  .docs-page.gs-connected .docs-toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 24px; }
+  .docs-page.gs-connected .docs-primary { order: 2; flex-basis: 100%; }
+  .docs-page.gs-connected .docs-home-link { display: block; border: 0; padding: 0; }
+  .docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { min-width: 0; flex-basis: 190px; }
+  .docs-page.gs-connected .docs-search-trigger kbd { display: none; }
+}
