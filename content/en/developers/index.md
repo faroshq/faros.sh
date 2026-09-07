@@ -4,18 +4,13 @@ description: "Get started with the Faros CLI, connect infrastructure and MCP cli
 layout: marketing-hub
 hero:
   eyebrow: "Developers"
-  summary: "Connect a cluster, configure an agent, or build a provider for your own service. Faros gives you a CLI, Kubernetes-style APIs, and guides for each step."
+  summary: "Connect a cluster, connect an MCP client, or build a provider for your own service. Faros gives you a CLI, Kubernetes-style APIs, and guides for each step."
   primary:
     label: "Try the quickstart"
     url: "/docs/use/edges/quickstart/"
   secondary:
     label: "Browse all docs"
     url: "/docs/"
-  facts:
-    - "kubectl-faros CLI"
-    - "Kubernetes-style APIs"
-    - "Custom providers"
-    - "MCP integration"
 sections:
   - id: "first-run"
     eyebrow: "First run"
@@ -29,7 +24,7 @@ sections:
         link_label: "Install the CLI"
       - kicker: "Step 2"
         title: "Select a workspace"
-        summary: "Log in to your Faros hub and select an organization and workspace. The CLI stores your credentials in kubeconfig."
+        summary: "Log in to Faros and select the organization and workspace you want to use."
         url: "/docs/reference/cli/login/"
         link_label: "Log in to Faros"
       - kicker: "Step 3"

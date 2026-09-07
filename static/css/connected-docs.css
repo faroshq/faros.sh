@@ -1,22 +1,30 @@
-/* The same marketing shell and palette, with reading-specific density. */
-:root { --docs-header-height: 162px; }
+/* Marketing identity, one documentation header, and reading-specific density. */
+:root { --docs-header-height: 80px; }
 body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace; font-family: StudyInstrument,sans-serif; color: var(--gs-ink); background: var(--gs-ground); line-height: 1.6; height: auto; width: 100%; }
-.docs-page.gs-connected .docs-header { position: sticky; top: 0; z-index: 40; background: var(--gs-ground); border-bottom: 1px solid var(--gs-rule); }
-.docs-page.gs-connected .gs-header { position: relative; background: var(--gs-ground); border-bottom: 1px solid var(--gs-rule); }
+.docs-page.gs-connected .docs-header { position: sticky; top: 0; z-index: 40; height: 80px; gap: 16px; padding-inline: 32px; background: var(--gs-ground); border-bottom: 1px solid var(--gs-rule); }
 .docs-page.gs-connected .gs-header svg { fill: none; stroke: currentColor; stroke-width: 1.5; }
 .docs-page.gs-connected .gs-header a { text-decoration: none; color: inherit; }
 .docs-page.gs-connected .gs-header a[aria-current] { color: var(--gs-violet); text-decoration: underline; text-underline-offset: 5px; }
-.docs-page.gs-connected .gs-header .gs-header-action { color: var(--cl-on-accent); }
+.docs-page.gs-connected .gs-header .gs-header-action { display: flex; flex-shrink: 0; white-space: nowrap; color: var(--cl-on-accent); }
+.docs-page.gs-connected .docs-brand { gap: 12px; }
 .docs-page.gs-connected .gs-brand { font-family: StudyInstrument,sans-serif; }
-.docs-page.gs-connected .cm-mobile-nav nav { z-index: 50; }
+.docs-page.gs-connected .docs-home-link { color: var(--gs-muted); font-size: 14px; border-left: 1px solid var(--gs-rule); padding-left: 12px; }
 .docs-page.gs-connected path { animation: none; stroke-dasharray: none; }
-.docs-page.gs-connected .docs-toolbar { display: flex; align-items: center; gap: 22px; min-height: 62px; padding: 8px 32px; }
-.docs-page.gs-connected .docs-home-link { color: var(--gs-ink); font-size: 14px; padding-right: 22px; border-right: 1px solid var(--gs-rule); }
-.docs-page.gs-connected .docs-primary { order: initial; width: auto; padding: 0; flex: 1; min-width: 0; overflow-x: auto; gap: 4px; }
-.docs-page.gs-connected .docs-primary .faros-navlink { font-family: inherit; font-size: 13px; color: var(--gs-muted); padding: 9px 11px; border-radius: 4px; }
+.docs-page.gs-connected .docs-primary { order: initial; width: auto; padding: 0; margin: 0 0 0 auto; flex: 0 1 auto; justify-content: flex-start; min-width: 0; overflow-x: auto; gap: 0; }
+.docs-page.gs-connected .docs-primary .faros-navlink { font-family: inherit; font-size: 13px; color: var(--gs-muted); padding: 12px 9px; border-radius: 4px; min-height: 44px; }
 .docs-page.gs-connected .docs-primary .faros-navlink:hover, .docs-page.gs-connected .docs-nav-trigger[data-current] { color: var(--gs-violet); background: var(--fx-accent-subtle); }
-.docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { flex: 0 1 260px; margin-left: auto; min-height: 40px; max-width: none; min-width: 160px; }
-.docs-page.gs-connected .docs-search-trigger { font-family: inherit; font-size: 13px; }
+.docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { display: flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; min-width: 0; max-width: none; margin: 0; padding: 0; border: 0; border-radius: 4px; background: transparent; color: var(--gs-muted); cursor: pointer; }
+.docs-page.gs-connected .docs-search-trigger[hidden], .docs-page.gs-connected .docs-header-search[hidden] { display: none; }
+.docs-page.gs-connected .docs-search-trigger svg, .docs-page.gs-connected .docs-header-search svg { width: 20px; height: 20px; }
+.docs-page.gs-connected .docs-search-trigger:hover, .docs-page.gs-connected .docs-header-search:hover { background: var(--gs-panel); color: var(--gs-ink); }
+.docs-page.gs-connected .cl-theme-picker { margin-left: 0; }
+.docs-mobile-menu { display: none; }
+.docs-mobile-menu > summary { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px; list-style: none; cursor: pointer; font-size: 14px; }
+.docs-mobile-menu > summary::-webkit-details-marker { display: none; }
+.docs-mobile-menu > summary svg { width: 20px; height: 20px; }
+.docs-page.gs-connected .docs-mobile-menu nav { position: absolute; top: calc(100% + 8px); right: 16px; width: min(320px, calc(100vw - 32px)); max-height: calc(100dvh - var(--docs-header-height) - 24px); overflow-y: auto; display: grid; gap: 0; padding: 8px; margin: 0; border: 1px solid var(--gs-rule); border-radius: 4px; background: var(--gs-panel); }
+.docs-page.gs-connected .docs-mobile-menu nav a { display: block; padding: 10px 12px; min-height: 44px; font-size: 14px; }
+.docs-mobile-menu a:hover { background: var(--gs-ground); }
 .docs-page.gs-connected .docs-layout { background: var(--gs-ground); min-height: calc(100dvh - var(--docs-header-height)); }
 .docs-page.gs-connected .docs-layout .faros-docs-sidebar { top: var(--docs-header-height); height: calc(100dvh - var(--docs-header-height)); background: var(--gs-ground); }
 .docs-page.gs-connected .docs-page-rail { top: calc(var(--docs-header-height) + 24px); max-height: calc(100dvh - var(--docs-header-height) - 48px); }
@@ -30,13 +38,22 @@ body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace;
 .docs-page.gs-connected .docs-search-dialog input { font-family: inherit; }
 .docs-page.gs-connected .gs-skip { background: var(--gs-panel); color: var(--gs-ink); }
 .docs-page.gs-connected :focus-visible { outline: 2px solid var(--gs-violet); outline-offset: 3px; }
-@media(max-width:1150px) { .docs-page.gs-connected .docs-page-rail { position: static; max-height: none; } .docs-page.gs-connected .docs-home-link { display: none; } }
+@media(max-width:1280px) {
+  .docs-page.gs-connected .docs-primary { display: none; }
+  .docs-mobile-menu { display: block; margin-left: auto; }
+}
+@media(max-width:1150px) { .docs-page.gs-connected .docs-page-rail { position: static; max-height: none; } }
 @media(max-width:900px) { .docs-page.gs-connected .docs-layout .faros-docs-sidebar { position: static; height: auto; } }
 @media(max-width:700px) {
-  :root { --docs-header-height: 190px; }
-  .docs-page.gs-connected .docs-toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 24px; }
-  .docs-page.gs-connected .docs-primary { order: 2; flex-basis: 100%; }
-  .docs-page.gs-connected .docs-home-link { display: block; border: 0; padding: 0; }
-  .docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { min-width: 0; flex-basis: 190px; }
-  .docs-page.gs-connected .docs-search-trigger kbd { display: none; }
+  :root { --docs-header-height: 72px; }
+  .docs-page.gs-connected .docs-header { height: 72px; gap: 8px; padding-inline: 16px; }
 }
+@media(max-width:500px) {
+  .docs-page.gs-connected .docs-header { gap: 4px; padding-inline: 8px; }
+  .docs-page.gs-connected .gs-brand { width: 44px; height: 44px; justify-content: center; }
+  .docs-page.gs-connected .gs-brand span, .docs-page.gs-connected .docs-home-link, .docs-mobile-menu > summary span { display: none; }
+  .docs-page.gs-connected .gs-header .gs-header-action { min-height: 44px; padding: 10px; font-size: 12px; }
+  .docs-page.gs-connected .gs-header-action svg { display: none; }
+}
+
+.docs-page.gs-connected .docs-nav-dropdown nav { display: block; margin: 0; }

@@ -7,10 +7,13 @@
 <figure class="{{ if $hero }}gs-hero-art cl-hero-art{{ else }}ly-detail cl-detail-art{{ end }}" aria-hidden="true">
   {{ range $theme, $asset := dict "light" $light "dark" $dark }}
   <picture class="cl-picture" data-art-theme="{{ $theme }}">
-    <img src="/images/grounded/{{ $asset }}.webp" srcset="/images/grounded/{{ $asset }}-small.webp 960w, /images/grounded/{{ $asset }}.webp 1536w, /images/grounded/{{ $asset }}-2560.webp 2560w, /images/grounded/{{ $asset }}-3840.webp 3840w, /images/grounded/{{ $asset }}-4k.webp 6144w" sizes="{{ $sizes }}" width="1536" height="1024" alt="" {{ if $hero }}fetchpriority="high"{{ else }}loading="lazy"{{ end }}>
+    <img {{ if $hero }}data-src{{ else }}src{{ end }}="/images/grounded/{{ $asset }}.webp" {{ if $hero }}data-srcset{{ else }}srcset{{ end }}="/images/grounded/{{ $asset }}-small.webp 960w, /images/grounded/{{ $asset }}.webp 1536w, /images/grounded/{{ $asset }}-2560.webp 2560w, /images/grounded/{{ $asset }}-3840.webp 3840w, /images/grounded/{{ $asset }}-4k.webp 6144w" sizes="{{ $sizes }}" width="1536" height="1024" alt="" {{ if not $hero }}loading="lazy"{{ end }}>
   </picture>
   {{ end }}
   {{ if $hero }}
+  <noscript><picture class="cl-picture" data-art-theme="dark"><img src="/images/grounded/{{ $dark }}.webp" srcset="/images/grounded/{{ $dark }}-small.webp 960w, /images/grounded/{{ $dark }}.webp 1536w, /images/grounded/{{ $dark }}-2560.webp 2560w, /images/grounded/{{ $dark }}-3840.webp 3840w, /images/grounded/{{ $dark }}-4k.webp 6144w" sizes="{{ $sizes }}" width="1536" height="1024" alt="" fetchpriority="high"></picture></noscript>
+  {{/* Inline so the selected hero starts during parsing, without another script request. */}}
+  <script>{{ readFile "static/js/hero-art.js" | safeJS }}</script>
   <svg class="cl-circuit" viewBox="0 0 1536 1024" fill="none" aria-hidden="true">
     <defs>
       <radialGradient id="cl-core-light">

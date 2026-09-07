@@ -58,6 +58,10 @@
       </div>
       {{ end }}
 
+      {{ with $section.primary }}
+      <div class="faros-marketing-actions"><a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a></div>
+      {{ end }}
+
       {{ with $section.note }}<p class="faros-marketing-note">{{ . }}</p>{{ end }}
     </div>
   </section>

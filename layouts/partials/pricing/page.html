@@ -1,7 +1,7 @@
 <div class="pricing-shell">
   <header class="pricing-hero">
     <h1>Choose how<br><span>you run Faros.</span></h1>
-    <p>Self-host with no software license fee, ask about Faros Cloud, or work with our team on deployment.</p>
+    <p>{{ .Params.hero.summary }}</p>
   </header>
 
   <section id="paths" class="pricing-options" aria-label="Compare Faros operating options">
@@ -11,19 +11,10 @@
       <p class="pricing-model">{{ if eq $index 0 }}Operated by your team.{{ else if eq $index 1 }}Operated by Faros.{{ else }}Help with architecture and deployment.{{ end }}</p>
       <div class="pricing-terms">
         <p>{{ if eq $index 0 }}No license fee{{ else }}Contact us{{ end }}</p>
-        <span>{{ if eq $index 0 }}Apache 2.0 · Infrastructure costs apply{{ else if eq $index 1 }}Contact us for availability and pricing{{ else }}Scope and pricing agreed with you{{ end }}</span>
+        <span>{{ if eq $index 0 }}Apache 2.0 · Infrastructure costs apply{{ else if eq $index 1 }}Availability and pricing on request{{ else }}Priced per engagement{{ end }}</span>
       </div>
       <a class="pricing-button{{ if eq $index 1 }} pricing-button-primary{{ end }}" href="{{ .url }}">{{ .link_label }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       <p class="pricing-plan-summary">{{ .summary }}</p>
-      <ul>
-        {{ if eq $index 0 }}
-        <li>Deploy on infrastructure you control</li><li>Manage your own upgrades and operations</li><li>Public documentation and community channels</li>
-        {{ else if eq $index 1 }}
-        <li>Faros operates the control plane</li><li>Built on the open-source Faros platform</li><li>Availability and terms confirmed with the team</li>
-        {{ else }}
-        <li>Architecture and deployment guidance</li><li>Your infrastructure and access requirements</li><li>Agree on scope and deliverables together</li>
-        {{ end }}
-      </ul>
     </article>
     {{ end }}
   </section>
@@ -47,5 +38,5 @@
     </div>
   </section>
 
-  <section class="pricing-closing" aria-labelledby="pricing-closing-title"><div><h2 id="pricing-closing-title">Discuss your deployment with us.</h2><p>Tell us about your environment and the help you need. We’ll discuss the options and terms with you.</p></div><a class="pricing-button pricing-button-primary" href="/contact/">Talk to the Faros team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+  <section class="pricing-closing" aria-labelledby="pricing-closing-title"><div><h2 id="pricing-closing-title">Discuss your deployment with us.</h2><p>Tell us where you want to run Faros and what help you need.</p></div><a class="pricing-button pricing-button-primary" href="/contact/">Contact the team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
 </div>

@@ -169,8 +169,13 @@ for script in ("/js/site-theme.js", "/js/connected-theme.js"):
     if script not in docs.scripts:
         errors.append(f"/docs/: missing shared theme script {script}")
 for target in ("/platform/", "/developers/", "/solutions/", "/pricing/"):
+    if target in docs.hrefs:
+        errors.append(f"/docs/: marketing navigation must not return: {target}")
+for target in ("/", "/docs/", "/docs/search/", "/docs/get-started/", "/docs/use/", "/docs/administration/", "/docs/self-hosting/", "/docs/extend/", "/docs/reference/", "/docs/resources/"):
     if target not in docs.hrefs:
-        errors.append(f"/docs/: missing shared navigation link {target}")
+        errors.append(f"/docs/: missing documentation header destination {target}")
+if "docs-toolbar" in docs.classes or "cm-primary-nav" in docs.classes or "docs-mobile-menu" not in docs.classes:
+    errors.append("/docs/: expected one documentation header and its compact menu")
 
 contact = parse(ROOT / "contact" / "index.html")
 form = next((attrs for attrs in contact.forms if attrs.get("id") == "contact-form"), None)

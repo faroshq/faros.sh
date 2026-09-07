@@ -4,17 +4,13 @@ description: "Compare self-hosted Faros, Faros Cloud, and deployment help. Self-
 layout: pricing
 hero:
   eyebrow: "Plans"
-  summary: "Self-host Faros under Apache 2.0, ask about Faros Cloud, or discuss help with deployment. Contact the team for current commercial pricing."
+  summary: "Run Faros yourself, use Faros Cloud, or get help with deployment."
   primary:
     label: "Ask about Faros Cloud"
     url: "/contact/"
   secondary:
     label: "Deploy Faros yourself"
     url: "/docs/self-hosting/hub/helm/"
-  facts:
-    - "Commercial pricing on request"
-    - "Apache 2.0 self-hosting"
-    - "Discuss deployment requirements"
 sections:
   - id: "paths"
     eyebrow: "Deployment options"
@@ -23,29 +19,17 @@ sections:
     cards:
       - kicker: "Open source"
         title: "Self-hosted Faros"
-        summary: "Run the open-source Faros control plane on your own Kubernetes cluster. You manage the deployment and its ongoing operation."
-        points:
-          - "No Faros software license fee"
-          - "You cover infrastructure and operating costs"
-          - "Public documentation and community channels"
+        summary: "Run Faros on your Kubernetes cluster. You manage infrastructure, upgrades, and operations."
         url: "/docs/self-hosting/"
         link_label: "Read the deployment guide"
       - kicker: "Hosted"
         title: "Faros Cloud"
-        summary: "Use a control plane operated by Faros. Contact the team to discuss current availability and pricing for your environment."
-        points:
-          - "Faros operates the control plane"
-          - "Built on the open-source Faros platform"
-          - "Contact us for pricing and usage limits"
+        summary: "Use the open-source Faros platform with a control plane operated by Faros."
         url: "/contact/"
         link_label: "Ask about Faros Cloud"
       - kicker: "Deployment help"
         title: "Work with Faros"
-        summary: "Discuss your architecture, deployment plans, and adoption requirements with the team. Any work together starts with an agreement on scope, deliverables, and terms."
-        points:
-          - "Architecture and deployment planning"
-          - "Your infrastructure and access requirements"
-          - "Scope and deliverables agreed together"
+        summary: "Work with the team on architecture and deployment. Scope and pricing are agreed for each engagement."
         url: "/contact/"
         link_label: "Contact the team"
   - id: "considerations"
@@ -55,7 +39,7 @@ sections:
     cards:
       - kicker: "Operations"
         title: "Who maintains the control plane?"
-        summary: "When you self-host, your team handles deployment, upgrades, and operations. With Faros Cloud, Faros operates the control plane. Contact us to discuss hosted availability."
+        summary: "When you self-host, your team handles deployment, upgrades, and operations. With Faros Cloud, Faros operates the control plane."
       - kicker: "Environment"
         title: "Can Faros meet our infrastructure requirements?"
         summary: "Review where the hub and providers run, how edges connect, and how users authenticate. These choices affect network access and data handling. Use the architecture guide to assess your requirements."
@@ -63,7 +47,7 @@ sections:
         link_label: "Review the architecture"
       - kicker: "Relationship"
         title: "What help is available?"
-        summary: "Use the public documentation and community channels to get started. For help with architecture, deployment, or adoption, contact the Faros team to discuss scope and terms."
+        summary: "Use the public documentation and community channels to get started. For help planning or deploying Faros, contact the team."
         url: "/contact/"
         link_label: "Discuss requirements"
   - id: "evaluate"
@@ -91,7 +75,7 @@ closing:
   title: "Discuss your deployment with us."
   summary: "Contact the team for current pricing, usage limits, support options, and service commitments."
   primary:
-    label: "Contact Faros"
+    label: "Contact the team"
     url: "/contact/"
   secondary:
     label: "Explore self-hosting"

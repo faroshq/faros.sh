@@ -1,7 +1,7 @@
 {
   "headline": "Give intelligence",
   "headlineEnd": "something to build on.",
-  "intro": "An open-source control plane for people and agents. Compose capabilities in isolated workspaces, with actions governed by the caller\u2019s permissions.",
+  "intro": "An open-source control plane for applications, agents, and infrastructure. Organize them in workspaces with their own resources and permissions.",
   "primary": "Request a demo",
   "primaryURL": "/contact/",
   "secondary": "Understand the platform",
@@ -28,5 +28,5 @@
   "governEnd": "Boundaries by design.",
   "governBody": "Workspaces scope resources and access. People and agents reach the same resources through APIs and MCP.",
   "close": "The foundation is yours. What will you build?",
-  "footer": "The operating system for AI-native platforms."
+  "footer": "An open-source control plane for applications, agents, and infrastructure."
 }

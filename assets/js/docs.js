@@ -303,3 +303,17 @@ if (docsHeader && 'ResizeObserver' in window) {
     document.documentElement.style.setProperty('--docs-header-height', `${docsHeader.getBoundingClientRect().height}px`);
   }).observe(docsHeader);
 }
+
+// Keep the compact documentation menu local to the single header.
+const docsMenu = document.querySelector('.docs-mobile-menu');
+if (docsMenu) {
+  const closeMenu = () => { docsMenu.open = false; };
+  docsMenu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && docsMenu.open) {
+      event.preventDefault(); closeMenu(); docsMenu.querySelector('summary').focus();
+    }
+  });
+  document.addEventListener('pointerdown', event => { if (!docsMenu.contains(event.target)) closeMenu(); });
+  docsMenu.addEventListener('focusout', event => { if (!docsMenu.contains(event.relatedTarget)) closeMenu(); });
+  matchMedia('(min-width: 1281px)').addEventListener('change', closeMenu);
+}

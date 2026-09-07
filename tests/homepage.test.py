@@ -22,6 +22,8 @@ class Homepage(HTMLParser):
         self.hrefs = []
         self.assets = []
         self.responsive_art = []
+        self.hero_fallbacks = []
+        self._noscript = False
         self.meta = []
         self.console_links = []
         self.classes = set()
@@ -33,6 +35,10 @@ class Homepage(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == "noscript":
+            self._noscript = True
+        if tag == "img" and attrs.get("data-src"):
+            attrs = {**attrs, "src": attrs["data-src"], "srcset": attrs.get("data-srcset", "")}
         self.classes.update((attrs.get("class") or "").split())
         if attrs.get("data-theme-choice"):
             self.theme_choices.add(attrs["data-theme-choice"])
@@ -59,7 +65,7 @@ class Homepage(HTMLParser):
             if attrs.get("srcset"):
                 self.assets.extend(attrs["srcset"].split(","))
             if tag == "img" and "/images/grounded/" in attrs.get("src", ""):
-                self.responsive_art.append(attrs)
+                (self.hero_fallbacks if self._noscript else self.responsive_art).append(attrs)
         elif tag == "a":
             href = attrs.get("href")
             if href:
@@ -71,6 +77,8 @@ class Homepage(HTMLParser):
             self._h1_text = []
 
     def handle_endtag(self, tag):
+        if tag == "noscript":
+            self._noscript = False
         if tag == "h1" and self._in_h1:
             self.h1.append("".join(self._h1_text))
             self._in_h1 = False
@@ -133,7 +141,11 @@ if any("/explorations/" in href for href in parser.hrefs):
 
 if len(parser.responsive_art) != 6:
     errors.append("expected two hero images and four detail/base glow images")
-for art in parser.responsive_art:
+if len(parser.hero_fallbacks) != 1 or "open-structure-core" not in parser.hero_fallbacks[0].get("src", ""):
+    errors.append("expected a dark hero fallback without JavaScript")
+if sum("data-src" in art for art in parser.responsive_art) != 2:
+    errors.append("both hero sources must be deferred until the theme is resolved")
+for art in parser.responsive_art + parser.hero_fallbacks:
     candidates = [candidate.strip().split() for candidate in art.get("srcset", "").split(",")]
     if [c[-1] for c in candidates if c] != ["960w", "1536w", "2560w", "3840w", "6144w"]:
         errors.append(f"missing responsive image sizes: {art['src']}")

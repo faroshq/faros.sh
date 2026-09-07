@@ -7,7 +7,7 @@
 {{ if ne .Section "docs" }}<base href="{{ .Site.BaseURL }}">{{ end }}
 
 {{ if .IsHome }}
-  <title>{{ .Title | default "Faros — the operating system for AI-native platforms" }}</title>
+  <title>{{ .Title | default "Faros — Give intelligence something to build on." }}</title>
 {{ else if .Title }}
   <title>{{ .Title }} | Faros</title>
 {{ else }}
@@ -25,14 +25,14 @@
 <meta property="og:site_name" content="Faros">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "Faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} | Faros{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | default "Faros — Give intelligence something to build on." }}{{ else }}{{ .Title }} | Faros{{ end }}">
 {{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
 <meta property="og:image" content="{{ "logo.png" | absURL }}">
 <meta property="og:image:alt" content="Faros">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "Faros — the operating system for AI-native platforms" }}{{ else }}{{ .Title }} | Faros{{ end }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Title | default "Faros — Give intelligence something to build on." }}{{ else }}{{ .Title }} | Faros{{ end }}">
 {{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
 <meta name="twitter:image" content="{{ "logo.png" | absURL }}">
 <meta name="twitter:image:alt" content="Faros">
