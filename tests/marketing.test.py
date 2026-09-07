@@ -30,6 +30,7 @@ class Page(HTMLParser):
         self.recaptcha = None
         self.visual_panels = []
         self.visual_choices = []
+        self.visual_companions = []
         self._heading = None
         self._heading_text = []
 
@@ -40,6 +41,8 @@ class Page(HTMLParser):
             self.visual_panels.append(attrs)
         if "data-visual-choice" in attrs:
             self.visual_choices.append(attrs)
+        if "data-visual-companion" in attrs:
+            self.visual_companions.append(attrs)
         self.classes.update(classes)
         if attrs.get("id"):
             self.ids.add(attrs["id"])
@@ -141,6 +144,14 @@ for route in MARKETING:
                 errors.append(f"{path}: visual control has no matching panel")
         if any("hidden" in panel for panel in page.visual_panels):
             errors.append(f"{path}: visual content must remain readable without JavaScript")
+        if route == "developers":
+            keys = [c.get("data-visual-companion") for c in page.visual_companions]
+            if sorted(keys) != sorted(c.get("data-visual-choice") for c in page.visual_choices):
+                errors.append(f"{path}: each command needs its matching illustration")
+            if any("hidden" in c for c in page.visual_companions):
+                errors.append(f"{path}: illustrations must remain readable without JavaScript")
+            if any(c.get("aria-labelledby") not in page.ids for c in page.visual_companions):
+                errors.append(f"{path}: illustration needs an accessible caption")
         if "/js/marketing-visuals.js" not in page.scripts:
             errors.append(f"{path}: visual interaction script missing")
     elif "/js/marketing-visuals.js" in page.scripts:

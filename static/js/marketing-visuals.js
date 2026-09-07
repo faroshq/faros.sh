@@ -3,6 +3,7 @@ document.querySelectorAll('[data-visual-tabs]').forEach(root => {
   const buttons = [...root.querySelectorAll('[data-visual-choice]')];
   const panels = [...root.querySelectorAll('[data-visual-panel]')];
   if (!buttons.length || buttons.length !== panels.length) return;
+  const companions = [...root.querySelectorAll('[data-visual-companion]')];
   const controls = buttons[0].parentElement;
   controls.setAttribute('role', 'tablist');
   if (root.classList.contains('mv-platform')) controls.setAttribute('aria-orientation', 'vertical');
@@ -16,6 +17,7 @@ document.querySelectorAll('[data-visual-tabs]').forEach(root => {
       item.tabIndex = selected ? 0 : -1;
     });
     panels.forEach(panel => { panel.hidden = panel.dataset.visualPanel !== key; });
+    companions.forEach(figure => { figure.hidden = figure.dataset.visualCompanion !== key; });
     root.classList.remove('mv-activated');
     clearTimeout(timer);
     if (animate) {
