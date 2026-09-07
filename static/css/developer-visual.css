@@ -49,7 +49,6 @@
 .cm-page .dv-inventory i { padding: .25rem .35rem; border: 1px solid var(--dv-rule); color: var(--dv-muted); font-family: StudyMono, 'IBM Plex Mono', ui-monospace, monospace; font-size: .58rem; font-style: normal; }
 .cm-page .dv-link { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.5rem; color: var(--dv-violet); font-size: .8rem; text-underline-offset: .3rem; }
 .cm-page .dv-link svg { width: 1rem; height: 1rem; }
-.cm-page .dv-note { margin: auto 1.5rem 1.25rem; padding-top: 1rem; color: var(--dv-muted); border-top: 1px solid var(--dv-rule); font-family: StudyMono, 'IBM Plex Mono', ui-monospace, monospace; font-size: .64rem; line-height: 1.6; }
 /* The illustration follows the selected command, rather than a generic topology. */
 .cm-page .dv-diagrams { min-width: 0; }
 .cm-page .dv-diagram { display: flex; flex-direction: column; min-height: 100%; margin: 0; padding: 1.5rem 0 0; }
