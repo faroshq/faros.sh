@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ .Language.Lang }}" data-study-theme="dark">
-<head>{{ partial "connected-home/head.html" . }}</head>
-<body class="gs gs-layers gs-platform-story gs-connected">
+<head>
+{{ partial "connected-home/head.html" . }}
+<link rel="stylesheet" href="/css/circuit-pulse.css">
+<style>.cl-material-motion .cl-channel-breath, .cl-material-motion .cp-emission { filter: url('{{ .RelPermalink }}#cl-violet-channels'); }</style>
+</head>
+<body class="gs gs-layers gs-platform-story gs-connected cl-material-motion">
 {{ partial "connected-home/header.html" . }}
 <main id="main">{{ partial "connected-home/page.html" . }}</main>
 {{ partial "connected-home/footer.html" . }}
 <script src="/js/connected-theme.js" defer></script>
 <script src="/js/workflow-showcase.js" defer></script>
+<script src="/js/circuit-pulse.js" defer></script>
 </body>
 </html>
