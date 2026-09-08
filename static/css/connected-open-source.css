@@ -1,4 +1,4 @@
-/* Retain the original home-v2 open-source partial, scoped to this exploration. */
+/* Retain the original open-source artwork with shared marketing typography. */
 .gs-connected .faros-v2-oss {
   --oss-surface: #0a0b12; --oss-overlay: #171927; --oss-hover: #1e2033;
   --oss-border: rgba(255,255,255,.07); --oss-dots: rgba(255,255,255,.11);
@@ -22,19 +22,16 @@
   font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--oss-accent);
 }
 .gs-connected .faros-v2-oss-copy h2 {
-  max-width: 15ch; margin: 0; font-family: StudyArchivo,StudyInstrument,sans-serif;
-  font-variation-settings: 'wdth' 125; font-weight: 700;
-  font-size: clamp(2rem,3.8vw,3.25rem); line-height: 1.07;
-  letter-spacing: -.025em; text-wrap: initial; color: var(--oss-ink);
+  max-width: 15ch; color: var(--oss-ink);
 }
 .gs-connected .faros-v2-oss-copy > p:not(.faros-v2-eyebrow) {
-  max-width: 35rem; margin: 1.2rem 0 0; font-size: .98rem; line-height: 1.75; color: var(--oss-muted);
+  max-width: 46ch; margin: 1.2rem 0 0; color: var(--oss-muted);
 }
 .gs-connected .faros-v2-oss .faros-v2-actions { display: flex; flex-wrap: wrap; margin-top: 1.8rem; }
 .gs-connected .faros-v2-oss .faros-v2-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
   min-height: 44px; padding: .65rem 1.1rem; border: 1px solid var(--oss-dots); border-radius: 4px;
-  font-size: .9rem; font-weight: 650; line-height: 1; text-decoration: none;
+  font-size: 14px; line-height: 1.5; text-decoration: none;
   background: var(--oss-overlay); color: var(--oss-ink);
   transition: background-color 150ms ease,border-color 150ms ease;
 }
