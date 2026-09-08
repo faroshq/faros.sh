@@ -1,0 +1,26 @@
+/* Light is part of the existing material. The production composition remains untouched. */
+.cl-material-motion { --cp-light: color-mix(in srgb, var(--gs-violet) 22%, white); }
+.cl-material-motion .cl-arrival-light { display: none; }
+.cp-material-field { pointer-events: none; }
+.cp-reflection { fill: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: 150 1200; stroke-dashoffset: 150; opacity: 0; animation: cp-reflection 11s cubic-bezier(.3,0,.2,1) infinite both; animation-delay: var(--cp-delay); animation-play-state: paused; }
+.cp-reflection-bloom { stroke: var(--gs-violet); stroke-width: 5; }
+.cp-reflection-edge { stroke: var(--cp-light); stroke-width: .75; }
+.cp-material-route { opacity: .8; }
+:root[data-study-theme=light] .cp-material-route { opacity: .55; }
+.cp-emission { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0; animation: cp-emission 11s ease-in-out infinite; animation-play-state: paused; }
+.cp-emission[hidden] { display: none; }
+.cp-emission img { display: block; width: 100%; height: 100%; object-fit: cover; }
+:root[data-motion=on]:not(.cl-motion-suspended) .cl-material-motion .cl-motion-visible .cp-reflection,
+:root[data-motion=on]:not(.cl-motion-suspended) .cl-material-motion .cl-motion-visible .cp-emission { animation-play-state: running; }
+/* The detail pass follows the channels already present in the photograph. */
+.cl-material-motion .cl-channel-light { transition: opacity .8s ease; }
+.cl-material-motion .cl-channel-breath { animation: cp-channel-pass 9s cubic-bezier(.3,0,.2,1) infinite; animation-play-state: paused; mask-image: linear-gradient(115deg,transparent 35%,black 47%,black 53%,transparent 65%); mask-size: 300% 100%; mask-repeat: no-repeat; }
+:root[data-motion=on]:not(.cl-motion-suspended) .cl-material-motion .cl-detail-art.cl-motion-visible .cl-channel-breath { animation-play-state: running; }
+.cl-material-motion .cl-workflow-inner { position: relative; }
+.cp-workflow-connection { position: absolute; left: 0; width: 100%; overflow: visible; pointer-events: none; }
+.cp-transfer { fill: none; stroke: var(--gs-violet); stroke-width: 1; stroke-dasharray: 180 1200; stroke-dashoffset: 180; opacity: 0; }
+@keyframes cp-reflection { 0%,4% { stroke-dashoffset: 150; opacity: 0; } 12% { opacity: .9; } 40% { opacity: .7; } 57%,100% { stroke-dashoffset: -1000; opacity: 0; } }
+@keyframes cp-emission { 0%,68%,100% { opacity: 0; } 12% { opacity: .45; } 28% { opacity: .28; } 46% { opacity: .06; } }
+@keyframes cp-channel-pass { 0%,8% { mask-position: 100% 0; opacity: 0; } 18% { opacity: .75; } 70% { opacity: .75; } 88%,100% { mask-position: 0% 0; opacity: 0; } }
+:root[data-motion=off] .cp-reflection, :root[data-motion=off] .cp-emission { opacity: 0; }
+@media(prefers-reduced-motion:reduce) { .cp-reflection, .cp-emission, .cp-workflow-connection { display: none; } }

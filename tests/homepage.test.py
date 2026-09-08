@@ -131,6 +131,11 @@ if "cl-theme-picker" not in parser.classes:
     errors.append("homepage is missing the theme picker")
 if parser.theme_choices != {"light", "dark", "system"}:
     errors.append(f"homepage theme choices are {sorted(parser.theme_choices)!r}")
+if "cl-material-motion" not in parser.classes:
+    errors.append("homepage is missing the material motion scope")
+for asset in ("/css/circuit-pulse.css", "/js/circuit-pulse.js"):
+    if asset not in parser.assets:
+        errors.append(f"homepage is missing material motion asset {asset}")
 if not parser.workflow_section:
     errors.append("homepage is missing the workflow section")
 if not parser.workflow_tabs:
