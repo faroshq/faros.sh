@@ -1,0 +1,4 @@
+{{- /* Appends a content hash to a /css or /js path served from static/, so browsers and the CDN
+       fetch a fresh copy after every change instead of a cached one (Netlify caches for 4h). */ -}}
+{{- $path := . -}}
+{{- with os.ReadFile (printf "static%s" $path) -}}{{ $path }}?v={{ md5 . | truncate 8 "" }}{{- else -}}{{ $path }}{{- end -}}

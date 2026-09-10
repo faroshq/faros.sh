@@ -7,7 +7,7 @@
     {{ partial "documentation/header.html" . }}
     {{ block "main" . }}{{ end }}
 
-    <script src="/js/connected-theme.js" defer></script>
+    <script src="{{ partial "asset-url.html" "/js/connected-theme.js" }}" defer></script>
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
 

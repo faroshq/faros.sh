@@ -13,7 +13,7 @@
     {{ partial "footer_custom.html" . }}
     {{ end }}
 
-    {{ if $connected }}<script src="/js/connected-theme.js" defer></script>{{ else }}
+    {{ if $connected }}<script src="{{ partial "asset-url.html" "/js/connected-theme.js" }}" defer></script>{{ else }}
     {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
 
