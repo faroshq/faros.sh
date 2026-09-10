@@ -19,6 +19,7 @@ body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace;
 .docs-page.gs-connected .docs-search-trigger:hover, .docs-page.gs-connected .docs-header-search:hover { background: var(--gs-panel); color: var(--gs-ink); }
 .docs-page.gs-connected .cl-theme-picker { margin-left: 0; }
 .docs-mobile-menu { display: none; }
+.docs-page.gs-connected .docs-mobile-menu:not([open]) > nav { display: none; }
 .docs-mobile-menu > summary { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px; list-style: none; cursor: pointer; font-size: 14px; }
 .docs-mobile-menu > summary::-webkit-details-marker { display: none; }
 .docs-mobile-menu > summary svg { width: 20px; height: 20px; }

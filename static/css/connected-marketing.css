@@ -12,6 +12,7 @@
 .gs-connected .cm-primary-nav { gap: 24px; }
 .gs-connected [aria-current=page] { color: var(--gs-violet); text-decoration: underline; }
 .cm-mobile-nav { display: none; }
+.gs-connected .cm-mobile-nav:not([open]) > nav { display: none; }
 .gs-connected .cm-footer { padding-block: 56px; align-items: flex-start; border-top: 1px solid var(--gs-rule); gap: 40px; }
 .cm-footer > div { flex: 1; }
 .cm-footer p { margin-top: 18px; max-width: 32ch; }
@@ -32,7 +33,7 @@
   .cm-mobile-nav > summary::-webkit-details-marker { display: none; }
   .cm-mobile-nav > summary svg { width: 18px; height: 18px; transform: rotate(90deg); }
   .cm-mobile-nav[open] > summary svg { transform: rotate(-90deg); }
-  .gs-connected .cm-mobile-nav nav { position: absolute; top: 100%; right: 24px; left: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 16px; background: var(--gs-panel); border: 1px solid var(--gs-rule); margin: 0; font-size: 16px; }
+  .gs-connected .cm-mobile-nav nav { position: absolute; top: 100%; right: 24px; left: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 16px; background: var(--gs-panel); border: 1px solid var(--gs-rule); margin: 0; font-size: 16px; max-height: calc(100svh - 110px); overflow-y: auto; }
   .gs-connected .cm-mobile-nav nav a { display: block; min-height: 44px; padding: 10px; }
   .gs-connected .cm-footer nav { grid-template-columns: repeat(2,auto); }
 }
