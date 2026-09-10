@@ -1,4 +1,4 @@
-{{ $connected := or (in (slice "marketing-hub" "pricing" "contact") .Params.layout) (eq .Section "contact") }}
+{{ $connected := or (in (slice "marketing-hub" "developers" "pricing" "contact") .Params.layout) (eq .Section "contact") }}
 <!DOCTYPE html>
 <html lang="{{ .Language.Lang }}"{{ if $connected }} data-study-theme="dark"{{ end }}>
 <head>
