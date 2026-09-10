@@ -19,6 +19,8 @@
 .cl-workflow-panel + .cl-workflow-panel { margin-top: 56px; }
 .cl-workflows-ready .cl-workflow-panel { margin-top: 28px; }
 .cl-video-slot { display: grid; place-items: center; aspect-ratio: 16 / 9; border: 1px solid var(--gs-rule); border-radius: 4px; background: var(--gs-panel); }
+.cl-video-slot-live { overflow: hidden; place-items: stretch; }
+.cl-video-slot video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--gs-panel); }
 .cl-video-empty { text-align: center; padding: 24px; }
 .cl-video-empty svg { display: block; width: 36px; height: 36px; margin: 0 auto 20px; color: var(--gs-violet); }
 .cl-video-empty p { color: var(--gs-ink); font-size: 22px; }
