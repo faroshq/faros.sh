@@ -1,0 +1,131 @@
+<svg class="symbols" aria-hidden="true">
+  <symbol id="dev-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+  <symbol id="dev-hex" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7Z"/></symbol>
+  <symbol id="dev-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+  <symbol id="dev-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></symbol>
+  <symbol id="dev-tool" viewBox="0 0 24 24"><path d="m5 4 15 8-15 8V4Zm0 0 8 8-8 8m8-8h7"/></symbol>
+  <symbol id="dev-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+</svg>
+
+  <section class="intro wrap">
+    <h1>{{ .Params.headline }}<br><span>{{ .Params.headline_end }}</span></h1>
+    <div class="intro-copy">
+      <p>{{ .Params.intro }}</p>
+      <div class="actions"><a class="button primary" href="/docs/extend/quickstart/">Build a provider <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a><a class="text-link" href="{{ .RelPermalink }}#examples">Explore examples <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="showcase wrap" id="demonstration" aria-labelledby="showcase-heading">
+    <div class="showcase-header">
+      <h2 id="showcase-heading">Demo: one database, three ways to create it.</h2>
+      <p>Imagine a provider that connects your database service to Faros. Create <strong>app-dev</strong> through the Portal, a manifest, or MCP. Each path produces the same database.</p>
+    </div>
+    <div class="workbench" data-demo-state="empty">
+      <div class="workspace-preview" data-visual-tabs>
+        <div class="preview-top"><span>Example database provider</span><span>Simulation · No real infrastructure is created</span></div>
+        <div class="view-tabs" hidden data-visual-controls role="tablist" aria-label="Choose how to create the database">
+          <button role="tab" id="tab-portal" aria-controls="panel-portal" aria-selected="true" data-visual-choice="portal">Portal</button>
+          <button role="tab" id="tab-api" aria-controls="panel-api" aria-selected="false" tabindex="-1" data-visual-choice="api">Manifest</button>
+          <button role="tab" id="tab-agent" aria-controls="panel-agent" aria-selected="false" tabindex="-1" data-visual-choice="agent">MCP</button>
+        </div>
+        <div class="database-layout">
+          <div class="database-requests">
+            <div id="panel-portal" class="interface" data-visual-panel="portal" role="tabpanel" aria-labelledby="tab-portal" tabindex="0">
+              <h3>Create from the Portal.</h3>
+              <p class="demo-intro">A prefilled form in your provider’s page.</p>
+              <div class="database-form">
+                <label for="demo-database-name">Database name</label>
+                <input id="demo-database-name" value="app-dev" readonly aria-describedby="demo-fixed-settings">
+                <dl><div><dt>Engine</dt><dd>PostgreSQL</dd></div><div><dt>Size</dt><dd>Small</dd></div></dl>
+                <p id="demo-fixed-settings">Settings are fixed for this demonstration.</p>
+              </div>
+              <button type="button" class="button primary" data-demo-create="Portal" data-demo-label="Create database" hidden>Create database</button>
+            </div>
+            <div id="panel-api" class="interface" data-visual-panel="api" role="tabpanel" aria-labelledby="tab-api" tabindex="0">
+              <h3>Apply a manifest.</h3>
+              <p class="demo-intro">Declare the same database as a resource.</p>
+              <pre class="api-code"><code>apiVersion: databases.example.io/v1
+kind: Database
+metadata:
+  name: app-dev
+spec:
+  engine: postgres
+  size: small</code></pre>
+              <button type="button" class="button primary" data-demo-create="Manifest" data-demo-label="Apply manifest" hidden>Apply manifest</button>
+            </div>
+            <div id="panel-agent" class="interface" data-visual-panel="agent" role="tabpanel" aria-labelledby="tab-agent" tabindex="0">
+              <h3>Call an MCP tool.</h3>
+              <p class="demo-intro">An agent turns a request into a tool call.</p>
+              <blockquote class="demo-request">“Create a small Postgres database called app-dev.”</blockquote>
+              <pre class="api-code"><code>create_database({
+  "name": "app-dev",
+  "engine": "postgres",
+  "size": "small"
+})</code></pre>
+              <button type="button" class="button primary" data-demo-create="MCP" data-demo-label="Run MCP tool" hidden>Run MCP tool</button>
+            </div>
+          </div>
+          <section class="database-result" aria-labelledby="database-result-heading">
+            <div class="database-result-top"><h3 id="database-result-heading">Workspace databases</h3><span data-demo-count>0 databases</span></div>
+            <div class="database-empty" data-demo-empty>
+              <h4>No database yet.</h4>
+              <p>Choose an interface and create <strong>app-dev</strong>. Its connection details will appear here.</p>
+            </div>
+            <div class="database-instance" data-demo-instance hidden>
+              <div class="database-instance-title"><h4>app-dev</h4><span data-demo-phase>Creating</span></div>
+              <p>PostgreSQL · Small</p>
+              <div class="database-connection" data-demo-connection hidden><span>Connection endpoint</span><code>app-dev.db.example:5432</code><p>Illustrative address for this demo.</p></div>
+            </div>
+            <p class="database-status" role="status" aria-live="polite" aria-atomic="true" data-demo-status>All three interfaces use the same provider.</p>
+            <button type="button" class="demo-reset" data-demo-reset hidden>Reset demo</button>
+          </section>
+        </div>
+        <div class="provider-source database-mapping" data-visual-companion="portal"><p><strong>You build</strong> A portal form that creates a Database resource.</p><p><strong>Faros supplies</strong> Workspace context and routing for your UI.</p><a href="/docs/extend/ui/">Portal guide <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+        <div class="provider-source database-mapping" data-visual-companion="api"><p><strong>You build</strong> The Database schema and the controller that provisions it.</p><p><strong>Faros supplies</strong> Your resource API in each enabled workspace.</p><a href="/docs/extend/api/">Resource API guide <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+        <div class="provider-source database-mapping" data-visual-companion="agent"><p><strong>You build</strong> An MCP tool that creates the same Database resource.</p><p><strong>Faros supplies</strong> Tool discovery through the workspace MCP endpoint.</p><a href="/docs/extend/mcp/">MCP guide <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+      </div>
+    </div>
+    <div class="showcase-caption"><p>This is a fictional provider you could build. Your controller connects the Database resource to your service.</p><a href="/docs/extend/anatomy/">See how providers work <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+  </section>
+
+  <section class="ownership wrap section">
+    <div class="ownership-heading"><h2>Build the capability.<br>Connect to the platform.</h2><p>Your provider runs independently. A shared contract connects it to Faros workspaces.</p><a class="text-link" href="/docs/extend/anatomy/">Understand the provider lifecycle <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div>
+    <div class="ownership-detail"><div><h3>You bring</h3><p>Your service logic and the interfaces it needs: resource schemas, controllers, a portal UI, or MCP handlers.</p></div><div><h3>Faros supplies</h3><p>Provider registration, workspace API bindings, portal and backend routing, and workspace MCP federation.</p></div></div>
+  </section>
+
+  <section class="contracts-section">
+    <div class="wrap section contract-layout">
+      <div><h2>Choose your<br>extension points.</h2><p class="section-copy">Implement the parts your service needs.<br>Start with one; add more as you build.</p></div>
+      <div class="contract-list">
+        <a href="/docs/extend/api/"><div><h3>APIs that belong in the workspace.</h3><p>Publish resource schemas and declare permissions. Developers use your APIs with familiar Kubernetes tooling.</p></div><svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a>
+        <a href="/docs/extend/virtual-workspace/"><div><h3>Controllers that do the work.</h3><p>Watch resources across enabled workspaces and reconcile them against your service.</p></div><svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a>
+        <a href="/docs/extend/ui/"><div><h3>A UI that lives in the portal.</h3><p>Bring a Web Component built with your framework. Receive workspace, identity, theme, and navigation context.</p></div><svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a>
+        <a href="/docs/extend/mcp/"><div><h3>Tools your agents can discover.</h3><p>Expose MCP handlers through your backend. Honor the caller’s identity and workspace access.</p></div><svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="examples wrap section" id="examples">
+    <div class="section-heading"><h2>A working example<br>is a better starting point.</h2><p>Move from the fictional demo to a real, minimal provider you can run locally.</p></div>
+    <div class="example-grid">
+      <article class="reference-example">
+        <div class="example-top"><svg><use href="{{ .RelPermalink }}#dev-code"/></svg><span>Reference provider</span></div>
+        <h3>Build the minimal reference provider.</h3><p>Quickstart is a working hello provider, separate from the database demonstration above. Build it locally, change the response, and verify it in the portal.</p>
+        <div class="source-tree"><span>providers/quickstart/</span><div><code>provider.yaml</code><span>Registration</span></div><div><code>manifest.yaml</code><span>Catalog contract</span></div><div><code>portal/</code><span>Your interface</span></div><div><code>deploy/chart/</code><span>Deployment</span></div></div>
+        <a class="text-link" href="/docs/extend/quickstart/">Build the reference provider <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a>
+      </article>
+      <div class="example-links">
+        <a href="/docs/extend/templates/"><span class="example-number">Infrastructure</span><h3>Turn a service into a catalog product.</h3><p>Follow the simple web app template: input schema, runtime resources, and instance lifecycle.</p><span class="text-link">Explore template authoring <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></span></a>
+        <a href="/docs/extend/mcp/"><span class="example-number">MCP integration</span><h3>Give agents a tool they can use.</h3><p>Follow the Infrastructure provider’s MCP implementation and workspace identity contract.</p><span class="text-link">Explore the MCP reference <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey wrap">
+    <h2>From local development to an enabled provider.</h2>
+    <ol><li><a href="/docs/extend/quickstart/"><span>01</span><h3>Build locally</h3><p>Start from the reference.<br>Make and verify a change.</p></a></li><li><a href="/docs/extend/deploy/"><span>02</span><h3>Package & register</h3><p>Ship an image and chart.<br>Onboard with a hub admin.</p></a></li><li><a href="/docs/extend/anatomy/"><span>03</span><h3>Enable in a workspace</h3><p>Accept the provider’s permissions.<br>Make its capabilities available.</p></a></li></ol>
+  </section>
+
+  <section class="closing"><div class="wrap"><div class="closing-message"><svg><use href="{{ .RelPermalink }}#dev-hex"/></svg><h2>What will you bring to Faros?</h2></div><div class="actions"><a class="button primary" href="/docs/extend/quickstart/">Build a provider <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a><a class="text-link" href="/docs/extend/">Explore the extension guides <svg><use href="{{ .RelPermalink }}#dev-arrow"/></svg></a></div></div></section>
+
+<div class="contribute wrap"><p>Contributing to Faros itself? <a href="https://github.com/faroshq/faros">Explore the core repository.</a></p></div>

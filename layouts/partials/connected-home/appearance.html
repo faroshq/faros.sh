@@ -7,3 +7,5 @@
 <link rel="stylesheet" href="{{ partial "asset-url.html" "/css/connected-theme.css" }}">
 {{ if .IsHome }}<link rel="stylesheet" href="{{ partial "asset-url.html" "/css/connected-open-source.css" }}">{{ end }}
 <link rel="stylesheet" href="{{ partial "asset-url.html" "/css/connected-marketing.css" }}">
+
+{{ if eq .Params.layout "developers" }}<link rel="stylesheet" href="{{ partial "asset-url.html" "/css/developers.css" }}">{{ end }}

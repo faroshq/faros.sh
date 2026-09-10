@@ -65,7 +65,7 @@ class Page(HTMLParser):
         elif tag == "script":
             src = attrs.get("src")
             if src:
-                self.scripts.append(src)
+                self.scripts.append(urlsplit(src).path)  # Ignore asset content-hash queries.
                 self.assets.append(src)
         elif tag in {"img", "source"}:
             src = attrs.get("src") or attrs.get("srcset")
@@ -145,13 +145,15 @@ for route in MARKETING:
         if any("hidden" in panel for panel in page.visual_panels):
             errors.append(f"{path}: visual content must remain readable without JavaScript")
         if route == "developers":
-            keys = [c.get("data-visual-companion") for c in page.visual_companions]
-            if sorted(keys) != sorted(c.get("data-visual-choice") for c in page.visual_choices):
-                errors.append(f"{path}: each command needs its matching illustration")
-            if any("hidden" in c for c in page.visual_companions):
-                errors.append(f"{path}: illustrations must remain readable without JavaScript")
-            if any(c.get("aria-labelledby") not in page.ids for c in page.visual_companions):
-                errors.append(f"{path}: illustration needs an accessible caption")
+            for target in ("/docs/extend/quickstart/", "/docs/extend/api/", "/docs/extend/ui/", "/docs/extend/mcp/", "/developers/#examples"):
+                if target not in page.hrefs:
+                    errors.append(f"{path}: missing provider development destination {target}")
+            if not {"developer-page", "provider-source", "workspace-preview"}.issubset(page.classes):
+                errors.append(f"{path}: missing provider example and landing-page structure")
+            if {p.get("data-visual-panel") for p in page.visual_panels} != {"portal", "api", "agent"}:
+                errors.append(f"{path}: expected portal, API, and agent views of the provider")
+            if "/css/developers.css" not in {urlsplit(asset).path for asset in page.assets}:
+                errors.append(f"{path}: provider landing-page stylesheet missing")
         if "/js/marketing-visuals.js" not in page.scripts:
             errors.append(f"{path}: visual interaction script missing")
     elif "/js/marketing-visuals.js" in page.scripts:

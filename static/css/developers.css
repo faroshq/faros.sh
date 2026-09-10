@@ -1,0 +1,965 @@
+/* Developer landing page. Scoped to preserve the shared marketing shell. */
+.gs .developer-page p {
+  color: inherit;
+  max-width: none;
+}
+.gs .developer-page * {
+  box-sizing: border-box
+}
+.gs .developer-page {
+  margin: 0;
+  background: var(--fx-bg);
+  color: var(--fx-text);
+  font: 16px/1.6 StudyInstrument,sans-serif
+}
+.gs .developer-page h1,.gs .developer-page h2,.gs .developer-page h3,.gs .developer-page p {
+  margin: 0
+}
+.gs .developer-page h1,.gs .developer-page h2,.gs .developer-page h3 {
+  font-family: var(--fx-display, StudyInstrument, sans-serif);
+  letter-spacing: -.035em;
+  font-weight: 550;
+  line-height: 1.14
+}
+.gs .developer-page h1 {
+  font-size: clamp(48px,5.8vw,80px);
+  line-height: 1.06
+}
+.gs .developer-page h1 span {
+  color: var(--fx-accent)
+}
+.gs .developer-page h2 {
+  font-size: clamp(31px,3.2vw,44px)
+}
+.gs .developer-page h3 {
+  font-size: 22px
+}
+.gs .developer-page a {
+  color: inherit;
+  text-decoration: none
+}
+.gs .developer-page a:hover {
+  color: var(--fx-accent)
+}
+.gs .developer-page button {
+  font: inherit
+}
+.gs .developer-page svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  flex-shrink: 0;
+  vertical-align: middle
+}
+.gs .developer-page .symbols {
+  display: none
+}
+.gs .developer-page .wrap {
+  width: calc(100% - 112px);
+  max-width: 1168px;
+  margin: 0 auto
+}
+.gs .developer-page .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  border: 1px solid var(--fx-border);
+  border-radius: 5px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .2s
+}
+.gs .developer-page .button svg,.gs .developer-page .text-link svg {
+  width: 18px;
+  height: 18px
+}
+.gs .developer-page .button.primary {
+  background: var(--fx-accent);
+  border-color: var(--fx-accent);
+  color: var(--fx-text-2)
+}
+.gs .developer-page .button.primary:hover {
+  background: var(--fx-raised)
+}
+.gs .developer-page .button.small {
+  padding: 9px 14px;
+  font-size: 13px
+}
+.gs .developer-page .actions {
+  display: flex;
+  gap: 27px;
+  align-items: center;
+  flex-wrap: wrap
+}
+.gs .developer-page .text-link {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600
+}
+.gs .developer-page .intro {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 85px;
+  align-items: center;
+  padding: 67px 0 55px
+}
+.gs .developer-page .intro-copy p {
+  font-size: 18px;
+  color: var(--fx-text-2);
+  line-height: 1.65;
+  margin-bottom: 26px;
+  max-width: 43ch
+}
+.gs .developer-page .showcase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 18px
+}
+.gs .developer-page .showcase-header h2 {
+  font: 600 clamp(28px, 3vw, 38px)/1.15 StudyInstrument,sans-serif;
+  letter-spacing: -0.02em
+}
+.gs .developer-page .showcase-header {
+  display: block;
+  margin-bottom: 36px;
+}
+.gs .developer-page .showcase-header p {
+  max-width: 68ch;
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--fx-text-2);
+}
+.gs .developer-page .showcase-header>span {
+  font-size: 12px;
+  color: var(--fx-text-2)
+}
+.gs .developer-page .workbench {
+  display: grid;
+  grid-template-columns: 36% 64%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--fx-border)
+}
+.gs .developer-page .provider-source {
+  background: var(--fx-raised);
+  color: var(--fx-text);
+  padding: 26px 29px
+}
+.gs .developer-page .source-heading {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600
+}
+.gs .developer-page .source-heading svg {
+  color: var(--fx-accent)
+}
+.gs .developer-page .provider-source>p {
+  font-size: 13px;
+  color: var(--fx-text-2);
+  margin: 13px 0 24px;
+  max-width: 30ch
+}
+.gs .developer-page .source-file {
+  font: 11px StudyMono,monospace;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  border-top: 1px solid var(--fx-border);
+  padding-top: 15px;
+  color: var(--fx-text-2)
+}
+.gs .developer-page .source-file span {
+  font: 11px StudyInstrument
+}
+.gs .developer-page .provider-source pre {
+  font: 11px/1.85 StudyMono,monospace;
+  margin: 18px 0 22px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--fx-text)
+}
+.gs .developer-page .key {
+  color: var(--fx-text-2)
+}
+.gs .developer-page .value {
+  color: var(--fx-accent)
+}
+.gs .developer-page .provider-source>a {
+  font-size: 12px;
+  color: var(--fx-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+.gs .developer-page .provider-source>a:hover {
+  color: var(--fx-text-2)
+}
+.gs .developer-page .provider-source>a svg {
+  width: 15px;
+  height: 15px
+}
+.gs .developer-page .workspace-preview {
+  background: var(--fx-raised);
+  min-width: 0;
+  display: flex;
+  flex-direction: column
+}
+.gs .developer-page .preview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px;
+  font-size: 12px;
+  color: var(--fx-text-2);
+  border-bottom: 1px solid var(--fx-border);
+  gap: 15px
+}
+.gs .developer-page .preview-top>span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  color: var(--fx-text)
+}
+.gs .developer-page .preview-top svg {
+  width: 18px;
+  height: 18px;
+  color: var(--fx-accent)
+}
+.gs .developer-page .preview-top>span:last-child {
+  font-size: 11px
+}
+.gs .developer-page .view-tabs {
+  display: flex;
+  gap: 25px;
+  border-bottom: 1px solid var(--fx-border);
+  padding: 0 26px
+}
+.gs .developer-page .view-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--fx-text-2);
+  font-size: 12px;
+  padding: 15px 0
+}
+.gs .developer-page .view-tabs button svg {
+  width: 16px;
+  height: 16px
+}
+.gs .developer-page .view-tabs button[aria-selected=true] {
+  color: var(--fx-accent);
+  border-bottom-color: var(--fx-accent);
+  font-weight: 600
+}
+.gs .developer-page .view-tabs button:hover {
+  color: var(--fx-accent)
+}
+.gs .developer-page .interface {
+  padding: 23px 28px 17px;
+  flex: 1;
+  animation: dev-reveal .2s ease-out
+}
+.gs .developer-page .interface[hidden] {
+  display: none
+}
+.gs .developer-page .preview-breadcrumb {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--fx-text-2);
+  margin-bottom: 23px
+}
+.gs .developer-page .preview-breadcrumb span {
+  color: var(--fx-text-2)
+}
+.gs .developer-page .instance-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center
+}
+.gs .developer-page .instance-heading h3 {
+  font-size: 24px
+}
+.gs .developer-page .instance-heading p {
+  font-size: 12px;
+  color: var(--fx-text-2);
+  margin-top: 3px
+}
+.gs .developer-page .instance-icon {
+  background: var(--fx-raised);
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--fx-accent)
+}
+.gs .developer-page .resource-type {
+  font: 10px StudyMono,monospace;
+  color: var(--fx-text-2);
+  margin-left: auto;
+  border: 1px solid var(--fx-border);
+  border-radius: 4px;
+  padding: 3px 7px
+}
+.gs .developer-page .properties {
+  font-size: 12px;
+  margin: 5px 0
+}
+.gs .developer-page .properties>div {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--fx-border);
+  gap: 15px
+}
+.gs .developer-page .properties dt {
+  color: var(--fx-text-2)
+}
+.gs .developer-page .properties dd {
+  margin: 0;
+  font: 11px/1.65 StudyMono,monospace;
+  color: var(--fx-text)
+}
+.gs .developer-page .preview-footnote {
+  font-size: 11px;
+  color: var(--fx-text-2);
+  margin-top: 17px
+}
+.gs .developer-page .api-code {
+  font: 11px/1.85 StudyMono,monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--fx-text-2);
+  margin: 18px 0
+}
+.gs .developer-page .interface>h3 {
+  font-size: 21px
+}
+.gs .developer-page .tool-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--fx-border)
+}
+.gs .developer-page .tool-row code {
+  font: 11px StudyMono;
+  color: var(--fx-accent);
+  overflow-wrap: anywhere
+}
+.gs .developer-page .tool-row p {
+  font-size: 12px;
+  color: var(--fx-text-2);
+  margin-top: 5px
+}
+.gs .developer-page .showcase-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 26px;
+  padding: 20px 0 0;
+  color: var(--fx-text-2);
+  font-size: 12px
+}
+.gs .developer-page .showcase-caption p {
+  max-width: 70ch
+}
+.gs .developer-page .showcase-caption a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  color: var(--fx-text-2)
+}
+.gs .developer-page .showcase-caption svg {
+  width: 15px
+}
+.gs .developer-page .section {
+  padding: 82px 0
+}
+.gs .developer-page .ownership {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 90px
+}
+.gs .developer-page .ownership-heading>p {
+  font-size: 16px;
+  color: var(--fx-text-2);
+  margin: 20px 0;
+  max-width: 41ch
+}
+.gs .developer-page .ownership-detail {
+  display: grid;
+  gap: 28px
+}
+.gs .developer-page .ownership-detail>div {
+  border-top: 1px solid var(--fx-border);
+  padding-top: 19px
+}
+.gs .developer-page .ownership-detail h3 {
+  font-size: 17px
+}
+.gs .developer-page .ownership-detail p {
+  font-size: 15px;
+  color: var(--fx-text-2);
+  margin-top: 9px;
+  max-width: 48ch
+}
+.gs .developer-page .contracts-section {
+  border-top: 1px solid var(--fx-border);
+  border-bottom: 1px solid var(--fx-border);
+  background: var(--fx-accent-subtle)
+}
+.gs .developer-page .contract-layout {
+  display: grid;
+  grid-template-columns: .95fr 1.3fr;
+  gap: 100px
+}
+.gs .developer-page .section-copy {
+  margin-top: 21px;
+  color: var(--fx-text-2);
+  font-size: 15px
+}
+.gs .developer-page .contract-list>a {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--fx-border);
+  padding: 25px 0
+}
+.gs .developer-page .contract-list>a:first-child {
+  padding-top: 0
+}
+.gs .developer-page .contract-list>a:last-child {
+  border-bottom: 0;
+  padding-bottom: 0
+}
+.gs .developer-page .contract-list h3 {
+  font-size: 21px
+}
+.gs .developer-page .contract-list p {
+  font-size: 14px;
+  color: var(--fx-text-2);
+  line-height: 1.65;
+  margin-top: 10px;
+  max-width: 50ch
+}
+.gs .developer-page .section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 50px;
+  margin-bottom: 35px
+}
+.gs .developer-page .section-heading>p {
+  color: var(--fx-text-2);
+  font-size: 15px;
+  max-width: 30ch
+}
+.gs .developer-page .example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px
+}
+.gs .developer-page .reference-example {
+  background: var(--fx-raised);
+  border-radius: 12px;
+  padding: 29px 32px
+}
+.gs .developer-page .example-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--fx-text-2);
+  margin-bottom: 22px
+}
+.gs .developer-page .example-top svg {
+  width: 18px
+}
+.gs .developer-page .reference-example h3 {
+  font-size: 28px
+}
+.gs .developer-page .reference-example>p,.gs .developer-page .example-links p {
+  font-size: 15px;
+  color: var(--fx-text-2);
+  margin: 14px 0 20px;
+  line-height: 1.7;
+  max-width: 46ch
+}
+.gs .developer-page .source-tree {
+  font-size: 12px;
+  margin: 24px 0 26px
+}
+.gs .developer-page .source-tree>span {
+  font: 12px StudyMono;
+  color: var(--fx-text);
+  display: block;
+  margin-bottom: 10px
+}
+.gs .developer-page .source-tree>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 6px 0
+}
+.gs .developer-page .source-tree code {
+  font: 11px StudyMono;
+  color: var(--fx-accent)
+}
+.gs .developer-page .source-tree div>span {
+  color: var(--fx-text-2)
+}
+.gs .developer-page .example-links {
+  display: grid;
+  gap: 32px
+}
+.gs .developer-page .example-links>a {
+  border-top: 1px solid var(--fx-border);
+  padding-top: 20px;
+  display: block
+}
+.gs .developer-page .example-number {
+  font-size: 12px;
+  color: var(--fx-text-2);
+  display: block;
+  margin-bottom: 15px
+}
+.gs .developer-page .example-links h3 {
+  font-size: 26px;
+  max-width: 23ch
+}
+.gs .developer-page .journey {
+  border-top: 1px solid var(--fx-border);
+  padding: 42px 0 67px
+}
+.gs .developer-page .journey h2 {
+  font-size: 23px;
+  letter-spacing: -.02em
+}
+.gs .developer-page .journey ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0;
+  gap: 50px;
+  margin: 29px 0 0
+}
+.gs .developer-page .journey a>span {
+  font: 11px StudyMono;
+  color: var(--fx-text-2);
+  display: block;
+  margin-bottom: 14px
+}
+.gs .developer-page .journey h3 {
+  font-size: 18px
+}
+.gs .developer-page .journey p {
+  font-size: 14px;
+  color: var(--fx-text-2);
+  margin-top: 9px
+}
+.gs .developer-page .closing {
+  background: var(--fx-raised);
+  color: var(--fx-text);
+  padding: 53px 0
+}
+.gs .developer-page .closing>.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px
+}
+.gs .developer-page .closing-message {
+  max-width: 44%
+}
+.gs .developer-page .closing-message>svg {
+  color: var(--fx-accent);
+  width: 32px;
+  height: 32px;
+  margin-bottom: 18px
+}
+.gs .developer-page .closing h2 {
+  font-size: 38px
+}
+.gs .developer-page .closing .actions {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 19px
+}
+.gs .developer-page .closing .primary {
+  background: var(--fx-raised);
+  border-color: var(--fx-border);
+  color: var(--fx-text-2)
+}
+.gs .developer-page .closing .primary:hover {
+  background: var(--fx-raised)
+}
+.gs .developer-page .closing .text-link {
+  color: var(--fx-text-2)
+}
+.gs .developer-page ::selection {
+  background: var(--fx-raised);
+  color: var(--fx-text-2)
+}
+.gs .developer-page :focus-visible {
+  outline: 2px solid var(--fx-accent);
+  outline-offset: 5px
+}
+.gs .developer-page {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--fx-border) var(--fx-bg);
+  scroll-padding-top: 25px
+}
+.gs .developer-page a svg {
+  transition: transform .2s ease-out
+}
+.gs .developer-page a:hover svg {
+  transform: translateX(3px)
+}
+@keyframes dev-reveal {
+  from {
+    opacity: .6;
+    transform: translateY(3px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@media(max-width:1100px) {
+  .gs .developer-page .wrap {
+    width: calc(100% - 64px)
+  }
+  .gs .developer-page .intro {
+    gap: 45px
+  }
+  .gs .developer-page .actions {
+    gap: 18px
+  }
+  .gs .developer-page .intro-copy p {
+    font-size: 16px
+  }
+  .gs .developer-page .workbench {
+    grid-template-columns: 35% 65%
+  }
+  .gs .developer-page .provider-source {
+    padding: 24px 20px
+  }
+  .gs .developer-page .view-tabs {
+    gap: 20px
+  }
+  .gs .developer-page .ownership,.gs .developer-page .contract-layout {
+    gap: 50px
+  }
+  .gs .developer-page .example-grid {
+    gap: 36px
+  }
+}
+@media(max-width:760px) {
+  .gs .developer-page .wrap {
+    width: calc(100% - 40px)
+  }
+  .gs .developer-page .intro {
+    grid-template-columns: 1fr;
+    gap: 23px;
+    padding: 39px 0 35px
+  }
+  .gs .developer-page h1 {
+    font-size: 52px
+  }
+  .gs .developer-page .intro-copy p {
+    font-size: 16px;
+    max-width: 50ch;
+    margin-bottom: 23px
+  }
+  .gs .developer-page .showcase-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px
+  }
+  .gs .developer-page .showcase-header h2 {
+    font-size: 15px
+  }
+  .gs .developer-page .workbench {
+    grid-template-columns: 1fr
+  }
+  .gs .developer-page .provider-source {
+    padding: 22px
+  }
+  .gs .developer-page .provider-source>p {
+    max-width: none;
+    margin: 10px 0 17px
+  }
+  .gs .developer-page .provider-source pre {
+    font-size: 11px;
+    max-height: 180px;
+    overflow: auto;
+    scrollbar-color: var(--fx-border) var(--fx-raised)
+  }
+  .gs .developer-page .source-file {
+    padding-top: 12px
+  }
+  .gs .developer-page .preview-top {
+    padding: 15px 18px
+  }
+  .gs .developer-page .preview-top>span:last-child {
+    font-size: 10px
+  }
+  .gs .developer-page .view-tabs {
+    padding: 0 18px;
+    gap: 22px
+  }
+  .gs .developer-page .view-tabs button {
+    font-size: 11px;
+    gap: 6px
+  }
+  .gs .developer-page .view-tabs button svg {
+    width: 14px
+  }
+  .gs .developer-page .interface {
+    padding: 21px;
+    min-height: 389px
+  }
+  .gs .developer-page .showcase-caption {
+    flex-direction: column;
+    gap: 9px;
+    padding-top: 15px
+  }
+  .gs .developer-page .section {
+    padding: 48px 0
+  }
+  .gs .developer-page .ownership,.gs .developer-page .contract-layout {
+    grid-template-columns: 1fr;
+    gap: 32px
+  }
+  .gs .developer-page .ownership-heading>p {
+    font-size: 15px
+  }
+  .gs .developer-page .ownership-detail {
+    gap: 24px
+  }
+  .gs .developer-page .contract-list h3 {
+    font-size: 21px
+  }
+  .gs .developer-page .section-heading {
+    display: block;
+    margin-bottom: 28px
+  }
+  .gs .developer-page .section-heading>p {
+    max-width: 38ch;
+    margin-top: 17px
+  }
+  .gs .developer-page .example-grid {
+    grid-template-columns: 1fr;
+    gap: 32px
+  }
+  .gs .developer-page .reference-example {
+    padding: 25px
+  }
+  .gs .developer-page .example-links {
+    gap: 27px
+  }
+  .gs .developer-page .example-links h3 {
+    max-width: none;
+    font-size: 25px
+  }
+  .gs .developer-page .journey {
+    padding: 30px 0 40px
+  }
+  .gs .developer-page .journey ol {
+    grid-template-columns: 1fr;
+    gap: 23px
+  }
+  .gs .developer-page .journey a {
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    gap: 4px 13px
+  }
+  .gs .developer-page .journey a>span {
+    grid-row: 1/3;
+    margin: 2px 0
+  }
+  .gs .developer-page .journey a p {
+    margin: 4px 0 0
+  }
+  .gs .developer-page .journey p br {
+    display: none
+  }
+  .gs .developer-page .closing {
+    padding: 38px 0
+  }
+  .gs .developer-page .closing>.wrap {
+    display: block
+  }
+  .gs .developer-page .closing-message {
+    max-width: 100%
+  }
+  .gs .developer-page .closing h2 {
+    font-size: 35px
+  }
+  .gs .developer-page .closing .actions {
+    margin-top: 25px
+  }
+  .gs .developer-page .resource-type {
+    font-size: 9px
+  }
+  .gs .developer-page .tool-row code {
+    font-size: 10px
+  }
+  .gs .developer-page .api-code {
+    font-size: 10px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .gs .developer-page {
+    scroll-behavior: auto
+  }
+  .gs .developer-page .interface {
+    animation: none
+  }
+  .gs .developer-page a svg,.gs .developer-page .button {
+    transition: none
+  }
+}
+.gs .developer-page .workspace-preview {
+  color: var(--fx-text);
+}
+.gs .developer-page a:hover {
+  text-decoration: none;
+}
+.gs .developer-page .text-link:hover {
+  text-decoration: underline;
+}
+.gs .developer-page .contribute {
+  padding-block: 26px;
+  font-size: 12px;
+  color: var(--fx-text-2);
+}
+.gs .developer-page .contribute a {
+  text-decoration: underline;
+}
+.gs .developer-page .view-tabs[hidden] {
+  display: none;
+}
+.gs .developer-page .instance-nav {
+  border-bottom: 1px solid var(--fx-border);
+  display: flex;
+  gap: 25px;
+  margin-top: 22px;
+  font-size: 11px;
+  color: var(--fx-text-2);
+}
+.gs .developer-page .instance-nav span {
+  padding-bottom: 10px;
+}
+.gs .developer-page .instance-nav span:first-child {
+  color: var(--fx-accent);
+  border-bottom: 1px solid var(--fx-accent);
+}
+/* Use the shared action and focus colors in both light and dark mode. */
+.gs .developer-page .button.primary,
+.gs .developer-page .closing .primary {
+  background: var(--fx-accent);
+  border-color: var(--fx-accent);
+  color: var(--cl-on-accent);
+}
+.gs .developer-page .button.primary:hover,
+.gs .developer-page .closing .primary:hover {
+  background: var(--fx-accent-hover);
+  border-color: var(--fx-accent-hover);
+  color: var(--cl-on-accent);
+}
+.gs .developer-page ::selection {
+  background: var(--fx-accent);
+  color: var(--cl-on-accent);
+}
+.gs .developer-page .workspace-preview {
+  background: var(--fx-bg);
+  color: var(--fx-text);
+}
+.gs .developer-page .closing .text-link,
+.gs .developer-page .provider-source>a:hover {
+  color: var(--fx-accent-hover);
+}
+/* Three request surfaces, one shared database result. */
+.gs .developer-page .showcase { padding-top: 36px; }
+.gs .developer-page .showcase-header h2 { font-size: clamp(28px, 3vw, 38px); }
+.gs .developer-page .workbench { display: block; }
+.gs .developer-page .database-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.gs .developer-page .database-requests { min-width: 0; }
+.gs .developer-page .interface { padding: 32px 36px; min-height: 0; }
+.gs .developer-page .demo-intro { margin: 12px 0 24px; font-size: 16px; color: var(--fx-text-2); }
+.gs .developer-page .view-tabs { gap: 32px; padding-inline: 36px; }
+.gs .developer-page .view-tabs button { font-size: 15px; }
+.gs .developer-page .api-code { font-size: 14px; line-height: 1.65; color: var(--fx-text); margin: 24px 0; }
+.gs .developer-page .demo-request { margin: 24px 0; font-size: 19px; }
+.gs .developer-page .database-form { margin: 24px 0 28px; }
+.gs .developer-page .database-form label { display: block; font-size: 14px; margin-bottom: 8px; }
+.gs .developer-page .database-form input { width: 100%; border: 1px solid var(--fx-border); border-radius: 6px; padding: 12px 14px; font: inherit; font-size: 16px; color: var(--fx-text); background: var(--fx-raised); }
+.gs .developer-page .database-form dl { display: flex; gap: 64px; margin: 20px 0 12px; }
+.gs .developer-page .database-form dt { font-size: 14px; color: var(--fx-text-2); margin-bottom: 4px; }
+.gs .developer-page .database-form dd { font-size: 16px; margin: 0; }
+.gs .developer-page .database-form>p { font-size: 13px; color: var(--fx-text-2); }
+.gs .developer-page [data-demo-create] { cursor: pointer; font-size: 14px; }
+.gs .developer-page [data-demo-create]:disabled { opacity: .65; cursor: wait; }
+.gs .developer-page .database-result { padding: 32px 36px; border-left: 1px solid var(--fx-border); background: var(--fx-raised); min-width: 0; }
+.gs .developer-page .database-result-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.gs .developer-page .database-result-top h3 { font-size: 18px; }
+.gs .developer-page .database-result-top>span { font-size: 14px; color: var(--fx-text-2); }
+.gs .developer-page .database-empty,
+.gs .developer-page .database-instance { min-height: 226px; padding-top: 36px; }
+.gs .developer-page .database-empty h4,
+.gs .developer-page .database-instance h4 { font-size: 26px; margin: 0 0 12px; }
+.gs .developer-page .database-empty p,
+.gs .developer-page .database-instance>p { font-size: 16px; color: var(--fx-text-2); max-width: 36ch; }
+.gs .developer-page .database-instance-title { display: flex; gap: 20px; justify-content: space-between; align-items: baseline; }
+.gs .developer-page [data-demo-phase] { font-size: 14px; font-weight: 600; color: var(--fx-accent); }
+.gs .developer-page .database-connection { margin-top: 24px; }
+.gs .developer-page .database-connection>span { display: block; font-size: 14px; color: var(--fx-text-2); margin-bottom: 8px; }
+.gs .developer-page .database-connection code { font: 14px/1.6 StudyMono, monospace; color: var(--fx-text); overflow-wrap: anywhere; }
+.gs .developer-page .database-connection p { font-size: 13px; margin-top: 8px; color: var(--fx-text-2); }
+.gs .developer-page .database-status { border-top: 1px solid var(--fx-border); padding-top: 20px; margin-top: 24px; font-size: 14px; color: var(--fx-text-2); }
+.gs .developer-page [data-demo-state="ready"] .database-status { color: var(--fx-text); }
+.gs .developer-page .demo-reset { border: 0; background: none; color: var(--fx-text); font: inherit; font-size: 14px; cursor: pointer; padding: 14px 0 0; text-decoration: underline; text-underline-offset: 4px; min-height: 44px; }
+.gs .developer-page .database-mapping { display: grid; grid-template-columns: 1fr 1fr auto; align-items: start; gap: 28px; padding: 28px 36px; border-top: 1px solid var(--fx-border); background: var(--fx-bg); }
+.gs .developer-page .database-mapping>p { font-size: 14px; margin: 0; max-width: 40ch; }
+.gs .developer-page .database-mapping strong { display: block; margin-bottom: 8px; color: var(--fx-text); }
+.gs .developer-page .database-mapping>a { font-size: 14px; margin-top: 0; }
+.gs .developer-page [data-visual-companion][hidden],
+.gs .developer-page [data-demo-empty][hidden],
+.gs .developer-page [data-demo-instance][hidden],
+.gs .developer-page [data-demo-connection][hidden],
+.gs .developer-page [data-demo-create][hidden],
+.gs .developer-page [data-demo-reset][hidden] { display: none; }
+.gs .developer-page .preview-top,
+.gs .developer-page .preview-top>span:last-child,
+.gs .developer-page .showcase-caption { font-size: 14px; }
+@media(max-width:900px) {
+  .gs .developer-page .database-layout { grid-template-columns: 1fr; }
+  .gs .developer-page .database-result { border-left: 0; border-top: 1px solid var(--fx-border); }
+  .gs .developer-page .database-mapping { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px) {
+  .gs .developer-page .interface,
+  .gs .developer-page .database-result,
+  .gs .developer-page .database-mapping { padding: 28px 24px; }
+  .gs .developer-page .database-mapping { grid-template-columns: 1fr; gap: 24px; }
+  .gs .developer-page .view-tabs { padding-inline: 24px; }
+  .gs .developer-page .preview-top { flex-wrap: wrap; gap: 4px; }
+  .gs .developer-page .database-empty,
+  .gs .developer-page .database-instance { min-height: 216px; }
+}
