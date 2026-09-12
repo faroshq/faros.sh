@@ -1,6 +1,6 @@
 ---
 title: CLI Reference
-description: Every faros command — authentication, organizations, edges, agents, SSH, MCP.
+description: Every faros command — authentication, organizations, edges, agents, SSH, MCP, skills.
 weight: 20
 ---
 
@@ -32,6 +32,7 @@ That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecur
 | [`install`](/docs/reference/cli/agent/#faros-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
 | [`ssh <name>`](/docs/reference/cli/ssh/) | Open an SSH session (or run a single command) on a server-type edge. |
 | [`mcp url`](/docs/reference/cli/mcp/) | Print an MCP endpoint for AI agents (`--mcpserver-name` aggregate or `--edge` per-edge). |
+| [`skills install`](/docs/reference/cli/skills/) | Install the Faros skill for Claude Code and Codex from the faros repository (`skills list` shows what is available). |
 | `apply -f <file>` | Apply a faros resource from a YAML file. |
 | `get <resource>` | List `edges`, `workloads`, or `placements` in the current workspace. |
 | `version` | Print CLI version, commit, build date, and platform. |

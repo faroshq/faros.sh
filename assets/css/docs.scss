@@ -189,6 +189,7 @@ body.docs-page { height: auto; min-height: 100vh; width: 100%; background: var(-
 .docs-connect-snippet { color: var(--fx-text); font-size: .88rem; line-height: 1.7; user-select: text; }
 .docs-connect pre { margin: .75rem 0; padding: .85rem; background: var(--fx-surface); border-radius: 4px; overflow-x: auto; color: var(--fx-text); font-size: .76rem; line-height: 1.8; }
 .docs-connect-note { color: var(--fx-text-2); font-size: .75rem; line-height: 1.55; }
+.docs-connect-note + .docs-connect-instruction { margin-top: .85rem; }
 .docs-connect-footer { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: .65rem; margin-top: 1rem; }
 .docs-connect a { color: var(--fx-accent); font-size: .78rem; }
 .docs-connect a:hover { text-decoration: underline; }

@@ -56,12 +56,12 @@ class Homepage(HTMLParser):
             if href:
                 self.hrefs.append(href)
                 if rel in {"stylesheet", "preload", "icon"}:
-                    self.assets.append(href)
+                    self.assets.append(asset_path(href))
         elif tag == "meta":
             self.meta.append(attrs)
         elif tag in {"script", "img", "source"}:
             if attrs.get("src"):
-                self.assets.append(attrs["src"])
+                self.assets.append(asset_path(attrs["src"]))
             if attrs.get("srcset"):
                 self.assets.extend(attrs["srcset"].split(","))
             if tag == "img" and "/images/grounded/" in attrs.get("src", ""):
@@ -86,6 +86,11 @@ class Homepage(HTMLParser):
     def handle_data(self, data):
         if self._in_h1:
             self._h1_text.append(data)
+
+
+def asset_path(url):
+    """Static assets carry a cache-busting ?v=hash; contracts compare the path only."""
+    return url.split("?", 1)[0]
 
 
 def normalize(value):
