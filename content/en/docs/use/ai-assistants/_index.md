@@ -15,6 +15,35 @@ There are two endpoint shapes:
 
 Exactly one of the two flags is required.
 
+## Install the Faros skill
+
+Before wiring up MCP, give your assistant the Faros skill. It teaches Claude Code and Codex how to log in, pick a workspace, find the MCP endpoint, and use the providers in it. [Install the CLI](/docs/get-started/install/), then run:
+
+```bash
+faros skills install
+```
+
+This fetches the `skills/` directory from the [faros repository](https://github.com/faroshq/faros) and writes every skill to `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex). No git or GitHub token is required. Common variations:
+
+| Command | Effect |
+|:--------|:-------|
+| `faros skills install faros --target claude` | One skill for one client (`claude` or `codex`). |
+| `faros skills install --scope project` | Write to `./.claude/skills` and `./.agents/skills` in the current project instead of your home directory. |
+| `faros skills install --dir ~/.cursor/skills` | Write to any directory, for clients that scan a custom path. |
+| `faros skills install --ref v0.1.30` | Pin a tag, branch, or commit instead of the default branch. |
+| `faros skills list` | Show what the repository offers, with `-o json`, `-o yaml`, or `-o name`. |
+
+Re-running the command replaces skills it installed earlier. It refuses to overwrite a directory you authored yourself unless you pass `--force`, and it never replaces a symlink, so running it inside a checkout of the faros repository leaves the committed `.agents/skills/faros` link alone. See the [skills command reference](/docs/reference/cli/skills/) for the marker file it writes and the error strings.
+
+If you prefer the Claude Code plugin marketplace, the same skill is available as a plugin:
+
+```
+/plugin marketplace add faroshq/faros
+/plugin install faros@faros
+```
+
+Codex has no marketplace; use `faros skills install` or copy `skills/faros` from the repository into `~/.agents/skills/faros` by hand.
+
 ## Get the URL
 
 ```bash

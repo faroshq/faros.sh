@@ -11,7 +11,10 @@
   </div>
   <div class="docs-connect-panel" id="connect-prompt">
     <h2 class="docs-connect-fallback-title">AI prompt</h2>
-    <p class="docs-connect-instruction">Copy this prompt into your coding assistant.</p>
+    <p class="docs-connect-instruction"><a href="/docs/get-started/install/">Install the CLI</a>, then install the Faros skill for your assistant.</p>
+    <pre><code id="connect-prompt-setup">faros skills install</code></pre>
+    <p class="docs-connect-note">One command writes the skill to <code>~/.claude/skills</code> and <code>~/.agents/skills</code> for Claude Code and Codex. Add <code>--scope project</code> for this project only, or <code>--dir PATH</code> for another client.</p>
+    <p class="docs-connect-instruction">Then copy this prompt into your coding assistant.</p>
     <p class="docs-connect-snippet" id="connect-prompt-text">Help me get started with the Faros SaaS hub. Ask which workspace I should use and what I want to build. If my organization self-hosts Faros, use its hub instead. Check whether the Faros CLI is installed. Guide me through login and workspace selection, then help me connect the workspace’s MCP server and inspect its available tools. Suggest a first task using the providers available to me.</p>
     <div class="docs-connect-footer"><a href="/docs/use/ai-assistants/">Assistant setup guide <span aria-hidden="true">→</span></a></div>
   </div>

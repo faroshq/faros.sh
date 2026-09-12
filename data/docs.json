@@ -363,6 +363,10 @@
               "title": "Work with provider resources"
             },
             {
+              "url": "/docs/reference/cli/skills/",
+              "title": "Skills command"
+            },
+            {
               "url": "/docs/reference/cli/ssh/",
               "title": "SSH"
             },
@@ -840,6 +844,10 @@
             {
               "url": "/docs/reference/cli/resources/",
               "title": "Work with provider resources"
+            },
+            {
+              "url": "/docs/reference/cli/skills/",
+              "title": "Skills command"
             },
             {
               "url": "/docs/reference/cli/ssh/",
