@@ -343,6 +343,10 @@
           "title": "CLI",
           "links": [
             {
+              "url": "/docs/reference/cli/commands/",
+              "title": "All commands (generated)"
+            },
+            {
               "url": "/docs/reference/cli/agent/",
               "title": "Agent Commands"
             },
@@ -826,6 +830,10 @@
           "title": "Commands",
           "links": [
             {
+              "url": "/docs/reference/cli/commands/",
+              "title": "All commands (generated)"
+            },
+            {
               "url": "/docs/reference/cli/agent/",
               "title": "Agent Commands"
             },
@@ -856,6 +864,360 @@
             {
               "url": "/docs/reference/cli/workspaces/",
               "title": "Organizations & Workspaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "root": "/docs/reference/cli/commands/",
+      "area": "reference",
+      "generated": "scripts/sync-cli-docs.py",
+      "groups": [
+        {
+          "title": "Commands",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/commit/",
+              "title": "commit"
+            },
+            {
+              "url": "/docs/reference/cli/commands/connect/",
+              "title": "connect"
+            },
+            {
+              "url": "/docs/reference/cli/commands/disconnect/",
+              "title": "disconnect"
+            },
+            {
+              "url": "/docs/reference/cli/commands/env/",
+              "title": "env"
+            },
+            {
+              "url": "/docs/reference/cli/commands/init/",
+              "title": "init"
+            },
+            {
+              "url": "/docs/reference/cli/commands/install/",
+              "title": "install"
+            },
+            {
+              "url": "/docs/reference/cli/commands/login/",
+              "title": "login"
+            },
+            {
+              "url": "/docs/reference/cli/commands/logout/",
+              "title": "logout"
+            },
+            {
+              "url": "/docs/reference/cli/commands/ssh/",
+              "title": "ssh"
+            },
+            {
+              "url": "/docs/reference/cli/commands/token/",
+              "title": "token"
+            },
+            {
+              "url": "/docs/reference/cli/commands/use/",
+              "title": "use"
+            },
+            {
+              "url": "/docs/reference/cli/commands/version/",
+              "title": "version"
+            },
+            {
+              "url": "/docs/reference/cli/commands/whoami/",
+              "title": "whoami"
+            }
+          ]
+        },
+        {
+          "title": "faros agent",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/agent/",
+              "title": "agent"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-install/",
+              "title": "agent install"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-join/",
+              "title": "agent join"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-run/",
+              "title": "agent run"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-token/",
+              "title": "agent token"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-token-create/",
+              "title": "agent token create"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-uninstall/",
+              "title": "agent uninstall"
+            },
+            {
+              "url": "/docs/reference/cli/commands/agent-upgrade/",
+              "title": "agent upgrade"
+            }
+          ]
+        },
+        {
+          "title": "faros app",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/app/",
+              "title": "app"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-create/",
+              "title": "app create"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-list/",
+              "title": "app list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-promote/",
+              "title": "app promote"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-publish/",
+              "title": "app publish"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-status/",
+              "title": "app status"
+            },
+            {
+              "url": "/docs/reference/cli/commands/app-sync/",
+              "title": "app sync"
+            }
+          ]
+        },
+        {
+          "title": "faros completion",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/completion/",
+              "title": "completion"
+            },
+            {
+              "url": "/docs/reference/cli/commands/completion-bash/",
+              "title": "completion bash"
+            },
+            {
+              "url": "/docs/reference/cli/commands/completion-fish/",
+              "title": "completion fish"
+            },
+            {
+              "url": "/docs/reference/cli/commands/completion-powershell/",
+              "title": "completion powershell"
+            },
+            {
+              "url": "/docs/reference/cli/commands/completion-zsh/",
+              "title": "completion zsh"
+            }
+          ]
+        },
+        {
+          "title": "faros dev",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/dev/",
+              "title": "dev"
+            },
+            {
+              "url": "/docs/reference/cli/commands/dev-delete/",
+              "title": "dev delete"
+            },
+            {
+              "url": "/docs/reference/cli/commands/dev-init/",
+              "title": "dev init"
+            },
+            {
+              "url": "/docs/reference/cli/commands/dev-update/",
+              "title": "dev update"
+            }
+          ]
+        },
+        {
+          "title": "faros edge",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/edge/",
+              "title": "edge"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-create/",
+              "title": "edge create"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-delete/",
+              "title": "edge delete"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-get/",
+              "title": "edge get"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-join-command/",
+              "title": "edge join-command"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-kubeconfig/",
+              "title": "edge kubeconfig"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-list/",
+              "title": "edge list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/edge-upgrade/",
+              "title": "edge upgrade"
+            }
+          ]
+        },
+        {
+          "title": "faros mcp",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/mcp/",
+              "title": "mcp"
+            },
+            {
+              "url": "/docs/reference/cli/commands/mcp-url/",
+              "title": "mcp url"
+            }
+          ]
+        },
+        {
+          "title": "faros org",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/org/",
+              "title": "org"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-create/",
+              "title": "org create"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-list/",
+              "title": "org list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-members/",
+              "title": "org members"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-members-add/",
+              "title": "org members add"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-members-list/",
+              "title": "org members list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-members-remove/",
+              "title": "org members remove"
+            },
+            {
+              "url": "/docs/reference/cli/commands/org-members-set-role/",
+              "title": "org members set-role"
+            }
+          ]
+        },
+        {
+          "title": "faros sandbox",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/sandbox/",
+              "title": "sandbox"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-env/",
+              "title": "sandbox env"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-exec/",
+              "title": "sandbox exec"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-logs/",
+              "title": "sandbox logs"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-restart/",
+              "title": "sandbox restart"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-status/",
+              "title": "sandbox status"
+            },
+            {
+              "url": "/docs/reference/cli/commands/sandbox-sync/",
+              "title": "sandbox sync"
+            }
+          ]
+        },
+        {
+          "title": "faros skills",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/skills/",
+              "title": "skills"
+            },
+            {
+              "url": "/docs/reference/cli/commands/skills-install/",
+              "title": "skills install"
+            },
+            {
+              "url": "/docs/reference/cli/commands/skills-list/",
+              "title": "skills list"
+            }
+          ]
+        },
+        {
+          "title": "faros workspace",
+          "links": [
+            {
+              "url": "/docs/reference/cli/commands/workspace/",
+              "title": "workspace"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-create/",
+              "title": "workspace create"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-list/",
+              "title": "workspace list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-members/",
+              "title": "workspace members"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-members-add/",
+              "title": "workspace members add"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-members-list/",
+              "title": "workspace members list"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-members-remove/",
+              "title": "workspace members remove"
+            },
+            {
+              "url": "/docs/reference/cli/commands/workspace-members-set-role/",
+              "title": "workspace members set-role"
             }
           ]
         }

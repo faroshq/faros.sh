@@ -39,4 +39,4 @@ That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecur
 | `dev init` / `dev update` / `dev delete` | Create, upgrade, or tear down a local kind-based dev hub (`init` has alias `create`). |
 | `init` | Run an in-process faros hub (server bootstrap — for development, not the CLI workflow). |
 
-Pick a command from the sidebar for the full reference.
+Pick a command from the sidebar for the guides above, or open the [generated command reference](/docs/reference/cli/commands/) for every command with its exact flags and examples.
