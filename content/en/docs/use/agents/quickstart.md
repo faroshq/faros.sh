@@ -18,6 +18,8 @@ Start in the Faros SaaS hub with **AI agents** enabled in your workspace. You ca
 5. Create the agent, open its chat, and ask it to summarize a short paragraph.
 6. Verify that the response appears and inspect any reported model or credential error.
 
+![Create an agent with a name, a model credential, and standing instructions. Faros then opens its chat and Config workspace.](/images/docs/console/agent-create.gif)
+
 A successful text response verifies the model connection. It does not verify access to GitHub, MCP, or other tools.
 
 If creation or the first response fails, confirm the selected workspace and model credential before recreating the agent. A missing model is a credential setup problem; a tool failure requires the tool connection and authorization path.

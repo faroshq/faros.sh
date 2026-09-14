@@ -135,6 +135,7 @@ kubectl get pods -A
 - **`faros login` says OIDC is not configured.** The local hub uses a static token. Pass `--token dev-token`.
 - **The `local` edge never becomes Ready.** Follow the agent logs with `kubectl --kubeconfig faros-hub.kubeconfig -n faros-agent logs deploy/faros-agent -f`, and the edges provider with `kubectl --kubeconfig faros-hub.kubeconfig -n faros-providers logs deploy/edges -f`.
 - **Provider onboarding fails.** Check pod health with `kubectl --kubeconfig faros-hub.kubeconfig get pods -A`, then read the failing provider's logs in the `faros-providers` namespace. `--with-dex` disables token login, so it also skips providers and the edge.
+- **The App Studio preview panel stays on "Preview is getting ready".** The embedded preview does not load in the local environment. Open the development instance's URL from **Application Templates → Instances** instead; it signs you in through the hub.
 
 ## Next steps
 
