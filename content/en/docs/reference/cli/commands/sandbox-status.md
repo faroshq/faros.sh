@@ -2,7 +2,7 @@
 title: "faros sandbox status"
 linkTitle: "sandbox status"
 description: "Show the instance status, or a component's process state"
-weight: 57
+weight: 60
 doc_type: Reference
 generated: true
 ---

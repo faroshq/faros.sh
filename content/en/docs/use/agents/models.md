@@ -17,6 +17,8 @@ Enable **AI agents** in your selected workspace. You need permission to manage i
 4. Enter the exact **Model** identifier and **API key**, then choose **Add credential**. Faros stores the key as a workspace Secret.
 5. Find the new credential and select **Test**. Expect **healthy** with a latency value. **untested** means no successful check has been recorded; **failed** requires investigation.
 
+![A connected model credential shows its endpoint, capabilities, and a pricing estimate. Test connection records a health check.](/images/docs/console/agents-models.webp)
+
 If testing fails, check the endpoint URL, key validity, model availability, and the provider runtime's outbound network access. Correct the credential with **Rotate / model**, save it, and test again. Never paste the key into an agent prompt or diagnostic report.
 
 Expected result: the credential reports **healthy** with latency, and an agent can use it for a short text response. A healthy credential test does not prove tool access or every model feature.

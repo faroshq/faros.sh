@@ -12,6 +12,10 @@ generated: true
 
 Commands for interacting with the faros MCP endpoint.
 
+```bash
+faros mcp [flags]
+```
+
 ## Options
 
 ```text
@@ -28,4 +32,7 @@ Commands for interacting with the faros MCP endpoint.
 ## See also
 
 - [faros](/docs/reference/cli/commands/) — faros: an open-source control plane for platform teams
+- [faros mcp claude](/docs/reference/cli/commands/mcp-claude/) — Add the workspace MCP server to Claude Code
+- [faros mcp codex](/docs/reference/cli/commands/mcp-codex/) — Add the workspace MCP server to Codex
+- [faros mcp proxy](/docs/reference/cli/commands/mcp-proxy/) — Serve the workspace MCP endpoint over stdio, authenticated as you
 - [faros mcp url](/docs/reference/cli/commands/mcp-url/) — Print the MCP endpoint URL

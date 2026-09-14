@@ -2,7 +2,7 @@
 title: "faros sandbox env"
 linkTitle: "sandbox env"
 description: "Set environment variables on the component's running dev process"
-weight: 53
+weight: 56
 doc_type: Reference
 generated: true
 ---

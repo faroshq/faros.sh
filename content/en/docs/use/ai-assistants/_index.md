@@ -76,6 +76,8 @@ For Claude Desktop, add the printed JSON snippet under `mcpServers` in `claude_d
 
 ## The MCPServer object
 
+![MCP Access lists the workspace's MCP servers, their status, and how many tools each exposes.](/images/docs/console/mcp.webp)
+
 The aggregate endpoint is backed by an `MCPServer` custom resource (`faros.sh/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. The current resource supports a display name, client instructions, and a `readOnly` hint. It does not currently have an edge label-selector field. Use separate named servers when you need distinct client-facing instructions:
 
 ```bash

@@ -2,7 +2,7 @@
 title: "faros mcp url"
 linkTitle: "mcp url"
 description: "Print the MCP endpoint URL"
-weight: 43
+weight: 46
 doc_type: Reference
 generated: true
 ---

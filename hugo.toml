@@ -84,6 +84,9 @@ open_source_repo = "https://github.com/faroshq/faros"
 
 [markup]
   [markup.goldmark]
+    [markup.goldmark.parser]
+      # Render standalone images as <figure> without an invalid wrapping <p>.
+      wrapStandAloneImageWithinParagraph = false
     [markup.goldmark.parser.attribute]
       block = false
     [markup.goldmark.renderer]

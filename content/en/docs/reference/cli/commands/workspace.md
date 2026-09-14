@@ -2,7 +2,7 @@
 title: "faros workspace"
 linkTitle: "workspace"
 description: "Workspaces of an organization, and who is in them"
-weight: 67
+weight: 70
 doc_type: Reference
 generated: true
 ---
@@ -20,6 +20,10 @@ faros workspace members                   # members of the current workspace
 faros workspace members --workspace platform
 faros workspace create "Platform"
 faros use --workspace platform            # make it the kubectl target
+```
+
+```bash
+faros workspace [flags]
 ```
 
 ## Options

@@ -2,7 +2,7 @@
 title: "faros token"
 linkTitle: "token"
 description: "Print a bearer token for the hub (refreshing it when needed)"
-weight: 63
+weight: 66
 doc_type: Reference
 generated: true
 ---

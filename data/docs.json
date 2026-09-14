@@ -154,6 +154,10 @@
           "title": "First steps",
           "links": [
             {
+              "url": "/docs/get-started/local/",
+              "title": "Run Faros locally"
+            },
+            {
               "url": "/docs/get-started/workspaces/",
               "title": "Find your workspace and navigate the console"
             }
@@ -1090,6 +1094,18 @@
             {
               "url": "/docs/reference/cli/commands/mcp/",
               "title": "mcp"
+            },
+            {
+              "url": "/docs/reference/cli/commands/mcp-claude/",
+              "title": "mcp claude"
+            },
+            {
+              "url": "/docs/reference/cli/commands/mcp-codex/",
+              "title": "mcp codex"
+            },
+            {
+              "url": "/docs/reference/cli/commands/mcp-proxy/",
+              "title": "mcp proxy"
             },
             {
               "url": "/docs/reference/cli/commands/mcp-url/",

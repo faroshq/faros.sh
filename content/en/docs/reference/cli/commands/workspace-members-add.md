@@ -2,7 +2,7 @@
 title: "faros workspace members add"
 linkTitle: "workspace members add"
 description: "Add a member to the workspace (admin only)"
-weight: 71
+weight: 74
 doc_type: Reference
 generated: true
 ---

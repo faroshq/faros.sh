@@ -2,7 +2,7 @@
 title: "faros skills list"
 linkTitle: "skills list"
 description: "List the skills available in the repository"
-weight: 61
+weight: 64
 doc_type: Reference
 generated: true
 ---

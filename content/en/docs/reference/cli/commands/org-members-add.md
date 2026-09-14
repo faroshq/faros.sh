@@ -2,7 +2,7 @@
 title: "faros org members add"
 linkTitle: "org members add"
 description: "Add a member to the organization (admin only)"
-weight: 48
+weight: 51
 doc_type: Reference
 generated: true
 ---

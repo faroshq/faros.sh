@@ -2,7 +2,7 @@
 title: "faros org members list"
 linkTitle: "org members list"
 description: "List organization members"
-weight: 49
+weight: 52
 doc_type: Reference
 generated: true
 ---

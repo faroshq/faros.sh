@@ -1,6 +1,15 @@
+{{- $w := 768 -}}
+{{- $h := 432 -}}
+{{- $src := .Destination -}}
+{{- $local := printf "static%s" $src -}}
+{{- if and (hasPrefix $src "/") (fileExists $local) -}}
+  {{- with images.Config $local -}}{{ $w = .Width }}{{ $h = .Height }}{{- end -}}
+{{- end -}}
 <figure class="mt-8 mb-8">
-  <img class="w-full data-zoomable" src="{{ .Destination | safeURL }}" width="768" height="432" alt="{{ .Text }}" />
-  {{ with .Text}}
+  <img class="w-full data-zoomable" src="{{ $src | safeURL }}" width="{{ $w }}" height="{{ $h }}" alt="{{ .Text }}" loading="lazy" decoding="async" />
+  {{ with .Title }}
   <figcaption class="text-sm text-center text-gray-500 mt-3">{{ . }}</figcaption>
-  {{ end }}
+  {{ else }}{{ with .Text }}
+  <figcaption class="text-sm text-center text-gray-500 mt-3">{{ . }}</figcaption>
+  {{ end }}{{ end }}
 </figure>

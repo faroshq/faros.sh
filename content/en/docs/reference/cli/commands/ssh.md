@@ -2,7 +2,7 @@
 title: "faros ssh"
 linkTitle: "ssh"
 description: "Open an SSH session to a Linux server edge via the hub"
-weight: 62
+weight: 65
 doc_type: Reference
 generated: true
 ---

@@ -2,7 +2,7 @@
 title: "faros sandbox restart"
 linkTitle: "sandbox restart"
 description: "Restart the component's dev process"
-weight: 56
+weight: 59
 doc_type: Reference
 generated: true
 ---

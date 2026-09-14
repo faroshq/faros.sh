@@ -15,6 +15,10 @@ Manage a development environment for faros using kind clusters.
 This command provides subcommands to initialize, update and delete kind
 clusters configured for faros.
 
+```bash
+faros dev [flags]
+```
+
 ## Options
 
 ```text
@@ -32,5 +36,5 @@ clusters configured for faros.
 
 - [faros](/docs/reference/cli/commands/) — faros: an open-source control plane for platform teams
 - [faros dev delete](/docs/reference/cli/commands/dev-delete/) — Delete development environment
-- [faros dev init](/docs/reference/cli/commands/dev-init/) — Initialize a local faros environment (hub kind cluster + optional workers)
+- [faros dev init](/docs/reference/cli/commands/dev-init/) — Initialize a local faros environment (one kind cluster: hub, providers and an edge)
 - [faros dev update](/docs/reference/cli/commands/dev-update/) — Upgrade the faros-hub release on an existing local environment
