@@ -23,6 +23,10 @@ faros edge kubeconfig my-cluster -o ./my-cluster.kubeconfig
 faros edge delete my-vps
 ```
 
+```bash
+faros edge [flags]
+```
+
 ## Options
 
 ```text

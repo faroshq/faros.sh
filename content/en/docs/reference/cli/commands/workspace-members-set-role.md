@@ -2,7 +2,7 @@
 title: "faros workspace members set-role"
 linkTitle: "workspace members set-role"
 description: "Change a member's role in the workspace (admin only)"
-weight: 74
+weight: 77
 doc_type: Reference
 generated: true
 ---

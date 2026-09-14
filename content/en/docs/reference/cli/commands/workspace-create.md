@@ -2,7 +2,7 @@
 title: "faros workspace create"
 linkTitle: "workspace create"
 description: "Create a workspace in an organization"
-weight: 68
+weight: 71
 doc_type: Reference
 generated: true
 ---

@@ -2,7 +2,7 @@
 title: "faros org create"
 linkTitle: "org create"
 description: "Create an organization (you become its admin)"
-weight: 45
+weight: 48
 doc_type: Reference
 generated: true
 ---

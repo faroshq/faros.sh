@@ -2,7 +2,7 @@
 title: "faros org list"
 linkTitle: "org list"
 description: "List the organizations you belong to"
-weight: 46
+weight: 49
 doc_type: Reference
 generated: true
 ---

@@ -2,7 +2,7 @@
 title: "faros version"
 linkTitle: "version"
 description: "Print version information"
-weight: 65
+weight: 68
 doc_type: Reference
 generated: true
 ---

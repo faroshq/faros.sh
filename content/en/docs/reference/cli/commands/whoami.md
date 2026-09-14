@@ -2,7 +2,7 @@
 title: "faros whoami"
 linkTitle: "whoami"
 description: "Show who you are logged in as, and where kubectl points"
-weight: 66
+weight: 69
 doc_type: Reference
 generated: true
 ---

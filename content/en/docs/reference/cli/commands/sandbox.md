@@ -2,7 +2,7 @@
 title: "faros sandbox"
 linkTitle: "sandbox"
 description: "Drive a development-mode instance: sync, exec, logs, restart, status"
-weight: 52
+weight: 55
 doc_type: Reference
 generated: true
 ---
@@ -24,6 +24,10 @@ faros sandbox logs    shop-dev api -f
 faros sandbox restart shop-dev api
 faros sandbox env     shop-dev api PULSE_URL=https://… --restart
 faros sandbox status  shop-dev [api]
+```
+
+```bash
+faros sandbox [flags]
 ```
 
 ## Options

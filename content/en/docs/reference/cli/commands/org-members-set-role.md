@@ -2,7 +2,7 @@
 title: "faros org members set-role"
 linkTitle: "org members set-role"
 description: "Change a member's role in the organization (admin only)"
-weight: 51
+weight: 54
 doc_type: Reference
 generated: true
 ---

@@ -6,9 +6,9 @@ doc_type: "Overview"
 landing: "get-started"
 ---
 
-Choose a quickstart below. The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
+Choose where to run Faros, then pick a quickstart. The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
 
-Sign in to the Faros SaaS hub to get started. If your organization runs a [self-hosted hub](/docs/self-hosting/), use the URL and sign-in method supplied by its administrator.
+If your organization already runs a [self-hosted hub](/docs/self-hosting/), use the URL and sign-in method supplied by its administrator.
 
 <!--more-->
 

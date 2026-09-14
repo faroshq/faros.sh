@@ -2,7 +2,7 @@
 title: "faros workspace members list"
 linkTitle: "workspace members list"
 description: "List workspace members"
-weight: 72
+weight: 75
 doc_type: Reference
 generated: true
 ---

@@ -23,6 +23,10 @@ faros app publish shop --mode public
 Develop with 'faros sandbox' against \<project>-dev and record commits with
 'faros commit \<repository ref>' (the ref is shown by 'faros app status').
 
+```bash
+faros app [flags]
+```
+
 ## Options
 
 ```text

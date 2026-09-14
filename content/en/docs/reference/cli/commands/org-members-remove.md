@@ -2,7 +2,7 @@
 title: "faros org members remove"
 linkTitle: "org members remove"
 description: "Remove a member from the organization (admin only)"
-weight: 50
+weight: 53
 doc_type: Reference
 generated: true
 ---

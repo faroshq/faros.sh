@@ -2,7 +2,7 @@
 title: "faros org"
 linkTitle: "org"
 description: "Organizations you belong to, and who is in them"
-weight: 44
+weight: 47
 doc_type: Reference
 generated: true
 ---
@@ -18,6 +18,10 @@ faros org list                      # your organizations and your role in each
 faros org members                   # members of the current organization
 faros org members --org acme        # …of another one you belong to
 faros org create "Acme"
+```
+
+```bash
+faros org [flags]
 ```
 
 ## Options

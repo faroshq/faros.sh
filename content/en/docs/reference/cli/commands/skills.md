@@ -2,7 +2,7 @@
 title: "faros skills"
 linkTitle: "skills"
 description: "Install agent skills from the faros repository into Claude Code and Codex"
-weight: 59
+weight: 62
 doc_type: Reference
 generated: true
 ---
@@ -28,6 +28,10 @@ directories you wrote yourself are left alone unless you pass --force.
 
 Skills load when an agent session starts, so restart Claude Code or Codex
 after installing.
+
+```bash
+faros skills [flags]
+```
 
 ## Options
 

@@ -2,7 +2,7 @@
 title: "faros sandbox exec"
 linkTitle: "sandbox exec"
 description: "Run a command in the component and exit with its exit code"
-weight: 54
+weight: 57
 doc_type: Reference
 generated: true
 ---

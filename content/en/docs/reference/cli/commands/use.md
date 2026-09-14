@@ -2,7 +2,7 @@
 title: "faros use"
 linkTitle: "use"
 description: "Switch the active organization and workspace"
-weight: 64
+weight: 67
 doc_type: Reference
 generated: true
 ---

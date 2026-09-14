@@ -2,7 +2,7 @@
 title: "faros skills install"
 linkTitle: "skills install"
 description: "Install skills for Claude Code and Codex (all skills by default)"
-weight: 60
+weight: 63
 doc_type: Reference
 generated: true
 ---

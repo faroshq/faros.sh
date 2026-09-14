@@ -2,7 +2,7 @@
 title: "faros workspace members remove"
 linkTitle: "workspace members remove"
 description: "Remove a member from the workspace (admin only)"
-weight: 73
+weight: 76
 doc_type: Reference
 generated: true
 ---

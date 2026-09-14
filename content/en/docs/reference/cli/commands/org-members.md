@@ -2,7 +2,7 @@
 title: "faros org members"
 linkTitle: "org members"
 description: "List and change who has access to the organization"
-weight: 47
+weight: 50
 doc_type: Reference
 generated: true
 ---

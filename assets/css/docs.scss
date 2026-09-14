@@ -327,6 +327,9 @@ html:not(.dark) body.docs-page { --fx-success: #087a50; --fx-text-muted: #696b82
 .docs-guide-card p { font-size: .9rem; line-height: 1.65; color: var(--fx-text-2); margin: 0; }
 .docs-guide-card:hover { border-color: var(--fx-accent); background: var(--fx-overlay); }
 .docs-guide-card:focus-visible { outline: 2px solid var(--fx-accent); outline-offset: 3px; }
+.docs-guide-card-label { display: inline-block; margin-bottom: .6rem; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fx-accent); }
+.docs-guide-card-cta { display: inline-block; margin-top: 1rem; font-size: .85rem; color: var(--fx-accent); }
+.docs-guide-card p code { font-size: .82em; }
 .docs-get-started-layout .faros-docs-body { margin-top: 2.75rem; }
 @media (max-width: 1100px) { .docs-guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .docs-guide-grid { grid-template-columns: minmax(0, 1fr); } }

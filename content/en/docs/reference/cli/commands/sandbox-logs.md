@@ -2,7 +2,7 @@
 title: "faros sandbox logs"
 linkTitle: "sandbox logs"
 description: "Print the dev process log"
-weight: 55
+weight: 58
 doc_type: Reference
 generated: true
 ---

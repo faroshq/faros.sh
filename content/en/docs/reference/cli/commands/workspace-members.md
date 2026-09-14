@@ -2,7 +2,7 @@
 title: "faros workspace members"
 linkTitle: "workspace members"
 description: "List and change who has access to the workspace"
-weight: 70
+weight: 73
 doc_type: Reference
 generated: true
 ---

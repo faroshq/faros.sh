@@ -2,7 +2,7 @@
 title: "faros sandbox sync"
 linkTitle: "sandbox sync"
 description: "Push a directory into the component workspace (authoritative)"
-weight: 58
+weight: 61
 doc_type: Reference
 generated: true
 ---
