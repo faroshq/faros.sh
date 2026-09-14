@@ -7,6 +7,8 @@ doc_type: "Guide"
 
 A Template is the available product definition. An Instance is one provisioned use of it. Adding a template does not add a new tenant-facing resource kind.
 
+![My instances lists each instance with its template, size, readiness, schedule, and URL.](/images/docs/console/infrastructure-instances.webp)
+
 ## Choose a bundled template
 
 Faros includes the following templates. Operators choose which templates to install; this list does not guarantee that all are available in your workspace. Start by listing your installed catalog:

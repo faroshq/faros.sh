@@ -12,6 +12,8 @@ AI agents lets you configure assistants as workspace resources: choose a model, 
 
 [Get started: create an ai agent](/docs/use/agents/quickstart/).
 
+![A workspace without a model credential asks you to connect one before creating the first agent.](/images/docs/console/agents.webp)
+
 ## When to use AI agents
 
 Use an agent for repeatable tasks that need model reasoning and access to selected tools. Configure memory, approvals, budgets, and connections to suit the task rather than assuming every agent should have the same access.

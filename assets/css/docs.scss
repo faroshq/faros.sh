@@ -92,6 +92,9 @@ body.docs-page { height: auto; min-height: 100vh; width: 100%; background: var(-
 .docs-layout .faros-docs-body { overflow-wrap: anywhere; }
 .docs-layout .faros-docs-body table { display: block; overflow-x: auto; }
 .docs-layout .faros-docs-body pre { max-width: 100%; }
+.docs-layout .faros-docs-body figure { margin: 1.75rem 0; }
+.docs-layout .faros-docs-body figure img { display: block; width: 100%; height: auto; border: 1px solid var(--fx-border-strong); border-radius: 8px; background: var(--fx-raised); }
+.docs-layout .faros-docs-body figcaption { margin-top: .6rem; color: var(--fx-text-2); font-size: .8rem; line-height: 1.5; text-align: center; }
 .docs-layout .faros-docs-body ::selection { background: var(--fx-accent-subtle); color: var(--fx-text); }
 #docs-search-form { display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; }
 #docs-search-form > div:first-child { flex: 1; min-width: 200px; }

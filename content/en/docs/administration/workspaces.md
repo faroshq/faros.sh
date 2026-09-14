@@ -18,7 +18,11 @@ Organization  ("acme")                ← billing/teams boundary; has members
 - A **workspace** is the unit of isolation: your edges, enabled providers, and resources live in exactly one workspace. Under the hood each workspace is its own kcp logical cluster in the hub's workspace tree (`root:faros:tenants:<org>:<workspace>`), so isolation is structural, not filter-based.
 - Workspaces can contain **edge mounts** — the per-edge sub-workspaces `faros connect` navigates into.
 
+![Choose an organization, create a workspace, review its members, and switch into it.](/images/docs/console/tenancy.gif)
+
 The CLI drives all of this with [`faros use`](/docs/reference/cli/workspaces/) (pick org + workspace) and the portal has an equivalent switcher.
+
+![The organization chooser lists every organization you belong to and creates new ones.](/images/docs/console/organizations.webp)
 
 ## Membership and roles
 
@@ -61,6 +65,8 @@ Use service-account tokens for CI, MCP endpoints for AI agents, and anything lon
 ## Platform admins
 
 Entirely separate from org/workspace roles: the `hub.adminUsers` Helm value (repeatable `--admin-users` flag) lists identities — user name, email, or RBAC identity — allowed to use the hub's admin surface: onboarding [providers](/docs/extend/), root-level identity views, and the `/api/admin` API. Empty list (the default) disables the admin surface completely. No auth method grants this implicitly — not OIDC, not static tokens.
+
+![The platform admin area lists registered providers with their provisioning and registration status.](/images/docs/console/platform-admin.webp)
 
 ## How requests are scoped
 

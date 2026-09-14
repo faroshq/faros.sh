@@ -82,6 +82,8 @@ faros use
 
 To use the console, open `https://console.127.0.0.1.sslip.io:9443/ui`, accept the self-signed certificate, and paste `dev-token` on the sign-in page.
 
+![The local hub's sign-in page accepts the static token.](/images/docs/console/login.webp)
+
 ## Verify
 
 ```bash

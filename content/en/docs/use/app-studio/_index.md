@@ -12,6 +12,8 @@ App Studio brings AI-assisted development into a project with a repository, a de
 
 [Get started: build and publish an application](/docs/use/app-studio/quickstart/).
 
+![App Studio lists the projects in the workspace and creates new ones.](/images/docs/console/app-studio.webp)
+
 ## When to use App Studio
 
 Build a new application with an assistant, continue work across project sessions, or connect an application to data through a provider such as Databricks. A development preview lets you try changes before preparing a production deployment.

@@ -12,6 +12,8 @@ Edges connects existing Kubernetes clusters, servers, and services to Faros. An 
 
 [Get started: connect a cluster or server](/docs/use/edges/quickstart/).
 
+![The Edges list shows each connected cluster or server with its type, status, agent version, and last heartbeat.](/images/docs/console/edges.webp)
+
 ## When to use Edges
 
 Use Edges when you need kubectl access to a connected cluster, SSH access to a server, or access to a service through the hub. You keep the target infrastructure and install the agent needed to connect it.
