@@ -59,7 +59,7 @@ class Page(HTMLParser):
             if href:
                 self.hrefs.append(href)
                 if (attrs.get("rel") or "").lower() in {"stylesheet", "icon", "preload"}:
-                    self.assets.append(href)
+                    self.assets.append(asset_path(href))
                 if (attrs.get("rel") or "").lower() == "canonical":
                     self.canonical = href
         elif tag == "script":
@@ -93,6 +93,11 @@ class Page(HTMLParser):
     def handle_data(self, data):
         if self._heading:
             self._heading_text.append(data)
+
+
+def asset_path(url):
+    """Static assets carry a cache-busting ?v=hash; contracts compare the path only."""
+    return url.split("?", 1)[0]
 
 
 def parse(path):

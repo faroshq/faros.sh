@@ -12,6 +12,8 @@ Code connects GitHub repositories to your Railgrid workspace. It provides reposi
 
 [Get started: connect a repository](/docs/use/code/quickstart/).
 
+![Connections bind the workspace to a Git account. Repositories are created under a connection.](/images/docs/console/code.webp)
+
 ## When to use Code
 
 Use Code to connect the GitHub identity and repositories needed by your work. Inspect the repository connection before starting a workflow that depends on reading or updating source.

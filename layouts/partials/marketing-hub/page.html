@@ -1,4 +1,4 @@
-<section class="faros-marketing">
+<section class="faros-marketing{{ if eq .RelPermalink "/platform/" }} faros-platform-page{{ end }}">
   <div class="faros-marketing-backdrop" aria-hidden="true"></div>
 
   {{ with .Params.hero }}
@@ -6,7 +6,7 @@
     <div class="faros-marketing-shell">
       {{ with .eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
       <div class="faros-marketing-hero-grid">
-        <h1>{{ $.Title }}</h1>
+        <h1>{{ .headline | default $.Title }}</h1>
         <div class="faros-marketing-hero-copy">
           <p>{{ .summary }}</p>
           <div class="faros-marketing-actions">
@@ -39,6 +39,19 @@
         <h2>{{ $section.title }}</h2>
         {{ with $section.summary }}<p>{{ . }}</p>{{ end }}
       </div>
+
+      {{ with $section.body }}<p class="faros-marketing-section-body">{{ . }}</p>{{ end }}
+
+      {{ with $section.comparison }}
+      <table class="faros-marketing-comparison" aria-label="{{ .label }}">
+        <thead><tr>{{ range .headers }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+        <tbody>
+          {{ range .rows }}
+          <tr><th scope="row">{{ .resource }}</th><td>{{ .outcome }}</td></tr>
+          {{ end }}
+        </tbody>
+      </table>
+      {{ end }}
 
       {{ with $section.cards }}
       <div class="faros-marketing-card-grid">

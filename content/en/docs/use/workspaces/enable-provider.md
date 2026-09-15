@@ -19,6 +19,12 @@ Sign in to the Railgrid SaaS hub and select your organization and workspace. If 
 4. Choose **Enable** and accept the required claims.
 5. Open the provider and verify that its resource views load.
 
+![In a new workspace every provider starts as Available. App Studio stays Blocked until Application Templates is enabled.](/images/docs/console/providers-available.webp)
+
+![The enable dialog lists the permission claims the provider requests in your workspace.](/images/docs/console/provider-enable-dialog.webp)
+
+![Enabling Application Templates unblocks App Studio and adds the provider to the sidebar.](/images/docs/console/enable-provider.gif)
+
 Enablement binds the provider’s API into your workspace. It does not install the provider service: a platform or organization operator must have registered and started it already.
 
 ## When enablement fails

@@ -17,6 +17,10 @@ Create an agent and verify its model connection first. To use infrastructure too
 4. Ask the agent to perform a read-only discovery task, such as listing available resources.
 5. Inspect tool calls and results. For a task requiring approval, confirm that it reaches the approval inbox and wait for a deliberate decision.
 
+![Configure an agent: add a description, keep autonomy on Ask, cap the monthly budget, and allow web reading. Each change saves on its own.](/images/docs/console/agent-configure.gif)
+
+![A read-only discovery task. The agent calls the Edges pods and events tools, then reports the local edge's health with the run's token use and cost.](/images/docs/console/agent-chat.gif)
+
 Do not infer a tool’s permission from its name or from the skill text. Workspace authorization, provider authorization, upstream credentials, and the agent’s policy all matter.
 
 Expected result: the read-only discovery run lists only resources available through the configured connection, and an operation requiring approval appears in the approval inbox before it runs. A successful discovery does not prove that a write action is authorized.

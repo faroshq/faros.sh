@@ -20,6 +20,8 @@ Sign in to Railgrid SaaS and select a workspace with Edges enabled. You need per
 5. Choose **Create service**, then open the service and configure its credentials if the selected type requires them.
 6. Check its validation result and reachability before using it with an assistant.
 
+![Services lists each connected service with its edge, type, target, and status.](/images/docs/console/edges-services.webp)
+
 Expect the service to be listed on the selected edge and validation to succeed. Then use [MCP setup](/docs/use/ai-assistants/) to connect an assistant and inspect the tools exposed for that service. A listing alone does not verify connectivity or access.
 
 ## Available service presets
@@ -37,6 +39,8 @@ Edges supports the following service types. Presets describe how to connect to a
 Inspect the [service schema](/docs/reference/providers/edges/schemas/) for connection fields and the [service catalog](https://github.com/faroshq/faros/blob/main/providers/edges/internal/svccatalog/catalog.go) for preset operations and authentication. Home Assistant has a [dedicated tool implementation](https://github.com/faroshq/faros/blob/main/providers/edges/internal/tunnel/mcp_service.go). A generic service does not automatically gain every preset's tools. After validation, use the MCP client's tool discovery to confirm the operations actually exposed by your service.
 
 ## Deploy a workload
+
+![Workloads offers a marketplace of self-hosted apps and lists workloads deployed across matching edges.](/images/docs/console/edges-workloads.webp)
 
 1. Open **Edges → Workloads** and start creating a workload.
 2. Enter a **Name** and a container **Image** available to the cluster. Prefer a fixed version or digest for repeatable deployment.

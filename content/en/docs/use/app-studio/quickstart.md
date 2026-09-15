@@ -19,6 +19,8 @@ Select a workspace with **App Studio, Code, and Infrastructure** enabled. You ne
 3. Follow **Describe**, **Prepare**, and **Confirm**. Review the proposed template, components, repository setup, and project name before confirming. Preparation alone does not create the project.
 4. Wait for the development environment to become ready. If setup reports a missing model, repository connection, or template, resolve that prerequisite before retrying.
 
+![Describe the app, review the prepared plan, set the name and template, and create the project. The assistant starts building right away.](/images/docs/console/project-create.gif)
+
 Expected result: the project opens with an assistant session and a provisioned development environment.
 
 ## Implement and preview
@@ -26,6 +28,10 @@ Expected result: the project opens with an assistant session and a provisioned d
 1. Ask the assistant to implement the notes page with adding and removing notes.
 2. Open the development preview. Add a note, remove it, and check the empty state.
 3. Review the repository changes and ensure the intended changes are committed. Record the commit SHA you intend to deploy.
+
+![Ask the assistant for a change. It plans the work, edits files, runs the build, and summarizes what changed.](/images/docs/console/project-iterate.gif)
+
+![The development preview of the generated app: add a note, see it at the top of the list, then delete it.](/images/docs/console/app-preview.gif)
 
 The preview runs the development environment. It does not prove that production images have built. If preview fails, [trace the development instance](/docs/use/app-studio/development/#trace-the-environment-from-the-cli) before recreating the project.
 

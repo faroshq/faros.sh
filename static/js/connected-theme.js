@@ -69,7 +69,10 @@
     if (!themePicker.contains(event.target)) closeThemePicker();
   });
   themePicker.addEventListener('focusout', event => {
-    if (!themePicker.contains(event.relatedTarget)) closeThemePicker();
+    // Safari does not focus buttons on touch: relatedTarget is null before
+    // their click fires. Only dismiss for a known focus destination outside.
+    // Pointer dismissal above still handles taps outside the picker.
+    if (event.relatedTarget && !themePicker.contains(event.relatedTarget)) closeThemePicker();
   });
   motionButton?.addEventListener('click', () => {
     paused = !paused;

@@ -8,6 +8,8 @@ doc_type: "Concept"
 
 Railgrid is an open-source control plane for applications, AI agents, and infrastructure. It brings capabilities such as application development, GitHub repositories, compute environments, and connected clusters into shared workspaces. People and automation can work with those resources through the console, CLI, APIs, and MCP tools.
 
+![A tour of the console: the dashboard, provider catalog, Edges, application templates, App Studio, and MCP access.](/images/docs/console/tour.gif)
+
 These docs are for people building applications and agents, teams managing infrastructure, and operators providing a platform for others. You can begin with a single capability; you do not need to understand or enable every provider.
 
 ## Get started with Railgrid
@@ -38,6 +40,8 @@ Railgrid coordinates these systems; repositories still live in GitHub, source ta
 The **hub** is the shared control plane. It handles identity and workspace routing and connects requests to the providers installed by an operator.
 
 An **organization** groups people and workspaces. A **workspace** is the context in which you create resources and use enabled capabilities. Selecting the intended workspace matters whether you are using the console, a CLI command, or an agent.
+
+![A new workspace opens with a short guide to the four core ideas: organizations, workspaces, providers, and edges.](/images/docs/console/welcome.webp)
 
 A **provider** adds a capability: its resource APIs, controllers, and, where implemented, console views and MCP tools. Providers can be enabled independently. App Studio, for example, uses Code and Infrastructure to connect application work to repositories and runtime environments. Edges connects existing clusters and servers through an agent that initiates an outbound connection to the hub.
 

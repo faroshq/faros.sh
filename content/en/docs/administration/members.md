@@ -16,6 +16,10 @@ Use an organization admin to manage organization membership, or a workspace admi
 3. Choose `member` or `admin`, then select **Add**. Organization roles apply to the organization and its workspaces; a workspace membership grants access only to that workspace.
 4. Have the person sign in with their own identity, select the intended workspace, and verify the expected access. Ask them to test one allowed operation and one operation outside the granted role.
 
+![Workspace settings: the Workspace members panel adds a person by email or user UUID with a member or admin role.](/images/docs/console/workspace-settings.webp)
+
+![Organization settings: organization members apply to the organization and every workspace in it.](/images/docs/console/organization-settings.webp)
+
 Do not verify access only from your admin session. Review [the tenancy model](/docs/administration/workspaces/) before granting organization-wide access.
 
 ## Optional CLI diagnostics

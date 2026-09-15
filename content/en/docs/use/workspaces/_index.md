@@ -7,6 +7,8 @@ weight: 1
 
 Start in your Railgrid SaaS workspace to enable providers and work across capabilities. If your organization self-hosts Railgrid, use its hub instead.
 
+![The provider catalog shows which capabilities are enabled in the active workspace.](/images/docs/console/providers.webp)
+
 ## Guides across providers
 
 - [Build an application using Databricks data](/docs/use/app-studio/databricks/): connect a project to an exact table through a versioned action grant.

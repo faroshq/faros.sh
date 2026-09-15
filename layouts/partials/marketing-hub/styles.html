@@ -54,6 +54,15 @@
   .cm-page .faros-marketing-closing-inner > p { max-width: 42rem; margin: 1.25rem auto 0; }
   .cm-page .faros-marketing-closing .faros-marketing-eyebrow { margin-bottom: 1rem; }
   .cm-page .faros-marketing-closing .faros-marketing-actions { justify-content: center; }
+  .cm-page .faros-platform-page .faros-marketing-hero h1 { max-width: 17ch; font-size: clamp(2.75rem, 4.5vw, 4.75rem); text-wrap: balance; }
+  .cm-page .faros-platform-page .faros-marketing-section-heading h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); text-wrap: balance; }
+  .cm-page .faros-platform-page .faros-marketing-card { grid-template-columns: minmax(12rem, .8fr) minmax(0, 1.5fr) minmax(7rem, .45fr); }
+  .cm-page .faros-platform-page .faros-marketing-card > p:not(.faros-marketing-card-kicker) { grid-column: 2; }
+  .cm-page .faros-marketing-section-body { max-width: 70ch; margin: 0; color: var(--marketing-muted); font-size: 1.05rem; line-height: 1.75; }
+  .cm-page .faros-marketing-comparison { width: 100%; table-layout: fixed; border-collapse: collapse; color: var(--marketing-muted); font-size: 1rem; line-height: 1.6; }
+  .cm-page .faros-marketing-comparison th, .cm-page .faros-marketing-comparison td { padding: 1.25rem 1.5rem 1.25rem 0; border-bottom: 1px solid var(--marketing-line); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  .cm-page .faros-marketing-comparison thead th { border-top: 1px solid var(--marketing-line); color: var(--marketing-text); font-weight: 600; }
+  .cm-page .faros-marketing-comparison tbody th { font-weight: 400; }
   @media (max-width: 800px) {
     .cm-page .faros-marketing-shell { width: min(100% - 2rem, 84rem); }
     .cm-page .faros-marketing-hero { padding-top: 4.5rem; }
@@ -62,6 +71,10 @@
     .cm-page .faros-marketing-card { grid-template-columns: 1fr auto; gap: .7rem 1.25rem; }
     .cm-page .faros-marketing-card-kicker, .cm-page .faros-marketing-card h3, .cm-page .faros-marketing-card > p:not(.faros-marketing-card-kicker), .cm-page .faros-marketing-card ul { grid-column: 1 / -1; }
     .cm-page .faros-marketing-card-link { grid-column: 1 / -1; justify-content: flex-start; text-align: left; }
+    .cm-page .faros-platform-page .faros-marketing-card { grid-template-columns: 1fr; }
+    .cm-page .faros-platform-page .faros-marketing-card > p:not(.faros-marketing-card-kicker) { grid-column: 1; }
+    .cm-page .faros-marketing-comparison { font-size: .9rem; }
+    .cm-page .faros-marketing-comparison th, .cm-page .faros-marketing-comparison td { padding-right: 1rem; }
   }
   @media (max-width: 520px) {
     .cm-page .faros-marketing-facts { display: block; }

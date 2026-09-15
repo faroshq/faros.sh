@@ -7,7 +7,7 @@ aliases:
 doc_type: "Reference"
 ---
 
-Use the [Faros release history](https://github.com/faroshq/faros/releases) for published tags and release notes. Record the hub, provider images, charts, and API versions used by your deployment; independently packaged providers need not share one version.
+Use the [Railgrid release history](https://github.com/faroshq/faros/releases) for published tags and release notes. Record the hub, provider images, charts, and API versions used by your deployment; independently packaged providers need not share one version.
 
 ## Check your deployment
 

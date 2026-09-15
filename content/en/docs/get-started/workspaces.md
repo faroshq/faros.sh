@@ -20,9 +20,15 @@ Use the Railgrid SaaS hub. If your organization self-hosts Railgrid, use its hub
 3. Open **Providers** to inspect the catalog and enabled capabilities.
 4. Open an enabled provider to use its resources. If it is unavailable, check [provider enablement](/docs/use/workspaces/enable-provider/).
 
+![The workspace switcher shows where you are working and lists the workspaces in the current organization.](/images/docs/console/workspace-switcher.webp)
+
+![The dashboard summarizes each enabled provider in the active workspace.](/images/docs/console/dashboard.webp)
+
 ### Verify your context
 
 Before creating or deleting a resource, check the selected organization and workspace. Changing workspaces changes which resources, providers, and permissions are available.
+
+![The account menu shows your identity and organization, and links to CLI setup, MCP access, and settings.](/images/docs/console/account-menu.webp)
 
 If a provider appears empty, check the workspace first. For missing permissions, ask a workspace administrator rather than creating another credential.
 

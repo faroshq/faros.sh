@@ -12,6 +12,8 @@ Infrastructure turns reusable templates into environments that people and other 
 
 [Get started: create your first instance](/docs/use/infrastructure/quickstart/).
 
+![The template catalog lists what you can provision in this workspace.](/images/docs/console/infrastructure-templates.webp)
+
 ## When to use Infrastructure
 
 Use Infrastructure to offer a repeatable environment instead of asking each user to assemble it from scratch. The templates installed by your operator determine the runtimes and configuration you can request.

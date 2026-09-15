@@ -35,7 +35,7 @@ function boot({ decode = () => Promise.resolve() } = {}) {
     querySelector(selector) { return selector === '.cl-theme-toggle' ? themeButton : null; },
     querySelectorAll() { return choices; },
     addEventListener(name, listener) { this.listeners[name] = listener; },
-    contains() { return true; },
+    contains(target) { return target === themeButton || choices.includes(target); },
   };
   const images = [{ loading: 'lazy', decode }];
   const calls = [];
@@ -85,6 +85,23 @@ function boot({ decode = () => Promise.resolve() } = {}) {
 }
 
 const wait = () => new Promise(resolve => setTimeout(resolve, 25));
+
+test('Safari touch focus loss leaves theme choices available for the following click', () => {
+  const state = boot();
+  state.picker.listeners.focusout({ relatedTarget: null });
+  assert.equal(state.picker.open, true);
+  state.choices[0].listeners.click();
+  assert.deepEqual(state.calls, ['light']);
+  assert.equal(state.picker.open, false);
+});
+
+test('keyboard focus stays open within the picker and closes when moving outside', () => {
+  const state = boot();
+  state.picker.listeners.focusout({ relatedTarget: state.choices[0] });
+  assert.equal(state.picker.open, true);
+  state.picker.listeners.focusout({ relatedTarget: {} });
+  assert.equal(state.picker.open, false);
+});
 
 test('theme switches promptly when companion image decoding stalls and rapid choices keep order', async () => {
   const state = boot({ decode: () => new Promise(() => {}) });
