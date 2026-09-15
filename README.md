@@ -4,7 +4,7 @@ Marketing site and documentation for [Railgrid](https://railgrid.ai) — the ope
 
 ## Branding and compatibility
 
-The company and platform are branded **Railgrid**. Product source, release, and issue links use `github.com/railgrid/railgrid`. CRD/API groups use `railgrid.ai`; CLI commands, SDKs, headers, environment variables, and product file paths use Railgrid names. Website, console, and download URLs use `railgrid.ai`. The website repository remains `github.com/railgrid/faros.sh`. Frontend selectors, JavaScript identifiers, events, and preference keys use Railgrid names. Existing browser theme and motion preferences are migrated from the former keys. Recorded product demos and historical mockup images may still show the former branding.
+The company and platform are branded **Railgrid**. Product source, release, and issue links use `github.com/railgrid/railgrid`. CRD/API groups use `railgrid.ai`; CLI commands, SDKs, headers, environment variables, and product file paths use Railgrid names. Website, console, and download URLs use `railgrid.ai`. The website repository remains `github.com/railgrid/website`. Frontend selectors, JavaScript identifiers, events, and preference keys use Railgrid names. Existing browser theme and motion preferences are migrated from the former keys. Recorded product demos and historical mockup images may still show the former branding.
 
 ## What Railgrid is
 
