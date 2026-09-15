@@ -38,6 +38,6 @@ kubectl get instances.infrastructure.faros.sh INSTANCE-NAME --watch
 
 Inspect phase, message, and conditions. Stop the watch with Ctrl-C. If no matching Instance exists, inspect the binding configuration and project/template setup before looking for runtime pods. Do not delete an App Studio-owned instance as a restart mechanism.
 
-These commands query Faros resources. Runtime pod logs require the operator's hosting/runtime context; a Faros workspace credential does not automatically grant that access.
+These commands query Railgrid resources. Runtime pod logs require the operator's hosting/runtime context; a Railgrid workspace credential does not automatically grant that access.
 
 Next: [publish the application](/docs/use/app-studio/publishing/) after preview and repository changes are verified. If the environment cannot become ready, use [App Studio troubleshooting](/docs/use/app-studio/troubleshooting/) before deleting the project or its owned Instance.

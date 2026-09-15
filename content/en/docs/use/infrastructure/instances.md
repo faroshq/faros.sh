@@ -9,14 +9,14 @@ A Template is the available product definition. An Instance is one provisioned u
 
 ## Choose a bundled template
 
-Faros includes the following templates. Operators choose which templates to install; this list does not guarantee that all are available in your workspace. Start by listing your installed catalog:
+Railgrid includes the following templates. Operators choose which templates to install; this list does not guarantee that all are available in your workspace. Start by listing your installed catalog:
 
 ```bash
 kubectl get templates.infrastructure.faros.sh
 kubectl get templates.infrastructure.faros.sh TEMPLATE-NAME -o yaml
 ```
 
-Run these commands in the [intended Faros workspace](/docs/reference/cli/resources/), replacing `TEMPLATE-NAME` with a returned name. Review required values, credential references, and exposure before creating an instance.
+Run these commands in the [intended Railgrid workspace](/docs/reference/cli/resources/), replacing `TEMPLATE-NAME` with a returned name. Review required values, credential references, and exposure before creating an instance.
 
 | Template | Purpose |
 |---|---|
@@ -76,7 +76,7 @@ Use the credential inputs defined by the template. Do not paste secrets into cha
 
 Deletion is finalizer-driven: the provider removes the runtime resource and associated bridged secrets. If deletion stalls, inspect the condition and operator logs; do not remove finalizers merely to hide a failed cleanup.
 
-Template authors should use [Extend Faros](/docs/extend/templates/). Operators should use [Infrastructure self-hosting](/docs/self-hosting/providers/infrastructure/).
+Template authors should use [Extend Railgrid](/docs/extend/templates/). Operators should use [Infrastructure self-hosting](/docs/self-hosting/providers/infrastructure/).
 
 ## Inspect and update from the CLI
 

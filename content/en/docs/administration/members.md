@@ -7,12 +7,12 @@ doc_type: "Guide"
 
 ## Prerequisites
 
-Use an organization admin to manage organization membership, or a workspace admin to manage workspace membership. Confirm the person’s email or Faros user UUID and the scope you intend to grant. Faros adds an existing user identity; it does not create an invitation record.
+Use an organization admin to manage organization membership, or a workspace admin to manage workspace membership. Confirm the person’s email or Railgrid user UUID and the scope you intend to grant. Railgrid adds an existing user identity; it does not create an invitation record.
 
 ## Add and verify access
 
 1. Open **Settings → Organizations**, select the organization, and find **Organization members**. To grant access to one workspace only, open **Settings → Workspaces**, select the workspace, and find **Workspace members**.
-2. Enter the person’s email or Faros user UUID in the member field. The person must already have a Faros user identity; this form does not send an invitation or provision an identity.
+2. Enter the person’s email or Railgrid user UUID in the member field. The person must already have a Railgrid user identity; this form does not send an invitation or provision an identity.
 3. Choose `member` or `admin`, then select **Add**. Organization roles apply to the organization and its workspaces; a workspace membership grants access only to that workspace.
 4. Have the person sign in with their own identity, select the intended workspace, and verify the expected access. Ask them to test one allowed operation and one operation outside the granted role.
 

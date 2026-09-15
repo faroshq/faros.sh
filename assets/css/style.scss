@@ -1,4 +1,4 @@
-// Brand faces — the same three the faros console uses (Violet Circuit):
+// Brand faces — the same three the Railgrid console uses (Violet Circuit):
 // Instrument Sans (body), Archivo at wdth 125 (display), IBM Plex Mono (code).
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&display=fallback');
 
@@ -725,7 +725,7 @@ code, pre {
 
 
 // ══════════════════════════════════════════════════════════════════════════
-// Violet Circuit tokens — the same system the faros console runs on.
+// Violet Circuit tokens — the same system the Railgrid console runs on.
 // Dark is the intended base (the site forces `html.dark`); the :root values
 // are the light fallback. Radius law: cards 6px · controls 4px · tags 3px.
 // Glow only on live/primary things — never on plain surfaces.
@@ -767,7 +767,7 @@ code, pre {
   --fx-danger: #ff5d5d;
 }
 
-// ─────────── faros wordmark (header + footer) ───────────
+// ─────────── Railgrid wordmark (header + footer) ───────────
 .faros-wordmark {
   display: inline-flex;
   align-items: center;
@@ -778,7 +778,7 @@ code, pre {
 }
 .faros-wordmark:hover { opacity: 0.85; }
 
-// Hexagon mark — same brand as the faros console (lucide Hexagon in an
+// Hexagon mark — same brand as the Railgrid console (lucide Hexagon in an
 // accent-bordered box). 4px, control radius.
 .faros-wordmark-mark {
   display: inline-flex;
@@ -803,7 +803,7 @@ code, pre {
   line-height: 1;
 }
 
-// ─────────── faros docs layout ───────────
+// ─────────── Railgrid docs layout ───────────
 .faros-docs-shell {
   position: relative;
   display: flex;

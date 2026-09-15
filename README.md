@@ -1,10 +1,14 @@
-# faros.sh
+# Railgrid website
 
-Marketing site and documentation for [faros](https://faros.sh) — the open-source **operating system for AI-native platforms**.
+Marketing site and documentation for [Railgrid](https://faros.sh) — the open-source **operating system for AI-native platforms**.
 
-## What faros is
+## Branding and compatibility
 
-faros is a multi-tenant control plane you build your platform *on*. Four primitives carry the system:
+The company and platform are branded **Railgrid**. Existing `faros.sh` domains, `faroshq` repository links, CLI commands, API groups, SDK names, and HTTP headers retain their deployed identifiers until those systems are migrated. Internal CSS selectors and theme-storage keys also retain their existing names for compatibility. Recorded product demos and historical mockup images may still show the former branding.
+
+## What Railgrid is
+
+Railgrid is a multi-tenant control plane you build your platform *on*. Four primitives carry the system:
 
 - **Workspaces** — the isolation boundary; every team or environment is a [kcp](https://kcp.io) logical cluster with its own API surface, RBAC, and quota.
 - **Providers** — the drivers; each capability adds resource APIs, controllers, and, where implemented, portal UI and MCP tools. Providers are enabled per workspace.
@@ -28,7 +32,7 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 
 ## Design system
 
-The site runs on **Violet Circuit**, the same system as the faros console (canonical reference: `docs/design-book.md` in the product repo).
+The site runs on **Violet Circuit**, the same system as the Railgrid console (canonical reference: `docs/design-book.md` in the product repo).
 
 - **Docs support Light, Dark, and System.** The docs header stores its selection under `faros-docs-theme`, with System as the default. Theme initialization runs in the document head. Marketing pages retain their dark appearance. Shared tokens live in `style.scss`; docs-specific contrast adjustments live in `docs.scss`.
 - **Tokens, not hexes.** Use `var(--fx-*)` — surfaces, borders, `--fx-accent` (`#8b6bff` dark / `#6b48e8` light), text ramp, success/danger. Never hardcode a brand colour. The old `#7c5bf5` / `#6d4fe0` / `#9b85f7` values are dead; if they reappear in a diff, it's a regression.

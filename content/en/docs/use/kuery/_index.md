@@ -8,7 +8,7 @@ cascade:
   provider: kuery
 ---
 
-Kuery helps you inspect Kubernetes resources across a connected fleet. Query resources and explore their relationships from your Faros workspace rather than opening each cluster separately for every question.
+Kuery helps you inspect Kubernetes resources across a connected fleet. Query resources and explore their relationships from your Railgrid workspace rather than opening each cluster separately for every question.
 
 [Get started: run your first fleet query](/docs/use/kuery/quickstart/).
 

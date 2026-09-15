@@ -4,7 +4,7 @@ description: What a provider may touch, bind grants, claim acceptance, and the i
 weight: 5
 ---
 
-faros's provider security model is small enough to hold in your head. Four principals, four boundaries:
+Railgrid's provider security model is small enough to hold in your head. Four principals, four boundaries:
 
 | Principal | May touch |
 |:----------|:----------|

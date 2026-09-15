@@ -25,7 +25,7 @@ For API clients, the query endpoint accepts a structured query rather than free-
 
 ## Submit the query from a terminal
 
-Save the JSON above as `query.json`. Use a valid human-session bearer token and the organization/workspace UUIDs for the intended Faros workspace. These are UUIDs, not display names; obtain them from your console context or administrator. `curl` does not inherit the workspace selected by `kubectl faros use`.
+Save the JSON above as `query.json`. Use a valid human-session bearer token and the organization/workspace UUIDs for the intended Railgrid workspace. These are UUIDs, not display names; obtain them from your console context or administrator. `curl` does not inherit the workspace selected by `kubectl faros use`.
 
 Set `FAROS_HUB_URL`, `FAROS_ORG_UUID`, and `FAROS_WORKSPACE_UUID` to those values. Supply `FAROS_TOKEN` securely in your local environment; do not paste the token into shell history or shared output.
 

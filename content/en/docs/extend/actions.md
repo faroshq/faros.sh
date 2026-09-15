@@ -89,7 +89,7 @@ Generated applications use the server-only SDK. If your project does not already
 npm install @faros/actions-node@npm:@crwilhit/faros-actions-node@0.1.0
 ```
 
-Configure the three environment variables below in the application server using its Faros workload identity; never expose the token file to browser code. The gateway verifies that the
+Configure the three environment variables below in the application server using its Railgrid workload identity; never expose the token file to browser code. The gateway verifies that the
 grant is present and not revoked, re-checks the live catalog digest, and
 forwards the request to the provider action route. The application supplies
 only action input:

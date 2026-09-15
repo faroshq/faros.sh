@@ -1,5 +1,5 @@
 baseURL = "https://faros.sh"
-#title = "Faros"
+#title = "Railgrid"
 
 # Language settings
 contentDir = "content/en"
@@ -59,8 +59,8 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 [languages.en.params]
-title = "Faros"
-description = "Build applications, run agents, and connect infrastructure with Faros, an open-source control plane with isolated workspaces and provider tools."
+title = "Railgrid"
+description = "Build applications, run agents, and connect infrastructure with Railgrid, an open-source control plane with isolated workspaces and provider tools."
 
 [params.brand]
 console_url = "https://console-dev.faros.sh/"
@@ -69,7 +69,7 @@ open_source_repo = "https://github.com/faroshq/faros"
 ##languageName ="Norsk"
 #contentDir = "content/no"
 #[languages.no.params]
-#title = "Faros"
+#title = "Railgrid"
 #time_format_default = "02.01.2006"
 #time_format_blog = "02.01.2006"
 
@@ -146,7 +146,7 @@ offlineSearch = false
 prism_syntax_highlighting = true
 
 [params.copyright]
-  authors = "faros authors"
+  authors = "Railgrid authors"
   from_year = 2022
 
 # User interface configuration

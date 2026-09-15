@@ -40,7 +40,7 @@ The `provider` workspace type is deliberately restricted: it can't create child 
 
 ## Step 2 — your `init` subcommand bootstraps the API
 
-Your Deployment runs an initContainer with `args: ["init"]` and the minted kubeconfig mounted (`FAROS_PROVIDER_KUBECONFIG=/var/run/secrets/faros/faros-provider-kubeconfig`). The faros provider SDK's `install.Bootstrap` then runs, idempotently and in order:
+Your Deployment runs an initContainer with `args: ["init"]` and the minted kubeconfig mounted (`FAROS_PROVIDER_KUBECONFIG=/var/run/secrets/faros/faros-provider-kubeconfig`). The Railgrid provider SDK's `install.Bootstrap` then runs, idempotently and in order:
 
 1. **Apply schemas** — every `*.yaml` in `FAROS_SCHEMAS_DIR` (default `/etc/faros/schemas`, baked into your image) is applied as an `APIResourceSchema`.
 2. **Apply the APIExport** — referencing those schemas plus your permission claims. Resource lists are *merged*, not clobbered, so controllers that add entries at runtime coexist with `init`.
@@ -61,7 +61,7 @@ metadata:
   name: quickstart
 spec:
   displayName: "Quickstart"
-  description: "Reference provider demonstrating the faros plugin surface."
+  description: "Reference provider demonstrating the Railgrid plugin surface."
   vendor: "faros"
   version: "0.1.0"
   category: "Demo"

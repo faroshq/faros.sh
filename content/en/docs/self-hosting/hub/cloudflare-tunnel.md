@@ -94,7 +94,7 @@ kubectl get clusterissuer letsencrypt-prod
 
 ## Step 3 — Choose a Cloudflare route integration
 
-The hub chart supports both a Kubernetes `Ingress` and a Gateway API `HTTPRoute`. The commands below use the `strrl.dev` Ingress controller, so keep `ingress.enabled: true` in the hub values. If your cluster already runs Faros's cfgate Cloudflare controller, skip this controller install and use the HTTPRoute values shown below instead; do not enable both integrations for the same hostname.
+The hub chart supports both a Kubernetes `Ingress` and a Gateway API `HTTPRoute`. The commands below use the `strrl.dev` Ingress controller, so keep `ingress.enabled: true` in the hub values. If your cluster already runs Railgrid's cfgate Cloudflare controller, skip this controller install and use the HTTPRoute values shown below instead; do not enable both integrations for the same hostname.
 
 ```bash
 helm repo add strrl.dev https://helm.strrl.dev

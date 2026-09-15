@@ -2,7 +2,7 @@
   "name": "faros.sh",
   "version": "0.0.1",
   "version.next": "0.0.1-dev.0-unreleased",
-  "description": "Faros Platform as a Service",
+  "description": "Railgrid Platform as a Service",
   "repository": "github:faroshq/faros",
   "homepage": "https://faros.sh",
   "author": "Mangirdas Judeikis",

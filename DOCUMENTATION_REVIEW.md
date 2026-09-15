@@ -1,8 +1,8 @@
-# Faros product documentation review and proposed structure
+# Railgrid product documentation review and proposed structure
 
 Review date: September 4, 2026 (America/Chicago).
 
-**Recommendation:** organize documentation around what people need to accomplish: get started, use Faros, administer a workspace, operate a deployment, and extend the platform. Keep concepts and reference as shared destinations. Give every implemented provider a user-facing home, with a clear distinction between using a provider, self-hosting it, and developing one.
+**Recommendation:** organize documentation around what people need to accomplish: get started, use Railgrid, administer a workspace, operate a deployment, and extend the platform. Keep concepts and reference as shared destinations. Give every implemented provider a user-facing home, with a clear distinction between using a provider, self-hosting it, and developing one.
 
 ## Scope and confidence
 
@@ -78,7 +78,7 @@ Some conflicts remain questions for implementation verification, not confirmed b
 
 ## 4. Comparison with established practice
 
-| Practice | How Faros compares | Proposed application |
+| Practice | How Railgrid compares | Proposed application |
 |---|---|---|
 | Separate learning, task completion, facts, and explanation | CLI/provider pages mix these purposes | Assign each page a primary content type. Keep a tutorial's path narrow, put exhaustive flags in reference, and link to concepts for explanation. This follows [Diátaxis](https://diataxis.fr/start-here/). |
 | Organize entry points around reader work | Current navigation emphasizes interfaces and implementation | Use task-oriented groups, with distinct use/administer/operate/extend paths. [GitLab's documentation](https://docs.gitlab.com/development/documentation/) provides a concrete example of these audience distinctions. |
@@ -86,9 +86,9 @@ Some conflicts remain questions for implementation verification, not confirmed b
 | One authoritative answer with a contribution workflow | Public docs, GitHub Pages content, provider READMEs, and design plans overlap | Give each topic one canonical source and one public URL; route feedback to its owner. GitLab explicitly treats its product docs as the [single source of truth](https://docs.gitlab.com/development/documentation/). |
 | Reference reflects product structure | CLI flags, chart values, schemas and interfaces are scattered | Generate API/CLI/configuration inventories from versioned source, following [Diátaxis reference guidance](https://diataxis.fr/start-here/), and supply hand-authored examples and limitations. |
 
-These principles do not require four literal top-level Diátaxis folders. For Faros, task-oriented navigation is more useful; tutorials, how-to guides, concepts, and reference are editorial types beneath it.
+These principles do not require four literal top-level Diátaxis folders. For Railgrid, task-oriented navigation is more useful; tutorials, how-to guides, concepts, and reference are editorial types beneath it.
 
-Additional Faros-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](/Users/craigwilhite/github/faros.sh/package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
+Additional Railgrid-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](/Users/craigwilhite/github/faros.sh/package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
 
 Search is configured in `hugo.toml`; its discoverability and result quality need rendered testing before making usability claims. Similarly, add a meaningful version/compatibility policy before assuming the existing `version = "0.0"` setting provides one.
 
@@ -99,13 +99,13 @@ This is the target structure, not a recommendation to publish empty sections imm
 ```text
 Docs
 ├── Get started
-│   ├── What Faros does / choose your path
+│   ├── What Railgrid does / choose your path
 │   ├── Hosted and self-hosted prerequisites
 │   ├── Install the CLI
 │   ├── Connect your first cluster or server
 │   ├── Build and publish your first app
 │   └── Create your first AI agent
-├── Use Faros
+├── Use Railgrid
 │   ├── Console and workspace navigation
 │   ├── Provider catalog and enablement
 │   ├── Edges: clusters, servers, services, workloads
@@ -121,14 +121,14 @@ Docs
 │   ├── Service accounts and credential lifecycle
 │   ├── Provider permissions, dependencies and lifecycle
 │   └── Org-owned and self-hosted providers
-├── Operate Faros
+├── Operate Railgrid
 │   ├── Choose a deployment: embedded or external kcp
 │   ├── Install hub and providers
 │   ├── Networking, TLS, OIDC and secrets
 │   ├── Scaling and availability by component
 │   ├── Storage, backup and restore
 │   └── Monitor, upgrade, migrate and uninstall
-├── Extend Faros
+├── Extend Railgrid
 │   ├── Build your first provider (quickstart scaffold)
 │   ├── APIs, controllers, virtual workspaces and identity
 │   ├── Portal integration and UI contracts
@@ -145,9 +145,9 @@ Docs
     └── Symptom index; known issues; breaking changes and migrations
 ```
 
-Keep each provider's user documentation consistent: purpose and availability; prerequisites and dependencies; first successful task; common lifecycle tasks; permissions and data handling; limitations; troubleshooting; links to its reference and operator guide. The quickstart provider belongs primarily under **Extend Faros**, as a scaffold rather than a customer capability.
+Keep each provider's user documentation consistent: purpose and availability; prerequisites and dependencies; first successful task; common lifecycle tasks; permissions and data handling; limitations; troubleshooting; links to its reference and operator guide. The quickstart provider belongs primarily under **Extend Railgrid**, as a scaffold rather than a customer capability.
 
-On the docs home, offer four concise entry links: **Use Faros**, **Manage your team**, **Run Faros**, **Build a provider**. Link to the appropriate quickstarts from those destinations. Keep the OS analogy as an optional explanation; lead with literal concepts and outcomes.
+On the docs home, offer four concise entry links: **Use Railgrid**, **Manage your team**, **Run Railgrid**, **Build a provider**. Link to the appropriate quickstarts from those destinations. Keep the OS analogy as an optional explanation; lead with literal concepts and outcomes.
 
 ## 6. Canonical ownership and migration
 
@@ -169,9 +169,9 @@ Map existing pages as follows:
 |---|---|
 | `getting-started/*` | Keep URLs where practical; add app and AI-agent routes |
 | `cli/*` | Reference for commands; extract task guides into Use/Administer |
-| `providers/catalog` | Use Faros → Provider catalog, linked to dedicated capability guides |
-| Other `providers/*` | Extend Faros; extract operator onboarding and tenant enablement |
-| `deploy/*` | Operate Faros, split by deployment mode and operation |
+| `providers/catalog` | Use Railgrid → Provider catalog, linked to dedicated capability guides |
+| Other `providers/*` | Extend Railgrid; extract operator onboarding and tenant enablement |
+| `deploy/*` | Operate Railgrid, split by deployment mode and operation |
 | `security/*` | Shared concepts, operator authentication setup, admin access tasks |
 | `concepts` | Introductory overview plus focused explanations |
 | Product GitHub Pages entry points | Canonical docs links and redirects where hosting allows |

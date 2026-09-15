@@ -73,6 +73,6 @@ test('documentation uses one header with docs navigation and shared actions', ()
     assert.match(header, /docs-search-trigger/);
     assert.match(header, /href="\/docs\/search\/"/);
     assert.match(header, /Open console/);
-    assert.match(header, /aria-label="Faros home"/);
+    assert.match(header, /aria-label="Railgrid home"/);
   }
 });

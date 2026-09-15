@@ -15,7 +15,7 @@ Install one Code provider into a Kubernetes cluster you administer, then enable 
 - Network routes between hub and provider endpoints, and from the provider to the hub/kcp endpoints in its kubeconfig and GitHub.
 - A product checkout at the reviewed revision and a matching Code image available to your cluster.
 
-The hosting context runs pods and Secrets. The provider kubeconfig addresses a Faros provider workspace; never use it as the Helm hosting context.
+The hosting context runs pods and Secrets. The provider kubeconfig addresses a Railgrid provider workspace; never use it as the Helm hosting context.
 
 ## Prepare credentials and values
 

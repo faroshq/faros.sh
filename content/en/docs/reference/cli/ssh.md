@@ -23,7 +23,7 @@ kubectl faros ssh my-vps -- df -h
 kubectl faros ssh my-vps -- "systemctl status nginx"
 ```
 
-The double-dash separates faros flags from the remote command. The command runs in a non-interactive shell — stdout and stderr stream back to your terminal; the exit code is the remote command's exit code.
+The double-dash separates Railgrid CLI flags from the remote command. The command runs in a non-interactive shell — stdout and stderr stream back to your terminal; the exit code is the remote command's exit code.
 
 ## Copying files
 

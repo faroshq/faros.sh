@@ -13,7 +13,7 @@ Follow [Enable a provider](/docs/use/workspaces/enable-provider/) in the target 
 
 An organization can register a provider it operates. Use the console’s **Providers → Self-Hosting** flow where available to obtain the provider workspace credential and generated installation instructions. An administrator must permit the organization operation; the runtime must be able to reach the advertised API endpoints.
 
-Installing an existing provider belongs in [Self-hosting](/docs/self-hosting/providers/). Writing one belongs in [Extend Faros](/docs/extend/).
+Installing an existing provider belongs in [Self-hosting](/docs/self-hosting/providers/). Writing one belongs in [Extend Railgrid](/docs/extend/).
 
 ## Disable and remove
 

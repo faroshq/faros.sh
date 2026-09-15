@@ -16,13 +16,13 @@ A hub installation does not install every provider. Install the providers your u
 
 ## Prerequisites
 
-Use a Kubernetes cluster you administer, Helm, kubectl, and a reviewed Faros chart version. For public access, configure DNS, TLS, and [ingress](/docs/self-hosting/hub/ingress/). Use development credentials only in an isolated test installation.
+Use a Kubernetes cluster you administer, Helm, kubectl, and a reviewed Railgrid chart version. For public access, configure DNS, TLS, and [ingress](/docs/self-hosting/hub/ingress/). Use development credentials only in an isolated test installation.
 
 ## Install a local test hub
 
-This walkthrough creates an isolated kind cluster with embedded kcp. You need Docker running, kind, Helm 3, kubectl, Git, Make, OpenSSL, and the [Faros CLI](/docs/get-started/install/) for terminal login. It builds the hub image from the same revision as the chart, so it does not depend on a published image tag being available.
+This walkthrough creates an isolated kind cluster with embedded kcp. You need Docker running, kind, Helm 3, kubectl, Git, Make, OpenSSL, and the [Railgrid CLI](/docs/get-started/install/) for terminal login. It builds the hub image from the same revision as the chart, so it does not depend on a published image tag being available.
 
-Clone a separate product checkout, replace `RELEASE_TAG` with your selected Faros release tag, then build the image. Set the Docker platform to match your kind nodes: `linux/arm64` for Apple Silicon or `linux/amd64` for an x86 machine.
+Clone a separate product checkout, replace `RELEASE_TAG` with your selected Railgrid release tag, then build the image. Set the Docker platform to match your kind nodes: `linux/arm64` for Apple Silicon or `linux/amd64` for an x86 machine.
 
 ```bash
 git clone https://github.com/faroshq/faros.git faros-install-source
@@ -67,7 +67,7 @@ kubectl api-resources
 
 The TLS exceptions apply to this localhost test's self-signed certificate. Open `https://localhost:9443`, sign in with the generated token, and select a workspace. Success means the health endpoint responds successfully, the console loads, and the CLI can discover workspace APIs. No providers are installed by these steps; continue with [provider installation](/docs/self-hosting/providers/).
 
-If readiness fails, inspect the hosting cluster explicitly, even after Faros login changes your current kubeconfig context:
+If readiness fails, inspect the hosting cluster explicitly, even after Railgrid login changes your current kubeconfig context:
 
 ```bash
 kubectl --context kind-faros-docs -n faros-system get pods,pvc
@@ -186,7 +186,7 @@ Wait for hub readiness, authenticate against its URL, and verify the console and
 
 Use the explicit hosting-cluster context to inspect the discovered workload and serving container. Follow [hosting-cluster diagnostics](/docs/self-hosting/hub/operations/#inspect-the-hosting-cluster-from-the-cli) for pod, rollout, and event commands.
 
-Then use your local CLI to verify the Faros-facing endpoint:
+Then use your local CLI to verify the Railgrid-facing endpoint:
 
 ```bash
 kubectl faros login --hub-url https://YOUR-HUB

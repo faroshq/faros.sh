@@ -17,7 +17,7 @@ weight: 1
 
 ## OIDC (browser flow)
 
-Use the Faros SaaS hub for the standard login flow. For a self-hosted hub, supply your organization’s URL instead:
+Use the Railgrid SaaS hub for the standard login flow. For a self-hosted hub, supply your organization’s URL instead:
 
 ```bash
 kubectl faros login --hub-url https://hub.example.com
@@ -82,4 +82,4 @@ To work against two hubs, use separate kubeconfig files via `--kubeconfig` or `$
 
 ## Where credentials live
 
-faros writes to your standard kubeconfig (`$KUBECONFIG` or `~/.kube/config`). OIDC refresh-token state is cached on disk for the exec plugin; static tokens are stored as bearer tokens in the user entry. Treat both as secrets.
+Railgrid writes to your standard kubeconfig (`$KUBECONFIG` or `~/.kube/config`). OIDC refresh-token state is cached on disk for the exec plugin; static tokens are stored as bearer tokens in the user entry. Treat both as secrets.

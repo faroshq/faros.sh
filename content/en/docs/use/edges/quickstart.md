@@ -4,7 +4,7 @@ description: Register an edge and verify access to a Kubernetes cluster or serve
 weight: 2
 ---
 
-This guide takes you from a freshly installed CLI to a working Kubernetes edge that you can drive with `kubectl`. Start with the Faros SaaS hub, with Edges enabled in your workspace and permission to install an agent on the target. Install the [CLI](/docs/get-started/install/) if needed.
+This guide takes you from a freshly installed CLI to a working Kubernetes edge that you can drive with `kubectl`. Start with the Railgrid SaaS hub, with Edges enabled in your workspace and permission to install an agent on the target. Install the [CLI](/docs/get-started/install/) if needed.
 
 If your organization runs a [self-hosted hub](/docs/self-hosting/), use its URL for login instead.
 
@@ -87,4 +87,4 @@ This prints an MCP endpoint URL plus ready-to-paste setup commands for Claude Co
 
 ## Cleanup
 
-Use the [edge-agent instructions](/docs/reference/cli/agent/) to uninstall the agent on the target, then delete your test edge with `kubectl faros edge delete EDGE-NAME`. Removing the edge removes its Faros access; it does not delete the target machine.
+Use the [edge-agent instructions](/docs/reference/cli/agent/) to uninstall the agent on the target, then delete your test edge with `kubectl faros edge delete EDGE-NAME`. Removing the edge removes its Railgrid access; it does not delete the target machine.

@@ -68,4 +68,4 @@ There's also a fully **self-supplied** variant — you provide a workspace-admin
 
 ## Publishing
 
-In the faros monorepo each `providers/<name>` directory is split-mirrored (history preserved) to a standalone read-only repo `faroshq/provider-<name>`, and the provider's `go.mod` module path is the mirror URL — so third parties can `go get` the code, while images and charts build from the monorepo CI. If you build out-of-tree, none of this applies to you: any repo that produces an image + chart with the contract above is a valid provider.
+In the Railgrid monorepo each `providers/<name>` directory is split-mirrored (history preserved) to a standalone read-only repo `faroshq/provider-<name>`, and the provider's `go.mod` module path is the mirror URL — so third parties can `go get` the code, while images and charts build from the monorepo CI. If you build out-of-tree, none of this applies to you: any repo that produces an image + chart with the contract above is a valid provider.

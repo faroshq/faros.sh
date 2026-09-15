@@ -57,8 +57,8 @@ config:
 
   staticClients:
     - id: faros
-      name: Faros
-      public: true          # faros is a PKCE public client — no client secret
+      name: Railgrid
+      public: true          # Railgrid is a PKCE public client — no client secret
       redirectURIs:
         - https://hub.example.com/auth/callback
 
@@ -218,7 +218,7 @@ Dex supports many backends. The most common configurations:
 
 **TLS errors on the issuer** — If Dex's certificate is signed by a private CA, set `idp.caSecretName` / `idp.caSecretKey` (see above). As a last resort for throwaway dev setups, `hub.devMode: true` skips issuer TLS verification — never in production.
 
-**`unauthorized_client` / secret prompts** — The Dex client must be `public: true` with no `secret`. faros does PKCE; a confidential client configuration will fail.
+**`unauthorized_client` / secret prompts** — The Dex client must be `public: true` with no `secret`. Railgrid does PKCE; a confidential client configuration will fail.
 
 **Dex logs**:
 

@@ -4,7 +4,7 @@ description: Expose your clusters and servers as Model Context Protocol servers.
 weight: 6
 ---
 
-faros exposes your edges as [Model Context Protocol](https://modelcontextprotocol.io) (MCP) servers. AI coding assistants — Claude Code, Claude Desktop, Codex, Cursor, anything that speaks MCP — can list pods, describe deployments, run commands, and (with the edges provider's service catalog) even control apps like Home Assistant across all your edges at once.
+Railgrid exposes your edges as [Model Context Protocol](https://modelcontextprotocol.io) (MCP) servers. AI coding assistants — Claude Code, Claude Desktop, Codex, Cursor, anything that speaks MCP — can list pods, describe deployments, run commands, and (with the edges provider's service catalog) even control apps like Home Assistant across all your edges at once.
 
 There are two endpoint shapes:
 

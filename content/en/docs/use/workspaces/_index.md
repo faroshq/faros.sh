@@ -5,7 +5,7 @@ doc_type: "Overview"
 weight: 1
 ---
 
-Start in your Faros SaaS workspace to enable providers and work across capabilities. If your organization self-hosts Faros, use its hub instead.
+Start in your Railgrid SaaS workspace to enable providers and work across capabilities. If your organization self-hosts Railgrid, use its hub instead.
 
 ## Guides across providers
 

@@ -9,7 +9,7 @@ Connect an agent to a messaging destination and verify that its output reaches t
 
 ## Prerequisites
 
-Sign in to Faros SaaS, select the agent’s workspace, and [verify an interactive agent run](/docs/use/agents/quickstart/) first. You need permission to configure its connections and credentials for the external channel. Confirm the destination belongs to the intended audience.
+Sign in to Railgrid SaaS, select the agent’s workspace, and [verify an interactive agent run](/docs/use/agents/quickstart/) first. You need permission to configure its connections and credentials for the external channel. Confirm the destination belongs to the intended audience.
 
 The provider stores conversation history and durable memory in its configured Postgres store. Infrastructure-backed file workspaces are optional and have their own runtime/storage requirements.
 

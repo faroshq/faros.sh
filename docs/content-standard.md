@@ -1,6 +1,6 @@
 # Product documentation standard
 
-Write for the person performing the task. Start ordinary product workflows in Faros SaaS; mention an organization's self-hosted hub as an alternative when it changes sign-in or prerequisites. Do not make a SaaS user install provider services, configure server runtimes, or inspect control-plane objects to complete a console task.
+Write for the person performing the task. Start ordinary product workflows in Railgrid SaaS; mention an organization's self-hosted hub as an alternative when it changes sign-in or prerequisites. Do not make a SaaS user install provider services, configure server runtimes, or inspect control-plane objects to complete a console task.
 
 ## Task guides and tutorials
 
@@ -27,7 +27,7 @@ Directory overviews need a short purpose and well-grouped links. Do not add fill
 
 Check UI steps against the relevant portal component and technical claims against API types, handlers, CLI registrations, charts, or tests. Source behavior is not proof that an exact version is deployed to SaaS. If availability is uncertain, state the actual prerequisite and a way to verify it; avoid vague instructions such as “configure the runtime” or “use the supported flow.”
 
-Distinguish a declared configuration from a reconciled result; an authentication success from authorization; and deletion of a Faros resource from removal of external data. Do not expose tokens in sample output.
+Distinguish a declared configuration from a reconciled result; an authentication success from authorization; and deletion of a Railgrid resource from removal of external data. Do not expose tokens in sample output.
 
 For generated schemas, pass an explicit product revision:
 

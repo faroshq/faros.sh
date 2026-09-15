@@ -1,14 +1,14 @@
 <div class="pricing-shell">
   <header class="pricing-hero">
-    <h1>Choose how<br><span>you run Faros.</span></h1>
+    <h1>Choose how<br><span>you run Railgrid.</span></h1>
     <p>{{ .Params.hero.summary }}</p>
   </header>
 
-  <section id="paths" class="pricing-options" aria-label="Compare Faros operating options">
+  <section id="paths" class="pricing-options" aria-label="Compare Railgrid operating options">
     {{ range $index, $plan := (index .Params.sections 0).cards }}
     <article class="pricing-option{{ if eq $index 1 }} pricing-option-cloud{{ end }}">
       <h2>{{ .title }}</h2>
-      <p class="pricing-model">{{ if eq $index 0 }}Operated by your team.{{ else if eq $index 1 }}Operated by Faros.{{ else }}Help with architecture and deployment.{{ end }}</p>
+      <p class="pricing-model">{{ if eq $index 0 }}Operated by your team.{{ else if eq $index 1 }}Operated by Railgrid.{{ else }}Help with architecture and deployment.{{ end }}</p>
       <div class="pricing-terms">
         <p>{{ if eq $index 0 }}No license fee{{ else }}Contact us{{ end }}</p>
         <span>{{ if eq $index 0 }}Apache 2.0 · Infrastructure costs apply{{ else if eq $index 1 }}Availability and pricing on request{{ else }}Priced per engagement{{ end }}</span>
@@ -30,7 +30,7 @@
   </section>
 
   <section id="evaluate" class="pricing-evaluate" aria-labelledby="pricing-evaluate-title">
-    <div class="pricing-section-intro"><h2 id="pricing-evaluate-title">Evaluate Faros first.</h2><p>Try the quickstart, inspect the source, and review how access works.</p></div>
+    <div class="pricing-section-intro"><h2 id="pricing-evaluate-title">Evaluate Railgrid first.</h2><p>Try the quickstart, inspect the source, and review how access works.</p></div>
     <div class="pricing-resources">
       {{ range (index .Params.sections 2).cards }}
       <a href="{{ .url }}"><div><h3>{{ .title }}</h3><p>{{ .summary }}</p><span>{{ .link_label }}</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
@@ -38,5 +38,5 @@
     </div>
   </section>
 
-  <section class="pricing-closing" aria-labelledby="pricing-closing-title"><div><h2 id="pricing-closing-title">Discuss your deployment with us.</h2><p>Tell us where you want to run Faros and what help you need.</p></div><a class="pricing-button pricing-button-primary" href="/contact/">Contact the team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+  <section class="pricing-closing" aria-labelledby="pricing-closing-title"><div><h2 id="pricing-closing-title">Discuss your deployment with us.</h2><p>Tell us where you want to run Railgrid and what help you need.</p></div><a class="pricing-button pricing-button-primary" href="/contact/">Contact the team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
 </div>

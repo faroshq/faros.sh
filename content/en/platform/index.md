@@ -1,13 +1,13 @@
 ---
-title: "The Faros platform"
-description: "Manage applications, agents, and infrastructure with isolated workspaces, provider APIs, and MCP tools in the Faros control plane."
+title: "The Railgrid platform"
+description: "Manage applications, agents, and infrastructure with isolated workspaces, provider APIs, and MCP tools in the Railgrid control plane."
 layout: marketing-hub
 hero:
   eyebrow: "Platform"
-  summary: "Faros brings applications, agents, and infrastructure into one control plane. Organize resources in isolated workspaces, add capabilities through providers, and give people and agents access through familiar tools."
+  summary: "Railgrid brings applications, agents, and infrastructure into one control plane. Organize resources in isolated workspaces, add capabilities through providers, and give people and agents access through familiar tools."
   primary:
     label: "Explore the architecture"
-    url: "/docs/get-started/what-is-faros/#how-faros-works"
+    url: "/docs/get-started/what-is-railgrid/#how-railgrid-works"
   secondary:
     label: "Try the quickstart"
     url: "/docs/use/edges/quickstart/"
@@ -15,7 +15,7 @@ sections:
   - id: "interfaces"
     eyebrow: "Access and automation"
     title: "Work with the tools you already use."
-    summary: "Use the portal for everyday work, APIs and controllers for automation, and MCP for agents. Each connects to resources in a Faros workspace."
+    summary: "Use the portal for everyday work, APIs and controllers for automation, and MCP for agents. Each connects to resources in a Railgrid workspace."
     cards:
       - kicker: "For people"
         title: "Portal and CLI"
@@ -35,7 +35,7 @@ sections:
   - id: "capabilities"
     eyebrow: "Provider catalog"
     title: "Choose the providers you need."
-    summary: "Faros includes providers for applications, agents, data, and infrastructure. Enable them in a workspace or build a provider for your own systems."
+    summary: "Railgrid includes providers for applications, agents, data, and infrastructure. Enable them in a workspace or build a provider for your own systems."
     cards:
       - kicker: "Build and run"
         title: "Application templates"
@@ -54,11 +54,11 @@ sections:
         link_label: "Explore edges"
 closing:
   eyebrow: "Go deeper"
-  title: "Understand how Faros works."
+  title: "Understand how Railgrid works."
   summary: "Follow a request through the control plane, or browse the provider catalog to see the APIs, tools, and interfaces available to your workspace."
   primary:
     label: "Read the concepts guide"
-    url: "/docs/get-started/what-is-faros/#how-faros-works"
+    url: "/docs/get-started/what-is-railgrid/#how-railgrid-works"
   secondary:
     label: "Browse the provider catalog"
     url: "/docs/use/"

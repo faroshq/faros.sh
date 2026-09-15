@@ -53,7 +53,7 @@ tenantConfig := cl.GetConfig()
 
 Keep that configuration scoped to the current reconciliation; do not reuse it for another tenant.
 
-The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the faros repo for the canonical setup.
+The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the Railgrid repo for the canonical setup.
 
 ## The two identity patterns
 

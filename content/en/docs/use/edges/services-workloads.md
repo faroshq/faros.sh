@@ -5,11 +5,11 @@ weight: 3
 doc_type: "Guide"
 ---
 
-Connect an existing service so Faros can reach it through an edge, or deploy a container workload to connected Kubernetes clusters.
+Connect an existing service so Railgrid can reach it through an edge, or deploy a container workload to connected Kubernetes clusters.
 
 ## Prerequisites
 
-Sign in to Faros SaaS and select a workspace with Edges enabled. You need permission to create services or workloads and a [connected edge](/docs/use/edges/quickstart/). Services can use a Linux server or Kubernetes edge; workloads require a Kubernetes edge. Have the application's address and any required credential ready. For workloads, confirm the image can be pulled by the target cluster and inspect its edge labels before selecting targets.
+Sign in to Railgrid SaaS and select a workspace with Edges enabled. You need permission to create services or workloads and a [connected edge](/docs/use/edges/quickstart/). Services can use a Linux server or Kubernetes edge; workloads require a Kubernetes edge. Have the application's address and any required credential ready. For workloads, confirm the image can be pulled by the target cluster and inspect its edge labels before selecting targets.
 
 ## Connect a service
 
@@ -58,7 +58,7 @@ For a marketplace application, select the application, enter **Workload name**, 
 
 ## Optional CLI diagnostics {#verify-workloads-from-the-cli}
 
-If the console status does not explain a failure, select the [owning Faros workspace](/docs/reference/cli/resources/), then list deployment and placement state:
+If the console status does not explain a failure, select the [owning Railgrid workspace](/docs/reference/cli/resources/), then list deployment and placement state:
 
 ```bash
 kubectl faros get workloads

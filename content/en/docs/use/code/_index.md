@@ -8,7 +8,7 @@ cascade:
   provider: code
 ---
 
-Code connects GitHub repositories to your Faros workspace. It provides repository resources and connection workflows that other capabilities can use when they need source code.
+Code connects GitHub repositories to your Railgrid workspace. It provides repository resources and connection workflows that other capabilities can use when they need source code.
 
 [Get started: connect a repository](/docs/use/code/quickstart/).
 

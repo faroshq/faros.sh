@@ -1,6 +1,6 @@
 ---
 title: CLI Reference
-description: Every faros command — authentication, organizations, edges, agents, SSH, MCP.
+description: Every Railgrid CLI command — authentication, organizations, edges, agents, SSH, MCP.
 weight: 20
 ---
 
@@ -32,10 +32,10 @@ That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecur
 | [`install`](/docs/reference/cli/agent/#faros-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
 | [`ssh <name>`](/docs/reference/cli/ssh/) | Open an SSH session (or run a single command) on a server-type edge. |
 | [`mcp url`](/docs/reference/cli/mcp/) | Print an MCP endpoint for AI agents (`--mcpserver-name` aggregate or `--edge` per-edge). |
-| `apply -f <file>` | Apply a faros resource from a YAML file. |
+| `apply -f <file>` | Apply a Railgrid resource from a YAML file. |
 | `get <resource>` | List `edges`, `workloads`, or `placements` in the current workspace. |
 | `version` | Print CLI version, commit, build date, and platform. |
 | `dev init` / `dev update` / `dev delete` | Create, upgrade, or tear down a local kind-based dev hub (`init` has alias `create`). |
-| `init` | Run an in-process faros hub (server bootstrap — for development, not the CLI workflow). |
+| `init` | Run an in-process Railgrid hub (server bootstrap — for development, not the CLI workflow). |
 
 Pick a command from the sidebar for the full reference.

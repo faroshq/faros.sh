@@ -9,7 +9,7 @@ Enable a capability in your workspace and confirm you can open it in the console
 
 ## Prerequisites
 
-Sign in to the Faros SaaS hub and select your organization and workspace. If your organization self-hosts Faros, sign in to that hub instead. Use an identity permitted to enable providers; ask a workspace administrator if the action is unavailable.
+Sign in to the Railgrid SaaS hub and select your organization and workspace. If your organization self-hosts Railgrid, sign in to that hub instead. Use an identity permitted to enable providers; ask a workspace administrator if the action is unavailable.
 
 ## Enable and verify
 

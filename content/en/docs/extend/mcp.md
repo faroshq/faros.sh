@@ -4,7 +4,7 @@ description: Exposing provider tools to AI agents through the hub's aggregate MC
 weight: 7
 ---
 
-faros presents one aggregate [Model Context Protocol](https://modelcontextprotocol.io) endpoint per workspace:
+Railgrid presents one aggregate [Model Context Protocol](https://modelcontextprotocol.io) endpoint per workspace:
 
 ```
 https://<hub>/services/mcpserver/{cluster}/apis/faros.sh/v1alpha1/mcpservers/{name}/mcp

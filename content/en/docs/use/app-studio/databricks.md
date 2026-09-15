@@ -5,14 +5,14 @@ weight: 6
 doc_type: "Tutorial"
 ---
 
-Build a small dashboard that displays data from a Databricks table. In Faros SaaS, you connect the data and describe the application you want; the project assistant handles the application code in your App Studio environment.
+Build a small dashboard that displays data from a Databricks table. In Railgrid SaaS, you connect the data and describe the application you want; the project assistant handles the application code in your App Studio environment.
 
 ## Before you start
 
-Sign in to Faros SaaS and select your workspace. You need an App Studio project and an imported Databricks table you are allowed to use.
+Sign in to Railgrid SaaS and select your workspace. You need an App Studio project and an imported Databricks table you are allowed to use.
 
 - If you do not have a project yet, follow the [App Studio quickstart](/docs/use/app-studio/quickstart/).
-- If your table is not available in Faros, follow [import a Databricks table](/docs/use/databricks/quickstart/) or ask your workspace administrator to make it available.
+- If your table is not available in Railgrid, follow [import a Databricks table](/docs/use/databricks/quickstart/) or ask your workspace administrator to make it available.
 - Your workspace needs App Studio, Code, Infrastructure, and Databricks enabled. Ask your administrator if a required capability is missing.
 
 Choose a small table whose data you recognize, so you can check whether the application displays it correctly.
@@ -21,7 +21,7 @@ Choose a small table whose data you recognize, so you can check whether the appl
 
 1. Open your project’s integrations controls.
 2. Select **Databricks** as the provider and **Query table · `query_table/v1`** as the versioned action.
-3. Enter the imported table’s Faros resource name in **Exact resource name**, and choose an **Integration alias**, such as `sales`.
+3. Enter the imported table’s Railgrid resource name in **Exact resource name**, and choose an **Integration alias**, such as `sales`.
 4. Review the table and action being granted, accept consent if requested, and select **Create grant**.
 5. Note the integration alias. You will use that name when asking the assistant to build with the table.
 

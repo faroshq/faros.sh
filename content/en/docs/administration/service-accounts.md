@@ -9,7 +9,7 @@ Create a dedicated workspace identity for an automation and verify that it has t
 
 ## Prerequisites
 
-Sign in to Faros SaaS as an administrator of the target workspace. Decide whether the task needs the workspace’s `member` or `admin` role, and have a secret store ready for the credential.
+Sign in to Railgrid SaaS as an administrator of the target workspace. Decide whether the task needs the workspace’s `member` or `admin` role, and have a secret store ready for the credential.
 
 ## Create and verify
 
@@ -54,7 +54,7 @@ kubectl --kubeconfig ./automation.kubeconfig auth can-i list instances.infrastru
 kubectl --kubeconfig ./automation.kubeconfig get instances.infrastructure.faros.sh
 ```
 
-Choose a resource and operation that your policy denies and check it with `auth can-i` as well. The expected results depend on the role you granted; do not grant extra access merely to make the example pass. Repeat both checks after rotating credentials. The Faros CLI has no dedicated service-account creation command in the documented source baseline; retain the supported console creation flow.
+Choose a resource and operation that your policy denies and check it with `auth can-i` as well. The expected results depend on the role you granted; do not grant extra access merely to make the example pass. Repeat both checks after rotating credentials. The Railgrid CLI has no dedicated service-account creation command in the documented source baseline; retain the supported console creation flow.
 
 ## Rotate or remove
 

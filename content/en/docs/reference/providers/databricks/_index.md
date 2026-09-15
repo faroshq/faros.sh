@@ -16,11 +16,11 @@ Connection, Warehouse, and Table use `databricks.faros.sh/v1alpha1`. `query_tabl
 
 ## MCP tools
 
-The [aggregate MCP endpoint](/docs/use/ai-assistants/) uses the `databricks__` prefix. These tools operate on tables already imported into the active Faros workspace, subject to its permissions and the upstream Databricks connection.
+The [aggregate MCP endpoint](/docs/use/ai-assistants/) uses the `databricks__` prefix. These tools operate on tables already imported into the active Railgrid workspace, subject to its permissions and the upstream Databricks connection.
 
 | Tool | Use it to |
 |---|---|
-| `list_tables` | Find imported tables and their exact Faros resource names. |
+| `list_tables` | Find imported tables and their exact Railgrid resource names. |
 | `describe_table` | Read a table's cached column names and types. |
 | `query_table` | Read up to 100 rows, optionally selecting exact column names. |
 

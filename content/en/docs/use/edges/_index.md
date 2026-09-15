@@ -8,7 +8,7 @@ cascade:
   provider: edges
 ---
 
-Edges connects existing Kubernetes clusters, servers, and services to Faros. An agent on the target initiates an outbound connection to the hub, giving you a shared route to infrastructure that may live in different networks.
+Edges connects existing Kubernetes clusters, servers, and services to Railgrid. An agent on the target initiates an outbound connection to the hub, giving you a shared route to infrastructure that may live in different networks.
 
 [Get started: connect a cluster or server](/docs/use/edges/quickstart/).
 

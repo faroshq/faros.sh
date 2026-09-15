@@ -7,7 +7,7 @@ doc_type: Guide
 
 ## Choose the right command and context
 
-Install the [CLI](/docs/get-started/install/) and authenticate first. `kubectl faros` handles Faros-specific workflows such as workspace selection, edges, and MCP setup. Standard `kubectl` handles the Kubernetes-style APIs exposed in a workspace. Provider HTTP APIs and MCP tools handle actions outside resource CRUD.
+Install the [CLI](/docs/get-started/install/) and authenticate first. `kubectl faros` handles Railgrid-specific workflows such as workspace selection, edges, and MCP setup. Standard `kubectl` handles the Kubernetes-style APIs exposed in a workspace. Provider HTTP APIs and MCP tools handle actions outside resource CRUD.
 
 ```bash
 kubectl faros use
@@ -15,7 +15,7 @@ kubectl config current-context
 kubectl api-resources
 ```
 
-Select the intended organization and workspace in the picker. The context name alone does not identify the workspace: `faros use` updates its endpoint. Confirm the API groups you expect in discovery. After connecting to an edge, select your Faros workspace again before running provider-resource commands.
+Select the intended organization and workspace in the picker. The context name alone does not identify the workspace: `faros use` updates its endpoint. Confirm the API groups you expect in discovery. After connecting to an edge, select your Railgrid workspace again before running provider-resource commands.
 
 Use fully qualified resource names, such as `instances.infrastructure.faros.sh`, because multiple providers expose resources named `connections`. The examples use workspace-scoped, cluster-scoped resources; hosting-cluster namespaces are a different boundary.
 

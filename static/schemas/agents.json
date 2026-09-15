@@ -42,7 +42,7 @@
               ],
               "name": "v1alpha1",
               "schema": {
-                "description": "Agent is a persistent, long-running personal assistant scoped to a Faros\nworkspace. It chats, runs scheduled work on its own clock, uses tools, and\nkeeps durable memory. Runtime state (transcripts, runs) lives in the\nprovider's store; this resource holds the durable configuration.",
+                "description": "Agent is a persistent, long-running personal assistant scoped to a Railgrid\nworkspace. It chats, runs scheduled work on its own clock, uses tools, and\nkeeps durable memory. Runtime state (transcripts, runs) lives in the\nprovider's store; this resource holds the durable configuration.",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",

@@ -1,6 +1,6 @@
 ---
 title: Agent Commands
-description: Run, install, and upgrade the faros agent on edges.
+description: Run, install, and upgrade the Railgrid agent on edges.
 weight: 4
 ---
 

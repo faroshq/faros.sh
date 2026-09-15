@@ -6,7 +6,7 @@
     },
     {
       "slug": "use",
-      "title": "Use Faros",
+      "title": "Use Railgrid",
       "children": [
         {
           "url": "/docs/use/workspaces/",
@@ -67,7 +67,7 @@
     },
     {
       "slug": "extend",
-      "title": "Extend Faros"
+      "title": "Extend Railgrid"
     },
     {
       "slug": "reference",
@@ -145,8 +145,8 @@
           "title": "Introduction",
           "links": [
             {
-              "url": "/docs/get-started/what-is-faros/",
-              "title": "What is Faros?"
+              "url": "/docs/get-started/what-is-railgrid/",
+              "title": "What is Railgrid?"
             }
           ]
         },

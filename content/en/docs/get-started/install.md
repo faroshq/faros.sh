@@ -1,14 +1,14 @@
 ---
 title: Use the CLI
-description: Install the Faros CLI and connect to Faros SaaS.
+description: Install the Railgrid CLI and connect to Railgrid SaaS.
 weight: 5
 ---
 
-The CLI is optional for console-based application and AI-agent tutorials. Use it for terminal workflows and connecting edges. For Faros SaaS, the ordinary path is to install the CLI, then run `faros login` without a hub URL; the plugin form is equivalent as `kubectl faros login`, and both default to `https://console.faros.sh`.
+The CLI is optional for console-based application and AI-agent tutorials. Use it for terminal workflows and connecting edges. For Railgrid SaaS, the ordinary path is to install the CLI, then run `faros login` without a hub URL; the plugin form is equivalent as `kubectl faros login`, and both default to `https://console.faros.sh`.
 
 ## Prerequisites
 
-Start with the Faros SaaS hub and a compatible CLI version. If your organization uses a [self-hosted hub](/docs/self-hosting/), ask its administrator for the hub URL and supported CLI version.
+Start with the Railgrid SaaS hub and a compatible CLI version. If your organization uses a [self-hosted hub](/docs/self-hosting/), ask its administrator for the hub URL and supported CLI version.
 
 Install [kubectl](https://kubernetes.io/docs/tasks/tools/) to use the plugin form and Kubernetes examples below.
 
@@ -16,7 +16,7 @@ Install [kubectl](https://kubernetes.io/docs/tasks/tools/) to use the plugin for
 
 Use one of the installation methods published by the project:
 
-- **Binary:** download the executable for your operating system from the [Faros releases page](https://github.com/faroshq/faros/releases) and put it on your `PATH`. Choose the release selected by your hub administrator for self-hosted installations.
+- **Binary:** download the executable for your operating system from the [Railgrid releases page](https://github.com/faroshq/faros/releases) and put it on your `PATH`. Choose the release selected by your hub administrator for self-hosted installations.
 - **Krew:** install the `faros` kubectl plugin with `kubectl krew index add faros https://github.com/faroshq/krew-index.git` followed by `kubectl krew install faros/faros`.
 - **Source:** use the repository build below. The current module has local SDK replacements, so use a checkout rather than `go install ...@latest`.
 

@@ -4,7 +4,7 @@
   {{ if ne .RelPermalink $ctx.root.RelPermalink }}{{ partial "docs-sidebar.html" . }}{{ end }}
   <main class="faros-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
     {{ if $hasRail }}{{ partial "documentation/page-tools.html" . }}{{ end }}
-    <article class="faros-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-faros/" }} docs-product-overview{{ end }}">
+    <article class="faros-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-railgrid/" }} docs-product-overview{{ end }}">
       {{ if and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Parent.RelPermalink $ctx.root.RelPermalink) }}
       <nav class="docs-breadcrumb" aria-label="Breadcrumb">
         {{ range .Ancestors.Reverse }}{{ if and (eq .Section "docs") (ne .RelPermalink $ctx.root.RelPermalink) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
@@ -16,7 +16,7 @@
         <h1 class="faros-docs-title">{{ .Title }}</h1>
         <p class="faros-docs-lead">{{ .Description }}</p>
         {{ if eq .Params.landing "home" }}
-        <p class="docs-intro-links"><a href="/docs/get-started/what-is-faros/">Understand Faros <span aria-hidden="true">→</span></a><a href="/docs/use/">Explore capabilities <span aria-hidden="true">→</span></a></p>
+        <p class="docs-intro-links"><a href="/docs/get-started/what-is-railgrid/">Understand Railgrid <span aria-hidden="true">→</span></a><a href="/docs/use/">Explore capabilities <span aria-hidden="true">→</span></a></p>
         {{ end }}
       </header>
       {{ if eq .Params.landing "home" }}{{ partial "documentation/quick-connect.html" . }}</div>{{ end }}
@@ -45,7 +45,7 @@
         <div class="docs-path-list">
           <a href="/docs/use/"><strong>Browse all capabilities</strong><span>Find the provider for your task.</span></a>
           <a href="/docs/administration/"><strong>Manage your organization</strong><span>Workspaces, teammates, and access.</span></a>
-          <a href="/docs/self-hosting/"><strong>Self-host Faros</strong><span>Run the hub or an existing provider.</span></a>
+          <a href="/docs/self-hosting/"><strong>Self-host Railgrid</strong><span>Run the hub or an existing provider.</span></a>
           <a href="/docs/extend/quickstart/"><strong>Build a provider</strong><span>Add a capability to the platform.</span></a>
         </div>
       </section>

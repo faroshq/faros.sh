@@ -4,7 +4,7 @@ description: Organizations, workspaces, memberships, roles, and service accounts
 weight: 3
 ---
 
-faros is multi-tenant from the ground up. Every user operates inside a **workspace**, which belongs to an **organization** — and because the hub creates a personal organization with a default workspace for every new identity, single-user hubs get all of this without ever noticing it.
+Railgrid is multi-tenant from the ground up. Every user operates inside a **workspace**, which belongs to an **organization** — and because the hub creates a personal organization with a default workspace for every new identity, single-user hubs get all of this without ever noticing it.
 
 ## The model
 

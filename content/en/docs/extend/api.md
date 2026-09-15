@@ -8,7 +8,7 @@ A provider's API surface is a set of custom resources that tenants create in the
 
 ## APIResourceSchemas
 
-An `APIResourceSchema` is kcp's workspace-aware equivalent of a CRD. You generate them from your Go types the same way you'd generate CRDs (the faros repo does this with controller-gen plus a conversion step in `make codegen`), and bake the YAML files into your image under `/etc/faros/schemas`.
+An `APIResourceSchema` is kcp's workspace-aware equivalent of a CRD. You generate them from your Go types the same way you'd generate CRDs (the Railgrid repo does this with controller-gen plus a conversion step in `make codegen`), and bake the YAML files into your image under `/etc/faros/schemas`.
 
 Names are version-prefixed and encode the group and resource:
 
@@ -78,7 +78,7 @@ kubectl get greetings.quickstart.providers.faros.sh
 kubectl apply -f my-greeting.yaml
 ```
 
-Status subresource conventions follow the faros house style: a `phase` string for at-a-glance state plus `conditions[]` (with `Ready` as the summary condition) for machine consumption. Every shipped provider follows this; tenants and the portal rely on it.
+Status subresource conventions follow the Railgrid house style: a `phase` string for at-a-glance state plus `conditions[]` (with `Ready` as the summary condition) for machine consumption. Every shipped provider follows this; tenants and the portal rely on it.
 
 ## Consuming your API from controllers
 
