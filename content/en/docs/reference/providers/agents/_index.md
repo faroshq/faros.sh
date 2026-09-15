@@ -34,7 +34,7 @@ Use a [service-account token](/docs/administration/service-accounts/#create-and-
 ```sh
 # Use organization/workspace UUIDs from Settings or your administrator.
 # These are identifiers, not display names.
-export RAILGRID_HUB_URL='https://console.faros.sh'
+export RAILGRID_HUB_URL='https://console.railgrid.ai'
 export RAILGRID_ORG_UUID='<organization-uuid>'
 export RAILGRID_WORKSPACE_UUID='<workspace-uuid>'
 RAILGRID_TOKEN="$(python3 -c 'import getpass; print(getpass.getpass("Service-account token: "))')"

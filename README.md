@@ -1,10 +1,10 @@
 # Railgrid website
 
-Marketing site and documentation for [Railgrid](https://faros.sh) — the open-source **operating system for AI-native platforms**.
+Marketing site and documentation for [Railgrid](https://railgrid.ai) — the open-source **operating system for AI-native platforms**.
 
 ## Branding and compatibility
 
-The company and platform are branded **Railgrid**. Product source, release, and issue links use `github.com/railgrid/railgrid`. CRD/API groups use `railgrid.ai`; CLI commands, SDKs, headers, environment variables, and product file paths use Railgrid names. Existing website and download domains retain their current addresses. Frontend selectors, JavaScript identifiers, events, and preference keys use Railgrid names. Existing browser theme and motion preferences are migrated from the former keys. Recorded product demos and historical mockup images may still show the former branding.
+The company and platform are branded **Railgrid**. Product source, release, and issue links use `github.com/railgrid/railgrid`. CRD/API groups use `railgrid.ai`; CLI commands, SDKs, headers, environment variables, and product file paths use Railgrid names. Website, console, and download URLs use `railgrid.ai`. The website repository remains `github.com/railgrid/faros.sh`. Frontend selectors, JavaScript identifiers, events, and preference keys use Railgrid names. Existing browser theme and motion preferences are migrated from the former keys. Recorded product demos and historical mockup images may still show the former branding.
 
 ## What Railgrid is
 
@@ -93,7 +93,7 @@ Fork, branch, change, preview with `npm run serve`, run `npm test`, and open a P
 
 ## Resources
 
-- **Site**: [faros.sh](https://faros.sh) · **Docs**: [faros.sh/docs](https://faros.sh/docs)
+- **Site**: [railgrid.ai](https://railgrid.ai) · **Docs**: [railgrid.ai/docs](https://railgrid.ai/docs)
 - **Product repo**: [github.com/railgrid/railgrid](https://github.com/railgrid/railgrid)
 - **Docsy**: [docsy.dev](https://www.docsy.dev) · **Hugo**: [gohugo.io](https://gohugo.io/documentation)
 

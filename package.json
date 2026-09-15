@@ -4,7 +4,7 @@
   "version.next": "0.0.1-dev.0-unreleased",
   "description": "Railgrid Platform as a Service",
   "repository": "github:railgrid/railgrid",
-  "homepage": "https://faros.sh",
+  "homepage": "https://railgrid.ai",
   "author": "Mangirdas Judeikis",
   "main": "index.js",
   "bugs": "https://github.com/railgrid/railgrid/issues",

@@ -36,7 +36,7 @@ Kuery reads the engaged edges for the authenticated workspace. The hub applies t
 Use a [service-account token](/docs/administration/service-accounts/#create-and-verify) for the target workspace and enter it at the hidden prompt below. Obtain organization and workspace UUIDs from Settings or your administrator; use IDs rather than display names. For self-hosting, replace the hub URL. Replace `<namespace>` with a namespace on an engaged Kubernetes edge.
 
 ```sh
-export RAILGRID_HUB_URL='https://console.faros.sh'
+export RAILGRID_HUB_URL='https://console.railgrid.ai'
 export RAILGRID_ORG_UUID='<organization-uuid>'
 export RAILGRID_WORKSPACE_UUID='<workspace-uuid>'
 RAILGRID_TOKEN="$(python3 -c 'import getpass; print(getpass.getpass("Service-account token: "))')"

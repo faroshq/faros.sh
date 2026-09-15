@@ -4,7 +4,7 @@ description: Install the Railgrid CLI and connect to Railgrid SaaS.
 weight: 5
 ---
 
-The CLI is optional for console-based application and AI-agent tutorials. Use it for terminal workflows and connecting edges. For Railgrid SaaS, the ordinary path is to install the CLI, then run `railgrid login` without a hub URL; the plugin form is equivalent as `kubectl railgrid login`, and both default to `https://console.faros.sh`.
+The CLI is optional for console-based application and AI-agent tutorials. Use it for terminal workflows and connecting edges. For Railgrid SaaS, the ordinary path is to install the CLI, then run `railgrid login` without a hub URL; the plugin form is equivalent as `kubectl railgrid login`, and both default to `https://console.railgrid.ai`.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Install [kubectl](https://kubernetes.io/docs/tasks/tools/) to use the plugin for
 On macOS, Linux, or WSL, run the install script:
 
 ```bash
-curl -fsSL https://downloads.faros.sh/install.sh | sh
+curl -fsSL https://downloads.railgrid.ai/install.sh | sh
 ```
 
 It resolves the latest release, downloads the binary for your operating system and architecture (amd64, arm64, or ppc64le), and installs it as `railgrid` in `~/.local/bin` with no sudo. If that directory is not on your `PATH`, the script prints the line to add. Environment variables adjust the defaults:
@@ -25,7 +25,7 @@ It resolves the latest release, downloads the binary for your operating system a
 | Variable | Effect |
 |:---------|:-------|
 | `RAILGRID_VERSION` | Install a specific release tag instead of the latest, for example the version selected by your hub administrator. |
-| `INSTALL_DIR` | Target directory. For a system-wide install: `curl -fsSL https://downloads.faros.sh/install.sh \| INSTALL_DIR=/usr/local/bin sudo -E sh`. |
+| `INSTALL_DIR` | Target directory. For a system-wide install: `curl -fsSL https://downloads.railgrid.ai/install.sh \| INSTALL_DIR=/usr/local/bin sudo -E sh`. |
 | `RAILGRID_BASE_URL` | Override the binary download base for mirrored installs. The script falls back to GitHub release assets when the primary download fails. |
 
 ### Krew

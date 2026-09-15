@@ -6,7 +6,7 @@ Review date: September 4, 2026 (America/Chicago).
 
 ## Scope and confidence
 
-Reviewed the local `faros.sh` checkout at `e2a65f1` (August 14, 2026) and sibling `railgrid` checkout at `0c79ff47` (September 4, 2026). Both remotes identify the `railgrid` GitHub organization. The comparison inventories public pages and product documentation, and checks selected claims against CLI registrations, API types, provider manifests, and chart configuration.
+Reviewed the local website checkout at `e2a65f1` (August 14, 2026) and sibling `railgrid` checkout at `0c79ff47` (September 4, 2026). Both remotes identify the `railgrid` GitHub organization. The comparison inventories public pages and product documentation, and checks selected claims against CLI registrations, API types, provider manifests, and chart configuration.
 
 “Current” means this product checkout, not a verified released or hosted deployment. A remote HEAD check failed because shell DNS could not resolve GitHub. No deployment, end-to-end execution, or rendered-site usability testing was performed. Repository prose and design plans are supporting evidence, not proof of shipped behavior. Coverage below is qualitative; page counts are not a feature-completeness percentage.
 
@@ -24,7 +24,7 @@ The public site has **30 Markdown files**, including section landing pages, unde
 | Security | 4 | Authentication, tenancy, roles, and service-account overview |
 | Providers | 10 | Substantial provider-author material; one catalog page also carries almost all end-user provider coverage |
 
-The six sidebar groups are maintained separately from page front matter in [docs-sidebar.html](/Users/craigwilhite/github/faros.sh/layouts/partials/docs-sidebar.html). This is manageable at today's size, but every new page has a second registration step. A data-backed navigation manifest with validation would reduce drift; changing the site generator is unnecessary.
+The six sidebar groups are maintained separately from page front matter in [docs-sidebar.html](./layouts/partials/docs-sidebar.html). This is manageable at today's size, but every new page has a second registration step. A data-backed navigation manifest with validation would reduce drift; changing the site generator is unnecessary.
 
 The strongest qualities are concrete commands, consistent page metadata, an approachable entry point, and detailed provider integration explanations. The Cloudflare guide also has verification and symptom-specific troubleshooting. Preserve these qualities.
 
@@ -72,7 +72,7 @@ Fix these before expanding the catalog:
 | Helm guide presents one StatefulSet model and logs a `kcp` container | [Current values](/Users/craigwilhite/github/railgrid/deploy/charts/railgrid-hub/values.yaml) distinguish in-process embedded kcp and external kcp; [workload template](/Users/craigwilhite/github/railgrid/deploy/charts/railgrid-hub/templates/workload.yaml) determines the actual pod layout | Rewrite around explicit embedded/external modes and verified workload/container names; cover portal GraphQL prerequisites |
 | Product README points to GitHub Pages and uses `mcp url --name` | Public site uses `--mcpserver-name`, matching [CLI registration](/Users/craigwilhite/github/railgrid/pkg/cli/cmd/mcp.go:94) | Update product entry links and examples; the product README is not automatically more authoritative than the site |
 
-The [public installation guide](/Users/craigwilhite/github/faros.sh/content/en/docs/getting-started/install.md) also installs a binary named `railgrid` and then implies `kubectl railgrid` will work automatically. Explain that kubectl plugin discovery requires a `kubectl-railgrid` executable or installation through krew, and verify each documented installation path.
+The [public installation guide](./content/en/docs/getting-started/install.md) also installs a binary named `railgrid` and then implies `kubectl railgrid` will work automatically. Explain that kubectl plugin discovery requires a `kubectl-railgrid` executable or installation through krew, and verify each documented installation path.
 
 Some conflicts remain questions for implementation verification, not confirmed bugs: security prose alternates between caller identity and MCPServer service-account credentials, and scope guarantees need to distinguish human sessions, automation identities, and provider controllers. Add an explicit identity/permission matrix instead of repeating broad isolation claims.
 
@@ -88,7 +88,7 @@ Some conflicts remain questions for implementation verification, not confirmed b
 
 These principles do not require four literal top-level Diátaxis folders. For Railgrid, task-oriented navigation is more useful; tutorials, how-to guides, concepts, and reference are editorial types beneath it.
 
-Additional Railgrid-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](/Users/craigwilhite/github/faros.sh/package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
+Additional Railgrid-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](./package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
 
 Search is configured in `hugo.toml`; its discoverability and result quality need rendered testing before making usability claims. Similarly, add a meaningful version/compatibility policy before assuming the existing `version = "0.0"` setting provides one.
 
@@ -155,7 +155,7 @@ Recommended near-term boundary:
 
 | Content | Authoritative source | Public presentation |
 |---|---|---|
-| Tutorials, user/admin/operator guides, explanatory concepts | `faros.sh` content | `faros.sh/docs` |
+| Tutorials, user/admin/operator guides, explanatory concepts | `railgrid.ai` content | `railgrid.ai/docs` |
 | CLI commands, CRDs, chart values, SDK contracts | Versioned code/schema/chart source in `railgrid` | Generated or synchronized reference at the same docs site |
 | Installation examples | Tested scripts in `railgrid`, pinned to a release/commit | Included or reproducibly extracted into the relevant guide |
 | Engineering designs, research, ADRs, implementation plans | Explicit engineering areas in `railgrid/docs` | Linked only when helpful; status labeled and excluded from the primary user path |

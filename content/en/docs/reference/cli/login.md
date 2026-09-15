@@ -10,7 +10,7 @@ weight: 1
 
 | Flag | Description |
 |:-----|:------------|
-| `--hub-url <url>` | Hub URL. Defaults to `https://console.faros.sh`. `https://` is assumed if you omit the scheme. |
+| `--hub-url <url>` | Hub URL. Defaults to `https://console.railgrid.ai`. `https://` is assumed if you omit the scheme. |
 | `--token <token>` | Static bearer token — skips the OIDC browser flow. |
 | `-i, --interactive` | After login, run the organization/workspace picker (same as `railgrid use`). |
 | `--insecure-skip-tls-verify` | Skip TLS verification — only for self-signed dev hubs. |

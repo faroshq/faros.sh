@@ -1,4 +1,4 @@
-# faros.sh site tasks. Day-to-day builds still go through npm scripts; this
+# Railgrid site tasks. Day-to-day builds still go through npm scripts; this
 # file exists for tasks that reach outside the repository.
 
 # Local checkout of github.com/railgrid/railgrid. Its docs/cli directory is

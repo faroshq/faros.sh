@@ -41,39 +41,39 @@
 <!-- Structured data: one Railgrid brand, with the Apache-licensed source identified separately. -->
 {{- $organization := dict
   "@type" "Organization"
-  "@id" "https://faros.sh/#organization"
+  "@id" "https://railgrid.ai/#organization"
   "name" "Railgrid"
-  "url" "https://faros.sh/"
-  "logo" "https://faros.sh/logo.png"
+  "url" "https://railgrid.ai/"
+  "logo" "https://railgrid.ai/logo.png"
   "sameAs" (slice "https://github.com/railgrid")
 -}}
 {{- $website := dict
   "@type" "WebSite"
-  "@id" "https://faros.sh/#website"
+  "@id" "https://railgrid.ai/#website"
   "name" "Railgrid"
-  "url" "https://faros.sh/"
+  "url" "https://railgrid.ai/"
   "description" $desc
-  "publisher" (dict "@id" "https://faros.sh/#organization")
+  "publisher" (dict "@id" "https://railgrid.ai/#organization")
 -}}
 {{- $platform := dict
   "@type" "SoftwareApplication"
-  "@id" "https://faros.sh/#platform"
+  "@id" "https://railgrid.ai/#platform"
   "name" "Railgrid"
   "applicationCategory" "DeveloperApplication"
   "description" $desc
-  "url" "https://faros.sh/platform/"
-  "author" (dict "@id" "https://faros.sh/#organization")
-  "isRelatedTo" (dict "@id" "https://faros.sh/#open-source")
+  "url" "https://railgrid.ai/platform/"
+  "author" (dict "@id" "https://railgrid.ai/#organization")
+  "isRelatedTo" (dict "@id" "https://railgrid.ai/#open-source")
 -}}
 {{- $openSource := dict
   "@type" "SoftwareSourceCode"
-  "@id" "https://faros.sh/#open-source"
+  "@id" "https://railgrid.ai/#open-source"
   "name" "Railgrid Open Source"
   "description" "The Apache 2.0 open-source Railgrid platform."
-  "url" "https://faros.sh/open-source/"
+  "url" "https://railgrid.ai/open-source/"
   "codeRepository" "https://github.com/railgrid/railgrid"
   "license" "https://www.apache.org/licenses/LICENSE-2.0"
-  "author" (dict "@id" "https://faros.sh/#organization")
+  "author" (dict "@id" "https://railgrid.ai/#organization")
 -}}
 {{- $structuredData := dict
   "@context" "https://schema.org"
