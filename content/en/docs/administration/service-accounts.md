@@ -9,7 +9,7 @@ Create a dedicated workspace identity for an automation and verify that it has t
 
 ## Prerequisites
 
-Sign in to Faros SaaS as an administrator of the target workspace. Decide whether the task needs the workspace’s `member` or `admin` role, and have a secret store ready for the credential.
+Sign in to Railgrid SaaS as an administrator of the target workspace. Decide whether the task needs the workspace’s `member` or `admin` role, and have a secret store ready for the credential.
 
 ## Create and verify
 
@@ -29,7 +29,7 @@ The account is listed with the intended role and its credential permits the inte
 
 Configure a separate kubeconfig using the issued workspace endpoint and service-account credential. Keep it outside source control and restrict file access. Use that file explicitly for every check so your personal session cannot mask a permissions problem.
 
-To create that file from an existing [workspace context](/docs/reference/cli/workspaces/), first select the correct workspace with `kubectl faros use`. The following copies its server and CA settings and replaces personal authentication with the token you enter at the hidden prompt. It writes a separate file and does not change your current kubeconfig.
+To create that file from an existing [workspace context](/docs/reference/cli/workspaces/), first select the correct workspace with `kubectl railgrid use`. The following copies its server and CA settings and replaces personal authentication with the token you enter at the hidden prompt. It writes a separate file and does not change your current kubeconfig.
 
 ```bash
 umask 077
@@ -50,11 +50,11 @@ with open("automation.kubeconfig", "x") as output:
 The command refuses to overwrite an existing `automation.kubeconfig`. Treat that file as a secret. For an account intended to read Infrastructure instances:
 
 ```bash
-kubectl --kubeconfig ./automation.kubeconfig auth can-i list instances.infrastructure.faros.sh
-kubectl --kubeconfig ./automation.kubeconfig get instances.infrastructure.faros.sh
+kubectl --kubeconfig ./automation.kubeconfig auth can-i list instances.infrastructure.railgrid.ai
+kubectl --kubeconfig ./automation.kubeconfig get instances.infrastructure.railgrid.ai
 ```
 
-Choose a resource and operation that your policy denies and check it with `auth can-i` as well. The expected results depend on the role you granted; do not grant extra access merely to make the example pass. Repeat both checks after rotating credentials. The Faros CLI has no dedicated service-account creation command in the documented source baseline; retain the supported console creation flow.
+Choose a resource and operation that your policy denies and check it with `auth can-i` as well. The expected results depend on the role you granted; do not grant extra access merely to make the example pass. Repeat both checks after rotating credentials. The Railgrid CLI has no dedicated service-account creation command in the documented source baseline; retain the supported console creation flow.
 
 ## Rotate or remove
 

@@ -1,20 +1,20 @@
 import { createServer } from 'node:http';
-import { createActionsClient } from '@faros/actions-node';
+import { createActionsClient } from '@railgrid/actions-node';
 
 // Run inside an App Studio server runtime with its action environment mounted.
-const required = ['FAROS_ACTIONS_BASE_URL', 'FAROS_PROJECT',
-  'FAROS_ACTIONS_TOKEN_FILE', 'TABLE_INTEGRATION_ALIAS', 'EXPECTED_TABLE_NAME'];
+const required = ['RAILGRID_ACTIONS_BASE_URL', 'RAILGRID_PROJECT',
+  'RAILGRID_ACTIONS_TOKEN_FILE', 'TABLE_INTEGRATION_ALIAS', 'EXPECTED_TABLE_NAME'];
 for (const name of required) {
   if (!process.env[name]) throw new Error(`Missing ${name}`);
 }
-const faros = createActionsClient();
-const table = faros.integration(process.env.TABLE_INTEGRATION_ALIAS);
+const railgrid = createActionsClient();
+const table = railgrid.integration(process.env.TABLE_INTEGRATION_ALIAS);
 function verify(envelope, limit) {
   const result = envelope.result;
   const ref = envelope.resourceRef;
   if (envelope.provider !== 'databricks' || envelope.action !== 'query_table' ||
       ref?.resource !== 'tables' || envelope.actionVersion !== 'v1' || ref?.name !== process.env.EXPECTED_TABLE_NAME ||
-      ref?.apiVersion !== 'databricks.faros.sh/v1alpha1' || ref?.kind !== 'Table' ||
+      ref?.apiVersion !== 'databricks.railgrid.ai/v1alpha1' || ref?.kind !== 'Table' ||
       result?.actionVersion !== 'v1' || result.tableRef !== process.env.EXPECTED_TABLE_NAME ||
       !Array.isArray(result.columns) || result.columns.length > 64 ||
       !result.columns.every(column => typeof column.name === 'string') ||

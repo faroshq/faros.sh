@@ -41,4 +41,4 @@ Projects, Sessions, and Studios are workspace resources. Conversations use the p
 - [API reference](/docs/reference/providers/app-studio/)
 - [Self-host App Studio](/docs/self-hosting/providers/app-studio/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/app-studio/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/app-studio/README.md).

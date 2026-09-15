@@ -4,7 +4,7 @@ description: Authentication, organizations and workspaces, service accounts, pla
 weight: 40
 ---
 
-Three pieces make up faros's security story:
+Three pieces make up Railgrid's security story:
 
 - **Authentication** — how a person or machine proves who they are: a [static token](/docs/self-hosting/hub/static-token/) or [OIDC via Dex](/docs/self-hosting/hub/oidc/).
 - **Tenancy** — where they can act: [organizations, workspaces, memberships, and service accounts](/docs/administration/workspaces/). Every identity gets a personal organization automatically, so single-user hubs never have to think about this.

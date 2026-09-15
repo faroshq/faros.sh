@@ -1,17 +1,17 @@
 {{ $groups := slice
   (dict "title" "Choose your first task" "paths" (slice "docs/use/app-studio/quickstart" "docs/use/agents/quickstart" "docs/use/edges/quickstart" "docs/use/infrastructure/quickstart"))
-  (dict "title" "Understand Faros" "paths" (slice "docs/get-started/what-is-faros" "docs/get-started/workspaces"))
+  (dict "title" "Understand Railgrid" "paths" (slice "docs/get-started/what-is-railgrid" "docs/get-started/workspaces"))
   (dict "title" "Connect your tools" "description" "Optional: connect an external AI assistant or use the CLI when your task calls for it." "paths" (slice "docs/use/ai-assistants" "docs/get-started/install"))
 }}
-{{ $console := site.Params.brand.console_url | default "https://console.faros.sh/" }}
+{{ $console := site.Params.brand.console_url | default "https://console.railgrid.ai/" }}
 <div class="docs-guide-directory">
   <section class="docs-guide-group" id="choose-where-to-run" aria-labelledby="docs-guide-run-title">
-    <h2 id="docs-guide-run-title">Choose where to run Faros</h2>
-    <p class="docs-guide-description">You use the same CLI and console on each option. Start with SaaS unless you need Faros on your own machine or infrastructure.</p>
+    <h2 id="docs-guide-run-title">Choose where to run Railgrid</h2>
+    <p class="docs-guide-description">You use the same CLI and console on each option. Start with SaaS unless you need Railgrid on your own machine or infrastructure.</p>
     <div class="docs-guide-grid">
       <a class="docs-guide-card" href="{{ $console }}">
         <span class="docs-guide-card-label">Recommended</span>
-        <h3>Faros SaaS</h3>
+        <h3>Railgrid SaaS</h3>
         <p>Sign in to the hosted hub and start building. Nothing to install or operate.</p>
         <span class="docs-guide-card-cta">Open console <span aria-hidden="true">→</span></span>
       </a>
@@ -19,8 +19,8 @@
       <a class="docs-guide-card" href="{{ .RelPermalink }}">
         <span class="docs-guide-card-label">Local</span>
         <h3>Run on your laptop</h3>
-        <p>Create a self-contained hub, providers, and edge in one kind cluster with <code>faros dev init</code>.</p>
-        <span class="docs-guide-card-cta">Run Faros locally <span aria-hidden="true">→</span></span>
+        <p>Create a self-contained hub, providers, and edge in one kind cluster with <code>railgrid dev init</code>.</p>
+        <span class="docs-guide-card-cta">Run Railgrid locally <span aria-hidden="true">→</span></span>
       </a>
       {{ end }}
       {{ with site.GetPage "docs/self-hosting" }}

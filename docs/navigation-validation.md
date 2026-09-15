@@ -4,7 +4,7 @@
 
 The implemented navigation follows the approved five primary destinations and four secondary destinations. Each provider has a local sidebar; hosting instructions stay under Self-hosting. A lightweight [navigation prototype](navigation-prototype.html) was created and inspected before the full documentation shell was implemented. Open the HTML file locally to review the tree without the site styling.
 
-Content was checked against the local Faros source at `0c79ff47`. Versioned source links distinguish implementation evidence from release or hosted-service availability. Product workflows were not exercised against a running hub. The release-notes destination explicitly records that limitation rather than inventing release history.
+Content was checked against the local Railgrid source at `0c79ff47`. Versioned source links distinguish implementation evidence from release or hosted-service availability. Product workflows were not exercised against a running hub. The release-notes destination explicitly records that limitation rather than inventing release history.
 
 ## Repeatable checks
 
@@ -27,11 +27,11 @@ Recruit five people unfamiliar with the navigation. Give them these tasks withou
 
 | Task | Intended destination | Unaided successes |
 | --- | --- | --- |
-| Find and start building an application | Use Faros / App Studio / Quickstart | Pending / 5 |
-| Find how to schedule an AI agent | Use Faros / AI agents / Schedules and triggers | Pending / 5 |
+| Find and start building an application | Use Railgrid / App Studio / Quickstart | Pending / 5 |
+| Find how to schedule an AI agent | Use Railgrid / AI agents / Schedules and triggers | Pending / 5 |
 | Add a teammate to a workspace | Administration / Add a teammate and manage roles | Pending / 5 |
 | Self-host an existing provider | Self-hosting / Providers / selected provider | Pending / 5 |
-| Build a new provider | Extend Faros / Build your first provider | Pending / 5 |
+| Build a new provider | Extend Railgrid / Build your first provider | Pending / 5 |
 | Use Databricks from an application, starting from both providers | App Studio / Build an application using Databricks data | Pending / 5 |
 | Open a provider reference URL and identify provider, prerequisites, and related guide | Provider reference with breadcrumb, local sidebar, and contextual links | Pending / 5 |
 

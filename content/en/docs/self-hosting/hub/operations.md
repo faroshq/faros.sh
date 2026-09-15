@@ -13,7 +13,7 @@ For an unavailable capability, inspect its pod events and logs, hub registration
 
 ## Inspect the hosting cluster from the CLI
 
-These commands use the Kubernetes context that hosts the hub/provider pods, **not a Faros workspace or connected-edge context**. Replace `HOSTING-CONTEXT`, `NAMESPACE`, `POD-NAME`, and `CONTAINER-NAME` with your deployment's values.
+These commands use the Kubernetes context that hosts the hub/provider pods, **not a Railgrid workspace or connected-edge context**. Replace `HOSTING-CONTEXT`, `NAMESPACE`, `POD-NAME`, and `CONTAINER-NAME` with your deployment's values.
 
 ```bash
 kubectl --context HOSTING-CONTEXT get pods -n NAMESPACE

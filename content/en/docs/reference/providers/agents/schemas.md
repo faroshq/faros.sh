@@ -8,7 +8,7 @@ provider: "agents"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## Agent (v1alpha1)
 
-API: `agents.faros.sh/v1alpha1` · Resource: `agents` · Scope: `Cluster`
+API: `agents.railgrid.ai/v1alpha1` · Resource: `agents` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/agents.agents.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/agents.agents.railgrid.ai.yaml)
 
 ```bash
-kubectl explain agents.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
+kubectl explain agents.agents.railgrid.ai --api-version=agents.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -48,7 +48,7 @@ kubectl explain agents.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --
 | `spec.memory.enabled` | boolean | No | Enabled turns on long-term memory notes. Defaults to true. default: true |
 | `spec.memory.maxNotes` | integer | No | MaxNotes bounds how many memory notes may be injected into a run's context. Zero uses the provider default. minimum: 0 |
 | `spec.modelFallbacks` | array&#91;string&#93; | No | ModelFallbacks is an ordered list of additional model-credential names tried, in order, when the primary chat model (models&#91;"chat"&#93;) fails to respond — a provider outage, rate limit, timeout, or connection error. The first credential that responds is used. Streaming only falls back before the first token is emitted. Empty means no fallback. |
-| `spec.models` | object | No | Models maps run purposes to named profiles in the tenant's model credentials Secret (faros-agents-llm). Recognized purposes: "chat" (interactive, strong), "background" (schedules/heartbeats, cheap), "compaction" (summarization). An empty map falls back to the "chat" profile for every purpose. |
+| `spec.models` | object | No | Models maps run purposes to named profiles in the tenant's model credentials Secret (railgrid-agents-llm). Recognized purposes: "chat" (interactive, strong), "background" (schedules/heartbeats, cheap), "compaction" (summarization). An empty map falls back to the "chat" profile for every purpose. |
 | `spec.systemPrompt` | string | No | SystemPrompt is the agent's persona and standing instructions, injected at the head of every run. maxLength: 32768 |
 | `spec.tools` | object | No | Tools grants tool families and connections to the agent, per trigger class. Unattended runs (schedule/heartbeat/wakeup) default to read-only. |
 | `spec.tools.background` | object | No | Background applies to schedule, heartbeat, and wakeup runs. Defaults to read-only families plus notify when unset. |
@@ -73,12 +73,12 @@ kubectl explain agents.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --
 
 ## Connection (v1alpha1)
 
-API: `agents.faros.sh/v1alpha1` · Resource: `connections` · Scope: `Cluster`
+API: `agents.railgrid.ai/v1alpha1` · Resource: `connections` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/connections.agents.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/connections.agents.railgrid.ai.yaml)
 
 ```bash
-kubectl explain connections.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
+kubectl explain connections.agents.railgrid.ai --api-version=agents.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -94,7 +94,7 @@ kubectl explain connections.agents.faros.sh --api-version=agents.faros.sh/v1alph
 | `spec.oauth.provider` | string | Yes | Provider names the OAuth provider preset: "github", "google", "slack". enum: &#91;"github", "google", "slack"&#93; |
 | `spec.oauth.scopes` | array&#91;string&#93; | No | Scopes requested during authorization. |
 | `spec.oauth.tokenURL` | string | No | maxLength: 2048 |
-| `spec.secretRef` | string | No | SecretRef names the tenant-workspace Secret holding this connection's credentials. Defaults to faros-agents-conn-&lt;connection-name&gt; when empty. maxLength: 253 |
+| `spec.secretRef` | string | No | SecretRef names the tenant-workspace Secret holding this connection's credentials. Defaults to railgrid-agents-conn-&lt;connection-name&gt; when empty. maxLength: 253 |
 | `spec.type` | string | Yes | Type selects the integration: github, mcp, websearch, http, telegram, slack, smtp, or discord. enum: &#91;"github", "mcp", "websearch", "edges", "http", "telegram", "slack", "smtp", "discord"&#93; |
 | `status` | object | No | ConnectionStatus is the observed connection state. |
 | `status.message` | string | No | Message explains a non-Ready phase. |
@@ -106,12 +106,12 @@ kubectl explain connections.agents.faros.sh --api-version=agents.faros.sh/v1alph
 
 ## Schedule (v1alpha1)
 
-API: `agents.faros.sh/v1alpha1` · Resource: `schedules` · Scope: `Cluster`
+API: `agents.railgrid.ai/v1alpha1` · Resource: `schedules` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/schedules.agents.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/schedules.agents.railgrid.ai.yaml)
 
 ```bash
-kubectl explain schedules.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
+kubectl explain schedules.agents.railgrid.ai --api-version=agents.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -138,12 +138,12 @@ kubectl explain schedules.agents.faros.sh --api-version=agents.faros.sh/v1alpha1
 
 ## Toolset (v1alpha1)
 
-API: `agents.faros.sh/v1alpha1` · Resource: `toolsets` · Scope: `Cluster`
+API: `agents.railgrid.ai/v1alpha1` · Resource: `toolsets` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/toolsets.agents.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/toolsets.agents.railgrid.ai.yaml)
 
 ```bash
-kubectl explain toolsets.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
+kubectl explain toolsets.agents.railgrid.ai --api-version=agents.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -159,12 +159,12 @@ kubectl explain toolsets.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 
 
 ## Trigger (v1alpha1)
 
-API: `agents.faros.sh/v1alpha1` · Resource: `triggers` · Scope: `Cluster`
+API: `agents.railgrid.ai/v1alpha1` · Resource: `triggers` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/triggers.agents.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/agents/deploy/chart/files/schemas/triggers.agents.railgrid.ai.yaml)
 
 ```bash
-kubectl explain triggers.agents.faros.sh --api-version=agents.faros.sh/v1alpha1 --recursive
+kubectl explain triggers.agents.railgrid.ai --api-version=agents.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |

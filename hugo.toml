@@ -1,5 +1,5 @@
-baseURL = "https://faros.sh"
-#title = "Faros"
+baseURL = "https://railgrid.ai"
+#title = "Railgrid"
 
 # Language settings
 contentDir = "content/en"
@@ -59,17 +59,17 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 [languages.en.params]
-title = "Faros"
-description = "Build applications, run agents, and connect infrastructure with Faros, an open-source control plane with isolated workspaces and provider tools."
+title = "Railgrid"
+description = "Build applications, run agents, and connect infrastructure with Railgrid, an open-source control plane with isolated workspaces and provider tools."
 
 [params.brand]
-console_url = "https://console-dev.faros.sh/"
-open_source_repo = "https://github.com/faroshq/faros"
+console_url = "https://console-dev.railgrid.ai/"
+open_source_repo = "https://github.com/railgrid/railgrid"
 #[languages.no]
 ##languageName ="Norsk"
 #contentDir = "content/no"
 #[languages.no.params]
-#title = "Faros"
+#title = "Railgrid"
 #time_format_default = "02.01.2006"
 #time_format_blog = "02.01.2006"
 
@@ -128,9 +128,9 @@ version = "0.0"
 #url_latest_version = "https://example.com"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/faroshq/faros.sh"
+github_repo = "https://github.com/railgrid/website"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/faroshq/faros"
+github_project_repo = "https://github.com/railgrid/railgrid"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
@@ -149,7 +149,7 @@ offlineSearch = false
 prism_syntax_highlighting = true
 
 [params.copyright]
-  authors = "faros authors"
+  authors = "Railgrid authors"
   from_year = 2022
 
 # User interface configuration
@@ -174,8 +174,8 @@ showLightDarkModeMenu = true
 [params.ui.feedback]
 enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/faroshq/faros/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/faroshq/faros/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/railgrid/railgrid/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/railgrid/railgrid/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page,
@@ -193,7 +193,7 @@ enable = false
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/faroshq"
+  url = "https://github.com/railgrid"
   icon = "fab fa-github"
   desc = "Development takes place here!"
 

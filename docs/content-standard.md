@@ -1,6 +1,6 @@
 # Product documentation standard
 
-Write for the person performing the task. Start ordinary product workflows in Faros SaaS; mention an organization's self-hosted hub as an alternative when it changes sign-in or prerequisites. Do not make a SaaS user install provider services, configure server runtimes, or inspect control-plane objects to complete a console task.
+Write for the person performing the task. Start ordinary product workflows in Railgrid SaaS; mention an organization's self-hosted hub as an alternative when it changes sign-in or prerequisites. Do not make a SaaS user install provider services, configure server runtimes, or inspect control-plane objects to complete a console task.
 
 ## Task guides and tutorials
 
@@ -27,12 +27,12 @@ Directory overviews need a short purpose and well-grouped links. Do not add fill
 
 Check UI steps against the relevant portal component and technical claims against API types, handlers, CLI registrations, charts, or tests. Source behavior is not proof that an exact version is deployed to SaaS. If availability is uncertain, state the actual prerequisite and a way to verify it; avoid vague instructions such as “configure the runtime” or “use the supported flow.”
 
-Distinguish a declared configuration from a reconciled result; an authentication success from authorization; and deletion of a Faros resource from removal of external data. Do not expose tokens in sample output.
+Distinguish a declared configuration from a reconciled result; an authentication success from authorization; and deletion of a Railgrid resource from removal of external data. Do not expose tokens in sample output.
 
 For generated schemas, pass an explicit product revision:
 
 ```sh
-python3 scripts/generate-docs-schemas.py /path/to/faros --revision COMMIT
+python3 scripts/generate-docs-schemas.py /path/to/railgrid --revision COMMIT
 ```
 
 The generator records the resolved commit in the page and JSON bundle and pins source links to it. Review changes before committing. Missing source descriptions must be identified honestly; explain important usage constraints in the API overview rather than inventing schema semantics.
@@ -44,8 +44,8 @@ Review the rendered guide, its copyable examples, related links, Markdown export
 When a local Hugo server is running, build into an isolated directory so cleaning generated files does not break its assets:
 
 ```sh
-npm run _hugo-dev -- --destination /tmp/faros-docs-review
-python3 scripts/check-docs.py /tmp/faros-docs-review
-DOCS_BUILD=/tmp/faros-docs-review node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs
+npm run _hugo-dev -- --destination /tmp/railgrid-docs-review
+python3 scripts/check-docs.py /tmp/railgrid-docs-review
+DOCS_BUILD=/tmp/railgrid-docs-review node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs
 python3 tests/docs-schemas.test.py
 ```

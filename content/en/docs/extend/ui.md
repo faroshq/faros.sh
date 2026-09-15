@@ -1,6 +1,6 @@
 ---
 title: Building the UI
-description: The custom-element contract, farosContext, navigation, and asset serving.
+description: The custom-element contract, railgridContext, navigation, and asset serving.
 weight: 6
 ---
 
@@ -13,15 +13,15 @@ Any framework works behind the element — quickstart is vanilla TS, most shippe
 When a user navigates to `/providers/<name>`, the portal:
 
 1. Injects a one-shot `<script src="/ui/providers/<name>/main.js">` (cache-busted with `?v=`).
-2. Waits for `customElements.whenDefined('faros-provider-<name>')`.
-3. Appends the element and sets **`element.farosContext` as a JS property** — the setter is your render trigger.
-4. Re-sets `farosContext` on theme toggle, token refresh, and workspace switch — handle partial updates.
-5. Listens for `faros-navigate` CustomEvents bubbling up to drive the portal's router/history.
+2. Waits for `customElements.whenDefined('railgrid-provider-<name>')`.
+3. Appends the element and sets **`element.railgridContext` as a JS property** — the setter is your render trigger.
+4. Re-sets `railgridContext` on theme toggle, token refresh, and workspace switch — handle partial updates.
+5. Listens for `railgrid-navigate` CustomEvents bubbling up to drive the portal's router/history.
 
 The context shape:
 
 ```ts
-export interface FarosContext {
+export interface RailgridContext {
   token?: string | null                        // caller's bearer token
   user?: { email?: string; sub?: string } | null
   tenant?: string | null                       // active workspace (logical cluster)
@@ -40,7 +40,7 @@ Straight from the quickstart provider (`portal/src/main.ts` + `element.ts`):
 import { QuickstartElement } from './element'
 import styles from './style.css?raw'
 
-const TAG = 'faros-provider-quickstart'
+const TAG = 'railgrid-provider-quickstart'
 
 if (!customElements.get(TAG)) {          // re-execution must be a no-op
   const s = document.createElement('style')
@@ -53,13 +53,13 @@ if (!customElements.get(TAG)) {          // re-execution must be a no-op
 ```ts
 // element.ts — property setter drives rendering
 export class QuickstartElement extends HTMLElement {
-  private _ctx: FarosContext | null = null
+  private _ctx: RailgridContext | null = null
 
-  set farosContext(v: FarosContext | null) {
+  set railgridContext(v: RailgridContext | null) {
     this._ctx = v
     this._render()
   }
-  get farosContext() { return this._ctx }
+  get railgridContext() { return this._ctx }
 
   connectedCallback() { this._render() }
   // ...
@@ -92,7 +92,7 @@ export default defineConfig({
     lib: {
       entry: 'src/main.ts',
       formats: ['iife'],                 // side effects run without a module loader
-      name: 'FarosProviderQuickstart',
+      name: 'RailgridProviderQuickstart',
       fileName: () => 'main.js',         // no hash — the portal URL is stable
     },
     rollupOptions: {
@@ -109,12 +109,12 @@ Why these choices: IIFE registers the element the moment the script runs; the un
 
 ## Navigation and sub-pages
 
-Declare sub-nav in your CatalogEntry (`ui.children: [{displayName: "Repositories", builtinRoute: "repositories"}]`); the portal renders the items in the sidebar and passes the active child to your element via `farosContext.subPath`. Internal navigation flows the other way: dispatch a bubbling `faros-navigate` CustomEvent with `{detail: {path}}` and the portal updates the browser URL. Keep your internal router (if any) on memory history — the portal owns the address bar.
+Declare sub-nav in your CatalogEntry (`ui.children: [{displayName: "Repositories", builtinRoute: "repositories"}]`); the portal renders the items in the sidebar and passes the active child to your element via `railgridContext.subPath`. Internal navigation flows the other way: dispatch a bubbling `railgrid-navigate` CustomEvent with `{detail: {path}}` and the portal updates the browser URL. Keep your internal router (if any) on memory history — the portal owns the address bar.
 
 ## Styling
 
-- Light DOM: your CSS shares the page. Namespace every selector under your element tag (`faros-provider-quickstart .panel {...}`).
-- Use the portal's CSS variables for colors and spacing so theme switches (light/dark) just work; re-render on `farosContext.theme` changes for anything computed.
+- Light DOM: your CSS shares the page. Namespace every selector under your element tag (`railgrid-provider-quickstart .panel {...}`).
+- Use the portal's CSS variables for colors and spacing so theme switches (light/dark) just work; re-render on `railgridContext.theme` changes for anything computed.
 
 ## Serving the assets
 

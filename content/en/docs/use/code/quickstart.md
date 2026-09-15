@@ -5,11 +5,11 @@ weight: 1
 doc_type: "Tutorial"
 ---
 
-Connect your GitHub account to Faros and create a test repository whose owner and visibility you can verify in GitHub.
+Connect your GitHub account to Railgrid and create a test repository whose owner and visibility you can verify in GitHub.
 
 ## Prerequisites
 
-Sign in to Faros SaaS, enable **Code** and select the workspace that will own the repository resource. You need a GitHub credential that can perform the intended action for the selected user or organization.
+Sign in to Railgrid SaaS, enable **Code** and select the workspace that will own the repository resource. You need a GitHub credential that can perform the intended action for the selected user or organization.
 
 ## Connect and create
 
@@ -20,9 +20,9 @@ Sign in to Faros SaaS, enable **Code** and select the workspace that will own th
 
 ## Expected result and recovery
 
-The repository appears in Faros and in the intended GitHub account with the chosen visibility.
+The repository appears in Railgrid and in the intended GitHub account with the chosen visibility.
 
-If GitHub rejects the request, inspect the connection and upstream organization policy. Faros workspace permissions do not override GitHub permissions.
+If GitHub rejects the request, inspect the connection and upstream organization policy. Railgrid workspace permissions do not override GitHub permissions.
 
 Deleting a managed repository also removes it from GitHub. Preserve any content you want to keep before removing the test repository.
 
@@ -31,10 +31,10 @@ Deleting a managed repository also removes it from GitHub. Preserve any content 
 Select the [same workspace](/docs/reference/cli/resources/) and discover its provider API:
 
 ```bash
-kubectl api-resources --api-group=code.faros.sh
-kubectl get connections.code.faros.sh
-kubectl get repositories.code.faros.sh
-kubectl get repositories.code.faros.sh RESOURCE-NAME -o yaml
+kubectl api-resources --api-group=code.railgrid.ai
+kubectl get connections.code.railgrid.ai
+kubectl get repositories.code.railgrid.ai
+kubectl get repositories.code.railgrid.ai RESOURCE-NAME -o yaml
 ```
 
 Replace `RESOURCE-NAME` with the object you created. Inspect its status, reported conditions, and resource references to trace setup failures. An empty list is different from a forbidden request or missing API. Keep credentials in the supported connection flow; do not copy connection secrets into example manifests or shared diagnostic output.

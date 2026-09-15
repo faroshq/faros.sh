@@ -1,12 +1,12 @@
 ---
 title: "Get started"
-description: "Understand Faros and complete your first task."
+description: "Understand Railgrid and complete your first task."
 weight: 1
 doc_type: "Overview"
 landing: "get-started"
 ---
 
-Choose where to run Faros, then pick a quickstart. The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
+Choose where to run Railgrid, then pick a quickstart. The application and AI-agent tutorials use the console; install the CLI only when your task calls for it.
 
 If your organization already runs a [self-hosted hub](/docs/self-hosting/), use the URL and sign-in method supplied by its administrator.
 

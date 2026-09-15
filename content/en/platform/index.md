@@ -1,6 +1,6 @@
 ---
-title: "The Faros Platform — Build on Your Company’s Systems"
-description: "Give teams a shared foundation for AI-built apps and agents. Connect company data, tools, and infrastructure with Faros workspaces and extensible providers."
+title: "The Railgrid Platform — Build on Your Company’s Systems"
+description: "Give teams a shared foundation for AI-built apps and agents. Connect company data, tools, and infrastructure with Railgrid workspaces and extensible providers."
 layout: marketing-hub
 hero:
   eyebrow: "Platform"
@@ -43,24 +43,24 @@ sections:
   - id: "providers"
     eyebrow: "Extend the foundation"
     title: "Connect your own services through providers."
-    summary: "Bring an internal service into Faros and make it available to the workspaces that need it. Providers can supply resource APIs, portal interfaces, tools for AI assistants, and actions that applications can call. Your team implements the service integration; Faros supplies the framework for making it available."
+    summary: "Bring an internal service into Railgrid and make it available to the workspaces that need it. Providers can supply resource APIs, portal interfaces, tools for AI assistants, and actions that applications can call. Your team implements the service integration; Railgrid supplies the framework for making it available."
     primary:
       label: "Explore provider development"
       url: "/developers/"
   - id: "deployment"
     eyebrow: "Deployment and operations"
-    title: "Choose where Faros runs and who operates it."
-    summary: "Run Faros yourself or talk to us about a Faros-operated control plane. Choose where providers and workloads run to fit your company’s infrastructure and operating requirements."
+    title: "Choose where Railgrid runs and who operates it."
+    summary: "Run Railgrid yourself or talk to us about a Railgrid-operated control plane. Choose where providers and workloads run to fit your company’s infrastructure and operating requirements."
     cards:
-      - title: "Operate Faros yourself"
+      - title: "Operate Railgrid yourself"
         summary: "Deploy the open-source platform on your Kubernetes infrastructure. Your team manages configuration, upgrades, storage, and operations."
         url: "/docs/self-hosting/"
         link_label: "Explore self-hosting"
       - title: "Bring your own providers"
-        summary: "Operate providers that connect to your company’s services and infrastructure. Register them with Faros and make their capabilities available to selected workspaces."
+        summary: "Operate providers that connect to your company’s services and infrastructure. Register them with Railgrid and make their capabilities available to selected workspaces."
         url: "/docs/self-hosting/providers/"
         link_label: "Explore provider hosting"
-      - title: "Work with the Faros team"
+      - title: "Work with the Railgrid team"
         summary: "Discuss a hosted control plane, deployment help, or an initial rollout. Start with the applications your teams want to build and the systems they need to use."
         url: "/contact/"
         link_label: "Discuss deployment options"
@@ -73,5 +73,5 @@ closing:
     url: "/contact/"
   secondary:
     label: "Explore the architecture"
-    url: "/docs/get-started/what-is-faros/#how-faros-works"
+    url: "/docs/get-started/what-is-railgrid/#how-railgrid-works"
 ---

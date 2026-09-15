@@ -8,15 +8,15 @@ import { join, resolve } from 'node:path';
 import { once } from 'node:events';
 
 // Test the published example against the actual SDK at the documented baseline.
-// Set FAROS_PRODUCT_REPO to run this contract test outside the sibling checkout.
-const product = process.env.FAROS_PRODUCT_REPO;
+// Set RAILGRID_PRODUCT_REPO to run this contract test outside the sibling checkout.
+const product = process.env.RAILGRID_PRODUCT_REPO;
 const revision = JSON.parse(readFileSync(new URL('../static/schemas/databricks.json', import.meta.url), 'utf8')).revision;
 for (const mode of ['success', 'denied', 'wrong-table']) {
   test(`Databricks example: ${mode}`, { skip: !product, timeout: 10000 }, async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'faros-docs-example-'));
+    const dir = await mkdtemp(join(tmpdir(), 'railgrid-docs-example-'));
     let child;
     try {
-      const sdk = join(dir, 'node_modules/@faros/actions-node');
+      const sdk = join(dir, 'node_modules/@railgrid/actions-node');
       await mkdir(sdk, { recursive: true });
       await writeFile(join(sdk, 'package.json'), JSON.stringify({ type: 'module', exports: './index.mjs' }));
       await writeFile(join(sdk, 'index.mjs'), execFileSync('git', ['-C', product, 'show', `${revision}:provider-sdk/actions-node/index.mjs`]));
@@ -29,7 +29,7 @@ globalThis.fetch = async (url, options) => {
   if (!String(url).endsWith('/api/projects/test-project/integrations/sales/invoke')) throw Error('Wrong route');
   const envelope = {
     requestID: 'request-test', provider: 'databricks', action: 'query_table', actionVersion: 'v1',
-    resourceRef: { name: process.env.TEST_MODE === 'wrong-table' ? 'wrong' : 'orders', apiVersion: 'databricks.faros.sh/v1alpha1', kind: 'Table', resource: 'tables' },
+    resourceRef: { name: process.env.TEST_MODE === 'wrong-table' ? 'wrong' : 'orders', apiVersion: 'databricks.railgrid.ai/v1alpha1', kind: 'Table', resource: 'tables' },
     result: { actionVersion: 'v1', tableRef: 'orders', columns: [{ name: 'order_id', type: 'STRING' }], rows: [{ order_id: 'private-row-value' }] }
   };
   if (++calls > 1 && process.env.TEST_MODE === 'denied') {
@@ -43,8 +43,8 @@ if (!server.listening) await new Promise(resolve => server.once('listening', res
 process.send({ port: server.address().port });
 `);
       child = fork(join(dir, 'runner.mjs'), [], { silent: true, env: { ...process.env,
-        FAROS_ACTIONS_BASE_URL: 'https://gateway.example.com', FAROS_PROJECT: 'test-project',
-        FAROS_ACTIONS_TOKEN_FILE: join(dir, 'token'), TABLE_INTEGRATION_ALIAS: 'sales',
+        RAILGRID_ACTIONS_BASE_URL: 'https://gateway.example.com', RAILGRID_PROJECT: 'test-project',
+        RAILGRID_ACTIONS_TOKEN_FILE: join(dir, 'token'), TABLE_INTEGRATION_ALIAS: 'sales',
         EXPECTED_TABLE_NAME: 'orders', PORT: '0', TEST_MODE: mode } });
       let output = '';
       child.stderr.on('data', chunk => { output += chunk; });

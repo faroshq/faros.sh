@@ -2,15 +2,15 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/edges/deploy/chart/files/schemas/kubernetesclusters.edges.faros.sh.yaml",
+      "source": "providers/edges/deploy/chart/files/schemas/kubernetesclusters.edges.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260715-d4e8aa2.kubernetesclusters.edges.faros.sh"
+          "name": "v260715-d4e8aa2.kubernetesclusters.edges.railgrid.ai"
         },
         "spec": {
-          "group": "edges.faros.sh",
+          "group": "edges.railgrid.ai",
           "names": {
             "kind": "KubernetesCluster",
             "listKind": "KubernetesClusterList",
@@ -53,7 +53,7 @@
               ],
               "name": "v1alpha1",
               "schema": {
-                "description": "KubernetesCluster is a managed Kubernetes cluster reachable through the hub\nvia an outbound reverse tunnel from its agent.\n\nAgents register via the provider's agent-ingress endpoint:\n\n\t/services/providers/edges/agent/{cluster}/apis/edges.faros.sh/v1alpha1/kubernetesclusters/{name}/proxy\n\nUsers access it via the k8s subresource:\n\n\t/services/providers/edges/edgeproxy/clusters/{cluster}/apis/edges.faros.sh/v1alpha1/kubernetesclusters/{name}/k8s",
+                "description": "KubernetesCluster is a managed Kubernetes cluster reachable through the hub\nvia an outbound reverse tunnel from its agent.\n\nAgents register via the provider's agent-ingress endpoint:\n\n\t/services/providers/edges/agent/{cluster}/apis/edges.railgrid.ai/v1alpha1/kubernetesclusters/{name}/proxy\n\nUsers access it via the k8s subresource:\n\n\t/services/providers/edges/edgeproxy/clusters/{cluster}/apis/edges.railgrid.ai/v1alpha1/kubernetesclusters/{name}/k8s",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -87,7 +87,7 @@
                         "type": "string"
                       },
                       "agentVersion": {
-                        "description": "AgentVersion is the version of the faros binary on the agent.",
+                        "description": "AgentVersion is the version of the railgrid binary on the agent.",
                         "type": "string"
                       },
                       "conditions": {
@@ -197,15 +197,15 @@
       }
     },
     {
-      "source": "providers/edges/deploy/chart/files/schemas/linuxservers.edges.faros.sh.yaml",
+      "source": "providers/edges/deploy/chart/files/schemas/linuxservers.edges.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260715-d4e8aa2.linuxservers.edges.faros.sh"
+          "name": "v260715-d4e8aa2.linuxservers.edges.railgrid.ai"
         },
         "spec": {
-          "group": "edges.faros.sh",
+          "group": "edges.railgrid.ai",
           "names": {
             "kind": "LinuxServer",
             "listKind": "LinuxServerList",
@@ -248,7 +248,7 @@
               ],
               "name": "v1alpha1",
               "schema": {
-                "description": "LinuxServer is a managed bare-metal/VM Linux host reachable through the hub\nvia an outbound reverse tunnel from its agent, accessed over SSH.\n\nAgents register via the provider's agent-ingress endpoint:\n\n\t/services/providers/edges/agent/{cluster}/apis/edges.faros.sh/v1alpha1/linuxservers/{name}/proxy\n\nUsers access it via the ssh subresource:\n\n\t/services/providers/edges/edgeproxy/clusters/{cluster}/apis/edges.faros.sh/v1alpha1/linuxservers/{name}/ssh",
+                "description": "LinuxServer is a managed bare-metal/VM Linux host reachable through the hub\nvia an outbound reverse tunnel from its agent, accessed over SSH.\n\nAgents register via the provider's agent-ingress endpoint:\n\n\t/services/providers/edges/agent/{cluster}/apis/edges.railgrid.ai/v1alpha1/linuxservers/{name}/proxy\n\nUsers access it via the ssh subresource:\n\n\t/services/providers/edges/edgeproxy/clusters/{cluster}/apis/edges.railgrid.ai/v1alpha1/linuxservers/{name}/ssh",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -320,7 +320,7 @@
                         "type": "string"
                       },
                       "agentVersion": {
-                        "description": "AgentVersion is the version of the faros binary on the agent.",
+                        "description": "AgentVersion is the version of the railgrid binary on the agent.",
                         "type": "string"
                       },
                       "conditions": {
@@ -477,15 +477,15 @@
       }
     },
     {
-      "source": "providers/edges/deploy/chart/files/schemas/placements.edges.faros.sh.yaml",
+      "source": "providers/edges/deploy/chart/files/schemas/placements.edges.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260718-e83a64f.placements.edges.faros.sh"
+          "name": "v260718-e83a64f.placements.edges.railgrid.ai"
         },
         "spec": {
-          "group": "edges.faros.sh",
+          "group": "edges.railgrid.ai",
           "names": {
             "kind": "Placement",
             "listKind": "PlacementList",
@@ -680,15 +680,15 @@
       }
     },
     {
-      "source": "providers/edges/deploy/chart/files/schemas/services.edges.faros.sh.yaml",
+      "source": "providers/edges/deploy/chart/files/schemas/services.edges.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260820-ca9b3456.services.edges.faros.sh"
+          "name": "v260820-ca9b3456.services.edges.railgrid.ai"
         },
         "spec": {
-          "group": "edges.faros.sh",
+          "group": "edges.railgrid.ai",
           "names": {
             "kind": "Service",
             "listKind": "ServiceList",
@@ -736,7 +736,7 @@
               ],
               "name": "v1alpha1",
               "schema": {
-                "description": "Service is an HTTP service running on the host next to an edge agent\n(e.g. Home Assistant on a LinuxServer). The edges provider proxies to it\nthrough the reverse tunnel and, for known types, exposes MCP tools so AI\nagents can drive it.\n\nDiscovery-created objects are named \"<edge>-<type>\" and carry the labels\nedges.faros.sh/edge=<edge> and edges.faros.sh/discovered=true.\nUsers may also create Services manually.",
+                "description": "Service is an HTTP service running on the host next to an edge agent\n(e.g. Home Assistant on a LinuxServer). The edges provider proxies to it\nthrough the reverse tunnel and, for known types, exposes MCP tools so AI\nagents can drive it.\n\nDiscovery-created objects are named \"<edge>-<type>\" and carry the labels\nedges.railgrid.ai/edge=<edge> and edges.railgrid.ai/discovered=true.\nUsers may also create Services manually.",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -982,15 +982,15 @@
       }
     },
     {
-      "source": "providers/edges/deploy/chart/files/schemas/workloads.edges.faros.sh.yaml",
+      "source": "providers/edges/deploy/chart/files/schemas/workloads.edges.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260718-e83a64f.workloads.edges.faros.sh"
+          "name": "v260718-e83a64f.workloads.edges.railgrid.ai"
         },
         "spec": {
-          "group": "edges.faros.sh",
+          "group": "edges.railgrid.ai",
           "names": {
             "kind": "Workload",
             "listKind": "WorkloadList",

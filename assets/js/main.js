@@ -149,5 +149,5 @@ document
     if (!highlightDiv.closest(".docs-code-block")) createCopyButton(highlightDiv);
   });
 
-// All faros marketing-site copy buttons are wired inline in the
+// All Railgrid marketing-site copy buttons are wired inline in the
 // hero-home.html partial — that avoids asset-bundle caching surprises.

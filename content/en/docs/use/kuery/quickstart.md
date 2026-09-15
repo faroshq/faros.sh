@@ -25,23 +25,23 @@ For API clients, the query endpoint accepts a structured query rather than free-
 
 ## Submit the query from a terminal
 
-Save the JSON above as `query.json`. Use a valid human-session bearer token and the organization/workspace UUIDs for the intended Faros workspace. These are UUIDs, not display names; obtain them from your console context or administrator. `curl` does not inherit the workspace selected by `kubectl faros use`.
+Save the JSON above as `query.json`. Use a valid human-session bearer token and the organization/workspace UUIDs for the intended Railgrid workspace. These are UUIDs, not display names; obtain them from your console context or administrator. `curl` does not inherit the workspace selected by `kubectl railgrid use`.
 
-Set `FAROS_HUB_URL`, `FAROS_ORG_UUID`, and `FAROS_WORKSPACE_UUID` to those values. Supply `FAROS_TOKEN` securely in your local environment; do not paste the token into shell history or shared output.
+Set `RAILGRID_HUB_URL`, `RAILGRID_ORG_UUID`, and `RAILGRID_WORKSPACE_UUID` to those values. Supply `RAILGRID_TOKEN` securely in your local environment; do not paste the token into shell history or shared output.
 
 ```bash
 curl --fail-with-body --silent --show-error \
-  "${FAROS_HUB_URL}/services/providers/kuery/api/query" \
-  -H "Authorization: Bearer ${FAROS_TOKEN}" \
-  -H "X-Faros-Org: ${FAROS_ORG_UUID}" \
-  -H "X-Faros-Workspace: ${FAROS_WORKSPACE_UUID}" \
+  "${RAILGRID_HUB_URL}/services/providers/kuery/api/query" \
+  -H "Authorization: Bearer ${RAILGRID_TOKEN}" \
+  -H "X-Railgrid-Org: ${RAILGRID_ORG_UUID}" \
+  -H "X-Railgrid-Workspace: ${RAILGRID_WORKSPACE_UUID}" \
   -H "Content-Type: application/json" \
   --data-binary @query.json
 ```
 
-The response is a query result with `objects`; an empty collection may indicate filtering or synchronization state. A 401/403 is an authentication or workspace-access problem, not an empty fleet. Do not supply `X-Faros-Tenant`: the hub establishes the provider's tenant scope. Do not assume a service-account token has the same provider-proxy support as a human session.
+The response is a query result with `objects`; an empty collection may indicate filtering or synchronization state. A 401/403 is an authentication or workspace-access problem, not an empty fleet. Do not supply `X-Railgrid-Tenant`: the hub establishes the provider's tenant scope. Do not assume a service-account token has the same provider-proxy support as a human session.
 
-Delete the test query file when no longer needed and unset `FAROS_TOKEN` after use. Queries do not deploy or change fleet workloads.
+Delete the test query file when no longer needed and unset `RAILGRID_TOKEN` after use. Queries do not deploy or change fleet workloads.
 
 ## Interpret results carefully
 

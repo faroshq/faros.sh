@@ -1,13 +1,13 @@
 ---
-title: "Faros open source"
-description: "Explore, deploy, and extend the Apache 2.0 Faros control plane, portal, and provider ecosystem."
+title: "Railgrid open source"
+description: "Explore, deploy, and extend the Apache 2.0 Railgrid control plane, portal, and provider ecosystem."
 layout: marketing-hub
 hero:
   eyebrow: "Open source"
-  summary: "The Faros control plane, portal, and providers are developed in public under Apache 2.0. Inspect the architecture, run the platform on infrastructure you control, and extend it through the provider interfaces used in the repository."
+  summary: "The Railgrid control plane, portal, and providers are developed in public under Apache 2.0. Inspect the architecture, run the platform on infrastructure you control, and extend it through the provider interfaces used in the repository."
   primary:
-    label: "View Faros on GitHub"
-    url: "https://github.com/faroshq/faros"
+    label: "View Railgrid on GitHub"
+    url: "https://github.com/railgrid/railgrid"
   secondary:
     label: "Deploy your own hub"
     url: "/docs/self-hosting/hub/helm/"
@@ -24,7 +24,7 @@ sections:
       - kicker: "Control plane"
         title: "Inspect workspace and identity boundaries"
         summary: "Follow how the hub addresses logical workspaces, authenticates requests, and carries workspace identity to APIs and provider backends."
-        url: "/docs/get-started/what-is-faros/#how-faros-works"
+        url: "/docs/get-started/what-is-railgrid/#how-railgrid-works"
         link_label: "Read the architecture"
       - kicker: "Capabilities"
         title: "Explore the built-in providers"
@@ -39,7 +39,7 @@ sections:
   - id: "self-host"
     eyebrow: "Operate it yourself"
     title: "Choose the infrastructure and access model."
-    summary: "Deploy Faros on Kubernetes with Helm. Choose how users connect and authenticate."
+    summary: "Deploy Railgrid on Kubernetes with Helm. Choose how users connect and authenticate."
     cards:
       - kicker: "Install"
         title: "Deploy with Helm"
@@ -58,22 +58,22 @@ sections:
         link_label: "Review authentication"
   - id: "participate"
     eyebrow: "Participate"
-    title: "Contribute to Faros."
+    title: "Contribute to Railgrid."
     summary: "Report an issue, propose a change, or discuss your work with the community."
     cards:
       - kicker: "Source"
         title: "Explore the repository"
-        summary: "Read the implementation, charts, provider code, and repository documentation from the Faros GitHub project."
-        url: "https://github.com/faroshq/faros"
+        summary: "Read the implementation, charts, provider code, and repository documentation from the Railgrid GitHub project."
+        url: "https://github.com/railgrid/railgrid"
         link_label: "Open GitHub"
       - kicker: "Issues"
         title: "Report a bug or suggest a change"
         summary: "Check existing issues, then describe the problem or change you want to discuss."
-        url: "https://github.com/faroshq/faros/issues"
+        url: "https://github.com/railgrid/railgrid/issues"
         link_label: "Browse issues"
       - kicker: "Community"
         title: "Join the Discord community"
-        summary: "Ask questions and share your experience using or developing Faros."
+        summary: "Ask questions and share your experience using or developing Railgrid."
         url: "https://discord.gg/XEeZpBfM"
         link_label: "Open Discord"
 closing:
@@ -81,7 +81,7 @@ closing:
   summary: "Read the repository or follow the quickstart from login through edge connectivity and your first live request."
   primary:
     label: "View the source"
-    url: "https://github.com/faroshq/faros"
+    url: "https://github.com/railgrid/railgrid"
   secondary:
     label: "Follow the quickstart"
     url: "/docs/use/edges/quickstart/"

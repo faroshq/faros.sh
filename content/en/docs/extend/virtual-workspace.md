@@ -4,7 +4,7 @@ description: How provider controllers see every tenant workspace at once — and
 weight: 3
 ---
 
-Your provider's service account is admin **only inside its own workspace** (`root:faros:providers:<name>`). It cannot read tenant workspaces directly — and it never should. Cross-workspace access goes through kcp's **APIExport virtual workspace**: a synthetic API endpoint that presents, in one place, every tenant workspace that has bound your export.
+Your provider's service account is admin **only inside its own workspace** (`root:railgrid:providers:<name>`). It cannot read tenant workspaces directly — and it never should. Cross-workspace access goes through kcp's **APIExport virtual workspace**: a synthetic API endpoint that presents, in one place, every tenant workspace that has bound your export.
 
 Through the virtual workspace your provider sees, per bound workspace:
 
@@ -53,7 +53,7 @@ tenantConfig := cl.GetConfig()
 
 Keep that configuration scoped to the current reconciliation; do not reuse it for another tenant.
 
-The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the faros repo for the canonical setup.
+The shipped providers that run controller managers this way: `code`, `databricks`, `infrastructure`, `edges`. Read `providers/code/controller_manager.go` in the Railgrid repo for the canonical setup.
 
 ## The two identity patterns
 
@@ -68,22 +68,22 @@ Continuous reconciliation runs as **your provider SA** through the virtual works
 For REST/MCP/GraphQL requests arriving through the hub's backend proxy, your provider must **drop its own credential and act as the caller**. The proxy hands you everything you need:
 
 - `Authorization: Bearer <token>` — the caller's token, forwarded as-is.
-- `X-Faros-User` — resolved user identity.
-- `X-Faros-Tenant` — the caller's workspace path.
-- `X-Faros-Cluster` — the workspace's **logical cluster ID**.
+- `X-Railgrid-User` — resolved user identity.
+- `X-Railgrid-Tenant` — the caller's workspace path.
+- `X-Railgrid-Cluster` — the workspace's **logical cluster ID**.
 
-Build a per-request client from the caller's token scoped to `X-Faros-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Code, Databricks, and Infrastructure demonstrate this pattern in their `tenant/client.go` files. Other providers have different request-client wiring; check their authentication path explicitly.
+Build a per-request client from the caller's token scoped to `X-Railgrid-Cluster`, so kcp's own RBAC applies to everything you do on their behalf. Code, Databricks, and Infrastructure demonstrate this pattern in their `tenant/client.go` files. Other providers have different request-client wiring; check their authentication path explicitly.
 
 Using the provider service identity in a request handler can give a caller access they do not hold personally. A caller-scoped client lets kcp enforce that caller’s resource permissions; the handler must still authorize any operations performed outside that client.
 
 ## Address by cluster ID, never by path
 
-The number-one footgun: kcp **shards resolve only `/clusters/<logical-cluster-id>`**. Workspace *paths* (`root:faros:tenants:...`) resolve only at the front proxy. Consequences:
+The number-one footgun: kcp **shards resolve only `/clusters/<logical-cluster-id>`**. Workspace *paths* (`root:railgrid:tenants:...`) resolve only at the front proxy. Consequences:
 
 - The minted provider kubeconfig points at `/clusters/<your-workspace-id>` — keep that pattern for anything you construct.
-- When addressing a tenant's workspace (e.g. a per-cluster GraphQL endpoint), use the ID from `X-Faros-Cluster`, never the `X-Faros-Tenant` path.
+- When addressing a tenant's workspace (e.g. a per-cluster GraphQL endpoint), use the ID from `X-Railgrid-Cluster`, never the `X-Railgrid-Tenant` path.
 - You cannot "re-root" your provider SA kubeconfig at another workspace's `/clusters/<id>` — the token is pinned to your workspace and kcp rejects it. Cross-workspace = virtual workspace, full stop.
 
 ## Dynamic APIs
 
-The resource list on your APIExport is merged, not replaced, so a provider can grow its API at runtime. Do not confuse that with the infrastructure provider's flattened tenant API: it permanently exports `templates.infrastructure.faros.sh` (`Template`) and `instances.infrastructure.faros.sh` (`Instance`). Each `Instance` names its product in `spec.template`; applying another catalog `Template` does not add a new tenant-facing kind, change the APIExport resource list, or change binding claims. See the [flattened Instance design](https://github.com/faroshq/faros/blob/main/docs/infrastructure-flattened-instances.md) before designing an infrastructure integration.
+The resource list on your APIExport is merged, not replaced, so a provider can grow its API at runtime. Do not confuse that with the infrastructure provider's flattened tenant API: it permanently exports `templates.infrastructure.railgrid.ai` (`Template`) and `instances.infrastructure.railgrid.ai` (`Instance`). Each `Instance` names its product in `spec.template`; applying another catalog `Template` does not add a new tenant-facing kind, change the APIExport resource list, or change binding claims. See the [flattened Instance design](https://github.com/railgrid/railgrid/blob/main/docs/infrastructure-flattened-instances.md) before designing an infrastructure integration.

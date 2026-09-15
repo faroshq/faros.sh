@@ -1,22 +1,22 @@
 {{- $id := .id -}}
 {{- $label := .label -}}
 {{- $page := .page -}}
-<li class="faros-nav-disclosure" @mouseenter="cancelClose(); active = '{{ $id }}'" @mouseleave="scheduleClose()">
+<li class="railgrid-nav-disclosure" @mouseenter="cancelClose(); active = '{{ $id }}'" @mouseleave="scheduleClose()">
   <button
     type="button"
-    class="faros-navlink faros-nav-trigger"
+    class="railgrid-navlink railgrid-nav-trigger"
     @click="toggle('{{ $id }}')"
     :aria-expanded="(active === '{{ $id }}').toString()"
-    aria-controls="faros-{{ $id }}-menu"
+    aria-controls="railgrid-{{ $id }}-menu"
     x-ref="trigger-{{ $id }}"
   >
     {{ $label }}
-    <svg class="faros-nav-chevron" :class="{ 'is-open': active === '{{ $id }}' }" viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg class="railgrid-nav-chevron" :class="{ 'is-open': active === '{{ $id }}' }" viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 
   <div
-    id="faros-{{ $id }}-menu"
-    class="faros-nav-dropdown faros-nav-dropdown-{{ $id }}"
+    id="railgrid-{{ $id }}-menu"
+    class="railgrid-nav-dropdown railgrid-nav-dropdown-{{ $id }}"
     x-show="active === '{{ $id }}'"
     x-transition:enter="transition ease-out duration-100"
     x-transition:enter-start="opacity-0 -translate-y-1"

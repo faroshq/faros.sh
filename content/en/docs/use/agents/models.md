@@ -14,7 +14,7 @@ Enable **AI agents** in your selected workspace. You need permission to manage i
 1. Open **AI agents → Models** and select **Add model credential**.
 2. Enter a **Name**, such as `notes-assistant-model`, using lowercase letters, digits, and hyphens.
 3. Choose **Provider**, then verify **Base URL** against your endpoint. The preset is a starting value, not proof that your account can use it.
-4. Enter the exact **Model** identifier and **API key**, then choose **Add credential**. Faros stores the key as a workspace Secret.
+4. Enter the exact **Model** identifier and **API key**, then choose **Add credential**. Railgrid stores the key as a workspace Secret.
 5. Find the new credential and select **Test**. Expect **healthy** with a latency value. **untested** means no successful check has been recorded; **failed** requires investigation.
 
 ![A connected model credential shows its endpoint, capabilities, and a pricing estimate. Test connection records a health check.](/images/docs/console/agents-models.webp)

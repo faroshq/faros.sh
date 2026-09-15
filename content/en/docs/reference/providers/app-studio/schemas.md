@@ -8,7 +8,7 @@ provider: "app-studio"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## Project (v1alpha1)
 
-API: `ai.faros.sh/v1alpha1` · Resource: `projects` · Scope: `Cluster`
+API: `ai.railgrid.ai/v1alpha1` · Resource: `projects` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/projects.ai.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/projects.ai.railgrid.ai.yaml)
 
 ```bash
-kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
+kubectl explain projects.ai.railgrid.ai --api-version=ai.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -67,7 +67,7 @@ kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 | `spec.sharing.preview.mode` | string | No | Mode is the requested preview visibility. Empty means private. enum: &#91;"private", "public"&#93; |
 | `spec.sharing.publishing` | object | No | Publishing controls who may access published app instances once the publishing runtime exists. |
 | `spec.sharing.publishing.mode` | string | No | Mode is the requested visibility for this channel. Empty means private. enum: &#91;"private", "shared", "public"&#93; |
-| `spec.template` | object | No | Template names the infrastructure Template whose instance backs this Project's development environment (docs/app-studio-template-sandboxes.md). When set, the development binding is generated from the Template's instanceCRD with farosMode: development, and file sync routes per the Template's declared development components. Empty means the project has no development environment yet — one must be selected before any development runtime surface (sync, preview, logs) works. |
+| `spec.template` | object | No | Template names the infrastructure Template whose instance backs this Project's development environment (docs/app-studio-template-sandboxes.md). When set, the development binding is generated from the Template's instanceCRD with railgridMode: development, and file sync routes per the Template's declared development components. Empty means the project has no development environment yet — one must be selected before any development runtime surface (sync, preview, logs) works. |
 | `spec.template.name` | string | Yes | Name is the Template's catalog name (e.g. "application"). minLength: 1; maxLength: 253 |
 | `status` | object | No | ProjectStatus defines the observed Project state. |
 | `status.environments` | array&#91;object&#93; | No | Environments reports provider-observed environment state. |
@@ -86,12 +86,12 @@ kubectl explain projects.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 
 ## Session (v1alpha1)
 
-API: `ai.faros.sh/v1alpha1` · Resource: `sessions` · Scope: `Cluster`
+API: `ai.railgrid.ai/v1alpha1` · Resource: `sessions` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/sessions.ai.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/sessions.ai.railgrid.ai.yaml)
 
 ```bash
-kubectl explain sessions.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
+kubectl explain sessions.ai.railgrid.ai --api-version=ai.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -109,12 +109,12 @@ kubectl explain sessions.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recurs
 
 ## Studio (v1alpha1)
 
-API: `ai.faros.sh/v1alpha1` · Resource: `studios` · Scope: `Cluster`
+API: `ai.railgrid.ai/v1alpha1` · Resource: `studios` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/studios.ai.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/app-studio/deploy/chart/files/schemas/studios.ai.railgrid.ai.yaml)
 
 ```bash
-kubectl explain studios.ai.faros.sh --api-version=ai.faros.sh/v1alpha1 --recursive
+kubectl explain studios.ai.railgrid.ai --api-version=ai.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |

@@ -1,12 +1,12 @@
-# Faros product documentation review and proposed structure
+# Railgrid product documentation review and proposed structure
 
 Review date: September 4, 2026 (America/Chicago).
 
-**Recommendation:** organize documentation around what people need to accomplish: get started, use Faros, administer a workspace, operate a deployment, and extend the platform. Keep concepts and reference as shared destinations. Give every implemented provider a user-facing home, with a clear distinction between using a provider, self-hosting it, and developing one.
+**Recommendation:** organize documentation around what people need to accomplish: get started, use Railgrid, administer a workspace, operate a deployment, and extend the platform. Keep concepts and reference as shared destinations. Give every implemented provider a user-facing home, with a clear distinction between using a provider, self-hosting it, and developing one.
 
 ## Scope and confidence
 
-Reviewed the local `faros.sh` checkout at `e2a65f1` (August 14, 2026) and sibling `faros` checkout at `0c79ff47` (September 4, 2026). Both remotes identify the `faroshq` GitHub organization. The comparison inventories public pages and product documentation, and checks selected claims against CLI registrations, API types, provider manifests, and chart configuration.
+Reviewed the local website checkout at `e2a65f1` (August 14, 2026) and sibling `railgrid` checkout at `0c79ff47` (September 4, 2026). Both remotes identify the `railgrid` GitHub organization. The comparison inventories public pages and product documentation, and checks selected claims against CLI registrations, API types, provider manifests, and chart configuration.
 
 “Current” means this product checkout, not a verified released or hosted deployment. A remote HEAD check failed because shell DNS could not resolve GitHub. No deployment, end-to-end execution, or rendered-site usability testing was performed. Repository prose and design plans are supporting evidence, not proof of shipped behavior. Coverage below is qualitative; page counts are not a feature-completeness percentage.
 
@@ -24,7 +24,7 @@ The public site has **30 Markdown files**, including section landing pages, unde
 | Security | 4 | Authentication, tenancy, roles, and service-account overview |
 | Providers | 10 | Substantial provider-author material; one catalog page also carries almost all end-user provider coverage |
 
-The six sidebar groups are maintained separately from page front matter in [docs-sidebar.html](/Users/craigwilhite/github/faros.sh/layouts/partials/docs-sidebar.html). This is manageable at today's size, but every new page has a second registration step. A data-backed navigation manifest with validation would reduce drift; changing the site generator is unnecessary.
+The six sidebar groups are maintained separately from page front matter in [docs-sidebar.html](./layouts/partials/docs-sidebar.html). This is manageable at today's size, but every new page has a second registration step. A data-backed navigation manifest with validation would reduce drift; changing the site generator is unnecessary.
 
 The strongest qualities are concrete commands, consistent page metadata, an approachable entry point, and detailed provider integration explanations. The Cloudflare guide also has verification and symptom-specific troubleshooting. Preserve these qualities.
 
@@ -63,22 +63,22 @@ Fix these before expanding the catalog:
 
 | Existing claim | Evidence in reviewed product checkout | Recommendation |
 |---|---|---|
-| Catalog and API author guide describe dynamic per-template infrastructure kinds | [Instance type](/Users/craigwilhite/github/faros/providers/infrastructure/apis/v1alpha1/types_instance.go:23) and [flattening document](/Users/craigwilhite/github/faros/docs/infrastructure-flattened-instances.md) define `Template` + `Instance`, with template-specific values in `spec.values` | Update catalog, concepts examples, API guide, and migration notes together |
-| Connectivity guide says tunnel-terminating providers must run one replica; catalog repeats this | [Edges main](/Users/craigwilhite/github/faros/providers/edges/main.go:139) implements replica routing; [chart values](/Users/craigwilhite/github/faros/providers/edges/deploy/chart/values.yaml:15) explain Lease ownership and relay | Document supported routing configuration and fallback to single-replica mode; do not equate default replica count with a limit |
+| Catalog and API author guide describe dynamic per-template infrastructure kinds | [Instance type](/Users/craigwilhite/github/railgrid/providers/infrastructure/apis/v1alpha1/types_instance.go:23) and [flattening document](/Users/craigwilhite/github/railgrid/docs/infrastructure-flattened-instances.md) define `Template` + `Instance`, with template-specific values in `spec.values` | Update catalog, concepts examples, API guide, and migration notes together |
+| Connectivity guide says tunnel-terminating providers must run one replica; catalog repeats this | [Edges main](/Users/craigwilhite/github/railgrid/providers/edges/main.go:139) implements replica routing; [chart values](/Users/craigwilhite/github/railgrid/providers/edges/deploy/chart/values.yaml:15) explain Lease ownership and relay | Document supported routing configuration and fallback to single-replica mode; do not equate default replica count with a limit |
 | Catalog lists `vibe-studio` as a provider and eventual App Studio successor | Eight provider modules exist; none is `vibe-studio` | Remove from the current inventory unless a maintained implementation and availability status can be established; preserve history separately if useful |
-| App Studio catalog lists only `Project` | [Provider README](/Users/craigwilhite/github/faros/providers/app-studio/README.md) and API definitions include `Session` and `Studio`, plus skills and integrations | Refresh the feature overview and generate the resource inventory |
-| Databricks catalog lists only `list_tables` and `describe_table` MCP tools | [Tool registration](/Users/craigwilhite/github/faros/providers/databricks/mcpserver/tools.go:250) includes `query_table`; manifest declares its versioned Provider Action | Document querying and application integration, including different authorization paths |
-| Home says every action is a declarative object that can be audited and reverted | [Provider Actions](/Users/craigwilhite/github/faros/docs/provider-actions.md) describes synchronous request-scoped execution; SSH and data-plane operations are also not all durable resource writes | Explain desired-state resources, direct actions, and streams separately; avoid a blanket reversibility guarantee |
-| Helm guide presents one StatefulSet model and logs a `kcp` container | [Current values](/Users/craigwilhite/github/faros/deploy/charts/faros-hub/values.yaml) distinguish in-process embedded kcp and external kcp; [workload template](/Users/craigwilhite/github/faros/deploy/charts/faros-hub/templates/workload.yaml) determines the actual pod layout | Rewrite around explicit embedded/external modes and verified workload/container names; cover portal GraphQL prerequisites |
-| Product README points to GitHub Pages and uses `mcp url --name` | Public site uses `--mcpserver-name`, matching [CLI registration](/Users/craigwilhite/github/faros/pkg/cli/cmd/mcp.go:94) | Update product entry links and examples; the product README is not automatically more authoritative than the site |
+| App Studio catalog lists only `Project` | [Provider README](/Users/craigwilhite/github/railgrid/providers/app-studio/README.md) and API definitions include `Session` and `Studio`, plus skills and integrations | Refresh the feature overview and generate the resource inventory |
+| Databricks catalog lists only `list_tables` and `describe_table` MCP tools | [Tool registration](/Users/craigwilhite/github/railgrid/providers/databricks/mcpserver/tools.go:250) includes `query_table`; manifest declares its versioned Provider Action | Document querying and application integration, including different authorization paths |
+| Home says every action is a declarative object that can be audited and reverted | [Provider Actions](/Users/craigwilhite/github/railgrid/docs/provider-actions.md) describes synchronous request-scoped execution; SSH and data-plane operations are also not all durable resource writes | Explain desired-state resources, direct actions, and streams separately; avoid a blanket reversibility guarantee |
+| Helm guide presents one StatefulSet model and logs a `kcp` container | [Current values](/Users/craigwilhite/github/railgrid/deploy/charts/railgrid-hub/values.yaml) distinguish in-process embedded kcp and external kcp; [workload template](/Users/craigwilhite/github/railgrid/deploy/charts/railgrid-hub/templates/workload.yaml) determines the actual pod layout | Rewrite around explicit embedded/external modes and verified workload/container names; cover portal GraphQL prerequisites |
+| Product README points to GitHub Pages and uses `mcp url --name` | Public site uses `--mcpserver-name`, matching [CLI registration](/Users/craigwilhite/github/railgrid/pkg/cli/cmd/mcp.go:94) | Update product entry links and examples; the product README is not automatically more authoritative than the site |
 
-The [public installation guide](/Users/craigwilhite/github/faros.sh/content/en/docs/getting-started/install.md) also installs a binary named `faros` and then implies `kubectl faros` will work automatically. Explain that kubectl plugin discovery requires a `kubectl-faros` executable or installation through krew, and verify each documented installation path.
+The [public installation guide](./content/en/docs/getting-started/install.md) also installs a binary named `railgrid` and then implies `kubectl railgrid` will work automatically. Explain that kubectl plugin discovery requires a `kubectl-railgrid` executable or installation through krew, and verify each documented installation path.
 
 Some conflicts remain questions for implementation verification, not confirmed bugs: security prose alternates between caller identity and MCPServer service-account credentials, and scope guarantees need to distinguish human sessions, automation identities, and provider controllers. Add an explicit identity/permission matrix instead of repeating broad isolation claims.
 
 ## 4. Comparison with established practice
 
-| Practice | How Faros compares | Proposed application |
+| Practice | How Railgrid compares | Proposed application |
 |---|---|---|
 | Separate learning, task completion, facts, and explanation | CLI/provider pages mix these purposes | Assign each page a primary content type. Keep a tutorial's path narrow, put exhaustive flags in reference, and link to concepts for explanation. This follows [Diátaxis](https://diataxis.fr/start-here/). |
 | Organize entry points around reader work | Current navigation emphasizes interfaces and implementation | Use task-oriented groups, with distinct use/administer/operate/extend paths. [GitLab's documentation](https://docs.gitlab.com/development/documentation/) provides a concrete example of these audience distinctions. |
@@ -86,9 +86,9 @@ Some conflicts remain questions for implementation verification, not confirmed b
 | One authoritative answer with a contribution workflow | Public docs, GitHub Pages content, provider READMEs, and design plans overlap | Give each topic one canonical source and one public URL; route feedback to its owner. GitLab explicitly treats its product docs as the [single source of truth](https://docs.gitlab.com/development/documentation/). |
 | Reference reflects product structure | CLI flags, chart values, schemas and interfaces are scattered | Generate API/CLI/configuration inventories from versioned source, following [Diátaxis reference guidance](https://diataxis.fr/start-here/), and supply hand-authored examples and limitations. |
 
-These principles do not require four literal top-level Diátaxis folders. For Faros, task-oriented navigation is more useful; tutorials, how-to guides, concepts, and reference are editorial types beneath it.
+These principles do not require four literal top-level Diátaxis folders. For Railgrid, task-oriented navigation is more useful; tutorials, how-to guides, concepts, and reference are editorial types beneath it.
 
-Additional Faros-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](/Users/craigwilhite/github/faros.sh/package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
+Additional Railgrid-specific maintenance recommendations: add validated navigation, real link/anchor checks, runnable quickstart examples, release applicability, and a feature-to-documentation checklist. The website's [package.json](./package.json) currently routes link checks to `IMPLEMENTATION PENDING`; `npm test` is therefore not evidence of checked links. The product repo already has installation scripts and associated e2e targets: reuse that mechanism rather than create another independently maintained installation recipe. Existing targets were inspected, not executed in this review.
 
 Search is configured in `hugo.toml`; its discoverability and result quality need rendered testing before making usability claims. Similarly, add a meaningful version/compatibility policy before assuming the existing `version = "0.0"` setting provides one.
 
@@ -99,13 +99,13 @@ This is the target structure, not a recommendation to publish empty sections imm
 ```text
 Docs
 ├── Get started
-│   ├── What Faros does / choose your path
+│   ├── What Railgrid does / choose your path
 │   ├── Hosted and self-hosted prerequisites
 │   ├── Install the CLI
 │   ├── Connect your first cluster or server
 │   ├── Build and publish your first app
 │   └── Create your first AI agent
-├── Use Faros
+├── Use Railgrid
 │   ├── Console and workspace navigation
 │   ├── Provider catalog and enablement
 │   ├── Edges: clusters, servers, services, workloads
@@ -121,14 +121,14 @@ Docs
 │   ├── Service accounts and credential lifecycle
 │   ├── Provider permissions, dependencies and lifecycle
 │   └── Org-owned and self-hosted providers
-├── Operate Faros
+├── Operate Railgrid
 │   ├── Choose a deployment: embedded or external kcp
 │   ├── Install hub and providers
 │   ├── Networking, TLS, OIDC and secrets
 │   ├── Scaling and availability by component
 │   ├── Storage, backup and restore
 │   └── Monitor, upgrade, migrate and uninstall
-├── Extend Faros
+├── Extend Railgrid
 │   ├── Build your first provider (quickstart scaffold)
 │   ├── APIs, controllers, virtual workspaces and identity
 │   ├── Portal integration and UI contracts
@@ -145,9 +145,9 @@ Docs
     └── Symptom index; known issues; breaking changes and migrations
 ```
 
-Keep each provider's user documentation consistent: purpose and availability; prerequisites and dependencies; first successful task; common lifecycle tasks; permissions and data handling; limitations; troubleshooting; links to its reference and operator guide. The quickstart provider belongs primarily under **Extend Faros**, as a scaffold rather than a customer capability.
+Keep each provider's user documentation consistent: purpose and availability; prerequisites and dependencies; first successful task; common lifecycle tasks; permissions and data handling; limitations; troubleshooting; links to its reference and operator guide. The quickstart provider belongs primarily under **Extend Railgrid**, as a scaffold rather than a customer capability.
 
-On the docs home, offer four concise entry links: **Use Faros**, **Manage your team**, **Run Faros**, **Build a provider**. Link to the appropriate quickstarts from those destinations. Keep the OS analogy as an optional explanation; lead with literal concepts and outcomes.
+On the docs home, offer four concise entry links: **Use Railgrid**, **Manage your team**, **Run Railgrid**, **Build a provider**. Link to the appropriate quickstarts from those destinations. Keep the OS analogy as an optional explanation; lead with literal concepts and outcomes.
 
 ## 6. Canonical ownership and migration
 
@@ -155,10 +155,10 @@ Recommended near-term boundary:
 
 | Content | Authoritative source | Public presentation |
 |---|---|---|
-| Tutorials, user/admin/operator guides, explanatory concepts | `faros.sh` content | `faros.sh/docs` |
-| CLI commands, CRDs, chart values, SDK contracts | Versioned code/schema/chart source in `faros` | Generated or synchronized reference at the same docs site |
-| Installation examples | Tested scripts in `faros`, pinned to a release/commit | Included or reproducibly extracted into the relevant guide |
-| Engineering designs, research, ADRs, implementation plans | Explicit engineering areas in `faros/docs` | Linked only when helpful; status labeled and excluded from the primary user path |
+| Tutorials, user/admin/operator guides, explanatory concepts | `railgrid.ai` content | `railgrid.ai/docs` |
+| CLI commands, CRDs, chart values, SDK contracts | Versioned code/schema/chart source in `railgrid` | Generated or synchronized reference at the same docs site |
+| Installation examples | Tested scripts in `railgrid`, pinned to a release/commit | Included or reproducibly extracted into the relevant guide |
+| Engineering designs, research, ADRs, implementation plans | Explicit engineering areas in `railgrid/docs` | Linked only when helpful; status labeled and excluded from the primary user path |
 | Repository and provider READMEs | Each repository/component | Short orientation, development details, canonical product-doc links |
 
 Keep provider chart READMEs as the canonical values explanation where the console already embeds them. Publish the same content rather than maintaining a second manual table. A future move of all product-doc source into the product repo could improve atomic changes, but does not need to block the information architecture correction.
@@ -169,9 +169,9 @@ Map existing pages as follows:
 |---|---|
 | `getting-started/*` | Keep URLs where practical; add app and AI-agent routes |
 | `cli/*` | Reference for commands; extract task guides into Use/Administer |
-| `providers/catalog` | Use Faros → Provider catalog, linked to dedicated capability guides |
-| Other `providers/*` | Extend Faros; extract operator onboarding and tenant enablement |
-| `deploy/*` | Operate Faros, split by deployment mode and operation |
+| `providers/catalog` | Use Railgrid → Provider catalog, linked to dedicated capability guides |
+| Other `providers/*` | Extend Railgrid; extract operator onboarding and tenant enablement |
+| `deploy/*` | Operate Railgrid, split by deployment mode and operation |
 | `security/*` | Shared concepts, operator authentication setup, admin access tasks |
 | `concepts` | Introductory overview plus focused explanations |
 | Product GitHub Pages entry points | Canonical docs links and redirects where hosting allows |

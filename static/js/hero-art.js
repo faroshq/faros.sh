@@ -25,6 +25,6 @@
   }
   initial.addEventListener('load', warmCompanion, { once: true });
   initial.addEventListener('error', warmCompanion, { once: true });
-  window.addEventListener('faros:theme-change', activate);
+  window.addEventListener('railgrid:theme-change', activate);
   activate();
 })();

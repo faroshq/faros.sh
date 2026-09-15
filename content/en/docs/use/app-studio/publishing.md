@@ -31,4 +31,4 @@ Revoke individual grants to remove private application access. Removing publishi
 
 If deployment or access verification fails, keep the release private and inspect the release SHA, production Instance conditions, and recipient identity separately. Use [App Studio troubleshooting](/docs/use/app-studio/troubleshooting/) before deploying another commit. Next: [manage projects and repositories](/docs/use/app-studio/projects/).
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/docs/app-studio-publishing.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/docs/app-studio-publishing.md).

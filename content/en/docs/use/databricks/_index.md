@@ -8,13 +8,13 @@ cascade:
   provider: databricks
 ---
 
-Databricks connects existing tables to Faros so applications and tools can work with their data. Create handles for the connection, warehouse, and table, then use the provider’s bounded query interface.
+Databricks connects existing tables to Railgrid so applications and tools can work with their data. Create handles for the connection, warehouse, and table, then use the provider’s bounded query interface.
 
 [Get started: import and query a table](/docs/use/databricks/quickstart/).
 
 ## When to use Databricks
 
-Use this provider when an application needs data from an existing Databricks table. Importing a table creates a Faros handle and schema status; the source data stays in Databricks.
+Use this provider when an application needs data from an existing Databricks table. Importing a table creates a Railgrid handle and schema status; the source data stays in Databricks.
 
 ## How it fits together
 
@@ -30,7 +30,7 @@ Check your hub’s catalog and deployed versions. Actions are subject to workspa
 
 ## Where your data lives
 
-Table handles and schema status live in your Faros workspace. The data stays in Databricks; queries return bounded rows without persisting results in resource status.
+Table handles and schema status live in your Railgrid workspace. The data stays in Databricks; queries return bounded rows without persisting results in resource status.
 
 ## Start here
 
@@ -40,4 +40,4 @@ Table handles and schema status live in your Faros workspace. The data stays in 
 - [API reference](/docs/reference/providers/databricks/)
 - [Self-host Databricks](/docs/self-hosting/providers/databricks/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/databricks/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/databricks/README.md).

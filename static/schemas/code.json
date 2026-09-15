@@ -2,18 +2,18 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/code/deploy/chart/files/schemas/collaborators.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/collaborators.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260609-fc69fa2.collaborators.code.faros.sh"
+          "name": "v260609-fc69fa2.collaborators.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Collaborator",
             "listKind": "CollaboratorList",
@@ -191,18 +191,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/connections.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/connections.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260609-fc69fa2.connections.code.faros.sh"
+          "name": "v260609-fc69fa2.connections.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Connection",
             "listKind": "ConnectionList",
@@ -420,18 +420,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/deploykeys.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/deploykeys.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260609-fc69fa2.deploykeys.code.faros.sh"
+          "name": "v260609-fc69fa2.deploykeys.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "DeployKey",
             "listKind": "DeployKeyList",
@@ -632,18 +632,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/packages.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/packages.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260712-dabfd8e.packages.code.faros.sh"
+          "name": "v260712-dabfd8e.packages.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Package",
             "listKind": "PackageList",
@@ -874,18 +874,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/repositories.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/repositories.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260609-fc69fa2.repositories.code.faros.sh"
+          "name": "v260609-fc69fa2.repositories.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Repository",
             "listKind": "RepositoryList",
@@ -1102,18 +1102,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260712-dabfd8e.repositorybuildstatuses.code.faros.sh"
+          "name": "v260712-dabfd8e.repositorybuildstatuses.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "RepositoryBuildStatus",
             "listKind": "RepositoryBuildStatusList",
@@ -1192,7 +1192,7 @@
                         "type": "string"
                       },
                       "workflowFileName": {
-                        "description": "WorkflowFileName is the workflow file to inspect or dispatch\n(e.g. \"faros-app-studio-build.yml\").",
+                        "description": "WorkflowFileName is the workflow file to inspect or dispatch\n(e.g. \"railgrid-app-studio-build.yml\").",
                         "maxLength": 255,
                         "minLength": 1,
                         "type": "string"
@@ -1354,18 +1354,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/repositorycheckouts.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/repositorycheckouts.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260704-6d52bca.repositorycheckouts.code.faros.sh"
+          "name": "v260704-6d52bca.repositorycheckouts.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "RepositoryCheckout",
             "listKind": "RepositoryCheckoutList",
@@ -1605,18 +1605,18 @@
       }
     },
     {
-      "source": "providers/code/deploy/chart/files/schemas/repositorycommits.code.faros.sh.yaml",
+      "source": "providers/code/deploy/chart/files/schemas/repositorycommits.code.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260802-8d0bfc17.repositorycommits.code.faros.sh"
+          "name": "v260802-8d0bfc17.repositorycommits.code.railgrid.ai"
         },
         "spec": {
-          "group": "code.faros.sh",
+          "group": "code.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "RepositoryCommit",
             "listKind": "RepositoryCommitList",

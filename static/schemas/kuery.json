@@ -2,15 +2,15 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/kuery/deploy/chart/files/schemas/savedviews.kuery.providers.faros.sh.yaml",
+      "source": "providers/kuery/deploy/chart/files/schemas/savedviews.kuery.providers.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260612-001.savedviews.kuery.providers.faros.sh"
+          "name": "v260612-001.savedviews.kuery.providers.railgrid.ai"
         },
         "spec": {
-          "group": "kuery.providers.faros.sh",
+          "group": "kuery.providers.railgrid.ai",
           "names": {
             "kind": "SavedView",
             "listKind": "SavedViewList",
@@ -51,7 +51,7 @@
                         "maxLength": 512
                       },
                       "root": {
-                        "description": "The object the view is anchored on. Cluster is the faros edge name; empty matches any engaged edge.",
+                        "description": "The object the view is anchored on. Cluster is the railgrid edge name; empty matches any engaged edge.",
                         "type": "object",
                         "properties": {
                           "cluster": {

@@ -1,20 +1,20 @@
-<section class="faros-marketing{{ if eq .RelPermalink "/platform/" }} faros-platform-page{{ end }}">
-  <div class="faros-marketing-backdrop" aria-hidden="true"></div>
+<section class="railgrid-marketing{{ if eq .RelPermalink "/platform/" }} railgrid-platform-page{{ end }}">
+  <div class="railgrid-marketing-backdrop" aria-hidden="true"></div>
 
   {{ with .Params.hero }}
-  <header class="faros-marketing-hero">
-    <div class="faros-marketing-shell">
-      {{ with .eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
-      <div class="faros-marketing-hero-grid">
+  <header class="railgrid-marketing-hero">
+    <div class="railgrid-marketing-shell">
+      {{ with .eyebrow }}<p class="railgrid-marketing-eyebrow">{{ . }}</p>{{ end }}
+      <div class="railgrid-marketing-hero-grid">
         <h1>{{ .headline | default $.Title }}</h1>
-        <div class="faros-marketing-hero-copy">
+        <div class="railgrid-marketing-hero-copy">
           <p>{{ .summary }}</p>
-          <div class="faros-marketing-actions">
+          <div class="railgrid-marketing-actions">
             {{ with .primary }}
-            <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
+            <a class="railgrid-marketing-button railgrid-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
             {{ end }}
             {{ with .secondary }}
-            <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
+            <a class="railgrid-marketing-button railgrid-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
             {{ end }}
           </div>
         </div>
@@ -23,7 +23,7 @@
       {{ if eq $.RelPermalink "/developers/" }}{{ partial "marketing-hub/developer-visual.html" $ }}{{ end }}
       {{ if eq $.RelPermalink "/solutions/" }}{{ partial "marketing-hub/solutions-visual.html" $ }}{{ end }}
       {{ with .facts }}
-      <ul class="faros-marketing-facts" aria-label="Page highlights">
+      <ul class="railgrid-marketing-facts" aria-label="Page highlights">
         {{ range . }}<li>{{ . }}</li>{{ end }}
       </ul>
       {{ end }}
@@ -32,18 +32,18 @@
   {{ end }}
 
   {{ range $index, $section := .Params.sections }}
-  <section{{ with $section.id }} id="{{ . }}"{{ end }} class="faros-marketing-section{{ if modBool $index 2 }} faros-marketing-section-muted{{ end }}">
-    <div class="faros-marketing-shell">
-      <div class="faros-marketing-section-heading">
-        {{ with $section.eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
+  <section{{ with $section.id }} id="{{ . }}"{{ end }} class="railgrid-marketing-section{{ if modBool $index 2 }} railgrid-marketing-section-muted{{ end }}">
+    <div class="railgrid-marketing-shell">
+      <div class="railgrid-marketing-section-heading">
+        {{ with $section.eyebrow }}<p class="railgrid-marketing-eyebrow">{{ . }}</p>{{ end }}
         <h2>{{ $section.title }}</h2>
         {{ with $section.summary }}<p>{{ . }}</p>{{ end }}
       </div>
 
-      {{ with $section.body }}<p class="faros-marketing-section-body">{{ . }}</p>{{ end }}
+      {{ with $section.body }}<p class="railgrid-marketing-section-body">{{ . }}</p>{{ end }}
 
       {{ with $section.comparison }}
-      <table class="faros-marketing-comparison" aria-label="{{ .label }}">
+      <table class="railgrid-marketing-comparison" aria-label="{{ .label }}">
         <thead><tr>{{ range .headers }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
         <tbody>
           {{ range .rows }}
@@ -54,10 +54,10 @@
       {{ end }}
 
       {{ with $section.cards }}
-      <div class="faros-marketing-card-grid">
+      <div class="railgrid-marketing-card-grid">
         {{ range . }}
-          {{ if .url }}<a class="faros-marketing-card" href="{{ .url }}">{{ else }}<article class="faros-marketing-card">{{ end }}
-            {{ with .kicker }}<p class="faros-marketing-card-kicker">{{ . }}</p>{{ end }}
+          {{ if .url }}<a class="railgrid-marketing-card" href="{{ .url }}">{{ else }}<article class="railgrid-marketing-card">{{ end }}
+            {{ with .kicker }}<p class="railgrid-marketing-card-kicker">{{ . }}</p>{{ end }}
             <h3>{{ .title }}</h3>
             <p>{{ .summary }}</p>
             {{ with .points }}
@@ -65,39 +65,39 @@
               {{ range . }}<li>{{ . }}</li>{{ end }}
             </ul>
             {{ end }}
-            {{ if .url }}<span class="faros-marketing-card-link">{{ .link_label | default "Learn more" }} {{ partial "connected-home/arrow.html" $ }}</span>{{ end }}
+            {{ if .url }}<span class="railgrid-marketing-card-link">{{ .link_label | default "Learn more" }} {{ partial "connected-home/arrow.html" $ }}</span>{{ end }}
           {{ if .url }}</a>{{ else }}</article>{{ end }}
         {{ end }}
       </div>
       {{ end }}
 
       {{ with $section.primary }}
-      <div class="faros-marketing-actions"><a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a></div>
+      <div class="railgrid-marketing-actions"><a class="railgrid-marketing-button railgrid-marketing-button-secondary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a></div>
       {{ end }}
 
-      {{ with $section.note }}<p class="faros-marketing-note">{{ . }}</p>{{ end }}
+      {{ with $section.note }}<p class="railgrid-marketing-note">{{ . }}</p>{{ end }}
     </div>
   </section>
   {{ end }}
 
   {{ with .Content }}
-  <section class="faros-marketing-section">
-    <div class="faros-marketing-shell faros-marketing-prose">{{ . }}</div>
+  <section class="railgrid-marketing-section">
+    <div class="railgrid-marketing-shell railgrid-marketing-prose">{{ . }}</div>
   </section>
   {{ end }}
 
   {{ with .Params.closing }}
-  <section class="faros-marketing-closing">
-    <div class="faros-marketing-shell faros-marketing-closing-inner">
-      {{ with .eyebrow }}<p class="faros-marketing-eyebrow">{{ . }}</p>{{ end }}
+  <section class="railgrid-marketing-closing">
+    <div class="railgrid-marketing-shell railgrid-marketing-closing-inner">
+      {{ with .eyebrow }}<p class="railgrid-marketing-eyebrow">{{ . }}</p>{{ end }}
       <h2>{{ .title }}</h2>
       {{ with .summary }}<p>{{ . }}</p>{{ end }}
-      <div class="faros-marketing-actions">
+      <div class="railgrid-marketing-actions">
         {{ with .primary }}
-        <a class="faros-marketing-button faros-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
+        <a class="railgrid-marketing-button railgrid-marketing-button-primary" href="{{ .url }}">{{ .label }} {{ partial "connected-home/arrow.html" $ }}</a>
         {{ end }}
         {{ with .secondary }}
-        <a class="faros-marketing-button faros-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
+        <a class="railgrid-marketing-button railgrid-marketing-button-secondary" href="{{ .url }}">{{ .label }}</a>
         {{ end }}
       </div>
     </div>

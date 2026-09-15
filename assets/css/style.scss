@@ -1,4 +1,4 @@
-// Brand faces — the same three the faros console uses (Violet Circuit):
+// Brand faces — the same three the Railgrid console uses (Violet Circuit):
 // Instrument Sans (body), Archivo at wdth 125 (display), IBM Plex Mono (code).
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&display=fallback');
 
@@ -725,7 +725,7 @@ code, pre {
 
 
 // ══════════════════════════════════════════════════════════════════════════
-// Violet Circuit tokens — the same system the faros console runs on.
+// Violet Circuit tokens — the same system the Railgrid console runs on.
 // Dark is the intended base (the site forces `html.dark`); the :root values
 // are the light fallback. Radius law: cards 6px · controls 4px · tags 3px.
 // Glow only on live/primary things — never on plain surfaces.
@@ -767,8 +767,8 @@ code, pre {
   --fx-danger: #ff5d5d;
 }
 
-// ─────────── faros wordmark (header + footer) ───────────
-.faros-wordmark {
+// ─────────── Railgrid wordmark (header + footer) ───────────
+.railgrid-wordmark {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -776,11 +776,11 @@ code, pre {
   letter-spacing: -0.02em;
   transition: opacity 0.15s;
 }
-.faros-wordmark:hover { opacity: 0.85; }
+.railgrid-wordmark:hover { opacity: 0.85; }
 
-// Hexagon mark — same brand as the faros console (lucide Hexagon in an
+// Hexagon mark — same brand as the Railgrid console (lucide Hexagon in an
 // accent-bordered box). 4px, control radius.
-.faros-wordmark-mark {
+.railgrid-wordmark-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -793,7 +793,7 @@ code, pre {
   box-shadow: 0 0 12px var(--fx-accent-glow);
 }
 
-.faros-wordmark-text {
+.railgrid-wordmark-text {
   font-family: var(--fx-display);
   font-stretch: 125%;
   font-weight: 700;
@@ -803,8 +803,8 @@ code, pre {
   line-height: 1;
 }
 
-// ─────────── faros docs layout ───────────
-.faros-docs-shell {
+// ─────────── Railgrid docs layout ───────────
+.railgrid-docs-shell {
   position: relative;
   display: flex;
   min-height: 100vh;
@@ -813,12 +813,12 @@ code, pre {
 }
 
 // Signature contour background (matches the console's hero pattern)
-.faros-docs-bg {
+.railgrid-docs-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  .faros-dot-grid {
+  .railgrid-dot-grid {
     position: absolute;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%236b48e8' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
@@ -827,12 +827,12 @@ code, pre {
     mask-image: linear-gradient(to bottom, black, transparent 60%);
   }
 }
-.dark .faros-docs-bg .faros-dot-grid {
+.dark .railgrid-docs-bg .railgrid-dot-grid {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%238b6bff' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 // Sidebar
-.faros-docs-sidebar {
+.railgrid-docs-sidebar {
   position: sticky;
   top: 5rem;
   align-self: flex-start;
@@ -845,9 +845,9 @@ code, pre {
   z-index: 1;
 }
 
-.faros-docs-nav { padding-right: 1rem; }
+.railgrid-docs-nav { padding-right: 1rem; }
 
-.faros-docs-brand {
+.railgrid-docs-brand {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -859,9 +859,9 @@ code, pre {
   letter-spacing: -0.01em;
   text-decoration: none !important;
 }
-.faros-docs-brand:hover { color: var(--fx-accent); }
+.railgrid-docs-brand:hover { color: var(--fx-accent); }
 
-.faros-docs-brand-mark {
+.railgrid-docs-brand-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -874,10 +874,10 @@ code, pre {
   box-shadow: 0 0 10px var(--fx-accent-glow);
 }
 
-.faros-docs-group {
+.railgrid-docs-group {
   margin-bottom: 1.25rem;
 }
-.faros-docs-group-title {
+.railgrid-docs-group-title {
   font-family: var(--fx-mono);
   font-size: 0.68rem;
   font-weight: 500;
@@ -887,12 +887,12 @@ code, pre {
   margin-bottom: 0.5rem;
 }
 
-.faros-docs-list {
+.railgrid-docs-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.faros-docs-link {
+.railgrid-docs-link {
   display: block;
   padding: 0.35rem 0.7rem;
   margin-left: -0.7rem;
@@ -903,12 +903,12 @@ code, pre {
   transition: background 0.15s, color 0.15s;
   border-left: 2px solid transparent;
 }
-.faros-docs-link:hover {
+.railgrid-docs-link:hover {
   color: var(--fx-text);
   background: var(--fx-overlay);
 }
 // Active nav is one of the few things allowed to glow.
-.faros-docs-link.active {
+.railgrid-docs-link.active {
   color: var(--fx-accent);
   background: var(--fx-accent-subtle);
   font-weight: 600;
@@ -916,7 +916,7 @@ code, pre {
   box-shadow: inset 2px 0 8px -4px var(--fx-accent-glow);
 }
 
-.faros-docs-foot {
+.railgrid-docs-foot {
   margin-top: 2rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--fx-border);
@@ -924,7 +924,7 @@ code, pre {
   flex-direction: column;
   gap: 0.5rem;
 }
-.faros-docs-foot-link {
+.railgrid-docs-foot-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -933,10 +933,10 @@ code, pre {
   text-decoration: none !important;
   transition: color 0.15s;
 }
-.faros-docs-foot-link:hover { color: var(--fx-accent); }
+.railgrid-docs-foot-link:hover { color: var(--fx-accent); }
 
 // Main content
-.faros-docs-main {
+.railgrid-docs-main {
   position: relative;
   flex: 1;
   min-width: 0;
@@ -944,21 +944,21 @@ code, pre {
   padding: 2.5rem 1.5rem 5rem;
 }
 @media (min-width: 1024px) {
-  .faros-docs-main { padding: 3rem 3rem 5rem; }
+  .railgrid-docs-main { padding: 3rem 3rem 5rem; }
 }
 
-.faros-docs-article {
+.railgrid-docs-article {
   max-width: 820px;
   margin: 0 auto;
 }
 
-.faros-docs-header {
+.railgrid-docs-header {
   margin-bottom: 2.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--fx-border);
 }
 
-.faros-docs-eyebrow {
+.railgrid-docs-eyebrow {
   font-family: var(--fx-mono);
   font-size: 0.7rem;
   font-weight: 500;
@@ -968,7 +968,7 @@ code, pre {
   margin-bottom: 0.6rem;
 }
 
-.faros-docs-title {
+.railgrid-docs-title {
   font-family: var(--fx-display);
   font-stretch: 125%;
   font-size: 2.4rem;
@@ -979,20 +979,20 @@ code, pre {
   margin-bottom: 0.75rem;
 }
 
-.faros-docs-lead {
+.railgrid-docs-lead {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--fx-text-2);
 }
 
 // Body content
-.faros-docs-body {
+.railgrid-docs-body {
   font-size: 0.95rem;
   line-height: 1.75;
   color: var(--fx-text-2);
 }
 
-.faros-docs-body h2 {
+.railgrid-docs-body h2 {
   font-family: var(--fx-display);
   font-stretch: 125%;
   font-size: 1.55rem;
@@ -1004,7 +1004,7 @@ code, pre {
   padding-top: 0.5rem;
 }
 
-.faros-docs-body h3 {
+.railgrid-docs-body h3 {
   font-size: 1.18rem;
   font-weight: 650;
   margin-top: 1.75rem;
@@ -1012,7 +1012,7 @@ code, pre {
   color: var(--fx-text);
 }
 
-.faros-docs-body h4 {
+.railgrid-docs-body h4 {
   font-size: 1.02rem;
   font-weight: 650;
   margin-top: 1.5rem;
@@ -1020,32 +1020,32 @@ code, pre {
   color: var(--fx-text);
 }
 
-.faros-docs-body p {
+.railgrid-docs-body p {
   margin-bottom: 1rem;
 }
 
-.faros-docs-body a {
+.railgrid-docs-body a {
   color: var(--fx-accent);
   text-decoration: underline;
   text-decoration-color: var(--fx-accent-subtle);
   text-underline-offset: 3px;
 }
-.faros-docs-body a:hover { text-decoration-color: var(--fx-accent); }
+.railgrid-docs-body a:hover { text-decoration-color: var(--fx-accent); }
 
-.faros-docs-body ul,
-.faros-docs-body ol {
+.railgrid-docs-body ul,
+.railgrid-docs-body ol {
   margin: 0.5rem 0 1rem 1.25rem;
   padding-left: 0.5rem;
 }
-.faros-docs-body ul { list-style: disc; }
-.faros-docs-body ol { list-style: decimal; }
-.faros-docs-body li { margin-bottom: 0.35rem; }
-.faros-docs-body li::marker { color: var(--fx-accent); }
+.railgrid-docs-body ul { list-style: disc; }
+.railgrid-docs-body ol { list-style: decimal; }
+.railgrid-docs-body li { margin-bottom: 0.35rem; }
+.railgrid-docs-body li::marker { color: var(--fx-accent); }
 
-.faros-docs-body strong { color: var(--fx-text); font-weight: 600; }
+.railgrid-docs-body strong { color: var(--fx-text); font-weight: 600; }
 
 // Inline code is a square mono tag — 3px, never a pill.
-.faros-docs-body code {
+.railgrid-docs-body code {
   font-family: var(--fx-mono);
   font-size: 0.82em;
   padding: 0.1em 0.4em;
@@ -1054,7 +1054,7 @@ code, pre {
   color: var(--fx-accent);
 }
 
-.faros-docs-body pre {
+.railgrid-docs-body pre {
   background: var(--fx-overlay);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
@@ -1064,14 +1064,14 @@ code, pre {
   font-size: 0.85rem;
   line-height: 1.6;
 }
-.faros-docs-body pre code {
+.railgrid-docs-body pre code {
   background: transparent;
   color: var(--fx-text);
   padding: 0;
   font-size: 0.85rem;
 }
 
-.faros-docs-body blockquote {
+.railgrid-docs-body blockquote {
   border-left: 2px solid var(--fx-accent);
   padding: 0.75rem 1rem;
   margin: 1.25rem 0;
@@ -1080,26 +1080,26 @@ code, pre {
   color: var(--fx-text-2);
 }
 
-.faros-docs-body table {
+.railgrid-docs-body table {
   width: 100%;
   margin: 1.25rem 0;
   font-size: 0.88rem;
   border-collapse: collapse;
 }
-.faros-docs-body th,
-.faros-docs-body td {
+.railgrid-docs-body th,
+.railgrid-docs-body td {
   padding: 0.6rem 0.9rem;
   text-align: left;
   border-bottom: 1px solid var(--fx-border);
 }
-.faros-docs-body th {
+.railgrid-docs-body th {
   font-weight: 600;
   color: var(--fx-text);
   border-bottom-color: var(--fx-border-strong);
 }
-.faros-docs-body table code { font-size: 0.78em; }
+.railgrid-docs-body table code { font-size: 0.78em; }
 
-.faros-docs-body hr {
+.railgrid-docs-body hr {
   border: 0;
   height: 1px;
   background: var(--fx-border);
@@ -1107,12 +1107,12 @@ code, pre {
 }
 
 // Cards (for section index pages) — flat raised, 6px, no glass
-.faros-docs-cards {
+.railgrid-docs-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1rem;
 }
-.faros-docs-card {
+.railgrid-docs-card {
   display: block;
   padding: 1.25rem;
   border-radius: 6px;
@@ -1121,19 +1121,19 @@ code, pre {
   text-decoration: none !important;
   transition: border-color 0.15s, background 0.15s;
 }
-.faros-docs-card:hover {
+.railgrid-docs-card:hover {
   border-color: var(--fx-accent);
   background: var(--fx-overlay);
 }
-.faros-docs-card-title {
+.railgrid-docs-card-title {
   font-size: 1.02rem;
   font-weight: 650;
   color: var(--fx-text);
   margin-bottom: 0.35rem;
 }
-.faros-docs-card-arrow { color: var(--fx-accent); transition: transform 0.15s; }
-.faros-docs-card:hover .faros-docs-card-arrow { transform: translateX(3px); }
-.faros-docs-card-text {
+.railgrid-docs-card-arrow { color: var(--fx-accent); transition: transform 0.15s; }
+.railgrid-docs-card:hover .railgrid-docs-card-arrow { transform: translateX(3px); }
+.railgrid-docs-card-text {
   font-size: 0.875rem;
   color: var(--fx-text-2);
   line-height: 1.55;
@@ -1141,12 +1141,12 @@ code, pre {
 }
 
 // Edit-on-github footer
-.faros-docs-article-foot {
+.railgrid-docs-article-foot {
   margin-top: 4rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--fx-border);
 }
-.faros-docs-edit-link {
+.railgrid-docs-edit-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -1154,12 +1154,12 @@ code, pre {
   color: var(--fx-text-muted);
   text-decoration: none !important;
 }
-.faros-docs-edit-link:hover { color: var(--fx-accent); }
+.railgrid-docs-edit-link:hover { color: var(--fx-accent); }
 
 // Responsive — collapse sidebar on small screens
 @media (max-width: 900px) {
-  .faros-docs-shell { display: block; padding-top: 5rem; }
-  .faros-docs-sidebar {
+  .railgrid-docs-shell { display: block; padding-top: 5rem; }
+  .railgrid-docs-sidebar {
     position: relative;
     top: 0;
     width: 100%;
@@ -1168,12 +1168,12 @@ code, pre {
     border-right: 0;
     border-bottom: 1px solid var(--fx-border);
   }
-  .faros-docs-main { padding: 2rem 1.25rem 4rem; }
-  .faros-docs-title { font-size: 1.85rem; }
+  .railgrid-docs-main { padding: 2rem 1.25rem 4rem; }
+  .railgrid-docs-title { font-size: 1.85rem; }
 }
 
 // ─────────── Site chrome: nav + footer (Violet Circuit) ───────────
-.faros-header {
+.railgrid-header {
   height: 4rem;
   background: color-mix(in srgb, var(--fx-surface) 92%, transparent);
   border-bottom: 1px solid var(--fx-border);
@@ -1181,7 +1181,7 @@ code, pre {
   -webkit-backdrop-filter: blur(10px);
 }
 
-.faros-nav-shell {
+.railgrid-nav-shell {
   position: relative;
   display: flex;
   width: calc(100% - 2rem);
@@ -1192,9 +1192,9 @@ code, pre {
   justify-content: space-between;
 }
 
-.faros-nav-brand { flex: 0 0 auto; }
+.railgrid-nav-brand { flex: 0 0 auto; }
 
-.faros-nav-desktop {
+.railgrid-nav-desktop {
   display: none;
   min-width: 0;
   flex: 1;
@@ -1203,8 +1203,8 @@ code, pre {
   margin-left: 2rem;
 }
 
-.faros-nav-primary,
-.faros-nav-actions {
+.railgrid-nav-primary,
+.railgrid-nav-actions {
   display: flex;
   align-items: center;
   margin: 0;
@@ -1212,23 +1212,23 @@ code, pre {
   list-style: none;
 }
 
-.faros-nav-primary { gap: 0.05rem; }
-.faros-nav-actions { gap: 0.5rem; }
-.faros-nav-disclosure { position: relative; }
+.railgrid-nav-primary { gap: 0.05rem; }
+.railgrid-nav-actions { gap: 0.5rem; }
+.railgrid-nav-disclosure { position: relative; }
 
-.faros-mobile-toggle {
+.railgrid-mobile-toggle {
   width: 2.75rem;
   height: 2.75rem;
   padding: 0;
 }
 
-.faros-mobile-toggle-glyph {
+.railgrid-mobile-toggle-glyph {
   font-size: 1.45rem;
   font-weight: 400;
   line-height: 1;
 }
 
-.faros-navlink {
+.railgrid-navlink {
   display: inline-flex;
   align-items: center;
   padding: 0.45rem 0.55rem;
@@ -1239,32 +1239,32 @@ code, pre {
   text-decoration: none !important;
   transition: color 0.15s, background 0.15s;
 }
-.faros-navlink:hover {
+.railgrid-navlink:hover {
   color: var(--fx-text);
   background: var(--fx-overlay);
 }
 
-.faros-navlink[aria-current="page"],
-.faros-nav-trigger[aria-expanded="true"] {
+.railgrid-navlink[aria-current="page"],
+.railgrid-nav-trigger[aria-expanded="true"] {
   color: var(--fx-text);
   background: var(--fx-overlay);
 }
 
-.faros-nav-trigger {
+.railgrid-nav-trigger {
   gap: 0.2rem;
   border: 0;
   cursor: pointer;
 }
 
-.faros-nav-chevron {
+.railgrid-nav-chevron {
   width: 0.75rem;
   height: 0.75rem;
   transition: transform 120ms ease;
 }
 
-.faros-nav-chevron.is-open { transform: rotate(180deg); }
+.railgrid-nav-chevron.is-open { transform: rotate(180deg); }
 
-.faros-nav-github {
+.railgrid-nav-github {
   display: inline-flex;
   height: 2.25rem;
   align-items: center;
@@ -1278,16 +1278,16 @@ code, pre {
   text-decoration: none !important;
 }
 
-.faros-nav-github svg { width: 1rem; height: 1rem; }
-.faros-nav-github:hover { color: var(--fx-text); background: var(--fx-overlay); }
+.railgrid-nav-github svg { width: 1rem; height: 1rem; }
+.railgrid-nav-github:hover { color: var(--fx-text); background: var(--fx-overlay); }
 
-.faros-nav-action {
+.railgrid-nav-action {
   min-height: 2.25rem;
   padding: 0.42rem 0.75rem;
   font-size: 0.8rem;
 }
 
-.faros-nav-dropdown {
+.railgrid-nav-dropdown {
   position: absolute;
   top: calc(100% + 0.7rem);
   left: 0;
@@ -1303,7 +1303,7 @@ code, pre {
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.45);
 }
 
-.faros-nav-dropdown::before {
+.railgrid-nav-dropdown::before {
   position: absolute;
   top: -0.75rem;
   left: 0;
@@ -1312,12 +1312,12 @@ code, pre {
   content: "";
 }
 
-.faros-nav-dropdown-developers { left: -5rem; }
-.faros-nav-dropdown-solutions { left: -11rem; max-width: 52rem; }
-.faros-nav-panel-main { padding: 1.5rem; }
-.faros-nav-panel-rail { padding: 1.5rem; background: var(--fx-surface); border-left: 1px solid var(--fx-border); }
+.railgrid-nav-dropdown-developers { left: -5rem; }
+.railgrid-nav-dropdown-solutions { left: -11rem; max-width: 52rem; }
+.railgrid-nav-panel-main { padding: 1.5rem; }
+.railgrid-nav-panel-rail { padding: 1.5rem; background: var(--fx-surface); border-left: 1px solid var(--fx-border); }
 
-.faros-nav-panel-label {
+.railgrid-nav-panel-label {
   margin: 0 0 1rem;
   color: var(--fx-text-muted);
   font-family: var(--fx-mono);
@@ -1327,11 +1327,11 @@ code, pre {
   text-transform: uppercase;
 }
 
-.faros-nav-rich-grid,
-.faros-nav-group-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; }
-.faros-nav-group-grid { gap: 1.5rem; }
+.railgrid-nav-rich-grid,
+.railgrid-nav-group-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; }
+.railgrid-nav-group-grid { gap: 1.5rem; }
 
-.faros-nav-rich-link {
+.railgrid-nav-rich-link {
   display: flex;
   min-width: 0;
   gap: 0.75rem;
@@ -1341,15 +1341,15 @@ code, pre {
   text-decoration: none !important;
 }
 
-.faros-nav-rich-link:hover,
-.faros-nav-rich-link:focus-visible { color: var(--fx-text); background: var(--fx-overlay); }
-.faros-nav-rich-icon { display: grid; width: 2rem; height: 2rem; flex: 0 0 2rem; place-items: center; border: 1px solid var(--fx-border); border-radius: 4px; background: var(--fx-surface); }
-.faros-nav-rich-icon svg { width: 1rem; height: 1rem; stroke-width: 1.5; }
-.faros-nav-rich-link > span:last-child { min-width: 0; }
-.faros-nav-rich-link strong { display: block; margin-bottom: 0.15rem; color: var(--fx-text); font-size: 0.83rem; }
-.faros-nav-rich-link small { display: block; color: var(--fx-text-muted); font-size: 0.7rem; line-height: 1.4; }
+.railgrid-nav-rich-link:hover,
+.railgrid-nav-rich-link:focus-visible { color: var(--fx-text); background: var(--fx-overlay); }
+.railgrid-nav-rich-icon { display: grid; width: 2rem; height: 2rem; flex: 0 0 2rem; place-items: center; border: 1px solid var(--fx-border); border-radius: 4px; background: var(--fx-surface); }
+.railgrid-nav-rich-icon svg { width: 1rem; height: 1rem; stroke-width: 1.5; }
+.railgrid-nav-rich-link > span:last-child { min-width: 0; }
+.railgrid-nav-rich-link strong { display: block; margin-bottom: 0.15rem; color: var(--fx-text); font-size: 0.83rem; }
+.railgrid-nav-rich-link small { display: block; color: var(--fx-text-muted); font-size: 0.7rem; line-height: 1.4; }
 
-.faros-nav-simple-link {
+.railgrid-nav-simple-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1359,23 +1359,23 @@ code, pre {
   font-size: 0.8rem;
   text-decoration: none !important;
 }
-.faros-nav-simple-link span { opacity: 0; transform: translateX(-0.2rem); transition: opacity 120ms, transform 120ms; }
-.faros-nav-simple-link:hover { color: var(--fx-text); }
-.faros-nav-simple-link:hover span { opacity: 1; transform: translateX(0); }
+.railgrid-nav-simple-link span { opacity: 0; transform: translateX(-0.2rem); transition: opacity 120ms, transform 120ms; }
+.railgrid-nav-simple-link:hover { color: var(--fx-text); }
+.railgrid-nav-simple-link:hover span { opacity: 1; transform: translateX(0); }
 
-.faros-nav-panel-link {
+.railgrid-nav-panel-link {
   display: block;
   padding: 0.65rem;
   color: var(--fx-text-2);
   border-radius: 5px;
   text-decoration: none !important;
 }
-.faros-nav-panel-link + .faros-nav-panel-link { margin-top: 0.25rem; }
-.faros-nav-panel-link:hover { color: var(--fx-text); background: var(--fx-overlay); }
-.faros-nav-panel-link strong { display: block; color: var(--fx-text); font-size: 0.8rem; }
-.faros-nav-panel-link span { display: block; margin-top: 0.25rem; color: var(--fx-text-muted); font-size: 0.7rem; line-height: 1.45; }
+.railgrid-nav-panel-link + .railgrid-nav-panel-link { margin-top: 0.25rem; }
+.railgrid-nav-panel-link:hover { color: var(--fx-text); background: var(--fx-overlay); }
+.railgrid-nav-panel-link strong { display: block; color: var(--fx-text); font-size: 0.8rem; }
+.railgrid-nav-panel-link span { display: block; margin-top: 0.25rem; color: var(--fx-text-muted); font-size: 0.7rem; line-height: 1.45; }
 
-.faros-mobile-overlay {
+.railgrid-mobile-overlay {
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -1386,7 +1386,7 @@ code, pre {
   background: var(--fx-surface);
 }
 
-.faros-mobile-topbar {
+.railgrid-mobile-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1395,7 +1395,7 @@ code, pre {
   border-bottom: 1px solid var(--fx-border);
 }
 
-.faros-mobile-close {
+.railgrid-mobile-close {
   display: grid;
   width: 2.75rem;
   height: 2.75rem;
@@ -1407,13 +1407,13 @@ code, pre {
   font-size: 1.7rem;
   cursor: pointer;
 }
-.faros-mobile-close:hover { color: var(--fx-text); background: var(--fx-overlay); }
-.faros-mobile-scroll { overflow-y: auto; padding: 1rem 1rem 8rem; overscroll-behavior: contain; }
-.faros-mobile-section,
-.faros-mobile-direct { border-bottom: 1px solid var(--fx-border); }
-.faros-mobile-section h2 { margin: 0; }
-.faros-mobile-section h2 button,
-.faros-mobile-direct {
+.railgrid-mobile-close:hover { color: var(--fx-text); background: var(--fx-overlay); }
+.railgrid-mobile-scroll { overflow-y: auto; padding: 1rem 1rem 8rem; overscroll-behavior: contain; }
+.railgrid-mobile-section,
+.railgrid-mobile-direct { border-bottom: 1px solid var(--fx-border); }
+.railgrid-mobile-section h2 { margin: 0; }
+.railgrid-mobile-section h2 button,
+.railgrid-mobile-direct {
   display: flex;
   width: 100%;
   min-height: 3.5rem;
@@ -1429,47 +1429,47 @@ code, pre {
   text-decoration: none !important;
   cursor: pointer;
 }
-.faros-mobile-section-icon { transition: transform 120ms ease; }
-.faros-mobile-section-icon.is-open { transform: rotate(180deg); }
-.faros-mobile-section-links { padding: 0 0.5rem 0.9rem 1.1rem; }
-.faros-mobile-section-links a { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0; color: var(--fx-text-2); font-size: 0.88rem; text-decoration: none !important; }
-.faros-mobile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom)); background: var(--fx-surface); border-top: 1px solid var(--fx-border-strong); box-shadow: 0 -1rem 2.5rem rgba(0, 0, 0, 0.35); }
-.faros-nav-locked { overflow: hidden; }
+.railgrid-mobile-section-icon { transition: transform 120ms ease; }
+.railgrid-mobile-section-icon.is-open { transform: rotate(180deg); }
+.railgrid-mobile-section-links { padding: 0 0.5rem 0.9rem 1.1rem; }
+.railgrid-mobile-section-links a { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0; color: var(--fx-text-2); font-size: 0.88rem; text-decoration: none !important; }
+.railgrid-mobile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom)); background: var(--fx-surface); border-top: 1px solid var(--fx-border-strong); box-shadow: 0 -1rem 2.5rem rgba(0, 0, 0, 0.35); }
+.railgrid-nav-locked { overflow: hidden; }
 
-.faros-navlink:focus-visible,
-.faros-nav-github:focus-visible,
-.faros-nav-rich-link:focus-visible,
-.faros-nav-simple-link:focus-visible,
-.faros-nav-panel-link:focus-visible,
-.faros-mobile-close:focus-visible,
-.faros-mobile-section button:focus-visible,
-.faros-mobile-section-links a:focus-visible,
-.faros-mobile-direct:focus-visible {
+.railgrid-navlink:focus-visible,
+.railgrid-nav-github:focus-visible,
+.railgrid-nav-rich-link:focus-visible,
+.railgrid-nav-simple-link:focus-visible,
+.railgrid-nav-panel-link:focus-visible,
+.railgrid-mobile-close:focus-visible,
+.railgrid-mobile-section button:focus-visible,
+.railgrid-mobile-section-links a:focus-visible,
+.railgrid-mobile-direct:focus-visible {
   outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
 
 @media (min-width: 1024px) {
-  .faros-nav-desktop { display: flex; }
-  .faros-header .faros-mobile-toggle { display: none; }
+  .railgrid-nav-desktop { display: flex; }
+  .railgrid-header .railgrid-mobile-toggle { display: none; }
 }
 
 @media (max-width: 1180px) {
-  .faros-nav-desktop { margin-left: 1rem; }
-  .faros-nav-primary .faros-navlink { padding-inline: 0.4rem; font-size: 0.8rem; }
-  .faros-nav-github span { display: none; }
-  .faros-nav-github { padding-inline: 0.6rem; }
-  .faros-nav-dropdown-solutions { left: -15rem; }
+  .railgrid-nav-desktop { margin-left: 1rem; }
+  .railgrid-nav-primary .railgrid-navlink { padding-inline: 0.4rem; font-size: 0.8rem; }
+  .railgrid-nav-github span { display: none; }
+  .railgrid-nav-github { padding-inline: 0.6rem; }
+  .railgrid-nav-dropdown-solutions { left: -15rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faros-nav-chevron,
-  .faros-nav-simple-link span,
-  .faros-mobile-section-icon { transition: none; }
+  .railgrid-nav-chevron,
+  .railgrid-nav-simple-link span,
+  .railgrid-mobile-section-icon { transition: none; }
 }
 
 // Primary CTA — glow is allowed here (it's the live/primary action)
-.faros-cta {
+.railgrid-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1484,12 +1484,12 @@ code, pre {
   text-decoration: none !important;
   transition: background 0.15s, box-shadow 0.15s;
 }
-.faros-cta:hover {
+.railgrid-cta:hover {
   background: var(--fx-accent-hover);
   box-shadow: 0 0 22px var(--fx-accent-glow);
   color: #fff;
 }
-.faros-cta-ghost {
+.railgrid-cta-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1503,17 +1503,17 @@ code, pre {
   text-decoration: none !important;
   transition: background 0.15s, border-color 0.15s;
 }
-.faros-cta-ghost:hover {
+.railgrid-cta-ghost:hover {
   background: var(--fx-hover);
   border-color: var(--fx-accent);
   color: var(--fx-text);
 }
 
-.faros-footer {
+.railgrid-footer {
   background: var(--fx-surface);
   border-top: 1px solid var(--fx-border);
 }
-.faros-footer-heading {
+.railgrid-footer-heading {
   font-family: var(--fx-mono);
   font-size: 0.68rem;
   font-weight: 500;
@@ -1522,34 +1522,34 @@ code, pre {
   color: var(--fx-text-muted);
   margin-bottom: 1rem;
 }
-.faros-footer-link {
+.railgrid-footer-link {
   font-size: 0.875rem;
   color: var(--fx-text-2);
   text-decoration: none !important;
   transition: color 0.15s;
 }
-.faros-footer-link:hover { color: var(--fx-accent); }
-.faros-footer-text { color: var(--fx-text-2); }
-.faros-footer-icon {
+.railgrid-footer-link:hover { color: var(--fx-accent); }
+.railgrid-footer-text { color: var(--fx-text-2); }
+.railgrid-footer-icon {
   color: var(--fx-text-muted);
   transition: color 0.15s;
 }
-.faros-footer-icon:hover { color: var(--fx-accent); }
-.faros-strip-top { border-top: 1px solid var(--fx-border); }
+.railgrid-footer-icon:hover { color: var(--fx-accent); }
+.railgrid-strip-top { border-top: 1px solid var(--fx-border); }
 
 // Markdown render-hook elements inside the docs body
-.faros-docs-body .faros-docs-heading { margin-top: 2.25rem; margin-bottom: 0.75rem; }
-.faros-docs-body h2.faros-docs-heading { margin-top: 2.75rem; }
-.faros-docs-body .faros-docs-anchor {
+.railgrid-docs-body .railgrid-docs-heading { margin-top: 2.25rem; margin-bottom: 0.75rem; }
+.railgrid-docs-body h2.railgrid-docs-heading { margin-top: 2.75rem; }
+.railgrid-docs-body .railgrid-docs-anchor {
   color: inherit;
   text-decoration: none !important;
 }
-.faros-docs-body .faros-docs-anchor:hover { color: var(--fx-accent); }
+.railgrid-docs-body .railgrid-docs-anchor:hover { color: var(--fx-accent); }
 
 // Docsy's click-to-copy button (injected by JS into every .highlight block).
 // Bootstrap isn't loaded here, so it needs its own styling.
-.faros-docs-body .highlight { position: relative; }
-.faros-docs-body .td-click-to-copy {
+.railgrid-docs-body .highlight { position: relative; }
+.railgrid-docs-body .td-click-to-copy {
   position: absolute;
   top: 0.45rem;
   right: 0.45rem;
@@ -1566,9 +1566,9 @@ code, pre {
   opacity: 0;
   transition: opacity 0.15s, color 0.15s, border-color 0.15s;
 }
-.faros-docs-body .highlight:hover .td-click-to-copy,
-.faros-docs-body .td-click-to-copy:focus-visible { opacity: 1; }
-.faros-docs-body .td-click-to-copy:hover {
+.railgrid-docs-body .highlight:hover .td-click-to-copy,
+.railgrid-docs-body .td-click-to-copy:focus-visible { opacity: 1; }
+.railgrid-docs-body .td-click-to-copy:hover {
   color: var(--fx-text);
   border-color: var(--fx-accent);
 }

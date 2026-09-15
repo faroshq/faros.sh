@@ -8,7 +8,7 @@ cascade:
   provider: kuery
 ---
 
-Kuery helps you inspect Kubernetes resources across a connected fleet. Query resources and explore their relationships from your Faros workspace rather than opening each cluster separately for every question.
+Kuery helps you inspect Kubernetes resources across a connected fleet. Query resources and explore their relationships from your Railgrid workspace rather than opening each cluster separately for every question.
 
 [Get started: run your first fleet query](/docs/use/kuery/quickstart/).
 
@@ -39,4 +39,4 @@ The provider synchronizes selected cluster resources into its SQLite or Postgres
 - [API reference](/docs/reference/providers/kuery/)
 - [Self-host Kuery](/docs/self-hosting/providers/kuery/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/kuery/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/kuery/README.md).

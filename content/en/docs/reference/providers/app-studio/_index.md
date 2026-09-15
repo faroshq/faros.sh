@@ -12,7 +12,7 @@ Use the workspace where App Studio is enabled. Authenticate with a credential au
 
 ## Interfaces
 
-`Project`, `Session`, and `Studio` in `ai.faros.sh/v1alpha1`. Project bindings connect repositories, environments, and exact provider resources. Conversations use the provider message API rather than storing every message in a CR.
+`Project`, `Session`, and `Studio` in `ai.railgrid.ai/v1alpha1`. Project bindings connect repositories, environments, and exact provider resources. Conversations use the provider message API rather than storing every message in a CR.
 
 ## Resource schemas
 
@@ -23,17 +23,17 @@ Use the workspace where App Studio is enabled. Authenticate with a credential au
 Use a kubeconfig context that is already authenticated for the target workspace. The context supplies the bearer credential; do not put a token in a manifest or shell history.
 
 ```sh
-kubectl faros use
-kubectl api-resources --api-group=ai.faros.sh
-kubectl get projects.ai.faros.sh,studios.ai.faros.sh,sessions.ai.faros.sh
-kubectl explain projects.ai.faros.sh.spec --api-version=ai.faros.sh/v1alpha1
+kubectl railgrid use
+kubectl api-resources --api-group=ai.railgrid.ai
+kubectl get projects.ai.railgrid.ai,studios.ai.railgrid.ai,sessions.ai.railgrid.ai
+kubectl explain projects.ai.railgrid.ai.spec --api-version=ai.railgrid.ai/v1alpha1
 ```
 
 The list command returns workspace-scoped objects; these resources do not use Kubernetes namespaces. `Forbidden` means the credential lacks list permission in that workspace; an empty list means no objects matched. If the resource is unknown, verify provider installation and API discovery before applying a manifest.
 
 ## Authoritative definitions
 
-[API definitions](https://github.com/faroshq/faros/blob/main/providers/app-studio/apis/ai/v1alpha1) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
+[API definitions](https://github.com/railgrid/railgrid/blob/main/providers/app-studio/apis/ai/v1alpha1) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
 
 ## Related guide
 

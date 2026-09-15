@@ -9,11 +9,11 @@ An organization groups people and workspaces. A workspace is a Kubernetes-style 
 
 A provider adds a capability such as App Studio or Edges. Enabling a provider binds its APIs into the selected workspace.
 
-Read [how Faros works](/docs/get-started/what-is-faros/#how-faros-works) for runtime boundaries, [service accounts and credentials](/docs/administration/service-accounts/) for identity details, or [Administration](/docs/administration/) to create and manage team access.
+Read [how Railgrid works](/docs/get-started/what-is-railgrid/#how-railgrid-works) for runtime boundaries, [service accounts and credentials](/docs/administration/service-accounts/) for identity details, or [Administration](/docs/administration/) to create and manage team access.
 
 ## Navigate the console
 
-Use the Faros SaaS hub. If your organization self-hosts Faros, use its hub URL and sign-in method instead.
+Use the Railgrid SaaS hub. If your organization self-hosts Railgrid, use its hub URL and sign-in method instead.
 
 1. Sign in to the console.
 2. Use the organization and workspace switcher to select where you want to work.

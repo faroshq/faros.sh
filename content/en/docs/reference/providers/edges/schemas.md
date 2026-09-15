@@ -8,7 +8,7 @@ provider: "edges"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## KubernetesCluster (v1alpha1)
 
-API: `edges.faros.sh/v1alpha1` · Resource: `kubernetesclusters` · Scope: `Cluster`
+API: `edges.railgrid.ai/v1alpha1` · Resource: `kubernetesclusters` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/kubernetesclusters.edges.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/kubernetesclusters.edges.railgrid.ai.yaml)
 
 ```bash
-kubectl explain kubernetesclusters.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --recursive
+kubectl explain kubernetesclusters.edges.railgrid.ai --api-version=edges.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -30,7 +30,7 @@ kubectl explain kubernetesclusters.edges.faros.sh --api-version=edges.faros.sh/v
 | `spec.labels` | object | No | Labels for scheduling hints (region, provider, etc.) |
 | `status` | object | No | KubernetesClusterStatus defines the observed state of a KubernetesCluster. |
 | `status.URL` | string | No | URL is the proxy URL path for accessing this resource via the hub. |
-| `status.agentVersion` | string | No | AgentVersion is the version of the faros binary on the agent. |
+| `status.agentVersion` | string | No | AgentVersion is the version of the railgrid binary on the agent. |
 | `status.conditions` | array&#91;object&#93; | No | Conditions represent the latest observations of state. |
 | `status.conditions[].lastTransitionTime` | string | Yes | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `status.conditions[].message` | string | Yes | message is a human readable message indicating details about the transition. This may be an empty string. maxLength: 32768 |
@@ -48,12 +48,12 @@ kubectl explain kubernetesclusters.edges.faros.sh --api-version=edges.faros.sh/v
 
 ## LinuxServer (v1alpha1)
 
-API: `edges.faros.sh/v1alpha1` · Resource: `linuxservers` · Scope: `Cluster`
+API: `edges.railgrid.ai/v1alpha1` · Resource: `linuxservers` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/linuxservers.edges.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/linuxservers.edges.railgrid.ai.yaml)
 
 ```bash
-kubectl explain linuxservers.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --recursive
+kubectl explain linuxservers.edges.railgrid.ai --api-version=edges.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -69,7 +69,7 @@ kubectl explain linuxservers.edges.faros.sh --api-version=edges.faros.sh/v1alpha
 | `spec.sshUserMapping` | string | No | SSHUserMapping controls how the SSH username is determined for callers. default: "inherited"; enum: &#91;"inherited", "provided", "identity"&#93; |
 | `status` | object | No | LinuxServerStatus defines the observed state of a LinuxServer. |
 | `status.URL` | string | No | URL is the proxy URL path for accessing this resource via the hub. |
-| `status.agentVersion` | string | No | AgentVersion is the version of the faros binary on the agent. |
+| `status.agentVersion` | string | No | AgentVersion is the version of the railgrid binary on the agent. |
 | `status.conditions` | array&#91;object&#93; | No | Conditions represent the latest observations of state. |
 | `status.conditions[].lastTransitionTime` | string | Yes | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `status.conditions[].message` | string | Yes | message is a human readable message indicating details about the transition. This may be an empty string. maxLength: 32768 |
@@ -96,12 +96,12 @@ kubectl explain linuxservers.edges.faros.sh --api-version=edges.faros.sh/v1alpha
 
 ## Placement (v1alpha1)
 
-API: `edges.faros.sh/v1alpha1` · Resource: `placements` · Scope: `Namespaced`
+API: `edges.railgrid.ai/v1alpha1` · Resource: `placements` · Scope: `Namespaced`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/placements.edges.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/placements.edges.railgrid.ai.yaml)
 
 ```bash
-kubectl explain placements.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --recursive
+kubectl explain placements.edges.railgrid.ai --api-version=edges.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -131,12 +131,12 @@ kubectl explain placements.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 
 
 ## Service (v1alpha1)
 
-API: `edges.faros.sh/v1alpha1` · Resource: `services` · Scope: `Cluster`
+API: `edges.railgrid.ai/v1alpha1` · Resource: `services` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/services.edges.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/services.edges.railgrid.ai.yaml)
 
 ```bash
-kubectl explain services.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --recursive
+kubectl explain services.edges.railgrid.ai --api-version=edges.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -174,12 +174,12 @@ kubectl explain services.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --
 
 ## Workload (v1alpha1)
 
-API: `edges.faros.sh/v1alpha1` · Resource: `workloads` · Scope: `Namespaced`
+API: `edges.railgrid.ai/v1alpha1` · Resource: `workloads` · Scope: `Namespaced`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/workloads.edges.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/edges/deploy/chart/files/schemas/workloads.edges.railgrid.ai.yaml)
 
 ```bash
-kubectl explain workloads.edges.faros.sh --api-version=edges.faros.sh/v1alpha1 --recursive
+kubectl explain workloads.edges.railgrid.ai --api-version=edges.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |

@@ -41,4 +41,4 @@ Templates describe the catalog. Instances belong to your workspace; the provider
 - [API reference](/docs/reference/providers/infrastructure/)
 - [Self-host Infrastructure](/docs/self-hosting/providers/infrastructure/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/infrastructure/apis/v1alpha1/types_instance.go).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/infrastructure/apis/v1alpha1/types_instance.go).

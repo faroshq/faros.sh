@@ -56,7 +56,7 @@ test('sidebar groups follow the curated task structure', () => {
 test('section overviews retain both navigation and article tools', () => {
   for (const area of nav.primary) {
     const page = html(`/docs/${area.slug}/`);
-    assert.ok(page.includes('faros-docs-sidebar'));
+    assert.ok(page.includes('railgrid-docs-sidebar'));
     assert.ok(page.includes('docs-page-rail'));
   }
 });
@@ -73,6 +73,6 @@ test('documentation uses one header with docs navigation and shared actions', ()
     assert.match(header, /docs-search-trigger/);
     assert.match(header, /href="\/docs\/search\/"/);
     assert.match(header, /Open console/);
-    assert.match(header, /aria-label="Faros home"/);
+    assert.match(header, /aria-label="Railgrid home"/);
   }
 });

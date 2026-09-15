@@ -16,4 +16,4 @@ encode() {
 }
 encode videos/app-studio-marketing.mp4 build
 encode videos/agents-marketing-v2.mp4 agent
-encode videos/faros-mcp-marketing.mp4 launch
+encode videos/railgrid-mcp-marketing.mp4 launch

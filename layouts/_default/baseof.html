@@ -14,7 +14,7 @@
     {{ end }}
 
     {{ if $connected }}<script src="{{ partial "asset-url.html" "/js/connected-theme.js" }}" defer></script>{{ else }}
-    {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Faros Rocks!")) }}
+    {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" false "params" (dict "myparam" "Railgrid Rocks!")) }}
     <script src="{{ $js.RelPermalink }}"></script>
 
     {{ $alpineJs := resources.Get "js/alpine.min.js" | js.Build (dict "minify" false "params" (dict "myparam" "Alpine")) }}

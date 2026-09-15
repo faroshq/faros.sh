@@ -1,6 +1,6 @@
 <div
-  id="faros-mobile-menu"
-  class="faros-mobile-overlay"
+  id="railgrid-mobile-menu"
+  class="railgrid-mobile-overlay"
   x-show="mobileOpen"
   x-transition:enter="transition ease-out duration-150"
   x-transition:enter-start="opacity-0"
@@ -15,15 +15,15 @@
   x-ref="mobilePanel"
   x-cloak
 >
-  <div class="faros-mobile-topbar">
-    <a href="/" aria-label="Faros home" class="faros-wordmark">
-      <span class="faros-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
-      <span class="faros-wordmark-text">faros</span>
+  <div class="railgrid-mobile-topbar">
+    <a href="/" aria-label="Railgrid home" class="railgrid-wordmark">
+      <span class="railgrid-wordmark-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+      <span class="railgrid-wordmark-text">Railgrid</span>
     </a>
-    <button type="button" class="faros-mobile-close" @click="closeAll(true)" x-ref="mobileClose"><span class="sr-only">Close main menu</span><span aria-hidden="true">×</span></button>
+    <button type="button" class="railgrid-mobile-close" @click="closeAll(true)" x-ref="mobileClose"><span class="sr-only">Close main menu</span><span aria-hidden="true">×</span></button>
   </div>
 
-  <div class="faros-mobile-scroll">
+  <div class="railgrid-mobile-scroll">
     {{ partial "navigation/mobile-section.html" (dict "id" "mobile-platform" "label" "Platform" "links" (slice
       (dict "label" "Platform overview" "href" "/platform/")
       (dict "label" "Workspaces" "href" "/docs/reference/cli/workspaces/")
@@ -41,16 +41,16 @@
     )) }}
     {{ partial "navigation/mobile-section.html" (dict "id" "mobile-solutions" "label" "Solutions" "links" (slice
       (dict "label" "Solutions overview" "href" "/solutions/")
-      (dict "label" "Faros Cloud" "href" "/solutions/")
-      (dict "label" "Self-hosted Faros" "href" "/docs/self-hosting/hub/helm/")
-      (dict "label" "Work with Faros" "href" "/contact/")
+      (dict "label" "Railgrid Cloud" "href" "/solutions/")
+      (dict "label" "Self-hosted Railgrid" "href" "/docs/self-hosting/hub/helm/")
+      (dict "label" "Work with Railgrid" "href" "/contact/")
     )) }}
-    <a class="faros-mobile-direct" href="/pricing/">Pricing</a>
-    <a class="faros-mobile-direct" href="/docs/">Docs</a>
+    <a class="railgrid-mobile-direct" href="/pricing/">Pricing</a>
+    <a class="railgrid-mobile-direct" href="/docs/">Docs</a>
   </div>
 
-  <div class="faros-mobile-actions">
-    <a href="/docs/use/edges/quickstart/" class="faros-cta-ghost">Quickstart</a>
-    {{ with .consoleURL }}<a href="{{ . }}" class="faros-cta">Open console</a>{{ end }}
+  <div class="railgrid-mobile-actions">
+    <a href="/docs/use/edges/quickstart/" class="railgrid-cta-ghost">Quickstart</a>
+    {{ with .consoleURL }}<a href="{{ . }}" class="railgrid-cta">Open console</a>{{ end }}
   </div>
 </div>

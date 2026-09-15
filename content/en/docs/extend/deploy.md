@@ -21,7 +21,7 @@ deploy/chart/
 
 The key wiring in `deployment.yaml`:
 
-- **initContainer** runs your binary with `args: ["init"]`. In charts that use the init/bootstrap path, it mounts the hub-minted kubeconfig Secret (`providerKubeconfig.secretName`, default `faros-provider-kubeconfig`, key `kubeconfig`) at `/var/run/secrets/faros/` and the CatalogEntry ConfigMap at `/etc/faros/catalogentry/`. That Secret mount is intentionally non-optional in this mode, so the pod waits until the hub's provider reconciler delivers it. Charts using an external or hub-provisioned serve-only mode may make the same mount optional and serve limited catalog/readiness traffic while waiting; follow that provider chart's values and README.
+- **initContainer** runs your binary with `args: ["init"]`. In charts that use the init/bootstrap path, it mounts the hub-minted kubeconfig Secret (`providerKubeconfig.secretName`, default `railgrid-provider-kubeconfig`, key `kubeconfig`) at `/var/run/secrets/railgrid/` and the CatalogEntry ConfigMap at `/etc/railgrid/catalogentry/`. That Secret mount is intentionally non-optional in this mode, so the pod waits until the hub's provider reconciler delivers it. Charts using an external or hub-provisioned serve-only mode may make the same mount optional and serve limited catalog/readiness traffic while waiting; follow that provider chart's values and README.
 - **serve container** runs the long-lived process: portal assets, backend API, controllers, MCP, heartbeat.
 - The **CatalogEntry goes into a ConfigMap, not the host cluster** — it's a kcp resource; `init` applies it into your provider workspace using the minted kubeconfig. In-cluster the chart points `ui.url`/`backend.url` at the Service DNS (`http://<release>.<namespace>.svc.cluster.local:<port>`).
 
@@ -33,13 +33,13 @@ The conventional contract your binary reads:
 
 | Variable | Read by | Meaning |
 |:---------|:--------|:--------|
-| `FAROS_PROVIDER_KUBECONFIG` | init + serve | Path to the workspace kubeconfig |
-| `FAROS_SCHEMAS_DIR` | init | APIResourceSchema directory (default `/etc/faros/schemas`) |
-| `FAROS_CATALOGENTRY_FILE` | init | CatalogEntry YAML to self-register (empty → skip) |
+| `RAILGRID_PROVIDER_KUBECONFIG` | init + serve | Path to the workspace kubeconfig |
+| `RAILGRID_SCHEMAS_DIR` | init | APIResourceSchema directory (default `/etc/railgrid/schemas`) |
+| `RAILGRID_CATALOGENTRY_FILE` | init | CatalogEntry YAML to self-register (empty → skip) |
 | `PORT` | serve | HTTP listen port |
-| `FAROS_HUB_URL` | serve | Hub URL for heartbeats |
-| `FAROS_PROVIDER_NAME` | serve | CatalogEntry name used in the heartbeat path |
-| `FAROS_HUB_TOKEN` / `FAROS_HUB_INSECURE` | serve | Heartbeat auth / TLS toggle (dev) |
+| `RAILGRID_HUB_URL` | serve | Hub URL for heartbeats |
+| `RAILGRID_PROVIDER_NAME` | serve | CatalogEntry name used in the heartbeat path |
+| `RAILGRID_HUB_TOKEN` / `RAILGRID_HUB_INSECURE` | serve | Heartbeat auth / TLS toggle (dev) |
 
 Providers with extra needs add their own namespaced vars (`AGENTS_DATABASE_URL`, `GITHUB_OAUTH_*`, ...).
 
@@ -49,7 +49,7 @@ Three stages, mirroring the quickstart Dockerfile:
 
 1. **Frontend** — `npm ci && npm run build` produces `portal/dist`.
 2. **Go build** — the binary embeds `portal/dist` via `go:embed` (frontend must build first).
-3. **Runtime** — distroless static, non-root, schemas baked at `/etc/faros/schemas`, entrypoint the binary.
+3. **Runtime** — distroless static, non-root, schemas baked at `/etc/railgrid/schemas`, entrypoint the binary.
 
 ## Health, readiness, heartbeat
 
@@ -60,12 +60,12 @@ Serve `/healthz` → 200; the chart wires it into liveness and readiness probes,
 The admin-side steps, in order:
 
 1. `kubectl apply -f provider.yaml` (the `Provider` object) against the hub — provisions workspace, SA, kubeconfig Secret.
-2. Read the `kubeconfig` data from the minted Secret (`<name>-kubeconfig` in `root:faros:system:providers`) and create a Secret with that data key in the runtime cluster's provider namespace. A Kubernetes Secret does not cross clusters by itself; use the generated onboarding command or an equivalent sealed-secret/GitOps process.
+2. Read the `kubeconfig` data from the minted Secret (`<name>-kubeconfig` in `root:railgrid:system:providers`) and create a Secret with that data key in the runtime cluster's provider namespace. A Kubernetes Secret does not cross clusters by itself; use the generated onboarding command or an equivalent sealed-secret/GitOps process.
 3. `helm install` the chart. Init bootstraps the API; serve starts heartbeating; the provider appears in the catalog.
-4. If your export claims `*.faros.sh` groups, supply the required `identityHash` values from the hub admin view.
+4. If your export claims `*.railgrid.ai` groups, supply the required `identityHash` values from the hub admin view.
 
 There's also a fully **self-supplied** variant — you provide a workspace-admin kubeconfig yourself instead of the hub-minted one — useful for development or running a provider entirely outside the hub's cluster. Everything downstream of the kubeconfig mount is identical.
 
 ## Publishing
 
-In the faros monorepo each `providers/<name>` directory is split-mirrored (history preserved) to a standalone read-only repo `faroshq/provider-<name>`, and the provider's `go.mod` module path is the mirror URL — so third parties can `go get` the code, while images and charts build from the monorepo CI. If you build out-of-tree, none of this applies to you: any repo that produces an image + chart with the contract above is a valid provider.
+In the Railgrid monorepo each `providers/<name>` directory is split-mirrored (history preserved) to a standalone read-only repo `railgrid/provider-<name>`, and the provider's `go.mod` module path is the mirror URL — so third parties can `go get` the code, while images and charts build from the monorepo CI. If you build out-of-tree, none of this applies to you: any repo that produces an image + chart with the contract above is a valid provider.

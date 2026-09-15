@@ -35,14 +35,14 @@ Delete test schedules and triggers when finished; closing the browser does not s
 Use the [CLI in the agent's workspace](/docs/reference/cli/resources/). This is the same Schedule resource used by the console. Inspect the installed schema and select an existing agent:
 
 ```bash
-kubectl get agents.agents.faros.sh
-kubectl explain schedules.agents.faros.sh.spec
+kubectl get agents.agents.railgrid.ai
+kubectl explain schedules.agents.railgrid.ai.spec
 ```
 
 Save the following as `schedule.yaml`, replacing `AGENT-NAME`. Start suspended so it cannot run before you review the configuration. The task is an example; choose one appropriate for the agent's tools and output channel.
 
 ```yaml
-apiVersion: agents.faros.sh/v1alpha1
+apiVersion: agents.railgrid.ai/v1alpha1
 kind: Schedule
 metadata:
   name: daily-summary-example
@@ -60,7 +60,7 @@ For a heartbeat, use `type: heartbeat`, keep the five-field `schedule`, and repl
 
 ```bash
 kubectl apply -f schedule.yaml
-kubectl get schedules.agents.faros.sh daily-summary-example -o yaml
+kubectl get schedules.agents.railgrid.ai daily-summary-example -o yaml
 ```
 
 Verify `agentRef`, timezone, task or heartbeat checklist, and the agent's destination channel. An empty `channelRef` uses the agent's primary channel. Use the console's run action to test execution; creating a Schedule does not perform a test run.
@@ -68,20 +68,20 @@ Verify `agentRef`, timezone, task or heartbeat checklist, and the agent's destin
 Once ready to allow scheduled execution:
 
 ```bash
-kubectl patch schedules.agents.faros.sh daily-summary-example --type=merge -p '{"spec":{"suspend":false}}'
-kubectl get schedules.agents.faros.sh daily-summary-example -o yaml
+kubectl patch schedules.agents.railgrid.ai daily-summary-example --type=merge -p '{"spec":{"suspend":false}}'
+kubectl get schedules.agents.railgrid.ai daily-summary-example -o yaml
 ```
 
 Inspect `status.nextRun` and verify the next resulting run in the console. An enabled schedule is not evidence of successful execution. To stop future firings, suspend it; suspension does not cancel a run already in progress.
 
 ```bash
-kubectl patch schedules.agents.faros.sh daily-summary-example --type=merge -p '{"spec":{"suspend":true}}'
+kubectl patch schedules.agents.railgrid.ai daily-summary-example --type=merge -p '{"spec":{"suspend":true}}'
 ```
 
 Remove the example when finished:
 
 ```bash
-kubectl delete schedules.agents.faros.sh daily-summary-example
+kubectl delete schedules.agents.railgrid.ai daily-summary-example
 ```
 
 The file still declares `suspend: true`; reapplying it suspends the schedule again. Update the reviewed manifest if you intend to keep an enabled schedule under version control.

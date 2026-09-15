@@ -1,6 +1,6 @@
 ---
 title: "Provider APIs"
-description: "Explore the APIs and resource schemas published by Faros providers."
+description: "Explore the APIs and resource schemas published by Railgrid providers."
 weight: 10
 doc_type: "Overview"
 ---

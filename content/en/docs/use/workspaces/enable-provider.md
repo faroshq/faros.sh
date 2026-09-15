@@ -9,7 +9,7 @@ Enable a capability in your workspace and confirm you can open it in the console
 
 ## Prerequisites
 
-Sign in to the Faros SaaS hub and select your organization and workspace. If your organization self-hosts Faros, sign in to that hub instead. Use an identity permitted to enable providers; ask a workspace administrator if the action is unavailable.
+Sign in to the Railgrid SaaS hub and select your organization and workspace. If your organization self-hosts Railgrid, sign in to that hub instead. Use an identity permitted to enable providers; ask a workspace administrator if the action is unavailable.
 
 ## Enable and verify
 
@@ -36,9 +36,9 @@ A dependency conflict means a required provider is not enabled. A forbidden resp
 The console checks above are sufficient for normal use. If a resource view fails to load, you or your administrator can investigate from the same [workspace in the CLI](/docs/reference/cli/resources/). For example, after enabling Infrastructure:
 
 ```bash
-kubectl api-resources --api-group=infrastructure.faros.sh
-kubectl auth can-i list instances.infrastructure.faros.sh
-kubectl get instances.infrastructure.faros.sh
+kubectl api-resources --api-group=infrastructure.railgrid.ai
+kubectl auth can-i list instances.infrastructure.railgrid.ai
+kubectl get instances.infrastructure.railgrid.ai
 ```
 
 Expect discovery to list the provider's resources. An empty Instance list can be a successful result in a new workspace. An unavailable API, a forbidden operation, and a provider error need different fixes.

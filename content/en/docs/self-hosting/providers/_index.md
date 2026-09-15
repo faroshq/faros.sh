@@ -25,8 +25,8 @@ The guides below identify provider-specific state and constraints. Read the char
 When onboarding mints `provider.kubeconfig`, create the Secret in the cluster where the provider chart runs. For example:
 
 ```bash
-kubectl create namespace faros-provider-quickstart
-kubectl --namespace faros-provider-quickstart create secret generic faros-provider-kubeconfig \
+kubectl create namespace railgrid-provider-quickstart
+kubectl --namespace railgrid-provider-quickstart create secret generic railgrid-provider-kubeconfig \
   --from-file=kubeconfig=./provider.kubeconfig
 ```
 

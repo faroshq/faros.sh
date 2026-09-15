@@ -94,7 +94,7 @@ kubectl get clusterissuer letsencrypt-prod
 
 ## Step 3 — Choose a Cloudflare route integration
 
-The hub chart supports both a Kubernetes `Ingress` and a Gateway API `HTTPRoute`. The commands below use the `strrl.dev` Ingress controller, so keep `ingress.enabled: true` in the hub values. If your cluster already runs Faros's cfgate Cloudflare controller, skip this controller install and use the HTTPRoute values shown below instead; do not enable both integrations for the same hostname.
+The hub chart supports both a Kubernetes `Ingress` and a Gateway API `HTTPRoute`. The commands below use the `strrl.dev` Ingress controller, so keep `ingress.enabled: true` in the hub values. If your cluster already runs Railgrid's cfgate Cloudflare controller, skip this controller install and use the HTTPRoute values shown below instead; do not enable both integrations for the same hostname.
 
 ```bash
 helm repo add strrl.dev https://helm.strrl.dev
@@ -106,10 +106,10 @@ helm upgrade --install --wait \
   strrl.dev/cloudflare-tunnel-ingress-controller \
   --set=cloudflare.apiToken="YOUR_CLOUDFLARE_API_TOKEN" \
   --set=cloudflare.accountId="YOUR_CLOUDFLARE_ACCOUNT_ID" \
-  --set=cloudflare.tunnelName="faros-tunnel"
+  --set=cloudflare.tunnelName="railgrid-tunnel"
 ```
 
-In the [Cloudflare Zero Trust dashboard](https://one.dash.cloudflare.com) → **Networks → Tunnels** you should see `faros-tunnel` as **Healthy**.
+In the [Cloudflare Zero Trust dashboard](https://one.dash.cloudflare.com) → **Networks → Tunnels** you should see `railgrid-tunnel` as **Healthy**.
 
 For the cfgate Gateway API integration, use this route block instead of the `ingress` block in the next step:
 
@@ -160,9 +160,9 @@ ingress:
 ```
 
 ```bash
-helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
+helm upgrade --install railgrid oci://ghcr.io/railgrid/charts/railgrid-hub \
   -f values-cloudflare.yaml \
-  --namespace faros-system \
+  --namespace railgrid-system \
   --create-namespace
 ```
 
@@ -170,18 +170,18 @@ helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
 
 ```bash
 # TLS cert ready?
-kubectl -n faros-system get certificate
-# faros-faros-hub-tls   True   ...
+kubectl -n railgrid-system get certificate
+# railgrid-railgrid-hub-tls   True   ...
 
 # In the Ingress-controller variant, inspect the generated route.
-kubectl get ingress -n faros-system
+kubectl get ingress -n railgrid-system
 
 # End-to-end
 curl -s https://hub.yourdomain.com/healthz
 # ok
 
 # Log in
-kubectl faros login --hub-url https://hub.yourdomain.com
+kubectl railgrid login --hub-url https://hub.yourdomain.com
 ```
 
 ## Exposing additional services through the same tunnel
@@ -220,8 +220,8 @@ Common causes:
 
 ```bash
 kubectl -n cert-manager logs -l app=cert-manager
-kubectl -n faros-system describe certificate
-kubectl -n faros-system get certificaterequest,order,challenge
+kubectl -n railgrid-system describe certificate
+kubectl -n railgrid-system get certificaterequest,order,challenge
 ```
 
 Most failures here are missing `DNS:Edit` on the API token, or the token doesn't cover the zone.

@@ -19,7 +19,7 @@ test('provider filter never leaks another provider', () => {
   assert.ok(results.every(page => page.provider === 'databricks'));
 });
 test('empty, punctuation, unmatched, and untrusted strings are safe', () => {
-  for (const query of ['', '   ', '?!', 'definitelynotafarostopic', '<script>alert(999999)</script>']) assert.deepEqual(searchDocs(pages, query), []);
+  for (const query of ['', '   ', '?!', 'definitelynotarailgridtopic', '<script>alert(999999)</script>']) assert.deepEqual(searchDocs(pages, query), []);
 });
 test('multiword matching is case insensitive', () => {
   assert.deepEqual(searchDocs(pages, 'AI AGENT').map(p => p.url), searchDocs(pages, 'ai agent').map(p => p.url));

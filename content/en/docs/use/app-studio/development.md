@@ -25,19 +25,19 @@ Do not treat development preview as a public hosting URL. Next: [publish your ap
 Select the [project's workspace](/docs/reference/cli/resources/) and inspect the project:
 
 ```bash
-kubectl get projects.ai.faros.sh
-kubectl get projects.ai.faros.sh PROJECT-NAME -o yaml
+kubectl get projects.ai.railgrid.ai
+kubectl get projects.ai.railgrid.ai PROJECT-NAME -o yaml
 ```
 
 In `spec.environments`, find the intended development environment and its Infrastructure binding. Its `resourceRef` identifies the resource kind and, when explicit, the name. For an owned Instance, name resolution uses `resourceRef.name`, then the resolved binding values' `name`, then `<project-name>-<binding-name>`. Confirm the matching Instance's `metadata.ownerReferences` points to this Project before treating it as the development runtime. Compare that binding with `status.environments` for phase, URL, and preview URL information.
 
 ```bash
-kubectl get instances.infrastructure.faros.sh INSTANCE-NAME -o yaml
-kubectl get instances.infrastructure.faros.sh INSTANCE-NAME --watch
+kubectl get instances.infrastructure.railgrid.ai INSTANCE-NAME -o yaml
+kubectl get instances.infrastructure.railgrid.ai INSTANCE-NAME --watch
 ```
 
 Inspect phase, message, and conditions. Stop the watch with Ctrl-C. If no matching Instance exists, inspect the binding configuration and project/template setup before looking for runtime pods. Do not delete an App Studio-owned instance as a restart mechanism.
 
-These commands query Faros resources. Runtime pod logs require the operator's hosting/runtime context; a Faros workspace credential does not automatically grant that access.
+These commands query Railgrid resources. Runtime pod logs require the operator's hosting/runtime context; a Railgrid workspace credential does not automatically grant that access.
 
 Next: [publish the application](/docs/use/app-studio/publishing/) after preview and repository changes are verified. If the environment cannot become ready, use [App Studio troubleshooting](/docs/use/app-studio/troubleshooting/) before deleting the project or its owned Instance.
