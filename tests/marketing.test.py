@@ -166,7 +166,7 @@ for route in MARKETING:
     local_assets_exist(page, path, errors)
 
 docs = parse(ROOT / "docs" / "index.html")
-if "docs-header" not in docs.classes or "faros-docs-main" not in docs.classes:
+if "docs-header" not in docs.classes or "railgrid-docs-main" not in docs.classes:
     errors.append("/docs/: docs shell is missing")
 if "gs-connected" not in docs.body_classes or "cl-theme-picker" not in docs.classes:
     errors.append("/docs/: shared theme shell is missing")

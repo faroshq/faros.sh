@@ -2,15 +2,15 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/app-studio/deploy/chart/files/schemas/projects.ai.faros.sh.yaml",
+      "source": "providers/app-studio/deploy/chart/files/schemas/projects.ai.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260814-102b8331.projects.ai.faros.sh"
+          "name": "v260814-102b8331.projects.ai.railgrid.ai"
         },
         "spec": {
-          "group": "ai.faros.sh",
+          "group": "ai.railgrid.ai",
           "names": {
             "kind": "Project",
             "listKind": "ProjectList",
@@ -302,7 +302,7 @@
                         "type": "object"
                       },
                       "template": {
-                        "description": "Template names the infrastructure Template whose instance backs this\nProject's development environment (docs/app-studio-template-sandboxes.md).\nWhen set, the development binding is generated from the Template's\ninstanceCRD with farosMode: development, and file sync routes per the\nTemplate's declared development components. Empty means the project has\nno development environment yet \u2014 one must be selected before any\ndevelopment runtime surface (sync, preview, logs) works.",
+                        "description": "Template names the infrastructure Template whose instance backs this\nProject's development environment (docs/app-studio-template-sandboxes.md).\nWhen set, the development binding is generated from the Template's\ninstanceCRD with railgridMode: development, and file sync routes per the\nTemplate's declared development components. Empty means the project has\nno development environment yet \u2014 one must be selected before any\ndevelopment runtime surface (sync, preview, logs) works.",
                         "properties": {
                           "name": {
                             "description": "Name is the Template's catalog name (e.g. \"application\").",
@@ -398,18 +398,18 @@
       }
     },
     {
-      "source": "providers/app-studio/deploy/chart/files/schemas/sessions.ai.faros.sh.yaml",
+      "source": "providers/app-studio/deploy/chart/files/schemas/sessions.ai.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260806-59f3b567.sessions.ai.faros.sh"
+          "name": "v260806-59f3b567.sessions.ai.railgrid.ai"
         },
         "spec": {
-          "group": "ai.faros.sh",
+          "group": "ai.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Session",
             "listKind": "SessionList",
@@ -522,18 +522,18 @@
       }
     },
     {
-      "source": "providers/app-studio/deploy/chart/files/schemas/studios.ai.faros.sh.yaml",
+      "source": "providers/app-studio/deploy/chart/files/schemas/studios.ai.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260809-dbe6b457.studios.ai.faros.sh"
+          "name": "v260809-dbe6b457.studios.ai.railgrid.ai"
         },
         "spec": {
-          "group": "ai.faros.sh",
+          "group": "ai.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Studio",
             "listKind": "StudioList",

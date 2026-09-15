@@ -39,4 +39,4 @@ The provider synchronizes selected cluster resources into its SQLite or Postgres
 - [API reference](/docs/reference/providers/kuery/)
 - [Self-host Kuery](/docs/self-hosting/providers/kuery/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/kuery/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/kuery/README.md).

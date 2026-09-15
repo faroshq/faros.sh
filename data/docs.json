@@ -936,7 +936,7 @@
           ]
         },
         {
-          "title": "faros agent",
+          "title": "railgrid agent",
           "links": [
             {
               "url": "/docs/reference/cli/commands/agent/",
@@ -973,7 +973,7 @@
           ]
         },
         {
-          "title": "faros app",
+          "title": "railgrid app",
           "links": [
             {
               "url": "/docs/reference/cli/commands/app/",
@@ -1006,7 +1006,7 @@
           ]
         },
         {
-          "title": "faros completion",
+          "title": "railgrid completion",
           "links": [
             {
               "url": "/docs/reference/cli/commands/completion/",
@@ -1031,7 +1031,7 @@
           ]
         },
         {
-          "title": "faros dev",
+          "title": "railgrid dev",
           "links": [
             {
               "url": "/docs/reference/cli/commands/dev/",
@@ -1052,7 +1052,7 @@
           ]
         },
         {
-          "title": "faros edge",
+          "title": "railgrid edge",
           "links": [
             {
               "url": "/docs/reference/cli/commands/edge/",
@@ -1089,7 +1089,7 @@
           ]
         },
         {
-          "title": "faros mcp",
+          "title": "railgrid mcp",
           "links": [
             {
               "url": "/docs/reference/cli/commands/mcp/",
@@ -1114,7 +1114,7 @@
           ]
         },
         {
-          "title": "faros org",
+          "title": "railgrid org",
           "links": [
             {
               "url": "/docs/reference/cli/commands/org/",
@@ -1151,7 +1151,7 @@
           ]
         },
         {
-          "title": "faros sandbox",
+          "title": "railgrid sandbox",
           "links": [
             {
               "url": "/docs/reference/cli/commands/sandbox/",
@@ -1184,7 +1184,7 @@
           ]
         },
         {
-          "title": "faros skills",
+          "title": "railgrid skills",
           "links": [
             {
               "url": "/docs/reference/cli/commands/skills/",
@@ -1201,7 +1201,7 @@
           ]
         },
         {
-          "title": "faros workspace",
+          "title": "railgrid workspace",
           "links": [
             {
               "url": "/docs/reference/cli/commands/workspace/",

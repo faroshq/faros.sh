@@ -41,4 +41,4 @@ Resource handles belong to your workspace. Git content lives at GitHub; commit a
 - [API reference](/docs/reference/providers/code/)
 - [Self-host Code](/docs/self-hosting/providers/code/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/code/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/code/README.md).

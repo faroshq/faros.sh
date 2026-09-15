@@ -8,7 +8,7 @@ provider: "infrastructure"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,19 +16,19 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## Instance (v1alpha1)
 
-API: `infrastructure.faros.sh/v1alpha1` · Resource: `instances` · Scope: `Cluster`
+API: `infrastructure.railgrid.ai/v1alpha1` · Resource: `instances` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.faros.sh_instances.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.railgrid.ai_instances.yaml)
 
 ```bash
-kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.faros.sh/v1alpha1 --recursive
+kubectl explain instances.infrastructure.railgrid.ai --api-version=infrastructure.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
 | --- | --- | --- | --- |
 | `spec` | object | Yes | InstanceSpec is the desired state. |
 | `spec.template` | string | Yes | Template names the catalog Template this instance is provisioned from (Template.metadata.name in the provider workspace, discoverable through the read-only templates catalog). Immutable: changing the product of a live instance would strand the old backend state, so it is a delete + recreate. minLength: 1; maxLength: 253; pattern: "^&#91;a-z0-9&#93;(&#91;-a-z0-9&#93;*&#91;a-z0-9&#93;)?$" |
-| `spec.values` | object | No | Values is the template-shaped input — exactly the object Template.spec.schema describes, the same payload that used to be the whole spec of the retired per-template kinds. The platform-reserved fields (farosMode, farosActions*, plus controller-stamped fields like expose.fqdn, farosCluster, credentialsSecretName) live in here too, so "spec" in template schemas, RGD ${schema.spec.*} expressions, and view definitions all keep meaning this object. The apiserver preserves it verbatim; the instance controller validates it against the Template's schema and reports violations on the Ready condition. |
+| `spec.values` | object | No | Values is the template-shaped input — exactly the object Template.spec.schema describes, the same payload that used to be the whole spec of the retired per-template kinds. The platform-reserved fields (railgridMode, railgridActions*, plus controller-stamped fields like expose.fqdn, railgridCluster, credentialsSecretName) live in here too, so "spec" in template schemas, RGD ${schema.spec.*} expressions, and view definitions all keep meaning this object. The apiserver preserves it verbatim; the instance controller validates it against the Template's schema and reports violations on the Ready condition. |
 | `status` | object | No | InstanceStatus is the observed state: a platform-guaranteed baseline plus whatever the template's backend projects. The struct only types the baseline — backend-projected fields (url, runtimeNamespace, components, outputs, controlSecretRef, …) are preserved as unknown fields, exactly as the retired per-template CRDs did, so a template's status contract is still authored in its RGD statusMapping and not here. |
 | `status.conditions` | array&#91;object&#93; | No | Conditions carries both provider-owned conditions (Valid, OIDCConfigured) and conditions mirrored from the runtime kro instance (Ready, ResourcesReady, …). The shape is deliberately looser than metav1.Condition because mirrored backend conditions may omit reason. |
 | `status.conditions[].lastTransitionTime` | string | No | No description supplied by the source schema. |
@@ -37,7 +37,7 @@ kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.f
 | `status.conditions[].reason` | string | No | No description supplied by the source schema. |
 | `status.conditions[].status` | string | Yes | No description supplied by the source schema. |
 | `status.conditions[].type` | string | Yes | No description supplied by the source schema. |
-| `status.farosNetworkPhase` | string | No | NetworkPhase is the controller-owned runtime network phase. It is mirrored from the runtime Instance only after the runtime reports Ready; callers must not use spec.values as an execution-readiness signal. |
+| `status.railgridNetworkPhase` | string | No | NetworkPhase is the controller-owned runtime network phase. It is mirrored from the runtime Instance only after the runtime reports Ready; callers must not use spec.values as an execution-readiness signal. |
 | `status.message` | string | No | Message carries human-readable detail for the current phase. |
 | `status.observedGeneration` | integer | No | ObservedGeneration mirrors metadata.generation last reconciled by the instance controller. |
 | `status.phase` | string | No | Phase is the coarse lifecycle summary (Pending / Ready / Failed), derived from conditions for consumers that want one word. |
@@ -46,12 +46,12 @@ kubectl explain instances.infrastructure.faros.sh --api-version=infrastructure.f
 
 ## Template (v1alpha1)
 
-API: `infrastructure.faros.sh/v1alpha1` · Resource: `templates` · Scope: `Cluster`
+API: `infrastructure.railgrid.ai/v1alpha1` · Resource: `templates` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.faros.sh_templates.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/infrastructure/install/crds/infrastructure.railgrid.ai_templates.yaml)
 
 ```bash
-kubectl explain templates.infrastructure.faros.sh --api-version=infrastructure.faros.sh/v1alpha1 --recursive
+kubectl explain templates.infrastructure.railgrid.ai --api-version=infrastructure.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -70,7 +70,7 @@ kubectl explain templates.infrastructure.faros.sh --api-version=infrastructure.f
 | `spec.dataPlane.runtimeNamespacePath` | string | No | RuntimeNamespacePath is the status dot-path to the namespace the backend owns for this instance (e.g. "status.runtimeNamespace"). Every Service and Secret a data-plane verb resolves to MUST live in this namespace; the resolver rejects refs that point elsewhere. Required when any endpoint proxies to the runtime cluster (i.e. anything but a FromStatus endpoint). maxLength: 256 |
 | `spec.dataPlane.tokenSecretPath` | string | No | TokenSecretPath is an optional status dot-path to a {name, namespace} object naming the Secret whose "token" key the provider injects as the X-Sandbox-Control-Token header on upstream requests (the per-instance control token). Empty means no token header is added. The named Secret is confined to RuntimeNamespacePath like every other ref. maxLength: 256 |
 | `spec.description` | string | No | Description is one to three sentences shown beneath the display name in catalog cards. maxLength: 2048 |
-| `spec.development` | object | No | Development optionally declares how instances of this template run in development mode: which graph components can be hot-swapped to platform-managed dev images with a hot-reload agent, where each component's source lives in the project workspace, and how each reloads. A template with a Development block can have instances provisioned with farosMode: development (the platform-reserved instance spec field the Template controller injects); templates without one are production-only. See docs/app-studio-template-sandboxes.md for the end-to-end design. |
+| `spec.development` | object | No | Development optionally declares how instances of this template run in development mode: which graph components can be hot-swapped to platform-managed dev images with a hot-reload agent, where each component's source lives in the project workspace, and how each reloads. A template with a Development block can have instances provisioned with railgridMode: development (the platform-reserved instance spec field the Template controller injects); templates without one are production-only. See docs/app-studio-template-sandboxes.md for the end-to-end design. |
 | `spec.development.build` | object | No | Build optionally declares the repository-owned GitHub Actions workflow that builds this template's production images. App Studio observes and dispatches this workflow; it never authors or rewrites it. Absence means the template declares no CI workflow. |
 | `spec.development.build.workflowPath` | string | Yes | WorkflowPath is a repository-relative GitHub Actions workflow path. It must live directly under .github/workflows and end in .yml or .yaml. maxLength: 256; pattern: "^&#92;&#92;.github/workflows/&#91;^/&#93;+&#92;&#92;.ya?ml$" |
 | `spec.development.components` | object | Yes | Components maps a component name to its development behavior. Each key MUST name a workload resource the template's graph emits (by the backend's component→resource naming convention, e.g. "frontend" names the graph resource with id "frontend"). Components not listed here run exactly as declared in production mode — a dev sandbox keeps its real database. Keys must match ^&#91;a-z&#93;&#91;a-z0-9-&#93;*$. ONE NAME RULE (see TemplateDevelopmentComponent.WorkspacePath): a component's directory must be its own name, so agents, sync routing, and data-plane verbs all address it by one word. |
@@ -83,8 +83,8 @@ kubectl explain templates.infrastructure.faros.sh --api-version=infrastructure.f
 | `spec.displayName` | string | No | DisplayName is the human-readable name surfaced in the portal catalog. Empty falls back to metadata.name. maxLength: 128 |
 | `spec.exposure` | string | No | Exposure declares whether instances of this template are reachable from outside the platform. It is a statement ABOUT the resource graph, not a switch that changes it — the graph still has to carry (or not carry) the HTTPRoute. Declaring it lets every caller stop guessing: the portal and the MCP tools can say "this has no URL" instead of surfacing an empty status field, and an agent stops polling status.url forever for an instance that will never have one. The API server defaults it to "internal", which is the safe reading: a template that never said it publishes anything is assumed not to. Because the default is stamped at admission, readers see a concrete value and never need to interpret an empty field. default: "internal"; enum: &#91;"internal", "optional", "public"&#93; |
 | `spec.iconURL` | string | No | IconURL is an optional asset URL the portal shows on catalog cards. Falls back to a generic icon when empty. maxLength: 2048 |
-| `spec.instanceCRD` | object | Yes | InstanceCRD declares the per-template CRD the platform publishes for tenants to author instances against. Must be in group infrastructure.faros.sh; the resource (lowercase plural) and kind (CamelCase singular) are operator-chosen but must be unique across all Templates. |
-| `spec.instanceCRD.group` | string | Yes | Group MUST be infrastructure.faros.sh. Pinned here so every per-template CRD lives under the same namespace and the portal can render them uniformly. pattern: "^infrastructure&#92;&#92;.faros&#92;&#92;.sh$" |
+| `spec.instanceCRD` | object | Yes | InstanceCRD declares the per-template CRD the platform publishes for tenants to author instances against. Must be in group infrastructure.railgrid.ai; the resource (lowercase plural) and kind (CamelCase singular) are operator-chosen but must be unique across all Templates. |
+| `spec.instanceCRD.group` | string | Yes | Group MUST be infrastructure.railgrid.ai. Pinned here so every per-template CRD lives under the same namespace and the portal can render them uniformly. pattern: "^infrastructure&#92;&#92;.railgrid&#92;&#92;.sh$" |
 | `spec.instanceCRD.kind` | string | Yes | Kind is the CamelCase singular tenants use in apiVersion + kind. maxLength: 64; pattern: "^&#91;A-Z&#93;&#91;A-Za-z0-9&#93;*$" |
 | `spec.instanceCRD.resource` | string | Yes | Resource is the lowercase plural the apiserver routes on (kubectl get &lt;resource&gt;). Must be unique across all Templates in the provider workspace. maxLength: 64; pattern: "^&#91;a-z&#93;&#91;a-z0-9&#93;*$" |
 | `spec.instanceCRD.version` | string | Yes | Version of the per-template CRD's served + storage schema. Templates can ship multiple Versions (a future Template can extend a previous one's set); the controller updates the CRD's spec.versions list rather than overwriting on conflict. pattern: "^v&#91;0-9&#93;+((alpha&#124;beta)&#91;0-9&#93;+)?$" |

@@ -26,4 +26,4 @@ doc_type: "Overview"
 - [Kuery](/docs/use/kuery/quickstart/#troubleshooting)
 - [Databricks](/docs/use/databricks/troubleshooting/)
 
-Record the resource, step, time, and request ID when asking for help. Exclude tokens and secrets. [Report a reproducible issue](https://github.com/faroshq/faros/issues).
+Record the resource, step, time, and request ID when asking for help. Exclude tokens and secrets. [Report a reproducible issue](https://github.com/railgrid/railgrid/issues).

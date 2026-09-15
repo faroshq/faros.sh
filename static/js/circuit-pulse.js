@@ -59,7 +59,7 @@
     light.addEventListener('load', syncImage);
     light.addEventListener('error', () => { emission.hidden = true; });
     hero.querySelectorAll('.cl-picture img').forEach(img => img.addEventListener('load', syncImage));
-    window.addEventListener('faros:theme-change', syncImage);
+    window.addEventListener('railgrid:theme-change', syncImage);
     syncImage();
   }
 

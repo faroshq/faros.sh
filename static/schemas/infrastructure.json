@@ -2,7 +2,7 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/infrastructure/install/crds/infrastructure.faros.sh_instances.yaml",
+      "source": "providers/infrastructure/install/crds/infrastructure.railgrid.ai_instances.yaml",
       "schema": {
         "apiVersion": "apiextensions.k8s.io/v1",
         "kind": "CustomResourceDefinition",
@@ -10,13 +10,13 @@
           "annotations": {
             "controller-gen.kubebuilder.io/version": "v0.16.5"
           },
-          "name": "instances.infrastructure.faros.sh"
+          "name": "instances.infrastructure.railgrid.ai"
         },
         "spec": {
-          "group": "infrastructure.faros.sh",
+          "group": "infrastructure.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Instance",
             "listKind": "InstanceList",
@@ -90,7 +90,7 @@
                           ]
                         },
                         "values": {
-                          "description": "Values is the template-shaped input \u2014 exactly the object\nTemplate.spec.schema describes, the same payload that used to be the\nwhole spec of the retired per-template kinds. The platform-reserved\nfields (farosMode, farosActions*, plus controller-stamped fields like\nexpose.fqdn, farosCluster, credentialsSecretName) live in here too, so\n\"spec\" in template schemas, RGD ${schema.spec.*} expressions, and view\ndefinitions all keep meaning this object.\n\nThe apiserver preserves it verbatim; the instance controller validates\nit against the Template's schema and reports violations on the Ready\ncondition.",
+                          "description": "Values is the template-shaped input \u2014 exactly the object\nTemplate.spec.schema describes, the same payload that used to be the\nwhole spec of the retired per-template kinds. The platform-reserved\nfields (railgridMode, railgridActions*, plus controller-stamped fields like\nexpose.fqdn, railgridCluster, credentialsSecretName) live in here too, so\n\"spec\" in template schemas, RGD ${schema.spec.*} expressions, and view\ndefinitions all keep meaning this object.\n\nThe apiserver preserves it verbatim; the instance controller validates\nit against the Template's schema and reports violations on the Ready\ncondition.",
                           "type": "object",
                           "x-kubernetes-preserve-unknown-fields": true
                         }
@@ -136,7 +136,7 @@
                           },
                           "type": "array"
                         },
-                        "farosNetworkPhase": {
+                        "railgridNetworkPhase": {
                           "description": "NetworkPhase is the controller-owned runtime network phase. It is\nmirrored from the runtime Instance only after the runtime reports Ready;\ncallers must not use spec.values as an execution-readiness signal.",
                           "type": "string"
                         },
@@ -183,7 +183,7 @@
       }
     },
     {
-      "source": "providers/infrastructure/install/crds/infrastructure.faros.sh_templates.yaml",
+      "source": "providers/infrastructure/install/crds/infrastructure.railgrid.ai_templates.yaml",
       "schema": {
         "apiVersion": "apiextensions.k8s.io/v1",
         "kind": "CustomResourceDefinition",
@@ -191,13 +191,13 @@
           "annotations": {
             "controller-gen.kubebuilder.io/version": "v0.16.5"
           },
-          "name": "templates.infrastructure.faros.sh"
+          "name": "templates.infrastructure.railgrid.ai"
         },
         "spec": {
-          "group": "infrastructure.faros.sh",
+          "group": "infrastructure.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Template",
             "listKind": "TemplateList",
@@ -240,7 +240,7 @@
               "name": "v1alpha1",
               "schema": {
                 "openAPIV3Schema": {
-                  "description": "Template is the platform-owned catalog entry for one provisionable\nthing \u2014 a Redis cache, a Postgres database, a packaged application.\nOperators apply Templates to the provider workspace\n(root:faros:providers:infrastructure). The Template controller\nreacts by:\n\n 1. Materializing the per-template CRD declared in spec.instanceCRD\n    (e.g. redis.infrastructure.faros.sh) into the cluster's\n    CRD set, with OpenAPI validation derived from spec.schema.\n 2. Adding that CRD to APIExport.spec.schemas so tenants who\n    APIBind to the infrastructure provider can see and create\n    instances.\n 3. Calling Backend.SetupTemplate on the backend named in\n    spec.backend. The backend does whatever backend-specific\n    bookkeeping it needs (the kro backend authors an RGD; future\n    terraform / cloud backends stage modules / validate credentials).\n\nTenants discover Templates read-only via a CachedResource (PR B);\ninstances are CRs of the per-template CRD (PR C). The Template CR\nitself is never tenant-facing as authorable input \u2014 it's the\nplatform's source of truth.",
+                  "description": "Template is the platform-owned catalog entry for one provisionable\nthing \u2014 a Redis cache, a Postgres database, a packaged application.\nOperators apply Templates to the provider workspace\n(root:railgrid:providers:infrastructure). The Template controller\nreacts by:\n\n 1. Materializing the per-template CRD declared in spec.instanceCRD\n    (e.g. redis.infrastructure.railgrid.ai) into the cluster's\n    CRD set, with OpenAPI validation derived from spec.schema.\n 2. Adding that CRD to APIExport.spec.schemas so tenants who\n    APIBind to the infrastructure provider can see and create\n    instances.\n 3. Calling Backend.SetupTemplate on the backend named in\n    spec.backend. The backend does whatever backend-specific\n    bookkeeping it needs (the kro backend authors an RGD; future\n    terraform / cloud backends stage modules / validate credentials).\n\nTenants discover Templates read-only via a CachedResource (PR B);\ninstances are CRs of the per-template CRD (PR C). The Template CR\nitself is never tenant-facing as authorable input \u2014 it's the\nplatform's source of truth.",
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -441,7 +441,7 @@
                           "type": "string"
                         },
                         "development": {
-                          "description": "Development optionally declares how instances of this template run in\ndevelopment mode: which graph components can be hot-swapped to\nplatform-managed dev images with a hot-reload agent, where each\ncomponent's source lives in the project workspace, and how each reloads.\nA template with a Development block can have instances provisioned with\nfarosMode: development (the platform-reserved instance spec field the\nTemplate controller injects); templates without one are\nproduction-only.\n\nSee docs/app-studio-template-sandboxes.md for the end-to-end design.",
+                          "description": "Development optionally declares how instances of this template run in\ndevelopment mode: which graph components can be hot-swapped to\nplatform-managed dev images with a hot-reload agent, where each\ncomponent's source lives in the project workspace, and how each reloads.\nA template with a Development block can have instances provisioned with\nrailgridMode: development (the platform-reserved instance spec field the\nTemplate controller injects); templates without one are\nproduction-only.\n\nSee docs/app-studio-template-sandboxes.md for the end-to-end design.",
                           "properties": {
                             "build": {
                               "description": "Build optionally declares the repository-owned GitHub Actions workflow\nthat builds this template's production images. App Studio observes and\ndispatches this workflow; it never authors or rewrites it. Absence means\nthe template declares no CI workflow.",
@@ -463,13 +463,13 @@
                                 "description": "TemplateDevelopmentComponent describes one hot-swappable component of the\ngraph in development mode.",
                                 "properties": {
                                   "devImage": {
-                                    "description": "DevImage is the platform-managed toolchain image the component's\nworkload runs in development mode, in place of the user-supplied\nproduction image. MUST be a ${faros.devImage.<toolchain>} token \u2014 the\nbackend resolves it from provider configuration; tenants never choose\ndev images.",
+                                    "description": "DevImage is the platform-managed toolchain image the component's\nworkload runs in development mode, in place of the user-supplied\nproduction image. MUST be a ${railgrid.devImage.<toolchain>} token \u2014 the\nbackend resolves it from provider configuration; tenants never choose\ndev images.",
                                     "maxLength": 128,
-                                    "pattern": "^\\$\\{faros\\.devImage\\.[a-z][a-z0-9-]*\\}$",
+                                    "pattern": "^\\$\\{railgrid\\.devImage\\.[a-z][a-z0-9-]*\\}$",
                                     "type": "string"
                                   },
                                   "imageInput": {
-                                    "description": "ImageInput names the production schema input this component's built\nimage feeds when the project is launched (e.g. \"frontendImage\" for the\nfrontend component, \"image\" for a single-component template). It is the\nlink between a development component and the production image field that\nruns it: App Studio builds one OCI image per component (build context =\nWorkspacePath) and, on launch, sets each named input to that component's\nbuilt digest before provisioning the instance with farosMode:\nproduction. Empty means the component produces no launchable image (e.g.\na worker developed in-cluster but not yet promotable). Must match a\ntop-level property of the template's production schema.",
+                                    "description": "ImageInput names the production schema input this component's built\nimage feeds when the project is launched (e.g. \"frontendImage\" for the\nfrontend component, \"image\" for a single-component template). It is the\nlink between a development component and the production image field that\nruns it: App Studio builds one OCI image per component (build context =\nWorkspacePath) and, on launch, sets each named input to that component's\nbuilt digest before provisioning the instance with railgridMode:\nproduction. Empty means the component produces no launchable image (e.g.\na worker developed in-cluster but not yet promotable). Must match a\ntop-level property of the template's production schema.",
                                     "maxLength": 253,
                                     "pattern": "^[a-zA-Z][a-zA-Z0-9]*$",
                                     "type": "string"
@@ -616,11 +616,11 @@
                           "type": "string"
                         },
                         "instanceCRD": {
-                          "description": "InstanceCRD declares the per-template CRD the platform\npublishes for tenants to author instances against. Must be in\ngroup infrastructure.faros.sh; the resource (lowercase\nplural) and kind (CamelCase singular) are operator-chosen but\nmust be unique across all Templates.",
+                          "description": "InstanceCRD declares the per-template CRD the platform\npublishes for tenants to author instances against. Must be in\ngroup infrastructure.railgrid.ai; the resource (lowercase\nplural) and kind (CamelCase singular) are operator-chosen but\nmust be unique across all Templates.",
                           "properties": {
                             "group": {
-                              "description": "Group MUST be infrastructure.faros.sh. Pinned here so\nevery per-template CRD lives under the same namespace and the\nportal can render them uniformly.",
-                              "pattern": "^infrastructure\\.faros\\.sh$",
+                              "description": "Group MUST be infrastructure.railgrid.ai. Pinned here so\nevery per-template CRD lives under the same namespace and the\nportal can render them uniformly.",
+                              "pattern": "^infrastructure\\.railgrid\\.sh$",
                               "type": "string"
                             },
                             "kind": {

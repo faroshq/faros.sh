@@ -1,6 +1,6 @@
 ---
 title: Organizations & Workspaces
-description: kubectl faros use and connect — switch orgs, workspaces, and edge clusters.
+description: kubectl railgrid use and connect — switch orgs, workspaces, and edge clusters.
 weight: 2
 ---
 
@@ -8,12 +8,12 @@ Everything you do on a hub happens inside a **workspace**, which belongs to an *
 
 ## use
 
-`faros use` (aliases: `switch`, `ctx`) selects the active organization and workspace, rewriting the `faros` context's server URL so every subsequent command targets that workspace.
+`railgrid use` (aliases: `switch`, `ctx`) selects the active organization and workspace, rewriting the `railgrid` context's server URL so every subsequent command targets that workspace.
 
 ```bash
-kubectl faros use                                  # interactive picker (org, then workspace)
-kubectl faros use --org acme                       # pick org, then choose workspace interactively
-kubectl faros use --org acme --workspace platform  # fully scripted, no TTY needed
+kubectl railgrid use                                  # interactive picker (org, then workspace)
+kubectl railgrid use --org acme                       # pick org, then choose workspace interactively
+kubectl railgrid use --org acme --workspace platform  # fully scripted, no TTY needed
 ```
 
 **Flags:**
@@ -27,12 +27,12 @@ With no flags you get an interactive picker; it requires a TTY. Providing both f
 
 ## connect
 
-`faros connect` (aliases: `ws`, `workspace`) navigates *within* the current workspace — most commonly, into a Kubernetes edge cluster and back:
+`railgrid connect` (aliases: `ws`, `workspace`) navigates *within* the current workspace — most commonly, into a Kubernetes edge cluster and back:
 
 ```bash
-kubectl faros connect home-lab     # point kubectl at the home-lab edge cluster
+kubectl railgrid connect home-lab     # point kubectl at the home-lab edge cluster
 kubectl get nodes                  # talks to home-lab through the hub tunnel
-kubectl faros connect :            # return to the hub root (disconnect)
+kubectl railgrid connect :            # return to the hub root (disconnect)
 ```
 
 `connect` rewrites the server URL of the current context, so everything that reads your kubeconfig (`kubectl`, `helm`, `k9s`, ...) follows.
@@ -58,9 +58,9 @@ Under the hood this is kcp's workspace navigation, so all the standard targets w
 A typical session:
 
 ```bash
-kubectl faros use --org acme --workspace prod
-kubectl faros edge list
-kubectl faros connect edge-paris
+kubectl railgrid use --org acme --workspace prod
+kubectl railgrid edge list
+kubectl railgrid connect edge-paris
 kubectl get pods -A
-kubectl faros connect :
+kubectl railgrid connect :
 ```

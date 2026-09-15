@@ -34,11 +34,11 @@ Remove test handles and credentials only after checking that no application gran
 Select the [same workspace](/docs/reference/cli/resources/) and discover its provider API:
 
 ```bash
-kubectl api-resources --api-group=databricks.faros.sh
-kubectl get connections.databricks.faros.sh
-kubectl get warehouses.databricks.faros.sh
-kubectl get tables.databricks.faros.sh
-kubectl get tables.databricks.faros.sh RESOURCE-NAME -o yaml
+kubectl api-resources --api-group=databricks.railgrid.ai
+kubectl get connections.databricks.railgrid.ai
+kubectl get warehouses.databricks.railgrid.ai
+kubectl get tables.databricks.railgrid.ai
+kubectl get tables.databricks.railgrid.ai RESOURCE-NAME -o yaml
 ```
 
 Replace `RESOURCE-NAME` with the object you created. Inspect its status, reported conditions, and resource references to trace setup failures. An empty list is different from a forbidden request or missing API. Keep credentials in the supported connection flow; do not copy connection secrets into example manifests or shared diagnostic output.

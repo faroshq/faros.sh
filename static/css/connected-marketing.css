@@ -44,5 +44,5 @@
   .gs-connected .cm-footer nav { margin: 0; width: 100%; }
 }
 
-.cm-page .faros-marketing-button-primary, .cm-page .pricing-button-primary { color: var(--cl-on-accent); }
+.cm-page .railgrid-marketing-button-primary, .cm-page .pricing-button-primary { color: var(--cl-on-accent); }
 .cm-page .pricing-button-primary:hover { color: var(--cl-on-accent); }

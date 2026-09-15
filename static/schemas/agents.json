@@ -2,15 +2,15 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/agents/deploy/chart/files/schemas/agents.agents.faros.sh.yaml",
+      "source": "providers/agents/deploy/chart/files/schemas/agents.agents.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260802-57900880.agents.agents.faros.sh"
+          "name": "v260802-57900880.agents.agents.railgrid.ai"
         },
         "spec": {
-          "group": "agents.faros.sh",
+          "group": "agents.railgrid.ai",
           "names": {
             "kind": "Agent",
             "listKind": "AgentList",
@@ -198,7 +198,7 @@
                         "additionalProperties": {
                           "type": "string"
                         },
-                        "description": "Models maps run purposes to named profiles in the tenant's model\ncredentials Secret (faros-agents-llm). Recognized purposes: \"chat\"\n(interactive, strong), \"background\" (schedules/heartbeats, cheap),\n\"compaction\" (summarization). An empty map falls back to the \"chat\"\nprofile for every purpose.",
+                        "description": "Models maps run purposes to named profiles in the tenant's model\ncredentials Secret (railgrid-agents-llm). Recognized purposes: \"chat\"\n(interactive, strong), \"background\" (schedules/heartbeats, cheap),\n\"compaction\" (summarization). An empty map falls back to the \"chat\"\nprofile for every purpose.",
                         "type": "object"
                       },
                       "systemPrompt": {
@@ -344,15 +344,15 @@
       }
     },
     {
-      "source": "providers/agents/deploy/chart/files/schemas/connections.agents.faros.sh.yaml",
+      "source": "providers/agents/deploy/chart/files/schemas/connections.agents.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260731-8b9a2703.connections.agents.faros.sh"
+          "name": "v260731-8b9a2703.connections.agents.railgrid.ai"
         },
         "spec": {
-          "group": "agents.faros.sh",
+          "group": "agents.railgrid.ai",
           "names": {
             "kind": "Connection",
             "listKind": "ConnectionList",
@@ -384,7 +384,7 @@
               ],
               "name": "v1alpha1",
               "schema": {
-                "description": "Connection is a named credential to an external system. The secret material\nlives in a tenant-workspace Secret (faros-agents-conn-<name>); this resource\ncarries only the type and non-secret configuration.",
+                "description": "Connection is a named credential to an external system. The secret material\nlives in a tenant-workspace Secret (railgrid-agents-conn-<name>); this resource\ncarries only the type and non-secret configuration.",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -466,7 +466,7 @@
                         "type": "object"
                       },
                       "secretRef": {
-                        "description": "SecretRef names the tenant-workspace Secret holding this connection's\ncredentials. Defaults to faros-agents-conn-<connection-name> when empty.",
+                        "description": "SecretRef names the tenant-workspace Secret holding this connection's\ncredentials. Defaults to railgrid-agents-conn-<connection-name> when empty.",
                         "maxLength": 253,
                         "type": "string"
                       },
@@ -537,15 +537,15 @@
       }
     },
     {
-      "source": "providers/agents/deploy/chart/files/schemas/schedules.agents.faros.sh.yaml",
+      "source": "providers/agents/deploy/chart/files/schemas/schedules.agents.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260801-3863009e.schedules.agents.faros.sh"
+          "name": "v260801-3863009e.schedules.agents.railgrid.ai"
         },
         "spec": {
-          "group": "agents.faros.sh",
+          "group": "agents.railgrid.ai",
           "names": {
             "kind": "Schedule",
             "listKind": "ScheduleList",
@@ -720,15 +720,15 @@
       }
     },
     {
-      "source": "providers/agents/deploy/chart/files/schemas/toolsets.agents.faros.sh.yaml",
+      "source": "providers/agents/deploy/chart/files/schemas/toolsets.agents.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260714-8e565fc.toolsets.agents.faros.sh"
+          "name": "v260714-8e565fc.toolsets.agents.railgrid.ai"
         },
         "spec": {
-          "group": "agents.faros.sh",
+          "group": "agents.railgrid.ai",
           "names": {
             "kind": "Toolset",
             "listKind": "ToolsetList",
@@ -825,15 +825,15 @@
       }
     },
     {
-      "source": "providers/agents/deploy/chart/files/schemas/triggers.agents.faros.sh.yaml",
+      "source": "providers/agents/deploy/chart/files/schemas/triggers.agents.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260724-50c73a4.triggers.agents.faros.sh"
+          "name": "v260724-50c73a4.triggers.agents.railgrid.ai"
         },
         "spec": {
-          "group": "agents.faros.sh",
+          "group": "agents.railgrid.ai",
           "names": {
             "kind": "Trigger",
             "listKind": "TriggerList",

@@ -53,7 +53,7 @@ for provider in providers:
     target.write_text(json.dumps({'revision': revision, 'resources': bundle}, indent=2)+'\n')
     lines = ['---', 'title: "Resource schemas"', f'description: "Generated fields and validation rules for {provider} workspace resources."', 'weight: 91', 'doc_type: "Reference"', f'provider: "{provider}"', '---', '',
       '## Compatibility and access', '',
-      f'Generated from [product commit `{revision[:12]}`](https://github.com/faroshq/faros/commit/{revision}). This is a source snapshot, not a guarantee that your deployment runs this version.', '',
+      f'Generated from [product commit `{revision[:12]}`](https://github.com/railgrid/railgrid/commit/{revision}). This is a source snapshot, not a guarantee that your deployment runs this version.', '',
       f'These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.', '',
       f'[Download complete schemas](/schemas/{provider}.json), including nested validation rules and status definitions. This page covers Kubernetes-style resources; provider HTTP actions and runtime behavior are separate contracts. Return to [API reference](/docs/reference/providers/{provider}/) for those interfaces and related guides.', '']
     for entry in bundle:
@@ -61,7 +61,7 @@ for provider in providers:
         for version in spec['versions']:
             lines += [f"## {spec['names']['kind']} ({version['name']})", '',
               f"API: `{spec['group']}/{version['name']}` · Resource: `{spec['names']['plural']}` · Scope: `{spec['scope']}`", '',
-              f"[Source schema](https://github.com/faroshq/faros/blob/{revision}/{entry['source']})", '',
+              f"[Source schema](https://github.com/railgrid/railgrid/blob/{revision}/{entry['source']})", '',
               '```bash', f"kubectl explain {spec['names']['plural']}.{spec['group']} --api-version={spec['group']}/{version['name']} --recursive", '```', '',
               '| Field | Type | Required in parent | Description and constraints |', '| --- | --- | --- | --- |']
             schema = version['schema'].get('openAPIV3Schema', version['schema'])

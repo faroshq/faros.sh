@@ -12,7 +12,7 @@
   <div class="docs-connect-panel" id="connect-prompt">
     <h2 class="docs-connect-fallback-title">AI prompt</h2>
     <p class="docs-connect-instruction"><a href="/docs/get-started/install/">Install the CLI</a>, then install the Railgrid skill for your assistant.</p>
-    <pre><code id="connect-prompt-setup">faros skills install</code></pre>
+    <pre><code id="connect-prompt-setup">railgrid skills install</code></pre>
     <p class="docs-connect-note">One command writes the skill to <code>~/.claude/skills</code> and <code>~/.agents/skills</code> for Claude Code and Codex. Add <code>--scope project</code> for this project only, or <code>--dir PATH</code> for another client.</p>
     <p class="docs-connect-instruction">Then copy this prompt into your coding assistant.</p>
     <p class="docs-connect-snippet" id="connect-prompt-text">Help me get started with the Railgrid SaaS hub. Ask which workspace I should use and what I want to build. If my organization self-hosts Railgrid, use its hub instead. Check whether the Railgrid CLI is installed. Guide me through login and workspace selection, then help me connect the workspace’s MCP server and inspect its available tools. Suggest a first task using the providers available to me.</p>
@@ -21,17 +21,17 @@
   <div class="docs-connect-panel" id="connect-mcp">
     <h2 class="docs-connect-fallback-title">MCP</h2>
     <p class="docs-connect-instruction">Already logged in? Select your workspace, then print its MCP setup snippets.</p>
-    <pre><code id="connect-mcp-text">kubectl faros use
-kubectl faros mcp url --mcpserver-name default</code></pre>
+    <pre><code id="connect-mcp-text">kubectl railgrid use
+kubectl railgrid mcp url --mcpserver-name default</code></pre>
     <p class="docs-connect-note">Use the printed configuration in your MCP client. It includes credentials; keep it private and review the server’s scope.</p>
     <div class="docs-connect-footer"><a href="/docs/use/ai-assistants/">MCP setup and permissions <span aria-hidden="true">→</span></a></div>
   </div>
   <div class="docs-connect-panel" id="connect-cli">
     <h2 class="docs-connect-fallback-title">CLI</h2>
     <p class="docs-connect-instruction"><a href="/docs/get-started/install/">Install the CLI</a>, then replace <code>YOUR-HUB</code> with your hub’s address.</p>
-    <pre><code id="connect-cli-text">kubectl faros --help
-kubectl faros login --hub-url https://YOUR-HUB
-kubectl faros use</code></pre>
+    <pre><code id="connect-cli-text">kubectl railgrid --help
+kubectl railgrid login --hub-url https://YOUR-HUB
+kubectl railgrid use</code></pre>
     <p class="docs-connect-note">Login updates your kubeconfig. Use the authentication guide if your hub requires a static token.</p>
     <div class="docs-connect-footer"><a href="/docs/reference/cli/login/">Login and authentication <span aria-hidden="true">→</span></a></div>
   </div>

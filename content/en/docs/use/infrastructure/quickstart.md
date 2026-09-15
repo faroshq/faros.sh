@@ -18,7 +18,7 @@ Enable **Infrastructure**, select your workspace, and confirm that the operator 
 The tenant-facing kind is always `Instance`; the template name belongs in `spec.template`. Its inputs belong in `spec.values`.
 
 ```yaml
-apiVersion: infrastructure.faros.sh/v1alpha1
+apiVersion: infrastructure.railgrid.ai/v1alpha1
 kind: Instance
 metadata:
   name: example
@@ -36,11 +36,11 @@ To clean up, delete the test instance and wait for finalizers to finish. Check t
 After [selecting the workspace](/docs/reference/cli/resources/), save the manifest above as `instance.yaml`, replace `YOUR_TEMPLATE`, and supply the template's required inputs. Use a distinct name if `example` already exists; applying to an existing name updates that object.
 
 ```bash
-kubectl explain instances.infrastructure.faros.sh.spec
-kubectl auth can-i create instances.infrastructure.faros.sh
+kubectl explain instances.infrastructure.railgrid.ai.spec
+kubectl auth can-i create instances.infrastructure.railgrid.ai
 kubectl apply -f instance.yaml
-kubectl get instances.infrastructure.faros.sh example -o yaml
-kubectl wait --for=condition=Ready instances.infrastructure.faros.sh/example --timeout=180s
+kubectl get instances.infrastructure.railgrid.ai example -o yaml
+kubectl wait --for=condition=Ready instances.infrastructure.railgrid.ai/example --timeout=180s
 ```
 
 A successful wait means the reported `Ready` condition is true. Still test the template's application URL or other documented output. A timeout does not cancel provisioning: inspect `status.phase`, `status.message`, and `status.conditions` before retrying. Invalid template values can be accepted by the API but fail reconciliation.
@@ -48,7 +48,7 @@ A successful wait means the reported `Ready` condition is true. Still test the t
 For cleanup, delete only the test instance you created:
 
 ```bash
-kubectl delete instances.infrastructure.faros.sh example --wait=true --timeout=180s
+kubectl delete instances.infrastructure.railgrid.ai example --wait=true --timeout=180s
 ```
 
 If deletion times out, inspect the remaining object and finalizers and ask the operator to investigate. Do not force-remove finalizers or assume persistent external data was deleted.

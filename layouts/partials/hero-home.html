@@ -9,13 +9,13 @@
 
 {{ $ghIcon := `<svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>` }}
 
-<section class="faros-home relative overflow-hidden">
+<section class="railgrid-home relative overflow-hidden">
 
   <!-- Ambient backdrop: contour signature + node field + one accent wash -->
   <div class="absolute inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 faros-contour faros-contour-fade"></div>
-    <canvas id="faros-net" class="absolute inset-0 w-full h-full" style="pointer-events:none;"></canvas>
-    <div class="faros-wash"></div>
+    <div class="absolute inset-0 railgrid-contour railgrid-contour-fade"></div>
+    <canvas id="railgrid-net" class="absolute inset-0 w-full h-full" style="pointer-events:none;"></canvas>
+    <div class="railgrid-wash"></div>
   </div>
 
   <!-- ============= HERO ============= -->
@@ -24,84 +24,84 @@
 
       <!-- Status tags — square mono, never pills -->
       <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
-        <span class="faros-tag faros-tag-live"><span class="faros-dot"></span>Open source</span>
-        <span class="faros-tag">Apache 2.0</span>
-        <span class="faros-tag">Free forever</span>
-        <span class="faros-tag">Self-host or hosted</span>
+        <span class="railgrid-tag railgrid-tag-live"><span class="railgrid-dot"></span>Open source</span>
+        <span class="railgrid-tag">Apache 2.0</span>
+        <span class="railgrid-tag">Free forever</span>
+        <span class="railgrid-tag">Self-host or hosted</span>
       </div>
 
       <!-- Title -->
-      <h1 class="faros-display text-5xl md:text-7xl mb-6 leading-[1.03]">
+      <h1 class="railgrid-display text-5xl md:text-7xl mb-6 leading-[1.03]">
         <span>The operating system for</span>
         <br>
-        <span class="faros-accent-text">AI-native platforms.</span>
+        <span class="railgrid-accent-text">AI-native platforms.</span>
       </h1>
 
-      <p class="text-lg md:text-xl faros-lede max-w-3xl mx-auto leading-relaxed mb-4">
+      <p class="text-lg md:text-xl railgrid-lede max-w-3xl mx-auto leading-relaxed mb-4">
         Railgrid is the open-source substrate you build your platform <em>on</em> — not another portal
         bolted over it. Workspaces are the isolation boundary, providers are the drivers,
         and every capability is a <strong>tenancy-scoped MCP tool</strong>.
       </p>
-      <p class="text-base md:text-lg faros-kicker mb-10">
+      <p class="text-base md:text-lg railgrid-kicker mb-10">
         Agents get a platform. Not root.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12">
-        <a href="{{ .Site.Params.brand.console_url }}" class="faros-btn-primary group">
+        <a href="{{ .Site.Params.brand.console_url }}" class="railgrid-btn-primary group">
           Create your workspace
           <span class="ml-2 opacity-70 group-hover:opacity-100 transition-opacity">→</span>
         </a>
-        <a href="https://github.com/faroshq/faros" class="faros-btn-secondary">
+        <a href="https://github.com/railgrid/railgrid" class="railgrid-btn-secondary">
           {{ $ghIcon | safeHTML }}
-          GitHub<span class="faros-star-badge" data-faros-stars></span>
+          GitHub<span class="railgrid-star-badge" data-railgrid-stars></span>
         </a>
       </div>
 
       <!-- Install — copyable, the first real thing on the page -->
       <div class="mx-auto max-w-2xl mb-8">
-        <div class="faros-quickcmd">
-          <div class="faros-quickcmd-head">
-            <span class="faros-quickcmd-label">Install the CLI</span>
-            <span class="faros-quickcmd-hint">macOS · Linux · WSL</span>
+        <div class="railgrid-quickcmd">
+          <div class="railgrid-quickcmd-head">
+            <span class="railgrid-quickcmd-label">Install the CLI</span>
+            <span class="railgrid-quickcmd-hint">macOS · Linux · WSL</span>
           </div>
-          <div class="faros-quickcmd-row" data-faros-install-copy>
-            <pre class="faros-quickcmd-line"><code><span class="faros-prompt">$</span> <span data-faros-install-text>curl -fsSL https://downloads.faros.sh/install.sh | sh</span></code></pre>
+          <div class="railgrid-quickcmd-row" data-railgrid-install-copy>
+            <pre class="railgrid-quickcmd-line"><code><span class="railgrid-prompt">$</span> <span data-railgrid-install-text>curl -fsSL https://downloads.faros.sh/install.sh | sh</span></code></pre>
             <button type="button"
-                    class="faros-install-copy-btn"
-                    data-faros-install-copy-btn
+                    class="railgrid-install-copy-btn"
+                    data-railgrid-install-copy-btn
                     aria-label="Copy install command">
-              <svg class="faros-install-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              <svg class="faros-install-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="faros-install-copy-label">Copy</span>
+              <svg class="railgrid-install-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <svg class="railgrid-install-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="railgrid-install-copy-label">Copy</span>
             </button>
           </div>
         </div>
       </div>
 
       <!-- Terminal demo — a human boots it, an agent runs on it, the kernel says no -->
-      <div class="faros-terminal mx-auto max-w-3xl text-left">
-        <div class="faros-terminal-chrome">
+      <div class="railgrid-terminal mx-auto max-w-3xl text-left">
+        <div class="railgrid-terminal-chrome">
           <div class="flex items-center gap-2">
-            <span class="faros-dot-sm" style="background:#ff5d5d"></span>
-            <span class="faros-dot-sm" style="background:#f0a63a"></span>
-            <span class="faros-dot-sm" style="background:#2fd6a0"></span>
+            <span class="railgrid-dot-sm" style="background:#ff5d5d"></span>
+            <span class="railgrid-dot-sm" style="background:#f0a63a"></span>
+            <span class="railgrid-dot-sm" style="background:#2fd6a0"></span>
           </div>
-          <span class="faros-terminal-title">Railgrid</span>
+          <span class="railgrid-terminal-title">Railgrid</span>
           <span class="w-10"></span>
         </div>
-        <pre class="faros-terminal-body"><code data-faros-term><span class="faros-prompt">$</span> faros login
-<span class="faros-ok">✓ authenticated · workspace root:faros:tenants:acme:web is yours alone</span>
+        <pre class="railgrid-terminal-body"><code data-railgrid-term><span class="railgrid-prompt">$</span> railgrid login
+<span class="railgrid-ok">✓ authenticated · workspace root:railgrid:tenants:acme:web is yours alone</span>
 
-<span class="faros-prompt">$</span> faros mcp url --mcpserver-name default
-<span class="faros-accent">https://hub/…/mcp · every enabled provider's tools · scoped to this workspace</span>
+<span class="railgrid-prompt">$</span> railgrid mcp url --mcpserver-name default
+<span class="railgrid-accent">https://hub/…/mcp · every enabled provider's tools · scoped to this workspace</span>
 
-<span class="faros-claude">claude&gt;</span> provision postgres for billing on the home-lab cluster
-<span class="faros-info">→ infrastructure__provision template=postgres target=home-lab</span>
-<span class="faros-ok">✓ instance running · HTTPRoute published · OIDC in front</span>
+<span class="railgrid-claude">claude&gt;</span> provision postgres for billing on the home-lab cluster
+<span class="railgrid-info">→ infrastructure__provision template=postgres target=home-lab</span>
+<span class="railgrid-ok">✓ instance running · HTTPRoute published · OIDC in front</span>
 
-<span class="faros-claude">claude&gt;</span> now delete namespace kube-system on prod
-<span class="faros-err">✗ denied — outside workspace scope · recorded as an API event</span></code></pre>
+<span class="railgrid-claude">claude&gt;</span> now delete namespace kube-system on prod
+<span class="railgrid-err">✗ denied — outside workspace scope · recorded as an API event</span></code></pre>
       </div>
 
     </div>
@@ -110,11 +110,11 @@
   <!-- ============= KERNEL PRIMITIVES ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="faros-eyebrow">Kernel</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        Four primitives. <span class="faros-accent-text">Everything else is userspace.</span>
+      <p class="railgrid-eyebrow">Kernel</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        Four primitives. <span class="railgrid-accent-text">Everything else is userspace.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         An OS isn't a bigger app — it's a small set of primitives everything else is written against.
         Railgrid has four, and they behave the same whether a human, a controller, or an agent is calling.
       </p>
@@ -122,30 +122,30 @@
 
     <div class="grid md:grid-cols-2 gap-4">
 
-      <div class="faros-card">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <div class="railgrid-card">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           </div>
-          <span class="faros-tag">process</span>
+          <span class="railgrid-tag">process</span>
         </div>
-        <h3 class="faros-card-title">Workspaces are the isolation boundary</h3>
-        <p class="faros-card-text">
+        <h3 class="railgrid-card-title">Workspaces are the isolation boundary</h3>
+        <p class="railgrid-card-text">
           Every team, project, or environment gets a <strong>kcp logical cluster</strong>: its own API surface,
           its own RBAC, its own quota. Nothing leaks sideways because there is no sideways — an agent
           can't see what its workspace was never granted. Isolation isn't a setting; it's the address space.
         </p>
       </div>
 
-      <div class="faros-card">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <div class="railgrid-card">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v4M16 3v4M4 7h16v5a8 8 0 01-16 0V7zM12 20v-3"/></svg>
           </div>
-          <span class="faros-tag">driver</span>
+          <span class="railgrid-tag">driver</span>
         </div>
-        <h3 class="faros-card-title">Providers are drivers</h3>
-        <p class="faros-card-text">
+        <h3 class="railgrid-card-title">Providers are drivers</h3>
+        <p class="railgrid-card-text">
           A capability — databases, git repos, edge clusters, hosted agents — ships as a provider:
           <strong>its own pod, its own repo, its own release cycle</strong>. It plugs into the kernel through five
           sockets: an API, controllers, a proxied backend, a portal micro-frontend, and MCP tools.
@@ -153,30 +153,30 @@
         </p>
       </div>
 
-      <div class="faros-card">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <div class="railgrid-card">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
           </div>
-          <span class="faros-tag">syscall</span>
+          <span class="railgrid-tag">syscall</span>
         </div>
-        <h3 class="faros-card-title">MCP is the syscall interface</h3>
-        <p class="faros-card-text">
+        <h3 class="railgrid-card-title">MCP is the syscall interface</h3>
+        <p class="railgrid-card-text">
           One MCP endpoint per tenant federates every enabled provider's tools — and each tool
           <strong>inherits that workspace's permissions automatically</strong>. No god-mode gateway token, no second
           catalog of tools to govern separately. The platform and the agent interface are the same authority.
         </p>
       </div>
 
-      <div class="faros-card">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <div class="railgrid-card">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3M3.6 9h16.8M3.6 15h16.8"/></svg>
           </div>
-          <span class="faros-tag">i/o</span>
+          <span class="railgrid-tag">i/o</span>
         </div>
-        <h3 class="faros-card-title">Edges are the I/O layer</h3>
-        <p class="faros-card-text">
+        <h3 class="railgrid-card-title">Edges are the I/O layer</h3>
+        <p class="railgrid-card-text">
           Clusters, bare metal, home labs, Raspberry Pis — agents <strong>dial out</strong> to the hub over a reverse
           tunnel, so the hub is the only public endpoint in the system. No VPNs, no inbound rules, no
           kubeconfig juggling. Real hardware, addressed like a device file.
@@ -189,73 +189,73 @@
   <!-- ============= PRODUCT ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-10">
-      <p class="faros-eyebrow">In action</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        Agents, running <span class="faros-accent-text">on your platform.</span>
+      <p class="railgrid-eyebrow">In action</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        Agents, running <span class="railgrid-accent-text">on your platform.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         Declare an agent, give it a budget and a tool policy, and it works inside your workspace —
         under the same guardrails as everything else.
       </p>
     </div>
 
-    <div class="faros-product-frame mx-auto max-w-5xl">
-      <div class="faros-product-chrome">
+    <div class="railgrid-product-frame mx-auto max-w-5xl">
+      <div class="railgrid-product-chrome">
         <div class="flex items-center gap-2">
-          <span class="faros-dot-sm" style="background:#ff5d5d"></span>
-          <span class="faros-dot-sm" style="background:#f0a63a"></span>
-          <span class="faros-dot-sm" style="background:#2fd6a0"></span>
+          <span class="railgrid-dot-sm" style="background:#ff5d5d"></span>
+          <span class="railgrid-dot-sm" style="background:#f0a63a"></span>
+          <span class="railgrid-dot-sm" style="background:#2fd6a0"></span>
         </div>
-        <div class="faros-product-urlbar">console.faros.sh/agents</div>
+        <div class="railgrid-product-urlbar">console.faros.sh/agents</div>
         <div class="w-12"></div>
       </div>
-      <div class="faros-product-media">
+      <div class="railgrid-product-media">
         <!-- PLACEHOLDER — drop the agents UI capture at static/images/agents-ui.gif
              and it replaces the skeleton below automatically (no code change).
              Using another format? Just update the src (e.g. agents-ui.webp). -->
         <img src="/images/agents-ui.gif"
              alt="Railgrid agents UI — creating a hosted AI agent and chatting with it"
              loading="lazy"
-             onerror="this.parentElement.classList.add('faros-media-missing')">
-        <div class="faros-product-skeleton" aria-hidden="true">
-          <div class="faros-skel-side">
-            <div class="faros-skel-dot"></div>
-            <div class="faros-skel-line" style="width:80%"></div>
-            <div class="faros-skel-line" style="width:65%"></div>
-            <div class="faros-skel-line faros-skel-active" style="width:88%"></div>
-            <div class="faros-skel-line" style="width:70%"></div>
-            <div class="faros-skel-line" style="width:58%"></div>
+             onerror="this.parentElement.classList.add('railgrid-media-missing')">
+        <div class="railgrid-product-skeleton" aria-hidden="true">
+          <div class="railgrid-skel-side">
+            <div class="railgrid-skel-dot"></div>
+            <div class="railgrid-skel-line" style="width:80%"></div>
+            <div class="railgrid-skel-line" style="width:65%"></div>
+            <div class="railgrid-skel-line railgrid-skel-active" style="width:88%"></div>
+            <div class="railgrid-skel-line" style="width:70%"></div>
+            <div class="railgrid-skel-line" style="width:58%"></div>
           </div>
-          <div class="faros-skel-main">
-            <div class="faros-skel-topbar">
-              <div class="faros-skel-line" style="width:130px"></div>
-              <div class="faros-skel-chip"></div>
+          <div class="railgrid-skel-main">
+            <div class="railgrid-skel-topbar">
+              <div class="railgrid-skel-line" style="width:130px"></div>
+              <div class="railgrid-skel-chip"></div>
             </div>
-            <div class="faros-skel-cards">
-              <div class="faros-skel-card">
-                <div class="faros-skel-dot faros-skel-dot-accent"></div>
-                <div class="faros-skel-line" style="width:75%"></div>
-                <div class="faros-skel-line" style="width:50%"></div>
+            <div class="railgrid-skel-cards">
+              <div class="railgrid-skel-card">
+                <div class="railgrid-skel-dot railgrid-skel-dot-accent"></div>
+                <div class="railgrid-skel-line" style="width:75%"></div>
+                <div class="railgrid-skel-line" style="width:50%"></div>
               </div>
-              <div class="faros-skel-card">
-                <div class="faros-skel-dot faros-skel-dot-success"></div>
-                <div class="faros-skel-line" style="width:65%"></div>
-                <div class="faros-skel-line" style="width:55%"></div>
+              <div class="railgrid-skel-card">
+                <div class="railgrid-skel-dot railgrid-skel-dot-success"></div>
+                <div class="railgrid-skel-line" style="width:65%"></div>
+                <div class="railgrid-skel-line" style="width:55%"></div>
               </div>
-              <div class="faros-skel-card">
-                <div class="faros-skel-dot"></div>
-                <div class="faros-skel-line" style="width:70%"></div>
-                <div class="faros-skel-line" style="width:45%"></div>
+              <div class="railgrid-skel-card">
+                <div class="railgrid-skel-dot"></div>
+                <div class="railgrid-skel-line" style="width:70%"></div>
+                <div class="railgrid-skel-line" style="width:45%"></div>
               </div>
             </div>
-            <div class="faros-skel-chat">
-              <div class="faros-skel-bubble" style="width:52%"></div>
-              <div class="faros-skel-bubble faros-skel-bubble-me" style="width:38%"></div>
-              <div class="faros-skel-bubble" style="width:60%"></div>
+            <div class="railgrid-skel-chat">
+              <div class="railgrid-skel-bubble" style="width:52%"></div>
+              <div class="railgrid-skel-bubble railgrid-skel-bubble-me" style="width:38%"></div>
+              <div class="railgrid-skel-bubble" style="width:60%"></div>
             </div>
           </div>
-          <div class="faros-skel-badge">
-            <span class="faros-dot"></span>
+          <div class="railgrid-skel-badge">
+            <span class="railgrid-dot"></span>
             Live demo — coming right here
           </div>
         </div>
@@ -266,11 +266,11 @@
   <!-- ============= DRIVERS / PROVIDERS ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="faros-eyebrow">Drivers</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        Batteries included. <span class="faros-accent-text">Sockets exposed.</span>
+      <p class="railgrid-eyebrow">Drivers</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        Batteries included. <span class="railgrid-accent-text">Sockets exposed.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         Everything above the kernel is a provider — including everything we ship.
         Each brings its own API, controllers, portal UI, and MCP tools, and is enabled per workspace.
       </p>
@@ -278,87 +278,87 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
 
-      <a href="/docs/use/edges/" class="faros-card faros-card-link block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/use/edges/" class="railgrid-card railgrid-card-link block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3M3.6 9h16.8M3.6 15h16.8"/></svg>
           </div>
-          <span class="faros-tag">edges</span>
+          <span class="railgrid-tag">edges</span>
         </div>
-        <h3 class="faros-card-title">Edges</h3>
-        <p class="faros-card-text">Kubernetes clusters, Linux servers, and the apps beside them. kubectl and SSH through the tunnel, fleet-wide workload placement, and discovered services — Home Assistant, Grafana, Jellyfin — turned into tools.</p>
+        <h3 class="railgrid-card-title">Edges</h3>
+        <p class="railgrid-card-text">Kubernetes clusters, Linux servers, and the apps beside them. kubectl and SSH through the tunnel, fleet-wide workload placement, and discovered services — Home Assistant, Grafana, Jellyfin — turned into tools.</p>
       </a>
 
-      <a href="/docs/use/infrastructure/" class="faros-card faros-card-link block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/use/infrastructure/" class="railgrid-card railgrid-card-link block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75V16.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>
           </div>
-          <span class="faros-tag">infrastructure</span>
+          <span class="railgrid-tag">infrastructure</span>
         </div>
-        <h3 class="faros-card-title">Application Templates</h3>
-        <p class="faros-card-text">Provision databases, caches, workers, and full apps from a curated kro template catalog — Gateway API exposure and per-app OIDC included, plus live development sandboxes with preview, logs, and file sync.</p>
+        <h3 class="railgrid-card-title">Application Templates</h3>
+        <p class="railgrid-card-text">Provision databases, caches, workers, and full apps from a curated kro template catalog — Gateway API exposure and per-app OIDC included, plus live development sandboxes with preview, logs, and file sync.</p>
       </a>
 
-      <a href="/docs/use/agents/" class="faros-card faros-card-link block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/use/agents/" class="railgrid-card railgrid-card-link block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
           </div>
-          <span class="faros-tag">agents</span>
+          <span class="railgrid-tag">agents</span>
         </div>
-        <h3 class="faros-card-title">AI Agents</h3>
-        <p class="faros-card-text">Long-running agents as platform resources: schedules, triggers, durable memory, budgets, approval inboxes, and Telegram/Slack channels — using every other provider's tools inside the same guardrails.</p>
+        <h3 class="railgrid-card-title">AI Agents</h3>
+        <p class="railgrid-card-text">Long-running agents as platform resources: schedules, triggers, durable memory, budgets, approval inboxes, and Telegram/Slack channels — using every other provider's tools inside the same guardrails.</p>
       </a>
 
-      <a href="/docs/use/code/" class="faros-card faros-card-link block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/use/code/" class="railgrid-card railgrid-card-link block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
           </div>
-          <span class="faros-tag">code</span>
+          <span class="railgrid-tag">code</span>
         </div>
-        <h3 class="faros-card-title">Code</h3>
-        <p class="faros-card-text">Git repositories, commits, checkouts, deploy keys, collaborators, and published packages as declarative resources. GitHub first, other hosts pluggable behind the same API.</p>
+        <h3 class="railgrid-card-title">Code</h3>
+        <p class="railgrid-card-text">Git repositories, commits, checkouts, deploy keys, collaborators, and published packages as declarative resources. GitHub first, other hosts pluggable behind the same API.</p>
       </a>
 
-      <a href="/docs/use/kuery/" class="faros-card faros-card-link block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/use/kuery/" class="railgrid-card railgrid-card-link block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
           </div>
-          <span class="faros-tag">kuery</span>
+          <span class="railgrid-tag">kuery</span>
         </div>
-        <h3 class="faros-card-title">Kuery</h3>
-        <p class="faros-card-text">One structured query across every object in the fleet, plus impact traversal — "who consumes this Secret, is it safe to rotate?" — instead of N kubectl round-trips through N tunnels.</p>
+        <h3 class="railgrid-card-title">Kuery</h3>
+        <p class="railgrid-card-text">One structured query across every object in the fleet, plus impact traversal — "who consumes this Secret, is it safe to rotate?" — instead of N kubectl round-trips through N tunnels.</p>
       </a>
 
-      <a href="/docs/extend/" class="faros-card faros-card-link faros-card-build block !no-underline">
-        <div class="faros-card-head">
-          <div class="faros-card-icon">
+      <a href="/docs/extend/" class="railgrid-card railgrid-card-link railgrid-card-build block !no-underline">
+        <div class="railgrid-card-head">
+          <div class="railgrid-card-icon">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
           </div>
-          <span class="faros-tag faros-tag-accent">write your own</span>
+          <span class="railgrid-tag railgrid-tag-accent">write your own</span>
         </div>
-        <h3 class="faros-card-title">Build a driver</h3>
-        <p class="faros-card-text">Your capability, your pod, your release cycle — plugged into the kernel's tenancy, proxies, and guardrails. Copy the quickstart provider, rename it, ship it. The docs walk the whole contract.</p>
+        <h3 class="railgrid-card-title">Build a driver</h3>
+        <p class="railgrid-card-text">Your capability, your pod, your release cycle — plugged into the kernel's tenancy, proxies, and guardrails. Copy the quickstart provider, rename it, ship it. The docs walk the whole contract.</p>
       </a>
 
     </div>
 
     <div class="text-center">
-      <a href="/docs/use/" class="faros-btn-secondary">Explore the provider catalog</a>
+      <a href="/docs/use/" class="railgrid-btn-secondary">Explore the provider catalog</a>
     </div>
   </div>
 
   <!-- ============= GUARDRAILS ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="faros-eyebrow">Protection rings</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        Guardrails as architecture, <span class="faros-accent-text">not policy docs.</span>
+      <p class="railgrid-eyebrow">Protection rings</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        Guardrails as architecture, <span class="railgrid-accent-text">not policy docs.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         Agents operating real infrastructure today get one of two things: nothing, or a god-mode kubeconfig.
         Operating systems solved this forty years ago — you give them userspace.
       </p>
@@ -366,19 +366,19 @@
 
     <div class="grid md:grid-cols-3 gap-4">
 
-      <div class="faros-card">
-        <h3 class="faros-card-title">Isolated by construction</h3>
-        <p class="faros-card-text">Tenancy is the substrate, not a filter applied late. An agent physically cannot address resources outside the workspace it was issued — the request never reaches a place where the answer exists.</p>
+      <div class="railgrid-card">
+        <h3 class="railgrid-card-title">Isolated by construction</h3>
+        <p class="railgrid-card-text">Tenancy is the substrate, not a filter applied late. An agent physically cannot address resources outside the workspace it was issued — the request never reaches a place where the answer exists.</p>
       </div>
 
-      <div class="faros-card">
-        <h3 class="faros-card-title">Everything is an API resource</h3>
-        <p class="faros-card-text">Provisioning, repos, agents, edges — declarative objects, not imperative side doors. Every action an agent takes is something you can list, diff, audit, and revert. No mystery mutations.</p>
+      <div class="railgrid-card">
+        <h3 class="railgrid-card-title">Everything is an API resource</h3>
+        <p class="railgrid-card-text">Provisioning, repos, agents, edges — declarative objects, not imperative side doors. Every action an agent takes is something you can list, diff, audit, and revert. No mystery mutations.</p>
       </div>
 
-      <div class="faros-card">
-        <h3 class="faros-card-title">Tools inherit permissions</h3>
-        <p class="faros-card-text">MCP tools derive from the same RBAC that governs the API, so "what can this agent do?" has exactly one answer — and you change it in one place, not in a tool allowlist that drifts.</p>
+      <div class="railgrid-card">
+        <h3 class="railgrid-card-title">Tools inherit permissions</h3>
+        <p class="railgrid-card-text">MCP tools derive from the same RBAC that governs the API, so "what can this agent do?" has exactly one answer — and you change it in one place, not in a tool allowlist that drifts.</p>
       </div>
 
     </div>
@@ -387,61 +387,61 @@
   <!-- ============= I/O LAYER / CONNECTIVITY ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-12">
-      <p class="faros-eyebrow">I/O</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        Agents dial out. <span class="faros-accent-text">You log in.</span>
+      <p class="railgrid-eyebrow">I/O</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        Agents dial out. <span class="railgrid-accent-text">You log in.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         The hub is the only thing with a public endpoint. Clusters and servers behind NAT, corporate
         firewalls, or a home router dial outward and become part of your platform.
       </p>
     </div>
 
-    <div class="faros-panel p-8 md:p-12">
+    <div class="railgrid-panel p-8 md:p-12">
       <div class="grid md:grid-cols-3 gap-8 items-center">
 
         <!-- You -->
         <div class="text-center md:text-right">
-          <div class="faros-tile inline-flex flex-col items-center px-6 py-5">
-            <svg class="w-7 h-7 faros-icon-accent mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
-            <span class="faros-tile-title">You &amp; your agents</span>
-            <span class="faros-tile-meta">kubectl · faros · ssh · mcp</span>
+          <div class="railgrid-tile inline-flex flex-col items-center px-6 py-5">
+            <svg class="w-7 h-7 railgrid-icon-accent mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+            <span class="railgrid-tile-title">You &amp; your agents</span>
+            <span class="railgrid-tile-meta">kubectl · railgrid · ssh · mcp</span>
           </div>
         </div>
 
         <!-- Hub -->
         <div class="flex flex-col md:flex-row items-center justify-center md:gap-0 gap-3">
-          <div class="faros-flow-line"></div>
-          <div class="faros-hub px-6 py-5 text-center shrink-0">
-            <div class="faros-hub-eyebrow">Kernel</div>
-            <div class="faros-hub-title">Railgrid hub</div>
-            <div class="faros-hub-meta">kcp · OIDC · providers · MCP</div>
+          <div class="railgrid-flow-line"></div>
+          <div class="railgrid-hub px-6 py-5 text-center shrink-0">
+            <div class="railgrid-hub-eyebrow">Kernel</div>
+            <div class="railgrid-hub-title">Railgrid hub</div>
+            <div class="railgrid-hub-meta">kcp · OIDC · providers · MCP</div>
           </div>
-          <div class="faros-flow-line"></div>
+          <div class="railgrid-flow-line"></div>
         </div>
 
         <!-- Edges -->
         <div class="text-center md:text-left">
           <div class="space-y-2.5">
-            <div class="faros-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 faros-icon-success shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15"/></svg>
+            <div class="railgrid-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 railgrid-icon-success shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15"/></svg>
               <div class="text-left">
-                <div class="faros-tile-title">Kubernetes edge</div>
-                <div class="faros-tile-meta">behind NAT</div>
+                <div class="railgrid-tile-title">Kubernetes edge</div>
+                <div class="railgrid-tile-meta">behind NAT</div>
               </div>
             </div>
-            <div class="faros-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 faros-icon-accent shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3"/></svg>
+            <div class="railgrid-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 railgrid-icon-accent shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3"/></svg>
               <div class="text-left">
-                <div class="faros-tile-title">Bare metal / VM</div>
-                <div class="faros-tile-meta">SSH mode</div>
+                <div class="railgrid-tile-title">Bare metal / VM</div>
+                <div class="railgrid-tile-meta">SSH mode</div>
               </div>
             </div>
-            <div class="faros-tile flex items-center gap-3 px-4 py-3">
-              <svg class="w-5 h-5 faros-icon-muted shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+            <div class="railgrid-tile flex items-center gap-3 px-4 py-3">
+              <svg class="w-5 h-5 railgrid-icon-muted shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
               <div class="text-left">
-                <div class="faros-tile-title">Home lab · Raspberry Pi</div>
-                <div class="faros-tile-meta">no inbound rules</div>
+                <div class="railgrid-tile-title">Home lab · Raspberry Pi</div>
+                <div class="railgrid-tile-meta">no inbound rules</div>
               </div>
             </div>
           </div>
@@ -450,23 +450,23 @@
       </div>
 
       <!-- What the I/O floor gives you -->
-      <div class="faros-strip mt-10 pt-8">
+      <div class="railgrid-strip mt-10 pt-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
-            <div class="faros-feature-title">Reverse tunnels</div>
-            <p class="faros-feature-text">Agents dial out — NAT and firewalls stop being your problem.</p>
+            <div class="railgrid-feature-title">Reverse tunnels</div>
+            <p class="railgrid-feature-text">Agents dial out — NAT and firewalls stop being your problem.</p>
           </div>
           <div>
-            <div class="faros-feature-title">kubectl &amp; SSH</div>
-            <p class="faros-feature-text">Native access to every cluster and host, through one endpoint.</p>
+            <div class="railgrid-feature-title">kubectl &amp; SSH</div>
+            <p class="railgrid-feature-text">Native access to every cluster and host, through one endpoint.</p>
           </div>
           <div>
-            <div class="faros-feature-title">Multi-tenant</div>
-            <p class="faros-feature-text">Orgs and workspaces, each an isolated logical cluster.</p>
+            <div class="railgrid-feature-title">Multi-tenant</div>
+            <p class="railgrid-feature-text">Orgs and workspaces, each an isolated logical cluster.</p>
           </div>
           <div>
-            <div class="faros-feature-title">MCP for AI</div>
-            <p class="faros-feature-text">One URL — Claude and any MCP client drive the whole platform.</p>
+            <div class="railgrid-feature-title">MCP for AI</div>
+            <p class="railgrid-feature-text">One URL — Claude and any MCP client drive the whole platform.</p>
           </div>
         </div>
       </div>
@@ -476,11 +476,11 @@
   <!-- ============= COMPARE ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="faros-eyebrow">Time to platform</p>
-      <h2 class="faros-display text-3xl md:text-5xl">
-        An evening. <span class="faros-accent-text">Not a quarter.</span>
+      <p class="railgrid-eyebrow">Time to platform</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">
+        An evening. <span class="railgrid-accent-text">Not a quarter.</span>
       </h2>
-      <p class="mt-5 text-base md:text-lg faros-lede max-w-2xl mx-auto">
+      <p class="mt-5 text-base md:text-lg railgrid-lede max-w-2xl mx-auto">
         The platform market makes you choose: rent something closed in minutes, or spend months
         assembling something you own. Railgrid refuses the trade.
       </p>
@@ -488,25 +488,25 @@
 
     <div class="grid md:grid-cols-3 gap-4">
 
-      <div class="faros-card faros-card-dim">
-        <span class="faros-tag">assemble it yourself</span>
-        <h3 class="faros-card-title mt-3">Portal frameworks</h3>
-        <p class="faros-card-text">Scaffold the app, wire the database, pick the plugins, staff the team. Months to first value — and at the end you have a catalog that <em>describes</em> your infrastructure, not a control plane that runs it.</p>
-        <div class="faros-compare-foot">6–12 months · dedicated engineers</div>
+      <div class="railgrid-card railgrid-card-dim">
+        <span class="railgrid-tag">assemble it yourself</span>
+        <h3 class="railgrid-card-title mt-3">Portal frameworks</h3>
+        <p class="railgrid-card-text">Scaffold the app, wire the database, pick the plugins, staff the team. Months to first value — and at the end you have a catalog that <em>describes</em> your infrastructure, not a control plane that runs it.</p>
+        <div class="railgrid-compare-foot">6–12 months · dedicated engineers</div>
       </div>
 
-      <div class="faros-card faros-card-dim">
-        <span class="faros-tag">rent it</span>
-        <h3 class="faros-card-title mt-3">Per-seat platform SaaS</h3>
-        <p class="faros-card-text">Live in minutes — but closed source, priced per seat or per month in the thousands, and the control plane your platform depends on belongs to someone else.</p>
-        <div class="faros-compare-foot">from ~€2k/mo or $30+/seat · rented</div>
+      <div class="railgrid-card railgrid-card-dim">
+        <span class="railgrid-tag">rent it</span>
+        <h3 class="railgrid-card-title mt-3">Per-seat platform SaaS</h3>
+        <p class="railgrid-card-text">Live in minutes — but closed source, priced per seat or per month in the thousands, and the control plane your platform depends on belongs to someone else.</p>
+        <div class="railgrid-compare-foot">from ~€2k/mo or $30+/seat · rented</div>
       </div>
 
-      <div class="faros-card faros-card-win">
-        <span class="faros-tag faros-tag-success">boot it</span>
-        <h3 class="faros-card-title mt-3">Railgrid</h3>
-        <p class="faros-card-text">Hosted hub: two commands, free. Self-hosted: two Helm charts on any Kubernetes cluster, running by tonight. Open source top to bottom — kernel, portal, and every provider.</p>
-        <div class="faros-compare-foot faros-compare-foot-win">minutes hosted · an evening self-hosted · $0</div>
+      <div class="railgrid-card railgrid-card-win">
+        <span class="railgrid-tag railgrid-tag-success">boot it</span>
+        <h3 class="railgrid-card-title mt-3">Railgrid</h3>
+        <p class="railgrid-card-text">Hosted hub: two commands, free. Self-hosted: two Helm charts on any Kubernetes cluster, running by tonight. Open source top to bottom — kernel, portal, and every provider.</p>
+        <div class="railgrid-compare-foot railgrid-compare-foot-win">minutes hosted · an evening self-hosted · $0</div>
       </div>
 
     </div>
@@ -515,47 +515,47 @@
   <!-- ============= QUICKSTART ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
     <div class="text-center mb-14">
-      <p class="faros-eyebrow">Boot sequence</p>
-      <h2 class="faros-display text-3xl md:text-5xl">Four commands to a live platform.</h2>
+      <p class="railgrid-eyebrow">Boot sequence</p>
+      <h2 class="railgrid-display text-3xl md:text-5xl">Four commands to a live platform.</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
 
-      <div class="faros-step">
-        <div class="faros-step-num">1</div>
+      <div class="railgrid-step">
+        <div class="railgrid-step-num">1</div>
         <div class="flex-1 min-w-0">
-          <h4 class="faros-step-title">Install the CLI</h4>
-          <p class="faros-step-text">One binary — macOS, Linux, WSL.</p>
-          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
+          <h4 class="railgrid-step-title">Install the CLI</h4>
+          <p class="railgrid-step-text">One binary — macOS, Linux, WSL.</p>
+          <pre class="railgrid-code-snippet"><code><span class="railgrid-prompt">$</span> curl -fsSL https://downloads.faros.sh/install.sh | sh</code></pre>
         </div>
       </div>
 
-      <div class="faros-step">
-        <div class="faros-step-num">2</div>
+      <div class="railgrid-step">
+        <div class="railgrid-step-num">2</div>
         <div class="flex-1 min-w-0">
-          <h4 class="faros-step-title">Log in</h4>
-          <p class="faros-step-text">Authenticate to the hosted hub — your isolated workspace is created on the spot.</p>
-          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros login</code></pre>
+          <h4 class="railgrid-step-title">Log in</h4>
+          <p class="railgrid-step-text">Authenticate to the hosted hub — your isolated workspace is created on the spot.</p>
+          <pre class="railgrid-code-snippet"><code><span class="railgrid-prompt">$</span> railgrid login</code></pre>
         </div>
       </div>
 
-      <div class="faros-step">
-        <div class="faros-step-num">3</div>
+      <div class="railgrid-step">
+        <div class="railgrid-step-num">3</div>
         <div class="flex-1 min-w-0">
-          <h4 class="faros-step-title">Attach an edge</h4>
-          <p class="faros-step-text">Get a one-time join command and run it on the cluster or host.</p>
-          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros edge create my-cluster
-<span class="faros-prompt">$</span> faros edge join-command my-cluster</code></pre>
+          <h4 class="railgrid-step-title">Attach an edge</h4>
+          <p class="railgrid-step-text">Get a one-time join command and run it on the cluster or host.</p>
+          <pre class="railgrid-code-snippet"><code><span class="railgrid-prompt">$</span> railgrid edge create my-cluster
+<span class="railgrid-prompt">$</span> railgrid edge join-command my-cluster</code></pre>
         </div>
       </div>
 
-      <div class="faros-step">
-        <div class="faros-step-num">4</div>
+      <div class="railgrid-step">
+        <div class="railgrid-step-num">4</div>
         <div class="flex-1 min-w-0">
-          <h4 class="faros-step-title">Hand it to your agents</h4>
-          <p class="faros-step-text">A kubeconfig for kubectl, SSH for shells, and one MCP URL that gives Claude every provider's tools — scoped to this workspace.</p>
-          <pre class="faros-code-snippet"><code><span class="faros-prompt">$</span> faros kubeconfig edge my-cluster &gt; kc.yaml
-<span class="faros-prompt">$</span> faros mcp url --mcpserver-name default</code></pre>
+          <h4 class="railgrid-step-title">Hand it to your agents</h4>
+          <p class="railgrid-step-text">A kubeconfig for kubectl, SSH for shells, and one MCP URL that gives Claude every provider's tools — scoped to this workspace.</p>
+          <pre class="railgrid-code-snippet"><code><span class="railgrid-prompt">$</span> railgrid kubeconfig edge my-cluster &gt; kc.yaml
+<span class="railgrid-prompt">$</span> railgrid mcp url --mcpserver-name default</code></pre>
         </div>
       </div>
 
@@ -564,30 +564,30 @@
 
   <!-- ============= OPEN SOURCE ============= -->
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
-    <div class="faros-panel faros-panel-accent p-10 md:p-16 text-center">
+    <div class="railgrid-panel railgrid-panel-accent p-10 md:p-16 text-center">
       <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
-        <span class="faros-tag faros-tag-accent">Apache 2.0</span>
-        <span class="faros-tag">No license keys</span>
-        <span class="faros-tag">No telemetry</span>
-        <span class="faros-tag">No per-seat pricing</span>
+        <span class="railgrid-tag railgrid-tag-accent">Apache 2.0</span>
+        <span class="railgrid-tag">No license keys</span>
+        <span class="railgrid-tag">No telemetry</span>
+        <span class="railgrid-tag">No per-seat pricing</span>
       </div>
 
-      <h2 class="faros-display text-3xl md:text-5xl mb-6">
+      <h2 class="railgrid-display text-3xl md:text-5xl mb-6">
         Free forever. Open source by design.
       </h2>
 
-      <p class="text-base md:text-lg faros-lede max-w-2xl mx-auto leading-relaxed mb-10">
+      <p class="text-base md:text-lg railgrid-lede max-w-2xl mx-auto leading-relaxed mb-10">
         Kernel, portal, and every provider are open source. Self-host it anywhere — a VPS, a home
         server, behind a Cloudflare Tunnel. No paywalled features, no usage limits, unlimited edges, and
         <strong>no per-seat pricing — platforms shouldn't tax headcount</strong>. Fork it, audit it, ship it.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="https://github.com/faroshq/faros" class="faros-btn-primary">
+        <a href="https://github.com/railgrid/railgrid" class="railgrid-btn-primary">
           {{ $ghIcon | safeHTML }}
-          github.com/faroshq/faros
+          github.com/railgrid/railgrid
         </a>
-        <a href="/docs/self-hosting/hub/helm/" class="faros-btn-secondary">
+        <a href="/docs/self-hosting/hub/helm/" class="railgrid-btn-secondary">
           Deploy with Helm
         </a>
       </div>
@@ -597,12 +597,12 @@
 </section>
 
 <style>
-/* ─────────── Railgrid homepage — Violet Circuit, scoped to .faros-home ───────────
+/* ─────────── Railgrid homepage — Violet Circuit, scoped to .railgrid-home ───────────
    Dark is the base; light is the override under html:not(.dark).
    Radius law: cards 6px · controls 4px · tags 3px. Tags are square, never pills.
    Glow only on live/primary things (primary button, live dot, hub, focus ring). */
 
-.faros-home {
+.railgrid-home {
   --fx-surface: #0a0b12;
   --fx-raised: #111320;
   --fx-overlay: #171927;
@@ -624,7 +624,7 @@
   --fx-display: 'Archivo', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
-html:not(.dark) .faros-home {
+html:not(.dark) .railgrid-home {
   --fx-surface: #f1f1f6;
   --fx-raised: #ffffff;
   --fx-overlay: #eaeaf2;
@@ -645,18 +645,18 @@ html:not(.dark) .faros-home {
 }
 
 /* ── Signature background: contour lines, one accent wash, no glass ── */
-.faros-contour {
+.railgrid-contour {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%238b6bff' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 240px 240px;
 }
-html:not(.dark) .faros-contour {
+html:not(.dark) .railgrid-contour {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%236b48e8' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 24 Q30 12 60 24 T120 24 T180 24 T240 24'/%3E%3Cpath d='M0 72 Q30 84 60 72 T120 72 T180 72 T240 72'/%3E%3Cpath d='M0 120 Q30 108 60 120 T120 120 T180 120 T240 120'/%3E%3Cpath d='M0 168 Q30 180 60 168 T120 168 T180 168 T240 168'/%3E%3Cpath d='M0 216 Q30 204 60 216 T120 216 T180 216 T240 216'/%3E%3C/g%3E%3C/svg%3E");
 }
-.faros-contour-fade {
+.railgrid-contour-fade {
   -webkit-mask-image: linear-gradient(to bottom, black, transparent 55%);
   mask-image: linear-gradient(to bottom, black, transparent 55%);
 }
-.faros-wash {
+.railgrid-wash {
   position: absolute;
   top: -18rem;
   left: 50%;
@@ -669,7 +669,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* ── Type ── */
-.faros-display {
+.railgrid-display {
   font-family: var(--fx-display);
   font-stretch: 125%;
   font-weight: 700;
@@ -678,28 +678,28 @@ html:not(.dark) .faros-contour {
 }
 /* Archivo at wdth 125 is wide: at a fixed 48px the hero h1 overflows a
    390px phone, so both heading levels are fluid rather than stepped. */
-.faros-home h1.faros-display {
+.railgrid-home h1.railgrid-display {
   font-size: clamp(2.1rem, 6.6vw, 4.4rem);
   line-height: 1.05;
 }
 /* Cap section headings so they land on two lines instead of three. */
-.faros-home h2.faros-display {
+.railgrid-home h2.railgrid-display {
   font-size: clamp(1.9rem, 3.3vw, 2.9rem);
   line-height: 1.12;
   max-width: 22ch;
   margin-left: auto;
   margin-right: auto;
 }
-.faros-accent-text { color: var(--fx-accent); }
-.faros-lede { color: var(--fx-text-2); }
-.faros-lede strong { color: var(--fx-text); font-weight: 600; }
-.faros-kicker {
+.railgrid-accent-text { color: var(--fx-accent); }
+.railgrid-lede { color: var(--fx-text-2); }
+.railgrid-lede strong { color: var(--fx-text); font-weight: 600; }
+.railgrid-kicker {
   color: var(--fx-text);
   font-family: var(--fx-mono);
   font-size: 0.95rem;
   letter-spacing: 0.01em;
 }
-.faros-eyebrow {
+.railgrid-eyebrow {
   font-family: var(--fx-mono);
   font-size: 0.7rem;
   font-weight: 500;
@@ -710,7 +710,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* ── Square mono tags (3px — never pills) ── */
-.faros-tag {
+.railgrid-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -724,25 +724,25 @@ html:not(.dark) .faros-contour {
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-.faros-tag-accent { background: var(--fx-accent-subtle); color: var(--fx-accent); }
-.faros-tag-success { background: var(--fx-success-subtle); color: var(--fx-success); }
-.faros-tag-live { color: var(--fx-text); }
+.railgrid-tag-accent { background: var(--fx-accent-subtle); color: var(--fx-accent); }
+.railgrid-tag-success { background: var(--fx-success-subtle); color: var(--fx-success); }
+.railgrid-tag-live { color: var(--fx-text); }
 
 /* Live dot — one of the few things allowed to glow */
-.faros-dot {
+.railgrid-dot {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
   background: var(--fx-success);
   box-shadow: 0 0 8px var(--fx-success);
-  animation: faros-live-pulse 2.5s ease-in-out infinite;
+  animation: railgrid-live-pulse 2.5s ease-in-out infinite;
   flex-shrink: 0;
 }
-@keyframes faros-live-pulse {
+@keyframes railgrid-live-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
-.faros-dot-sm {
+.railgrid-dot-sm {
   width: 8px;
   height: 8px;
   border-radius: 9999px;
@@ -750,7 +750,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* ── Buttons (4px controls) ── */
-.faros-btn-primary {
+.railgrid-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -765,16 +765,16 @@ html:not(.dark) .faros-contour {
   text-decoration: none !important;
   transition: background 0.15s ease, box-shadow 0.15s ease;
 }
-.faros-btn-primary:hover {
+.railgrid-btn-primary:hover {
   background: var(--fx-accent-hover);
   box-shadow: 0 0 22px var(--fx-accent-glow);
   color: #fff;
 }
-.faros-btn-primary:focus-visible {
+.railgrid-btn-primary:focus-visible {
   outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.faros-btn-secondary {
+.railgrid-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -788,16 +788,16 @@ html:not(.dark) .faros-contour {
   text-decoration: none !important;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.faros-btn-secondary:hover {
+.railgrid-btn-secondary:hover {
   background: var(--fx-hover);
   border-color: var(--fx-accent);
   color: var(--fx-text);
 }
-.faros-btn-secondary:focus-visible {
+.railgrid-btn-secondary:focus-visible {
   outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.faros-star-badge {
+.railgrid-star-badge {
   margin-left: 0.55rem;
   padding: 0.1rem 0.4rem;
   border-radius: 3px;
@@ -807,10 +807,10 @@ html:not(.dark) .faros-contour {
   background: var(--fx-accent-subtle);
   color: var(--fx-accent);
 }
-.faros-star-badge:empty { display: none; }
+.railgrid-star-badge:empty { display: none; }
 
 /* ── Install command card ── */
-.faros-quickcmd {
+.railgrid-quickcmd {
   background: var(--fx-raised);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
@@ -818,19 +818,19 @@ html:not(.dark) .faros-contour {
   transition: border-color 0.15s ease;
   position: relative;
 }
-.faros-quickcmd:hover { border-color: var(--fx-accent); }
-.faros-quickcmd-head {
+.railgrid-quickcmd:hover { border-color: var(--fx-accent); }
+.railgrid-quickcmd-head {
   display: flex;
   align-items: center;
   gap: 0.55rem;
   margin-bottom: 0.55rem;
 }
-.faros-quickcmd-label {
+.railgrid-quickcmd-label {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--fx-text);
 }
-.faros-quickcmd-hint {
+.railgrid-quickcmd-hint {
   margin-left: auto;
   font-family: var(--fx-mono);
   font-size: 0.65rem;
@@ -838,12 +838,12 @@ html:not(.dark) .faros-contour {
   text-transform: uppercase;
   color: var(--fx-text-muted);
 }
-.faros-quickcmd-row {
+.railgrid-quickcmd-row {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
-.faros-quickcmd-line {
+.railgrid-quickcmd-line {
   background: transparent;
   margin: 0;
   font-family: var(--fx-mono);
@@ -859,7 +859,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* ── Copy buttons (install row + code snippets) ── */
-.faros-install-copy-btn {
+.railgrid-install-copy-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -875,45 +875,45 @@ html:not(.dark) .faros-contour {
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
-.faros-install-copy-btn:hover {
+.railgrid-install-copy-btn:hover {
   background: var(--fx-hover);
   border-color: var(--fx-accent);
   color: var(--fx-text);
 }
-.faros-install-copy-btn:focus-visible {
+.railgrid-install-copy-btn:focus-visible {
   outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.faros-install-copy-icon-done { display: none; }
-.faros-install-copy-btn.is-copied {
+.railgrid-install-copy-icon-done { display: none; }
+.railgrid-install-copy-btn.is-copied {
   background: var(--fx-success-subtle);
   border-color: var(--fx-success);
   color: var(--fx-success);
 }
-.faros-install-copy-btn.is-copied .faros-install-copy-icon-default { display: none; }
-.faros-install-copy-btn.is-copied .faros-install-copy-icon-done { display: inline-block; }
+.railgrid-install-copy-btn.is-copied .railgrid-install-copy-icon-default { display: none; }
+.railgrid-install-copy-btn.is-copied .railgrid-install-copy-icon-done { display: inline-block; }
 
 /* ── Terminal ── */
-.faros-terminal {
+.railgrid-terminal {
   background: var(--fx-raised);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
   overflow: hidden;
 }
-.faros-terminal-chrome {
+.railgrid-terminal-chrome {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.7rem 1.1rem;
   border-bottom: 1px solid var(--fx-border);
 }
-.faros-terminal-title {
+.railgrid-terminal-title {
   font-family: var(--fx-mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   color: var(--fx-text-muted);
 }
-.faros-terminal-body {
+.railgrid-terminal-body {
   background: transparent;
   margin: 0;
   padding: 1.4rem 1.25rem;
@@ -923,22 +923,22 @@ html:not(.dark) .faros-contour {
   color: var(--fx-text-2);
   overflow-x: auto;
 }
-.faros-prompt { color: var(--fx-accent); font-weight: 600; }
-.faros-claude { color: var(--fx-success); font-weight: 600; }
-.faros-ok { color: var(--fx-success); }
-.faros-info { color: var(--fx-text-2); }
-.faros-accent { color: var(--fx-accent); }
-.faros-err { color: var(--fx-danger); }
+.railgrid-prompt { color: var(--fx-accent); font-weight: 600; }
+.railgrid-claude { color: var(--fx-success); font-weight: 600; }
+.railgrid-ok { color: var(--fx-success); }
+.railgrid-info { color: var(--fx-text-2); }
+.railgrid-accent { color: var(--fx-accent); }
+.railgrid-err { color: var(--fx-danger); }
 
 /* ── Surfaces: flat raised cards, 6px, no glass ── */
-.faros-panel {
+.railgrid-panel {
   background: var(--fx-raised);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
 }
-.faros-panel-accent { border-color: var(--fx-accent-subtle); }
+.railgrid-panel-accent { border-color: var(--fx-accent-subtle); }
 
-.faros-card {
+.railgrid-card {
   position: relative;
   padding: 1.4rem;
   background: var(--fx-raised);
@@ -946,15 +946,15 @@ html:not(.dark) .faros-contour {
   border-radius: 6px;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
-.faros-card-link:hover { border-color: var(--fx-accent); background: var(--fx-overlay); }
-.faros-card-build { border-color: var(--fx-accent-subtle); }
-.faros-card-head {
+.railgrid-card-link:hover { border-color: var(--fx-accent); background: var(--fx-overlay); }
+.railgrid-card-build { border-color: var(--fx-accent-subtle); }
+.railgrid-card-head {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.9rem;
 }
-.faros-card-icon {
+.railgrid-card-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -965,23 +965,23 @@ html:not(.dark) .faros-contour {
   color: var(--fx-accent);
   flex-shrink: 0;
 }
-.faros-card-title {
+.railgrid-card-title {
   font-size: 1.02rem;
   font-weight: 650;
   color: var(--fx-text);
   margin-bottom: 0.5rem;
   letter-spacing: -0.01em;
 }
-.faros-card-text {
+.railgrid-card-text {
   font-size: 0.89rem;
   line-height: 1.65;
   color: var(--fx-text-2);
   margin: 0;
 }
-.faros-card-text strong { color: var(--fx-text); font-weight: 600; }
-.faros-card-dim { background: var(--fx-surface); }
-.faros-card-win { border-color: var(--fx-success); }
-.faros-compare-foot {
+.railgrid-card-text strong { color: var(--fx-text); font-weight: 600; }
+.railgrid-card-dim { background: var(--fx-surface); }
+.railgrid-card-win { border-color: var(--fx-success); }
+.railgrid-compare-foot {
   margin-top: 1rem;
   padding-top: 0.8rem;
   border-top: 1px solid var(--fx-border);
@@ -989,34 +989,34 @@ html:not(.dark) .faros-contour {
   font-size: 0.7rem;
   color: var(--fx-text-muted);
 }
-.faros-compare-foot-win { color: var(--fx-success); }
+.railgrid-compare-foot-win { color: var(--fx-success); }
 
 /* ── I/O diagram ── */
-.faros-tile {
+.railgrid-tile {
   background: var(--fx-overlay);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
   transition: border-color 0.15s ease;
 }
-.faros-tile:hover { border-color: var(--fx-accent); }
-.faros-tile-title { font-size: 0.85rem; font-weight: 600; color: var(--fx-text); }
-.faros-tile-meta {
+.railgrid-tile:hover { border-color: var(--fx-accent); }
+.railgrid-tile-title { font-size: 0.85rem; font-weight: 600; color: var(--fx-text); }
+.railgrid-tile-meta {
   font-family: var(--fx-mono);
   font-size: 0.68rem;
   color: var(--fx-text-muted);
   margin-top: 0.15rem;
 }
-.faros-icon-accent { color: var(--fx-accent); }
-.faros-icon-success { color: var(--fx-success); }
-.faros-icon-muted { color: var(--fx-text-muted); }
+.railgrid-icon-accent { color: var(--fx-accent); }
+.railgrid-icon-success { color: var(--fx-success); }
+.railgrid-icon-muted { color: var(--fx-text-muted); }
 
-.faros-hub {
+.railgrid-hub {
   background: var(--fx-overlay);
   border: 1px solid var(--fx-accent);
   border-radius: 6px;
   box-shadow: 0 0 20px var(--fx-accent-glow);
 }
-.faros-hub-eyebrow {
+.railgrid-hub-eyebrow {
   font-family: var(--fx-mono);
   font-size: 0.62rem;
   letter-spacing: 0.2em;
@@ -1024,8 +1024,8 @@ html:not(.dark) .faros-contour {
   color: var(--fx-accent);
   margin-bottom: 0.25rem;
 }
-.faros-hub-title { font-weight: 700; color: var(--fx-text); font-size: 1.05rem; }
-.faros-hub-meta {
+.railgrid-hub-title { font-weight: 700; color: var(--fx-text); font-size: 1.05rem; }
+.railgrid-hub-meta {
   font-family: var(--fx-mono);
   font-size: 0.68rem;
   color: var(--fx-text-muted);
@@ -1033,7 +1033,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* Flow line: vertical when columns stack, horizontal at md+ */
-.faros-flow-line {
+.railgrid-flow-line {
   width: 1px;
   height: 32px;
   margin: 0 auto;
@@ -1041,7 +1041,7 @@ html:not(.dark) .faros-contour {
   position: relative;
   overflow: hidden;
 }
-.faros-flow-line::after {
+.railgrid-flow-line::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -1050,45 +1050,45 @@ html:not(.dark) .faros-contour {
   width: 1px;
   height: 8px;
   background: var(--fx-success);
-  animation: faros-flow 2.2s linear infinite;
+  animation: railgrid-flow 2.2s linear infinite;
 }
-@keyframes faros-flow {
+@keyframes railgrid-flow {
   0%   { top: 0;    opacity: 0; }
   20%  { opacity: 1; }
   80%  { opacity: 1; }
   100% { top: 100%; opacity: 0; }
 }
 @media (min-width: 768px) {
-  .faros-flow-line {
+  .railgrid-flow-line {
     width: 48px;
     height: 1px;
     margin: 0;
     flex-shrink: 0;
   }
-  .faros-flow-line::after {
+  .railgrid-flow-line::after {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 8px;
     height: 1px;
-    animation: faros-flow-h 2.2s linear infinite;
+    animation: railgrid-flow-h 2.2s linear infinite;
   }
 }
-@keyframes faros-flow-h {
+@keyframes railgrid-flow-h {
   0%   { left: 0;    opacity: 0; }
   20%  { opacity: 1; }
   80%  { opacity: 1; }
   100% { left: 100%; opacity: 0; }
 }
 
-.faros-strip { border-top: 1px solid var(--fx-border); }
-.faros-feature-title {
+.railgrid-strip { border-top: 1px solid var(--fx-border); }
+.railgrid-feature-title {
   font-size: 0.88rem;
   font-weight: 650;
   color: var(--fx-text);
   margin-bottom: 0.25rem;
 }
-.faros-feature-text {
+.railgrid-feature-text {
   font-size: 0.8rem;
   line-height: 1.55;
   color: var(--fx-text-2);
@@ -1096,7 +1096,7 @@ html:not(.dark) .faros-contour {
 }
 
 /* ── Quickstart steps ── */
-.faros-step {
+.railgrid-step {
   display: flex;
   gap: 1rem;
   padding: 1.4rem;
@@ -1105,8 +1105,8 @@ html:not(.dark) .faros-contour {
   border-radius: 6px;
   transition: border-color 0.15s ease;
 }
-.faros-step:hover { border-color: var(--fx-accent); }
-.faros-step-num {
+.railgrid-step:hover { border-color: var(--fx-accent); }
+.railgrid-step-num {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
@@ -1120,19 +1120,19 @@ html:not(.dark) .faros-contour {
   color: var(--fx-accent);
   background: var(--fx-accent-subtle);
 }
-.faros-step-title {
+.railgrid-step-title {
   font-size: 0.98rem;
   font-weight: 650;
   color: var(--fx-text);
   margin-bottom: 0.25rem;
 }
-.faros-step-text {
+.railgrid-step-text {
   font-size: 0.86rem;
   color: var(--fx-text-2);
   margin-bottom: 0.75rem;
 }
 
-.faros-code-snippet {
+.railgrid-code-snippet {
   position: relative;
   background: var(--fx-overlay);
   border: 1px solid var(--fx-border);
@@ -1145,17 +1145,17 @@ html:not(.dark) .faros-contour {
   margin: 0;
 }
 /* Each command line truncates with "..." when wider than the container. */
-.faros-code-line {
+.railgrid-code-line {
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0;
 }
-.faros-code-snippet--with-copy {
+.railgrid-code-snippet--with-copy {
   padding-right: 2.5rem;      /* reserves room for the icon-only copy button */
 }
-.faros-snippet-copy-btn {
+.railgrid-snippet-copy-btn {
   position: absolute;
   top: 0.35rem;
   right: 0.35rem;
@@ -1174,33 +1174,33 @@ html:not(.dark) .faros-contour {
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.faros-snippet-copy-btn:hover {
+.railgrid-snippet-copy-btn:hover {
   background: var(--fx-hover);
   border-color: var(--fx-accent);
   color: var(--fx-text);
 }
-.faros-snippet-copy-btn:focus-visible {
+.railgrid-snippet-copy-btn:focus-visible {
   outline: 2px solid var(--fx-accent);
   outline-offset: 2px;
 }
-.faros-snippet-copy-icon-done { display: none; }
-.faros-snippet-copy-btn.is-copied {
+.railgrid-snippet-copy-icon-done { display: none; }
+.railgrid-snippet-copy-btn.is-copied {
   color: var(--fx-success);
   background: var(--fx-success-subtle);
   border-color: var(--fx-success);
 }
-.faros-snippet-copy-btn.is-copied .faros-snippet-copy-icon-default { display: none; }
-.faros-snippet-copy-btn.is-copied .faros-snippet-copy-icon-done { display: inline-block; }
+.railgrid-snippet-copy-btn.is-copied .railgrid-snippet-copy-icon-default { display: none; }
+.railgrid-snippet-copy-btn.is-copied .railgrid-snippet-copy-icon-done { display: inline-block; }
 
 /* ─────────── Product frame (agents UI demo / placeholder) ─────────── */
 
-.faros-product-frame {
+.railgrid-product-frame {
   background: var(--fx-raised);
   border: 1px solid var(--fx-border);
   border-radius: 6px;
   overflow: hidden;
 }
-.faros-product-chrome {
+.railgrid-product-chrome {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1208,7 +1208,7 @@ html:not(.dark) .faros-contour {
   padding: 0.7rem 1.1rem;
   border-bottom: 1px solid var(--fx-border);
 }
-.faros-product-urlbar {
+.railgrid-product-urlbar {
   flex: 1;
   max-width: 340px;
   margin: 0 auto;
@@ -1224,21 +1224,21 @@ html:not(.dark) .faros-contour {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.faros-product-media {
+.railgrid-product-media {
   position: relative;
   aspect-ratio: 16 / 9;
   background: var(--fx-surface);
 }
-.faros-product-media img {
+.railgrid-product-media img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 /* Skeleton shows only while the real capture is missing */
-.faros-product-skeleton { display: none; }
-.faros-media-missing img { display: none; }
-.faros-media-missing .faros-product-skeleton {
+.railgrid-product-skeleton { display: none; }
+.railgrid-media-missing img { display: none; }
+.railgrid-media-missing .railgrid-product-skeleton {
   position: absolute;
   inset: 0;
   display: grid;
@@ -1246,56 +1246,56 @@ html:not(.dark) .faros-contour {
   gap: 0;
 }
 @media (max-width: 640px) {
-  .faros-media-missing .faros-product-skeleton { grid-template-columns: 90px 1fr; }
+  .railgrid-media-missing .railgrid-product-skeleton { grid-template-columns: 90px 1fr; }
 }
-.faros-skel-side {
+.railgrid-skel-side {
   border-right: 1px solid var(--fx-border);
   padding: 1.2rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
 }
-.faros-skel-main {
+.railgrid-skel-main {
   padding: 1.2rem 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
   min-width: 0;
 }
-.faros-skel-topbar {
+.railgrid-skel-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
-.faros-skel-line {
+.railgrid-skel-line {
   height: 9px;
   border-radius: 2px;
   background: var(--fx-overlay);
   position: relative;
   overflow: hidden;
 }
-.faros-skel-line.faros-skel-active { background: var(--fx-accent-subtle); }
-.faros-skel-chip {
+.railgrid-skel-line.railgrid-skel-active { background: var(--fx-accent-subtle); }
+.railgrid-skel-chip {
   width: 84px;
   height: 24px;
   border-radius: 4px;
   background: var(--fx-accent-subtle);
 }
-.faros-skel-dot {
+.railgrid-skel-dot {
   width: 20px;
   height: 20px;
   border-radius: 4px;
   background: var(--fx-overlay);
 }
-.faros-skel-dot-accent  { background: var(--fx-accent-subtle); }
-.faros-skel-dot-success { background: var(--fx-success-subtle); }
-.faros-skel-cards {
+.railgrid-skel-dot-accent  { background: var(--fx-accent-subtle); }
+.railgrid-skel-dot-success { background: var(--fx-success-subtle); }
+.railgrid-skel-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
 }
-.faros-skel-card {
+.railgrid-skel-card {
   border: 1px solid var(--fx-border);
   border-radius: 6px;
   padding: 0.9rem;
@@ -1303,22 +1303,22 @@ html:not(.dark) .faros-contour {
   flex-direction: column;
   gap: 0.6rem;
 }
-.faros-skel-chat {
+.railgrid-skel-chat {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
   margin-top: auto;
 }
-.faros-skel-bubble {
+.railgrid-skel-bubble {
   height: 22px;
   border-radius: 4px;
   background: var(--fx-overlay);
 }
-.faros-skel-bubble-me {
+.railgrid-skel-bubble-me {
   align-self: flex-end;
   background: var(--fx-accent-subtle);
 }
-.faros-skel-badge {
+.railgrid-skel-badge {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1337,49 +1337,49 @@ html:not(.dark) .faros-contour {
 }
 /* Shimmer sweep across skeleton lines */
 @media (prefers-reduced-motion: no-preference) {
-  .faros-skel-line::after, .faros-skel-bubble::after {
+  .railgrid-skel-line::after, .railgrid-skel-bubble::after {
     content: "";
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    animation: faros-shimmer 2.4s ease-in-out infinite;
+    animation: railgrid-shimmer 2.4s ease-in-out infinite;
   }
-  .faros-skel-bubble { position: relative; overflow: hidden; }
+  .railgrid-skel-bubble { position: relative; overflow: hidden; }
 }
-@keyframes faros-shimmer {
+@keyframes railgrid-shimmer {
   60%, 100% { transform: translateX(100%); }
 }
 
 /* ─────────── Motion (all gated on prefers-reduced-motion) ─────────── */
 
-/* Scroll reveal — .faros-reveal is only ever added by JS, so no-JS
+/* Scroll reveal — .railgrid-reveal is only ever added by JS, so no-JS
    visitors (and crawlers) always see fully rendered content. */
-.faros-reveal {
+.railgrid-reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.faros-reveal.is-visible {
+.railgrid-reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Typing cursor for the terminal demo */
-.faros-cursor {
+.railgrid-cursor {
   display: inline-block;
   width: 7px;
   height: 1.05em;
   margin-left: 1px;
   background: var(--fx-accent);
   vertical-align: text-bottom;
-  animation: faros-blink 1s steps(2, start) infinite;
+  animation: railgrid-blink 1s steps(2, start) infinite;
 }
-@keyframes faros-blink { to { visibility: hidden; } }
+@keyframes railgrid-blink { to { visibility: hidden; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .faros-reveal { opacity: 1; transform: none; transition: none; }
-  .faros-dot, .faros-flow-line::after, .faros-cursor { animation: none; }
+  .railgrid-reveal { opacity: 1; transform: none; transition: none; }
+  .railgrid-dot, .railgrid-flow-line::after, .railgrid-cursor { animation: none; }
 }
 </style>
 
@@ -1404,7 +1404,7 @@ html:not(.dark) .faros-contour {
   function flash(btn) {
     if (!btn) return;
     btn.classList.add("is-copied");
-    var label = btn.querySelector(".faros-install-copy-label");
+    var label = btn.querySelector(".railgrid-install-copy-label");
     var prev = label ? label.textContent : null;
     if (label) label.textContent = "Copied!";
     setTimeout(function () {
@@ -1437,16 +1437,16 @@ html:not(.dark) .faros-contour {
       .join("\n");
   }
 
-  // Wrap each line of code in its own .faros-code-line span so long lines
+  // Wrap each line of code in its own .railgrid-code-line span so long lines
   // truncate independently with "..." while preserving newlines for copy.
   function wrapCodeLines(code) {
     if (code.dataset.linesWrapped === "1") return;
     code.dataset.linesWrapped = "1";
     var lines = code.innerHTML.replace(/^\n+|\n+$/g, "").split("\n");
     code.innerHTML = lines
-      .map(function (line) { return '<span class="faros-code-line">' + line + "</span>"; })
+      .map(function (line) { return '<span class="railgrid-code-line">' + line + "</span>"; })
       .join("\n");
-    code.querySelectorAll(".faros-code-line").forEach(function (el) {
+    code.querySelectorAll(".railgrid-code-line").forEach(function (el) {
       el.setAttribute("title", el.textContent);
     });
   }
@@ -1454,18 +1454,18 @@ html:not(.dark) .faros-contour {
   function attachSnippetCopy(pre) {
     if (pre.dataset.copyInit === "1") return;
     pre.dataset.copyInit = "1";
-    pre.classList.add("faros-code-snippet--with-copy");
+    pre.classList.add("railgrid-code-snippet--with-copy");
 
     var code = pre.querySelector("code");
     if (code) wrapCodeLines(code);
 
     var btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "faros-snippet-copy-btn";
+    btn.className = "railgrid-snippet-copy-btn";
     btn.setAttribute("aria-label", "Copy command");
     btn.innerHTML =
-      '<svg class="faros-snippet-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
-      '<svg class="faros-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      '<svg class="railgrid-snippet-copy-icon-default" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>' +
+      '<svg class="railgrid-snippet-copy-icon-done" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
       copyText(snippetText(pre), btn);
@@ -1474,9 +1474,9 @@ html:not(.dark) .faros-contour {
   }
 
   function init() {
-    document.querySelectorAll("[data-faros-install-copy]").forEach(function (row) {
-      var btn = row.querySelector("[data-faros-install-copy-btn]");
-      var textEl = row.querySelector("[data-faros-install-text]");
+    document.querySelectorAll("[data-railgrid-install-copy]").forEach(function (row) {
+      var btn = row.querySelector("[data-railgrid-install-copy-btn]");
+      var textEl = row.querySelector("[data-railgrid-install-text]");
       var doCopy = function (e) {
         if (e) e.stopPropagation();
         if (textEl) copyText((textEl.textContent || "").trim(), btn);
@@ -1485,7 +1485,7 @@ html:not(.dark) .faros-contour {
       row.addEventListener("click", doCopy);
     });
 
-    document.querySelectorAll(".faros-code-snippet").forEach(attachSnippetCopy);
+    document.querySelectorAll(".railgrid-code-snippet").forEach(attachSnippetCopy);
   }
 
   if (document.readyState === "loading") {
@@ -1508,7 +1508,7 @@ html:not(.dark) .faros-contour {
   /* ---------- 1. Node field behind the hero ----------
      Drifting nodes that link up when close — edges dialing into a hub. */
   function initNet() {
-    var canvas = document.getElementById("faros-net");
+    var canvas = document.getElementById("railgrid-net");
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1586,27 +1586,27 @@ html:not(.dark) .faros-contour {
      Retypes the hero session when it scrolls into view. Content mirrors
      the static markup (the no-JS fallback) — keep the two in sync. */
   function initTerm() {
-    var code = document.querySelector("[data-faros-term]");
+    var code = document.querySelector("[data-railgrid-term]");
     if (!code || !("IntersectionObserver" in window)) return;
 
     var LINES = [
-      { prompt: "$",       pcls: "faros-prompt", text: " faros login", type: true },
-      { cls: "faros-ok",   text: "✓ authenticated · workspace root:faros:tenants:acme:web is yours alone" },
+      { prompt: "$",       pcls: "railgrid-prompt", text: " railgrid login", type: true },
+      { cls: "railgrid-ok",   text: "✓ authenticated · workspace root:railgrid:tenants:acme:web is yours alone" },
       { text: "" },
-      { prompt: "$",       pcls: "faros-prompt", text: " faros mcp url --mcpserver-name default", type: true },
-      { cls: "faros-accent", text: "https://hub/…/mcp · every enabled provider's tools · scoped to this workspace" },
+      { prompt: "$",       pcls: "railgrid-prompt", text: " railgrid mcp url --mcpserver-name default", type: true },
+      { cls: "railgrid-accent", text: "https://hub/…/mcp · every enabled provider's tools · scoped to this workspace" },
       { text: "" },
-      { prompt: "claude>", pcls: "faros-claude", text: " provision postgres for billing on the home-lab cluster", type: true },
-      { cls: "faros-info", text: "→ infrastructure__provision template=postgres target=home-lab" },
-      { cls: "faros-ok",   text: "✓ instance running · HTTPRoute published · OIDC in front" },
+      { prompt: "claude>", pcls: "railgrid-claude", text: " provision postgres for billing on the home-lab cluster", type: true },
+      { cls: "railgrid-info", text: "→ infrastructure__provision template=postgres target=home-lab" },
+      { cls: "railgrid-ok",   text: "✓ instance running · HTTPRoute published · OIDC in front" },
       { text: "" },
-      { prompt: "claude>", pcls: "faros-claude", text: " now delete namespace kube-system on prod", type: true },
-      { cls: "faros-err",  text: "✗ denied — outside workspace scope · recorded as an API event" }
+      { prompt: "claude>", pcls: "railgrid-claude", text: " now delete namespace kube-system on prod", type: true },
+      { cls: "railgrid-err",  text: "✗ denied — outside workspace scope · recorded as an API event" }
     ];
     var CHAR_MS = 26, OUT_MS = 260, CMD_PAUSE = 320;
 
     var cursor = document.createElement("span");
-    cursor.className = "faros-cursor";
+    cursor.className = "railgrid-cursor";
 
     function playLine(idx) {
       if (idx >= LINES.length) { cursor.remove(); return; }
@@ -1659,12 +1659,12 @@ html:not(.dark) .faros-contour {
   /* ---------- 3. Scroll reveals with card stagger ---------- */
   function initReveals() {
     if (!("IntersectionObserver" in window)) return;
-    var sections = document.querySelectorAll(".faros-home > div.relative.max-w-6xl");
+    var sections = document.querySelectorAll(".railgrid-home > div.relative.max-w-6xl");
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
-        entry.target.querySelectorAll(".faros-card, .faros-step").forEach(function (el) {
+        entry.target.querySelectorAll(".railgrid-card, .railgrid-step").forEach(function (el) {
           el.classList.add("is-visible");
         });
         obs.unobserve(entry.target);
@@ -1673,9 +1673,9 @@ html:not(.dark) .faros-contour {
 
     sections.forEach(function (sec, i) {
       if (i === 0) return;             // hero is visible immediately
-      sec.classList.add("faros-reveal");
-      sec.querySelectorAll(".faros-card, .faros-step").forEach(function (el, j) {
-        el.classList.add("faros-reveal");
+      sec.classList.add("railgrid-reveal");
+      sec.querySelectorAll(".railgrid-card, .railgrid-step").forEach(function (el, j) {
+        el.classList.add("railgrid-reveal");
         el.style.transitionDelay = Math.min(j * 70, 420) + "ms";
       });
       obs.observe(sec);
@@ -1683,11 +1683,11 @@ html:not(.dark) .faros-contour {
   }
 
   /* ---------- 4. GitHub stars (proof) ----------
-     Fills [data-faros-stars]; silent on API failure or private repo. */
+     Fills [data-railgrid-stars]; silent on API failure or private repo. */
   function initStars() {
-    var els = document.querySelectorAll("[data-faros-stars]");
+    var els = document.querySelectorAll("[data-railgrid-stars]");
     if (!els.length || !window.fetch) return;
-    var KEY = "faros-gh-stars", TTL = 24 * 60 * 60 * 1000;
+    var KEY = "railgrid-gh-stars", TTL = 24 * 60 * 60 * 1000;
     function show(n) {
       var label = n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
       els.forEach(function (el) { el.textContent = "★ " + label; });
@@ -1695,7 +1695,7 @@ html:not(.dark) .faros-contour {
     var cached = null;
     try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
     if (cached && Date.now() - cached.t < TTL) { show(cached.n); return; }
-    fetch("https://api.github.com/repos/faroshq/faros")
+    fetch("https://api.github.com/repos/railgrid/railgrid")
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (d && typeof d.stargazers_count === "number") {

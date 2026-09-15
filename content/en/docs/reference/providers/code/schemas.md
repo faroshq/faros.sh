@@ -8,7 +8,7 @@ provider: "code"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## Collaborator (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `collaborators` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `collaborators` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/collaborators.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/collaborators.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain collaborators.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain collaborators.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -43,12 +43,12 @@ kubectl explain collaborators.code.faros.sh --api-version=code.faros.sh/v1alpha1
 
 ## Connection (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `connections` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `connections` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/connections.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/connections.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain connections.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain connections.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -76,12 +76,12 @@ kubectl explain connections.code.faros.sh --api-version=code.faros.sh/v1alpha1 -
 
 ## DeployKey (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `deploykeys` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `deploykeys` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/deploykeys.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/deploykeys.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain deploykeys.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain deploykeys.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -108,12 +108,12 @@ kubectl explain deploykeys.code.faros.sh --api-version=code.faros.sh/v1alpha1 --
 
 ## Package (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `packages` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `packages` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/packages.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/packages.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain packages.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain packages.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -144,12 +144,12 @@ kubectl explain packages.code.faros.sh --api-version=code.faros.sh/v1alpha1 --re
 
 ## Repository (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `repositories` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `repositories` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositories.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositories.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain repositories.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain repositories.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -178,12 +178,12 @@ kubectl explain repositories.code.faros.sh --api-version=code.faros.sh/v1alpha1 
 
 ## RepositoryBuildStatus (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `repositorybuildstatuses` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `repositorybuildstatuses` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorybuildstatuses.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain repositorybuildstatuses.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -193,7 +193,7 @@ kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.s
 | `spec.maxLogLines` | integer | No | MaxLogLines caps the failure-log tail per failed job (status action). minimum: 1; maximum: 1000 |
 | `spec.ref` | string | No | Ref is the commit SHA to inspect (status) or the branch to re-run on (rerun). Empty inspects the most recent run / re-runs the default branch. maxLength: 255 |
 | `spec.repositoryRef` | string | Yes | RepositoryRef names the Repository (same workspace) whose build to inspect. minLength: 1; maxLength: 253 |
-| `spec.workflowFileName` | string | Yes | WorkflowFileName is the workflow file to inspect or dispatch (e.g. "faros-app-studio-build.yml"). minLength: 1; maxLength: 255 |
+| `spec.workflowFileName` | string | Yes | WorkflowFileName is the workflow file to inspect or dispatch (e.g. "railgrid-app-studio-build.yml"). minLength: 1; maxLength: 255 |
 | `status` | object | No | RepositoryBuildStatusStatus is the observed result. |
 | `status.completedAt` | string | No | No description supplied by the source schema. |
 | `status.conditions` | array&#91;object&#93; | No | No description supplied by the source schema. |
@@ -221,12 +221,12 @@ kubectl explain repositorybuildstatuses.code.faros.sh --api-version=code.faros.s
 
 ## RepositoryCheckout (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `repositorycheckouts` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `repositorycheckouts` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycheckouts.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycheckouts.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain repositorycheckouts.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain repositorycheckouts.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -259,12 +259,12 @@ kubectl explain repositorycheckouts.code.faros.sh --api-version=code.faros.sh/v1
 
 ## RepositoryCommit (v1alpha1)
 
-API: `code.faros.sh/v1alpha1` · Resource: `repositorycommits` · Scope: `Cluster`
+API: `code.railgrid.ai/v1alpha1` · Resource: `repositorycommits` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycommits.code.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/code/deploy/chart/files/schemas/repositorycommits.code.railgrid.ai.yaml)
 
 ```bash
-kubectl explain repositorycommits.code.faros.sh --api-version=code.faros.sh/v1alpha1 --recursive
+kubectl explain repositorycommits.code.railgrid.ai --api-version=code.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |

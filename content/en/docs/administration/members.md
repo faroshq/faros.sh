@@ -27,9 +27,9 @@ Do not verify access only from your admin session. Review [the tenancy model](/d
 Have the teammate authenticate using their own credential, then follow [workspace selection](/docs/reference/cli/resources/). For a workspace intended to expose App Studio:
 
 ```bash
-kubectl faros use
-kubectl auth can-i list projects.ai.faros.sh
-kubectl get projects.ai.faros.sh
+kubectl railgrid use
+kubectl auth can-i list projects.ai.railgrid.ai
+kubectl get projects.ai.railgrid.ai
 ```
 
 Expect the target workspace to be selectable and the intended read operation to succeed. Test an operation the role should not allow with `kubectl auth can-i VERB RESOURCE` using a real resource and verb from your access policy. A successful check from an administrator's kubeconfig is not a substitute. Do not use impersonation unless the deployment explicitly grants and supports it.

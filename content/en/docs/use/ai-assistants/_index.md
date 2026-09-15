@@ -20,34 +20,34 @@ Exactly one of the two flags is required.
 Before wiring up MCP, give your assistant the Railgrid skill. It teaches Claude Code and Codex how to log in, pick a workspace, find the MCP endpoint, and use the providers in it. [Install the CLI](/docs/get-started/install/), then run:
 
 ```bash
-faros skills install
+railgrid skills install
 ```
 
-This fetches the `skills/` directory from the [faros repository](https://github.com/faroshq/faros) and writes every skill to `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex). No git or GitHub token is required. Common variations:
+This fetches the `skills/` directory from the [railgrid repository](https://github.com/railgrid/railgrid) and writes every skill to `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex). No git or GitHub token is required. Common variations:
 
 | Command | Effect |
 |:--------|:-------|
-| `faros skills install faros --target claude` | One skill for one client (`claude` or `codex`). |
-| `faros skills install --scope project` | Write to `./.claude/skills` and `./.agents/skills` in the current project instead of your home directory. |
-| `faros skills install --dir ~/.cursor/skills` | Write to any directory, for clients that scan a custom path. |
-| `faros skills install --ref v0.1.30` | Pin a tag, branch, or commit instead of the default branch. |
-| `faros skills list` | Show what the repository offers, with `-o json`, `-o yaml`, or `-o name`. |
+| `railgrid skills install railgrid --target claude` | One skill for one client (`claude` or `codex`). |
+| `railgrid skills install --scope project` | Write to `./.claude/skills` and `./.agents/skills` in the current project instead of your home directory. |
+| `railgrid skills install --dir ~/.cursor/skills` | Write to any directory, for clients that scan a custom path. |
+| `railgrid skills install --ref v0.1.30` | Pin a tag, branch, or commit instead of the default branch. |
+| `railgrid skills list` | Show what the repository offers, with `-o json`, `-o yaml`, or `-o name`. |
 
-Re-running the command replaces skills it installed earlier. It refuses to overwrite a directory you authored yourself unless you pass `--force`, and it never replaces a symlink, so running it inside a checkout of the faros repository leaves the committed `.agents/skills/faros` link alone. See the [skills command reference](/docs/reference/cli/skills/) for the marker file it writes and the error strings.
+Re-running the command replaces skills it installed earlier. It refuses to overwrite a directory you authored yourself unless you pass `--force`, and it never replaces a symlink, so running it inside a checkout of the railgrid repository leaves the committed `.agents/skills/railgrid` link alone. See the [skills command reference](/docs/reference/cli/skills/) for the marker file it writes and the error strings.
 
 If you prefer the Claude Code plugin marketplace, the same skill is available as a plugin:
 
 ```
-/plugin marketplace add faroshq/faros
-/plugin install faros@faros
+/plugin marketplace add railgrid/railgrid
+/plugin install railgrid@railgrid
 ```
 
-Codex has no marketplace; use `faros skills install` or copy `skills/faros` from the repository into `~/.agents/skills/faros` by hand.
+Codex has no marketplace; use `railgrid skills install` or copy `skills/railgrid` from the repository into `~/.agents/skills/railgrid` by hand.
 
 ## Get the URL
 
 ```bash
-kubectl faros mcp url --mcpserver-name default
+kubectl railgrid mcp url --mcpserver-name default
 ```
 
 This prints the endpoint URL plus ready-to-paste setup snippets for Claude Code (`claude mcp add`), Claude Desktop (`claude_desktop_config.json`), and Codex (`codex mcp add`), with your bearer token filled in.
@@ -56,10 +56,10 @@ The URL shapes look like this:
 
 ```
 # Aggregate (MCPServer object)
-https://<hub>/services/mcpserver/<cluster>/apis/faros.sh/v1alpha1/mcpservers/<name>/mcp
+https://<hub>/services/mcpserver/<cluster>/apis/railgrid.ai/v1alpha1/mcpservers/<name>/mcp
 
 # Per-edge Kubernetes (served by the edges provider)
-https://<hub>/services/providers/edges/agent/<cluster>/apis/edges.faros.sh/v1alpha1/kubernetesclusters/<edge>/mcp
+https://<hub>/services/providers/edges/agent/<cluster>/apis/edges.railgrid.ai/v1alpha1/kubernetesclusters/<edge>/mcp
 ```
 
 `<cluster>` is your workspace's logical cluster ID — the CLI derives it from your kubeconfig, so you never construct these by hand.
@@ -78,14 +78,14 @@ For Claude Desktop, add the printed JSON snippet under `mcpServers` in `claude_d
 
 ![MCP Access lists the workspace's MCP servers, their status, and how many tools each exposes.](/images/docs/console/mcp.webp)
 
-The aggregate endpoint is backed by an `MCPServer` custom resource (`faros.sh/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. The current resource supports a display name, client instructions, and a `readOnly` hint. It does not currently have an edge label-selector field. Use separate named servers when you need distinct client-facing instructions:
+The aggregate endpoint is backed by an `MCPServer` custom resource (`railgrid.ai/v1alpha1`) in your workspace; the hub creates one named `default` in every new workspace. The current resource supports a display name, client instructions, and a `readOnly` hint. It does not currently have an edge label-selector field. Use separate named servers when you need distinct client-facing instructions:
 
 ```bash
-kubectl get mcpservers.faros.sh
+kubectl get mcpservers.railgrid.ai
 ```
 
 ```yaml
-apiVersion: faros.sh/v1alpha1
+apiVersion: railgrid.ai/v1alpha1
 kind: MCPServer
 metadata:
   name: audit
@@ -95,7 +95,7 @@ spec:
   instructions: Ask before any operation that could change production state.
 ```
 
-Apply it in the selected workspace, then obtain its endpoint with `kubectl faros mcp url --mcpserver-name audit`.
+Apply it in the selected workspace, then obtain its endpoint with `kubectl railgrid mcp url --mcpserver-name audit`.
 
 Check provisioning and tool discovery without printing the token:
 

@@ -126,7 +126,7 @@ test('hero overlay waits for the selected responsive image and reuses currentSrc
 test('late load from the old theme cannot reveal the overlay after a theme switch', () => {
   const state = bootHero();
   state.root.dataset.studyTheme = 'light';
-  state.window.dispatch('faros:theme-change');
+  state.window.dispatch('railgrid:theme-change');
   assert.equal(state.emission.hidden, true);
 
   state.dark.dispatch('load');

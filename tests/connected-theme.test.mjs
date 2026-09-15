@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const source = await readFile(new URL('../static/js/connected-theme.js', import.meta.url), 'utf8');
 
-function boot({ decode = () => Promise.resolve() } = {}) {
+function boot({ decode = () => Promise.resolve(), values = {} } = {}) {
   const root = {
     dataset: { themePreference: 'system', studyTheme: 'light' },
     style: {},
@@ -40,7 +40,7 @@ function boot({ decode = () => Promise.resolve() } = {}) {
   const images = [{ loading: 'lazy', decode }];
   const calls = [];
   const window = {
-    FarosTheme: {
+    RailgridTheme: {
       set(next) {
         calls.push(next);
         root.dataset.themePreference = next;
@@ -72,7 +72,8 @@ function boot({ decode = () => Promise.resolve() } = {}) {
     },
     addEventListener(name, listener) { listeners.set(name, listener); },
   };
-  const localStorage = { getItem() { return null; }, setItem() {} };
+  const store = new Map(Object.entries(values));
+  const localStorage = { getItem(key) { return store.get(key) ?? null; }, setItem(key, value) { store.set(key, value); } };
   const reduced = { matches: false, addEventListener() {} };
   const context = vm.createContext({
     document,
@@ -81,10 +82,22 @@ function boot({ decode = () => Promise.resolve() } = {}) {
     window,
   });
   vm.runInContext(source, context, { filename: 'connected-theme.js' });
-  return { choices, picker, themeButton, calls, root };
+  return { choices, picker, themeButton, calls, root, store };
 }
 
 const wait = () => new Promise(resolve => setTimeout(resolve, 25));
+
+test('motion preference migrates without overriding a Railgrid choice', () => {
+  for (const [values, expected] of [
+    [{ 'faros-connected-motion': 'off' }, 'off'],
+    [{ 'railgrid-connected-motion': 'on', 'faros-connected-motion': 'off' }, 'on'],
+    [{ 'railgrid-connected-motion': 'invalid', 'faros-connected-motion': 'off' }, 'off'],
+  ]) {
+    const { root, store } = boot({ values });
+    assert.equal(root.dataset.motion, expected);
+    assert.equal(store.get('railgrid-connected-motion'), expected);
+  }
+});
 
 test('Safari touch focus loss leaves theme choices available for the following click', () => {
   const state = boot();

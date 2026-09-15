@@ -12,7 +12,7 @@ Use the workspace where Infrastructure is enabled. Authenticate with a credentia
 
 ## Interfaces
 
-`Template` and `Instance` use `infrastructure.faros.sh/v1alpha1`. Set `Instance.spec.template` to the template name and put template inputs in `spec.values`. The template is immutable. Inspect conditions after every update; validation occurs during reconciliation.
+`Template` and `Instance` use `infrastructure.railgrid.ai/v1alpha1`. Set `Instance.spec.template` to the template name and put template inputs in `spec.values`. The template is immutable. Inspect conditions after every update; validation occurs during reconciliation.
 
 ## MCP tools
 
@@ -31,7 +31,7 @@ Connect through [MCP setup](/docs/use/ai-assistants/). The aggregate endpoint pr
 | `dev_logs` | Read a development component's server logs. |
 | `dev_restart` | Restart a development component's server process. |
 
-The development tools require a development-capable template, an instance created with `values.farosMode="development"`, and a configured provider data plane. Internal instances do not get a public URL; inspect the template's exposure before waiting for one. Definitions: [catalog and lifecycle tools](https://github.com/faroshq/faros/blob/main/providers/infrastructure/mcpserver/tools.go), [development tools](https://github.com/faroshq/faros/blob/main/providers/infrastructure/mcpserver/tools_dev.go).
+The development tools require a development-capable template, an instance created with `values.railgridMode="development"`, and a configured provider data plane. Internal instances do not get a public URL; inspect the template's exposure before waiting for one. Definitions: [catalog and lifecycle tools](https://github.com/railgrid/railgrid/blob/main/providers/infrastructure/mcpserver/tools.go), [development tools](https://github.com/railgrid/railgrid/blob/main/providers/infrastructure/mcpserver/tools_dev.go).
 
 ## Resource schemas
 
@@ -42,18 +42,18 @@ The development tools require a development-capable template, an instance create
 Use a workspace-authenticated context. Read the catalog and lifecycle conditions before provisioning or updating an instance.
 
 ```sh
-kubectl faros use
-kubectl api-resources --api-group=infrastructure.faros.sh
-kubectl get templates.infrastructure.faros.sh,instances.infrastructure.faros.sh
-kubectl explain instances.infrastructure.faros.sh.spec --api-version=infrastructure.faros.sh/v1alpha1
-kubectl describe instance.infrastructure.faros.sh/<instance-name>
+kubectl railgrid use
+kubectl api-resources --api-group=infrastructure.railgrid.ai
+kubectl get templates.infrastructure.railgrid.ai,instances.infrastructure.railgrid.ai
+kubectl explain instances.infrastructure.railgrid.ai.spec --api-version=infrastructure.railgrid.ai/v1alpha1
+kubectl describe instance.infrastructure.railgrid.ai/<instance-name>
 ```
 
 The MCP `provision` tool creates an Instance asynchronously. First call `list_templates`, then `describe_template`; use the returned template name and its declared input schema in `provision`. Read the resulting Instance with `get_instance` or the command above. A failed condition contains the actionable reconciliation message; do not repeatedly update immutable template inputs. Delete only after checking the template's cleanup behavior and the instance's final status.
 
 ## Authoritative definitions
 
-[API definitions](https://github.com/faroshq/faros/blob/main/providers/infrastructure/apis/v1alpha1) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
+[API definitions](https://github.com/railgrid/railgrid/blob/main/providers/infrastructure/apis/v1alpha1) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
 
 ## Related guide
 

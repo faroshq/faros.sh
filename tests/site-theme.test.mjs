@@ -64,24 +64,27 @@ function boot(values = {}, { matches = false, blocked = false } = {}) {
     window,
   });
   vm.runInContext(source, context, { filename: 'site-theme.js' });
-  return { root, system, store, window, theme: context.window.FarosTheme };
+  return { root, system, store, window, theme: context.window.RailgridTheme };
 }
 
 test('migration chooses the first valid preference and resolves the theme', () => {
   for (const [values, expected] of [
+    [{ 'railgrid-theme': 'light', 'faros-theme': 'dark' }, ['light', 'light']],
+    [{ 'railgrid-theme': 'invalid', 'faros-theme': 'light' }, ['light', 'light']],
     [{ 'faros-theme': 'light', 'faros-connected-theme': 'dark', 'faros-docs-theme': 'system' }, ['light', 'light']],
     [{ 'faros-theme': 'invalid', 'faros-connected-theme': 'dark', 'faros-docs-theme': 'light' }, ['dark', 'dark']],
     [{ 'faros-connected-theme': 'system', 'faros-docs-theme': 'light' }, ['system', 'light']],
     [{ 'faros-docs-theme': 'light' }, ['light', 'light']],
     [{}, ['dark', 'dark']],
   ]) {
-    const { root } = boot(values);
+    const { root, store } = boot(values);
     assert.deepEqual([root.dataset.themePreference, root.dataset.studyTheme], expected);
+    assert.equal(store.get('railgrid-theme'), expected[0]);
   }
 });
 
 test('explicit dark stays dark when the operating system changes', () => {
-  const state = boot({ 'faros-theme': 'dark' }, { matches: false });
+  const state = boot({ 'railgrid-theme': 'dark' }, { matches: false });
   state.system.setMatches(true);
   assert.equal(state.root.dataset.themePreference, 'dark');
   assert.equal(state.root.dataset.studyTheme, 'dark');
@@ -89,7 +92,7 @@ test('explicit dark stays dark when the operating system changes', () => {
 });
 
 test('system preference follows operating-system changes', () => {
-  const state = boot({ 'faros-theme': 'system' }, { matches: false });
+  const state = boot({ 'railgrid-theme': 'system' }, { matches: false });
   assert.equal(state.root.dataset.studyTheme, 'light');
   state.system.setMatches(true);
   assert.equal(state.root.dataset.studyTheme, 'dark');
@@ -102,7 +105,7 @@ test('system preference follows operating-system changes', () => {
 test('set accepts only valid preferences and synchronizes the canonical key', () => {
   const state = boot();
   state.theme.set('light');
-  assert.equal(state.store.get('faros-theme'), 'light');
+  assert.equal(state.store.get('railgrid-theme'), 'light');
   assert.equal(state.root.dataset.themePreference, 'light');
   assert.equal(state.root.style.colorScheme, 'light');
   state.theme.set('invalid');
@@ -110,10 +113,10 @@ test('set accepts only valid preferences and synchronizes the canonical key', ()
 });
 
 test('storage events apply a new preference and reset cleared state to dark', () => {
-  const state = boot({ 'faros-theme': 'light' });
-  state.window.dispatchEvent({ type: 'storage', key: 'faros-theme', newValue: 'system' });
+  const state = boot({ 'railgrid-theme': 'light' });
+  state.window.dispatchEvent({ type: 'storage', key: 'railgrid-theme', newValue: 'system' });
   assert.equal(state.root.dataset.themePreference, 'system');
-  state.window.dispatchEvent({ type: 'storage', key: 'faros-theme', newValue: null });
+  state.window.dispatchEvent({ type: 'storage', key: 'railgrid-theme', newValue: null });
   assert.equal(state.root.dataset.themePreference, 'dark');
   assert.equal(state.root.dataset.studyTheme, 'dark');
   state.window.dispatchEvent({ type: 'storage', key: 'other-key', newValue: 'light' });

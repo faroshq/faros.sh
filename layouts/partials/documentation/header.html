@@ -10,9 +10,9 @@
       {{ $url := printf "/docs/%s/" .slug }}
       {{ $children := .children }}
       <div class="docs-nav-area">
-        <a class="faros-navlink docs-nav-fallback" href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
+        <a class="railgrid-navlink docs-nav-fallback" href="{{ $url }}"{{ if eq $ctx.slug .slug }} aria-current="{{ if eq $.RelPermalink $url }}page{{ else }}true{{ end }}"{{ end }}>{{ .title }}</a>
         {{ if $children }}
-        <button type="button" class="faros-navlink docs-nav-trigger" popovertarget="docs-nav-{{ .slug }}" aria-controls="docs-nav-{{ .slug }}" aria-expanded="false"{{ if eq $ctx.slug .slug }} data-current="true"{{ end }} hidden>{{ .title }}<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button type="button" class="railgrid-navlink docs-nav-trigger" popovertarget="docs-nav-{{ .slug }}" aria-controls="docs-nav-{{ .slug }}" aria-expanded="false"{{ if eq $ctx.slug .slug }} data-current="true"{{ end }} hidden>{{ .title }}<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button>
         <div id="docs-nav-{{ .slug }}" class="docs-nav-dropdown" popover>
           <nav aria-label="{{ .title }} pages">
             <a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ end }}>{{ .title }} overview</a>

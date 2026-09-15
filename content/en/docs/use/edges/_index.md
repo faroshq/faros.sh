@@ -41,4 +41,4 @@ Edge resources belong to your workspace. Workloads run on connected targets; ser
 - [API reference](/docs/reference/providers/edges/)
 - [Self-host Edges](/docs/self-hosting/providers/edges/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/edges/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/edges/README.md).

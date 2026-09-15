@@ -11,8 +11,8 @@ body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace;
 .docs-page.gs-connected .docs-home-link { color: var(--gs-muted); font-size: 14px; border-left: 1px solid var(--gs-rule); padding-left: 12px; }
 .docs-page.gs-connected path { animation: none; stroke-dasharray: none; }
 .docs-page.gs-connected .docs-primary { order: initial; width: auto; padding: 0; margin: 0 0 0 auto; flex: 0 1 auto; justify-content: flex-start; min-width: 0; overflow-x: auto; gap: 0; }
-.docs-page.gs-connected .docs-primary .faros-navlink { font-family: inherit; font-size: 13px; color: var(--gs-muted); padding: 12px 9px; border-radius: 4px; min-height: 44px; }
-.docs-page.gs-connected .docs-primary .faros-navlink:hover, .docs-page.gs-connected .docs-nav-trigger[data-current] { color: var(--gs-violet); background: var(--fx-accent-subtle); }
+.docs-page.gs-connected .docs-primary .railgrid-navlink { font-family: inherit; font-size: 13px; color: var(--gs-muted); padding: 12px 9px; border-radius: 4px; min-height: 44px; }
+.docs-page.gs-connected .docs-primary .railgrid-navlink:hover, .docs-page.gs-connected .docs-nav-trigger[data-current] { color: var(--gs-violet); background: var(--fx-accent-subtle); }
 .docs-page.gs-connected .docs-search-trigger, .docs-page.gs-connected .docs-header-search { display: flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; min-width: 0; max-width: none; margin: 0; padding: 0; border: 0; border-radius: 4px; background: transparent; color: var(--gs-muted); cursor: pointer; }
 .docs-page.gs-connected .docs-search-trigger[hidden], .docs-page.gs-connected .docs-header-search[hidden] { display: none; }
 .docs-page.gs-connected .docs-search-trigger svg, .docs-page.gs-connected .docs-header-search svg { width: 20px; height: 20px; }
@@ -27,12 +27,12 @@ body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace;
 .docs-page.gs-connected .docs-mobile-menu nav a { display: block; padding: 10px 12px; min-height: 44px; font-size: 14px; }
 .docs-mobile-menu a:hover { background: var(--gs-ground); }
 .docs-page.gs-connected .docs-layout { background: var(--gs-ground); min-height: calc(100dvh - var(--docs-header-height)); }
-.docs-page.gs-connected .docs-layout .faros-docs-sidebar { top: var(--docs-header-height); height: calc(100dvh - var(--docs-header-height)); background: var(--gs-ground); }
+.docs-page.gs-connected .docs-layout .railgrid-docs-sidebar { top: var(--docs-header-height); height: calc(100dvh - var(--docs-header-height)); background: var(--gs-ground); }
 .docs-page.gs-connected .docs-page-rail { top: calc(var(--docs-header-height) + 24px); max-height: calc(100dvh - var(--docs-header-height) - 48px); }
 .docs-page.gs-connected .docs-layout [id] { scroll-margin-top: calc(var(--docs-header-height) + 24px); }
-.docs-page.gs-connected .faros-docs-title { font-family: StudyInstrument,sans-serif; font-weight: 440; letter-spacing: -.035em; font-stretch: normal; }
-.docs-page.gs-connected .faros-docs-body :is(h2,h3,h4), .docs-page.gs-connected .docs-task-grid h3 { font-family: StudyInstrument,sans-serif; font-weight: 550; letter-spacing: -.02em; font-stretch: normal; }
-.docs-page.gs-connected .faros-docs-body { font-family: StudyInstrument,sans-serif; }
+.docs-page.gs-connected .railgrid-docs-title { font-family: StudyInstrument,sans-serif; font-weight: 440; letter-spacing: -.035em; font-stretch: normal; }
+.docs-page.gs-connected .railgrid-docs-body :is(h2,h3,h4), .docs-page.gs-connected .docs-task-grid h3 { font-family: StudyInstrument,sans-serif; font-weight: 550; letter-spacing: -.02em; font-stretch: normal; }
+.docs-page.gs-connected .railgrid-docs-body { font-family: StudyInstrument,sans-serif; }
 .docs-page.gs-connected .docs-code-block { border-radius: 4px; }
 .docs-page.gs-connected .docs-code-block code { font-family: var(--fx-mono); }
 .docs-page.gs-connected .docs-search-dialog { border-radius: 6px; }
@@ -44,7 +44,7 @@ body.docs-page.gs-connected { --fx-mono: 'IBM Plex Mono',ui-monospace,monospace;
   .docs-mobile-menu { display: block; margin-left: auto; }
 }
 @media(max-width:1150px) { .docs-page.gs-connected .docs-page-rail { position: static; max-height: none; } }
-@media(max-width:900px) { .docs-page.gs-connected .docs-layout .faros-docs-sidebar { position: static; height: auto; } }
+@media(max-width:900px) { .docs-page.gs-connected .docs-layout .railgrid-docs-sidebar { position: static; height: auto; } }
 @media(max-width:700px) {
   :root { --docs-header-height: 72px; }
   .docs-page.gs-connected .docs-header { height: 72px; gap: 8px; padding-inline: 16px; }

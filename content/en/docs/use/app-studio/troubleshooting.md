@@ -24,10 +24,10 @@ Confirm the selected organization/workspace and that the provider is enabled the
 Use the failing user's [workspace context](/docs/reference/cli/resources/):
 
 ```bash
-kubectl api-resources --api-group=ai.faros.sh
-kubectl auth can-i get projects.ai.faros.sh
-kubectl get projects.ai.faros.sh PROJECT-NAME -o yaml
-kubectl api-resources --api-group=infrastructure.faros.sh
+kubectl api-resources --api-group=ai.railgrid.ai
+kubectl auth can-i get projects.ai.railgrid.ai
+kubectl get projects.ai.railgrid.ai PROJECT-NAME -o yaml
+kubectl api-resources --api-group=infrastructure.railgrid.ai
 ```
 
 A missing API points to enablement/discovery; a denied operation points to authorization. If the Project is readable but its environment is stuck, [trace its Infrastructure binding](/docs/use/app-studio/development/#trace-the-environment-from-the-cli) and inspect the referenced Instance's conditions. Redact credentials, private URLs, and application data from collected output.

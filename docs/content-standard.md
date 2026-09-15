@@ -32,7 +32,7 @@ Distinguish a declared configuration from a reconciled result; an authentication
 For generated schemas, pass an explicit product revision:
 
 ```sh
-python3 scripts/generate-docs-schemas.py /path/to/faros --revision COMMIT
+python3 scripts/generate-docs-schemas.py /path/to/railgrid --revision COMMIT
 ```
 
 The generator records the resolved commit in the page and JSON bundle and pins source links to it. Review changes before committing. Missing source descriptions must be identified honestly; explain important usage constraints in the API overview rather than inventing schema semantics.
@@ -44,8 +44,8 @@ Review the rendered guide, its copyable examples, related links, Markdown export
 When a local Hugo server is running, build into an isolated directory so cleaning generated files does not break its assets:
 
 ```sh
-npm run _hugo-dev -- --destination /tmp/faros-docs-review
-python3 scripts/check-docs.py /tmp/faros-docs-review
-DOCS_BUILD=/tmp/faros-docs-review node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs
+npm run _hugo-dev -- --destination /tmp/railgrid-docs-review
+python3 scripts/check-docs.py /tmp/railgrid-docs-review
+DOCS_BUILD=/tmp/railgrid-docs-review node --test tests/docs-search.test.mjs tests/docs-navigation.test.mjs
 python3 tests/docs-schemas.test.py
 ```

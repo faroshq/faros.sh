@@ -2,18 +2,18 @@
   "revision": "6f341b4e6d356dd28d1a90ec65e220b98a9bbb96",
   "resources": [
     {
-      "source": "providers/databricks/deploy/chart/files/schemas/connections.databricks.faros.sh.yaml",
+      "source": "providers/databricks/deploy/chart/files/schemas/connections.databricks.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260701-fa21f11c.connections.databricks.faros.sh"
+          "name": "v260701-fa21f11c.connections.databricks.railgrid.ai"
         },
         "spec": {
-          "group": "databricks.faros.sh",
+          "group": "databricks.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Connection",
             "listKind": "ConnectionList",
@@ -196,18 +196,18 @@
       }
     },
     {
-      "source": "providers/databricks/deploy/chart/files/schemas/tables.databricks.faros.sh.yaml",
+      "source": "providers/databricks/deploy/chart/files/schemas/tables.databricks.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260814-45403ace.tables.databricks.faros.sh"
+          "name": "v260814-45403ace.tables.databricks.railgrid.ai"
         },
         "spec": {
-          "group": "databricks.faros.sh",
+          "group": "databricks.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Table",
             "listKind": "TableList",
@@ -427,18 +427,18 @@
       }
     },
     {
-      "source": "providers/databricks/deploy/chart/files/schemas/warehouses.databricks.faros.sh.yaml",
+      "source": "providers/databricks/deploy/chart/files/schemas/warehouses.databricks.railgrid.ai.yaml",
       "schema": {
         "apiVersion": "apis.kcp.io/v1alpha1",
         "kind": "APIResourceSchema",
         "metadata": {
-          "name": "v260814-45403ace.warehouses.databricks.faros.sh"
+          "name": "v260814-45403ace.warehouses.databricks.railgrid.ai"
         },
         "spec": {
-          "group": "databricks.faros.sh",
+          "group": "databricks.railgrid.ai",
           "names": {
             "categories": [
-              "faros"
+              "railgrid"
             ],
             "kind": "Warehouse",
             "listKind": "WarehouseList",

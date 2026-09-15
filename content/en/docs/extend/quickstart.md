@@ -47,8 +47,8 @@ The build includes the portal bundle. Installation applies the Provider and Cata
 Start the built binary directly so the development Make target does not print its configured heartbeat token:
 
 ```bash
-PORT=8081 FAROS_HUB_URL=https://localhost:9443 \
-  FAROS_HUB_INSECURE=true FAROS_PROVIDER_NAME=quickstart \
+PORT=8081 RAILGRID_HUB_URL=https://localhost:9443 \
+  RAILGRID_HUB_INSECURE=true RAILGRID_PROVIDER_NAME=quickstart \
   ./bin/quickstart-provider
 ```
 

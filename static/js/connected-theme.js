@@ -1,14 +1,18 @@
 (() => {
   const root = document.documentElement;
   const themePicker = document.querySelector('.cl-theme-picker');
-  if (!themePicker || !window.FarosTheme) return;
+  if (!themePicker || !window.RailgridTheme) return;
   const themeButton = themePicker.querySelector('.cl-theme-toggle');
   const themeChoices = [...themePicker.querySelectorAll('[data-theme-choice]')];
   const motionButton = document.querySelector('.cl-motion-toggle');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const read = key => { try { return localStorage.getItem(key); } catch { return null; } };
   const save = (key, value) => { try { localStorage.setItem(key, value); } catch {} };
-  let paused = read('faros-connected-motion') === 'off';
+  // Preserve a visitor's motion choice when moving to the Railgrid key.
+  const motionPreference = [read('railgrid-connected-motion'), read('faros-connected-motion')]
+    .find(value => value === 'on' || value === 'off');
+  let paused = motionPreference === 'off';
+  if (motionPreference) save('railgrid-connected-motion', motionPreference);
   function labelTheme() {
     const current = root.dataset.themePreference;
     themeButton.setAttribute('aria-label', `Choose theme, ${current} selected`);
@@ -48,7 +52,7 @@
     if (next === root.dataset.themePreference) return;
     // Palette changes must not wait for artwork, including lazy offscreen images.
     // The existing CSS transition fades whichever images are ready.
-    window.FarosTheme.set(next);
+    window.RailgridTheme.set(next);
     labelTheme();
     alignCircuit();
   }
@@ -76,10 +80,10 @@
   });
   motionButton?.addEventListener('click', () => {
     paused = !paused;
-    save('faros-connected-motion', paused ? 'off' : 'on');
+    save('railgrid-connected-motion', paused ? 'off' : 'on');
     motionState();
   });
-  window.addEventListener('faros:theme-change', () => { labelTheme(); alignCircuit(); });
+  window.addEventListener('railgrid:theme-change', () => { labelTheme(); alignCircuit(); });
   labelTheme(); motionState();
   themePicker.hidden = false; if (motionButton) motionButton.hidden = false;
   reduced.addEventListener('change', motionState);

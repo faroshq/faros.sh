@@ -4,7 +4,7 @@ Marketing site and documentation for [Railgrid](https://faros.sh) — the open-s
 
 ## Branding and compatibility
 
-The company and platform are branded **Railgrid**. Existing `faros.sh` domains, `faroshq` repository links, CLI commands, API groups, SDK names, and HTTP headers retain their deployed identifiers until those systems are migrated. Internal CSS selectors and theme-storage keys also retain their existing names for compatibility. Recorded product demos and historical mockup images may still show the former branding.
+The company and platform are branded **Railgrid**. Product source, release, and issue links use `github.com/railgrid/railgrid`. CRD/API groups use `railgrid.ai`; CLI commands, SDKs, headers, environment variables, and product file paths use Railgrid names. Existing website and download domains retain their current addresses. Frontend selectors, JavaScript identifiers, events, and preference keys use Railgrid names. Existing browser theme and motion preferences are migrated from the former keys. Recorded product demos and historical mockup images may still show the former branding.
 
 ## What Railgrid is
 
@@ -15,7 +15,7 @@ Railgrid is a multi-tenant control plane you build your platform *on*. Four prim
 - **MCP** — the syscall layer; workspace-scoped endpoints expose tools subject to the endpoint credential and provider authorization. Aggregate MCPServer endpoints federate edge tools and tools from enabled providers that expose MCP; per-edge endpoints serve individual Kubernetes edges.
 - **Edges** — the I/O layer; clusters and servers dial *out* over a reverse tunnel, so only the hub needs a public address.
 
-The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros); this repo is only the website.
+The product lives at [github.com/railgrid/railgrid](https://github.com/railgrid/railgrid); this repo is only the website.
 
 ## Repo layout
 
@@ -34,7 +34,7 @@ The product lives at [github.com/faroshq/faros](https://github.com/faroshq/faros
 
 The site runs on **Violet Circuit**, the same system as the Railgrid console (canonical reference: `docs/design-book.md` in the product repo).
 
-- **Docs support Light, Dark, and System.** The docs header stores its selection under `faros-docs-theme`, with System as the default. Theme initialization runs in the document head. Marketing pages retain their dark appearance. Shared tokens live in `style.scss`; docs-specific contrast adjustments live in `docs.scss`.
+- **Docs support Light, Dark, and System.** The shared theme picker stores its selection under `railgrid-theme`, with Dark as the default. Theme initialization runs in the document head. Marketing pages retain their dark appearance. Shared tokens live in `style.scss`; docs-specific contrast adjustments live in `docs.scss`.
 - **Tokens, not hexes.** Use `var(--fx-*)` — surfaces, borders, `--fx-accent` (`#8b6bff` dark / `#6b48e8` light), text ramp, success/danger. Never hardcode a brand colour. The old `#7c5bf5` / `#6d4fe0` / `#9b85f7` values are dead; if they reappear in a diff, it's a regression.
 - **Radius law:** cards/panels 6px, controls 4px, tags 3px. Tags are **square mono**, never pills.
 - **Glow means alive.** Only the primary button, the live dot, the hub block, and focus rings glow. Plain surfaces are flat — no glass, no backdrop blur on cards.
@@ -94,7 +94,7 @@ Fork, branch, change, preview with `npm run serve`, run `npm test`, and open a P
 ## Resources
 
 - **Site**: [faros.sh](https://faros.sh) · **Docs**: [faros.sh/docs](https://faros.sh/docs)
-- **Product repo**: [github.com/faroshq/faros](https://github.com/faroshq/faros)
+- **Product repo**: [github.com/railgrid/railgrid](https://github.com/railgrid/railgrid)
 - **Docsy**: [docsy.dev](https://www.docsy.dev) · **Hugo**: [gohugo.io](https://gohugo.io/documentation)
 
 ### Provider schema reference and runnable examples
@@ -102,7 +102,7 @@ Fork, branch, change, preview with `npm run serve`, run `npm test`, and open a P
 Regenerate the provider field tables and downloadable schema bundles from the pinned product source (Python 3 and Ruby's standard YAML/JSON libraries required):
 
 ```sh
-python3 scripts/generate-docs-schemas.py ../faros --revision PRODUCT_COMMIT
+python3 scripts/generate-docs-schemas.py ../railgrid --revision PRODUCT_COMMIT
 ```
 
 Replace `PRODUCT_COMMIT` with the reviewed product commit to publish. Generated pages and bundles record its resolved SHA, and source links are pinned to that commit.
@@ -112,7 +112,7 @@ The generator reads committed files with `git show`, so unrelated working-tree c
 Validate the Databricks server example against that revision's real SDK with a simulated action gateway:
 
 ```sh
-FAROS_PRODUCT_REPO=../faros node --test tests/docs-databricks-example.test.mjs
+RAILGRID_PRODUCT_REPO=../railgrid node --test tests/docs-databricks-example.test.mjs
 ```
 
 This test needs permission to bind temporary local HTTP ports. It covers success, revoked grants, and incorrect table identity without contacting Databricks. Live hub acceptance and reader testing are tracked in `docs/navigation-validation.md`.

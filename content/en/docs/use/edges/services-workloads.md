@@ -36,7 +36,7 @@ Edges supports the following service types. Presets describe how to connect to a
 | Network | `adguard`, `pihole`, `unifi-network`, `unifi-protect` |
 | Custom service | `generic` |
 
-Inspect the [service schema](/docs/reference/providers/edges/schemas/) for connection fields and the [service catalog](https://github.com/faroshq/faros/blob/main/providers/edges/internal/svccatalog/catalog.go) for preset operations and authentication. Home Assistant has a [dedicated tool implementation](https://github.com/faroshq/faros/blob/main/providers/edges/internal/tunnel/mcp_service.go). A generic service does not automatically gain every preset's tools. After validation, use the MCP client's tool discovery to confirm the operations actually exposed by your service.
+Inspect the [service schema](/docs/reference/providers/edges/schemas/) for connection fields and the [service catalog](https://github.com/railgrid/railgrid/blob/main/providers/edges/internal/svccatalog/catalog.go) for preset operations and authentication. Home Assistant has a [dedicated tool implementation](https://github.com/railgrid/railgrid/blob/main/providers/edges/internal/tunnel/mcp_service.go). A generic service does not automatically gain every preset's tools. After validation, use the MCP client's tool discovery to confirm the operations actually exposed by your service.
 
 ## Deploy a workload
 
@@ -65,9 +65,9 @@ For a marketplace application, select the application, enter **Workload name**, 
 If the console status does not explain a failure, select the [owning Railgrid workspace](/docs/reference/cli/resources/), then list deployment and placement state:
 
 ```bash
-kubectl faros get workloads
-kubectl faros get placements
-kubectl faros edge list
+kubectl railgrid get workloads
+kubectl railgrid get placements
+kubectl railgrid edge list
 ```
 
 Workloads report image, phase, and ready replicas. Placements report the target edge, phase, and ready replicas. Verify that placement targets match your intended edge labels. No Placements suggests selection or reconciliation needs investigation; disconnected edges explain a different class of failure. A ready placement still needs an application-level check on its target.

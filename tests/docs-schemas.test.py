@@ -21,7 +21,7 @@ PROVIDERS = (
 
 SCHEMA = """\
 spec:
-  group: example.faros.sh
+  group: example.railgrid.ai
   scope: Namespaced
   names:
     kind: Example

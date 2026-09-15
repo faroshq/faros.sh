@@ -56,7 +56,7 @@ test('sidebar groups follow the curated task structure', () => {
 test('section overviews retain both navigation and article tools', () => {
   for (const area of nav.primary) {
     const page = html(`/docs/${area.slug}/`);
-    assert.ok(page.includes('faros-docs-sidebar'));
+    assert.ok(page.includes('railgrid-docs-sidebar'));
     assert.ok(page.includes('docs-page-rail'));
   }
 });

@@ -25,8 +25,8 @@ This walkthrough creates an isolated kind cluster with embedded kcp. You need Do
 Clone a separate product checkout, replace `RELEASE_TAG` with your selected Railgrid release tag, then build the image. Set the Docker platform to match your kind nodes: `linux/arm64` for Apple Silicon or `linux/amd64` for an x86 machine.
 
 ```bash
-git clone https://github.com/faroshq/faros.git faros-install-source
-cd faros-install-source
+git clone https://github.com/railgrid/railgrid.git railgrid-install-source
+cd railgrid-install-source
 git checkout RELEASE_TAG
 make docker-build-hub VERSION=docs-local DOCKER_PLATFORM=linux/arm64
 ```
@@ -34,34 +34,34 @@ make docker-build-hub VERSION=docs-local DOCKER_PLATFORM=linux/arm64
 The image build downloads its Go, Node, and container dependencies. Keep this checkout and terminal for the following commands. Choose an unused cluster name; the cluster script reuses a cluster with the same name if one already exists.
 
 ```bash
-export FAROS_INSTALL_CLUSTER=faros-docs
-export FAROS_STATIC_TOKEN="$(openssl rand -hex 32)"
-export HUB_IMAGE=ghcr.io/faroshq/faros-hub
+export RAILGRID_INSTALL_CLUSTER=railgrid-docs
+export RAILGRID_STATIC_TOKEN="$(openssl rand -hex 32)"
+export HUB_IMAGE=ghcr.io/railgrid/railgrid-hub
 export HUB_IMAGE_TAG=docs-local
 export HUB_IMAGE_PULL_POLICY=Never
 export HUB_KIND_LOAD=true
 export HUB_EXTERNAL_URL=https://localhost:9443
 
 bash hack/install/01-kind-cluster.sh
-bash hack/install/08-faros-hub-embedded.sh
+bash hack/install/08-railgrid-hub-embedded.sh
 ```
 
-The installer loads your image into kind and waits for `statefulset/faros-hub` in `faros-system`. It enables development mode, static-token authentication, and the embedded console gateway. These settings are for this local test; the installer prints the credential, so keep its output private.
+The installer loads your image into kind and waits for `statefulset/railgrid-hub` in `railgrid-system`. It enables development mode, static-token authentication, and the embedded console gateway. These settings are for this local test; the installer prints the credential, so keep its output private.
 
 Forward the hub service in a second terminal, leaving that process running:
 
 ```bash
-kubectl --context kind-faros-docs -n faros-system \
-  port-forward service/faros-hub 9443:9443
+kubectl --context kind-railgrid-docs -n railgrid-system \
+  port-forward service/railgrid-hub 9443:9443
 ```
 
 Back in the first terminal, verify health and authenticate:
 
 ```bash
 curl --fail --insecure https://localhost:9443/healthz
-kubectl faros login --hub-url https://localhost:9443 \
-  --token "$FAROS_STATIC_TOKEN" --insecure-skip-tls-verify
-kubectl faros use
+kubectl railgrid login --hub-url https://localhost:9443 \
+  --token "$RAILGRID_STATIC_TOKEN" --insecure-skip-tls-verify
+kubectl railgrid use
 kubectl api-resources
 ```
 
@@ -70,10 +70,10 @@ The TLS exceptions apply to this localhost test's self-signed certificate. Open 
 If readiness fails, inspect the hosting cluster explicitly, even after Railgrid login changes your current kubeconfig context:
 
 ```bash
-kubectl --context kind-faros-docs -n faros-system get pods,pvc
-kubectl --context kind-faros-docs -n faros-system \
-  logs statefulset/faros-hub -c hub --tail=100
-kubectl --context kind-faros-docs -n faros-system \
+kubectl --context kind-railgrid-docs -n railgrid-system get pods,pvc
+kubectl --context kind-railgrid-docs -n railgrid-system \
+  logs statefulset/railgrid-hub -c hub --tail=100
+kubectl --context kind-railgrid-docs -n railgrid-system \
   get events --sort-by=.lastTimestamp
 ```
 
@@ -82,11 +82,11 @@ An image error calls for checking the image tag and kind load; a pending PVC cal
 To remove this test installation, stop port-forwarding with Ctrl-C, then delete **only the disposable cluster you created**. This deletes its hub data and all other workloads in that cluster:
 
 ```bash
-kind delete cluster --name faros-docs
-unset FAROS_STATIC_TOKEN
+kind delete cluster --name railgrid-docs
+unset RAILGRID_STATIC_TOKEN
 ```
 
-If you selected another cluster name, substitute it in all context and cleanup commands. Source: [cluster creation](https://github.com/faroshq/faros/blob/main/hack/install/01-kind-cluster.sh), [embedded installation](https://github.com/faroshq/faros/blob/main/hack/install/08-faros-hub-embedded.sh), and [image build](https://github.com/faroshq/faros/blob/main/deploy/Dockerfile.hub).
+If you selected another cluster name, substitute it in all context and cleanup commands. Source: [cluster creation](https://github.com/railgrid/railgrid/blob/main/hack/install/01-kind-cluster.sh), [embedded installation](https://github.com/railgrid/railgrid/blob/main/hack/install/08-railgrid-hub-embedded.sh), and [image build](https://github.com/railgrid/railgrid/blob/main/deploy/Dockerfile.hub).
 
 ## Configure a shared installation
 
@@ -97,7 +97,7 @@ Save this as `hub-values.yaml`. The TLS Secret must exist in the release namespa
 ```yaml
 image:
   hub:
-    repository: ghcr.io/faroshq/faros-hub
+    repository: ghcr.io/railgrid/railgrid-hub
     tag: YOUR_VERIFIED_IMAGE_TAG
 replicaCount: 1
 hub:
@@ -109,12 +109,12 @@ hub:
   adminUsers:
     - admin@example.com
   tls:
-    existingSecret: faros-hub-tls
+    existingSecret: railgrid-hub-tls
     selfSigned:
       enabled: false
 idp:
   issuerURL: https://idp.example.com
-  clientID: faros
+  clientID: railgrid
 persistence:
   size: 10Gi
 ```
@@ -122,11 +122,11 @@ persistence:
 Set `adminUsers` to identities as resolved by your authentication setup. Review storage capacity and your backup procedure before using this hub for durable work. From the product checkout, render the chart before installing it into the intended hosting cluster:
 
 ```bash
-helm template faros-hub ./deploy/charts/faros-hub \
-  --namespace faros-system --values hub-values.yaml
-helm upgrade --install faros-hub ./deploy/charts/faros-hub \
+helm template railgrid-hub ./deploy/charts/railgrid-hub \
+  --namespace railgrid-system --values hub-values.yaml
+helm upgrade --install railgrid-hub ./deploy/charts/railgrid-hub \
   --kube-context HOSTING_CONTEXT \
-  --namespace faros-system --create-namespace \
+  --namespace railgrid-system --create-namespace \
   --values hub-values.yaml --wait --timeout 15m
 ```
 
@@ -134,10 +134,10 @@ Replace `HOSTING_CONTEXT` with the hosting cluster's kubeconfig context. A succe
 
 ### Use external kcp
 
-For multiple hub replicas, operate external kcp and its storage separately. The [external-kcp recipe](https://github.com/faroshq/faros/blob/main/docs/install-external-kcp.md) covers its additional components. Supply a front-proxy kubeconfig whose server address and certificate are reachable and trusted from the hub pods. Put it in a Secret in the hub namespace with the key `admin.kubeconfig`:
+For multiple hub replicas, operate external kcp and its storage separately. The [external-kcp recipe](https://github.com/railgrid/railgrid/blob/main/docs/install-external-kcp.md) covers its additional components. Supply a front-proxy kubeconfig whose server address and certificate are reachable and trusted from the hub pods. Put it in a Secret in the hub namespace with the key `admin.kubeconfig`:
 
 ```bash
-kubectl --context HOSTING_CONTEXT -n faros-system create secret generic faros-kcp \
+kubectl --context HOSTING_CONTEXT -n railgrid-system create secret generic railgrid-kcp \
   --from-file=admin.kubeconfig=/PATH/TO/FRONT-PROXY.kubeconfig
 ```
 
@@ -150,7 +150,7 @@ kcp:
     enabled: false
   external:
     enabled: true
-    existingSecret: faros-kcp
+    existingSecret: railgrid-kcp
 ```
 
 This selects a Deployment. Changing these flags on an existing embedded installation does not migrate its data; treat that as a separate storage and control-plane migration.
@@ -169,14 +169,14 @@ This selects a Deployment. Changing these flags on an existing embedded installa
 | `replicaCount` | Greater than one requires external kcp. |
 | `image.hub.tag` | Pins the deployed image; verify compatibility with the chart. |
 
-For defaults and additional settings, use the [chart values file](https://github.com/faroshq/faros/blob/main/deploy/charts/faros-hub/values.yaml).
+For defaults and additional settings, use the [chart values file](https://github.com/railgrid/railgrid/blob/main/deploy/charts/railgrid-hub/values.yaml).
 
 ## Installation sources
 
 The product repo includes executable installation recipes for both modes. Use the recipe and chart from the same revision:
 
-- [Embedded kcp installation](https://github.com/faroshq/faros/blob/main/docs/install-embedded-kcp.md)
-- [External kcp installation](https://github.com/faroshq/faros/blob/main/docs/install-external-kcp.md)
+- [Embedded kcp installation](https://github.com/railgrid/railgrid/blob/main/docs/install-embedded-kcp.md)
+- [External kcp installation](https://github.com/railgrid/railgrid/blob/main/docs/install-external-kcp.md)
 
 Set `hub.hubExternalURL` to the URL clients will use. Enable `hub.embeddedGraphQL` when using the console. Set `hub.adminUsers` to the intended platform administrators; an empty list disables the admin surface. Configure [OIDC](/docs/self-hosting/hub/oidc/) or [static tokens](/docs/self-hosting/hub/static-token/) as appropriate.
 
@@ -189,8 +189,8 @@ Use the explicit hosting-cluster context to inspect the discovered workload and 
 Then use your local CLI to verify the Railgrid-facing endpoint:
 
 ```bash
-kubectl faros login --hub-url https://YOUR-HUB
-kubectl faros use
+kubectl railgrid login --hub-url https://YOUR-HUB
+kubectl railgrid use
 kubectl api-resources
 ```
 
@@ -198,4 +198,4 @@ For static-token deployments, follow [login authentication](/docs/reference/cli/
 
 ## Next steps
 
-[Install providers](/docs/self-hosting/providers/), then review [operations and recovery](/docs/self-hosting/hub/operations/). For the complete configuration, use the [chart values](https://github.com/faroshq/faros/blob/main/deploy/charts/faros-hub/values.yaml).
+[Install providers](/docs/self-hosting/providers/), then review [operations and recovery](/docs/self-hosting/hub/operations/). For the complete configuration, use the [chart values](https://github.com/railgrid/railgrid/blob/main/deploy/charts/railgrid-hub/values.yaml).

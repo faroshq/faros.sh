@@ -22,9 +22,9 @@ The hosting context runs pods and Secrets. The provider kubeconfig addresses a R
 Run from the product repository root. Replace `HOSTING-CONTEXT` with your hosting cluster context in every command:
 
 ```bash
-kubectl --context HOSTING-CONTEXT create namespace faros-provider-code
-kubectl --context HOSTING-CONTEXT --namespace faros-provider-code \
-  create secret generic faros-provider-kubeconfig \
+kubectl --context HOSTING-CONTEXT create namespace railgrid-provider-code
+kubectl --context HOSTING-CONTEXT --namespace railgrid-provider-code \
+  create secret generic railgrid-provider-kubeconfig \
   --from-file=kubeconfig=./code.kubeconfig
 ```
 
@@ -36,9 +36,9 @@ Create `code-values.yaml`, replacing the hub URL and image tag with your reachab
 hub:
   url: https://hub.example.com
 providerKubeconfig:
-  secretName: faros-provider-kubeconfig
+  secretName: railgrid-provider-kubeconfig
 image:
-  repository: ghcr.io/faroshq/faros-code-provider
+  repository: ghcr.io/railgrid/railgrid-code-provider
   tag: REPLACE_WITH_VERIFIED_IMAGE_TAG
 replicaCount: 1
 catalogEntry:
@@ -57,11 +57,11 @@ This configuration uses the portal's personal-access-token connection flow. OAut
 
 ```bash
 helm template code ./providers/code/deploy/chart \
-  --namespace faros-provider-code --values code-values.yaml > /tmp/code-rendered.yaml
+  --namespace railgrid-provider-code --values code-values.yaml > /tmp/code-rendered.yaml
 helm upgrade --install code ./providers/code/deploy/chart \
-  --kube-context HOSTING-CONTEXT --namespace faros-provider-code \
+  --kube-context HOSTING-CONTEXT --namespace railgrid-provider-code \
   --values code-values.yaml --wait --timeout 5m
-kubectl --context HOSTING-CONTEXT --namespace faros-provider-code \
+kubectl --context HOSTING-CONTEXT --namespace railgrid-provider-code \
   get pods,pvc -l app.kubernetes.io/instance=code
 ```
 
@@ -85,8 +85,8 @@ Review the rendered resources before installing. The chart initializes the API s
 | Pod ready, hub unavailable | Catalog endpoints, heartbeat, DNS and TLS routing | Repair the failing network direction; do not disable TLS verification as a production fix |
 
 ```bash
-kubectl --context HOSTING-CONTEXT --namespace faros-provider-code get events --sort-by=.lastTimestamp
-kubectl --context HOSTING-CONTEXT --namespace faros-provider-code \
+kubectl --context HOSTING-CONTEXT --namespace railgrid-provider-code get events --sort-by=.lastTimestamp
+kubectl --context HOSTING-CONTEXT --namespace railgrid-provider-code \
   logs -l app.kubernetes.io/instance=code --all-containers=true --tail=100
 ```
 
@@ -97,9 +97,9 @@ Redact credentials and private repository details before sharing diagnostics.
 Remove test resources and workspace bindings before retiring the provider registration. Review upstream repository deletion policies first. Then uninstall the release:
 
 ```bash
-helm uninstall code --kube-context HOSTING-CONTEXT --namespace faros-provider-code
+helm uninstall code --kube-context HOSTING-CONTEXT --namespace railgrid-provider-code
 ```
 
 Inspect retained PVCs and credential Secrets separately. Back up required bundle data before deleting storage; Helm uninstall is not a repository backup. Follow [operations and recovery](/docs/self-hosting/hub/operations/) for an existing shared provider.
 
-[Chart values](https://github.com/faroshq/faros/blob/main/providers/code/deploy/chart/values.yaml). *Chart rendering can be checked locally; a live installation walkthrough is still pending.*
+[Chart values](https://github.com/railgrid/railgrid/blob/main/providers/code/deploy/chart/values.yaml). *Chart rendering can be checked locally; a live installation walkthrough is still pending.*

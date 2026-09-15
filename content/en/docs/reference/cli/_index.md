@@ -4,7 +4,7 @@ description: Every Railgrid CLI command — authentication, organizations, edges
 weight: 20
 ---
 
-The `faros` CLI is a kubectl plugin (when installed via krew, it's `kubectl faros`; the standalone binary just drops the `kubectl` prefix). All commands below use the `kubectl faros` form.
+The `railgrid` CLI is a kubectl plugin (when installed via krew, it's `kubectl railgrid`; the standalone binary just drops the `kubectl` prefix). All commands below use the `kubectl railgrid` form.
 
 ## Global flags
 
@@ -12,7 +12,7 @@ The `faros` CLI is a kubectl plugin (when installed via krew, it's `kubectl faro
 |:-----|:------------|
 | `--kubeconfig <path>` | Path to the kubeconfig to read and write. Defaults to `$KUBECONFIG` or `~/.kube/config`. |
 
-That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecure-skip-tls-verify`, ...) lives on the individual commands that need it. Login always writes to a kubeconfig context named `faros`.
+That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecure-skip-tls-verify`, ...) lives on the individual commands that need it. Login always writes to a kubeconfig context named `railgrid`.
 
 ## Command summary
 
@@ -29,7 +29,7 @@ That's the only global flag. Everything else (`--hub-url`, `--token`, `--insecur
 | [`edge delete <name>`](/docs/reference/cli/edges/#delete) | Remove an edge. |
 | [`kubeconfig edge <name>`](/docs/reference/cli/edges/#kubeconfig) | Generate a kubeconfig that proxies kubectl through the hub. |
 | [`agent ...`](/docs/reference/cli/agent/) | Run, install, and upgrade the edge agent (`run`, `join`, `install`, `uninstall`, `upgrade`). |
-| [`install`](/docs/reference/cli/agent/#faros-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
+| [`install`](/docs/reference/cli/agent/#railgrid-install) | One-shot agent install (systemd unit or Kubernetes manifests) from a join token. |
 | [`ssh <name>`](/docs/reference/cli/ssh/) | Open an SSH session (or run a single command) on a server-type edge. |
 | [`mcp url`](/docs/reference/cli/mcp/) | Print an MCP endpoint for AI agents (`--mcpserver-name` aggregate or `--edge` per-edge). |
 | [`skills install`](/docs/reference/cli/skills/) | Install the Railgrid skill for Claude Code and Codex from the Railgrid repository (`skills list` shows what is available). |

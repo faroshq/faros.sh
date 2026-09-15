@@ -41,4 +41,4 @@ Agent configuration belongs to your workspace. Conversations, runs, and durable 
 - [API reference](/docs/reference/providers/agents/)
 - [Self-host AI agents](/docs/self-hosting/providers/agents/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/agents/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/agents/README.md).

@@ -4,7 +4,7 @@
       <div>
         <h2 id="dv-title">Start in<br><span>your terminal.</span></h2>
       </div>
-      <p class="dv-intro">Select a workspace, list its connected edges, or get an MCP endpoint for your agent. Try the commands below with kubectl-faros.</p>
+      <p class="dv-intro">Select a workspace, list its connected edges, or get an MCP endpoint for your agent. Try the commands below with kubectl-railgrid.</p>
     </div>
 
     <div class="dv-stage">
@@ -18,21 +18,21 @@
         <div class="dv-panels">
           <article class="dv-panel" data-visual-panel="workspace" id="dv-panel-workspace" aria-labelledby="dv-panel-workspace-title">
             <p class="dv-panel-label" id="dv-panel-workspace-title">Select a workspace</p>
-            <code class="dv-command"><span>$</span> kubectl faros use --org acme --workspace platform</code>
+            <code class="dv-command"><span>$</span> kubectl railgrid use --org acme --workspace platform</code>
             <div class="dv-result-artifact"><span>What this does</span><strong>acme / platform</strong><small>selected organization and workspace</small></div>
             <p class="dv-result">Selects the organization and workspace without a prompt. Subsequent commands use this workspace.</p>
             <a class="dv-link" href="/docs/reference/cli/workspaces/">Read workspace commands {{ partial "connected-home/arrow.html" $ }}</a>
           </article>
           <article class="dv-panel" data-visual-panel="edge" id="dv-panel-edge" aria-labelledby="dv-panel-edge-title">
             <p class="dv-panel-label" id="dv-panel-edge-title">List workspace edges</p>
-            <code class="dv-command"><span>$</span> kubectl faros edge list</code>
+            <code class="dv-command"><span>$</span> kubectl railgrid edge list</code>
             <div class="dv-result-artifact dv-inventory"><span>What this does</span><strong>edge inventory</strong><div><i>NAME</i><i>TYPE</i><i>PHASE</i><i>CONNECTED</i><i>AGE</i></div></div>
             <p class="dv-result">Lists the edges in your workspace, including their type, connection status, and age.</p>
             <a class="dv-link" href="/docs/reference/cli/edges/">Read edge commands {{ partial "connected-home/arrow.html" $ }}</a>
           </article>
           <article class="dv-panel" data-visual-panel="mcp" id="dv-panel-mcp" aria-labelledby="dv-panel-mcp-title">
             <p class="dv-panel-label" id="dv-panel-mcp-title">Get the workspace MCP endpoint</p>
-            <code class="dv-command"><span>$</span> kubectl faros mcp url --mcpserver-name default</code>
+            <code class="dv-command"><span>$</span> kubectl railgrid mcp url --mcpserver-name default</code>
             <div class="dv-result-artifact"><span>What this does</span><strong>Workspace MCP endpoint</strong><small>Use this URL in your MCP client</small></div>
             <p class="dv-result">Prints the workspace MCP URL. The CLI also supports a separate endpoint for each connected Kubernetes edge.</p>
             <a class="dv-link" href="/docs/reference/cli/mcp/">Read MCP commands {{ partial "connected-home/arrow.html" $ }}</a>

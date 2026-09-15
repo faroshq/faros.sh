@@ -63,8 +63,8 @@
 .cm-page .mv-edge-label { color: var(--gs-violet); text-align: center; font-size: 12px; margin-bottom: 22px; }
 .cm-page .mv-endpoint { display: grid; justify-items: center; gap: 14px; padding: 22px 12px; background: var(--gs-panel); border-bottom: 1px solid var(--gs-rule); text-align: center; }
 .cm-page .mv-endpoint svg { width: 60px; height: 48px; fill: none; stroke: var(--gs-violet); stroke-width: 1.2; }
-.cm-page .faros-marketing-hero:has(.mv-stage), .cm-page .faros-marketing-hero:has(.dv-stage) { padding-top: clamp(3rem,5vw,5rem); padding-bottom: 0; }
-.cm-page .faros-marketing-hero:has(.mv-stage) .faros-marketing-facts, .cm-page .faros-marketing-hero:has(.dv-stage) .faros-marketing-facts { margin-top: 0; border-top: 0; border-bottom: 0; }
+.cm-page .railgrid-marketing-hero:has(.mv-stage), .cm-page .railgrid-marketing-hero:has(.dv-stage) { padding-top: clamp(3rem,5vw,5rem); padding-bottom: 0; }
+.cm-page .railgrid-marketing-hero:has(.mv-stage) .railgrid-marketing-facts, .cm-page .railgrid-marketing-hero:has(.dv-stage) .railgrid-marketing-facts { margin-top: 0; border-top: 0; border-bottom: 0; }
 @media(max-width:900px) {
   .cm-page .mv-platform { grid-template-columns: 1fr; gap: 0; }
   .cm-page .mv-platform-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }

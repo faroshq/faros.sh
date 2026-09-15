@@ -23,12 +23,12 @@
   transition-duration: var(--cl-theme-duration);
   transition-timing-function: ease-in-out;
 }
-.gs-connected .faros-v2-oss {
+.gs-connected .railgrid-v2-oss {
   transition-property: --oss-surface, --oss-overlay, --oss-hover, --oss-border, --oss-dots, --oss-accent, --oss-ink, --oss-muted;
   transition-duration: var(--cl-theme-duration);
   transition-timing-function: ease-in-out;
 }
-/* Exact semantic palette from faros/portal/src/assets/main.css. */
+/* Exact semantic palette from railgrid/portal/src/assets/main.css. */
 :root[data-study-theme=light] .gs-connected {
   --gs-ground: #f1f1f6; --gs-panel: #ffffff; --gs-ink: #14152a;
   --gs-muted: #565975; --gs-violet: #6b48e8; --gs-glow: rgba(107,72,232,.18);
@@ -90,7 +90,7 @@
 :root.cl-motion-suspended .gs-connected *, :root.cl-motion-suspended .gs-connected *:after { animation-play-state: paused !important; }
 :root[data-motion=off] .gs-connected *, :root[data-motion=off] .gs-connected *:after { animation: none !important; }
 :root[data-motion=off] .cl-arrival-light { opacity: 0; }
-:root[data-motion=off] .gs-connected, :root[data-motion=off] .gs-connected .cl-picture, :root[data-motion=off] .gs-connected .faros-v2-oss { transition-duration: 0s; }
+:root[data-motion=off] .gs-connected, :root[data-motion=off] .gs-connected .cl-picture, :root[data-motion=off] .gs-connected .railgrid-v2-oss { transition-duration: 0s; }
 @media(max-width:1050px) { .gs-connected .gs-header { gap: 18px; } }
 @media(max-width:700px) {
   .gs-connected .gs-header-action { display: none; }

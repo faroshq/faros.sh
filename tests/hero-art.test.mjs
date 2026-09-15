@@ -20,7 +20,7 @@ function boot(theme) {
     document: { documentElement: root, currentScript: { closest: () => ({ querySelectorAll: () => images }) } },
     window: { addEventListener: (name, fn) => events.set(name, fn) },
   });
-  return { images, requests, switchTo(theme) { root.dataset.studyTheme = theme; events.get('faros:theme-change')(); } };
+  return { images, requests, switchTo(theme) { root.dataset.studyTheme = theme; events.get('railgrid:theme-change')(); } };
 }
 
 for (const theme of ['light', 'dark']) {

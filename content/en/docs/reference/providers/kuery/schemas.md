@@ -8,7 +8,7 @@ provider: "kuery"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## SavedView (v1alpha1)
 
-API: `kuery.providers.faros.sh/v1alpha1` · Resource: `savedviews` · Scope: `Namespaced`
+API: `kuery.providers.railgrid.ai/v1alpha1` · Resource: `savedviews` · Scope: `Namespaced`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/kuery/deploy/chart/files/schemas/savedviews.kuery.providers.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/kuery/deploy/chart/files/schemas/savedviews.kuery.providers.railgrid.ai.yaml)
 
 ```bash
-kubectl explain savedviews.kuery.providers.faros.sh --api-version=kuery.providers.faros.sh/v1alpha1 --recursive
+kubectl explain savedviews.kuery.providers.railgrid.ai --api-version=kuery.providers.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -29,7 +29,7 @@ kubectl explain savedviews.kuery.providers.faros.sh --api-version=kuery.provider
 | `spec` | object | No | No description supplied by the source schema. |
 | `spec.displayName` | string | No | Human-readable name shown in the portal. maxLength: 128 |
 | `spec.description` | string | No | maxLength: 512 |
-| `spec.root` | object | No | The object the view is anchored on. Cluster is the faros edge name; empty matches any engaged edge. |
+| `spec.root` | object | No | The object the view is anchored on. Cluster is the railgrid edge name; empty matches any engaged edge. |
 | `spec.root.cluster` | string | No | maxLength: 256 |
 | `spec.root.apiGroup` | string | No | maxLength: 256 |
 | `spec.root.kind` | string | No | maxLength: 128 |

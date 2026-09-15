@@ -1,13 +1,13 @@
 {
-  "name": "faros.sh",
+  "name": "railgrid-website",
   "version": "0.0.1",
   "version.next": "0.0.1-dev.0-unreleased",
   "description": "Railgrid Platform as a Service",
-  "repository": "github:faroshq/faros",
+  "repository": "github:railgrid/railgrid",
   "homepage": "https://faros.sh",
   "author": "Mangirdas Judeikis",
   "main": "index.js",
-  "bugs": "https://github.com/faroshq/faros/issues",
+  "bugs": "https://github.com/railgrid/railgrid/issues",
   "spelling": "cSpell:ignore HTMLTEST precheck postbuild -",
   "scripts": {
     "_build": "npm run _hugo-dev --",

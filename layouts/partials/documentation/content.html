@@ -2,9 +2,9 @@
 {{ $hasRail := and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Layout "search") }}
 <div class="docs-layout{{ if .Params.landing }} docs-landing-layout{{ end }}{{ if eq .Params.landing "get-started" }} docs-get-started-layout{{ end }}">
   {{ if ne .RelPermalink $ctx.root.RelPermalink }}{{ partial "docs-sidebar.html" . }}{{ end }}
-  <main class="faros-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
+  <main class="railgrid-docs-main{{ if $hasRail }} docs-reading-layout{{ end }}" id="docs-content" tabindex="-1">
     {{ if $hasRail }}{{ partial "documentation/page-tools.html" . }}{{ end }}
-    <article class="faros-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-railgrid/" }} docs-product-overview{{ end }}">
+    <article class="railgrid-docs-article{{ if eq .RelPermalink "/docs/get-started/what-is-railgrid/" }} docs-product-overview{{ end }}">
       {{ if and (ne .RelPermalink $ctx.root.RelPermalink) (ne .Parent.RelPermalink $ctx.root.RelPermalink) }}
       <nav class="docs-breadcrumb" aria-label="Breadcrumb">
         {{ range .Ancestors.Reverse }}{{ if and (eq .Section "docs") (ne .RelPermalink $ctx.root.RelPermalink) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
@@ -12,9 +12,9 @@
       </nav>
       {{ end }}
       {{ if eq .Params.landing "home" }}<div class="docs-home-intro">{{ end }}
-      <header class="faros-docs-header">
-        <h1 class="faros-docs-title">{{ .Title }}</h1>
-        <p class="faros-docs-lead">{{ .Description }}</p>
+      <header class="railgrid-docs-header">
+        <h1 class="railgrid-docs-title">{{ .Title }}</h1>
+        <p class="railgrid-docs-lead">{{ .Description }}</p>
         {{ if eq .Params.landing "home" }}
         <p class="docs-intro-links"><a href="/docs/get-started/what-is-railgrid/">Understand Railgrid <span aria-hidden="true">→</span></a><a href="/docs/use/">Explore capabilities <span aria-hidden="true">→</span></a></p>
         {{ end }}
@@ -33,11 +33,11 @@
       {{ if eq .Params.landing "home" }}{{ partial "documentation/provider-catalog.html" . }}{{ end }}
       {{ if eq .Params.landing "get-started" }}
         {{ $sections := split .RawContent "<!--more-->" }}
-        <div class="faros-docs-body docs-get-started-intro">{{ .RenderString (index $sections 0) }}</div>
+        <div class="railgrid-docs-body docs-get-started-intro">{{ .RenderString (index $sections 0) }}</div>
         {{ partial "documentation/get-started.html" . }}
-        {{ if gt (len $sections) 1 }}<div class="faros-docs-body">{{ .RenderString (index $sections 1) }}</div>{{ end }}
+        {{ if gt (len $sections) 1 }}<div class="railgrid-docs-body">{{ .RenderString (index $sections 1) }}</div>{{ end }}
       {{ else }}
-        <div class="faros-docs-body">{{ .Content }}</div>
+        <div class="railgrid-docs-body">{{ .Content }}</div>
       {{ end }}
       {{ if eq .Params.landing "home" }}
       <section class="docs-home-paths" aria-labelledby="docs-explore-title">
@@ -59,8 +59,8 @@
           {{ range .Pages.ByWeight }}{{ if not .Params.hidden }}<a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong><span>{{ .Description }}</span></a>{{ end }}{{ end }}
         </nav>
       {{ end }}
-      <footer class="faros-docs-article-foot docs-article-footer">
-        {{ with .File }}<a href="https://github.com/faroshq/faros.sh/edit/main/content/en/{{ .Path }}">Edit this page</a>{{ end }}
+      <footer class="railgrid-docs-article-foot docs-article-footer">
+        {{ with .File }}<a href="https://github.com/railgrid/faros.sh/edit/main/content/en/{{ .Path }}">Edit this page</a>{{ end }}
         <a href="/docs/resources/troubleshooting/">Get help</a>
         {{ with .Params.provider }}<span>Provider: {{ $ctx.local.Title }}</span>{{ end }}
       </footer>

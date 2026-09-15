@@ -40,4 +40,4 @@ Table handles and schema status live in your Railgrid workspace. The data stays 
 - [API reference](/docs/reference/providers/databricks/)
 - [Self-host Databricks](/docs/self-hosting/providers/databricks/)
 
-[Implementation reference](https://github.com/faroshq/faros/blob/main/providers/databricks/README.md).
+[Implementation reference](https://github.com/railgrid/railgrid/blob/main/providers/databricks/README.md).

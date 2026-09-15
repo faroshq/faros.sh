@@ -7,7 +7,7 @@ hero:
   summary: "The Railgrid control plane, portal, and providers are developed in public under Apache 2.0. Inspect the architecture, run the platform on infrastructure you control, and extend it through the provider interfaces used in the repository."
   primary:
     label: "View Railgrid on GitHub"
-    url: "https://github.com/faroshq/faros"
+    url: "https://github.com/railgrid/railgrid"
   secondary:
     label: "Deploy your own hub"
     url: "/docs/self-hosting/hub/helm/"
@@ -64,12 +64,12 @@ sections:
       - kicker: "Source"
         title: "Explore the repository"
         summary: "Read the implementation, charts, provider code, and repository documentation from the Railgrid GitHub project."
-        url: "https://github.com/faroshq/faros"
+        url: "https://github.com/railgrid/railgrid"
         link_label: "Open GitHub"
       - kicker: "Issues"
         title: "Report a bug or suggest a change"
         summary: "Check existing issues, then describe the problem or change you want to discuss."
-        url: "https://github.com/faroshq/faros/issues"
+        url: "https://github.com/railgrid/railgrid/issues"
         link_label: "Browse issues"
       - kicker: "Community"
         title: "Join the Discord community"
@@ -81,7 +81,7 @@ closing:
   summary: "Read the repository or follow the quickstart from login through edge connectivity and your first live request."
   primary:
     label: "View the source"
-    url: "https://github.com/faroshq/faros"
+    url: "https://github.com/railgrid/railgrid"
   secondary:
     label: "Follow the quickstart"
     url: "/docs/use/edges/quickstart/"

@@ -12,7 +12,7 @@ Use the workspace where Databricks is enabled. Authenticate with a credential au
 
 ## Interfaces
 
-Connection, Warehouse, and Table use `databricks.faros.sh/v1alpha1`. `query_table/v1` binds to an exact Table and accepts optional column projections and a row limit from 1 to 100. It is synchronous and read-only. MCP exposes list_tables, describe_table, and query_table when enabled.
+Connection, Warehouse, and Table use `databricks.railgrid.ai/v1alpha1`. `query_table/v1` binds to an exact Table and accepts optional column projections and a row limit from 1 to 100. It is synchronous and read-only. MCP exposes list_tables, describe_table, and query_table when enabled.
 
 ## MCP tools
 
@@ -24,7 +24,7 @@ The [aggregate MCP endpoint](/docs/use/ai-assistants/) uses the `databricks__` p
 | `describe_table` | Read a table's cached column names and types. |
 | `query_table` | Read up to 100 rows, optionally selecting exact column names. |
 
-Pass the exact Table resource name as `tableRef`, not an App Studio integration alias. Querying is a synchronous action and does not create a query resource. Inspect your client's tool discovery for deployed schemas; see the [tool definitions](https://github.com/faroshq/faros/blob/main/providers/databricks/mcpserver/tools.go).
+Pass the exact Table resource name as `tableRef`, not an App Studio integration alias. Querying is a synchronous action and does not create a query resource. Inspect your client's tool discovery for deployed schemas; see the [tool definitions](https://github.com/railgrid/railgrid/blob/main/providers/databricks/mcpserver/tools.go).
 
 ## Resource schemas
 
@@ -35,11 +35,11 @@ Pass the exact Table resource name as `tableRef`, not an App Studio integration 
 Use an authenticated context for the workspace and verify that the imported Table has refreshed status before querying it.
 
 ```sh
-kubectl faros use
-kubectl api-resources --api-group=databricks.faros.sh
-kubectl get connections.databricks.faros.sh,warehouses.databricks.faros.sh,tables.databricks.faros.sh
-kubectl explain tables.databricks.faros.sh.spec --api-version=databricks.faros.sh/v1alpha1
-kubectl describe table.databricks.faros.sh/<table-resource-name>
+kubectl railgrid use
+kubectl api-resources --api-group=databricks.railgrid.ai
+kubectl get connections.databricks.railgrid.ai,warehouses.databricks.railgrid.ai,tables.databricks.railgrid.ai
+kubectl explain tables.databricks.railgrid.ai.spec --api-version=databricks.railgrid.ai/v1alpha1
+kubectl describe table.databricks.railgrid.ai/<table-resource-name>
 ```
 
 The versioned MCP action accepts the exact imported Table resource name, not an App Studio alias:
@@ -52,7 +52,7 @@ Send that object as the `arguments` for `databricks__query_table` after discover
 
 ## Authoritative definitions
 
-[API definitions](https://github.com/faroshq/faros/blob/main/docs/provider-actions.md) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
+[API definitions](https://github.com/railgrid/railgrid/blob/main/docs/provider-actions.md) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
 
 ## Related guide
 

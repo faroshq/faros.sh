@@ -40,16 +40,16 @@ hub:
 Apply:
 
 ```bash
-helm upgrade --install faros oci://ghcr.io/faroshq/charts/faros-hub \
+helm upgrade --install railgrid oci://ghcr.io/railgrid/charts/railgrid-hub \
   -f values.yaml \
-  --namespace faros-system \
+  --namespace railgrid-system \
   --create-namespace
 ```
 
 Or pass tokens directly to the binary in non-Helm setups (the flag is repeatable):
 
 ```bash
-faros-hub \
+railgrid-hub \
   --static-auth-token=REPLACE_WITH_TOKEN_ONE \
   --static-auth-token=REPLACE_WITH_TOKEN_TWO \
   --hub-external-url=https://localhost:9443
@@ -58,20 +58,20 @@ faros-hub \
 ## 3. Log in with the token
 
 ```bash
-kubectl faros login \
+kubectl railgrid login \
   --hub-url https://hub.example.com \
   --token REPLACE_WITH_YOUR_TOKEN
 ```
 
-Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `faros` with the token embedded.
+Add `--insecure-skip-tls-verify` if the hub uses a self-signed certificate. This writes a kubeconfig context named `railgrid` with the token embedded.
 
 ## 4. Verify hub access
 
 ```bash
-kubectl faros use
+kubectl railgrid use
 ```
 
-Choose an organization and workspace when prompted. This verifies that the token can authenticate to the hub and discover workspace APIs; an Edges provider is not required. To run `kubectl faros edge list`, install and enable Edges separately first.
+Choose an organization and workspace when prompted. This verifies that the token can authenticate to the hub and discover workspace APIs; an Edges provider is not required. To run `kubectl railgrid edge list`, install and enable Edges separately first.
 
 ## Rotating a token
 

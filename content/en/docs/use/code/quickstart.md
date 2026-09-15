@@ -31,10 +31,10 @@ Deleting a managed repository also removes it from GitHub. Preserve any content 
 Select the [same workspace](/docs/reference/cli/resources/) and discover its provider API:
 
 ```bash
-kubectl api-resources --api-group=code.faros.sh
-kubectl get connections.code.faros.sh
-kubectl get repositories.code.faros.sh
-kubectl get repositories.code.faros.sh RESOURCE-NAME -o yaml
+kubectl api-resources --api-group=code.railgrid.ai
+kubectl get connections.code.railgrid.ai
+kubectl get repositories.code.railgrid.ai
+kubectl get repositories.code.railgrid.ai RESOURCE-NAME -o yaml
 ```
 
 Replace `RESOURCE-NAME` with the object you created. Inspect its status, reported conditions, and resource references to trace setup failures. An empty list is different from a forbidden request or missing API. Keep credentials in the supported connection flow; do not copy connection secrets into example manifests or shared diagnostic output.

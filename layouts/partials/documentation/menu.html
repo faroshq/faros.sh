@@ -1,9 +1,9 @@
 {{ $current := .current }}
-<ul class="faros-docs-list">
+<ul class="railgrid-docs-list">
   {{ range .root.Pages.ByWeight }}
     {{ if not .Params.hidden }}
       <li>
-        <a class="faros-docs-link{{ if eq .RelPermalink $current.RelPermalink }} active{{ end }}" href="{{ .RelPermalink }}"{{ if eq .RelPermalink $current.RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+        <a class="railgrid-docs-link{{ if eq .RelPermalink $current.RelPermalink }} active{{ end }}" href="{{ .RelPermalink }}"{{ if eq .RelPermalink $current.RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
         {{ if and .IsSection (ne .Parent.RelPermalink "/docs/use/") }}
           {{ partial "documentation/menu.html" (dict "root" . "current" $current) }}
         {{ end }}

@@ -22,7 +22,7 @@ actions:
     displayName: Query table
     description: Run a bounded read-only query against an imported Databricks table.
     boundResource:
-      apiVersion: databricks.faros.sh/v1alpha1
+      apiVersion: databricks.railgrid.ai/v1alpha1
       kind: Table
       resource: tables
     inputSchema:
@@ -66,7 +66,7 @@ name: sales
 provider: databricks
 kind: providerReference
 resourceRef:
-  apiVersion: databricks.faros.sh/v1alpha1
+  apiVersion: databricks.railgrid.ai/v1alpha1
   kind: Table
   resource: tables
   name: order-history
@@ -86,7 +86,7 @@ with a provider URL, credentials, or an arbitrary `resourceRef`.
 Generated applications use the server-only SDK. If your project does not already include it, install the published package under the stable import alias:
 
 ```bash
-npm install @faros/actions-node@npm:@crwilhit/faros-actions-node@0.1.0
+npm install @railgrid/actions-node@npm:@crwilhit/railgrid-actions-node@0.1.0
 ```
 
 Configure the three environment variables below in the application server using its Railgrid workload identity; never expose the token file to browser code. The gateway verifies that the
@@ -95,15 +95,15 @@ forwards the request to the provider action route. The application supplies
 only action input:
 
 ```js
-import { createActionsClient } from '@faros/actions-node';
+import { createActionsClient } from '@railgrid/actions-node';
 
-const faros = createActionsClient({
-  baseURL: process.env.FAROS_ACTIONS_BASE_URL,
-  project: process.env.FAROS_PROJECT,
-  tokenFile: process.env.FAROS_ACTIONS_TOKEN_FILE,
+const railgrid = createActionsClient({
+  baseURL: process.env.RAILGRID_ACTIONS_BASE_URL,
+  project: process.env.RAILGRID_PROJECT,
+  tokenFile: process.env.RAILGRID_ACTIONS_TOKEN_FILE,
 });
 
-const result = await faros.integration('sales').invoke('query_table/v1', {
+const result = await railgrid.integration('sales').invoke('query_table/v1', {
   columns: ['order_id', 'total'],
   limit: 25,
 });
@@ -138,4 +138,4 @@ Assistant skills distribute instructions and supporting resources. They do not c
 
 Verify catalog validation, exact resource binding, denied access, revocation, schema changes, and bounded results before publishing an action.
 
-[Action contract](https://github.com/faroshq/faros/blob/main/docs/provider-actions.md) · [Application SDK](https://github.com/faroshq/faros/blob/main/provider-sdk/actions-node/README.md) · [App integration tutorial](/docs/use/app-studio/databricks/).
+[Action contract](https://github.com/railgrid/railgrid/blob/main/docs/provider-actions.md) · [Application SDK](https://github.com/railgrid/railgrid/blob/main/provider-sdk/actions-node/README.md) · [App integration tutorial](/docs/use/app-studio/databricks/).

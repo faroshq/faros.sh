@@ -10,7 +10,7 @@ hero:
     url: "/contact/"
   secondary:
     label: "View Railgrid on GitHub"
-    url: "https://github.com/faroshq/faros"
+    url: "https://github.com/railgrid/railgrid"
 sections:
   - id: "one-brand"
     title: "A shared platform for your software and infrastructure."
@@ -29,7 +29,7 @@ sections:
     cards:
       - title: "Follow development"
         summary: "Read the code, report a bug, or propose a change in the public repository."
-        url: "https://github.com/faroshq/faros"
+        url: "https://github.com/railgrid/railgrid"
         link_label: "View Railgrid on GitHub"
       - title: "Join the community"
         summary: "Ask questions and share your experience using or developing Railgrid."

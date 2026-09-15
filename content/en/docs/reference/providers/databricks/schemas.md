@@ -8,7 +8,7 @@ provider: "databricks"
 
 ## Compatibility and access
 
-Generated from [product commit `6f341b4e6d35`](https://github.com/faroshq/faros/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
+Generated from [product commit `6f341b4e6d35`](https://github.com/railgrid/railgrid/commit/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96). This is a source snapshot, not a guarantee that your deployment runs this version.
 
 These resource schemas describe provider configuration. Check your deployed API discovery for the schema installed in your hub. Use the intended [workspace context](/docs/reference/cli/resources/) and an identity permitted to read or change the resource. Required fields below are required within their containing object; optional parent objects may be omitted.
 
@@ -16,12 +16,12 @@ These resource schemas describe provider configuration. Check your deployed API 
 
 ## Connection (v1alpha1)
 
-API: `databricks.faros.sh/v1alpha1` · Resource: `connections` · Scope: `Cluster`
+API: `databricks.railgrid.ai/v1alpha1` · Resource: `connections` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/connections.databricks.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/connections.databricks.railgrid.ai.yaml)
 
 ```bash
-kubectl explain connections.databricks.faros.sh --api-version=databricks.faros.sh/v1alpha1 --recursive
+kubectl explain connections.databricks.railgrid.ai --api-version=databricks.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -46,12 +46,12 @@ kubectl explain connections.databricks.faros.sh --api-version=databricks.faros.s
 
 ## Table (v1alpha1)
 
-API: `databricks.faros.sh/v1alpha1` · Resource: `tables` · Scope: `Cluster`
+API: `databricks.railgrid.ai/v1alpha1` · Resource: `tables` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/tables.databricks.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/tables.databricks.railgrid.ai.yaml)
 
 ```bash
-kubectl explain tables.databricks.faros.sh --api-version=databricks.faros.sh/v1alpha1 --recursive
+kubectl explain tables.databricks.railgrid.ai --api-version=databricks.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |
@@ -80,12 +80,12 @@ kubectl explain tables.databricks.faros.sh --api-version=databricks.faros.sh/v1a
 
 ## Warehouse (v1alpha1)
 
-API: `databricks.faros.sh/v1alpha1` · Resource: `warehouses` · Scope: `Cluster`
+API: `databricks.railgrid.ai/v1alpha1` · Resource: `warehouses` · Scope: `Cluster`
 
-[Source schema](https://github.com/faroshq/faros/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/warehouses.databricks.faros.sh.yaml)
+[Source schema](https://github.com/railgrid/railgrid/blob/6f341b4e6d356dd28d1a90ec65e220b98a9bbb96/providers/databricks/deploy/chart/files/schemas/warehouses.databricks.railgrid.ai.yaml)
 
 ```bash
-kubectl explain warehouses.databricks.faros.sh --api-version=databricks.faros.sh/v1alpha1 --recursive
+kubectl explain warehouses.databricks.railgrid.ai --api-version=databricks.railgrid.ai/v1alpha1 --recursive
 ```
 
 | Field | Type | Required in parent | Description and constraints |

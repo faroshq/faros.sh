@@ -63,7 +63,7 @@ sections:
       - kicker: "Inspect"
         title: "Read the source"
         summary: "Inspect the control plane and built-in providers in the public repository."
-        url: "https://github.com/faroshq/faros"
+        url: "https://github.com/railgrid/railgrid"
         link_label: "Open GitHub"
       - kicker: "Assess"
         title: "Review security and tenancy"

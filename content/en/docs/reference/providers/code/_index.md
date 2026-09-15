@@ -12,7 +12,7 @@ Use the workspace where Code is enabled. Authenticate with a credential authoriz
 
 ## Interfaces
 
-The `code.faros.sh` API includes Connection, Repository, RepositoryCommit, RepositoryCheckout, DeployKey, Collaborator, Package, and RepositoryBuildStatus. Upstream GitHub authorization still applies.
+The `code.railgrid.ai` API includes Connection, Repository, RepositoryCommit, RepositoryCheckout, DeployKey, Collaborator, Package, and RepositoryBuildStatus. Upstream GitHub authorization still applies.
 
 ## MCP tools
 
@@ -33,7 +33,7 @@ After [connecting an MCP client](/docs/use/ai-assistants/), the aggregate endpoi
 | `build_status` | Inspect the latest build workflow run, jobs, and failure log tails. |
 | `rebuild` | Dispatch the repository's build workflow again. |
 
-Check resource status after write operations and verify the result in GitHub. Build tools require a configured build workflow. For exact input schemas and behavior, see the [MCP implementation](https://github.com/faroshq/faros/tree/main/providers/code/mcpserver).
+Check resource status after write operations and verify the result in GitHub. Build tools require a configured build workflow. For exact input schemas and behavior, see the [MCP implementation](https://github.com/railgrid/railgrid/tree/main/providers/code/mcpserver).
 
 ## Resource schemas
 
@@ -44,18 +44,18 @@ Check resource status after write operations and verify the result in GitHub. Bu
 Use an authenticated context for the workspace. These reads do not contact GitHub directly; the provider reports the managed resource and its controller status.
 
 ```sh
-kubectl faros use
-kubectl api-resources --api-group=code.faros.sh
-kubectl get connections.code.faros.sh,repositories.code.faros.sh,repositorybuildstatuses.code.faros.sh
-kubectl explain repositories.code.faros.sh.spec --api-version=code.faros.sh/v1alpha1
-kubectl describe repository.code.faros.sh/<repository-name>
+kubectl railgrid use
+kubectl api-resources --api-group=code.railgrid.ai
+kubectl get connections.code.railgrid.ai,repositories.code.railgrid.ai,repositorybuildstatuses.code.railgrid.ai
+kubectl explain repositories.code.railgrid.ai.spec --api-version=code.railgrid.ai/v1alpha1
+kubectl describe repository.code.railgrid.ai/<repository-name>
 ```
 
 Before a write tool, confirm the Connection is ready and that the linked GitHub account can perform the requested operation. A provider `Forbidden`/`Unauthorized` response is not fixed by retrying; repair the workspace permission or GitHub authorization. Build status can remain pending while GitHub processes the workflow, so inspect the status resource and its failure log tail before requesting `rebuild`.
 
 ## Authoritative definitions
 
-[API definitions](https://github.com/faroshq/faros/blob/main/providers/code/apis) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
+[API definitions](https://github.com/railgrid/railgrid/blob/main/providers/code/apis) contain fields and contracts. For Kubernetes-style resources, use `kubectl api-resources` and `kubectl explain RESOURCE` against the intended workspace to inspect the installed schema.
 
 ## Related guide
 

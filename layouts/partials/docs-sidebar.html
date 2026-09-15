@@ -1,20 +1,20 @@
 {{ $ctx := partial "documentation/context.html" . }}
-<aside class="faros-docs-sidebar">
+<aside class="railgrid-docs-sidebar">
   {{ if eq $ctx.slug "use" }}{{ partial "documentation/capability-switcher.html" . }}{{ end }}
   <details class="docs-navigation" open>
     <summary>Documentation navigation</summary>
     <div class="docs-navigation-body">
       <nav aria-label="{{ $ctx.local.Title }} navigation">
         {{ if or (ne $ctx.slug "use") (not .Params.provider) }}<p class="docs-nav-heading">{{ $ctx.local.Title }}</p>{{ end }}
-        <a class="faros-docs-link{{ if eq .RelPermalink $ctx.local.RelPermalink }} active{{ end }}" href="{{ $ctx.local.RelPermalink }}"{{ if eq .RelPermalink $ctx.local.RelPermalink }} aria-current="page"{{ end }}>Overview</a>
+        <a class="railgrid-docs-link{{ if eq .RelPermalink $ctx.local.RelPermalink }} active{{ end }}" href="{{ $ctx.local.RelPermalink }}"{{ if eq .RelPermalink $ctx.local.RelPermalink }} aria-current="page"{{ end }}>Overview</a>
         {{ with $ctx.sidebar.groups }}
           {{ range . }}
           <section class="docs-sidebar-group">
             <h2>{{ .title }}</h2>
-            <ul class="faros-docs-list">
+            <ul class="railgrid-docs-list">
               {{ range .links }}
               {{ if ne .url $ctx.local.RelPermalink }}
-              <li><a class="faros-docs-link{{ if eq $.RelPermalink .url }} active{{ end }}" href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ end }}>{{ .title }}</a></li>
+              <li><a class="railgrid-docs-link{{ if eq $.RelPermalink .url }} active{{ end }}" href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ end }}>{{ .title }}</a></li>
               {{ end }}
               {{ end }}
             </ul>
